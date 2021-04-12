@@ -15,6 +15,7 @@ package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Dataset;
+import com.cosmotech.client.model.DatasetCopyParameters;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -31,6 +32,23 @@ public class DatasetApiTest {
 
     private final DatasetApi api = new DatasetApi();
 
+    
+    /**
+     * Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void copyDatasetTest() throws ApiException {
+        String organizationId = null;
+        DatasetCopyParameters datasetCopyParameters = null;
+        DatasetCopyParameters response = api.copyDataset(organizationId, datasetCopyParameters);
+
+        // TODO: test validations
+    }
     
     /**
      * Register a new dataset

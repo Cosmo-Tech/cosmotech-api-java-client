@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.WorkspaceServices;
 import com.cosmotech.client.model.WorkspaceSimulator;
 import com.cosmotech.client.model.WorkspaceUser;
 import com.cosmotech.client.model.WorkspaceWebApp;
@@ -25,9 +26,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -120,11 +119,11 @@ public class WorkspaceTest {
     }
 
     /**
-     * Test the property 'resources'
+     * Test the property 'services'
      */
     @Test
-    public void resourcesTest() {
-        // TODO: test resources
+    public void servicesTest() {
+        // TODO: test services
     }
 
 }

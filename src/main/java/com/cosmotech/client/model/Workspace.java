@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.WorkspaceServices;
 import com.cosmotech.client.model.WorkspaceSimulator;
 import com.cosmotech.client.model.WorkspaceUser;
 import com.cosmotech.client.model.WorkspaceWebApp;
@@ -27,15 +28,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T14:39:58.727919+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -73,9 +72,9 @@ public class Workspace {
   @SerializedName(SERIALIZED_NAME_WEB_APP)
   private WorkspaceWebApp webApp;
 
-  public static final String SERIALIZED_NAME_RESOURCES = "resources";
-  @SerializedName(SERIALIZED_NAME_RESOURCES)
-  private Map<String, Object> resources = null;
+  public static final String SERIALIZED_NAME_SERVICES = "services";
+  @SerializedName(SERIALIZED_NAME_SERVICES)
+  private WorkspaceServices services;
 
 
    /**
@@ -281,18 +280,27 @@ public class Workspace {
   }
 
 
+  public Workspace services(WorkspaceServices services) {
+    
+    this.services = services;
+    return this;
+  }
+
    /**
-   * a list of resources for the Workspace with resourceName/resourceUrl
-   * @return resources
+   * Get services
+   * @return services
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a list of resources for the Workspace with resourceName/resourceUrl")
+  @ApiModelProperty(value = "")
 
-  public Map<String, Object> getResources() {
-    return resources;
+  public WorkspaceServices getServices() {
+    return services;
   }
 
 
+  public void setServices(WorkspaceServices services) {
+    this.services = services;
+  }
 
 
   @Override
@@ -313,12 +321,12 @@ public class Workspace {
         Objects.equals(this.simulator, workspace.simulator) &&
         Objects.equals(this.userList, workspace.userList) &&
         Objects.equals(this.webApp, workspace.webApp) &&
-        Objects.equals(this.resources, workspace.resources);
+        Objects.equals(this.services, workspace.services);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, version, tags, ownerId, simulator, userList, webApp, resources);
+    return Objects.hash(id, name, description, version, tags, ownerId, simulator, userList, webApp, services);
   }
 
   @Override
@@ -334,7 +342,7 @@ public class Workspace {
     sb.append("    simulator: ").append(toIndentedString(simulator)).append("\n");
     sb.append("    userList: ").append(toIndentedString(userList)).append("\n");
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
-    sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
+    sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("}");
     return sb.toString();
   }

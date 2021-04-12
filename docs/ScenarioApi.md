@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**findAllScenarios**](ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios
 [**findScenarioById**](ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
 [**getScenariosTree**](ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
+[**queryDataWarehouse**](ScenarioApi.md#queryDataWarehouse) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/queryDataWarehouse | Get the result of a query on the DatawareHouse
 [**updateScenario**](ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
 
 
@@ -465,6 +466,84 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the scenario tree |  -  |
+
+<a name="queryDataWarehouse"></a>
+# **queryDataWarehouse**
+> ScenarioDataWarehouseQueryResult queryDataWarehouse(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery)
+
+Get the result of a query on the DatawareHouse
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenarioApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: AADOAuth2AuthCode
+    OAuth AADOAuth2AuthCode = (OAuth) defaultClient.getAuthentication("AADOAuth2AuthCode");
+    AADOAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    ScenarioApi apiInstance = new ScenarioApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
+    ScenarioDataWarehouseQuery scenarioDataWarehouseQuery = new ScenarioDataWarehouseQuery(); // ScenarioDataWarehouseQuery | the DatawareHouse query
+    try {
+      ScenarioDataWarehouseQueryResult result = apiInstance.queryDataWarehouse(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenarioApi#queryDataWarehouse");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+ **scenarioDataWarehouseQuery** | [**ScenarioDataWarehouseQuery**](ScenarioDataWarehouseQuery.md)| the DatawareHouse query |
+
+### Return type
+
+[**ScenarioDataWarehouseQueryResult**](ScenarioDataWarehouseQueryResult.md)
+
+### Authorization
+
+[AADOAuth2AuthCode](../README.md#AADOAuth2AuthCode), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the query result |  -  |
+**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateScenario"></a>
 # **updateScenario**

@@ -31,7 +31,7 @@ import java.util.Map;
  * a Simulator Analysis Parameter
  */
 @ApiModel(description = "a Simulator Analysis Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T14:39:58.727919+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
 public class AnalysisParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -110,10 +110,10 @@ public class AnalysisParameter {
   }
 
    /**
-   * the variable type for the parameter
+   * the variable type for the parameter. Basic types or special type $DATASETID, $DATAPATH
    * @return varType
   **/
-  @ApiModelProperty(required = true, value = "the variable type for the parameter")
+  @ApiModelProperty(required = true, value = "the variable type for the parameter. Basic types or special type $DATASETID, $DATAPATH")
 
   public String getVarType() {
     return varType;

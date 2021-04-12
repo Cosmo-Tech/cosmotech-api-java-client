@@ -17,6 +17,8 @@ import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Scenario;
 import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioComparisonResult;
+import com.cosmotech.client.model.ScenarioDataWarehouseQuery;
+import com.cosmotech.client.model.ScenarioDataWarehouseQueryResult;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -137,6 +139,25 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         List<ScenarioBase> response = api.getScenariosTree(organizationId, workspaceId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the result of a query on the DatawareHouse
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void queryDataWarehouseTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+        ScenarioDataWarehouseQuery scenarioDataWarehouseQuery = null;
+        ScenarioDataWarehouseQueryResult response = api.queryDataWarehouse(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery);
 
         // TODO: test validations
     }

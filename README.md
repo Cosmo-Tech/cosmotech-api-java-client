@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.1-SNAPSHOT
-  - Build date: 2021-04-12T14:39:58.727919+02:00[Europe/Paris]
+  - Build date: 2021-04-12T19:02:40.729704+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -122,6 +122,7 @@ Class | Method | HTTP request | Description
 *ConnectorApi* | [**registerConnector**](docs/ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
 *ConnectorApi* | [**unregisterConnector**](docs/ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister an connector
 *ConnectorApi* | [**uploadConnector**](docs/ConnectorApi.md#uploadConnector) | **POST** /connectors/upload | Upload and register a new connector
+*DatasetApi* | [**copyDataset**](docs/DatasetApi.md#copyDataset) | **POST** /organizations/{organization_id}/datasets/copy | Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector.
 *DatasetApi* | [**createDataset**](docs/DatasetApi.md#createDataset) | **POST** /organizations/{organization_id}/datasets | Register a new dataset
 *DatasetApi* | [**deleteDataset**](docs/DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset
 *DatasetApi* | [**findAllDatasets**](docs/DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
@@ -138,6 +139,7 @@ Class | Method | HTTP request | Description
 *ScenarioApi* | [**findAllScenarios**](docs/ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios
 *ScenarioApi* | [**findScenarioById**](docs/ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
 *ScenarioApi* | [**getScenariosTree**](docs/ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
+*ScenarioApi* | [**queryDataWarehouse**](docs/ScenarioApi.md#queryDataWarehouse) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/queryDataWarehouse | Get the result of a query on the DatawareHouse
 *ScenarioApi* | [**updateScenario**](docs/ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
 *SimulatorApi* | [**createSimulator**](docs/SimulatorApi.md#createSimulator) | **POST** /organizations/{organization_id}/simulators | Register a new simulator
 *SimulatorApi* | [**deleteSimulator**](docs/SimulatorApi.md#deleteSimulator) | **DELETE** /organizations/{organization_id}/simulators/{simulator_id} | Delete a simulator
@@ -177,6 +179,7 @@ Class | Method | HTTP request | Description
  - [Dataset](docs/Dataset.md)
  - [DatasetCompatibility](docs/DatasetCompatibility.md)
  - [DatasetConnector](docs/DatasetConnector.md)
+ - [DatasetCopyParameters](docs/DatasetCopyParameters.md)
  - [Organization](docs/Organization.md)
  - [OrganizationUser](docs/OrganizationUser.md)
  - [Scenario](docs/Scenario.md)
@@ -186,6 +189,14 @@ Class | Method | HTTP request | Description
  - [ScenarioBase](docs/ScenarioBase.md)
  - [ScenarioChangedParameterValue](docs/ScenarioChangedParameterValue.md)
  - [ScenarioComparisonResult](docs/ScenarioComparisonResult.md)
+ - [ScenarioDataWarehouseQuery](docs/ScenarioDataWarehouseQuery.md)
+ - [ScenarioDataWarehouseQueryResult](docs/ScenarioDataWarehouseQueryResult.md)
+ - [ScenarioFailedAnalysis](docs/ScenarioFailedAnalysis.md)
+ - [ScenarioFailedAnalysisAllOf](docs/ScenarioFailedAnalysisAllOf.md)
+ - [ScenarioRunningAnalysis](docs/ScenarioRunningAnalysis.md)
+ - [ScenarioRunningAnalysisAllOf](docs/ScenarioRunningAnalysisAllOf.md)
+ - [ScenarioSuccessfulAnalysis](docs/ScenarioSuccessfulAnalysis.md)
+ - [ScenarioSuccessfulAnalysisAllOf](docs/ScenarioSuccessfulAnalysisAllOf.md)
  - [ScenarioUser](docs/ScenarioUser.md)
  - [Simulator](docs/Simulator.md)
  - [SimulatorAnalysis](docs/SimulatorAnalysis.md)
@@ -196,6 +207,7 @@ Class | Method | HTTP request | Description
  - [Validator](docs/Validator.md)
  - [ValidatorRun](docs/ValidatorRun.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceServices](docs/WorkspaceServices.md)
  - [WorkspaceSimulator](docs/WorkspaceSimulator.md)
  - [WorkspaceUser](docs/WorkspaceUser.md)
  - [WorkspaceWebApp](docs/WorkspaceWebApp.md)

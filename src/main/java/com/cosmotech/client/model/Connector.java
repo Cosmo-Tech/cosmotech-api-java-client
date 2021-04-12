@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T14:39:58.727919+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -70,7 +70,7 @@ public class Connector {
   private String url;
 
   /**
-   * Gets or Sets ioTypes
+   * The read and write capabilities of connector
    */
   @JsonAdapter(IoTypesEnum.Adapter.class)
   public enum IoTypesEnum {
@@ -330,10 +330,10 @@ public class Connector {
   }
 
    /**
-   * The read and write capabilities of connector
+   * Get ioTypes
    * @return ioTypes
   **/
-  @ApiModelProperty(required = true, value = "The read and write capabilities of connector")
+  @ApiModelProperty(required = true, value = "")
 
   public List<IoTypesEnum> getIoTypes() {
     return ioTypes;

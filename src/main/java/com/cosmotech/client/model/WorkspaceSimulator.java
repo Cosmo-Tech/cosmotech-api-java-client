@@ -32,7 +32,7 @@ import java.util.Map;
  * the Workspace Simulator configuration
  */
 @ApiModel(description = "the Workspace Simulator configuration")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T14:39:58.727919+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
 public class WorkspaceSimulator {
   public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
   @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)

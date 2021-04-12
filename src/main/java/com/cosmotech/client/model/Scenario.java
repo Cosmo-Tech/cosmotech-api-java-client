@@ -18,6 +18,9 @@ import java.util.Arrays;
 import com.cosmotech.client.model.ScenarioAllOf;
 import com.cosmotech.client.model.ScenarioAnalysis;
 import com.cosmotech.client.model.ScenarioBase;
+import com.cosmotech.client.model.ScenarioFailedAnalysis;
+import com.cosmotech.client.model.ScenarioRunningAnalysis;
+import com.cosmotech.client.model.ScenarioSuccessfulAnalysis;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -33,7 +36,7 @@ import java.util.List;
 /**
  * Scenario
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T14:39:58.727919+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -67,9 +70,21 @@ public class Scenario {
   @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
   private String simulatorId;
 
-  public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
-  @SerializedName(SERIALIZED_NAME_ANALYSIS)
-  private List<ScenarioAnalysis> analysis = null;
+  public static final String SERIALIZED_NAME_ANALYSES = "analyses";
+  @SerializedName(SERIALIZED_NAME_ANALYSES)
+  private List<ScenarioAnalysis> analyses = null;
+
+  public static final String SERIALIZED_NAME_SUCCESSFUL_ANALYSES = "successfulAnalyses";
+  @SerializedName(SERIALIZED_NAME_SUCCESSFUL_ANALYSES)
+  private List<ScenarioSuccessfulAnalysis> successfulAnalyses = null;
+
+  public static final String SERIALIZED_NAME_FAILED_ANALYSES = "failedAnalyses";
+  @SerializedName(SERIALIZED_NAME_FAILED_ANALYSES)
+  private List<ScenarioFailedAnalysis> failedAnalyses = null;
+
+  public static final String SERIALIZED_NAME_RUNNING_ANALYSES = "runningAnalyses";
+  @SerializedName(SERIALIZED_NAME_RUNNING_ANALYSES)
+  private List<ScenarioRunningAnalysis> runningAnalyses = null;
 
 
    /**
@@ -244,35 +259,77 @@ public class Scenario {
 
 
 
-  public Scenario analysis(List<ScenarioAnalysis> analysis) {
+  public Scenario analyses(List<ScenarioAnalysis> analyses) {
     
-    this.analysis = analysis;
+    this.analyses = analyses;
     return this;
   }
 
-  public Scenario addAnalysisItem(ScenarioAnalysis analysisItem) {
-    if (this.analysis == null) {
-      this.analysis = new ArrayList<ScenarioAnalysis>();
+  public Scenario addAnalysesItem(ScenarioAnalysis analysesItem) {
+    if (this.analyses == null) {
+      this.analyses = new ArrayList<ScenarioAnalysis>();
     }
-    this.analysis.add(analysisItem);
+    this.analyses.add(analysesItem);
     return this;
   }
 
    /**
-   * the configuration for Analysis
-   * @return analysis
+   * the configuration for next Analysis
+   * @return analyses
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the configuration for Analysis")
+  @ApiModelProperty(value = "the configuration for next Analysis")
 
-  public List<ScenarioAnalysis> getAnalysis() {
-    return analysis;
+  public List<ScenarioAnalysis> getAnalyses() {
+    return analyses;
   }
 
 
-  public void setAnalysis(List<ScenarioAnalysis> analysis) {
-    this.analysis = analysis;
+  public void setAnalyses(List<ScenarioAnalysis> analyses) {
+    this.analyses = analyses;
   }
+
+
+   /**
+   * the configuration and information for last successful Analyses Runs
+   * @return successfulAnalyses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the configuration and information for last successful Analyses Runs")
+
+  public List<ScenarioSuccessfulAnalysis> getSuccessfulAnalyses() {
+    return successfulAnalyses;
+  }
+
+
+
+
+   /**
+   * the configuration and information for last failed Analyses Runs
+   * @return failedAnalyses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the configuration and information for last failed Analyses Runs")
+
+  public List<ScenarioFailedAnalysis> getFailedAnalyses() {
+    return failedAnalyses;
+  }
+
+
+
+
+   /**
+   * the configuration and information for currently running Analyses Runs
+   * @return runningAnalyses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the configuration and information for currently running Analyses Runs")
+
+  public List<ScenarioRunningAnalysis> getRunningAnalyses() {
+    return runningAnalyses;
+  }
+
+
 
 
   @Override
@@ -292,12 +349,15 @@ public class Scenario {
         Objects.equals(this.ownerId, scenario.ownerId) &&
         Objects.equals(this.userList, scenario.userList) &&
         Objects.equals(this.simulatorId, scenario.simulatorId) &&
-        Objects.equals(this.analysis, scenario.analysis);
+        Objects.equals(this.analyses, scenario.analyses) &&
+        Objects.equals(this.successfulAnalyses, scenario.successfulAnalyses) &&
+        Objects.equals(this.failedAnalyses, scenario.failedAnalyses) &&
+        Objects.equals(this.runningAnalyses, scenario.runningAnalyses);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, userList, simulatorId, analysis);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, userList, simulatorId, analyses, successfulAnalyses, failedAnalyses, runningAnalyses);
   }
 
   @Override
@@ -312,7 +372,10 @@ public class Scenario {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    userList: ").append(toIndentedString(userList)).append("\n");
     sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
-    sb.append("    analysis: ").append(toIndentedString(analysis)).append("\n");
+    sb.append("    analyses: ").append(toIndentedString(analyses)).append("\n");
+    sb.append("    successfulAnalyses: ").append(toIndentedString(successfulAnalyses)).append("\n");
+    sb.append("    failedAnalyses: ").append(toIndentedString(failedAnalyses)).append("\n");
+    sb.append("    runningAnalyses: ").append(toIndentedString(runningAnalyses)).append("\n");
     sb.append("}");
     return sb.toString();
   }

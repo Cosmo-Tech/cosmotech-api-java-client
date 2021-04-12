@@ -16,6 +16,7 @@ package com.cosmotech.client.model;
 import com.cosmotech.client.model.ScenarioAllOf;
 import com.cosmotech.client.model.ScenarioAnalysis;
 import com.cosmotech.client.model.ScenarioBase;
+import com.cosmotech.client.model.ScenarioSuccessfulAnalysis;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -111,11 +112,19 @@ public class ScenarioTest {
     }
 
     /**
-     * Test the property 'analysis'
+     * Test the property 'analyses'
      */
     @Test
-    public void analysisTest() {
-        // TODO: test analysis
+    public void analysesTest() {
+        // TODO: test analyses
+    }
+
+    /**
+     * Test the property 'lastAnalyses'
+     */
+    @Test
+    public void lastAnalysesTest() {
+        // TODO: test lastAnalyses
     }
 
 }

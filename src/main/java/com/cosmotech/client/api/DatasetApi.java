@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Dataset;
+import com.cosmotech.client.model.DatasetCopyParameters;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -54,6 +55,135 @@ public class DatasetApi {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for copyDataset
+     * @param organizationId the Organization identifier (required)
+     * @param datasetCopyParameters the Dataset copy parameters (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call copyDatasetCall(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = datasetCopyParameters;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/copy"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call copyDatasetValidateBeforeCall(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling copyDataset(Async)");
+        }
+        
+        // verify the required parameter 'datasetCopyParameters' is set
+        if (datasetCopyParameters == null) {
+            throw new ApiException("Missing the required parameter 'datasetCopyParameters' when calling copyDataset(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = copyDatasetCall(organizationId, datasetCopyParameters, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector.
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetCopyParameters the Dataset copy parameters (required)
+     * @return DatasetCopyParameters
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public DatasetCopyParameters copyDataset(String organizationId, DatasetCopyParameters datasetCopyParameters) throws ApiException {
+        ApiResponse<DatasetCopyParameters> localVarResp = copyDatasetWithHttpInfo(organizationId, datasetCopyParameters);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector.
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetCopyParameters the Dataset copy parameters (required)
+     * @return ApiResponse&lt;DatasetCopyParameters&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DatasetCopyParameters> copyDatasetWithHttpInfo(String organizationId, DatasetCopyParameters datasetCopyParameters) throws ApiException {
+        okhttp3.Call localVarCall = copyDatasetValidateBeforeCall(organizationId, datasetCopyParameters, null);
+        Type localVarReturnType = new TypeToken<DatasetCopyParameters>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector. (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetCopyParameters the Dataset copy parameters (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call copyDatasetAsync(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback<DatasetCopyParameters> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = copyDatasetValidateBeforeCall(organizationId, datasetCopyParameters, _callback);
+        Type localVarReturnType = new TypeToken<DatasetCopyParameters>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for createDataset
      * @param organizationId the Organization identifier (required)
