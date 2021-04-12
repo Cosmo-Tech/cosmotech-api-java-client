@@ -1,0 +1,3823 @@
+openapi: 3.0.3
+info:
+  description: Cosmo Tech Platform API
+  title: Cosmo Tech Plaform API
+  version: 0.0.1-SNAPSHOT
+servers:
+- url: https://api.azure.cosmo-platform.com
+- url: https://gateway.api.cosmo-platform.com
+- url: http://localhost:8080
+security:
+- ApiKeyAuth: []
+- AADOAuth2AuthCode: []
+tags:
+- description: Simulator Management
+  name: simulator
+- description: Workspace Management
+  name: workspace
+- description: Connector Management
+  name: connector
+- description: Organization Management
+  name: organization
+- description: User Management
+  name: user
+- description: Scenario Management
+  name: scenario
+- description: Dataset Management
+  name: dataset
+paths:
+  /organizations/{organization_id}/simulators:
+    get:
+      operationId: findAllSimulators
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/OneSimulator'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Simulator'
+                type: array
+          description: the simulator details
+      summary: List all Simulators
+      tags:
+      - simulator
+      x-accepts: application/json
+    post:
+      operationId: createSimulator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Brewery:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              $ref: '#/components/schemas/Simulator'
+        description: the Simulator to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Simulator'
+          description: the simulator details
+        "400":
+          description: Bad request
+      summary: Register a new simulator
+      tags:
+      - simulator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/simulators/upload:
+    post:
+      operationId: upload
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              format: binary
+              type: string
+        description: the Simulator to upload and register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Simulator'
+          description: the simulator details
+        "400":
+          description: Bad request
+      summary: Upload and register a new simulator
+      tags:
+      - simulator
+      x-contentType: application/yaml
+      x-accepts: application/json
+  /organizations/{organization_id}/simulators/{simulator_id}:
+    delete:
+      operationId: deleteSimulator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulator identifier
+        explode: false
+        in: path
+        name: simulator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Simulator'
+          description: the simulator details
+        "400":
+          description: Bad request
+        "404":
+          description: the Simulator specified is unknown or you don't have access
+            to it
+      summary: Delete a simulator
+      tags:
+      - simulator
+      x-accepts: application/json
+    get:
+      operationId: findSimulatorById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulator identifier
+        explode: false
+        in: path
+        name: simulator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Simulator'
+          description: the Simulator details
+        "404":
+          description: the Simulator specified is unknown or you don't have access
+            to it
+      summary: Get the details of a simulator
+      tags:
+      - simulator
+      x-accepts: application/json
+    patch:
+      operationId: updateSimulator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulator identifier
+        explode: false
+        in: path
+        name: simulator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
+            schema:
+              $ref: '#/components/schemas/Simulator'
+        description: the new Simulator details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryUpdated'
+              schema:
+                $ref: '#/components/schemas/Simulator'
+          description: the simulator details
+        "400":
+          description: Bad request
+        "404":
+          description: the Simulator specified is unknown or you don't have access
+            to it
+      summary: Update a simulator
+      tags:
+      - simulator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces:
+    get:
+      operationId: findAllWorkspaces
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneWorkspace:
+                  $ref: '#/components/examples/OneWorkspace'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Workspace'
+                type: array
+          description: the workspace details
+      summary: List all Workspaces
+      tags:
+      - workspace
+      x-accepts: application/json
+    post:
+      operationId: createWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspace'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+        description: the Workspace to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+      summary: Create a new workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}:
+    delete:
+      operationId: deleteWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Delete a workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    get:
+      operationId: findWorkspaceById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the Workspace details
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Get the details of an workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    patch:
+      operationId: updateWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryWorkspaceUpdate'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+        description: the new Workspace details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryWorkspaceUpdated'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Update a workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /connectors:
+    get:
+      operationId: findAllConnectors
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneConnector:
+                  $ref: '#/components/examples/OneConnector'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Connector'
+                type: array
+          description: the connector details
+      summary: List all Connectors
+      tags:
+      - connector
+      x-accepts: application/json
+    post:
+      operationId: registerConnector
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              $ref: '#/components/schemas/Connector'
+        description: the Connector to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the connector details
+        "400":
+          description: Bad request
+      summary: Register a new connector
+      tags:
+      - connector
+      x-contentType: application/json
+      x-accepts: application/json
+  /connectors/upload:
+    post:
+      operationId: uploadConnector
+      requestBody:
+        content:
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              format: binary
+              type: string
+        description: the Connector to upload and register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the connector details
+        "400":
+          description: Bad request
+      summary: Upload and register a new connector
+      tags:
+      - connector
+      x-contentType: application/yaml
+      x-accepts: application/json
+  /connectors/{connector_id}:
+    delete:
+      operationId: unregisterConnector
+      parameters:
+      - description: the Connector identifier
+        explode: false
+        in: path
+        name: connector_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the connector details
+        "400":
+          description: Bad request
+        "404":
+          description: the Connector specified is unknown or you don't have access
+            to it
+      summary: Unregister an connector
+      tags:
+      - connector
+      x-accepts: application/json
+    get:
+      operationId: findConnectorById
+      parameters:
+      - description: the Connector identifier
+        explode: false
+        in: path
+        name: connector_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the Connector details
+        "404":
+          description: the Connector specified is unknown or you don't have access
+            to it
+      summary: Get the details of an connector
+      tags:
+      - connector
+      x-accepts: application/json
+  /organizations:
+    get:
+      operationId: findAllOrganizations
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                TwoOrganizations:
+                  $ref: '#/components/examples/TwoOrganizations'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: the organization details
+      summary: List all Organizations
+      tags:
+      - organization
+      x-accepts: application/json
+    post:
+      operationId: registerOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              $ref: '#/components/schemas/Organization'
+        description: the Organization to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the organization details
+        "400":
+          description: Bad request
+      summary: Register a new organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}:
+    delete:
+      operationId: unregisterOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the organization details
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Unregister an organization
+      tags:
+      - organization
+      x-accepts: application/json
+    get:
+      operationId: findOrganizationById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the details of an organization
+      tags:
+      - organization
+      x-accepts: application/json
+    patch:
+      operationId: updateOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+              AddUser:
+                description: Add the user Charles to organization Cosmo Tech
+                summary: Add a user
+                value:
+                  users:
+                  - name: Charles
+              RenameUser:
+                description: Rename the user Charles to Xavier
+                summary: Rename a user
+                value:
+                  users:
+                  - id: "3"
+                    name: Xavier
+              RemoveUser:
+                description: Remove the user Charles from organization Cosmo Tech
+                summary: Remove a user
+                value:
+                  users:
+                  - id: "1"
+                    name: Bob
+                  - id: "2"
+                    name: Alice
+            schema:
+              $ref: '#/components/schemas/Organization'
+        description: the new Organization details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoThreeUsers:
+                  $ref: '#/components/examples/CosmoThreeUsers'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the organization details
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update an organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /users:
+    get:
+      operationId: findAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/TwoUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserDetails'
+                type: array
+          description: the user details
+      summary: List all Users
+      tags:
+      - user
+      x-accepts: application/json
+    post:
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+        description: the User to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobCreate'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the user details
+        "400":
+          description: Bad request
+      summary: Register a new user
+      tags:
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{user_id}:
+    delete:
+      operationId: unregisterUser
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the user details
+        "400":
+          description: Bad request
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Unregister an user
+      tags:
+      - user
+      x-accepts: application/json
+    get:
+      operationId: findUserById
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user
+      tags:
+      - user
+      x-accepts: application/json
+    patch:
+      operationId: updateUser
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+        description: the new User details. Organization membership is handled in Organzation
+          service.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BobyUpdated:
+                  $ref: '#/components/examples/BobyUpdated'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the user details
+        "400":
+          description: Bad request
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Update an user
+      tags:
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
+    get:
+      operationId: findAllScenarios
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ThreeScenario:
+                  $ref: '#/components/examples/ThreeScenarios'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Scenario'
+                type: array
+          description: the scenario details
+      summary: List all Scenarios
+      tags:
+      - scenario
+      x-accepts: application/json
+    post:
+      operationId: createScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Scenario:
+                $ref: '#/components/examples/BreweryScenario'
+            schema:
+              $ref: '#/components/schemas/Scenario'
+        description: the Scenario to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Scenario:
+                  $ref: '#/components/examples/BreweryScenario'
+              schema:
+                $ref: '#/components/schemas/Scenario'
+          description: the scenario details
+        "400":
+          description: Bad request
+      summary: Create a new scenario
+      tags:
+      - scenario
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree:
+    get:
+      operationId: getScenariosTree
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenariosTree:
+                  $ref: '#/components/examples/ScenariosTree'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioBase'
+                type: array
+          description: the scenario tree
+      summary: Get the Scenarios Tree
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}:
+    delete:
+      operationId: deleteScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Scenario:
+                  $ref: '#/components/examples/BreweryScenario'
+              schema:
+                $ref: '#/components/schemas/Scenario'
+          description: the scenario details
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Delete a scenario
+      tags:
+      - scenario
+      x-accepts: application/json
+    get:
+      operationId: findScenarioById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Scenario:
+                  $ref: '#/components/examples/BreweryScenario'
+              schema:
+                $ref: '#/components/schemas/Scenario'
+          description: the Scenario details
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Get the details of an scenario
+      tags:
+      - scenario
+      x-accepts: application/json
+    patch:
+      operationId: updateScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryScenarioUpdate'
+            schema:
+              $ref: '#/components/schemas/Scenario'
+        description: the new Scenario details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryScenarioUpdated'
+              schema:
+                $ref: '#/components/schemas/Scenario'
+          description: the scenario details
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Update a scenario
+      tags:
+      - scenario
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id}:
+    get:
+      operationId: compareScenarios
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier to compare to
+        explode: false
+        in: path
+        name: compared_scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryScenarioComparisonResult:
+                  $ref: '#/components/examples/BreweryScenarioComparison'
+              schema:
+                $ref: '#/components/schemas/ScenarioComparisonResult'
+          description: the comparison result for parameters values
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Compare the Scenario with another one and returns the difference for
+        parameters values
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets:
+    get:
+      operationId: findAllDatasets
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/TwoDatasets'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Dataset'
+                type: array
+          description: the dataset details
+      summary: List all Datasets
+      tags:
+      - dataset
+      x-accepts: application/json
+    post:
+      operationId: createDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
+            schema:
+              $ref: '#/components/schemas/Dataset'
+        description: the Dataset to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
+        "400":
+          description: Bad request
+      summary: Register a new dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}:
+    delete:
+      operationId: deleteDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
+        "400":
+          description: Bad request
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Delete a dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    get:
+      operationId: findDatasetById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the Dataset details
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Get the details of a dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    patch:
+      operationId: updateDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTUpdate:
+                $ref: '#/components/examples/BreweryADTUpdate'
+            schema:
+              $ref: '#/components/schemas/Dataset'
+        description: the new Dataset details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTUpdated:
+                  $ref: '#/components/examples/BreweryADTUpdated'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
+        "400":
+          description: Bad request
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Update a dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators:
+    get:
+      operationId: findAllValidators
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/OneValidator'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Validator'
+                type: array
+          description: the validator details
+      summary: List all Validators
+      tags:
+      - validator
+      x-accepts: application/json
+    post:
+      operationId: createValidator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTValidator:
+                $ref: '#/components/examples/BreweryADTValidator'
+            schema:
+              $ref: '#/components/schemas/Validator'
+        description: the Validator to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidator:
+                  $ref: '#/components/examples/BreweryADTValidator'
+              schema:
+                $ref: '#/components/schemas/Validator'
+          description: the validator details
+        "400":
+          description: Bad request
+      summary: Register a new validator
+      tags:
+      - validator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators/{validator_id}:
+    delete:
+      operationId: deleteValidator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidator:
+                  $ref: '#/components/examples/BreweryADTValidator'
+              schema:
+                $ref: '#/components/schemas/Validator'
+          description: the validator details
+        "400":
+          description: Bad request
+        "404":
+          description: the Validator specified is unknown or you don't have access
+            to it
+      summary: Delete a validator
+      tags:
+      - validator
+      x-accepts: application/json
+    get:
+      operationId: findValidatorById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidator:
+                  $ref: '#/components/examples/BreweryADTValidator'
+              schema:
+                $ref: '#/components/schemas/Validator'
+          description: the Validator details
+        "404":
+          description: the Validator specified is unknown or you don't have access
+            to it
+      summary: Get the details of a validator
+      tags:
+      - validator
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators/{validator_id}/run:
+    post:
+      operationId: runValidator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ValidatorRun identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTRunValidator:
+                $ref: '#/components/examples/BreweryADTRunValidator'
+            schema:
+              $ref: '#/components/schemas/ValidatorRun'
+        description: the Validator to run
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
+              schema:
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the validator run details
+        "400":
+          description: Bad request
+      summary: Run a Validator
+      tags:
+      - validator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators/{validator_id}/history:
+    get:
+      operationId: findAllValidatorRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ValidatorRun identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/ThreeValidatorRun'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ValidatorRun'
+                type: array
+          description: the validator run details
+      summary: List all Validator Runs
+      tags:
+      - validator
+      x-accepts: application/json
+    post:
+      operationId: createValidatorRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ValidatorRun identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTValidatorRun:
+                $ref: '#/components/examples/BreweryADTValidatorRun'
+            schema:
+              $ref: '#/components/schemas/ValidatorRun'
+        description: the Validator Run to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
+              schema:
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the validator run details
+        "400":
+          description: Bad request
+      summary: Register a new validator run
+      tags:
+      - validator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id}:
+    delete:
+      operationId: deleteValidatorRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator Run identifier
+        explode: false
+        in: path
+        name: validatorrun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
+              schema:
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the validator run details
+        "400":
+          description: Bad request
+        "404":
+          description: the ValidatorRun specified is unknown or you don't have access
+            to it
+      summary: Delete a validator run
+      tags:
+      - validator
+      x-accepts: application/json
+    get:
+      operationId: findValidatorRunById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator Run identifier
+        explode: false
+        in: path
+        name: validatorrun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
+              schema:
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the Validator Run details
+        "404":
+          description: the ValidatorRun specified is unknown or you don't have access
+            to it
+      summary: Get the details of a validator run
+      tags:
+      - validator
+      x-accepts: application/json
+components:
+  examples:
+    ADTConnector:
+      description: ADT Connector example
+      summary: ADT Connector
+      value:
+        id: "1"
+        connectorKey: ADT Connector
+        name: ADT Connector
+        description: Connector for Azure Digital Twins. Read ADT and write the data
+          in CSV for the Simulation
+        repository: azure-digital-twins-simulator-connector
+        version: 1.0.0
+        tags:
+        - ADT
+        ownerId: "1"
+        url: https://github.com/Cosmo-Tech/azure-digital-twins-simulator-connector
+        ioTypes:
+        - read
+        parameterGroups:
+        - id: security
+          label: Security
+          parameters:
+          - id: AZURE_TENANT_ID
+            label: Azure Tenant Id
+            valueType: string
+            envVar: AZURE_TENANT_ID
+          - id: AZURE_CLIENT_ID
+            label: Azure Client Id
+            valueType: string
+            envVar: AZURE_CLIENT_ID
+          - id: AZURE_CLIENT_SECRET
+            label: Azure CLient secret
+            valueType: password
+            envVar: AZURE_CLIENT_SECRET
+        - id: parameters
+          label: Parameters
+          parameters:
+          - id: AZURE_DIGITAL_TWINS_URL
+            label: Azure Digital Twins URL
+            valueType: string
+            envVar: AZURE_DIGITAL_TWINS_URL
+          - id: ADT_QUERY
+            label: Azure Digital Twins query
+            valueType: string
+            envVar: AZURE_DIGITAL_TWINS_QUERY
+            default: SELECT * FROM digitaltwins
+          - id: EXPORT_CSV_FILE_ABSOLUTE_PATH
+            label: CSV file export absolute path
+            valueType: string
+            default: /mnt/simulation-data
+            envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    Bob:
+      description: Bob User example
+      summary: Bob User
+      value:
+        id: "1"
+        name: Bob
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+        - id: "2"
+          name: Phoenix
+    BobCreate:
+      description: Bob User Created example
+      summary: Bob User Created example
+      value:
+        id: "1"
+        name: Bob
+        organizations: []
+    BobCreateIn:
+      description: Bob User Create input example
+      summary: Bob User Create input example
+      value:
+        name: Bob
+    BobyUpdateIn:
+      description: Bob User renamed to Boby input example
+      summary: Boby update User input example
+      value:
+        id: "1"
+        name: Boby
+    BobyUpdated:
+      description: Bob User renamed to Boby example
+      summary: Boby updated User
+      value:
+        id: "1"
+        name: Boby
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+        - id: "2"
+          name: Phoenix
+    Brewery:
+      description: Brewery Simulator example
+      summary: Brewery Simulator
+      value:
+        id: "1"
+        simulatorKey: Brewery Simulator
+        name: Brewery Simulator
+        description: "A Brewery Supplier Simulator Model which simulate stock, production,\
+          \ transport and customer satisfaction"
+        repository: brewery_simulator
+        version: 1.0.0
+        ownerId: "1"
+        url: https://github.com/Cosm-Tech/brewery.git
+        tags:
+        - Brewery
+        analysis:
+        - id: hundred
+          name: Full simulation 100 steps
+          description: Run a full simulation with 100 steps
+          simulation: DeployedSimulation
+          tags:
+          - Full
+          - Supply
+          computeSize: basic
+          parametersHandlerResource:
+            storageType: local
+            resourcePath: analysis/hundred/parameters_handler.zip
+          datasetValidatorResource:
+            storageType: local
+            resourcePath: analysis/hundred/validator.zip
+          customDriverResource:
+            storageType: local
+            resourcePath: analysis/hundred/driver.zip
+          parameterGroups:
+          - id: consumers
+            labels:
+              fr: Consommateurs
+              en: Consumers
+            parameters:
+            - id: prefix
+              labels:
+                fr: Prefix des noms
+                en: Names prefix
+              varType: string
+    BreweryADT:
+      description: Brewery Dataset in ADT example
+      summary: Brewery ADT Dataset
+      value:
+        id: "1"
+        name: Brewery ADT reference
+        description: Brewery reference model in ADT
+        tags:
+        - ADT
+        - Brewery
+        - Reference
+        connector:
+          id: "1"
+          name: ADT Connector
+          version: "1.0"
+          ownerId: "1"
+          parametersValues:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: "12345678"
+            AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+        compatibility:
+        - simulatorKey: Brewery Simulator
+          minimumVersion: 1.0.0
+    BreweryADTRunValidator:
+      description: a Validator Run input for the Brewery Dataset from ADT in a Docker
+        image
+      summary: Brewery ADT Dataset Validator Run input
+      value:
+        datasetId: "1"
+    BreweryADTUpdate:
+      description: Brewery ADT reference model name update example
+      summary: Brewery ADT name update example
+      value:
+        name: Brewery ADT new reference
+    BreweryADTUpdated:
+      description: Brewery Dataset in ADT name updated example
+      summary: Brewery ADT updated Dataset
+      value:
+        id: "1"
+        name: Brewery ADT new reference
+        description: Brewery reference model in ADT
+        tags:
+        - ADT
+        - Brewery
+        - Reference
+        connector:
+          id: "1"
+          name: ADT Connector
+          version: "1.0"
+          ownerId: "1"
+          parametersValues:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: "12345678"
+            AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+        compatibility:
+        - simulatorKey: Brewery Simulator
+          minimumVersion: 1.0.0
+    BreweryADTValidator:
+      description: a Validator for the Brewery Dataset from ADT in a Docker image
+      summary: Brewery ADT Dataset Validator
+      value:
+        id: "1"
+        name: Brewery ADT Validator
+        description: A Validator for the Brewery Dataset from ADT
+        repository: brewery_adt_validator
+        version: 1.0.0
+        ownerId: "1"
+        url: https://github.com/brewery-adt-validator
+        tags:
+        - Brewery
+        - ADT
+    BreweryADTValidatorRun:
+      description: a Validator Run for the Brewery Dataset from ADT in a Docker image
+      summary: Brewery ADT Dataset Validator Run
+      value:
+        id: 1
+        validatorId: "1"
+        validatorName: Brewery ADT Validator
+        datasetId: "1"
+        datasetName: Brewery ADT reference
+        state: Finished
+        containerId: 387ab9ffe8361eabc24b2de516e71f9bd704d992840f53d9f365b11fdb8bcaa7
+        logs: Validation ended with success\nBrewery ADT reference OK
+    BreweryScenario:
+      description: Brewery Scenario example
+      summary: Brewery Scenario
+      value:
+        id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        simulatorId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        analysis:
+        - analysisId: "1"
+          datasetList:
+          - "1"
+          parametersValues:
+          - parameterId: prefix
+            varType: string
+            value: ""
+    BreweryScenarioComparison:
+      description: Brewery comparison result between a parent Scenario and its child
+      summary: Brewery comparison result
+      value:
+        scenarioId: "1"
+        comparedScenarioId: "2"
+        changedValues:
+        - parameterId: prefix
+          varType: string
+          value: Brewery Master Analysis
+          comparedValue: Brewery Master Analysis 2021
+    BreweryScenarioUpdate:
+      description: Update the Brewery Scenario by changing its name
+      summary: Update the Brewery Scenario
+      value:
+        name: Brewery Master Analysis 2021
+    BreweryScenarioUpdated:
+      description: Brewery updated Scenario example
+      summary: Brewery updated Scenario
+      value:
+        id: "1"
+        name: Brewery Master Analysis 2021
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        simulatorId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        analysis:
+        - analysisId: "1"
+          datasetList:
+          - "1"
+          parametersValues:
+          - parameterId: prefix
+            varType: string
+            value: ""
+    BreweryUpdate:
+      description: Brewery Simulator update example
+      summary: Brewery Simulator update
+      value:
+        name: Brewery Simulator 2021
+    BreweryUpdated:
+      description: Brewery Simulator example
+      summary: Brewery Simulator
+      value:
+        id: "1"
+        simulatorKey: Brewery Simulator
+        name: Brewery Simulator 2021
+        description: "A Brewery Supplier Simulator Model which simulate stock, production,\
+          \ transport and customer satisfaction"
+        repository: brewery_simulator
+        version: 1.0.0
+        ownerId: "1"
+        url: https://github.com/Cosm-Tech/brewery.git
+        tags:
+        - Brewery
+        analysis:
+        - id: hundred
+          name: Full simulation 100 steps
+          description: Run a full simulation with 100 steps
+          simulation: DeployedSimulation
+          tags:
+          - Full
+          - Supply
+          computeSize: basic
+          parametersHandlerResource:
+            storageType: local
+            resourcePath: analysis/hundred/parameters_handler.zip
+          datasetValidatorResource:
+            storageType: local
+            resourcePath: analysis/hundred/validator.zip
+          customDriverResource:
+            storageType: local
+            resourcePath: analysis/hundred/driver.zip
+          parameterGroups:
+          - id: consumers
+            labels:
+              fr: Consommateurs
+              en: Consumers
+            parameters:
+            - id: prefix
+              labels:
+                fr: Prefix des noms
+                en: Names prefix
+              varType: string
+    BreweryWorkspace:
+      description: Brewery Workspace example
+      summary: Brewery Workspace
+      value:
+        id: "1"
+        name: Brewery Analysis
+        description: "Brewery analysis for stock, production, transport and customer\
+          \ satisfaction"
+        version: 1.0.0
+        tags:
+        - Brewery
+        ownerId: "1"
+        simulator:
+          simulatorId: "1"
+          defaultAnalysisDataset:
+            "1": "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Advanced
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        webApp:
+          url: https://brewery.app.cosmotech.com
+          iframes:
+            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        resources:
+          eventhub: brewery
+          eventhub-simulation: brewery-simulation
+          adxdb: Brewery
+          storage: organizations/1/workspaces/1
+    BreweryWorkspaceUpdate:
+      description: Update the Brewery Workspace by changing its name
+      summary: Update the Brewery Workspace
+      value:
+        name: Brewery Analysis 2021
+    BreweryWorkspaceUpdated:
+      description: Brewery Workspace example
+      summary: Brewery Workspace
+      value:
+        id: "1"
+        name: Brewery Analysis 2021
+        description: "Brewery analysis for stock, production, transport and customer\
+          \ satisfaction"
+        version: 1.0.0
+        tags:
+        - Brewery
+        ownerId: "1"
+        simulator:
+          simulatorId: "1"
+          defaultAnalysisDataset:
+            "1": "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Advanced
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        webApp:
+          url: https://brewery.app.cosmotech.com
+          iframes:
+            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        resources:
+          eventhub: brewery
+          eventhub-simulation: brewery-simulation
+          adxdb: Brewery
+          storage: organizations/1/workspaces/1
+    CosmoOrganization:
+      description: Cosmo Tech Organization example
+      summary: Cosmo Tech Organization
+      value:
+        id: "1"
+        name: Cosmo Tech
+        users:
+        - id: "1"
+          name: Bob
+        - id: "2"
+          name: Alice
+    CosmoThreeUsers:
+      description: Cosmo Tech Organization 3 users example
+      summary: Cosmo Tech Organization with 3 users
+      value:
+        id: "1"
+        name: Cosmo Tech
+        users:
+        - id: "1"
+          name: Bob
+        - id: "2"
+          name: Alice
+        - id: "3"
+          name: Xavier
+    NewOrganizationIn:
+      description: Create a new organization with 2 users
+      summary: Create a new organization
+      value:
+        name: Cosmo Tech
+        users:
+        - id: "1"
+          name: Bob
+        - id: "2"
+          name: Alice
+    OneConnector:
+      description: One Connector list example
+      summary: One Connector list
+      value:
+      - id: "1"
+        connectorKey: ADT Connector
+        name: ADT Connector
+        description: Connector for Azure Digital Twins. Read ADT and write the data
+          in CSV for the Simulation
+        repository: azure-digital-twins-simulator-connector
+        version: 1.0.0
+        tags:
+        - ADT
+        ownerId: "1"
+        url: https://github.com/Cosmo-Tech/azure-digital-twins-simulator-connector
+        ioTypes:
+        - read
+        parameterGroups:
+        - id: security
+          label: Security
+          parameters:
+          - id: AZURE_TENANT_ID
+            label: Azure Tenant Id
+            valueType: string
+            envVar: AZURE_TENANT_ID
+          - id: AZURE_CLIENT_ID
+            label: Azure Client Id
+            valueType: string
+            envVar: AZURE_CLIENT_ID
+          - id: AZURE_CLIENT_SECRET
+            label: Azure CLient secret
+            valueType: password
+            envVar: AZURE_CLIENT_SECRET
+        - id: parameters
+          label: Parameters
+          parameters:
+          - id: AZURE_DIGITAL_TWINS_URL
+            label: Azure Digital Twins URL
+            valueType: string
+            envVar: AZURE_DIGITAL_TWINS_URL
+          - id: ADT_QUERY
+            label: Azure Digital Twins query
+            valueType: string
+            envVar: AZURE_DIGITAL_TWINS_QUERY
+            default: SELECT * FROM digitaltwins
+          - id: EXPORT_CSV_FILE_ABSOLUTE_PATH
+            label: CSV file export absolute path
+            valueType: string
+            default: /mnt/simulation-data
+            envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    OneSimulator:
+      description: Brewery Simulator example
+      summary: Brewery Simulator
+      value:
+      - id: "1"
+        simulatorKey: Brewery Simulator
+        name: Brewery Simulator
+        description: "A Brewery Supplier Simulator Model which simulate stock, production,\
+          \ transport and customer satisfaction"
+        repository: brewery_simulator
+        version: 1.0.0
+        ownerId: "1"
+        url: https://github.com/Cosm-Tech/brewery.git
+        tags:
+        - Brewery
+        analysis:
+        - id: hundred
+          name: Full simulation 100 steps
+          description: Run a full simulation with 100 steps
+          simulation: DeployedSimulation
+          tags:
+          - Full
+          - Supply
+          computeSize: basic
+          parametersHandlerResource:
+            storageType: local
+            resourcePath: analysis/hundred/parameters_handler.zip
+          datasetValidatorResource:
+            storageType: local
+            resourcePath: analysis/hundred/validator.zip
+          customDriverResource:
+            storageType: local
+            resourcePath: analysis/hundred/driver.zip
+          parameterGroups:
+          - id: consumers
+            labels:
+              fr: Consommateurs
+              en: Consumers
+            parameters:
+            - id: prefix
+              labels:
+                fr: Prefix des noms
+                en: Names prefix
+              varType: string
+    OneValidator:
+      description: a Validator list with one element
+      summary: Dataset Validator list
+      value:
+      - id: "1"
+        name: Brewery ADT Validator
+        description: A Validator for the Brewery Dataset from ADT
+        repository: brewery_adt_validator
+        version: 1.0.0
+        ownerId: "1"
+        url: https://github.com/brewery-adt-validator
+        tags:
+        - Brewery
+        - ADT
+    OneWorkspace:
+      description: One Workspace list example
+      summary: One Workspace list
+      value:
+      - id: "1"
+        name: Brewery Analysis
+        description: "Brewery analysis for stock, production, transport and customer\
+          \ satisfaction"
+        version: 1.0.0
+        tags:
+        - Brewery
+        ownerId: "1"
+        simulator:
+          simulatorId: "1"
+          defaultAnalysisDataset:
+            "1": "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Advanced
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        webApp:
+          url: https://brewery.app.cosmotech.com
+          iframes:
+            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        resources:
+          eventhub: brewery
+          eventhub-simulation: brewery-simulation
+          adxdb: Brewery
+          storage: organizations/1/workspaces/1
+    ScenariosTree:
+      description: Scenarios Tree example with 1 master Scenario and 2 children
+      summary: Scenarios Tree example
+      value:
+      - id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        version: 1.0.0
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+      - id: "2"
+        name: Brewery Analysis name example
+        description: Brewery analysis with example as name prefix
+        tags:
+        - Brewery
+        - example
+        parentId: "1"
+        ownerId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+      - id: "3"
+        name: Brewery Analysis name no change
+        description: Brewery analysis with no change on name prefix
+        tags:
+        - Brewery
+        parentId: "1"
+        ownerId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+    ThreeScenarios:
+      description: Three Scenarios with parent master Scenario and two children Scenarios
+      summary: Three Scenarios with parent and children
+      value:
+      - id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        version: 1.0.0
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        simulatorId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        analysis:
+        - analysisId: "1"
+          datasetList:
+          - "1"
+          parametersValues:
+          - parameterId: prefix
+            varType: string
+            value: ""
+      - id: "2"
+        name: Brewery Analysis name example
+        description: Brewery analysis with example as name prefix
+        tags:
+        - Brewery
+        - example
+        parentId: "1"
+        ownerId: "1"
+        simulatorId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        analysis:
+        - analysisId: "1"
+          datasetList:
+          - "1"
+          parametersValues:
+          - parameterId: prefix
+            varType: string
+            value: example
+      - id: "3"
+        name: Brewery Analysis name no change
+        description: Brewery analysis with no change on name prefix
+        tags:
+        - Brewery
+        parentId: "1"
+        ownerId: "1"
+        simulatorId: "1"
+        userList:
+        - id: "1"
+          name: Bob
+          roles: Editor
+        - id: "2"
+          name: Alice
+          roles: Viewer
+        analysis:
+        - analysisId: "1"
+          datasetList:
+          - "1"
+          parametersValues:
+          - parameterId: prefix
+            varType: string
+            value: ""
+            inherited: true
+    ThreeValidatorRun:
+      description: a list of Validator Run for the Brewery Dataset
+      summary: Brewery ADT Dataset Validator Run list
+      value:
+      - id: "1"
+        validatorId: "1"
+        validatorName: Brewery ADT Validator
+        datasetId: "1"
+        datasetName: Brewery ADT reference
+        state: Finished
+        containerId: 387ab9ffe8361eabc24b2de516e71f9bd704d992840f53d9f365b11fdb8bcaa7
+        logs: Validation ended with success\nBrewery ADT reference OK
+      - id: "2"
+        validatorId: "1"
+        validatorName: Brewery ADT Validator
+        datasetId: "1"
+        datasetName: Brewery ADT reference
+        state: OnError
+        containerId: 387ab9ffe8361eabc24b2de516e71f9bd704d992840f53d9f365b11fdb8bcaa8
+        logs: Validation ended with errors\nBrewery ADT reference KO
+      - id: "3"
+        validatorId: "1"
+        validatorName: Brewery ADT Validator
+        datasetId: "1"
+        datasetName: Brewery ADT reference
+        state: Running
+        containerId: 387ab9ffe8361eabc24b2de516e71f9bd704d992840f53d9f365b11fdb8bcaa9
+        logs: none
+    TwoDatasets:
+      description: Two ADT Datasets example
+      summary: Two Datasets example
+      value:
+      - id: "1"
+        name: Brewery ADT reference
+        description: Brewery reference model in ADT
+        tags:
+        - ADT
+        - Brewery
+        - Reference
+        connector:
+          id: "1"
+          name: ADT Connector
+          version: "1.0"
+          ownerId: "1"
+          parametersValues:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: "12345678"
+            AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+        compatibility:
+        - simulatorKey: Brewery Simulator
+          minimumVersion: 1.0.0
+      - id: "2"
+        name: Brewery ADT future
+        description: Brewery future model in ADT
+        tags:
+        - ADT
+        - Brewery
+        connector:
+          id: "1"
+          name: ADT Connector
+          version: "1.0"
+          ownerId: "1"
+          parametersValues:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: "12345678"
+            AZURE_DIGITAL_TWINS_URL: myotherdt.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+    TwoOrganizations:
+      description: Two Organizations example
+      summary: Two Orgnizations
+      value:
+      - id: "1"
+        name: Cosmo Tech
+        users:
+        - id: "1"
+          name: Bob
+        - id: "2"
+          name: Alice
+      - id: "2"
+        name: Phoenix
+        users:
+        - id: "1"
+          name: Bob
+    TwoUsers:
+      description: Two Users example
+      summary: Two Users example
+      value:
+      - id: "1"
+        name: Bob
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+        - id: "2"
+          name: Phoenix
+      - id: "2"
+        name: Alice
+        organizations:
+        - id: "2"
+          name: Phoenix
+  schemas:
+    AnalysisParameter:
+      description: a Simulator Analysis Parameter
+      example:
+        varType: varType
+        options:
+          key: "{}"
+        id: id
+        labels:
+          key: "{}"
+        order: 6
+      properties:
+        id:
+          description: the Parameter id
+          type: string
+        labels:
+          additionalProperties: true
+          description: a translated label with key as ISO 639-1 code
+          type: object
+        varType:
+          description: the variable type for the parameter
+          type: string
+        order:
+          description: the Parameter Group order
+          type: integer
+        options:
+          additionalProperties: true
+          description: freeform options
+          type: object
+      required:
+      - id
+      - labels
+      - varType
+      type: object
+    AnalysisParameterGroup:
+      description: a Parameter Group for an Analysis
+      example:
+        options:
+          key: "{}"
+        id: id
+        isTable: true
+        parameters:
+        - varType: varType
+          options:
+            key: "{}"
+          id: id
+          labels:
+            key: "{}"
+          order: 6
+        - varType: varType
+          options:
+            key: "{}"
+          id: id
+          labels:
+            key: "{}"
+          order: 6
+        parentId: parentId
+        labels:
+          key: "{}"
+        order: 0
+      properties:
+        id:
+          description: the Parameter Group id
+          type: string
+        labels:
+          additionalProperties: true
+          description: a translated label with key as ISO 639-1 code
+          type: object
+        order:
+          description: the Parameter Group order
+          type: integer
+        isTable:
+          description: does the group define a table
+          type: boolean
+        options:
+          additionalProperties: true
+          description: freeform options
+          type: object
+        parentId:
+          description: the Simulator Analysis Group parent Id
+          type: string
+        parameters:
+          description: a list of Simulator Analysis Parameters
+          items:
+            $ref: '#/components/schemas/AnalysisParameter'
+          type: array
+      required:
+      - id
+      - labels
+      - parameters
+      type: object
+    AnalysisResourceStorage:
+      example:
+        customUri: customUri
+        resourcePath: resourcePath
+        storageType: local
+      properties:
+        storageType:
+          description: "the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR}\
+            \ behind the scene"
+          enum:
+          - local
+          - cloud
+          - customUri
+          type: string
+        resourcePath:
+          description: the resource path
+          type: string
+        customUri:
+          description: a custom Uri to provide the resource in resourcePath
+          type: string
+      required:
+      - resourcePath
+      - storageType
+      type: object
+    Connector:
+      description: a version of a Connector
+      example:
+        parameterGroups:
+        - id: id
+          label: label
+          parameters:
+          - default: default
+            envVar: envVar
+            valueType: valueType
+            options:
+            - options
+            - options
+            id: id
+            label: label
+          - default: default
+            envVar: envVar
+            valueType: valueType
+            options:
+            - options
+            - options
+            id: id
+            label: label
+        - id: id
+          label: label
+          parameters:
+          - default: default
+            envVar: envVar
+            valueType: valueType
+            options:
+            - options
+            - options
+            id: id
+            label: label
+          - default: default
+            envVar: envVar
+            valueType: valueType
+            options:
+            - options
+            - options
+            id: id
+            label: label
+        ioTypes:
+        - read
+        - read
+        connectorKey: connectorKey
+        name: name
+        description: description
+        id: id
+        repository: repository
+        ownerId: ownerId
+        version: version
+        url: url
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Connector version unique identifier
+          readOnly: true
+          type: string
+        connectorKey:
+          description: the Connector key which group Connector versions
+          type: string
+        name:
+          description: the Connector name
+          type: string
+        description:
+          description: the Connector description
+          type: string
+        repository:
+          description: the registry repository containing the image
+          type: string
+        version:
+          description: the Connector version MAJOR.MINOR.PATCH. Must be aligned with
+            an existing repository tag
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+        ownerId:
+          description: the user id which own this connector version
+          readOnly: true
+          type: string
+        url:
+          description: an optional URL link to connector page
+          type: string
+        ioTypes:
+          description: The read and write capabilities of connector
+          items:
+            enum:
+            - read
+            - write
+            type: string
+          type: array
+        parameterGroups:
+          description: the list of connector parameters groups
+          items:
+            $ref: '#/components/schemas/ConnectorParameterGroup'
+          type: array
+      required:
+      - connectorKey
+      - ioTypes
+      - name
+      - repository
+      - version
+      type: object
+    ConnectorParameter:
+      description: a connector parameter
+      example:
+        default: default
+        envVar: envVar
+        valueType: valueType
+        options:
+        - options
+        - options
+        id: id
+        label: label
+      properties:
+        id:
+          description: the connector parameter id
+          type: string
+        label:
+          description: the list of translated parameter group labels
+          type: string
+        valueType:
+          description: the parameter value type
+          type: string
+        options:
+          description: the list of available and valid values for the parameter
+          items:
+            type: string
+          type: array
+        default:
+          description: the default value
+          type: string
+        envVar:
+          description: associated environment variable in connector image
+          type: string
+      required:
+      - id
+      - label
+      - valueType
+      type: object
+    ConnectorParameterGroup:
+      description: a connector parameters group
+      example:
+        id: id
+        label: label
+        parameters:
+        - default: default
+          envVar: envVar
+          valueType: valueType
+          options:
+          - options
+          - options
+          id: id
+          label: label
+        - default: default
+          envVar: envVar
+          valueType: valueType
+          options:
+          - options
+          - options
+          id: id
+          label: label
+      properties:
+        id:
+          description: the connector parameter group id
+          type: string
+        label:
+          description: the list of translated parameter group labels
+          type: string
+        parameters:
+          description: the list of parameters
+          items:
+            $ref: '#/components/schemas/ConnectorParameter'
+          type: array
+      required:
+      - id
+      - label
+      - parameters
+      type: object
+    Dataset:
+      description: a Dataset
+      example:
+        connector:
+          parametersValues:
+            key: "{}"
+          id: id
+        name: name
+        description: description
+        validatorId: validatorId
+        id: id
+        fragmentsIds:
+        - fragmentsIds
+        - fragmentsIds
+        ownerId: ownerId
+        compatibility:
+        - minimumVersion: minimumVersion
+          maximumVersion: maximumVersion
+          simulatorKey: simulatorKey
+        - minimumVersion: minimumVersion
+          maximumVersion: maximumVersion
+          simulatorKey: simulatorKey
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Dataset unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the Dataset name
+          type: string
+        description:
+          description: the Dataset description
+          type: string
+        ownerId:
+          description: the User id which own this Dataset
+          readOnly: true
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+        connector:
+          $ref: '#/components/schemas/DatasetConnector'
+        fragmentsIds:
+          description: the list of other Datasets ids to compose as fragments
+          items:
+            type: string
+          type: array
+        validatorId:
+          description: the validator id
+          type: string
+        compatibility:
+          description: the list of compatible Simulators versions
+          items:
+            $ref: '#/components/schemas/DatasetCompatibility'
+          type: array
+      required:
+      - connector
+      - name
+      type: object
+    DatasetCompatibility:
+      description: a Dataset compatibility constraint to a Simulator version open
+        range
+      example:
+        minimumVersion: minimumVersion
+        maximumVersion: maximumVersion
+        simulatorKey: simulatorKey
+      properties:
+        simulatorKey:
+          description: the Simulator key which group Simulator versions
+          type: string
+        minimumVersion:
+          description: the Simulator minimum version compatibility (version included)
+          type: string
+        maximumVersion:
+          description: the Simulator maximum version compatibility (version included)
+          type: string
+      required:
+      - simulatorKey
+      type: object
+    DatasetConnector:
+      description: a Connector setup
+      example:
+        parametersValues:
+          key: "{}"
+        id: id
+      properties:
+        id:
+          description: the Connector id
+          type: string
+        parametersValues:
+          additionalProperties: true
+          type: object
+      required:
+      - id
+      type: object
+    Organization:
+      description: an Organization
+      example:
+        name: name
+        id: id
+        users:
+        - name: name
+          id: id
+        - name: name
+          id: id
+      properties:
+        id:
+          description: the Organization unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the Organization name
+          type: string
+        users:
+          items:
+            $ref: '#/components/schemas/OrganizationUser'
+          type: array
+      required:
+      - name
+      type: object
+    OrganizationUser:
+      description: a User
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: "the User unique identifier, in response"
+          type: string
+        name:
+          description: the User name
+          type: string
+      type: object
+    Scenario:
+      allOf:
+      - $ref: '#/components/schemas/ScenarioBase'
+      - $ref: '#/components/schemas/Scenario_allOf'
+    ScenarioAnalysis:
+      description: a Scenario configuration for a Simulator Analysis
+      properties:
+        analysisId:
+          description: the Simulator Analysis Id
+          type: string
+        datasetList:
+          description: the list of Dataset Id associated to this Scenario Analysis
+          items:
+            type: string
+          type: array
+        parametersValues:
+          description: the list of Simulator Analysis parameters values
+          items:
+            $ref: '#/components/schemas/ScenarioAnalysisParameterValue'
+          type: array
+      required:
+      - analysisId
+      type: object
+    ScenarioAnalysisParameterValue:
+      description: the value of an Analysis parameter for a Scenario
+      properties:
+        parameterId:
+          description: the parameter Id
+          type: string
+        varType:
+          description: the parameter value type
+          readOnly: true
+          type: string
+        value:
+          description: the parameter value
+          type: string
+        isInherited:
+          description: whether or not the value is inherited from parent or has been
+            changed
+          type: string
+      required:
+      - parameterId
+      - value
+      type: object
+    ScenarioBase:
+      description: a Scenario with base information
+      example:
+        userList:
+        - roles: Viewer
+          name: name
+          id: id
+        - roles: Viewer
+          name: name
+          id: id
+        name: name
+        description: description
+        id: id
+        ownerId: ownerId
+        parentId: parentId
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Scenario unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the Scenario name
+          type: string
+        description:
+          description: the Scenario description
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+        parentId:
+          description: the Scenario parent id
+          type: string
+        ownerId:
+          description: the user id which own this Scenario
+          readOnly: true
+          type: string
+        userList:
+          description: the list of users Id with their role
+          items:
+            $ref: '#/components/schemas/ScenarioUser'
+          type: array
+      required:
+      - name
+      type: object
+    ScenarioChangedParameterValue:
+      description: the difference between the values of a parameter
+      example:
+        varType: varType
+        parameterId: parameterId
+        comparedValue: comparedValue
+        value: value
+      properties:
+        parameterId:
+          description: the parameter id the values refer to
+          readOnly: true
+          type: string
+        varType:
+          description: the parameter value type
+          readOnly: true
+          type: string
+        value:
+          description: the parameter value for the reference Scenario
+          readOnly: true
+          type: string
+        comparedValue:
+          description: the parameter value for the compared Scenario
+          readOnly: true
+          type: string
+      type: object
+    ScenarioComparisonResult:
+      description: the result of the comparison of two scenarios
+      example:
+        changedValues:
+        - varType: varType
+          parameterId: parameterId
+          comparedValue: comparedValue
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          comparedValue: comparedValue
+          value: value
+        comparedScenarioId: comparedScenarioId
+        scenarioId: scenarioId
+      properties:
+        scenarioId:
+          description: the Scenario Id which is the reference for the comparison
+          readOnly: true
+          type: string
+        comparedScenarioId:
+          description: the Scenario Id the reference Scenario is compared to
+          readOnly: true
+          type: string
+        changedValues:
+          description: the list of changed values for parameters
+          items:
+            $ref: '#/components/schemas/ScenarioChangedParameterValue'
+          readOnly: true
+          type: array
+      type: object
+    ScenarioUser:
+      description: a Scenario user with roles
+      example:
+        roles: Viewer
+        name: name
+        id: id
+      properties:
+        id:
+          description: the User id
+          type: string
+        name:
+          description: the User name
+          readOnly: true
+          type: string
+        roles:
+          description: the User role
+          enum:
+          - Viewer
+          - Editor
+          type: string
+      required:
+      - id
+      - roles
+      type: object
+    Simulator:
+      description: a version of a Simulator
+      example:
+        name: name
+        description: description
+        id: id
+        repository: repository
+        ownerId: ownerId
+        analysis:
+        - parameterGroups:
+          - options:
+              key: "{}"
+            id: id
+            isTable: true
+            parameters:
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            parentId: parentId
+            labels:
+              key: "{}"
+            order: 0
+          - options:
+              key: "{}"
+            id: id
+            isTable: true
+            parameters:
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            parentId: parentId
+            labels:
+              key: "{}"
+            order: 0
+          customDriverResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          simulation: simulation
+          parametersHandlerResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          datasetValidatorResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          name: name
+          description: description
+          computeSize: computeSize
+          id: id
+          tags:
+          - tags
+          - tags
+        - parameterGroups:
+          - options:
+              key: "{}"
+            id: id
+            isTable: true
+            parameters:
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            parentId: parentId
+            labels:
+              key: "{}"
+            order: 0
+          - options:
+              key: "{}"
+            id: id
+            isTable: true
+            parameters:
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            - varType: varType
+              options:
+                key: "{}"
+              id: id
+              labels:
+                key: "{}"
+              order: 6
+            parentId: parentId
+            labels:
+              key: "{}"
+            order: 0
+          customDriverResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          simulation: simulation
+          parametersHandlerResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          datasetValidatorResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          name: name
+          description: description
+          computeSize: computeSize
+          id: id
+          tags:
+          - tags
+          - tags
+        version: version
+        simulatorKey: simulatorKey
+        url: url
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Simulator version unique identifier
+          readOnly: true
+          type: string
+        simulatorKey:
+          description: the Simulator key which group Simulator versions
+          type: string
+        name:
+          description: the Simulator name
+          type: string
+        description:
+          description: the Simulator description
+          type: string
+        repository:
+          description: the registry repository containing the image
+          type: string
+        version:
+          description: the Simulator version MAJOR.MINOR.PATCH. Must be aligned with
+            an existing repository tag
+          type: string
+        ownerId:
+          description: the User id which own this Simulator
+          readOnly: true
+          type: string
+        url:
+          description: an optional URL link to simulator page
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+        analysis:
+          description: list of Simulator Analysis
+          items:
+            $ref: '#/components/schemas/SimulatorAnalysis'
+          type: array
+      required:
+      - name
+      - repository
+      - simulatorKey
+      - version
+      type: object
+    SimulatorAnalysis:
+      description: a Simulator Analysis run template
+      example:
+        parameterGroups:
+        - options:
+            key: "{}"
+          id: id
+          isTable: true
+          parameters:
+          - varType: varType
+            options:
+              key: "{}"
+            id: id
+            labels:
+              key: "{}"
+            order: 6
+          - varType: varType
+            options:
+              key: "{}"
+            id: id
+            labels:
+              key: "{}"
+            order: 6
+          parentId: parentId
+          labels:
+            key: "{}"
+          order: 0
+        - options:
+            key: "{}"
+          id: id
+          isTable: true
+          parameters:
+          - varType: varType
+            options:
+              key: "{}"
+            id: id
+            labels:
+              key: "{}"
+            order: 6
+          - varType: varType
+            options:
+              key: "{}"
+            id: id
+            labels:
+              key: "{}"
+            order: 6
+          parentId: parentId
+          labels:
+            key: "{}"
+          order: 0
+        customDriverResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
+        simulation: simulation
+        parametersHandlerResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
+        datasetValidatorResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
+        name: name
+        description: description
+        computeSize: computeSize
+        id: id
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Simulator Analysis id
+          type: string
+        name:
+          description: the Simulator Analysis name
+          type: string
+        description:
+          description: the Simulator Analysis description
+          type: string
+        simulation:
+          description: the simulation name
+          type: string
+        tags:
+          description: the list of Simulator Analysis tags
+          items:
+            type: string
+          type: array
+        computeSize:
+          description: the compute size needed for this Analysis. Standard sizes are
+            basic and highcpu. Default is basic
+          type: string
+        parametersHandlerResource:
+          $ref: '#/components/schemas/AnalysisResourceStorage'
+        datasetValidatorResource:
+          $ref: '#/components/schemas/AnalysisResourceStorage'
+        customDriverResource:
+          $ref: '#/components/schemas/AnalysisResourceStorage'
+        parameterGroups:
+          description: the list of parameters groups for the Analysis
+          items:
+            $ref: '#/components/schemas/AnalysisParameterGroup'
+          type: array
+      required:
+      - id
+      - name
+      - simulation
+      type: object
+    TranslatedLabels:
+      additionalProperties: true
+      description: a translated label with key as ISO 639-1 code
+      type: object
+    User:
+      description: a User
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: the User unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the User name
+          type: string
+      required:
+      - name
+      type: object
+    UserDetails:
+      allOf:
+      - $ref: '#/components/schemas/User'
+      - $ref: '#/components/schemas/UserDetails_allOf'
+    UserOrganization:
+      description: The organization of the user
+      properties:
+        id:
+          description: the Organization id
+          type: string
+        name:
+          description: the Organization name
+          type: string
+      type: object
+    Validator:
+      description: a Validator to validate a Dataset
+      example:
+        name: name
+        description: description
+        id: id
+        repository: repository
+        ownerId: ownerId
+        version: version
+        url: url
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Validator id
+          readOnly: true
+          type: string
+        name:
+          description: the Validator name
+          type: string
+        description:
+          description: the Validator description
+          type: string
+        repository:
+          description: the registry repository containing the Validator image
+          type: string
+        version:
+          description: the Validator version MAJOR.MINOR.PATCH. Must be aligned with
+            an existing repository tag
+          type: string
+        ownerId:
+          description: the User id which own this Validator
+          readOnly: true
+          type: string
+        url:
+          description: an optional URL link to Validator page
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - name
+      - repository
+      - version
+      type: object
+    ValidatorRun:
+      description: a Validator Run
+      example:
+        validatorName: validatorName
+        datasetName: datasetName
+        validatorId: validatorId
+        datasetId: datasetId
+        id: id
+        state: Running
+        containerId: containerId
+        logs: logs
+      properties:
+        id:
+          description: the Validator Run id
+          readOnly: true
+          type: string
+        validatorId:
+          description: the Validator id
+          readOnly: true
+          type: string
+        validatorName:
+          description: the validator name
+          readOnly: true
+          type: string
+        datasetId:
+          description: the Dataset id to run the validator on
+          type: string
+        datasetName:
+          description: the Dataset name
+          readOnly: true
+          type: string
+        state:
+          description: the Validator Run state
+          enum:
+          - Running
+          - Finished
+          - OnError
+          readOnly: true
+          type: string
+        containerId:
+          description: the Validator Run container id
+          readOnly: true
+          type: string
+        logs:
+          description: the Validator Run logs
+          readOnly: true
+          type: string
+      required:
+      - datasetId
+      type: object
+    Workspace:
+      description: a Workspace
+      example:
+        webApp:
+          options:
+            key: "{}"
+          url: url
+          iframes:
+            key: "{}"
+        simulator:
+          simulatorAnalysisFilter:
+          - simulatorAnalysisFilter
+          - simulatorAnalysisFilter
+          simulatorId: simulatorId
+          defaultAnalysisDataset:
+            key: "{}"
+        userList:
+        - roles: Viewer
+          name: name
+          id: id
+        - roles: Viewer
+          name: name
+          id: id
+        name: name
+        description: description
+        resources:
+          key: "{}"
+        id: id
+        ownerId: ownerId
+        version: version
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: the Workspace version unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the Workspace name
+          type: string
+        description:
+          description: the Workspace description
+          type: string
+        version:
+          description: the Workspace version MAJOR.MINOR.PATCH.
+          type: string
+        tags:
+          description: the list of tags
+          items:
+            type: string
+          type: array
+        ownerId:
+          description: the user id which own this workspace
+          readOnly: true
+          type: string
+        simulator:
+          $ref: '#/components/schemas/WorkspaceSimulator'
+        userList:
+          description: the list of users Id with their role
+          items:
+            $ref: '#/components/schemas/WorkspaceUser'
+          type: array
+        webApp:
+          $ref: '#/components/schemas/WorkspaceWebApp'
+        resources:
+          additionalProperties: true
+          description: a list of resources for the Workspace with resourceName/resourceUrl
+          readOnly: true
+          type: object
+      required:
+      - name
+      - simulator
+      type: object
+    WorkspaceSimulator:
+      description: the Workspace Simulator configuration
+      example:
+        simulatorAnalysisFilter:
+        - simulatorAnalysisFilter
+        - simulatorAnalysisFilter
+        simulatorId: simulatorId
+        defaultAnalysisDataset:
+          key: "{}"
+      properties:
+        simulatorId:
+          description: the Simulator Id attached to this workspace
+          type: string
+        simulatorAnalysisFilter:
+          description: the list of Simulator Analysis Id to filter
+          items:
+            type: string
+          type: array
+        defaultAnalysisDataset:
+          additionalProperties: true
+          description: a map of AnalysisId/DatasetId to set a default dataset for
+            an analysis
+          type: object
+      required:
+      - simulatorId
+      type: object
+    WorkspaceUser:
+      description: a Workspace user with roles
+      example:
+        roles: Viewer
+        name: name
+        id: id
+      properties:
+        id:
+          description: the User id
+          type: string
+        name:
+          description: the User name
+          readOnly: true
+          type: string
+        roles:
+          description: the User role
+          enum:
+          - Viewer
+          - Advanced
+          type: string
+      required:
+      - id
+      - roles
+      type: object
+    WorkspaceWebApp:
+      description: a Workspace Web Application
+      example:
+        options:
+          key: "{}"
+        url: url
+        iframes:
+          key: "{}"
+      properties:
+        url:
+          description: the Workspace Web Application URL
+          type: string
+        iframes:
+          additionalProperties: true
+          description: a map of iframeKey/iframeURL
+          type: object
+        options:
+          additionalProperties: true
+          description: free form options for Web Application
+          type: object
+      required:
+      - url
+      type: object
+    Scenario_allOf:
+      description: a Scenario with detailed information
+      properties:
+        simulatorId:
+          description: the Simulator Id associated with this Scenario
+          readOnly: true
+          type: string
+        analysis:
+          description: the configuration for Analysis
+          items:
+            $ref: '#/components/schemas/ScenarioAnalysis'
+          type: array
+      type: object
+    UserDetails_allOf:
+      description: a User with Organization details
+      properties:
+        organizations:
+          items:
+            $ref: '#/components/schemas/UserOrganization'
+          readOnly: true
+          type: array
+      type: object
+  securitySchemes:
+    AADOAuth2AuthCode:
+      description: Azure Active Directory authentication
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize
+          scopes:
+            http://sample.azure.cosmo-platform.com/user_impersonation: User Impersonation
+      type: oauth2
+    ApiKeyAuth:
+      description: The Cosmo Tech API Key
+      in: query
+      name: key
+      type: apiKey
+
