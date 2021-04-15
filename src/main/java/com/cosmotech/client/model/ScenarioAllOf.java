@@ -16,9 +16,6 @@ package com.cosmotech.client.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.cosmotech.client.model.ScenarioAnalysis;
-import com.cosmotech.client.model.ScenarioFailedAnalysis;
-import com.cosmotech.client.model.ScenarioRunningAnalysis;
-import com.cosmotech.client.model.ScenarioSuccessfulAnalysis;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,121 +24,120 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * a Scenario with detailed information
  */
 @ApiModel(description = "a Scenario with detailed information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class ScenarioAllOf {
-  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
-  private String simulatorId;
+  public static final String SERIALIZED_NAME_SIMULATOR_NAME = "simulatorName";
+  @SerializedName(SERIALIZED_NAME_SIMULATOR_NAME)
+  private String simulatorName;
 
-  public static final String SERIALIZED_NAME_ANALYSES = "analyses";
-  @SerializedName(SERIALIZED_NAME_ANALYSES)
-  private List<ScenarioAnalysis> analyses = null;
+  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME = "simulatorAnalysisName";
+  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME)
+  private String simulatorAnalysisName;
 
-  public static final String SERIALIZED_NAME_SUCCESSFUL_ANALYSES = "successfulAnalyses";
-  @SerializedName(SERIALIZED_NAME_SUCCESSFUL_ANALYSES)
-  private List<ScenarioSuccessfulAnalysis> successfulAnalyses = null;
+  public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
+  @SerializedName(SERIALIZED_NAME_ANALYSIS)
+  private ScenarioAnalysis analysis;
 
-  public static final String SERIALIZED_NAME_FAILED_ANALYSES = "failedAnalyses";
-  @SerializedName(SERIALIZED_NAME_FAILED_ANALYSES)
-  private List<ScenarioFailedAnalysis> failedAnalyses = null;
-
-  public static final String SERIALIZED_NAME_RUNNING_ANALYSES = "runningAnalyses";
-  @SerializedName(SERIALIZED_NAME_RUNNING_ANALYSES)
-  private List<ScenarioRunningAnalysis> runningAnalyses = null;
+  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
+  private Boolean sendInputToDataWarehouse;
 
 
-   /**
-   * the Simulator Id associated with this Scenario
-   * @return simulatorId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Id associated with this Scenario")
-
-  public String getSimulatorId() {
-    return simulatorId;
-  }
-
-
-
-
-  public ScenarioAllOf analyses(List<ScenarioAnalysis> analyses) {
+  public ScenarioAllOf simulatorName(String simulatorName) {
     
-    this.analyses = analyses;
-    return this;
-  }
-
-  public ScenarioAllOf addAnalysesItem(ScenarioAnalysis analysesItem) {
-    if (this.analyses == null) {
-      this.analyses = new ArrayList<ScenarioAnalysis>();
-    }
-    this.analyses.add(analysesItem);
+    this.simulatorName = simulatorName;
     return this;
   }
 
    /**
-   * the configuration for next Analysis
-   * @return analyses
+   * Get simulatorName
+   * @return simulatorName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the configuration for next Analysis")
+  @ApiModelProperty(value = "")
 
-  public List<ScenarioAnalysis> getAnalyses() {
-    return analyses;
+  public String getSimulatorName() {
+    return simulatorName;
   }
 
 
-  public void setAnalyses(List<ScenarioAnalysis> analyses) {
-    this.analyses = analyses;
+  public void setSimulatorName(String simulatorName) {
+    this.simulatorName = simulatorName;
   }
 
+
+  public ScenarioAllOf simulatorAnalysisName(String simulatorAnalysisName) {
+    
+    this.simulatorAnalysisName = simulatorAnalysisName;
+    return this;
+  }
 
    /**
-   * the configuration and information for last successful Analyses Runs
-   * @return successfulAnalyses
+   * Get simulatorAnalysisName
+   * @return simulatorAnalysisName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the configuration and information for last successful Analyses Runs")
+  @ApiModelProperty(value = "")
 
-  public List<ScenarioSuccessfulAnalysis> getSuccessfulAnalyses() {
-    return successfulAnalyses;
+  public String getSimulatorAnalysisName() {
+    return simulatorAnalysisName;
   }
 
 
+  public void setSimulatorAnalysisName(String simulatorAnalysisName) {
+    this.simulatorAnalysisName = simulatorAnalysisName;
+  }
 
+
+  public ScenarioAllOf analysis(ScenarioAnalysis analysis) {
+    
+    this.analysis = analysis;
+    return this;
+  }
 
    /**
-   * the configuration and information for last failed Analyses Runs
-   * @return failedAnalyses
+   * Get analysis
+   * @return analysis
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the configuration and information for last failed Analyses Runs")
+  @ApiModelProperty(value = "")
 
-  public List<ScenarioFailedAnalysis> getFailedAnalyses() {
-    return failedAnalyses;
+  public ScenarioAnalysis getAnalysis() {
+    return analysis;
   }
 
 
+  public void setAnalysis(ScenarioAnalysis analysis) {
+    this.analysis = analysis;
+  }
 
+
+  public ScenarioAllOf sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+    return this;
+  }
 
    /**
-   * the configuration and information for currently running Analyses Runs
-   * @return runningAnalyses
+   * default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * @return sendInputToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the configuration and information for currently running Analyses Runs")
+  @ApiModelProperty(value = "default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
 
-  public List<ScenarioRunningAnalysis> getRunningAnalyses() {
-    return runningAnalyses;
+  public Boolean getSendInputToDataWarehouse() {
+    return sendInputToDataWarehouse;
   }
 
 
+  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+  }
 
 
   @Override
@@ -153,27 +149,25 @@ public class ScenarioAllOf {
       return false;
     }
     ScenarioAllOf scenarioAllOf = (ScenarioAllOf) o;
-    return Objects.equals(this.simulatorId, scenarioAllOf.simulatorId) &&
-        Objects.equals(this.analyses, scenarioAllOf.analyses) &&
-        Objects.equals(this.successfulAnalyses, scenarioAllOf.successfulAnalyses) &&
-        Objects.equals(this.failedAnalyses, scenarioAllOf.failedAnalyses) &&
-        Objects.equals(this.runningAnalyses, scenarioAllOf.runningAnalyses);
+    return Objects.equals(this.simulatorName, scenarioAllOf.simulatorName) &&
+        Objects.equals(this.simulatorAnalysisName, scenarioAllOf.simulatorAnalysisName) &&
+        Objects.equals(this.analysis, scenarioAllOf.analysis) &&
+        Objects.equals(this.sendInputToDataWarehouse, scenarioAllOf.sendInputToDataWarehouse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(simulatorId, analyses, successfulAnalyses, failedAnalyses, runningAnalyses);
+    return Objects.hash(simulatorName, simulatorAnalysisName, analysis, sendInputToDataWarehouse);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioAllOf {\n");
-    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
-    sb.append("    analyses: ").append(toIndentedString(analyses)).append("\n");
-    sb.append("    successfulAnalyses: ").append(toIndentedString(successfulAnalyses)).append("\n");
-    sb.append("    failedAnalyses: ").append(toIndentedString(failedAnalyses)).append("\n");
-    sb.append("    runningAnalyses: ").append(toIndentedString(runningAnalyses)).append("\n");
+    sb.append("    simulatorName: ").append(toIndentedString(simulatorName)).append("\n");
+    sb.append("    simulatorAnalysisName: ").append(toIndentedString(simulatorAnalysisName)).append("\n");
+    sb.append("    analysis: ").append(toIndentedString(analysis)).append("\n");
+    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -53,11 +53,11 @@ public class WorkspaceSimulatorTest {
     }
 
     /**
-     * Test the property 'simulatorAnalysisFilter'
+     * Test the property 'analysisFilter'
      */
     @Test
-    public void simulatorAnalysisFilterTest() {
-        // TODO: test simulatorAnalysisFilter
+    public void analysisFilterTest() {
+        // TODO: test analysisFilter
     }
 
     /**

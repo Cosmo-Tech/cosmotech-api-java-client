@@ -16,7 +16,6 @@ package com.cosmotech.client.model;
 import com.cosmotech.client.model.ScenarioAllOf;
 import com.cosmotech.client.model.ScenarioAnalysis;
 import com.cosmotech.client.model.ScenarioBase;
-import com.cosmotech.client.model.ScenarioSuccessfulAnalysis;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -96,14 +95,6 @@ public class ScenarioTest {
     }
 
     /**
-     * Test the property 'userList'
-     */
-    @Test
-    public void userListTest() {
-        // TODO: test userList
-    }
-
-    /**
      * Test the property 'simulatorId'
      */
     @Test
@@ -112,19 +103,43 @@ public class ScenarioTest {
     }
 
     /**
-     * Test the property 'analyses'
+     * Test the property 'users'
      */
     @Test
-    public void analysesTest() {
-        // TODO: test analyses
+    public void usersTest() {
+        // TODO: test users
     }
 
     /**
-     * Test the property 'lastAnalyses'
+     * Test the property 'simulatorName'
      */
     @Test
-    public void lastAnalysesTest() {
-        // TODO: test lastAnalyses
+    public void simulatorNameTest() {
+        // TODO: test simulatorName
+    }
+
+    /**
+     * Test the property 'simulatorAnalysisName'
+     */
+    @Test
+    public void simulatorAnalysisNameTest() {
+        // TODO: test simulatorAnalysisName
+    }
+
+    /**
+     * Test the property 'analysis'
+     */
+    @Test
+    public void analysisTest() {
+        // TODO: test analysis
+    }
+
+    /**
+     * Test the property 'sendInputToDataWarehouse'
+     */
+    @Test
+    public void sendInputToDataWarehouseTest() {
+        // TODO: test sendInputToDataWarehouse
     }
 
 }

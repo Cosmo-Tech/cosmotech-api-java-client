@@ -31,7 +31,7 @@ import java.util.List;
  * a Scenario configuration for a Simulator Analysis
  */
 @ApiModel(description = "a Scenario configuration for a Simulator Analysis")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class ScenarioAnalysis {
   public static final String SERIALIZED_NAME_ANALYSIS_ID = "analysisId";
   @SerializedName(SERIALIZED_NAME_ANALYSIS_ID)
@@ -45,6 +45,10 @@ public class ScenarioAnalysis {
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
   private List<ScenarioAnalysisParameterValue> parametersValues = null;
 
+  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
+  private Boolean sendInputToDataWarehouse;
+
 
   public ScenarioAnalysis analysisId(String analysisId) {
     
@@ -53,10 +57,11 @@ public class ScenarioAnalysis {
   }
 
    /**
-   * the Simulator Analysis Id
+   * the Simulator Analysis Id associated with this Scenario
    * @return analysisId
   **/
-  @ApiModelProperty(required = true, value = "the Simulator Analysis Id")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Simulator Analysis Id associated with this Scenario")
 
   public String getAnalysisId() {
     return analysisId;
@@ -130,6 +135,29 @@ public class ScenarioAnalysis {
   }
 
 
+  public ScenarioAnalysis sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+    return this;
+  }
+
+   /**
+   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * @return sendInputToDataWarehouse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+
+  public Boolean getSendInputToDataWarehouse() {
+    return sendInputToDataWarehouse;
+  }
+
+
+  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -141,12 +169,13 @@ public class ScenarioAnalysis {
     ScenarioAnalysis scenarioAnalysis = (ScenarioAnalysis) o;
     return Objects.equals(this.analysisId, scenarioAnalysis.analysisId) &&
         Objects.equals(this.datasetList, scenarioAnalysis.datasetList) &&
-        Objects.equals(this.parametersValues, scenarioAnalysis.parametersValues);
+        Objects.equals(this.parametersValues, scenarioAnalysis.parametersValues) &&
+        Objects.equals(this.sendInputToDataWarehouse, scenarioAnalysis.sendInputToDataWarehouse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(analysisId, datasetList, parametersValues);
+    return Objects.hash(analysisId, datasetList, parametersValues, sendInputToDataWarehouse);
   }
 
   @Override
@@ -156,6 +185,7 @@ public class ScenarioAnalysis {
     sb.append("    analysisId: ").append(toIndentedString(analysisId)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
     sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
+    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

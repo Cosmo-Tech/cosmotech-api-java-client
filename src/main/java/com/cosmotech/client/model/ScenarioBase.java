@@ -31,7 +31,7 @@ import java.util.List;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class ScenarioBase {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -57,9 +57,13 @@ public class ScenarioBase {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_USER_LIST = "userList";
-  @SerializedName(SERIALIZED_NAME_USER_LIST)
-  private List<ScenarioUser> userList = null;
+  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
+  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
+  private String simulatorId;
+
+  public static final String SERIALIZED_NAME_USERS = "users";
+  @SerializedName(SERIALIZED_NAME_USERS)
+  private List<ScenarioUser> users = null;
 
 
    /**
@@ -189,34 +193,48 @@ public class ScenarioBase {
 
 
 
-  public ScenarioBase userList(List<ScenarioUser> userList) {
+   /**
+   * the Simulator Id associated with this Scenario
+   * @return simulatorId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Simulator Id associated with this Scenario")
+
+  public String getSimulatorId() {
+    return simulatorId;
+  }
+
+
+
+
+  public ScenarioBase users(List<ScenarioUser> users) {
     
-    this.userList = userList;
+    this.users = users;
     return this;
   }
 
-  public ScenarioBase addUserListItem(ScenarioUser userListItem) {
-    if (this.userList == null) {
-      this.userList = new ArrayList<ScenarioUser>();
+  public ScenarioBase addUsersItem(ScenarioUser usersItem) {
+    if (this.users == null) {
+      this.users = new ArrayList<ScenarioUser>();
     }
-    this.userList.add(userListItem);
+    this.users.add(usersItem);
     return this;
   }
 
    /**
    * the list of users Id with their role
-   * @return userList
+   * @return users
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "the list of users Id with their role")
 
-  public List<ScenarioUser> getUserList() {
-    return userList;
+  public List<ScenarioUser> getUsers() {
+    return users;
   }
 
 
-  public void setUserList(List<ScenarioUser> userList) {
-    this.userList = userList;
+  public void setUsers(List<ScenarioUser> users) {
+    this.users = users;
   }
 
 
@@ -235,12 +253,13 @@ public class ScenarioBase {
         Objects.equals(this.tags, scenarioBase.tags) &&
         Objects.equals(this.parentId, scenarioBase.parentId) &&
         Objects.equals(this.ownerId, scenarioBase.ownerId) &&
-        Objects.equals(this.userList, scenarioBase.userList);
+        Objects.equals(this.simulatorId, scenarioBase.simulatorId) &&
+        Objects.equals(this.users, scenarioBase.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, userList);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, simulatorId, users);
   }
 
   @Override
@@ -253,7 +272,8 @@ public class ScenarioBase {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    userList: ").append(toIndentedString(userList)).append("\n");
+    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();
   }

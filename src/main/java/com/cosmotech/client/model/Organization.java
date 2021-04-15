@@ -31,7 +31,7 @@ import java.util.List;
  * an Organization
  */
 @ApiModel(description = "an Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class Organization {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -40,6 +40,10 @@ public class Organization {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  private String ownerId;
 
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
@@ -80,6 +84,20 @@ public class Organization {
   public void setName(String name) {
     this.name = name;
   }
+
+
+   /**
+   * the Owner User Id
+   * @return ownerId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Owner User Id")
+
+  public String getOwnerId() {
+    return ownerId;
+  }
+
+
 
 
   public Organization users(List<OrganizationUser> users) {
@@ -124,12 +142,13 @@ public class Organization {
     Organization organization = (Organization) o;
     return Objects.equals(this.id, organization.id) &&
         Objects.equals(this.name, organization.name) &&
+        Objects.equals(this.ownerId, organization.ownerId) &&
         Objects.equals(this.users, organization.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, users);
+    return Objects.hash(id, name, ownerId, users);
   }
 
   @Override
@@ -138,6 +157,7 @@ public class Organization {
     sb.append("class Organization {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();

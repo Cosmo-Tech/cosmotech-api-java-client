@@ -60,6 +60,14 @@ public class OrganizationTest {
     }
 
     /**
+     * Test the property 'ownerId'
+     */
+    @Test
+    public void ownerIdTest() {
+        // TODO: test ownerId
+    }
+
+    /**
      * Test the property 'users'
      */
     @Test

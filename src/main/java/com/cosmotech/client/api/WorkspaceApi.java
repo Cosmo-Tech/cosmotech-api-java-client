@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Workspace;
+import com.cosmotech.client.model.WorkspaceUserDetails;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class WorkspaceApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -222,7 +223,7 @@ public class WorkspaceApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -348,7 +349,7 @@ public class WorkspaceApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -463,7 +464,7 @@ public class WorkspaceApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -548,6 +549,132 @@ public class WorkspaceApi {
         return localVarCall;
     }
     /**
+     * Build call for getCurrentWorkspaceUser
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCurrentWorkspaceUserCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/me"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getCurrentWorkspaceUserValidateBeforeCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getCurrentWorkspaceUser(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling getCurrentWorkspaceUser(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getCurrentWorkspaceUserCall(organizationId, workspaceId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the current User information for the Workspace
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @return WorkspaceUserDetails
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public WorkspaceUserDetails getCurrentWorkspaceUser(String organizationId, String workspaceId) throws ApiException {
+        ApiResponse<WorkspaceUserDetails> localVarResp = getCurrentWorkspaceUserWithHttpInfo(organizationId, workspaceId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the current User information for the Workspace
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @return ApiResponse&lt;WorkspaceUserDetails&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WorkspaceUserDetails> getCurrentWorkspaceUserWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+        okhttp3.Call localVarCall = getCurrentWorkspaceUserValidateBeforeCall(organizationId, workspaceId, null);
+        Type localVarReturnType = new TypeToken<WorkspaceUserDetails>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the current User information for the Workspace (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCurrentWorkspaceUserAsync(String organizationId, String workspaceId, final ApiCallback<WorkspaceUserDetails> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getCurrentWorkspaceUserValidateBeforeCall(organizationId, workspaceId, _callback);
+        Type localVarReturnType = new TypeToken<WorkspaceUserDetails>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateWorkspace
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -591,7 +718,7 @@ public class WorkspaceApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 

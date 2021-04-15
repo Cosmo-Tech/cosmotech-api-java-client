@@ -8,9 +8,10 @@ servers:
 - url: https://gateway.api.cosmo-platform.com
 - url: http://localhost:8080
 security:
-- ApiKeyAuth: []
-- AADOAuth2AuthCode: []
+- oAuth2AuthCode: []
 tags:
+- description: Simulation Management
+  name: simulation
 - description: Simulator Management
   name: simulator
 - description: Workspace Management
@@ -26,6 +27,518 @@ tags:
 - description: Dataset Management
   name: dataset
 paths:
+  /organizations/{organization_id}/simulations/search:
+    post:
+      operationId: searchSimulations
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
+            schema:
+              $ref: '#/components/schemas/SimulationSearch'
+        description: the Simulation search parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneSimulation:
+                  $ref: '#/components/examples/OneSimulation'
+              schema:
+                items:
+                  $ref: '#/components/schemas/SimulationBase'
+                type: array
+          description: the simulation details
+      summary: Search Simulations
+      tags:
+      - simulation
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/simulations/start:
+    post:
+      operationId: startSimulationScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              SimulationStartScenario:
+                $ref: '#/components/examples/BrewerySimulationStartScenario'
+            schema:
+              $ref: '#/components/schemas/SimulationStartScenario'
+        description: the Scenario information to start
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulation'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the simulation details
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Start a new simulation for a Scenario
+      tags:
+      - simulation
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/simulations/startsimulator:
+    post:
+      operationId: startSimulationSimulator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              SimulationStartSimulator:
+                $ref: '#/components/examples/BrewerySimulationStartSimulator'
+            schema:
+              $ref: '#/components/schemas/SimulationStartSimulator'
+        description: the Simulator Analysis information to start
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulationSimulator'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the simulation details
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Start a new simulation for a Simulator Analysis
+      tags:
+      - simulation
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/simulations/startcontainers:
+    post:
+      operationId: startSimulationContainers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              SimulationStartSimulator:
+                $ref: '#/components/examples/BrewerySimulationStartContainers'
+            schema:
+              $ref: '#/components/schemas/SimulationStartContainers'
+        description: the raw containers definition
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulationContainers'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the simulation details
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Start a new simulation with raw containers definition
+      tags:
+      - simulation
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/simulations/{simulation_id}:
+    delete:
+      operationId: deleteSimulation
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulation identifier
+        explode: false
+        in: path
+        name: simulation_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulation'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the simulation details
+        "400":
+          description: Bad request
+        "404":
+          description: the Simulation specified is unknown or you don't have access
+            to it
+      summary: Delete a simulation
+      tags:
+      - simulation
+      x-accepts: application/json
+    get:
+      operationId: findSimulationById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulation identifier
+        explode: false
+        in: path
+        name: simulation_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulation'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the Simulation details
+        "404":
+          description: the Simulation specified is unknown or you don't have access
+            to it
+      summary: Get the details of a simulation
+      tags:
+      - simulation
+      x-accepts: application/json
+  /organizations/{organization_id}/simulations/{simulation_id}/logs/search:
+    post:
+      operationId: searchSimulationLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulation identifier
+        explode: false
+        in: path
+        name: simulation_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              SimulationStartSimulator:
+                $ref: '#/components/examples/BrewerySimulationLogsOptions'
+            schema:
+              $ref: '#/components/schemas/SimulationLogsOptions'
+        description: the options to search logs
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulationLogs'
+              schema:
+                $ref: '#/components/schemas/SimulationLogs'
+          description: the Simulation logs
+        "400":
+          description: Bad request
+        "404":
+          description: the Simulation specified is unknown or you don't have access
+            to it
+      summary: Search the logs of a simulation
+      tags:
+      - simulation
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/simulations:
+    get:
+      operationId: getWorkspaceSimulations
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneSimulation:
+                  $ref: '#/components/examples/OneSimulation'
+              schema:
+                items:
+                  $ref: '#/components/schemas/SimulationBase'
+                type: array
+          description: the simulation details list
+      summary: get the list of Simulations for the Workspace
+      tags:
+      - simulation
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/simulations:
+    get:
+      operationId: getScenarioSimulations
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneSimulation:
+                  $ref: '#/components/examples/OneSimulation'
+              schema:
+                items:
+                  $ref: '#/components/schemas/SimulationBase'
+                type: array
+          description: the simulation details list
+      summary: get the list of Simulations for the Scenario
+      tags:
+      - simulation
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/simulations/{simulation_id}:
+    get:
+      operationId: getScenarioSimulation
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulation identifier
+        explode: false
+        in: path
+        name: simulation_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BrewerySimulation:
+                  $ref: '#/components/examples/BrewerySimulation'
+              schema:
+                $ref: '#/components/schemas/Simulation'
+          description: the simulation details
+      summary: get the Simulation for the Scenario
+      tags:
+      - simulation
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/simulations/{simulation_id}/logs:
+    get:
+      operationId: getScenarioSimulationLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Simulation identifier
+        explode: false
+        in: path
+        name: simulation_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulationLogs'
+              schema:
+                $ref: '#/components/schemas/SimulationLogs'
+          description: the simulation logs details
+      summary: get the logs for the Simulation
+      tags:
+      - simulation
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run:
+    post:
+      operationId: runScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Simulation:
+                  $ref: '#/components/examples/BrewerySimulationBase'
+              schema:
+                $ref: '#/components/schemas/SimulationBase'
+          description: the simulation details
+      summary: run a Simulation for the Scenario
+      tags:
+      - simulation
+      x-accepts: application/json
   /organizations/{organization_id}/simulators:
     get:
       operationId: findAllSimulators
@@ -446,6 +959,43 @@ paths:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/me:
+    get:
+      operationId: getCurrentWorkspaceUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BobUser:
+                  $ref: '#/components/examples/BobUser'
+              schema:
+                $ref: '#/components/schemas/WorkspaceUserDetails'
+          description: the User details
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the current User information for the Workspace
+      tags:
+      - workspace
+      x-accepts: application/json
   /connectors:
     get:
       operationId: findAllConnectors
@@ -718,6 +1268,8 @@ paths:
                 value:
                   users:
                   - name: Charles
+                    roles:
+                    - Developer
               RenameUser:
                 description: Rename the user Charles to Xavier
                 summary: Rename a user
@@ -732,8 +1284,12 @@ paths:
                   users:
                   - id: "1"
                     name: Bob
+                    roles:
+                    - Admin
                   - id: "2"
                     name: Alice
+                    roles:
+                    - User
             schema:
               $ref: '#/components/schemas/Organization'
         description: the new Organization details
@@ -757,6 +1313,35 @@ paths:
       tags:
       - organization
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/me:
+    get:
+      operationId: getCurrentOrganizationUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/BobUser'
+              schema:
+                $ref: '#/components/schemas/OrganizationUser'
+          description: the User details
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the current User information for the Organization
+      tags:
+      - organization
       x-accepts: application/json
   /users:
     get:
@@ -1170,62 +1755,6 @@ paths:
       - scenario
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/queryDataWarehouse:
-    post:
-      operationId: queryDataWarehouse
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryScenarioDataWarehouseQuery:
-                $ref: '#/components/examples/BreweryScenarioDataWarehouseQuery'
-            schema:
-              $ref: '#/components/schemas/ScenarioDataWarehouseQuery'
-        description: the DatawareHouse query
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryScenarioDataWarehouseQueryResult:
-                  $ref: '#/components/examples/BreweryScenarioDataWarehouseQueryResult'
-              schema:
-                $ref: '#/components/schemas/ScenarioDataWarehouseQueryResult'
-          description: the query result
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Get the result of a query on the DatawareHouse
-      tags:
-      - scenario
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id}:
     get:
       operationId: compareScenarios
@@ -1341,7 +1870,7 @@ paths:
           description: the dataset details
         "400":
           description: Bad request
-      summary: Register a new dataset
+      summary: Create a new dataset
       tags:
       - dataset
       x-contentType: application/json
@@ -1949,6 +2478,17 @@ components:
       summary: Bob User Create input example
       value:
         name: Bob
+    BobUser:
+      description: Bob User details example
+      summary: Bob User details example
+      value:
+        id: "1"
+        name: Bob
+        workspaceId: "1"
+        role: Admin
+        organizationId: "1"
+        organizationRoles:
+        - Admin
     BobyUpdateIn:
       description: Bob User renamed to Boby input example
       summary: Boby update User input example
@@ -1989,16 +2529,19 @@ components:
           tags:
           - Full
           - Supply
-          computeSize: basic
+          computeSize: highcpu
           parametersHandlerResource:
             storageType: local
-            resourcePath: analysis/hundred/parameters_handler.zip
+            resourcePath: analysis/hundred/parameters_handler/
           datasetValidatorResource:
             storageType: local
-            resourcePath: analysis/hundred/validator.zip
+            resourcePath: analysis/hundred/validator/
           customDriverResource:
             storageType: local
-            resourcePath: analysis/hundred/driver.zip
+            resourcePath: analysis/hundred/driver/
+          datasetSchemaResource:
+            storageType: local
+            resourcePath: analysis/hundred/schema
           parameterGroups:
           - id: consumers
             labels:
@@ -2024,7 +2567,7 @@ components:
         connector:
           id: "1"
           name: ADT Connector
-          version: "1.0"
+          version: 1.0.0
           ownerId: "1"
           parametersValues:
             AZURE_TENANT_ID: "12345678"
@@ -2061,7 +2604,7 @@ components:
         connector:
           id: "1"
           name: ADT Connector
-          version: "1.0"
+          version: 1.0.0
           ownerId: "1"
           parametersValues:
             AZURE_TENANT_ID: "12345678"
@@ -2117,51 +2660,21 @@ components:
         - reference
         ownerId: "1"
         simulatorId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
         - id: "2"
           name: Alice
           roles: Viewer
-        analyses:
-        - analysisId: "1"
+        analysis:
+          analysisId: "1"
           datasetList:
           - "1"
           parametersValues:
           - parameterId: prefix
             varType: string
             value: ""
-        successfulAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "1"
-        failedAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: erroredValue_
-          simulationId: "2"
-          error: value _ is not valid
-        runningAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "3"
-          jobId: "1"
-          state: Running
     BreweryScenarioComparison:
       description: Brewery comparison result between a parent Scenario and its child
       summary: Brewery comparison result
@@ -2173,19 +2686,6 @@ components:
           varType: string
           value: Brewery Master Analysis
           comparedValue: Brewery Master Analysis 2021
-    BreweryScenarioDataWarehouseQuery:
-      description: Brewery DataWarehouse Query example on GetProbes()
-      summary: Brewery DataWarehouse Query example
-      value:
-        simulationId: "1"
-        query: GetProbes()
-    BreweryScenarioDataWarehouseQueryResult:
-      description: Brewery DataWarehouse Query return example on GetProbes()
-      summary: Brewery DataWarehouse Query result example
-      value:
-        simulationId: "1"
-        query: GetProbes()
-        result: CustomerSatisfaction
     BreweryScenarioUpdate:
       description: Update the Brewery Scenario by changing its name
       summary: Update the Brewery Scenario
@@ -2203,51 +2703,425 @@ components:
         - reference
         ownerId: "1"
         simulatorId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
         - id: "2"
           name: Alice
           roles: Viewer
-        analyses:
-        - analysisId: "1"
+        analysis:
+          analysisId: "1"
           datasetList:
           - "1"
           parametersValues:
           - parameterId: prefix
             varType: string
             value: ""
-        successfulAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "1"
-        failedAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: erroredValue_
-          simulationId: "2"
-          error: value _ is not valid
-        runningAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "3"
-          jobId: "1"
-          state: Running
+    BrewerySearch:
+      description: Brewery search Simulation of Workspace 1 in Running state example
+      summary: Brewery search Simulation example
+      value:
+        workspaceId: "1"
+        state: Running
+    BrewerySimulation:
+      description: Brewery Simulation example
+      summary: Brewery Simulation example
+      value:
+        id: "1"
+        jobId: "1"
+        ownerId: "1"
+        workspaceId: "1"
+        workspaceName: Brewery Analysis
+        scenarioId: "1"
+        scenarioName: Brewery Master Analysis
+        simulatorId: "1"
+        simulatorName: Brewery Simulator
+        simulatorVersion: 1.0.0
+        simulatorAnalysisId: hundred
+        simulatorAnalysisName: Full simulation 100 steps
+        computeSize: highcpu
+        parametersHandler: analysis/hundred/parameters_handler/
+        datasetValidator: analysis/hundred/validator/
+        customDriver: analysis/hundred/driver/
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          value: new
+        sendInputToDataWarehouse: true
+        dataWarehouseDB: Brewery
+        resultsEventBusResourceUri: brewery
+        simulationEventBusResourceUri: brewery-simulation
+        state: Running
+        starTime: "4/15/2021, 10:52:18.593 AM"
+        nodeLabel: highcpupool
+        initContainers:
+        - id: azertyuiop
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+        - id: aqwzsx
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_SCENARIO_ID: "1"
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
+        - id: yhnujki
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_HANDLER_PROVIDER: local
+            CSM_PARAMETERS_HANDLER_PATH: analysis/hundred/parameters_handler/
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - handle-parameters
+        - id: rfvtgb
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_VALIDATOR_PROVIDER: local
+            CSM_DATASET_VALIDATOR_PATH: analysis/hundred/validator/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - validate
+        - id: qsdfghjklm
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+            ADX_DATABASE: Brewery
+          image: csmphoenix.azurecr.io/azure-data-explorer-simulation-sender:latest
+        mainContainer:
+          id: wxcvbn
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_CUSTOM_DRIVER_PROVIDER: local
+            CSM_CUSTOM_DRIVER_PATH: analysis/hundred/driver/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            CSM_CONTROL_PLANE_TOPIC: brewery-simulation
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - -i
+          - DeployedSimulation
+          - --amqp-consumer
+          - amqps://csm-phoenix.servicebus.windows.net/brewery
+    BrewerySimulationBase:
+      description: Brewery Simulation base example
+      summary: Brewery Simulation base example
+      value:
+        id: "1"
+        jobId: "1"
+        ownerId: "1"
+        workspaceId: "1"
+        workspaceName: Brewery Analysis
+        scenarioId: "1"
+        scenarioName: Brewery Master Analysis
+        simulatorId: "1"
+        simulatorName: Brewery Simulator
+        simulatorVersion: 1.0.0
+        simulatorAnalysisId: hundred
+        simulatorAnalysisName: Full simulation 100 steps
+        computeSize: highcpu
+        state: Running
+        starTime: "4/15/2021, 10:52:18.593 AM"
+    BrewerySimulationContainers:
+      description: Brewery Simulation ran with containers information example
+      summary: Brewery Simulation Containers example
+      value:
+        id: "1"
+        jobId: "1"
+        ownerId: "1"
+        state: Running
+        starTime: "4/15/2021, 10:52:18.593 AM"
+        nodeLabel: highcpupool
+        initContainers:
+        - id: azertyuiop
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+        - id: aqwzsx
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-inline:latest
+          runArgs:
+          - --prefix=new
+        - id: yhnujki
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_HANDLER_PROVIDER: local
+            CSM_PARAMETERS_HANDLER_PATH: analysis/hundred/parameters_handler/
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - handle-parameters
+        - id: rfvtgb
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_VALIDATOR_PROVIDER: local
+            CSM_DATASET_VALIDATOR_PATH: analysis/hundred/validator/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - validate
+        - id: qsdfghjklm
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+            ADX_DATABASE: Brewery
+          image: csmphoenix.azurecr.io/azure-data-explorer-simulation-sender:latest
+        mainContainer:
+          id: wxcvbn
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_CUSTOM_DRIVER_PROVIDER: local
+            CSM_CUSTOM_DRIVER_PATH: analysis/hundred/driver/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            CSM_CONTROL_PLANE_TOPIC: brewery-simulation
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - -i
+          - DeployedSimulation
+          - --amqp-consumer
+          - amqps://csm-phoenix.servicebus.windows.net/brewery
+    BrewerySimulationLogs:
+      description: Brewery Simulation logs with plain text example
+      summary: Brewery Simulation logs  example
+      value:
+        simulationId: "1"
+        options:
+          containerIds:
+          - azertyuiop
+          - wxcvbn
+          plainText: false
+        initLogs:
+        - containerId: azertyuiop
+          computer: aks-highcpupool-30630301-vmss000000
+          logs:
+          - timeGenerated: "4/15/2021, 10:52:20.593 AM"
+            entrySource: stderr
+            logEntry: cannot read source file
+          - timeGenerated: "4/15/2021, 10:52:21.593 AM"
+            entrySource: stderr
+            logEntry: stopping stream
+        mainLogs:
+          containerId: wxcvbn
+          computer: aks-highcpupool-30630301-vmss000000
+          logs:
+          - timeGenerated: "4/15/2021, 10:52:22.593 AM"
+            entrySource: stderr
+            logEntry: cannot run simulator
+          - timeGenerated: "4/15/2021, 10:52:23.593 AM"
+            entrySource: stderr
+            logEntry: critical error
+    BrewerySimulationLogsOptions:
+      description: Brewery Simulation logs options with plain text example
+      summary: Brewery Simulation logs options example
+      value:
+        containerIds:
+        - azertyuiop
+        - wxcvbn
+        plainText: false
+    BrewerySimulationSimulator:
+      description: Brewery Simulation ran with Simulator information example
+      summary: Brewery Simulation Simulator example
+      value:
+        id: "1"
+        jobId: "1"
+        ownerId: "1"
+        simulatorId: "1"
+        simulatorName: Brewery Simulator
+        simulatorVersion: 1.0.0
+        simulatorAnalysisId: hundred
+        simulatorAnalysisName: Full simulation 100 steps
+        computeSize: highcpu
+        parametersHandler: analysis/hundred/parameters_handler/
+        datasetValidator: analysis/hundred/validator/
+        customDriver: analysis/hundred/driver/
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          value: new
+        sendInputToDataWarehouse: true
+        dataWarehouseDB: Brewery
+        resultsEventBusResourceUri: brewery
+        simulationEventBusResourceUri: brewery-simulation
+        state: Running
+        starTime: "4/15/2021, 10:52:18.593 AM"
+        nodeLabel: highcpupool
+        initContainers:
+        - id: azertyuiop
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/simulation-data
+          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+        - id: aqwzsx
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-inline:latest
+          runArgs:
+          - --prefix=new
+        - id: yhnujki
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_HANDLER_PROVIDER: local
+            CSM_PARAMETERS_HANDLER_PATH: analysis/hundred/parameters_handler/
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - handle-parameters
+        - id: rfvtgb
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_VALIDATOR_PROVIDER: local
+            CSM_DATASET_VALIDATOR_PATH: analysis/hundred/validator/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - validate
+        - id: qsdfghjklm
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+            ADX_DATABASE: Brewery
+          image: csmphoenix.azurecr.io/azure-data-explorer-simulation-sender:latest
+        mainContainer:
+          id: wxcvbn
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_CUSTOM_DRIVER_PROVIDER: local
+            CSM_CUSTOM_DRIVER_PATH: analysis/hundred/driver/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/simulation-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/simulation-parameters
+            CSM_CONTROL_PLANE_TOPIC: brewery-simulation
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - -i
+          - DeployedSimulation
+          - --amqp-consumer
+          - amqps://csm-phoenix.servicebus.windows.net/brewery
+    BrewerySimulationStartContainers:
+      description: Brewery start Simulation directly with containers example
+      summary: Brewery start Simulation directly with containers example
+      value:
+        nodeLabel: highcpupool
+        initContainers:
+        - envVars:
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+        - envVars:
+            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+            ADX_DATABASE: Brewery
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+          image: csmphoenix.azurecr.io/azure-data-explorer-simulation-sender:latest
+        mainContainer:
+          envVars:
+            CSM_AMQPCONSUMER_USER: k8ssender
+            CSM_AMQPCONSUMER_PASSWORD: azertyuiop
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - -i
+          - DeployedSimulation
+          - --amqp-consumer
+          - amqps://csm-phoenix.servicebus.windows.net/brewery
+    BrewerySimulationStartScenario:
+      description: Brewery start Simulation for Scenario 1 example
+      summary: Brewery start Simulation for a Scenario example
+      value:
+        workspaceId: "1"
+        scenarioId: "1"
+    BrewerySimulationStartSimulator:
+      description: Brewery start Simulation for Simulator 1 example
+      summary: Brewery start Simulation for a Simulator example
+      value:
+        simulatorId: "1"
+        simulatorAnalysisId: "1"
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          value: new
+        sendInputToDataWarehouse: true
+        dataWarehouseDB: Brewery
+        resultsEventBusResourceUri: brewery
+        simulationEventBusResourceUri: brewery-simulation
     BreweryUpdate:
       description: Brewery Simulator update example
       summary: Brewery Simulator update
@@ -2276,16 +3150,19 @@ components:
           tags:
           - Full
           - Supply
-          computeSize: basic
+          computeSize: highcpu
           parametersHandlerResource:
             storageType: local
-            resourcePath: analysis/hundred/parameters_handler.zip
+            resourcePath: analysis/hundred/parameters_handler/
           datasetValidatorResource:
             storageType: local
-            resourcePath: analysis/hundred/validator.zip
+            resourcePath: analysis/hundred/validator/
           customDriverResource:
             storageType: local
-            resourcePath: analysis/hundred/driver.zip
+            resourcePath: analysis/hundred/driver/
+          datasetSchemaResource:
+            storageType: local
+            resourcePath: analysis/hundred/schema
           parameterGroups:
           - id: consumers
             labels:
@@ -2311,25 +3188,45 @@ components:
         ownerId: "1"
         simulator:
           simulatorId: "1"
+          AnalysisFilter:
+          - "1"
           defaultAnalysisDataset:
             "1": "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
-          roles: Advanced
+          role: Admin
         - id: "2"
           name: Alice
-          roles: Viewer
+          role: Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
             main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
             dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
         services:
-          resultsEventBus: brewery
-          simulationEventBus: brewery-simulation
-          dataWarehouse: Brewery
-          storage: organizations/1/workspaces/1
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          resultsEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery
+          simulationEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery-simulation
+          dataWarehouse:
+            cloudService: AzureDataExplorer
+            baseUri: https://phoenix.westeurope.kusto.windows.net
+            resourceUri: Brewery
+          storage:
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
+            resourceUri: workspaces/1
+            credentials:
+              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
     BreweryWorkspaceUpdate:
       description: Update the Brewery Workspace by changing its name
       summary: Update the Brewery Workspace
@@ -2349,49 +3246,81 @@ components:
         ownerId: "1"
         simulator:
           simulatorId: "1"
+          AnalysisFilter:
+          - "1"
           defaultAnalysisDataset:
             "1": "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
-          roles: Advanced
+          role: Admin
         - id: "2"
           name: Alice
-          roles: Viewer
+          role: Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
             main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
             dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
         services:
-          resultsEventBus: brewery
-          simulationEventBus: brewery-simulation
-          dataWarehouse: Brewery
-          storage: organizations/1/workspaces/1
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          resultsEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery
+          simulationEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery-simulation
+          dataWarehouse:
+            cloudService: AzureDataExplorer
+            baseUri: https://phoenix.westeurope.kusto.windows.net
+            resourceUri: Brewery
+          storage:
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
+            resourceUri: workspaces/1
+            credentials:
+              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
     CosmoOrganization:
       description: Cosmo Tech Organization example
       summary: Cosmo Tech Organization
       value:
         id: "1"
         name: Cosmo Tech
+        ownerId: "1"
         users:
         - id: "1"
           name: Bob
+          roles:
+          - Admin
         - id: "2"
           name: Alice
+          roles:
+          - User
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
       value:
         id: "1"
         name: Cosmo Tech
+        ownerId: "1"
         users:
         - id: "1"
           name: Bob
+          roles:
+          - Admin
         - id: "2"
           name: Alice
+          roles:
+          - User
         - id: "3"
           name: Xavier
+          roles:
+          - Developer
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization
@@ -2399,9 +3328,11 @@ components:
         name: Cosmo Tech
         users:
         - id: "1"
-          name: Bob
+          roles:
+          - Admin
         - id: "2"
-          name: Alice
+          roles:
+          - User
     OneConnector:
       description: One Connector list example
       summary: One Connector list
@@ -2452,6 +3383,25 @@ components:
             valueType: string
             default: /mnt/simulation-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    OneSimulation:
+      description: Brewery Simulation list example
+      summary: Brewery Simulation list example
+      value:
+      - id: "1"
+        jobId: "1"
+        ownerId: "1"
+        workspaceId: "1"
+        workspaceName: Brewery Analysis
+        scenarioId: "1"
+        scenarioName: Brewery Master Analysis
+        simulatorId: "1"
+        simulatorName: Brewery Simulator
+        simulatorVersion: 1.0.0
+        simulatorAnalysisId: hundred
+        simulatorAnalysisName: Full simulation 100 steps
+        computeSize: highcpu
+        state: Running
+        starTime: "4/15/2021, 10:52:18.593 AM"
     OneSimulator:
       description: Brewery Simulator example
       summary: Brewery Simulator
@@ -2475,16 +3425,19 @@ components:
           tags:
           - Full
           - Supply
-          computeSize: basic
+          computeSize: highcpu
           parametersHandlerResource:
             storageType: local
-            resourcePath: analysis/hundred/parameters_handler.zip
+            resourcePath: analysis/hundred/parameters_handler/
           datasetValidatorResource:
             storageType: local
-            resourcePath: analysis/hundred/validator.zip
+            resourcePath: analysis/hundred/validator/
           customDriverResource:
             storageType: local
-            resourcePath: analysis/hundred/driver.zip
+            resourcePath: analysis/hundred/driver/
+          datasetSchemaResource:
+            storageType: local
+            resourcePath: analysis/hundred/schema
           parameterGroups:
           - id: consumers
             labels:
@@ -2524,25 +3477,45 @@ components:
         ownerId: "1"
         simulator:
           simulatorId: "1"
+          AnalysisFilter:
+          - "1"
           defaultAnalysisDataset:
             "1": "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
-          roles: Advanced
+          role: Admin
         - id: "2"
           name: Alice
-          roles: Viewer
+          role: Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
             main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
             dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
         services:
-          resultsEventBus: brewery
-          simulationEventBus: brewery-simulation
-          dataWarehouse: Brewery
-          storage: organizations/1/workspaces/1
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          resultsEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery
+          simulationEventBus:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+            resourceUri: brewery-simulation
+          dataWarehouse:
+            cloudService: AzureDataExplorer
+            baseUri: https://phoenix.westeurope.kusto.windows.net
+            resourceUri: Brewery
+          storage:
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
+            resourceUri: workspaces/1
+            credentials:
+              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -2555,7 +3528,7 @@ components:
         - Brewery
         - reference
         ownerId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
@@ -2570,7 +3543,7 @@ components:
         - example
         parentId: "1"
         ownerId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
@@ -2584,7 +3557,7 @@ components:
         - Brewery
         parentId: "1"
         ownerId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
@@ -2604,51 +3577,21 @@ components:
         - reference
         ownerId: "1"
         simulatorId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
         - id: "2"
           name: Alice
           roles: Viewer
-        analyses:
-        - analysisId: "1"
+        analysis:
+          analysisId: "1"
           datasetList:
           - "1"
           parametersValues:
           - parameterId: prefix
             varType: string
             value: ""
-        successfulAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "1"
-        failedAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: erroredValue_
-          simulationId: "2"
-          error: value _ is not valid
-        runningAnalyses:
-        - analysisId: "1"
-          datasetList:
-          - "1"
-          parametersValues:
-          - parameterId: prefix
-            varType: string
-            value: last
-          simulationId: "3"
-          jobId: "1"
-          state: Running
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -2658,15 +3601,15 @@ components:
         parentId: "1"
         ownerId: "1"
         simulatorId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
         - id: "2"
           name: Alice
           roles: Viewer
-        analyses:
-        - analysisId: "1"
+        analysis:
+          analysisId: "1"
           datasetList:
           - "1"
           parametersValues:
@@ -2681,15 +3624,15 @@ components:
         parentId: "1"
         ownerId: "1"
         simulatorId: "1"
-        userList:
+        users:
         - id: "1"
           name: Bob
           roles: Editor
         - id: "2"
           name: Alice
           roles: Viewer
-        analyses:
-        - analysisId: "1"
+        analysis:
+          analysisId: "1"
           datasetList:
           - "1"
           parametersValues:
@@ -2739,7 +3682,7 @@ components:
         connector:
           id: "1"
           name: ADT Connector
-          version: "1.0"
+          version: 1.0.0
           ownerId: "1"
           parametersValues:
             AZURE_TENANT_ID: "12345678"
@@ -2760,7 +3703,7 @@ components:
         connector:
           id: "1"
           name: ADT Connector
-          version: "1.0"
+          version: 1.0.0
           ownerId: "1"
           parametersValues:
             AZURE_TENANT_ID: "12345678"
@@ -2775,16 +3718,23 @@ components:
       value:
       - id: "1"
         name: Cosmo Tech
+        ownerId: "1"
         users:
         - id: "1"
           name: Bob
+          roles:
+          - Admin
         - id: "2"
           name: Alice
+          roles:
+          - User
       - id: "2"
         name: Phoenix
         users:
         - id: "1"
           name: Bob
+          roles:
+          - Admin
     TwoUsers:
       description: Two Users example
       summary: Two Users example
@@ -3226,10 +4176,19 @@ components:
       example:
         name: name
         id: id
+        ownerId: ownerId
         users:
-        - name: name
+        - organizationId: organizationId
+          roles:
+          - Admin
+          - Admin
+          name: name
           id: id
-        - name: name
+        - organizationId: organizationId
+          roles:
+          - Admin
+          - Admin
+          name: name
           id: id
       properties:
         id:
@@ -3238,6 +4197,10 @@ components:
           type: string
         name:
           description: the Organization name
+          type: string
+        ownerId:
+          description: the Owner User Id
+          readOnly: true
           type: string
         users:
           items:
@@ -3249,15 +4212,37 @@ components:
     OrganizationUser:
       description: a User
       example:
+        organizationId: organizationId
+        roles:
+        - Admin
+        - Admin
         name: name
         id: id
       properties:
         id:
           description: "the User unique identifier, in response"
+          readOnly: true
           type: string
         name:
           description: the User name
           type: string
+        organizationId:
+          description: the Organization Id context
+          readOnly: true
+          type: string
+        roles:
+          description: the User's roles for the Organization
+          items:
+            enum:
+            - Admin
+            - User
+            - Viewer
+            - Developer
+            type: string
+          type: array
+      required:
+      - name
+      - roles
       type: object
     Scenario:
       allOf:
@@ -3267,7 +4252,7 @@ components:
       description: a Scenario configuration for a Simulator Analysis
       properties:
         analysisId:
-          description: the Simulator Analysis Id
+          description: the Simulator Analysis Id associated with this Scenario
           type: string
         datasetList:
           description: the list of Dataset Id associated to this Scenario Analysis
@@ -3279,8 +4264,10 @@ components:
           items:
             $ref: '#/components/schemas/ScenarioAnalysisParameterValue'
           type: array
-      required:
-      - analysisId
+        sendInputToDataWarehouse:
+          description: whether or not the Dataset values and the input parameters
+            values are send to the DataWarehouse prior to Simulation Run
+          type: boolean
       type: object
     ScenarioAnalysisParameterValue:
       description: the value of an Analysis parameter for a Scenario
@@ -3306,18 +4293,19 @@ components:
     ScenarioBase:
       description: a Scenario with base information
       example:
-        userList:
-        - roles: Viewer
-          name: name
-          id: id
-        - roles: Viewer
-          name: name
-          id: id
         name: name
         description: description
+        simulatorId: simulatorId
         id: id
         ownerId: ownerId
         parentId: parentId
+        users:
+        - roles: Viewer
+          name: name
+          id: id
+        - roles: Viewer
+          name: name
+          id: id
         tags:
         - tags
         - tags
@@ -3344,7 +4332,11 @@ components:
           description: the user id which own this Scenario
           readOnly: true
           type: string
-        userList:
+        simulatorId:
+          description: the Simulator Id associated with this Scenario
+          readOnly: true
+          type: string
+        users:
           description: the list of users Id with their role
           items:
             $ref: '#/components/schemas/ScenarioUser'
@@ -3407,50 +4399,6 @@ components:
           readOnly: true
           type: array
       type: object
-    ScenarioDataWarehouseQuery:
-      description: a DataWarehouse Query for the scenario
-      example:
-        query: query
-        simulationId: simulationId
-      properties:
-        simulationId:
-          description: the simulationId to get the result for
-          type: string
-        query:
-          description: the DataWarehouse query expressed in native DataWarehouse query
-            language
-          type: string
-      type: object
-    ScenarioDataWarehouseQueryResult:
-      description: a DataWarehouse Query result for the scenario
-      example:
-        result: result
-        query: query
-        simulationId: simulationId
-      properties:
-        simulationId:
-          description: the simulationId to get the result for
-          type: string
-        query:
-          description: the DataWarehouse query expressed in native DataWarehouse query
-            language
-          type: string
-        result:
-          description: the DataWarehouse query result
-          type: string
-      type: object
-    ScenarioFailedAnalysis:
-      allOf:
-      - $ref: '#/components/schemas/ScenarioAnalysis'
-      - $ref: '#/components/schemas/ScenarioFailedAnalysis_allOf'
-    ScenarioRunningAnalysis:
-      allOf:
-      - $ref: '#/components/schemas/ScenarioAnalysis'
-      - $ref: '#/components/schemas/ScenarioRunningAnalysis_allOf'
-    ScenarioSuccessfulAnalysis:
-      allOf:
-      - $ref: '#/components/schemas/ScenarioAnalysis'
-      - $ref: '#/components/schemas/ScenarioSuccessfulAnalysis_allOf'
     ScenarioUser:
       description: a Scenario user with roles
       example:
@@ -3475,6 +4423,410 @@ components:
       - id
       - roles
       type: object
+    Simulation:
+      allOf:
+      - $ref: '#/components/schemas/SimulationBase'
+      - $ref: '#/components/schemas/Simulation_allOf'
+    SimulationAnalysisParameterValue:
+      description: the value of Analysis parameter for a Scenario for this Simulation
+      example:
+        varType: varType
+        parameterId: parameterId
+        value: value
+      properties:
+        parameterId:
+          description: the parameter Id
+          type: string
+        varType:
+          description: the parameter value type
+          readOnly: true
+          type: string
+        value:
+          description: the parameter value
+          type: string
+      required:
+      - parameterId
+      - value
+      type: object
+    SimulationBase:
+      description: a Simulation with only base properties
+      example:
+        simulatorVersion: simulatorVersion
+        computeSize: computeSize
+        simulatorAnalysisName: simulatorAnalysisName
+        ownerId: ownerId
+        simulatorName: simulatorName
+        simulatorAnalysisId: simulatorAnalysisId
+        jobId: jobId
+        simulatorId: simulatorId
+        workspaceName: workspaceName
+        startTime: startTime
+        id: id
+        state: state
+        endTime: endTime
+        scenarioId: scenarioId
+        scenarioName: scenarioName
+        workspaceId: workspaceId
+      properties:
+        id:
+          description: the Simulation
+          readOnly: true
+          type: string
+        jobId:
+          description: the Platform compute cluster Job Id
+          readOnly: true
+          type: string
+        ownerId:
+          description: the user id which own this simulation
+          readOnly: true
+          type: string
+        workspaceId:
+          description: the Workspace Id
+          readOnly: true
+          type: string
+        workspaceName:
+          description: the Workspace name
+          readOnly: true
+          type: string
+        scenarioId:
+          description: the Scenario Id
+          readOnly: true
+          type: string
+        scenarioName:
+          description: the Scenario name
+          readOnly: true
+          type: string
+        simulatorId:
+          description: the Simulator Id
+          readOnly: true
+          type: string
+        simulatorName:
+          description: the Simulator name
+          readOnly: true
+          type: string
+        simulatorVersion:
+          description: the Simulator version
+          readOnly: true
+          type: string
+        simulatorAnalysisId:
+          description: the Simulator Analysis id
+          readOnly: true
+          type: string
+        simulatorAnalysisName:
+          description: the Simulator Analysis name
+          readOnly: true
+          type: string
+        computeSize:
+          description: the compute size needed for this Analysis. Standard sizes are
+            basic and highcpu. Default is basic
+          readOnly: true
+          type: string
+        state:
+          description: the Simulation state
+          readOnly: true
+          type: string
+        startTime:
+          description: the Simulation start Date Time
+          readOnly: true
+          type: string
+        endTime:
+          description: the Simulation end Date Time
+          readOnly: true
+          type: string
+      type: object
+    SimulationContainerLog:
+      description: a container log line
+      example:
+        timeGenerated: timeGenerated
+        entrySource: entrySource
+        logEntry: logEntry
+      properties:
+        timeGenerated:
+          description: date and time the record was created
+          readOnly: true
+          type: string
+        entrySource:
+          description: source of the log line. Possible values are stdout or stderr
+          readOnly: true
+          type: string
+        logEntry:
+          description: actual log line
+          readOnly: true
+          type: string
+      type: object
+    SimulationContainerLogs:
+      description: logs for a given container
+      example:
+        computer: computer
+        textLog: textLog
+        containerId: containerId
+        logs:
+        - timeGenerated: timeGenerated
+          entrySource: entrySource
+          logEntry: logEntry
+        - timeGenerated: timeGenerated
+          entrySource: entrySource
+          logEntry: logEntry
+      properties:
+        containerId:
+          description: container ID for log source as seen by Docker engine
+          readOnly: true
+          type: string
+        computer:
+          description: computer/node that's generating the log
+          readOnly: true
+          type: string
+        logs:
+          description: the list of container logs in structured format
+          items:
+            $ref: '#/components/schemas/SimulationContainerLog'
+          readOnly: true
+          type: array
+        textLog:
+          description: the plain text log if plainText option has been set
+          type: string
+      type: object
+    SimulationContainers:
+      description: a Simulation container description
+      example:
+        image: image
+        runArgs:
+        - runArgs
+        - runArgs
+        envVars:
+          key: "{}"
+        id: id
+      properties:
+        id:
+          description: the container Id
+          readOnly: true
+          type: string
+        envVars:
+          additionalProperties: true
+          description: a freeform environment variable map
+          type: object
+        image:
+          description: the container image URI
+          type: string
+        runArgs:
+          description: the list of run arguments for the container
+          items:
+            type: string
+          type: array
+      type: object
+    SimulationLogs:
+      description: the simulation logs returned by all containers
+      example:
+        initLogs:
+        - computer: computer
+          textLog: textLog
+          containerId: containerId
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        - computer: computer
+          textLog: textLog
+          containerId: containerId
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        mainLogs:
+          computer: computer
+          textLog: textLog
+          containerId: containerId
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        options:
+          containerIds:
+          - containerIds
+          - containerIds
+          plainText: true
+        simulationId: simulationId
+      properties:
+        simulationId:
+          description: the Simulation Id
+          readOnly: true
+          type: string
+        options:
+          $ref: '#/components/schemas/SimulationLogsOptions'
+        initLogs:
+          description: the list of simulation logs for init containers
+          items:
+            $ref: '#/components/schemas/SimulationContainerLogs'
+          readOnly: true
+          type: array
+        mainLogs:
+          $ref: '#/components/schemas/SimulationContainerLogs'
+      type: object
+    SimulationLogsOptions:
+      description: the simulation logs options
+      example:
+        containerIds:
+        - containerIds
+        - containerIds
+        plainText: true
+      properties:
+        containerIds:
+          description: the list of container Id to get the log for
+          items:
+            type: string
+          type: array
+        plainText:
+          description: whether or not to return the log in plain text instead of structured
+            form
+          type: boolean
+      type: object
+    SimulationSearch:
+      description: the search options
+      example:
+        jobId: jobId
+        simulatorId: simulatorId
+        state: state
+        ownerId: ownerId
+        scenarioId: scenarioId
+        simulatorAnalysisId: simulatorAnalysisId
+        workspaceId: workspaceId
+      properties:
+        simulatorId:
+          description: the Simulator Id to search
+          type: string
+        simulatorAnalysisId:
+          description: the Simulator Analysis Id to search
+          type: string
+        workspaceId:
+          description: the Workspace Id to search
+          type: string
+        scenarioId:
+          description: the Scenario Id to search
+          type: string
+        state:
+          description: the state to search
+          type: string
+        jobId:
+          description: the Cosmo Tech compute cluster Job Id to search
+          type: string
+        ownerId:
+          description: the owner Id to search
+          type: string
+      type: object
+    SimulationStartContainers:
+      description: the parameters to run directly containers
+      example:
+        mainContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        nodeLabel: nodeLabel
+        initContainers:
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+      properties:
+        nodeLabel:
+          description: the node label request
+          type: string
+        initContainers:
+          description: the list of init containers
+          items:
+            $ref: '#/components/schemas/SimulationContainers'
+          type: array
+        mainContainer:
+          $ref: '#/components/schemas/SimulationContainers'
+      type: object
+    SimulationStartScenario:
+      description: the parameters to run a Scenario
+      example:
+        scenarioId: scenarioId
+        workspaceId: workspaceId
+      properties:
+        workspaceId:
+          description: the Workspace Id
+          type: string
+        scenarioId:
+          description: the Scenario Id
+          type: string
+      type: object
+    SimulationStartSimulator:
+      description: the parameters to run directly a Simulator
+      example:
+        parametersValues:
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        simulationEventBusResourceUri: simulationEventBusResourceUri
+        dataWarehouseDB: dataWarehouseDB
+        resultsEventBusResourceUri: resultsEventBusResourceUri
+        simulatorId: simulatorId
+        datasetList:
+        - datasetList
+        - datasetList
+        sendInputToDataWarehouse: true
+        simulatorAnalysisId: simulatorAnalysisId
+      properties:
+        simulatorId:
+          description: the Simulator Id
+          type: string
+        simulatorAnalysisId:
+          description: the Simulator Analysis id
+          type: string
+        datasetList:
+          description: the list of Dataset Id associated to this Analysis
+          items:
+            type: string
+          type: array
+        parametersValues:
+          description: the list of Simulator Analysis parameters values
+          items:
+            $ref: '#/components/schemas/SimulationAnalysisParameterValue'
+          type: array
+        sendInputToDataWarehouse:
+          description: whether or not the Dataset values and the input parameters
+            values are send to the DataWarehouse prior to Simulation Run
+          type: boolean
+        dataWarehouseDB:
+          description: the DataWarehouse database name to send data if sendInputToDataWarehouse
+            is set
+          type: string
+        resultsEventBusResourceUri:
+          description: the event bus which receive Workspace Simulation results messages.
+            Message won't be send if this is not set
+          type: string
+        simulationEventBusResourceUri:
+          description: the event bus which receive Workspace Simulation events messages.
+            Message won't be send if this is not set
+          type: string
+      type: object
     Simulator:
       description: a version of a Simulator
       example:
@@ -3484,7 +4836,11 @@ components:
         repository: repository
         ownerId: ownerId
         analysis:
-        - parameterGroups:
+        - datasetSchemaResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          parameterGroups:
           - options:
               key: "{}"
             id: id
@@ -3551,7 +4907,11 @@ components:
           tags:
           - tags
           - tags
-        - parameterGroups:
+        - datasetSchemaResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          parameterGroups:
           - options:
               key: "{}"
             id: id
@@ -3671,6 +5031,10 @@ components:
     SimulatorAnalysis:
       description: a Simulator Analysis run template
       example:
+        datasetSchemaResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
         parameterGroups:
         - options:
             key: "{}"
@@ -3766,6 +5130,8 @@ components:
           $ref: '#/components/schemas/AnalysisResourceStorage'
         customDriverResource:
           $ref: '#/components/schemas/AnalysisResourceStorage'
+        datasetSchemaResource:
+          $ref: '#/components/schemas/AnalysisResourceStorage'
         parameterGroups:
           description: the list of parameters groups for the Analysis
           items:
@@ -3774,7 +5140,6 @@ components:
       required:
       - id
       - name
-      - simulation
       type: object
     TranslatedLabels:
       additionalProperties: true
@@ -3919,29 +5284,55 @@ components:
           iframes:
             key: "{}"
         simulator:
-          simulatorAnalysisFilter:
-          - simulatorAnalysisFilter
-          - simulatorAnalysisFilter
           simulatorId: simulatorId
           defaultAnalysisDataset:
             key: "{}"
-        userList:
-        - roles: Viewer
-          name: name
-          id: id
-        - roles: Viewer
-          name: name
-          id: id
+          analysisFilter:
+          - analysisFilter
+          - analysisFilter
         name: name
+        simulatorAnalysisFilter:
+        - simulatorAnalysisFilter
+        - simulatorAnalysisFilter
         description: description
         id: id
         services:
-          simulationEventBus: simulationEventBus
-          storage: storage
-          resultsEventBus: resultsEventBus
-          dataWarehouse: dataWarehouse
+          tenantCredentials:
+            key: "{}"
+          simulationEventBus:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
+          storage:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
+          resultsEventBus:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
+          dataWarehouse:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
         ownerId: ownerId
         version: version
+        sendInputToDataWarehouse: true
+        users:
+        - role: Admin
+          name: name
+          id: id
+        - role: Admin
+          name: name
+          id: id
         tags:
         - tags
         - tags
@@ -3970,7 +5361,12 @@ components:
           type: string
         simulator:
           $ref: '#/components/schemas/WorkspaceSimulator'
-        userList:
+        simulatorAnalysisFilter:
+          description: a filter list of available Simulator Analysis
+          items:
+            type: string
+          type: array
+        users:
           description: the list of users Id with their role
           items:
             $ref: '#/components/schemas/WorkspaceUser'
@@ -3979,45 +5375,101 @@ components:
           $ref: '#/components/schemas/WorkspaceWebApp'
         services:
           $ref: '#/components/schemas/WorkspaceServices'
+        sendInputToDataWarehouse:
+          default: true
+          description: default setting for all Scenarios and Analysis to set whether
+            or not the Dataset values and the input parameters values are send to
+            the DataWarehouse prior to Simulation Run
+          type: boolean
       required:
       - name
       - simulator
       type: object
+    WorkspaceService:
+      description: a cloud service resource
+      example:
+        credentials:
+          key: "{}"
+        baseUri: baseUri
+        resourceUri: resourceUri
+        cloudService: cloudService
+      properties:
+        cloudService:
+          description: the cloud service name
+          readOnly: true
+          type: string
+        baseUri:
+          description: the platform base uri for this service
+          readOnly: true
+          type: string
+        resourceUri:
+          description: the workspace specific uri for this service resource
+          type: string
+        credentials:
+          additionalProperties: true
+          description: a freeform credentials object. Structure depends on service
+          type: object
+      required:
+      - cloudService
+      type: object
     WorkspaceServices:
       description: the cloud service resources of the Workspace
       example:
-        simulationEventBus: simulationEventBus
-        storage: storage
-        resultsEventBus: resultsEventBus
-        dataWarehouse: dataWarehouse
-      properties:
-        resultsEventBus:
-          description: the event bus which receive Workspace Simulation results messages
-          type: string
+        tenantCredentials:
+          key: "{}"
         simulationEventBus:
-          description: the event bus which receive Workspace Simulation events messages
-          type: string
-        dataWarehouse:
-          description: the Workspace DataWarehouse specific informations
-          type: string
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
         storage:
-          description: ths Workspace file storage specific informations
-          type: string
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
+        resultsEventBus:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
+        dataWarehouse:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
+      properties:
+        tenantCredentials:
+          additionalProperties: true
+          description: a freeform credentials object for the tenant. Structure depends
+            on cloud provider
+          type: object
+        resultsEventBus:
+          $ref: '#/components/schemas/WorkspaceService'
+        simulationEventBus:
+          $ref: '#/components/schemas/WorkspaceService'
+        dataWarehouse:
+          $ref: '#/components/schemas/WorkspaceService'
+        storage:
+          $ref: '#/components/schemas/WorkspaceService'
       type: object
     WorkspaceSimulator:
       description: the Workspace Simulator configuration
       example:
-        simulatorAnalysisFilter:
-        - simulatorAnalysisFilter
-        - simulatorAnalysisFilter
         simulatorId: simulatorId
         defaultAnalysisDataset:
           key: "{}"
+        analysisFilter:
+        - analysisFilter
+        - analysisFilter
       properties:
         simulatorId:
           description: the Simulator Id attached to this workspace
           type: string
-        simulatorAnalysisFilter:
+        analysisFilter:
           description: the list of Simulator Analysis Id to filter
           items:
             type: string
@@ -4033,7 +5485,7 @@ components:
     WorkspaceUser:
       description: a Workspace user with roles
       example:
-        roles: Viewer
+        role: Admin
         name: name
         id: id
       properties:
@@ -4044,16 +5496,21 @@ components:
           description: the User name
           readOnly: true
           type: string
-        roles:
+        role:
           description: the User role
           enum:
+          - Admin
+          - User
           - Viewer
-          - Advanced
           type: string
       required:
       - id
-      - roles
+      - role
       type: object
+    WorkspaceUserDetails:
+      allOf:
+      - $ref: '#/components/schemas/WorkspaceUser'
+      - $ref: '#/components/schemas/WorkspaceUserDetails_allOf'
     WorkspaceWebApp:
       description: a Workspace Web Application
       example:
@@ -4080,72 +5537,64 @@ components:
     Scenario_allOf:
       description: a Scenario with detailed information
       properties:
-        simulatorId:
-          description: the Simulator Id associated with this Scenario
-          readOnly: true
+        simulatorName:
+          readOnly: false
           type: string
-        analyses:
-          description: the configuration for next Analysis
-          items:
-            $ref: '#/components/schemas/ScenarioAnalysis'
-          type: array
-        successfulAnalyses:
-          description: the configuration and information for last successful Analyses
-            Runs
-          items:
-            $ref: '#/components/schemas/ScenarioSuccessfulAnalysis'
-          readOnly: true
-          type: array
-        failedAnalyses:
-          description: the configuration and information for last failed Analyses
-            Runs
-          items:
-            $ref: '#/components/schemas/ScenarioFailedAnalysis'
-          readOnly: true
-          type: array
-        runningAnalyses:
-          description: the configuration and information for currently running Analyses
-            Runs
-          items:
-            $ref: '#/components/schemas/ScenarioRunningAnalysis'
-          readOnly: true
-          type: array
+        simulatorAnalysisName:
+          readOnly: false
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ScenarioAnalysis'
+        sendInputToDataWarehouse:
+          description: default setting for all Analysis to set whether or not the
+            Dataset values and the input parameters values are send to the DataWarehouse
+            prior to Simulation Run
+          type: boolean
       type: object
-    ScenarioFailedAnalysis_allOf:
-      description: a previously ran or running Scenario Analysis with run information
+    Simulation_allOf:
+      description: a Simulation
       properties:
-        simulationId:
-          description: the Simulation Run Id
+        datasetList:
+          description: the list of Dataset Id associated to this Analysis
+          items:
+            type: string
+          readOnly: true
+          type: array
+        parametersValues:
+          description: the list of Simulator Analysis parameters values
+          items:
+            $ref: '#/components/schemas/SimulationAnalysisParameterValue'
+          readOnly: true
+          type: array
+        sendInputToDataWarehouse:
+          description: whether or not the Dataset values and the input parameters
+            values are send to the DataWarehouse prior to Simulation Run
+          readOnly: true
+          type: boolean
+        dataWarehouseDB:
+          description: the DataWarehouse database name to send data if sendInputToDataWarehouse
+            is set
+          type: string
+        resultsEventBusResourceUri:
+          description: the event bus which receive Workspace Simulation results messages.
+            Message won't be send if this is not set
+          type: string
+        simulationEventBusResourceUri:
+          description: the event bus which receive Workspace Simulation events messages.
+            Message won't be send if this is not set
+          type: string
+        nodeLabel:
+          description: the node label request
           readOnly: true
           type: string
-        error:
-          description: the Simulation Run error message
+        initContainers:
+          description: the list of init containers
+          items:
+            $ref: '#/components/schemas/SimulationContainers'
           readOnly: true
-          type: string
-      type: object
-    ScenarioRunningAnalysis_allOf:
-      description: a previously ran or running Scenario Analysis with run information
-      properties:
-        simulationId:
-          description: the Simulation Run Id
-          readOnly: true
-          type: string
-        jobId:
-          description: the compute cluster job Id
-          readOnly: true
-          type: string
-        state:
-          description: the job state
-          readOnly: true
-          type: string
-      type: object
-    ScenarioSuccessfulAnalysis_allOf:
-      description: a previously ran or running Scenario Analysis with run information
-      properties:
-        simulationId:
-          description: the Simulation Run Id
-          readOnly: true
-          type: string
+          type: array
+        mainContainer:
+          $ref: '#/components/schemas/SimulationContainers'
       type: object
     UserDetails_allOf:
       description: a User with Organization details
@@ -4156,18 +5605,30 @@ components:
           readOnly: true
           type: array
       type: object
+    WorkspaceUserDetails_allOf:
+      description: details information on Workspace User
+      properties:
+        organizationId:
+          description: the Organization Id context
+          readOnly: true
+          type: string
+        organizationRoles:
+          description: the Organizations roles for the User
+          items:
+            type: string
+          readOnly: true
+          type: array
+        workspaceId:
+          description: the Workspace Id context
+          readOnly: true
+          type: string
+      type: object
   securitySchemes:
-    AADOAuth2AuthCode:
+    oAuth2AuthCode:
       description: Azure Active Directory authentication
       flows:
         implicit:
-          authorizationUrl: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize
-          scopes:
-            http://sample.azure.cosmo-platform.com/user_impersonation: User Impersonation
+          authorizationUrl: oauth2/authorize
+          scopes: {}
       type: oauth2
-    ApiKeyAuth:
-      description: The Cosmo Tech API Key
-      in: query
-      name: key
-      type: apiKey
 

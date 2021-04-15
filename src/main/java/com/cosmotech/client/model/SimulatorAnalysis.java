@@ -32,7 +32,7 @@ import java.util.List;
  * a Simulator Analysis run template
  */
 @ApiModel(description = "a Simulator Analysis run template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class SimulatorAnalysis {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,6 +69,10 @@ public class SimulatorAnalysis {
   public static final String SERIALIZED_NAME_CUSTOM_DRIVER_RESOURCE = "customDriverResource";
   @SerializedName(SERIALIZED_NAME_CUSTOM_DRIVER_RESOURCE)
   private AnalysisResourceStorage customDriverResource;
+
+  public static final String SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE = "datasetSchemaResource";
+  @SerializedName(SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE)
+  private AnalysisResourceStorage datasetSchemaResource;
 
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
@@ -152,7 +156,8 @@ public class SimulatorAnalysis {
    * the simulation name
    * @return simulation
   **/
-  @ApiModelProperty(required = true, value = "the simulation name")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the simulation name")
 
   public String getSimulation() {
     return simulation;
@@ -287,6 +292,29 @@ public class SimulatorAnalysis {
   }
 
 
+  public SimulatorAnalysis datasetSchemaResource(AnalysisResourceStorage datasetSchemaResource) {
+    
+    this.datasetSchemaResource = datasetSchemaResource;
+    return this;
+  }
+
+   /**
+   * Get datasetSchemaResource
+   * @return datasetSchemaResource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public AnalysisResourceStorage getDatasetSchemaResource() {
+    return datasetSchemaResource;
+  }
+
+
+  public void setDatasetSchemaResource(AnalysisResourceStorage datasetSchemaResource) {
+    this.datasetSchemaResource = datasetSchemaResource;
+  }
+
+
   public SimulatorAnalysis parameterGroups(List<AnalysisParameterGroup> parameterGroups) {
     
     this.parameterGroups = parameterGroups;
@@ -336,12 +364,13 @@ public class SimulatorAnalysis {
         Objects.equals(this.parametersHandlerResource, simulatorAnalysis.parametersHandlerResource) &&
         Objects.equals(this.datasetValidatorResource, simulatorAnalysis.datasetValidatorResource) &&
         Objects.equals(this.customDriverResource, simulatorAnalysis.customDriverResource) &&
+        Objects.equals(this.datasetSchemaResource, simulatorAnalysis.datasetSchemaResource) &&
         Objects.equals(this.parameterGroups, simulatorAnalysis.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, simulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, customDriverResource, parameterGroups);
+    return Objects.hash(id, name, description, simulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, customDriverResource, datasetSchemaResource, parameterGroups);
   }
 
   @Override
@@ -357,6 +386,7 @@ public class SimulatorAnalysis {
     sb.append("    parametersHandlerResource: ").append(toIndentedString(parametersHandlerResource)).append("\n");
     sb.append("    datasetValidatorResource: ").append(toIndentedString(datasetValidatorResource)).append("\n");
     sb.append("    customDriverResource: ").append(toIndentedString(customDriverResource)).append("\n");
+    sb.append("    datasetSchemaResource: ").append(toIndentedString(datasetSchemaResource)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");
     return sb.toString();

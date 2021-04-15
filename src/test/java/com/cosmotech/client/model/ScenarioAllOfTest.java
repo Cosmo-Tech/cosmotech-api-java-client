@@ -14,7 +14,6 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.ScenarioAnalysis;
-import com.cosmotech.client.model.ScenarioSuccessfulAnalysis;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,8 +22,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -45,27 +42,35 @@ public class ScenarioAllOfTest {
     }
 
     /**
-     * Test the property 'simulatorId'
+     * Test the property 'simulatorName'
      */
     @Test
-    public void simulatorIdTest() {
-        // TODO: test simulatorId
+    public void simulatorNameTest() {
+        // TODO: test simulatorName
     }
 
     /**
-     * Test the property 'analyses'
+     * Test the property 'simulatorAnalysisName'
      */
     @Test
-    public void analysesTest() {
-        // TODO: test analyses
+    public void simulatorAnalysisNameTest() {
+        // TODO: test simulatorAnalysisName
     }
 
     /**
-     * Test the property 'lastAnalyses'
+     * Test the property 'analysis'
      */
     @Test
-    public void lastAnalysesTest() {
-        // TODO: test lastAnalyses
+    public void analysisTest() {
+        // TODO: test analysis
+    }
+
+    /**
+     * Test the property 'sendInputToDataWarehouse'
+     */
+    @Test
+    public void sendInputToDataWarehouseTest() {
+        // TODO: test sendInputToDataWarehouse
     }
 
 }

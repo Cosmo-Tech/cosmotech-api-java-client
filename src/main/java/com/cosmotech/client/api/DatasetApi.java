@@ -97,7 +97,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -225,7 +225,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -249,7 +249,7 @@ public class DatasetApi {
     }
 
     /**
-     * Register a new dataset
+     * Create a new dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -268,7 +268,7 @@ public class DatasetApi {
     }
 
     /**
-     * Register a new dataset
+     * Create a new dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -288,7 +288,7 @@ public class DatasetApi {
     }
 
     /**
-     * Register a new dataset (asynchronously)
+     * Create a new dataset (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -352,7 +352,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -478,7 +478,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -593,7 +593,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -721,7 +721,7 @@ public class DatasetApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 

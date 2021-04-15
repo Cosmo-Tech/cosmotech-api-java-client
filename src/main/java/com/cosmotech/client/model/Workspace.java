@@ -34,7 +34,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -64,9 +64,13 @@ public class Workspace {
   @SerializedName(SERIALIZED_NAME_SIMULATOR)
   private WorkspaceSimulator simulator;
 
-  public static final String SERIALIZED_NAME_USER_LIST = "userList";
-  @SerializedName(SERIALIZED_NAME_USER_LIST)
-  private List<WorkspaceUser> userList = null;
+  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER = "simulatorAnalysisFilter";
+  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER)
+  private List<String> simulatorAnalysisFilter = null;
+
+  public static final String SERIALIZED_NAME_USERS = "users";
+  @SerializedName(SERIALIZED_NAME_USERS)
+  private List<WorkspaceUser> users = null;
 
   public static final String SERIALIZED_NAME_WEB_APP = "webApp";
   @SerializedName(SERIALIZED_NAME_WEB_APP)
@@ -75,6 +79,10 @@ public class Workspace {
   public static final String SERIALIZED_NAME_SERVICES = "services";
   @SerializedName(SERIALIZED_NAME_SERVICES)
   private WorkspaceServices services;
+
+  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
+  private Boolean sendInputToDataWarehouse = true;
 
 
    /**
@@ -226,34 +234,65 @@ public class Workspace {
   }
 
 
-  public Workspace userList(List<WorkspaceUser> userList) {
+  public Workspace simulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
     
-    this.userList = userList;
+    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
     return this;
   }
 
-  public Workspace addUserListItem(WorkspaceUser userListItem) {
-    if (this.userList == null) {
-      this.userList = new ArrayList<WorkspaceUser>();
+  public Workspace addSimulatorAnalysisFilterItem(String simulatorAnalysisFilterItem) {
+    if (this.simulatorAnalysisFilter == null) {
+      this.simulatorAnalysisFilter = new ArrayList<String>();
     }
-    this.userList.add(userListItem);
+    this.simulatorAnalysisFilter.add(simulatorAnalysisFilterItem);
+    return this;
+  }
+
+   /**
+   * a filter list of available Simulator Analysis
+   * @return simulatorAnalysisFilter
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "a filter list of available Simulator Analysis")
+
+  public List<String> getSimulatorAnalysisFilter() {
+    return simulatorAnalysisFilter;
+  }
+
+
+  public void setSimulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
+    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
+  }
+
+
+  public Workspace users(List<WorkspaceUser> users) {
+    
+    this.users = users;
+    return this;
+  }
+
+  public Workspace addUsersItem(WorkspaceUser usersItem) {
+    if (this.users == null) {
+      this.users = new ArrayList<WorkspaceUser>();
+    }
+    this.users.add(usersItem);
     return this;
   }
 
    /**
    * the list of users Id with their role
-   * @return userList
+   * @return users
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "the list of users Id with their role")
 
-  public List<WorkspaceUser> getUserList() {
-    return userList;
+  public List<WorkspaceUser> getUsers() {
+    return users;
   }
 
 
-  public void setUserList(List<WorkspaceUser> userList) {
-    this.userList = userList;
+  public void setUsers(List<WorkspaceUser> users) {
+    this.users = users;
   }
 
 
@@ -303,6 +342,29 @@ public class Workspace {
   }
 
 
+  public Workspace sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+    return this;
+  }
+
+   /**
+   * default setting for all Scenarios and Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * @return sendInputToDataWarehouse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "default setting for all Scenarios and Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+
+  public Boolean getSendInputToDataWarehouse() {
+    return sendInputToDataWarehouse;
+  }
+
+
+  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -319,14 +381,16 @@ public class Workspace {
         Objects.equals(this.tags, workspace.tags) &&
         Objects.equals(this.ownerId, workspace.ownerId) &&
         Objects.equals(this.simulator, workspace.simulator) &&
-        Objects.equals(this.userList, workspace.userList) &&
+        Objects.equals(this.simulatorAnalysisFilter, workspace.simulatorAnalysisFilter) &&
+        Objects.equals(this.users, workspace.users) &&
         Objects.equals(this.webApp, workspace.webApp) &&
-        Objects.equals(this.services, workspace.services);
+        Objects.equals(this.services, workspace.services) &&
+        Objects.equals(this.sendInputToDataWarehouse, workspace.sendInputToDataWarehouse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, version, tags, ownerId, simulator, userList, webApp, services);
+    return Objects.hash(id, name, description, version, tags, ownerId, simulator, simulatorAnalysisFilter, users, webApp, services, sendInputToDataWarehouse);
   }
 
   @Override
@@ -340,9 +404,11 @@ public class Workspace {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    simulator: ").append(toIndentedString(simulator)).append("\n");
-    sb.append("    userList: ").append(toIndentedString(userList)).append("\n");
+    sb.append("    simulatorAnalysisFilter: ").append(toIndentedString(simulatorAnalysisFilter)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
     sb.append("    services: ").append(toIndentedString(services)).append("\n");
+    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

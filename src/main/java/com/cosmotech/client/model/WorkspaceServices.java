@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.WorkspaceService;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,118 +24,156 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * the cloud service resources of the Workspace
  */
 @ApiModel(description = "the cloud service resources of the Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class WorkspaceServices {
+  public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
+  @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)
+  private Map<String, Object> tenantCredentials = null;
+
   public static final String SERIALIZED_NAME_RESULTS_EVENT_BUS = "resultsEventBus";
   @SerializedName(SERIALIZED_NAME_RESULTS_EVENT_BUS)
-  private String resultsEventBus;
+  private WorkspaceService resultsEventBus;
 
   public static final String SERIALIZED_NAME_SIMULATION_EVENT_BUS = "simulationEventBus";
   @SerializedName(SERIALIZED_NAME_SIMULATION_EVENT_BUS)
-  private String simulationEventBus;
+  private WorkspaceService simulationEventBus;
 
   public static final String SERIALIZED_NAME_DATA_WAREHOUSE = "dataWarehouse";
   @SerializedName(SERIALIZED_NAME_DATA_WAREHOUSE)
-  private String dataWarehouse;
+  private WorkspaceService dataWarehouse;
 
   public static final String SERIALIZED_NAME_STORAGE = "storage";
   @SerializedName(SERIALIZED_NAME_STORAGE)
-  private String storage;
+  private WorkspaceService storage;
 
 
-  public WorkspaceServices resultsEventBus(String resultsEventBus) {
+  public WorkspaceServices tenantCredentials(Map<String, Object> tenantCredentials) {
+    
+    this.tenantCredentials = tenantCredentials;
+    return this;
+  }
+
+  public WorkspaceServices putTenantCredentialsItem(String key, Object tenantCredentialsItem) {
+    if (this.tenantCredentials == null) {
+      this.tenantCredentials = new HashMap<String, Object>();
+    }
+    this.tenantCredentials.put(key, tenantCredentialsItem);
+    return this;
+  }
+
+   /**
+   * a freeform credentials object for the tenant. Structure depends on cloud provider
+   * @return tenantCredentials
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "a freeform credentials object for the tenant. Structure depends on cloud provider")
+
+  public Map<String, Object> getTenantCredentials() {
+    return tenantCredentials;
+  }
+
+
+  public void setTenantCredentials(Map<String, Object> tenantCredentials) {
+    this.tenantCredentials = tenantCredentials;
+  }
+
+
+  public WorkspaceServices resultsEventBus(WorkspaceService resultsEventBus) {
     
     this.resultsEventBus = resultsEventBus;
     return this;
   }
 
    /**
-   * the event bus which receive Workspace Simulation results messages
+   * Get resultsEventBus
    * @return resultsEventBus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the event bus which receive Workspace Simulation results messages")
+  @ApiModelProperty(value = "")
 
-  public String getResultsEventBus() {
+  public WorkspaceService getResultsEventBus() {
     return resultsEventBus;
   }
 
 
-  public void setResultsEventBus(String resultsEventBus) {
+  public void setResultsEventBus(WorkspaceService resultsEventBus) {
     this.resultsEventBus = resultsEventBus;
   }
 
 
-  public WorkspaceServices simulationEventBus(String simulationEventBus) {
+  public WorkspaceServices simulationEventBus(WorkspaceService simulationEventBus) {
     
     this.simulationEventBus = simulationEventBus;
     return this;
   }
 
    /**
-   * the event bus which receive Workspace Simulation events messages
+   * Get simulationEventBus
    * @return simulationEventBus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the event bus which receive Workspace Simulation events messages")
+  @ApiModelProperty(value = "")
 
-  public String getSimulationEventBus() {
+  public WorkspaceService getSimulationEventBus() {
     return simulationEventBus;
   }
 
 
-  public void setSimulationEventBus(String simulationEventBus) {
+  public void setSimulationEventBus(WorkspaceService simulationEventBus) {
     this.simulationEventBus = simulationEventBus;
   }
 
 
-  public WorkspaceServices dataWarehouse(String dataWarehouse) {
+  public WorkspaceServices dataWarehouse(WorkspaceService dataWarehouse) {
     
     this.dataWarehouse = dataWarehouse;
     return this;
   }
 
    /**
-   * the Workspace DataWarehouse specific informations
+   * Get dataWarehouse
    * @return dataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Workspace DataWarehouse specific informations")
+  @ApiModelProperty(value = "")
 
-  public String getDataWarehouse() {
+  public WorkspaceService getDataWarehouse() {
     return dataWarehouse;
   }
 
 
-  public void setDataWarehouse(String dataWarehouse) {
+  public void setDataWarehouse(WorkspaceService dataWarehouse) {
     this.dataWarehouse = dataWarehouse;
   }
 
 
-  public WorkspaceServices storage(String storage) {
+  public WorkspaceServices storage(WorkspaceService storage) {
     
     this.storage = storage;
     return this;
   }
 
    /**
-   * ths Workspace file storage specific informations
+   * Get storage
    * @return storage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ths Workspace file storage specific informations")
+  @ApiModelProperty(value = "")
 
-  public String getStorage() {
+  public WorkspaceService getStorage() {
     return storage;
   }
 
 
-  public void setStorage(String storage) {
+  public void setStorage(WorkspaceService storage) {
     this.storage = storage;
   }
 
@@ -148,7 +187,8 @@ public class WorkspaceServices {
       return false;
     }
     WorkspaceServices workspaceServices = (WorkspaceServices) o;
-    return Objects.equals(this.resultsEventBus, workspaceServices.resultsEventBus) &&
+    return Objects.equals(this.tenantCredentials, workspaceServices.tenantCredentials) &&
+        Objects.equals(this.resultsEventBus, workspaceServices.resultsEventBus) &&
         Objects.equals(this.simulationEventBus, workspaceServices.simulationEventBus) &&
         Objects.equals(this.dataWarehouse, workspaceServices.dataWarehouse) &&
         Objects.equals(this.storage, workspaceServices.storage);
@@ -156,13 +196,14 @@ public class WorkspaceServices {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resultsEventBus, simulationEventBus, dataWarehouse, storage);
+    return Objects.hash(tenantCredentials, resultsEventBus, simulationEventBus, dataWarehouse, storage);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkspaceServices {\n");
+    sb.append("    tenantCredentials: ").append(toIndentedString(tenantCredentials)).append("\n");
     sb.append("    resultsEventBus: ").append(toIndentedString(resultsEventBus)).append("\n");
     sb.append("    simulationEventBus: ").append(toIndentedString(simulationEventBus)).append("\n");
     sb.append("    dataWarehouse: ").append(toIndentedString(dataWarehouse)).append("\n");

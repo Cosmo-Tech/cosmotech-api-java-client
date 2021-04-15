@@ -30,8 +30,6 @@ import java.io.IOException;
 import com.cosmotech.client.model.Scenario;
 import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioComparisonResult;
-import com.cosmotech.client.model.ScenarioDataWarehouseQuery;
-import com.cosmotech.client.model.ScenarioDataWarehouseQueryResult;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -104,7 +102,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -247,7 +245,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -384,7 +382,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -520,7 +518,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -645,7 +643,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -778,7 +776,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -860,151 +858,6 @@ public class ScenarioApi {
         return localVarCall;
     }
     /**
-     * Build call for queryDataWarehouse
-     * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
-     * @param scenarioDataWarehouseQuery the DatawareHouse query (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the query result </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call queryDataWarehouseCall(String organizationId, String workspaceId, String scenarioId, ScenarioDataWarehouseQuery scenarioDataWarehouseQuery, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = scenarioDataWarehouseQuery;
-
-        // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/queryDataWarehouse"
-            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
-            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call queryDataWarehouseValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, ScenarioDataWarehouseQuery scenarioDataWarehouseQuery, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling queryDataWarehouse(Async)");
-        }
-        
-        // verify the required parameter 'workspaceId' is set
-        if (workspaceId == null) {
-            throw new ApiException("Missing the required parameter 'workspaceId' when calling queryDataWarehouse(Async)");
-        }
-        
-        // verify the required parameter 'scenarioId' is set
-        if (scenarioId == null) {
-            throw new ApiException("Missing the required parameter 'scenarioId' when calling queryDataWarehouse(Async)");
-        }
-        
-        // verify the required parameter 'scenarioDataWarehouseQuery' is set
-        if (scenarioDataWarehouseQuery == null) {
-            throw new ApiException("Missing the required parameter 'scenarioDataWarehouseQuery' when calling queryDataWarehouse(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = queryDataWarehouseCall(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get the result of a query on the DatawareHouse
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
-     * @param scenarioDataWarehouseQuery the DatawareHouse query (required)
-     * @return ScenarioDataWarehouseQueryResult
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the query result </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ScenarioDataWarehouseQueryResult queryDataWarehouse(String organizationId, String workspaceId, String scenarioId, ScenarioDataWarehouseQuery scenarioDataWarehouseQuery) throws ApiException {
-        ApiResponse<ScenarioDataWarehouseQueryResult> localVarResp = queryDataWarehouseWithHttpInfo(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get the result of a query on the DatawareHouse
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
-     * @param scenarioDataWarehouseQuery the DatawareHouse query (required)
-     * @return ApiResponse&lt;ScenarioDataWarehouseQueryResult&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the query result </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ScenarioDataWarehouseQueryResult> queryDataWarehouseWithHttpInfo(String organizationId, String workspaceId, String scenarioId, ScenarioDataWarehouseQuery scenarioDataWarehouseQuery) throws ApiException {
-        okhttp3.Call localVarCall = queryDataWarehouseValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery, null);
-        Type localVarReturnType = new TypeToken<ScenarioDataWarehouseQueryResult>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get the result of a query on the DatawareHouse (asynchronously)
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
-     * @param scenarioDataWarehouseQuery the DatawareHouse query (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the query result </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call queryDataWarehouseAsync(String organizationId, String workspaceId, String scenarioId, ScenarioDataWarehouseQuery scenarioDataWarehouseQuery, final ApiCallback<ScenarioDataWarehouseQueryResult> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = queryDataWarehouseValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioDataWarehouseQuery, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioDataWarehouseQueryResult>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for updateScenario
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -1050,7 +903,7 @@ public class ScenarioApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "AADOAuth2AuthCode", "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
         return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 

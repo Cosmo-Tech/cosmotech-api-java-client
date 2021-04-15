@@ -117,6 +117,14 @@ public class SimulatorAnalysisTest {
     }
 
     /**
+     * Test the property 'datasetSchemaResource'
+     */
+    @Test
+    public void datasetSchemaResourceTest() {
+        // TODO: test datasetSchemaResource
+    }
+
+    /**
      * Test the property 'parameterGroups'
      */
     @Test

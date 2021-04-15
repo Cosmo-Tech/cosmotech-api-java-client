@@ -103,11 +103,19 @@ public class WorkspaceTest {
     }
 
     /**
-     * Test the property 'userList'
+     * Test the property 'simulatorAnalysisFilter'
      */
     @Test
-    public void userListTest() {
-        // TODO: test userList
+    public void simulatorAnalysisFilterTest() {
+        // TODO: test simulatorAnalysisFilter
+    }
+
+    /**
+     * Test the property 'users'
+     */
+    @Test
+    public void usersTest() {
+        // TODO: test users
     }
 
     /**
@@ -124,6 +132,14 @@ public class WorkspaceTest {
     @Test
     public void servicesTest() {
         // TODO: test services
+    }
+
+    /**
+     * Test the property 'sendInputToDataWarehouse'
+     */
+    @Test
+    public void sendInputToDataWarehouseTest() {
+        // TODO: test sendInputToDataWarehouse
     }
 
 }

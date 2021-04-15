@@ -92,11 +92,19 @@ public class ScenarioBaseTest {
     }
 
     /**
-     * Test the property 'userList'
+     * Test the property 'simulatorId'
      */
     @Test
-    public void userListTest() {
-        // TODO: test userList
+    public void simulatorIdTest() {
+        // TODO: test simulatorId
+    }
+
+    /**
+     * Test the property 'users'
+     */
+    @Test
+    public void usersTest() {
+        // TODO: test users
     }
 
 }

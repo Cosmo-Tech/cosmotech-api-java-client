@@ -32,15 +32,15 @@ import java.util.Map;
  * the Workspace Simulator configuration
  */
 @ApiModel(description = "the Workspace Simulator configuration")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-12T19:02:40.729704+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
 public class WorkspaceSimulator {
   public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
   @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
   private String simulatorId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER = "simulatorAnalysisFilter";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER)
-  private List<String> simulatorAnalysisFilter = null;
+  public static final String SERIALIZED_NAME_ANALYSIS_FILTER = "analysisFilter";
+  @SerializedName(SERIALIZED_NAME_ANALYSIS_FILTER)
+  private List<String> analysisFilter = null;
 
   public static final String SERIALIZED_NAME_DEFAULT_ANALYSIS_DATASET = "defaultAnalysisDataset";
   @SerializedName(SERIALIZED_NAME_DEFAULT_ANALYSIS_DATASET)
@@ -69,34 +69,34 @@ public class WorkspaceSimulator {
   }
 
 
-  public WorkspaceSimulator simulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
+  public WorkspaceSimulator analysisFilter(List<String> analysisFilter) {
     
-    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
+    this.analysisFilter = analysisFilter;
     return this;
   }
 
-  public WorkspaceSimulator addSimulatorAnalysisFilterItem(String simulatorAnalysisFilterItem) {
-    if (this.simulatorAnalysisFilter == null) {
-      this.simulatorAnalysisFilter = new ArrayList<String>();
+  public WorkspaceSimulator addAnalysisFilterItem(String analysisFilterItem) {
+    if (this.analysisFilter == null) {
+      this.analysisFilter = new ArrayList<String>();
     }
-    this.simulatorAnalysisFilter.add(simulatorAnalysisFilterItem);
+    this.analysisFilter.add(analysisFilterItem);
     return this;
   }
 
    /**
    * the list of Simulator Analysis Id to filter
-   * @return simulatorAnalysisFilter
+   * @return analysisFilter
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "the list of Simulator Analysis Id to filter")
 
-  public List<String> getSimulatorAnalysisFilter() {
-    return simulatorAnalysisFilter;
+  public List<String> getAnalysisFilter() {
+    return analysisFilter;
   }
 
 
-  public void setSimulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
-    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
+  public void setAnalysisFilter(List<String> analysisFilter) {
+    this.analysisFilter = analysisFilter;
   }
 
 
@@ -141,13 +141,13 @@ public class WorkspaceSimulator {
     }
     WorkspaceSimulator workspaceSimulator = (WorkspaceSimulator) o;
     return Objects.equals(this.simulatorId, workspaceSimulator.simulatorId) &&
-        Objects.equals(this.simulatorAnalysisFilter, workspaceSimulator.simulatorAnalysisFilter) &&
+        Objects.equals(this.analysisFilter, workspaceSimulator.analysisFilter) &&
         Objects.equals(this.defaultAnalysisDataset, workspaceSimulator.defaultAnalysisDataset);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(simulatorId, simulatorAnalysisFilter, defaultAnalysisDataset);
+    return Objects.hash(simulatorId, analysisFilter, defaultAnalysisDataset);
   }
 
   @Override
@@ -155,7 +155,7 @@ public class WorkspaceSimulator {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkspaceSimulator {\n");
     sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
-    sb.append("    simulatorAnalysisFilter: ").append(toIndentedString(simulatorAnalysisFilter)).append("\n");
+    sb.append("    analysisFilter: ").append(toIndentedString(analysisFilter)).append("\n");
     sb.append("    defaultAnalysisDataset: ").append(toIndentedString(defaultAnalysisDataset)).append("\n");
     sb.append("}");
     return sb.toString();

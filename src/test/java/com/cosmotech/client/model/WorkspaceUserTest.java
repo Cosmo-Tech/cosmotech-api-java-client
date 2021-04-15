@@ -57,11 +57,11 @@ public class WorkspaceUserTest {
     }
 
     /**
-     * Test the property 'roles'
+     * Test the property 'role'
      */
     @Test
-    public void rolesTest() {
-        // TODO: test roles
+    public void roleTest() {
+        // TODO: test role
     }
 
 }

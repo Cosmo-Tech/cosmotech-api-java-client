@@ -67,4 +67,12 @@ public class ScenarioAnalysisTest {
         // TODO: test parametersValues
     }
 
+    /**
+     * Test the property 'sendInputToDataWarehouse'
+     */
+    @Test
+    public void sendInputToDataWarehouseTest() {
+        // TODO: test sendInputToDataWarehouse
+    }
+
 }

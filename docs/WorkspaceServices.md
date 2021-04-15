@@ -8,10 +8,11 @@ the cloud service resources of the Workspace
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resultsEventBus** | **String** | the event bus which receive Workspace Simulation results messages |  [optional]
-**simulationEventBus** | **String** | the event bus which receive Workspace Simulation events messages |  [optional]
-**dataWarehouse** | **String** | the Workspace DataWarehouse specific informations |  [optional]
-**storage** | **String** | ths Workspace file storage specific informations |  [optional]
+**tenantCredentials** | **Map&lt;String, Object&gt;** | a freeform credentials object for the tenant. Structure depends on cloud provider |  [optional]
+**resultsEventBus** | [**WorkspaceService**](WorkspaceService.md) |  |  [optional]
+**simulationEventBus** | [**WorkspaceService**](WorkspaceService.md) |  |  [optional]
+**dataWarehouse** | [**WorkspaceService**](WorkspaceService.md) |  |  [optional]
+**storage** | [**WorkspaceService**](WorkspaceService.md) |  |  [optional]
 
 
 

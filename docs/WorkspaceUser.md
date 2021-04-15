@@ -10,16 +10,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the User id | 
 **name** | **String** | the User name |  [optional] [readonly]
-**roles** | [**RolesEnum**](#RolesEnum) | the User role | 
+**role** | [**RoleEnum**](#RoleEnum) | the User role | 
 
 
 
-## Enum: RolesEnum
+## Enum: RoleEnum
 
 Name | Value
 ---- | -----
+ADMIN | &quot;Admin&quot;
+USER | &quot;User&quot;
 VIEWER | &quot;Viewer&quot;
-ADVANCED | &quot;Advanced&quot;
 
 
 
