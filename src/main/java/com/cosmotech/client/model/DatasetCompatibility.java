@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Dataset compatibility constraint to a Simulator version open range
  */
 @ApiModel(description = "a Dataset compatibility constraint to a Simulator version open range")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
 public class DatasetCompatibility {
   public static final String SERIALIZED_NAME_SIMULATOR_KEY = "simulatorKey";
   @SerializedName(SERIALIZED_NAME_SIMULATOR_KEY)

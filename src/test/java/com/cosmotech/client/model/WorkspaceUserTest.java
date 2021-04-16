@@ -21,6 +21,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -57,11 +59,11 @@ public class WorkspaceUserTest {
     }
 
     /**
-     * Test the property 'role'
+     * Test the property 'roles'
      */
     @Test
-    public void roleTest() {
-        // TODO: test role
+    public void rolesTest() {
+        // TODO: test roles
     }
 
 }

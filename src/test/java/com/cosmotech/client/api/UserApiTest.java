@@ -43,7 +43,7 @@ public class UserApiTest {
      */
     @Test
     public void findAllUsersTest() throws ApiException {
-        List<UserDetails> response = api.findAllUsers();
+        List<User> response = api.findAllUsers();
 
         // TODO: test validations
     }
@@ -65,6 +65,54 @@ public class UserApiTest {
     }
     
     /**
+     * Get the details of an user
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getCurrentUserTest() throws ApiException {
+        UserDetails response = api.getCurrentUser();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the details of an user with roles for an Organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getOrganizationCurrentUserTest() throws ApiException {
+        String organizationId = null;
+        UserDetails response = api.getOrganizationCurrentUser(organizationId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the details of an user with roles for a Workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getWorkspaceCurrentUserTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        UserDetails response = api.getWorkspaceCurrentUser(organizationId, workspaceId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Register a new user
      *
      * 
@@ -75,7 +123,7 @@ public class UserApiTest {
     @Test
     public void registerUserTest() throws ApiException {
         User user = null;
-        UserDetails response = api.registerUser(user);
+        User response = api.registerUser(user);
 
         // TODO: test validations
     }
@@ -91,7 +139,7 @@ public class UserApiTest {
     @Test
     public void unregisterUserTest() throws ApiException {
         String userId = null;
-        UserDetails response = api.unregisterUser(userId);
+        User response = api.unregisterUser(userId);
 
         // TODO: test validations
     }
@@ -108,7 +156,7 @@ public class UserApiTest {
     public void updateUserTest() throws ApiException {
         String userId = null;
         User user = null;
-        UserDetails response = api.updateUser(userId, user);
+        User response = api.updateUser(userId, user);
 
         // TODO: test validations
     }

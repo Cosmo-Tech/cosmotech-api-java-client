@@ -6,6 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**findAllUsers**](UserApi.md#findAllUsers) | **GET** /users | List all Users
 [**findUserById**](UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
+[**getCurrentUser**](UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of an user
+[**getOrganizationCurrentUser**](UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of an user with roles for an Organization
+[**getWorkspaceCurrentUser**](UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of an user with roles for a Workspace
 [**registerUser**](UserApi.md#registerUser) | **POST** /users | Register a new user
 [**unregisterUser**](UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
 [**updateUser**](UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update an user
@@ -13,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="findAllUsers"></a>
 # **findAllUsers**
-> List&lt;UserDetails&gt; findAllUsers()
+> List&lt;User&gt; findAllUsers()
 
 List all Users
 
@@ -38,7 +41,7 @@ public class Example {
 
     UserApi apiInstance = new UserApi(defaultClient);
     try {
-      List<UserDetails> result = apiInstance.findAllUsers();
+      List<User> result = apiInstance.findAllUsers();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#findAllUsers");
@@ -56,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;UserDetails&gt;**](UserDetails.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -138,9 +141,205 @@ Name | Type | Description  | Notes
 **200** | the User details |  -  |
 **404** | the User specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="getCurrentUser"></a>
+# **getCurrentUser**
+> UserDetails getCurrentUser()
+
+Get the details of an user
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    try {
+      UserDetails result = apiInstance.getCurrentUser();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#getCurrentUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserDetails**](UserDetails.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the User details |  -  |
+**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="getOrganizationCurrentUser"></a>
+# **getOrganizationCurrentUser**
+> UserDetails getOrganizationCurrentUser(organizationId)
+
+Get the details of an user with roles for an Organization
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    try {
+      UserDetails result = apiInstance.getOrganizationCurrentUser(organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#getOrganizationCurrentUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+
+### Return type
+
+[**UserDetails**](UserDetails.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the User details |  -  |
+**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="getWorkspaceCurrentUser"></a>
+# **getWorkspaceCurrentUser**
+> UserDetails getWorkspaceCurrentUser(organizationId, workspaceId)
+
+Get the details of an user with roles for a Workspace
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    try {
+      UserDetails result = apiInstance.getWorkspaceCurrentUser(organizationId, workspaceId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#getWorkspaceCurrentUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+
+### Return type
+
+[**UserDetails**](UserDetails.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the User details |  -  |
+**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="registerUser"></a>
 # **registerUser**
-> UserDetails registerUser(user)
+> User registerUser(user)
 
 Register a new user
 
@@ -166,7 +365,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     User user = new User(); // User | the User to register
     try {
-      UserDetails result = apiInstance.registerUser(user);
+      User result = apiInstance.registerUser(user);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#registerUser");
@@ -187,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -206,7 +405,7 @@ Name | Type | Description  | Notes
 
 <a name="unregisterUser"></a>
 # **unregisterUser**
-> UserDetails unregisterUser(userId)
+> User unregisterUser(userId)
 
 Unregister an user
 
@@ -232,7 +431,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String userId = "userId_example"; // String | the User identifier
     try {
-      UserDetails result = apiInstance.unregisterUser(userId);
+      User result = apiInstance.unregisterUser(userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#unregisterUser");
@@ -253,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -273,7 +472,7 @@ Name | Type | Description  | Notes
 
 <a name="updateUser"></a>
 # **updateUser**
-> UserDetails updateUser(userId, user)
+> User updateUser(userId, user)
 
 Update an user
 
@@ -300,7 +499,7 @@ public class Example {
     String userId = "userId_example"; // String | the User identifier
     User user = new User(); // User | the new User details. Organization membership is handled in Organzation service.
     try {
-      UserDetails result = apiInstance.updateUser(userId, user);
+      User result = apiInstance.updateUser(userId, user);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#updateUser");
@@ -322,7 +521,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 

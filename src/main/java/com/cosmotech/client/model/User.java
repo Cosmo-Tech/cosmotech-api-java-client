@@ -23,12 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * a User
  */
 @ApiModel(description = "a User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -37,6 +39,59 @@ public class User {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  /**
+   * Gets or Sets platformRoles
+   */
+  @JsonAdapter(PlatformRolesEnum.Adapter.class)
+  public enum PlatformRolesEnum {
+    ADMIN("Admin"),
+    
+    USER("User"),
+    
+    CONNECTORDEVELOPER("ConnectorDeveloper");
+
+    private String value;
+
+    PlatformRolesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PlatformRolesEnum fromValue(String value) {
+      for (PlatformRolesEnum b : PlatformRolesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PlatformRolesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PlatformRolesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PlatformRolesEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PlatformRolesEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PLATFORM_ROLES = "platformRoles";
+  @SerializedName(SERIALIZED_NAME_PLATFORM_ROLES)
+  private List<PlatformRolesEnum> platformRoles = new ArrayList<PlatformRolesEnum>();
 
 
    /**
@@ -75,6 +130,33 @@ public class User {
   }
 
 
+  public User platformRoles(List<PlatformRolesEnum> platformRoles) {
+    
+    this.platformRoles = platformRoles;
+    return this;
+  }
+
+  public User addPlatformRolesItem(PlatformRolesEnum platformRolesItem) {
+    this.platformRoles.add(platformRolesItem);
+    return this;
+  }
+
+   /**
+   * the list of Platform roles
+   * @return platformRoles
+  **/
+  @ApiModelProperty(required = true, value = "the list of Platform roles")
+
+  public List<PlatformRolesEnum> getPlatformRoles() {
+    return platformRoles;
+  }
+
+
+  public void setPlatformRoles(List<PlatformRolesEnum> platformRoles) {
+    this.platformRoles = platformRoles;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -85,12 +167,13 @@ public class User {
     }
     User user = (User) o;
     return Objects.equals(this.id, user.id) &&
-        Objects.equals(this.name, user.name);
+        Objects.equals(this.name, user.name) &&
+        Objects.equals(this.platformRoles, user.platformRoles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, platformRoles);
   }
 
   @Override
@@ -99,6 +182,7 @@ public class User {
     sb.append("class User {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    platformRoles: ").append(toIndentedString(platformRoles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

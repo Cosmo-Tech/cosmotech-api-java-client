@@ -31,7 +31,7 @@ import java.util.List;
  * a Scenario configuration for a Simulator Analysis
  */
 @ApiModel(description = "a Scenario configuration for a Simulator Analysis")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
 public class ScenarioAnalysis {
   public static final String SERIALIZED_NAME_ANALYSIS_ID = "analysisId";
   @SerializedName(SERIALIZED_NAME_ANALYSIS_ID)

@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.1-SNAPSHOT
-  - Build date: 2021-04-15T18:07:38.724376+02:00[Europe/Paris]
+  - Build date: 2021-04-16T12:42:31.121121+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -124,7 +124,6 @@ Class | Method | HTTP request | Description
 *DatasetApi* | [**updateDataset**](docs/DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
 *OrganizationApi* | [**findAllOrganizations**](docs/OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations
 *OrganizationApi* | [**findOrganizationById**](docs/OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an organization
-*OrganizationApi* | [**getCurrentOrganizationUser**](docs/OrganizationApi.md#getCurrentOrganizationUser) | **GET** /organizations/{organization_id}/me | Get the current User information for the Organization
 *OrganizationApi* | [**registerOrganization**](docs/OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
 *OrganizationApi* | [**unregisterOrganization**](docs/OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
 *OrganizationApi* | [**updateOrganization**](docs/OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an organization
@@ -155,6 +154,9 @@ Class | Method | HTTP request | Description
 *SimulatorApi* | [**upload**](docs/SimulatorApi.md#upload) | **POST** /organizations/{organization_id}/simulators/upload | Upload and register a new simulator
 *UserApi* | [**findAllUsers**](docs/UserApi.md#findAllUsers) | **GET** /users | List all Users
 *UserApi* | [**findUserById**](docs/UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
+*UserApi* | [**getCurrentUser**](docs/UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of an user
+*UserApi* | [**getOrganizationCurrentUser**](docs/UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of an user with roles for an Organization
+*UserApi* | [**getWorkspaceCurrentUser**](docs/UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of an user with roles for a Workspace
 *UserApi* | [**registerUser**](docs/UserApi.md#registerUser) | **POST** /users | Register a new user
 *UserApi* | [**unregisterUser**](docs/UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
 *UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update an user
@@ -171,7 +173,6 @@ Class | Method | HTTP request | Description
 *WorkspaceApi* | [**deleteWorkspace**](docs/WorkspaceApi.md#deleteWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id} | Delete a workspace
 *WorkspaceApi* | [**findAllWorkspaces**](docs/WorkspaceApi.md#findAllWorkspaces) | **GET** /organizations/{organization_id}/workspaces | List all Workspaces
 *WorkspaceApi* | [**findWorkspaceById**](docs/WorkspaceApi.md#findWorkspaceById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id} | Get the details of an workspace
-*WorkspaceApi* | [**getCurrentWorkspaceUser**](docs/WorkspaceApi.md#getCurrentWorkspaceUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the current User information for the Workspace
 *WorkspaceApi* | [**updateWorkspace**](docs/WorkspaceApi.md#updateWorkspace) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id} | Update a workspace
 
 
@@ -216,6 +217,7 @@ Class | Method | HTTP request | Description
  - [UserDetails](docs/UserDetails.md)
  - [UserDetailsAllOf](docs/UserDetailsAllOf.md)
  - [UserOrganization](docs/UserOrganization.md)
+ - [UserWorkspace](docs/UserWorkspace.md)
  - [Validator](docs/Validator.md)
  - [ValidatorRun](docs/ValidatorRun.md)
  - [Workspace](docs/Workspace.md)

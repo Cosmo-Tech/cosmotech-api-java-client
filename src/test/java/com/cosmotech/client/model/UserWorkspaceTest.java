@@ -13,9 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.User;
-import com.cosmotech.client.model.UserDetailsAllOf;
-import com.cosmotech.client.model.UserOrganization;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,17 +29,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for UserDetails
+ * Model tests for UserWorkspace
  */
-public class UserDetailsTest {
-    private final UserDetails model = new UserDetails();
+public class UserWorkspaceTest {
+    private final UserWorkspace model = new UserWorkspace();
 
     /**
-     * Model tests for UserDetails
+     * Model tests for UserWorkspace
      */
     @Test
-    public void testUserDetails() {
-        // TODO: test UserDetails
+    public void testUserWorkspace() {
+        // TODO: test UserWorkspace
     }
 
     /**
@@ -62,19 +59,11 @@ public class UserDetailsTest {
     }
 
     /**
-     * Test the property 'platformRoles'
+     * Test the property 'roles'
      */
     @Test
-    public void platformRolesTest() {
-        // TODO: test platformRoles
-    }
-
-    /**
-     * Test the property 'organizations'
-     */
-    @Test
-    public void organizationsTest() {
-        // TODO: test organizations
+    public void rolesTest() {
+        // TODO: test roles
     }
 
 }

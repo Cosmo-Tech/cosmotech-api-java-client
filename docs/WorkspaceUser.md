@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the User id | 
 **name** | **String** | the User name |  [optional] [readonly]
-**role** | [**RoleEnum**](#RoleEnum) | the User role | 
+**roles** | [**List&lt;RolesEnum&gt;**](#List&lt;RolesEnum&gt;) | the User roles | 
 
 
 
-## Enum: RoleEnum
+## Enum: List&lt;RolesEnum&gt;
 
 Name | Value
 ---- | -----

@@ -51,7 +51,7 @@ public class DatasetApiTest {
     }
     
     /**
-     * Register a new dataset
+     * Create a new dataset
      *
      * 
      *

@@ -15,7 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.UserWorkspace;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,11 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The organization of the user
+ * the list of User roles for a Workspace
  */
-@ApiModel(description = "The organization of the user")
+@ApiModel(description = "the list of User roles for a Workspace")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
-public class UserOrganization {
+public class UserWorkspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -45,64 +44,42 @@ public class UserOrganization {
   @SerializedName(SERIALIZED_NAME_ROLES)
   private List<String> roles = null;
 
-  public static final String SERIALIZED_NAME_WORKSPACES = "workspaces";
-  @SerializedName(SERIALIZED_NAME_WORKSPACES)
-  private List<UserWorkspace> workspaces = null;
-
-
-  public UserOrganization id(String id) {
-    
-    this.id = id;
-    return this;
-  }
 
    /**
-   * the Organization id
+   * the Workspace Id
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Organization id")
+  @ApiModelProperty(value = "the Workspace Id")
 
   public String getId() {
     return id;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
-  }
 
-
-  public UserOrganization name(String name) {
-    
-    this.name = name;
-    return this;
-  }
 
    /**
-   * the Organization name
+   * the Workspace name
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Organization name")
+  @ApiModelProperty(value = "the Workspace name")
 
   public String getName() {
     return name;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
-  }
 
 
-  public UserOrganization roles(List<String> roles) {
+  public UserWorkspace roles(List<String> roles) {
     
     this.roles = roles;
     return this;
   }
 
-  public UserOrganization addRolesItem(String rolesItem) {
+  public UserWorkspace addRolesItem(String rolesItem) {
     if (this.roles == null) {
       this.roles = new ArrayList<String>();
     }
@@ -111,11 +88,11 @@ public class UserOrganization {
   }
 
    /**
-   * the roles of the User in the Organization
+   * the roles of the User in the Workspace
    * @return roles
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the roles of the User in the Organization")
+  @ApiModelProperty(value = "the roles of the User in the Workspace")
 
   public List<String> getRoles() {
     return roles;
@@ -127,20 +104,6 @@ public class UserOrganization {
   }
 
 
-   /**
-   * the list of Workspaces roles
-   * @return workspaces
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of Workspaces roles")
-
-  public List<UserWorkspace> getWorkspaces() {
-    return workspaces;
-  }
-
-
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -149,26 +112,24 @@ public class UserOrganization {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserOrganization userOrganization = (UserOrganization) o;
-    return Objects.equals(this.id, userOrganization.id) &&
-        Objects.equals(this.name, userOrganization.name) &&
-        Objects.equals(this.roles, userOrganization.roles) &&
-        Objects.equals(this.workspaces, userOrganization.workspaces);
+    UserWorkspace userWorkspace = (UserWorkspace) o;
+    return Objects.equals(this.id, userWorkspace.id) &&
+        Objects.equals(this.name, userWorkspace.name) &&
+        Objects.equals(this.roles, userWorkspace.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, roles, workspaces);
+    return Objects.hash(id, name, roles);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserOrganization {\n");
+    sb.append("class UserWorkspace {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
-    sb.append("    workspaces: ").append(toIndentedString(workspaces)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,12 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * a Workspace user with roles
  */
 @ApiModel(description = "a Workspace user with roles")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-15T18:07:38.724376+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
 public class WorkspaceUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,10 +41,10 @@ public class WorkspaceUser {
   private String name;
 
   /**
-   * the User role
+   * Gets or Sets roles
    */
-  @JsonAdapter(RoleEnum.Adapter.class)
-  public enum RoleEnum {
+  @JsonAdapter(RolesEnum.Adapter.class)
+  public enum RolesEnum {
     ADMIN("Admin"),
     
     USER("User"),
@@ -51,7 +53,7 @@ public class WorkspaceUser {
 
     private String value;
 
-    RoleEnum(String value) {
+    RolesEnum(String value) {
       this.value = value;
     }
 
@@ -64,8 +66,8 @@ public class WorkspaceUser {
       return String.valueOf(value);
     }
 
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
+    public static RolesEnum fromValue(String value) {
+      for (RolesEnum b : RolesEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -73,23 +75,23 @@ public class WorkspaceUser {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<RoleEnum> {
+    public static class Adapter extends TypeAdapter<RolesEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final RoleEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final RolesEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public RoleEnum read(final JsonReader jsonReader) throws IOException {
+      public RolesEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return RoleEnum.fromValue(value);
+        return RolesEnum.fromValue(value);
       }
     }
   }
 
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private RoleEnum role;
+  public static final String SERIALIZED_NAME_ROLES = "roles";
+  @SerializedName(SERIALIZED_NAME_ROLES)
+  private List<RolesEnum> roles = new ArrayList<RolesEnum>();
 
 
   public WorkspaceUser id(String id) {
@@ -128,25 +130,30 @@ public class WorkspaceUser {
 
 
 
-  public WorkspaceUser role(RoleEnum role) {
+  public WorkspaceUser roles(List<RolesEnum> roles) {
     
-    this.role = role;
+    this.roles = roles;
+    return this;
+  }
+
+  public WorkspaceUser addRolesItem(RolesEnum rolesItem) {
+    this.roles.add(rolesItem);
     return this;
   }
 
    /**
-   * the User role
-   * @return role
+   * the User roles
+   * @return roles
   **/
-  @ApiModelProperty(required = true, value = "the User role")
+  @ApiModelProperty(required = true, value = "the User roles")
 
-  public RoleEnum getRole() {
-    return role;
+  public List<RolesEnum> getRoles() {
+    return roles;
   }
 
 
-  public void setRole(RoleEnum role) {
-    this.role = role;
+  public void setRoles(List<RolesEnum> roles) {
+    this.roles = roles;
   }
 
 
@@ -161,12 +168,12 @@ public class WorkspaceUser {
     WorkspaceUser workspaceUser = (WorkspaceUser) o;
     return Objects.equals(this.id, workspaceUser.id) &&
         Objects.equals(this.name, workspaceUser.name) &&
-        Objects.equals(this.role, workspaceUser.role);
+        Objects.equals(this.roles, workspaceUser.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, role);
+    return Objects.hash(id, name, roles);
   }
 
   @Override
@@ -175,7 +182,7 @@ public class WorkspaceUser {
     sb.append("class WorkspaceUser {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

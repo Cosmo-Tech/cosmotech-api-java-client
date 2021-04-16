@@ -5,8 +5,7 @@ info:
   version: 0.0.1-SNAPSHOT
 servers:
 - url: https://api.azure.cosmo-platform.com
-- url: https://gateway.api.cosmo-platform.com
-- url: http://localhost:8080
+- url: http://localhost:4010
 security:
 - oAuth2AuthCode: []
 tags:
@@ -959,43 +958,6 @@ paths:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/me:
-    get:
-      operationId: getCurrentWorkspaceUser
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BobUser:
-                  $ref: '#/components/examples/BobUser'
-              schema:
-                $ref: '#/components/schemas/WorkspaceUserDetails'
-          description: the User details
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Get the current User information for the Workspace
-      tags:
-      - workspace
-      x-accepts: application/json
   /connectors:
     get:
       operationId: findAllConnectors
@@ -1314,35 +1276,6 @@ paths:
       - organization
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/me:
-    get:
-      operationId: getCurrentOrganizationUser
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/BobUser'
-              schema:
-                $ref: '#/components/schemas/OrganizationUser'
-          description: the User details
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Get the current User information for the Organization
-      tags:
-      - organization
-      x-accepts: application/json
   /users:
     get:
       operationId: findAllUsers
@@ -1355,7 +1288,7 @@ paths:
                   $ref: '#/components/examples/TwoUsers'
               schema:
                 items:
-                  $ref: '#/components/schemas/UserDetails'
+                  $ref: '#/components/schemas/User'
                 type: array
           description: the user details
       summary: List all Users
@@ -1380,9 +1313,9 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/BobCreate'
+                  $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the user details
         "400":
           description: Bad request
@@ -1411,7 +1344,7 @@ paths:
                 Bob:
                   $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the user details
         "400":
           description: Bad request
@@ -1438,7 +1371,7 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/Bob'
+                  $ref: '#/components/examples/BobDetails'
               schema:
                 $ref: '#/components/schemas/UserDetails'
           description: the User details
@@ -1478,7 +1411,7 @@ paths:
                 BobyUpdated:
                   $ref: '#/components/examples/BobyUpdated'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the user details
         "400":
           description: Bad request
@@ -1488,6 +1421,89 @@ paths:
       tags:
       - user
       x-contentType: application/json
+      x-accepts: application/json
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobDetails'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/me:
+    get:
+      operationId: getOrganizationCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobDetailsOrganization'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user with roles for an Organization
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/me:
+    get:
+      operationId: getWorkspaceCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobDetailsWorkspace'
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user with roles for a Workspace
+      tags:
+      - user
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     get:
@@ -2461,34 +2477,73 @@ components:
       value:
         id: "1"
         name: Bob
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-        - id: "2"
-          name: Phoenix
-    BobCreate:
-      description: Bob User Created example
-      summary: Bob User Created example
-      value:
-        id: "1"
-        name: Bob
-        organizations: []
+        platformRoles:
+        - Admin
     BobCreateIn:
       description: Bob User Create input example
       summary: Bob User Create input example
       value:
         name: Bob
-    BobUser:
-      description: Bob User details example
-      summary: Bob User details example
+        platformRoles:
+        - Admin
+    BobDetails:
+      description: Bob User example
+      summary: Bob User
       value:
         id: "1"
         name: Bob
-        workspaceId: "1"
-        role: Admin
-        organizationId: "1"
-        organizationRoles:
+        platformRoles:
         - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
+    BobDetailsOrganization:
+      description: Bob User for Organization 1 example
+      summary: Bob User for an Organization example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+    BobDetailsWorkspace:
+      description: Bob User for Organization 1 and Workspace 1 example
+      summary: Bob User for a Workspace example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
     BobyUpdateIn:
       description: Bob User renamed to Boby input example
       summary: Boby update User input example
@@ -2501,11 +2556,8 @@ components:
       value:
         id: "1"
         name: Boby
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-        - id: "2"
-          name: Phoenix
+        platformRoles:
+        - Admin
     Brewery:
       description: Brewery Simulator example
       summary: Brewery Simulator
@@ -3195,10 +3247,12 @@ components:
         users:
         - id: "1"
           name: Bob
-          role: Admin
+          roles:
+          - Admin
         - id: "2"
           name: Alice
-          role: Viewer
+          roles:
+          - Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
@@ -3253,10 +3307,12 @@ components:
         users:
         - id: "1"
           name: Bob
-          role: Admin
+          roles:
+          - Admin
         - id: "2"
           name: Alice
-          role: Viewer
+          roles:
+          - Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
@@ -3484,10 +3540,12 @@ components:
         users:
         - id: "1"
           name: Bob
-          role: Admin
+          roles:
+          - Admin
         - id: "2"
           name: Alice
-          role: Viewer
+          roles:
+          - Viewer
         webApp:
           url: https://brewery.app.cosmotech.com
           iframes:
@@ -3741,16 +3799,12 @@ components:
       value:
       - id: "1"
         name: Bob
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-        - id: "2"
-          name: Phoenix
+        platformRoles:
+        - Admin
       - id: "2"
         name: Alice
-        organizations:
-        - id: "2"
-          name: Phoenix
+        platformRoles:
+        - User
   schemas:
     AnalysisParameter:
       description: a Simulator Analysis Parameter
@@ -5148,6 +5202,9 @@ components:
     User:
       description: a User
       example:
+        platformRoles:
+        - Admin
+        - Admin
         name: name
         id: id
       properties:
@@ -5158,8 +5215,18 @@ components:
         name:
           description: the User name
           type: string
+        platformRoles:
+          description: the list of Platform roles
+          items:
+            enum:
+            - Admin
+            - User
+            - ConnectorDeveloper
+            type: string
+          type: array
       required:
       - name
+      - platformRoles
       type: object
     UserDetails:
       allOf:
@@ -5174,6 +5241,35 @@ components:
         name:
           description: the Organization name
           type: string
+        roles:
+          description: the roles of the User in the Organization
+          items:
+            type: string
+          type: array
+        workspaces:
+          description: the list of Workspaces roles
+          items:
+            $ref: '#/components/schemas/UserWorkspace'
+          readOnly: true
+          type: array
+      type: object
+    UserWorkspace:
+      description: the list of User roles for a Workspace
+      properties:
+        id:
+          description: the Workspace Id
+          readOnly: true
+          type: string
+        name:
+          description: the Workspace name
+          readOnly: true
+          type: string
+        roles:
+          description: the roles of the User in the Workspace
+          items:
+            type: string
+          type: array
+      readOnly: true
       type: object
     Validator:
       description: a Validator to validate a Dataset
@@ -5327,10 +5423,14 @@ components:
         version: version
         sendInputToDataWarehouse: true
         users:
-        - role: Admin
+        - roles:
+          - Admin
+          - Admin
           name: name
           id: id
-        - role: Admin
+        - roles:
+          - Admin
+          - Admin
           name: name
           id: id
         tags:
@@ -5485,7 +5585,9 @@ components:
     WorkspaceUser:
       description: a Workspace user with roles
       example:
-        role: Admin
+        roles:
+        - Admin
+        - Admin
         name: name
         id: id
       properties:
@@ -5496,16 +5598,18 @@ components:
           description: the User name
           readOnly: true
           type: string
-        role:
-          description: the User role
-          enum:
-          - Admin
-          - User
-          - Viewer
-          type: string
+        roles:
+          description: the User roles
+          items:
+            enum:
+            - Admin
+            - User
+            - Viewer
+            type: string
+          type: array
       required:
       - id
-      - role
+      - roles
       type: object
     WorkspaceUserDetails:
       allOf:
