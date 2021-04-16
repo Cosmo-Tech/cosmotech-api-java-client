@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.OrganizationServices;
 import com.cosmotech.client.model.OrganizationUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -31,7 +32,7 @@ import java.util.List;
  * an Organization
  */
 @ApiModel(description = "an Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
 public class Organization {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -48,6 +49,10 @@ public class Organization {
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
   private List<OrganizationUser> users = null;
+
+  public static final String SERIALIZED_NAME_SERVICES = "services";
+  @SerializedName(SERIALIZED_NAME_SERVICES)
+  private OrganizationServices services;
 
 
    /**
@@ -131,6 +136,29 @@ public class Organization {
   }
 
 
+  public Organization services(OrganizationServices services) {
+    
+    this.services = services;
+    return this;
+  }
+
+   /**
+   * Get services
+   * @return services
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OrganizationServices getServices() {
+    return services;
+  }
+
+
+  public void setServices(OrganizationServices services) {
+    this.services = services;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -143,12 +171,13 @@ public class Organization {
     return Objects.equals(this.id, organization.id) &&
         Objects.equals(this.name, organization.name) &&
         Objects.equals(this.ownerId, organization.ownerId) &&
-        Objects.equals(this.users, organization.users);
+        Objects.equals(this.users, organization.users) &&
+        Objects.equals(this.services, organization.services);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, ownerId, users);
+    return Objects.hash(id, name, ownerId, users, services);
   }
 
   @Override
@@ -159,6 +188,7 @@ public class Organization {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
+    sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("}");
     return sb.toString();
   }

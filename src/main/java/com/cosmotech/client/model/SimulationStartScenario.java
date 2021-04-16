@@ -28,7 +28,7 @@ import java.io.IOException;
  * the parameters to run a Scenario
  */
 @ApiModel(description = "the parameters to run a Scenario")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
 public class SimulationStartScenario {
   public static final String SERIALIZED_NAME_WORKSPACE_ID = "workspaceId";
   @SerializedName(SERIALIZED_NAME_WORKSPACE_ID)

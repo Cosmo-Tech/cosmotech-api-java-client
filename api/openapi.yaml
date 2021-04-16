@@ -9,6 +9,8 @@ servers:
 security:
 - oAuth2AuthCode: []
 tags:
+- description: Platform Management
+  name: platform
 - description: Simulation Management
   name: simulation
 - description: Simulator Management
@@ -26,6 +28,84 @@ tags:
 - description: Dataset Management
   name: dataset
 paths:
+  /platform:
+    get:
+      operationId: getPlatform
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoTechPlatform:
+                  $ref: '#/components/examples/CosmoTechPlatform'
+              schema:
+                $ref: '#/components/schemas/Platform'
+          description: the Platform details
+      summary: Get the details of the platform
+      tags:
+      - platform
+      x-accepts: application/json
+    patch:
+      operationId: updatePlatform
+      requestBody:
+        content:
+          application/json:
+            examples:
+              CosmoTechPlatformUpdate:
+                $ref: '#/components/examples/CosmoTechPlatformUpdate'
+            schema:
+              $ref: '#/components/schemas/Platform'
+        description: the new Platform details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoTechPlatformUpdated:
+                  $ref: '#/components/examples/CosmoTechPlatformUpdated'
+              schema:
+                $ref: '#/components/schemas/Platform'
+          description: the platform details
+        "400":
+          description: Bad request
+        "404":
+          description: the Platform specified is unknown or you don't have access
+            to it
+      summary: Update a platform
+      tags:
+      - platform
+      x-contentType: application/json
+      x-accepts: application/json
+    post:
+      operationId: createPlatform
+      requestBody:
+        content:
+          application/json:
+            examples:
+              CosmoTechPlatform:
+                $ref: '#/components/examples/CosmoTechPlatform'
+            schema:
+              $ref: '#/components/schemas/Platform'
+        description: the Platform to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                CosmoTechPlatform:
+                  $ref: '#/components/examples/CosmoTechPlatform'
+              schema:
+                $ref: '#/components/schemas/Platform'
+          description: the platform details
+        "400":
+          description: Bad request
+      summary: Create a new platform
+      tags:
+      - platform
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/simulations/search:
     post:
       operationId: searchSimulations
@@ -812,7 +892,7 @@ paths:
           application/json:
             examples:
               Workspace:
-                $ref: '#/components/examples/BreweryWorkspace'
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
             schema:
               $ref: '#/components/schemas/Workspace'
         description: the Workspace to create
@@ -1502,6 +1582,25 @@ paths:
         "404":
           description: the User specified is unknown or you don't have access to it
       summary: Get the details of an user with roles for a Workspace
+      tags:
+      - user
+      x-accepts: application/json
+  /oauth2/authorize:
+    get:
+      operationId: authorizeUser
+      responses:
+        "302":
+          description: Redirection response
+          headers:
+            Location:
+              examples:
+                AzureAD:
+                  $ref: '#/components/examples/AzureADRedirect'
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
       tags:
       - user
       x-accepts: application/json
@@ -2471,6 +2570,11 @@ components:
             valueType: string
             default: /mnt/simulation-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    AzureADRedirect:
+      description: authorize redirection to Azure Active Directory example
+      summary: Azure AD redirect example
+      value:
+        Location: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
     Bob:
       description: Bob User example
       summary: Bob User
@@ -3265,22 +3369,65 @@ components:
             azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
           resultsEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery
           simulationEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery-simulation
           dataWarehouse:
             cloudService: AzureDataExplorer
+            platformService: dataWarehouseCluster
             baseUri: https://phoenix.westeurope.kusto.windows.net
             resourceUri: Brewery
           storage:
             cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
-            resourceUri: workspaces/1
-            credentials:
-              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
+            platformService: storage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/workspaces/1
+    BreweryWorkspaceCreateIn:
+      description: Brewery Workspace Create input parameters example
+      summary: Brewery Workspace Create input parameters example
+      value:
+        name: Brewery Analysis
+        description: "Brewery analysis for stock, production, transport and customer\
+          \ satisfaction"
+        version: 1.0.0
+        tags:
+        - Brewery
+        simulator:
+          simulatorId: "1"
+          AnalysisFilter:
+          - "1"
+          defaultAnalysisDataset:
+            "1": "1"
+        users:
+        - id: "1"
+          roles:
+          - Admin
+        - id: "2"
+          roles:
+          - Viewer
+        webApp:
+          url: https://brewery.app.cosmotech.com
+          iframes:
+            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        services:
+          resultsEventBus:
+            platformService: eventBusCluster
+            resourceUri: brewery
+          simulationEventBus:
+            platformService: eventBusCluster
+            resourceUri: brewery-simulation
+          dataWarehouse:
+            platformService: dataWarehouseCluster
+            resourceUri: Brewery
+          storage:
+            platformService: storage
+            resourceUri: organization-1/workspaces/1
     BreweryWorkspaceUpdate:
       description: Update the Brewery Workspace by changing its name
       summary: Update the Brewery Workspace
@@ -3325,25 +3472,27 @@ components:
             azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
           resultsEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery
           simulationEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery-simulation
           dataWarehouse:
             cloudService: AzureDataExplorer
+            platformService: dataWarehouseCluster
             baseUri: https://phoenix.westeurope.kusto.windows.net
             resourceUri: Brewery
           storage:
             cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
-            resourceUri: workspaces/1
-            credentials:
-              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
+            platformService: storage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/workspaces/1
     CosmoOrganization:
       description: Cosmo Tech Organization example
-      summary: Cosmo Tech Organization
+      summary: Cosmo Tech Organization example
       value:
         id: "1"
         name: Cosmo Tech
@@ -3357,6 +3506,138 @@ components:
           name: Alice
           roles:
           - User
+        services:
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          storage:
+            platformService: storage
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/files
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines-1.azurecr.io
+    CosmoTechPlatform:
+      description: Cosmo Tech Platform example
+      summary: Cosmo Tech Platform
+      value:
+        name: Cosmo Tech Platform
+        description: Cosmo Tech Digital Twins Simulation Platform
+        version: 1.0.0
+        ownerId: "1"
+        apiHost: api.cosmotech.com
+        webAppUrl: https://app.cosmotech.com
+        services:
+          provider: Azure
+          credentials:
+            name: phoenix-core
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
+          storage:
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: core
+          coreContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: csmphoenix.azurecr.io
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines.azurecr.io
+          eventBusCluster:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+          dataWarehouseCluster:
+            cloudService: AzureDataExplorer
+            baseUri: https://phoenix.westeurope.kusto.windows.net
+            options:
+              ingestionUri: https://ingest-phoenix.westeurope.kusto.windows.net
+          databaseCluster:
+            cloudService: AzureCosmosDB
+            baseUri: https://cosmophoenix.documents.azure.com:443/
+          keyVault:
+            cloudService: AzureKeyVault
+            baseUri: https://csmphoenixkeyvault.vault.azure.net/
+          kubernetesCluster:
+            cloudService: AzureKubernetesService
+            baseUri: phoenixaks-phoenix-659096-de4a5810.hcp.westeurope.azmk8s.io
+            resourceUri: phoenixAKS
+          directory:
+            cloudService: AzureActiveDirectory
+            baseUri: thecosmocompany69.onmicrosoft.com
+            options:
+              tenantId: e9641c78-d0d6-4d09-af63-168922724e7f
+          monitoring:
+            cloudService: AzureMonitor
+          analytic:
+            resourceUri: csmphoenixinsights
+            options:
+              instrumentationKey: 05ef985d-8209-46db-acb0-d035da80faa1
+              connectionString: InstrumentationKey=05ef985d-8209-46db-acb0-d035da80faa1;IngestionEndpoint=https://francecentral-0.in.applicationinsights.azure.com/
+    CosmoTechPlatformUpdate:
+      description: Update the Cosmo Tech Platform by changing its name
+      summary: Update the Cosmo Tech Platform
+      value:
+        name: Cosmo Tech Platform for Azure
+    CosmoTechPlatformUpdated:
+      description: Cosmo Tech Platform updated example
+      summary: Cosmo Tech Platform updated example
+      value:
+        name: Cosmo Tech Platform for Azure
+        description: Cosmo Tech Digital Twins Simulation Platform
+        version: 1.0.0
+        ownerId: "1"
+        apiHost: api.cosmotech.com
+        webAppUrl: https://app.cosmotech.com
+        services:
+          provider: Azure
+          credentials:
+            name: phoenix-core
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
+          storage:
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: core
+          coreContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: csmphoenix.azurecr.io
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines.azurecr.io
+          eventBusCluster:
+            cloudService: AzureEventHub
+            baseUri: csm-phoenix.servicebus.windows.net
+          dataWarehouseCluster:
+            cloudService: AzureDataExplorer
+            baseUri: https://phoenix.westeurope.kusto.windows.net
+            options:
+              ingestionUri: https://ingest-phoenix.westeurope.kusto.windows.net
+          databaseCluster:
+            cloudService: AzureCosmosDB
+            baseUri: https://cosmophoenix.documents.azure.com:443/
+          keyVault:
+            cloudService: AzureKeyVault
+            baseUri: https://csmphoenixkeyvault.vault.azure.net/
+          kubernetesCluster:
+            cloudService: AzureKubernetesService
+            baseUri: phoenixaks-phoenix-659096-de4a5810.hcp.westeurope.azmk8s.io
+            resourceUri: phoenixAKS
+          directory:
+            cloudService: AzureActiveDirectory
+            baseUri: thecosmocompany69.onmicrosoft.com
+            options:
+              tenantId: e9641c78-d0d6-4d09-af63-168922724e7f
+          monitoring:
+            cloudService: AzureMonitor
+          analytic:
+            resourceUri: csmphoenixinsights
+            options:
+              instrumentationKey: 05ef985d-8209-46db-acb0-d035da80faa1
+              connectionString: InstrumentationKey=05ef985d-8209-46db-acb0-d035da80faa1;IngestionEndpoint=https://francecentral-0.in.applicationinsights.azure.com/
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
@@ -3377,6 +3658,19 @@ components:
           name: Xavier
           roles:
           - Developer
+        services:
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          storage:
+            platformService: storage
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/files
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines-1.azurecr.io
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization
@@ -3389,6 +3683,17 @@ components:
         - id: "2"
           roles:
           - User
+        services:
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          storage:
+            platformService: storage
+            resourceUri: organization-1/files
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines-1.azurecr.io
     OneConnector:
       description: One Connector list example
       summary: One Connector list
@@ -3558,22 +3863,24 @@ components:
             azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
           resultsEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery
           simulationEventBus:
             cloudService: AzureEventHub
+            platformService: eventBusCluster
             baseUri: csm-phoenix.servicebus.windows.net
             resourceUri: brewery-simulation
           dataWarehouse:
             cloudService: AzureDataExplorer
+            platformService: dataWarehouseCluster
             baseUri: https://phoenix.westeurope.kusto.windows.net
             resourceUri: Brewery
           storage:
             cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net/organization-1
-            resourceUri: workspaces/1
-            credentials:
-              sas: sp=racwdl&st=2021-04-13T10:09:52Z&se=2021-04-13T18:09:52Z&spr=https&sv=2020-02-10&sr=c&sig=Otw2kGNBkQVaB3GatZBSKRo7Y6%2FuSaCqz2s2%2Fg3w73Q%3D
+            platformService: storage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/workspaces/1
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -3786,6 +4093,19 @@ components:
           name: Alice
           roles:
           - User
+        services:
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
+          storage:
+            platformService: storage
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-1/files
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines-1.azurecr.io
       - id: "2"
         name: Phoenix
         users:
@@ -3793,6 +4113,19 @@ components:
           name: Bob
           roles:
           - Admin
+        services:
+          tenantCredentials:
+            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
+            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
+            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
+          storage:
+            platformService: storage
+            cloudService: AzureStorage
+            baseUri: https://csmphoenix.blob.core.windows.net
+            resourceUri: organization-2/files
+          simulatorsContainerRegistry:
+            cloudService: AzureContainerRegistries
+            baseUri: twinengines-2.azurecr.io
     TwoUsers:
       description: Two Users example
       summary: Two Users example
@@ -4230,6 +4563,23 @@ components:
       example:
         name: name
         id: id
+        services:
+          simulatorsContainerRegistry:
+            platformService: platformService
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
+          tenantCredentials:
+            key: "{}"
+          storage:
+            platformService: platformService
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            resourceUri: resourceUri
+            cloudService: cloudService
         ownerId: ownerId
         users:
         - organizationId: organizationId
@@ -4260,8 +4610,67 @@ components:
           items:
             $ref: '#/components/schemas/OrganizationUser'
           type: array
+        services:
+          $ref: '#/components/schemas/OrganizationServices'
       required:
       - name
+      type: object
+    OrganizationService:
+      description: a cloud service resource
+      example:
+        platformService: platformService
+        credentials:
+          key: "{}"
+        baseUri: baseUri
+        resourceUri: resourceUri
+        cloudService: cloudService
+      properties:
+        cloudService:
+          description: the cloud service name
+          type: string
+        baseUri:
+          description: the platform base uri for this service
+          type: string
+        platformService:
+          description: the Platform service associated to the resource
+          type: string
+        resourceUri:
+          description: the Organization specific uri for this service resource
+          type: string
+        credentials:
+          additionalProperties: true
+          description: a freeform credentials object. Structure depends on service
+          type: object
+      type: object
+    OrganizationServices:
+      description: the cloud service resources of the Organization
+      example:
+        simulatorsContainerRegistry:
+          platformService: platformService
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
+        tenantCredentials:
+          key: "{}"
+        storage:
+          platformService: platformService
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          resourceUri: resourceUri
+          cloudService: cloudService
+      properties:
+        tenantCredentials:
+          additionalProperties: true
+          description: a freeform credentials object for the Organization tenant.
+            Structure depends on cloud provider
+          type: object
+        storage:
+          $ref: '#/components/schemas/OrganizationService'
+        simulatorsContainerRegistry:
+          $ref: '#/components/schemas/OrganizationService'
       type: object
     OrganizationUser:
       description: a User
@@ -4297,6 +4706,295 @@ components:
       required:
       - name
       - roles
+      type: object
+    Platform:
+      description: a Platform
+      example:
+        webAppUrl: webAppUrl
+        apiHost: apiHost
+        name: name
+        description: description
+        services:
+          keyVault:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          credentials:
+            key: "{}"
+          kubernetesCluster:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          databaseCluster:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          storage:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          monitoring:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          directory:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          eventBusCluster:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          coreContainerRegistry:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          simulatorsContainerRegistry:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          provider: Azure
+          dataWarehouseCluster:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+          analytic:
+            credentials:
+              key: "{}"
+            baseUri: baseUri
+            options:
+              key: "{}"
+            resourceUri: resourceUri
+            cloudService: cloudService
+        ownerId: ownerId
+        version: version
+      properties:
+        name:
+          description: the Platform name
+          type: string
+        description:
+          description: the Platform description
+          type: string
+        version:
+          description: the Platform version MAJOR.MINOR.PATCH.
+          type: string
+        ownerId:
+          description: the Platform owner Id
+          type: string
+        apiHost:
+          description: Platform host name
+          type: string
+        webAppUrl:
+          description: the Web Application Portal to use the Platform
+          type: string
+        services:
+          $ref: '#/components/schemas/PlatformServices'
+      required:
+      - name
+      - ownerId
+      - services
+      - version
+      type: object
+    PlatformService:
+      description: a Cloud Service resource
+      example:
+        credentials:
+          key: "{}"
+        baseUri: baseUri
+        options:
+          key: "{}"
+        resourceUri: resourceUri
+        cloudService: cloudService
+      properties:
+        cloudService:
+          description: the cloud service name
+          readOnly: true
+          type: string
+        baseUri:
+          description: the platform base uri for this service
+          readOnly: true
+          type: string
+        resourceUri:
+          description: the workspace specific uri for this service resource
+          type: string
+        credentials:
+          additionalProperties: true
+          description: a freeform credentials object. Structure depends on service
+          type: object
+        options:
+          additionalProperties: true
+          description: the service specific options
+          type: object
+      type: object
+    PlatformServices:
+      description: the list of Platform services
+      example:
+        keyVault:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        credentials:
+          key: "{}"
+        kubernetesCluster:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        databaseCluster:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        storage:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        monitoring:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        directory:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        eventBusCluster:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        coreContainerRegistry:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        simulatorsContainerRegistry:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        provider: Azure
+        dataWarehouseCluster:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+        analytic:
+          credentials:
+            key: "{}"
+          baseUri: baseUri
+          options:
+            key: "{}"
+          resourceUri: resourceUri
+          cloudService: cloudService
+      properties:
+        provider:
+          description: the Cloud Provider for the services
+          enum:
+          - Azure
+          type: string
+        credentials:
+          additionalProperties: true
+          description: a freeform credentials object for the Platform. Structure depends
+            on cloud provider
+          type: object
+        storage:
+          $ref: '#/components/schemas/PlatformService'
+        coreContainerRegistry:
+          $ref: '#/components/schemas/PlatformService'
+        simulatorsContainerRegistry:
+          $ref: '#/components/schemas/PlatformService'
+        eventBusCluster:
+          $ref: '#/components/schemas/PlatformService'
+        dataWarehouseCluster:
+          $ref: '#/components/schemas/PlatformService'
+        databaseCluster:
+          $ref: '#/components/schemas/PlatformService'
+        keyVault:
+          $ref: '#/components/schemas/PlatformService'
+        kubernetesCluster:
+          $ref: '#/components/schemas/PlatformService'
+        directory:
+          $ref: '#/components/schemas/PlatformService'
+        monitoring:
+          $ref: '#/components/schemas/PlatformService'
+        analytic:
+          $ref: '#/components/schemas/PlatformService'
+      required:
+      - provider
       type: object
     Scenario:
       allOf:
@@ -5396,24 +6094,28 @@ components:
           tenantCredentials:
             key: "{}"
           simulationEventBus:
+            platformService: platformService
             credentials:
               key: "{}"
             baseUri: baseUri
             resourceUri: resourceUri
             cloudService: cloudService
           storage:
+            platformService: platformService
             credentials:
               key: "{}"
             baseUri: baseUri
             resourceUri: resourceUri
             cloudService: cloudService
           resultsEventBus:
+            platformService: platformService
             credentials:
               key: "{}"
             baseUri: baseUri
             resourceUri: resourceUri
             cloudService: cloudService
           dataWarehouse:
+            platformService: platformService
             credentials:
               key: "{}"
             baseUri: baseUri
@@ -5488,6 +6190,7 @@ components:
     WorkspaceService:
       description: a cloud service resource
       example:
+        platformService: platformService
         credentials:
           key: "{}"
         baseUri: baseUri
@@ -5502,6 +6205,9 @@ components:
           description: the platform base uri for this service
           readOnly: true
           type: string
+        platformService:
+          description: the Platform service associated to the resource
+          type: string
         resourceUri:
           description: the workspace specific uri for this service resource
           type: string
@@ -5509,8 +6215,6 @@ components:
           additionalProperties: true
           description: a freeform credentials object. Structure depends on service
           type: object
-      required:
-      - cloudService
       type: object
     WorkspaceServices:
       description: the cloud service resources of the Workspace
@@ -5518,24 +6222,28 @@ components:
         tenantCredentials:
           key: "{}"
         simulationEventBus:
+          platformService: platformService
           credentials:
             key: "{}"
           baseUri: baseUri
           resourceUri: resourceUri
           cloudService: cloudService
         storage:
+          platformService: platformService
           credentials:
             key: "{}"
           baseUri: baseUri
           resourceUri: resourceUri
           cloudService: cloudService
         resultsEventBus:
+          platformService: platformService
           credentials:
             key: "{}"
           baseUri: baseUri
           resourceUri: resourceUri
           cloudService: cloudService
         dataWarehouse:
+          platformService: platformService
           credentials:
             key: "{}"
           baseUri: baseUri
@@ -5544,8 +6252,9 @@ components:
       properties:
         tenantCredentials:
           additionalProperties: true
-          description: a freeform credentials object for the tenant. Structure depends
-            on cloud provider
+          description: a freeform credentials object for the Organization tenant.
+            Structure depends on cloud provider
+          readOnly: true
           type: object
         resultsEventBus:
           $ref: '#/components/schemas/WorkspaceService'
@@ -5611,10 +6320,6 @@ components:
       - id
       - roles
       type: object
-    WorkspaceUserDetails:
-      allOf:
-      - $ref: '#/components/schemas/WorkspaceUser'
-      - $ref: '#/components/schemas/WorkspaceUserDetails_allOf'
     WorkspaceWebApp:
       description: a Workspace Web Application
       example:
@@ -5708,24 +6413,6 @@ components:
             $ref: '#/components/schemas/UserOrganization'
           readOnly: true
           type: array
-      type: object
-    WorkspaceUserDetails_allOf:
-      description: details information on Workspace User
-      properties:
-        organizationId:
-          description: the Organization Id context
-          readOnly: true
-          type: string
-        organizationRoles:
-          description: the Organizations roles for the User
-          items:
-            type: string
-          readOnly: true
-          type: array
-        workspaceId:
-          description: the Workspace Id context
-          readOnly: true
-          type: string
       type: object
   securitySchemes:
     oAuth2AuthCode:

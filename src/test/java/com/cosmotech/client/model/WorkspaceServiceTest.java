@@ -60,6 +60,14 @@ public class WorkspaceServiceTest {
     }
 
     /**
+     * Test the property 'platformService'
+     */
+    @Test
+    public void platformServiceTest() {
+        // TODO: test platformService
+    }
+
+    /**
      * Test the property 'resourceUri'
      */
     @Test

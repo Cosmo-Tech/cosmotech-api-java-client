@@ -34,6 +34,21 @@ public class UserApiTest {
 
     
     /**
+     * Authorize an User with OAuth2. Delegated to configured OAuth2 service
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void authorizeUserTest() throws ApiException {
+        api.authorizeUser();
+
+        // TODO: test validations
+    }
+    
+    /**
      * List all Users
      *
      * 

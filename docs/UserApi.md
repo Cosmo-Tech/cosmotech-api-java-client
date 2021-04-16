@@ -4,6 +4,7 @@ All URIs are relative to *https://api.azure.cosmo-platform.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**authorizeUser**](UserApi.md#authorizeUser) | **GET** /oauth2/authorize | Authorize an User with OAuth2. Delegated to configured OAuth2 service
 [**findAllUsers**](UserApi.md#findAllUsers) | **GET** /users | List all Users
 [**findUserById**](UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
 [**getCurrentUser**](UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of an user
@@ -13,6 +14,66 @@ Method | HTTP request | Description
 [**unregisterUser**](UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
 [**updateUser**](UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update an user
 
+
+<a name="authorizeUser"></a>
+# **authorizeUser**
+> authorizeUser()
+
+Authorize an User with OAuth2. Delegated to configured OAuth2 service
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    try {
+      apiInstance.authorizeUser();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#authorizeUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Redirection response |  * Location -  <br>  |
 
 <a name="findAllUsers"></a>
 # **findAllUsers**

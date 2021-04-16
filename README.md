@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.1-SNAPSHOT
-  - Build date: 2021-04-16T12:42:31.121121+02:00[Europe/Paris]
+  - Build date: 2021-04-16T16:41:35.745089+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -127,6 +127,9 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**registerOrganization**](docs/OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
 *OrganizationApi* | [**unregisterOrganization**](docs/OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
 *OrganizationApi* | [**updateOrganization**](docs/OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an organization
+*PlatformApi* | [**createPlatform**](docs/PlatformApi.md#createPlatform) | **POST** /platform | Create a new platform
+*PlatformApi* | [**getPlatform**](docs/PlatformApi.md#getPlatform) | **GET** /platform | Get the details of the platform
+*PlatformApi* | [**updatePlatform**](docs/PlatformApi.md#updatePlatform) | **PATCH** /platform | Update a platform
 *ScenarioApi* | [**compareScenarios**](docs/ScenarioApi.md#compareScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id} | Compare the Scenario with another one and returns the difference for parameters values
 *ScenarioApi* | [**createScenario**](docs/ScenarioApi.md#createScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Create a new scenario
 *ScenarioApi* | [**deleteScenario**](docs/ScenarioApi.md#deleteScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Delete a scenario
@@ -152,6 +155,7 @@ Class | Method | HTTP request | Description
 *SimulatorApi* | [**findSimulatorById**](docs/SimulatorApi.md#findSimulatorById) | **GET** /organizations/{organization_id}/simulators/{simulator_id} | Get the details of a simulator
 *SimulatorApi* | [**updateSimulator**](docs/SimulatorApi.md#updateSimulator) | **PATCH** /organizations/{organization_id}/simulators/{simulator_id} | Update a simulator
 *SimulatorApi* | [**upload**](docs/SimulatorApi.md#upload) | **POST** /organizations/{organization_id}/simulators/upload | Upload and register a new simulator
+*UserApi* | [**authorizeUser**](docs/UserApi.md#authorizeUser) | **GET** /oauth2/authorize | Authorize an User with OAuth2. Delegated to configured OAuth2 service
 *UserApi* | [**findAllUsers**](docs/UserApi.md#findAllUsers) | **GET** /users | List all Users
 *UserApi* | [**findUserById**](docs/UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
 *UserApi* | [**getCurrentUser**](docs/UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of an user
@@ -189,7 +193,12 @@ Class | Method | HTTP request | Description
  - [DatasetConnector](docs/DatasetConnector.md)
  - [DatasetCopyParameters](docs/DatasetCopyParameters.md)
  - [Organization](docs/Organization.md)
+ - [OrganizationService](docs/OrganizationService.md)
+ - [OrganizationServices](docs/OrganizationServices.md)
  - [OrganizationUser](docs/OrganizationUser.md)
+ - [Platform](docs/Platform.md)
+ - [PlatformService](docs/PlatformService.md)
+ - [PlatformServices](docs/PlatformServices.md)
  - [Scenario](docs/Scenario.md)
  - [ScenarioAllOf](docs/ScenarioAllOf.md)
  - [ScenarioAnalysis](docs/ScenarioAnalysis.md)
@@ -225,8 +234,6 @@ Class | Method | HTTP request | Description
  - [WorkspaceServices](docs/WorkspaceServices.md)
  - [WorkspaceSimulator](docs/WorkspaceSimulator.md)
  - [WorkspaceUser](docs/WorkspaceUser.md)
- - [WorkspaceUserDetails](docs/WorkspaceUserDetails.md)
- - [WorkspaceUserDetailsAllOf](docs/WorkspaceUserDetailsAllOf.md)
  - [WorkspaceWebApp](docs/WorkspaceWebApp.md)
 
 

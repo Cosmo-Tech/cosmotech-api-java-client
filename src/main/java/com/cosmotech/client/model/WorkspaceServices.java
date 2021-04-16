@@ -32,7 +32,7 @@ import java.util.Map;
  * the cloud service resources of the Workspace
  */
 @ApiModel(description = "the cloud service resources of the Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
 public class WorkspaceServices {
   public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
   @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)
@@ -55,35 +55,18 @@ public class WorkspaceServices {
   private WorkspaceService storage;
 
 
-  public WorkspaceServices tenantCredentials(Map<String, Object> tenantCredentials) {
-    
-    this.tenantCredentials = tenantCredentials;
-    return this;
-  }
-
-  public WorkspaceServices putTenantCredentialsItem(String key, Object tenantCredentialsItem) {
-    if (this.tenantCredentials == null) {
-      this.tenantCredentials = new HashMap<String, Object>();
-    }
-    this.tenantCredentials.put(key, tenantCredentialsItem);
-    return this;
-  }
-
    /**
-   * a freeform credentials object for the tenant. Structure depends on cloud provider
+   * a freeform credentials object for the Organization tenant. Structure depends on cloud provider
    * @return tenantCredentials
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a freeform credentials object for the tenant. Structure depends on cloud provider")
+  @ApiModelProperty(value = "a freeform credentials object for the Organization tenant. Structure depends on cloud provider")
 
   public Map<String, Object> getTenantCredentials() {
     return tenantCredentials;
   }
 
 
-  public void setTenantCredentials(Map<String, Object> tenantCredentials) {
-    this.tenantCredentials = tenantCredentials;
-  }
 
 
   public WorkspaceServices resultsEventBus(WorkspaceService resultsEventBus) {

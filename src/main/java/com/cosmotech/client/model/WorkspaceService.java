@@ -31,7 +31,7 @@ import java.util.Map;
  * a cloud service resource
  */
 @ApiModel(description = "a cloud service resource")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T12:42:31.121121+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
 public class WorkspaceService {
   public static final String SERIALIZED_NAME_CLOUD_SERVICE = "cloudService";
   @SerializedName(SERIALIZED_NAME_CLOUD_SERVICE)
@@ -40,6 +40,10 @@ public class WorkspaceService {
   public static final String SERIALIZED_NAME_BASE_URI = "baseUri";
   @SerializedName(SERIALIZED_NAME_BASE_URI)
   private String baseUri;
+
+  public static final String SERIALIZED_NAME_PLATFORM_SERVICE = "platformService";
+  @SerializedName(SERIALIZED_NAME_PLATFORM_SERVICE)
+  private String platformService;
 
   public static final String SERIALIZED_NAME_RESOURCE_URI = "resourceUri";
   @SerializedName(SERIALIZED_NAME_RESOURCE_URI)
@@ -54,7 +58,8 @@ public class WorkspaceService {
    * the cloud service name
    * @return cloudService
   **/
-  @ApiModelProperty(required = true, value = "the cloud service name")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the cloud service name")
 
   public String getCloudService() {
     return cloudService;
@@ -75,6 +80,29 @@ public class WorkspaceService {
   }
 
 
+
+
+  public WorkspaceService platformService(String platformService) {
+    
+    this.platformService = platformService;
+    return this;
+  }
+
+   /**
+   * the Platform service associated to the resource
+   * @return platformService
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Platform service associated to the resource")
+
+  public String getPlatformService() {
+    return platformService;
+  }
+
+
+  public void setPlatformService(String platformService) {
+    this.platformService = platformService;
+  }
 
 
   public WorkspaceService resourceUri(String resourceUri) {
@@ -142,13 +170,14 @@ public class WorkspaceService {
     WorkspaceService workspaceService = (WorkspaceService) o;
     return Objects.equals(this.cloudService, workspaceService.cloudService) &&
         Objects.equals(this.baseUri, workspaceService.baseUri) &&
+        Objects.equals(this.platformService, workspaceService.platformService) &&
         Objects.equals(this.resourceUri, workspaceService.resourceUri) &&
         Objects.equals(this.credentials, workspaceService.credentials);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloudService, baseUri, resourceUri, credentials);
+    return Objects.hash(cloudService, baseUri, platformService, resourceUri, credentials);
   }
 
   @Override
@@ -157,6 +186,7 @@ public class WorkspaceService {
     sb.append("class WorkspaceService {\n");
     sb.append("    cloudService: ").append(toIndentedString(cloudService)).append("\n");
     sb.append("    baseUri: ").append(toIndentedString(baseUri)).append("\n");
+    sb.append("    platformService: ").append(toIndentedString(platformService)).append("\n");
     sb.append("    resourceUri: ").append(toIndentedString(resourceUri)).append("\n");
     sb.append("    credentials: ").append(toIndentedString(credentials)).append("\n");
     sb.append("}");
