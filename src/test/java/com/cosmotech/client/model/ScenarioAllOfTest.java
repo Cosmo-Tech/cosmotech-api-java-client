@@ -44,6 +44,14 @@ public class ScenarioAllOfTest {
     }
 
     /**
+     * Test the property 'ownerName'
+     */
+    @Test
+    public void ownerNameTest() {
+        // TODO: test ownerName
+    }
+
+    /**
      * Test the property 'solutionName'
      */
     @Test

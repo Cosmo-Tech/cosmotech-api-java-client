@@ -30,7 +30,7 @@ import java.util.List;
  * the simulation logs options
  */
 @ApiModel(description = "the simulation logs options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:44:12.915410+02:00[Europe/Paris]")
 public class SimulationLogsOptions {
   public static final String SERIALIZED_NAME_CONTAINER_IDS = "containerIds";
   @SerializedName(SERIALIZED_NAME_CONTAINER_IDS)

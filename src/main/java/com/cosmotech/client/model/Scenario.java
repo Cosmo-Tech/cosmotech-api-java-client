@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Scenario
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:44:12.915410+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -70,6 +70,69 @@ public class Scenario {
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
   private List<ScenarioUser> users = null;
+
+  /**
+   * the Scenario state
+   */
+  @JsonAdapter(StateEnum.Adapter.class)
+  public enum StateEnum {
+    CREATED("Created"),
+    
+    RUNNING("Running"),
+    
+    SUCCESSFUL("Successful"),
+    
+    FAILED("Failed");
+
+    private String value;
+
+    StateEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StateEnum fromValue(String value) {
+      for (StateEnum b : StateEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StateEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StateEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StateEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StateEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATE = "state";
+  @SerializedName(SERIALIZED_NAME_STATE)
+  private StateEnum state;
+
+  public static final String SERIALIZED_NAME_CREATION_DATE = "creationDate";
+  @SerializedName(SERIALIZED_NAME_CREATION_DATE)
+  private String creationDate;
+
+  public static final String SERIALIZED_NAME_OWNER_NAME = "ownerName";
+  @SerializedName(SERIALIZED_NAME_OWNER_NAME)
+  private String ownerName;
 
   public static final String SERIALIZED_NAME_SOLUTION_NAME = "solutionName";
   @SerializedName(SERIALIZED_NAME_SOLUTION_NAME)
@@ -288,6 +351,48 @@ public class Scenario {
 
 
    /**
+   * the Scenario state
+   * @return state
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Scenario state")
+
+  public StateEnum getState() {
+    return state;
+  }
+
+
+
+
+   /**
+   * the Scenario creation date
+   * @return creationDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Scenario creation date")
+
+  public String getCreationDate() {
+    return creationDate;
+  }
+
+
+
+
+   /**
+   * the name of the owner
+   * @return ownerName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the name of the owner")
+
+  public String getOwnerName() {
+    return ownerName;
+  }
+
+
+
+
+   /**
    * the Solution name
    * @return solutionName
   **/
@@ -418,6 +523,9 @@ public class Scenario {
         Objects.equals(this.solutionId, scenario.solutionId) &&
         Objects.equals(this.runTemplateId, scenario.runTemplateId) &&
         Objects.equals(this.users, scenario.users) &&
+        Objects.equals(this.state, scenario.state) &&
+        Objects.equals(this.creationDate, scenario.creationDate) &&
+        Objects.equals(this.ownerName, scenario.ownerName) &&
         Objects.equals(this.solutionName, scenario.solutionName) &&
         Objects.equals(this.runTemplateName, scenario.runTemplateName) &&
         Objects.equals(this.datasetList, scenario.datasetList) &&
@@ -427,7 +535,7 @@ public class Scenario {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users, solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users, state, creationDate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
   }
 
   @Override
@@ -443,6 +551,9 @@ public class Scenario {
     sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
     sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
+    sb.append("    ownerName: ").append(toIndentedString(ownerName)).append("\n");
     sb.append("    solutionName: ").append(toIndentedString(solutionName)).append("\n");
     sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");

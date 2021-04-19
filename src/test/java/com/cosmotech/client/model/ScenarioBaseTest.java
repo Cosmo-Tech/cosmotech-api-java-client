@@ -115,4 +115,20 @@ public class ScenarioBaseTest {
         // TODO: test users
     }
 
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
+    }
+
+    /**
+     * Test the property 'creationDate'
+     */
+    @Test
+    public void creationDateTest() {
+        // TODO: test creationDate
+    }
+
 }

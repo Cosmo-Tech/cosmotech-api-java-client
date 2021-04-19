@@ -119,6 +119,30 @@ public class ScenarioTest {
     }
 
     /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
+    }
+
+    /**
+     * Test the property 'creationDate'
+     */
+    @Test
+    public void creationDateTest() {
+        // TODO: test creationDate
+    }
+
+    /**
+     * Test the property 'ownerName'
+     */
+    @Test
+    public void ownerNameTest() {
+        // TODO: test ownerName
+    }
+
+    /**
      * Test the property 'solutionName'
      */
     @Test

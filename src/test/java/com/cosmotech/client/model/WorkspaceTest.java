@@ -134,12 +134,4 @@ public class WorkspaceTest {
         // TODO: test sendInputToDataWarehouse
     }
 
-    /**
-     * Test the property 'files'
-     */
-    @Test
-    public void filesTest() {
-        // TODO: test files
-    }
-
 }

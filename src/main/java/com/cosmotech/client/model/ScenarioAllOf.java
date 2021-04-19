@@ -31,8 +31,12 @@ import java.util.List;
  * a Scenario with detailed information
  */
 @ApiModel(description = "a Scenario with detailed information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:44:12.915410+02:00[Europe/Paris]")
 public class ScenarioAllOf {
+  public static final String SERIALIZED_NAME_OWNER_NAME = "ownerName";
+  @SerializedName(SERIALIZED_NAME_OWNER_NAME)
+  private String ownerName;
+
   public static final String SERIALIZED_NAME_SOLUTION_NAME = "solutionName";
   @SerializedName(SERIALIZED_NAME_SOLUTION_NAME)
   private String solutionName;
@@ -52,6 +56,20 @@ public class ScenarioAllOf {
   public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
   @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
   private Boolean sendInputToDataWarehouse;
+
+
+   /**
+   * the name of the owner
+   * @return ownerName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the name of the owner")
+
+  public String getOwnerName() {
+    return ownerName;
+  }
+
+
 
 
    /**
@@ -176,7 +194,8 @@ public class ScenarioAllOf {
       return false;
     }
     ScenarioAllOf scenarioAllOf = (ScenarioAllOf) o;
-    return Objects.equals(this.solutionName, scenarioAllOf.solutionName) &&
+    return Objects.equals(this.ownerName, scenarioAllOf.ownerName) &&
+        Objects.equals(this.solutionName, scenarioAllOf.solutionName) &&
         Objects.equals(this.runTemplateName, scenarioAllOf.runTemplateName) &&
         Objects.equals(this.datasetList, scenarioAllOf.datasetList) &&
         Objects.equals(this.parametersValues, scenarioAllOf.parametersValues) &&
@@ -185,13 +204,14 @@ public class ScenarioAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
+    return Objects.hash(ownerName, solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioAllOf {\n");
+    sb.append("    ownerName: ").append(toIndentedString(ownerName)).append("\n");
     sb.append("    solutionName: ").append(toIndentedString(solutionName)).append("\n");
     sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
