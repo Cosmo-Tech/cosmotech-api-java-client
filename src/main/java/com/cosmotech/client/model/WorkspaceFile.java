@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Workspace Web Application
+ * a Workspace File resource
  */
-@ApiModel(description = "a Workspace Web Application")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:44:12.915410+02:00[Europe/Paris]")
+@ApiModel(description = "a Workspace File resource")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
 public class WorkspaceFile {
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
@@ -42,11 +42,11 @@ public class WorkspaceFile {
   }
 
    /**
-   * the Workspace Web Application URL
+   * the Workspace File name
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Workspace Web Application URL")
+  @ApiModelProperty(value = "the Workspace File name")
 
   public String getFileName() {
     return fileName;

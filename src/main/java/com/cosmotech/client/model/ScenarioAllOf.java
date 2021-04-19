@@ -31,7 +31,7 @@ import java.util.List;
  * a Scenario with detailed information
  */
 @ApiModel(description = "a Scenario with detailed information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:44:12.915410+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
 public class ScenarioAllOf {
   public static final String SERIALIZED_NAME_OWNER_NAME = "ownerName";
   @SerializedName(SERIALIZED_NAME_OWNER_NAME)

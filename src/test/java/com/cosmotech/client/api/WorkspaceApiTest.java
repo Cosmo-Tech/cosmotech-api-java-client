@@ -69,6 +69,41 @@ public class WorkspaceApiTest {
     }
     
     /**
+     * Delete a workspace file
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteWorkspaceFileTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        WorkspaceFile workspaceFile = null;
+        WorkspaceFile response = api.deleteWorkspaceFile(organizationId, workspaceId, workspaceFile);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * List all Workspace files
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void findAllWorkspaceFilesTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        List<WorkspaceFile> response = api.findAllWorkspaceFiles(organizationId, workspaceId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List all Workspaces
      *
      * 

@@ -2,13 +2,13 @@
 
 # WorkspaceFile
 
-a Workspace Web Application
+a Workspace File resource
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fileName** | **String** | the Workspace Web Application URL |  [optional]
+**fileName** | **String** | the Workspace File name |  [optional]
 
 
 
