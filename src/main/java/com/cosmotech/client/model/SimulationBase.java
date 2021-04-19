@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Simulation with only base properties
  */
 @ApiModel(description = "a Simulation with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class SimulationBase {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -58,25 +58,25 @@ public class SimulationBase {
   @SerializedName(SERIALIZED_NAME_SCENARIO_NAME)
   private String scenarioName;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
-  private String simulatorId;
+  public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
+  private String solutionId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_NAME = "simulatorName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_NAME)
-  private String simulatorName;
+  public static final String SERIALIZED_NAME_SOLUTION_NAME = "solutionName";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_NAME)
+  private String solutionName;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_VERSION = "simulatorVersion";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_VERSION)
-  private String simulatorVersion;
+  public static final String SERIALIZED_NAME_SOLUTION_VERSION = "solutionVersion";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_VERSION)
+  private String solutionVersion;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_ID = "simulatorAnalysisId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_ID)
-  private String simulatorAnalysisId;
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_ID = "runTemplateId";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_ID)
+  private String runTemplateId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME = "simulatorAnalysisName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME)
-  private String simulatorAnalysisName;
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_NAME = "runTemplateName";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_NAME)
+  private String runTemplateName;
 
   public static final String SERIALIZED_NAME_COMPUTE_SIZE = "computeSize";
   @SerializedName(SERIALIZED_NAME_COMPUTE_SIZE)
@@ -194,70 +194,70 @@ public class SimulationBase {
 
 
    /**
-   * the Simulator Id
-   * @return simulatorId
+   * the Solution Id
+   * @return solutionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Id")
+  @ApiModelProperty(value = "the Solution Id")
 
-  public String getSimulatorId() {
-    return simulatorId;
+  public String getSolutionId() {
+    return solutionId;
   }
 
 
 
 
    /**
-   * the Simulator name
-   * @return simulatorName
+   * the Solution name
+   * @return solutionName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator name")
+  @ApiModelProperty(value = "the Solution name")
 
-  public String getSimulatorName() {
-    return simulatorName;
+  public String getSolutionName() {
+    return solutionName;
   }
 
 
 
 
    /**
-   * the Simulator version
-   * @return simulatorVersion
+   * the Solution version
+   * @return solutionVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator version")
+  @ApiModelProperty(value = "the Solution version")
 
-  public String getSimulatorVersion() {
-    return simulatorVersion;
+  public String getSolutionVersion() {
+    return solutionVersion;
   }
 
 
 
 
    /**
-   * the Simulator Analysis id
-   * @return simulatorAnalysisId
+   * the Solution Run Template id
+   * @return runTemplateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Analysis id")
+  @ApiModelProperty(value = "the Solution Run Template id")
 
-  public String getSimulatorAnalysisId() {
-    return simulatorAnalysisId;
+  public String getRunTemplateId() {
+    return runTemplateId;
   }
 
 
 
 
    /**
-   * the Simulator Analysis name
-   * @return simulatorAnalysisName
+   * the Run Template name
+   * @return runTemplateName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Analysis name")
+  @ApiModelProperty(value = "the Run Template name")
 
-  public String getSimulatorAnalysisName() {
-    return simulatorAnalysisName;
+  public String getRunTemplateName() {
+    return runTemplateName;
   }
 
 
@@ -335,11 +335,11 @@ public class SimulationBase {
         Objects.equals(this.workspaceName, simulationBase.workspaceName) &&
         Objects.equals(this.scenarioId, simulationBase.scenarioId) &&
         Objects.equals(this.scenarioName, simulationBase.scenarioName) &&
-        Objects.equals(this.simulatorId, simulationBase.simulatorId) &&
-        Objects.equals(this.simulatorName, simulationBase.simulatorName) &&
-        Objects.equals(this.simulatorVersion, simulationBase.simulatorVersion) &&
-        Objects.equals(this.simulatorAnalysisId, simulationBase.simulatorAnalysisId) &&
-        Objects.equals(this.simulatorAnalysisName, simulationBase.simulatorAnalysisName) &&
+        Objects.equals(this.solutionId, simulationBase.solutionId) &&
+        Objects.equals(this.solutionName, simulationBase.solutionName) &&
+        Objects.equals(this.solutionVersion, simulationBase.solutionVersion) &&
+        Objects.equals(this.runTemplateId, simulationBase.runTemplateId) &&
+        Objects.equals(this.runTemplateName, simulationBase.runTemplateName) &&
         Objects.equals(this.computeSize, simulationBase.computeSize) &&
         Objects.equals(this.state, simulationBase.state) &&
         Objects.equals(this.startTime, simulationBase.startTime) &&
@@ -348,7 +348,7 @@ public class SimulationBase {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, jobId, ownerId, workspaceId, workspaceName, scenarioId, scenarioName, simulatorId, simulatorName, simulatorVersion, simulatorAnalysisId, simulatorAnalysisName, computeSize, state, startTime, endTime);
+    return Objects.hash(id, jobId, ownerId, workspaceId, workspaceName, scenarioId, scenarioName, solutionId, solutionName, solutionVersion, runTemplateId, runTemplateName, computeSize, state, startTime, endTime);
   }
 
   @Override
@@ -362,11 +362,11 @@ public class SimulationBase {
     sb.append("    workspaceName: ").append(toIndentedString(workspaceName)).append("\n");
     sb.append("    scenarioId: ").append(toIndentedString(scenarioId)).append("\n");
     sb.append("    scenarioName: ").append(toIndentedString(scenarioName)).append("\n");
-    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
-    sb.append("    simulatorName: ").append(toIndentedString(simulatorName)).append("\n");
-    sb.append("    simulatorVersion: ").append(toIndentedString(simulatorVersion)).append("\n");
-    sb.append("    simulatorAnalysisId: ").append(toIndentedString(simulatorAnalysisId)).append("\n");
-    sb.append("    simulatorAnalysisName: ").append(toIndentedString(simulatorAnalysisName)).append("\n");
+    sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
+    sb.append("    solutionName: ").append(toIndentedString(solutionName)).append("\n");
+    sb.append("    solutionVersion: ").append(toIndentedString(solutionVersion)).append("\n");
+    sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
+    sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");

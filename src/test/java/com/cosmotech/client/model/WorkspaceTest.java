@@ -14,7 +14,7 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.WorkspaceServices;
-import com.cosmotech.client.model.WorkspaceSimulator;
+import com.cosmotech.client.model.WorkspaceSolution;
 import com.cosmotech.client.model.WorkspaceUser;
 import com.cosmotech.client.model.WorkspaceWebApp;
 import com.google.gson.TypeAdapter;
@@ -95,19 +95,11 @@ public class WorkspaceTest {
     }
 
     /**
-     * Test the property 'simulator'
+     * Test the property 'solution'
      */
     @Test
-    public void simulatorTest() {
-        // TODO: test simulator
-    }
-
-    /**
-     * Test the property 'simulatorAnalysisFilter'
-     */
-    @Test
-    public void simulatorAnalysisFilterTest() {
-        // TODO: test simulatorAnalysisFilter
+    public void solutionTest() {
+        // TODO: test solution
     }
 
     /**
@@ -140,6 +132,14 @@ public class WorkspaceTest {
     @Test
     public void sendInputToDataWarehouseTest() {
         // TODO: test sendInputToDataWarehouse
+    }
+
+    /**
+     * Test the property 'files'
+     */
+    @Test
+    public void filesTest() {
+        // TODO: test files
     }
 
 }

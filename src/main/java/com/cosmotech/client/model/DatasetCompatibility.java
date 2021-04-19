@@ -25,14 +25,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Dataset compatibility constraint to a Simulator version open range
+ * a Dataset compatibility constraint to a Solution version open range
  */
-@ApiModel(description = "a Dataset compatibility constraint to a Simulator version open range")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@ApiModel(description = "a Dataset compatibility constraint to a Solution version open range")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class DatasetCompatibility {
-  public static final String SERIALIZED_NAME_SIMULATOR_KEY = "simulatorKey";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_KEY)
-  private String simulatorKey;
+  public static final String SERIALIZED_NAME_SOLUTION_KEY = "solutionKey";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_KEY)
+  private String solutionKey;
 
   public static final String SERIALIZED_NAME_MINIMUM_VERSION = "minimumVersion";
   @SerializedName(SERIALIZED_NAME_MINIMUM_VERSION)
@@ -43,25 +43,25 @@ public class DatasetCompatibility {
   private String maximumVersion;
 
 
-  public DatasetCompatibility simulatorKey(String simulatorKey) {
+  public DatasetCompatibility solutionKey(String solutionKey) {
     
-    this.simulatorKey = simulatorKey;
+    this.solutionKey = solutionKey;
     return this;
   }
 
    /**
-   * the Simulator key which group Simulator versions
-   * @return simulatorKey
+   * the Solution key which group Solution versions
+   * @return solutionKey
   **/
-  @ApiModelProperty(required = true, value = "the Simulator key which group Simulator versions")
+  @ApiModelProperty(required = true, value = "the Solution key which group Solution versions")
 
-  public String getSimulatorKey() {
-    return simulatorKey;
+  public String getSolutionKey() {
+    return solutionKey;
   }
 
 
-  public void setSimulatorKey(String simulatorKey) {
-    this.simulatorKey = simulatorKey;
+  public void setSolutionKey(String solutionKey) {
+    this.solutionKey = solutionKey;
   }
 
 
@@ -72,11 +72,11 @@ public class DatasetCompatibility {
   }
 
    /**
-   * the Simulator minimum version compatibility (version included)
+   * the Solution minimum version compatibility (version included)
    * @return minimumVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator minimum version compatibility (version included)")
+  @ApiModelProperty(value = "the Solution minimum version compatibility (version included)")
 
   public String getMinimumVersion() {
     return minimumVersion;
@@ -95,11 +95,11 @@ public class DatasetCompatibility {
   }
 
    /**
-   * the Simulator maximum version compatibility (version included)
+   * the Solution maximum version compatibility (version included)
    * @return maximumVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator maximum version compatibility (version included)")
+  @ApiModelProperty(value = "the Solution maximum version compatibility (version included)")
 
   public String getMaximumVersion() {
     return maximumVersion;
@@ -120,21 +120,21 @@ public class DatasetCompatibility {
       return false;
     }
     DatasetCompatibility datasetCompatibility = (DatasetCompatibility) o;
-    return Objects.equals(this.simulatorKey, datasetCompatibility.simulatorKey) &&
+    return Objects.equals(this.solutionKey, datasetCompatibility.solutionKey) &&
         Objects.equals(this.minimumVersion, datasetCompatibility.minimumVersion) &&
         Objects.equals(this.maximumVersion, datasetCompatibility.maximumVersion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(simulatorKey, minimumVersion, maximumVersion);
+    return Objects.hash(solutionKey, minimumVersion, maximumVersion);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DatasetCompatibility {\n");
-    sb.append("    simulatorKey: ").append(toIndentedString(simulatorKey)).append("\n");
+    sb.append("    solutionKey: ").append(toIndentedString(solutionKey)).append("\n");
     sb.append("    minimumVersion: ").append(toIndentedString(minimumVersion)).append("\n");
     sb.append("    maximumVersion: ").append(toIndentedString(maximumVersion)).append("\n");
     sb.append("}");

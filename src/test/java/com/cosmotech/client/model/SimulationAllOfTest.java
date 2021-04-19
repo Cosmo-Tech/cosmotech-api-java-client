@@ -13,7 +13,7 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.SimulationAnalysisParameterValue;
+import com.cosmotech.client.model.RunTemplateParameterValue;
 import com.cosmotech.client.model.SimulationContainers;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;

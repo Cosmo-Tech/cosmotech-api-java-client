@@ -14,8 +14,8 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.ScenarioAllOf;
-import com.cosmotech.client.model.ScenarioAnalysis;
 import com.cosmotech.client.model.ScenarioBase;
+import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -95,11 +95,19 @@ public class ScenarioTest {
     }
 
     /**
-     * Test the property 'simulatorId'
+     * Test the property 'solutionId'
      */
     @Test
-    public void simulatorIdTest() {
-        // TODO: test simulatorId
+    public void solutionIdTest() {
+        // TODO: test solutionId
+    }
+
+    /**
+     * Test the property 'runTemplateId'
+     */
+    @Test
+    public void runTemplateIdTest() {
+        // TODO: test runTemplateId
     }
 
     /**
@@ -111,27 +119,35 @@ public class ScenarioTest {
     }
 
     /**
-     * Test the property 'simulatorName'
+     * Test the property 'solutionName'
      */
     @Test
-    public void simulatorNameTest() {
-        // TODO: test simulatorName
+    public void solutionNameTest() {
+        // TODO: test solutionName
     }
 
     /**
-     * Test the property 'simulatorAnalysisName'
+     * Test the property 'runTemplateName'
      */
     @Test
-    public void simulatorAnalysisNameTest() {
-        // TODO: test simulatorAnalysisName
+    public void runTemplateNameTest() {
+        // TODO: test runTemplateName
     }
 
     /**
-     * Test the property 'analysis'
+     * Test the property 'datasetList'
      */
     @Test
-    public void analysisTest() {
-        // TODO: test analysis
+    public void datasetListTest() {
+        // TODO: test datasetList
+    }
+
+    /**
+     * Test the property 'parametersValues'
+     */
+    @Test
+    public void parametersValuesTest() {
+        // TODO: test parametersValues
     }
 
     /**

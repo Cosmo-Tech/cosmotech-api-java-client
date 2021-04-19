@@ -32,7 +32,7 @@ import java.util.Map;
  * the cloud service resources of the Organization
  */
 @ApiModel(description = "the cloud service resources of the Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class OrganizationServices {
   public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
   @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)
@@ -42,9 +42,9 @@ public class OrganizationServices {
   @SerializedName(SERIALIZED_NAME_STORAGE)
   private OrganizationService storage;
 
-  public static final String SERIALIZED_NAME_SIMULATORS_CONTAINER_REGISTRY = "simulatorsContainerRegistry";
-  @SerializedName(SERIALIZED_NAME_SIMULATORS_CONTAINER_REGISTRY)
-  private OrganizationService simulatorsContainerRegistry;
+  public static final String SERIALIZED_NAME_SOLUTIONS_CONTAINER_REGISTRY = "solutionsContainerRegistry";
+  @SerializedName(SERIALIZED_NAME_SOLUTIONS_CONTAINER_REGISTRY)
+  private OrganizationService solutionsContainerRegistry;
 
 
   public OrganizationServices tenantCredentials(Map<String, Object> tenantCredentials) {
@@ -101,26 +101,26 @@ public class OrganizationServices {
   }
 
 
-  public OrganizationServices simulatorsContainerRegistry(OrganizationService simulatorsContainerRegistry) {
+  public OrganizationServices solutionsContainerRegistry(OrganizationService solutionsContainerRegistry) {
     
-    this.simulatorsContainerRegistry = simulatorsContainerRegistry;
+    this.solutionsContainerRegistry = solutionsContainerRegistry;
     return this;
   }
 
    /**
-   * Get simulatorsContainerRegistry
-   * @return simulatorsContainerRegistry
+   * Get solutionsContainerRegistry
+   * @return solutionsContainerRegistry
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public OrganizationService getSimulatorsContainerRegistry() {
-    return simulatorsContainerRegistry;
+  public OrganizationService getSolutionsContainerRegistry() {
+    return solutionsContainerRegistry;
   }
 
 
-  public void setSimulatorsContainerRegistry(OrganizationService simulatorsContainerRegistry) {
-    this.simulatorsContainerRegistry = simulatorsContainerRegistry;
+  public void setSolutionsContainerRegistry(OrganizationService solutionsContainerRegistry) {
+    this.solutionsContainerRegistry = solutionsContainerRegistry;
   }
 
 
@@ -135,12 +135,12 @@ public class OrganizationServices {
     OrganizationServices organizationServices = (OrganizationServices) o;
     return Objects.equals(this.tenantCredentials, organizationServices.tenantCredentials) &&
         Objects.equals(this.storage, organizationServices.storage) &&
-        Objects.equals(this.simulatorsContainerRegistry, organizationServices.simulatorsContainerRegistry);
+        Objects.equals(this.solutionsContainerRegistry, organizationServices.solutionsContainerRegistry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tenantCredentials, storage, simulatorsContainerRegistry);
+    return Objects.hash(tenantCredentials, storage, solutionsContainerRegistry);
   }
 
   @Override
@@ -149,7 +149,7 @@ public class OrganizationServices {
     sb.append("class OrganizationServices {\n");
     sb.append("    tenantCredentials: ").append(toIndentedString(tenantCredentials)).append("\n");
     sb.append("    storage: ").append(toIndentedString(storage)).append("\n");
-    sb.append("    simulatorsContainerRegistry: ").append(toIndentedString(simulatorsContainerRegistry)).append("\n");
+    sb.append("    solutionsContainerRegistry: ").append(toIndentedString(solutionsContainerRegistry)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -97,43 +97,43 @@ public class SimulationBaseTest {
     }
 
     /**
-     * Test the property 'simulatorId'
+     * Test the property 'solutionId'
      */
     @Test
-    public void simulatorIdTest() {
-        // TODO: test simulatorId
+    public void solutionIdTest() {
+        // TODO: test solutionId
     }
 
     /**
-     * Test the property 'simulatorName'
+     * Test the property 'solutionName'
      */
     @Test
-    public void simulatorNameTest() {
-        // TODO: test simulatorName
+    public void solutionNameTest() {
+        // TODO: test solutionName
     }
 
     /**
-     * Test the property 'simulatorVersion'
+     * Test the property 'solutionVersion'
      */
     @Test
-    public void simulatorVersionTest() {
-        // TODO: test simulatorVersion
+    public void solutionVersionTest() {
+        // TODO: test solutionVersion
     }
 
     /**
-     * Test the property 'simulatorAnalysisId'
+     * Test the property 'runTemplateId'
      */
     @Test
-    public void simulatorAnalysisIdTest() {
-        // TODO: test simulatorAnalysisId
+    public void runTemplateIdTest() {
+        // TODO: test runTemplateId
     }
 
     /**
-     * Test the property 'simulatorAnalysisName'
+     * Test the property 'runTemplateName'
      */
     @Test
-    public void simulatorAnalysisNameTest() {
-        // TODO: test simulatorAnalysisName
+    public void runTemplateNameTest() {
+        // TODO: test runTemplateName
     }
 
     /**

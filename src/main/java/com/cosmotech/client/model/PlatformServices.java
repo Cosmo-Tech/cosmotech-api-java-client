@@ -32,7 +32,7 @@ import java.util.Map;
  * the list of Platform services
  */
 @ApiModel(description = "the list of Platform services")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class PlatformServices {
   /**
    * the Cloud Provider for the services
@@ -95,9 +95,9 @@ public class PlatformServices {
   @SerializedName(SERIALIZED_NAME_CORE_CONTAINER_REGISTRY)
   private PlatformService coreContainerRegistry;
 
-  public static final String SERIALIZED_NAME_SIMULATORS_CONTAINER_REGISTRY = "simulatorsContainerRegistry";
-  @SerializedName(SERIALIZED_NAME_SIMULATORS_CONTAINER_REGISTRY)
-  private PlatformService simulatorsContainerRegistry;
+  public static final String SERIALIZED_NAME_SOLUTIONS_CONTAINER_REGISTRY = "solutionsContainerRegistry";
+  @SerializedName(SERIALIZED_NAME_SOLUTIONS_CONTAINER_REGISTRY)
+  private PlatformService solutionsContainerRegistry;
 
   public static final String SERIALIZED_NAME_EVENT_BUS_CLUSTER = "eventBusCluster";
   @SerializedName(SERIALIZED_NAME_EVENT_BUS_CLUSTER)
@@ -231,26 +231,26 @@ public class PlatformServices {
   }
 
 
-  public PlatformServices simulatorsContainerRegistry(PlatformService simulatorsContainerRegistry) {
+  public PlatformServices solutionsContainerRegistry(PlatformService solutionsContainerRegistry) {
     
-    this.simulatorsContainerRegistry = simulatorsContainerRegistry;
+    this.solutionsContainerRegistry = solutionsContainerRegistry;
     return this;
   }
 
    /**
-   * Get simulatorsContainerRegistry
-   * @return simulatorsContainerRegistry
+   * Get solutionsContainerRegistry
+   * @return solutionsContainerRegistry
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public PlatformService getSimulatorsContainerRegistry() {
-    return simulatorsContainerRegistry;
+  public PlatformService getSolutionsContainerRegistry() {
+    return solutionsContainerRegistry;
   }
 
 
-  public void setSimulatorsContainerRegistry(PlatformService simulatorsContainerRegistry) {
-    this.simulatorsContainerRegistry = simulatorsContainerRegistry;
+  public void setSolutionsContainerRegistry(PlatformService solutionsContainerRegistry) {
+    this.solutionsContainerRegistry = solutionsContainerRegistry;
   }
 
 
@@ -451,7 +451,7 @@ public class PlatformServices {
         Objects.equals(this.credentials, platformServices.credentials) &&
         Objects.equals(this.storage, platformServices.storage) &&
         Objects.equals(this.coreContainerRegistry, platformServices.coreContainerRegistry) &&
-        Objects.equals(this.simulatorsContainerRegistry, platformServices.simulatorsContainerRegistry) &&
+        Objects.equals(this.solutionsContainerRegistry, platformServices.solutionsContainerRegistry) &&
         Objects.equals(this.eventBusCluster, platformServices.eventBusCluster) &&
         Objects.equals(this.dataWarehouseCluster, platformServices.dataWarehouseCluster) &&
         Objects.equals(this.databaseCluster, platformServices.databaseCluster) &&
@@ -464,7 +464,7 @@ public class PlatformServices {
 
   @Override
   public int hashCode() {
-    return Objects.hash(provider, credentials, storage, coreContainerRegistry, simulatorsContainerRegistry, eventBusCluster, dataWarehouseCluster, databaseCluster, keyVault, kubernetesCluster, directory, monitoring, analytic);
+    return Objects.hash(provider, credentials, storage, coreContainerRegistry, solutionsContainerRegistry, eventBusCluster, dataWarehouseCluster, databaseCluster, keyVault, kubernetesCluster, directory, monitoring, analytic);
   }
 
   @Override
@@ -475,7 +475,7 @@ public class PlatformServices {
     sb.append("    credentials: ").append(toIndentedString(credentials)).append("\n");
     sb.append("    storage: ").append(toIndentedString(storage)).append("\n");
     sb.append("    coreContainerRegistry: ").append(toIndentedString(coreContainerRegistry)).append("\n");
-    sb.append("    simulatorsContainerRegistry: ").append(toIndentedString(simulatorsContainerRegistry)).append("\n");
+    sb.append("    solutionsContainerRegistry: ").append(toIndentedString(solutionsContainerRegistry)).append("\n");
     sb.append("    eventBusCluster: ").append(toIndentedString(eventBusCluster)).append("\n");
     sb.append("    dataWarehouseCluster: ").append(toIndentedString(dataWarehouseCluster)).append("\n");
     sb.append("    databaseCluster: ").append(toIndentedString(databaseCluster)).append("\n");

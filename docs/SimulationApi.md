@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**searchSimulations**](SimulationApi.md#searchSimulations) | **POST** /organizations/{organization_id}/simulations/search | Search Simulations
 [**startSimulationContainers**](SimulationApi.md#startSimulationContainers) | **POST** /organizations/{organization_id}/simulations/startcontainers | Start a new simulation with raw containers definition
 [**startSimulationScenario**](SimulationApi.md#startSimulationScenario) | **POST** /organizations/{organization_id}/simulations/start | Start a new simulation for a Scenario
-[**startSimulationSimulator**](SimulationApi.md#startSimulationSimulator) | **POST** /organizations/{organization_id}/simulations/startsimulator | Start a new simulation for a Simulator Analysis
+[**startSimulationSolution**](SimulationApi.md#startSimulationSolution) | **POST** /organizations/{organization_id}/simulations/startsolution | Start a new simulation for a Solution Run Template
 
 
 <a name="deleteSimulation"></a>
@@ -778,11 +778,11 @@ Name | Type | Description  | Notes
 **400** | Bad request |  -  |
 **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="startSimulationSimulator"></a>
-# **startSimulationSimulator**
-> Simulation startSimulationSimulator(organizationId, simulationStartSimulator)
+<a name="startSimulationSolution"></a>
+# **startSimulationSolution**
+> Simulation startSimulationSolution(organizationId, simulationStartSolution)
 
-Start a new simulation for a Simulator Analysis
+Start a new simulation for a Solution Run Template
 
 ### Example
 ```java
@@ -805,12 +805,12 @@ public class Example {
 
     SimulationApi apiInstance = new SimulationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    SimulationStartSimulator simulationStartSimulator = new SimulationStartSimulator(); // SimulationStartSimulator | the Simulator Analysis information to start
+    SimulationStartSolution simulationStartSolution = new SimulationStartSolution(); // SimulationStartSolution | the Solution Run Template information to start
     try {
-      Simulation result = apiInstance.startSimulationSimulator(organizationId, simulationStartSimulator);
+      Simulation result = apiInstance.startSimulationSolution(organizationId, simulationStartSolution);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SimulationApi#startSimulationSimulator");
+      System.err.println("Exception when calling SimulationApi#startSimulationSolution");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -825,7 +825,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **simulationStartSimulator** | [**SimulationStartSimulator**](SimulationStartSimulator.md)| the Simulator Analysis information to start |
+ **simulationStartSolution** | [**SimulationStartSolution**](SimulationStartSolution.md)| the Solution Run Template information to start |
 
 ### Return type
 

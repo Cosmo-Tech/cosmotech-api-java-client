@@ -21,7 +21,7 @@ import com.cosmotech.client.model.SimulationLogsOptions;
 import com.cosmotech.client.model.SimulationSearch;
 import com.cosmotech.client.model.SimulationStartContainers;
 import com.cosmotech.client.model.SimulationStartScenario;
-import com.cosmotech.client.model.SimulationStartSimulator;
+import com.cosmotech.client.model.SimulationStartSolution;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -234,7 +234,7 @@ public class SimulationApiTest {
     }
     
     /**
-     * Start a new simulation for a Simulator Analysis
+     * Start a new simulation for a Solution Run Template
      *
      * 
      *
@@ -242,10 +242,10 @@ public class SimulationApiTest {
      *          if the Api call fails
      */
     @Test
-    public void startSimulationSimulatorTest() throws ApiException {
+    public void startSimulationSolutionTest() throws ApiException {
         String organizationId = null;
-        SimulationStartSimulator simulationStartSimulator = null;
-        Simulation response = api.startSimulationSimulator(organizationId, simulationStartSimulator);
+        SimulationStartSolution simulationStartSolution = null;
+        Simulation response = api.startSimulationSolution(organizationId, simulationStartSolution);
 
         // TODO: test validations
     }

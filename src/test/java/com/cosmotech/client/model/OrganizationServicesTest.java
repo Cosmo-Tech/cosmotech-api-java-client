@@ -61,11 +61,11 @@ public class OrganizationServicesTest {
     }
 
     /**
-     * Test the property 'simulatorsContainerRegistry'
+     * Test the property 'solutionsContainerRegistry'
      */
     @Test
-    public void simulatorsContainerRegistryTest() {
-        // TODO: test simulatorsContainerRegistry
+    public void solutionsContainerRegistryTest() {
+        // TODO: test solutionsContainerRegistry
     }
 
 }

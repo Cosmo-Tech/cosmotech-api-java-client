@@ -13,7 +13,7 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.ScenarioAnalysis;
+import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +22,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -42,27 +44,35 @@ public class ScenarioAllOfTest {
     }
 
     /**
-     * Test the property 'simulatorName'
+     * Test the property 'solutionName'
      */
     @Test
-    public void simulatorNameTest() {
-        // TODO: test simulatorName
+    public void solutionNameTest() {
+        // TODO: test solutionName
     }
 
     /**
-     * Test the property 'simulatorAnalysisName'
+     * Test the property 'runTemplateName'
      */
     @Test
-    public void simulatorAnalysisNameTest() {
-        // TODO: test simulatorAnalysisName
+    public void runTemplateNameTest() {
+        // TODO: test runTemplateName
     }
 
     /**
-     * Test the property 'analysis'
+     * Test the property 'datasetList'
      */
     @Test
-    public void analysisTest() {
-        // TODO: test analysis
+    public void datasetListTest() {
+        // TODO: test datasetList
+    }
+
+    /**
+     * Test the property 'parametersValues'
+     */
+    @Test
+    public void parametersValuesTest() {
+        // TODO: test parametersValues
     }
 
     /**

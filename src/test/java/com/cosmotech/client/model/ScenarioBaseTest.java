@@ -92,11 +92,19 @@ public class ScenarioBaseTest {
     }
 
     /**
-     * Test the property 'simulatorId'
+     * Test the property 'solutionId'
      */
     @Test
-    public void simulatorIdTest() {
-        // TODO: test simulatorId
+    public void solutionIdTest() {
+        // TODO: test solutionId
+    }
+
+    /**
+     * Test the property 'runTemplateId'
+     */
+    @Test
+    public void runTemplateIdTest() {
+        // TODO: test runTemplateId
     }
 
     /**

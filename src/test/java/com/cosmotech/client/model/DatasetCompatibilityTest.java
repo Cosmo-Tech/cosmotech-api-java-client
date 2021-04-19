@@ -41,11 +41,11 @@ public class DatasetCompatibilityTest {
     }
 
     /**
-     * Test the property 'simulatorKey'
+     * Test the property 'solutionKey'
      */
     @Test
-    public void simulatorKeyTest() {
-        // TODO: test simulatorKey
+    public void solutionKeyTest() {
+        // TODO: test solutionKey
     }
 
     /**

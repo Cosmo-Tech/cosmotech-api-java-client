@@ -28,15 +28,15 @@ import java.io.IOException;
  * the search options
  */
 @ApiModel(description = "the search options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class SimulationSearch {
-  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
-  private String simulatorId;
+  public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
+  private String solutionId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_ID = "simulatorAnalysisId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_ID)
-  private String simulatorAnalysisId;
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_ID = "runTemplateId";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_ID)
+  private String runTemplateId;
 
   public static final String SERIALIZED_NAME_WORKSPACE_ID = "workspaceId";
   @SerializedName(SERIALIZED_NAME_WORKSPACE_ID)
@@ -59,49 +59,49 @@ public class SimulationSearch {
   private String ownerId;
 
 
-  public SimulationSearch simulatorId(String simulatorId) {
+  public SimulationSearch solutionId(String solutionId) {
     
-    this.simulatorId = simulatorId;
+    this.solutionId = solutionId;
     return this;
   }
 
    /**
-   * the Simulator Id to search
-   * @return simulatorId
+   * the Solution Id to search
+   * @return solutionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Id to search")
+  @ApiModelProperty(value = "the Solution Id to search")
 
-  public String getSimulatorId() {
-    return simulatorId;
+  public String getSolutionId() {
+    return solutionId;
   }
 
 
-  public void setSimulatorId(String simulatorId) {
-    this.simulatorId = simulatorId;
+  public void setSolutionId(String solutionId) {
+    this.solutionId = solutionId;
   }
 
 
-  public SimulationSearch simulatorAnalysisId(String simulatorAnalysisId) {
+  public SimulationSearch runTemplateId(String runTemplateId) {
     
-    this.simulatorAnalysisId = simulatorAnalysisId;
+    this.runTemplateId = runTemplateId;
     return this;
   }
 
    /**
-   * the Simulator Analysis Id to search
-   * @return simulatorAnalysisId
+   * the Solution Analysis Id to search
+   * @return runTemplateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Analysis Id to search")
+  @ApiModelProperty(value = "the Solution Analysis Id to search")
 
-  public String getSimulatorAnalysisId() {
-    return simulatorAnalysisId;
+  public String getRunTemplateId() {
+    return runTemplateId;
   }
 
 
-  public void setSimulatorAnalysisId(String simulatorAnalysisId) {
-    this.simulatorAnalysisId = simulatorAnalysisId;
+  public void setRunTemplateId(String runTemplateId) {
+    this.runTemplateId = runTemplateId;
   }
 
 
@@ -229,8 +229,8 @@ public class SimulationSearch {
       return false;
     }
     SimulationSearch simulationSearch = (SimulationSearch) o;
-    return Objects.equals(this.simulatorId, simulationSearch.simulatorId) &&
-        Objects.equals(this.simulatorAnalysisId, simulationSearch.simulatorAnalysisId) &&
+    return Objects.equals(this.solutionId, simulationSearch.solutionId) &&
+        Objects.equals(this.runTemplateId, simulationSearch.runTemplateId) &&
         Objects.equals(this.workspaceId, simulationSearch.workspaceId) &&
         Objects.equals(this.scenarioId, simulationSearch.scenarioId) &&
         Objects.equals(this.state, simulationSearch.state) &&
@@ -240,15 +240,15 @@ public class SimulationSearch {
 
   @Override
   public int hashCode() {
-    return Objects.hash(simulatorId, simulatorAnalysisId, workspaceId, scenarioId, state, jobId, ownerId);
+    return Objects.hash(solutionId, runTemplateId, workspaceId, scenarioId, state, jobId, ownerId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimulationSearch {\n");
-    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
-    sb.append("    simulatorAnalysisId: ").append(toIndentedString(simulatorAnalysisId)).append("\n");
+    sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
+    sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    workspaceId: ").append(toIndentedString(workspaceId)).append("\n");
     sb.append("    scenarioId: ").append(toIndentedString(scenarioId)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

@@ -14,7 +14,9 @@
 package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
+import java.io.File;
 import com.cosmotech.client.model.Workspace;
+import com.cosmotech.client.model.WorkspaceFile;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -113,6 +115,24 @@ public class WorkspaceApiTest {
         String workspaceId = null;
         Workspace workspace = null;
         Workspace response = api.updateWorkspace(organizationId, workspaceId, workspace);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Upload a file for the Workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void uploadWorkspaceFileTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        File fileName = null;
+        WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, fileName);
 
         // TODO: test validations
     }

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **credentials** | **Map&lt;String, Object&gt;** | a freeform credentials object for the Platform. Structure depends on cloud provider |  [optional]
 **storage** | [**PlatformService**](PlatformService.md) |  |  [optional]
 **coreContainerRegistry** | [**PlatformService**](PlatformService.md) |  |  [optional]
-**simulatorsContainerRegistry** | [**PlatformService**](PlatformService.md) |  |  [optional]
+**solutionsContainerRegistry** | [**PlatformService**](PlatformService.md) |  |  [optional]
 **eventBusCluster** | [**PlatformService**](PlatformService.md) |  |  [optional]
 **dataWarehouseCluster** | [**PlatformService**](PlatformService.md) |  |  [optional]
 **databaseCluster** | [**PlatformService**](PlatformService.md) |  |  [optional]

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **connector** | [**DatasetConnector**](DatasetConnector.md) |  | 
 **fragmentsIds** | **List&lt;String&gt;** | the list of other Datasets ids to compose as fragments |  [optional]
 **validatorId** | **String** | the validator id |  [optional]
-**compatibility** | [**List&lt;DatasetCompatibility&gt;**](DatasetCompatibility.md) | the list of compatible Simulators versions |  [optional]
+**compatibility** | [**List&lt;DatasetCompatibility&gt;**](DatasetCompatibility.md) | the list of compatible Solutions versions |  [optional]
 
 
 

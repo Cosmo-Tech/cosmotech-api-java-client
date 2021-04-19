@@ -31,7 +31,7 @@ import java.util.List;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class ScenarioBase {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -57,9 +57,13 @@ public class ScenarioBase {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
-  private String simulatorId;
+  public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
+  private String solutionId;
+
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_ID = "runTemplateId";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_ID)
+  private String runTemplateId;
 
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
@@ -194,17 +198,40 @@ public class ScenarioBase {
 
 
    /**
-   * the Simulator Id associated with this Scenario
-   * @return simulatorId
+   * the Solution Id associated with this Scenario
+   * @return solutionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Id associated with this Scenario")
+  @ApiModelProperty(value = "the Solution Id associated with this Scenario")
 
-  public String getSimulatorId() {
-    return simulatorId;
+  public String getSolutionId() {
+    return solutionId;
   }
 
 
+
+
+  public ScenarioBase runTemplateId(String runTemplateId) {
+    
+    this.runTemplateId = runTemplateId;
+    return this;
+  }
+
+   /**
+   * the Solution Run Template Id associated with this Scenario
+   * @return runTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Run Template Id associated with this Scenario")
+
+  public String getRunTemplateId() {
+    return runTemplateId;
+  }
+
+
+  public void setRunTemplateId(String runTemplateId) {
+    this.runTemplateId = runTemplateId;
+  }
 
 
   public ScenarioBase users(List<ScenarioUser> users) {
@@ -253,13 +280,14 @@ public class ScenarioBase {
         Objects.equals(this.tags, scenarioBase.tags) &&
         Objects.equals(this.parentId, scenarioBase.parentId) &&
         Objects.equals(this.ownerId, scenarioBase.ownerId) &&
-        Objects.equals(this.simulatorId, scenarioBase.simulatorId) &&
+        Objects.equals(this.solutionId, scenarioBase.solutionId) &&
+        Objects.equals(this.runTemplateId, scenarioBase.runTemplateId) &&
         Objects.equals(this.users, scenarioBase.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, simulatorId, users);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users);
   }
 
   @Override
@@ -272,7 +300,8 @@ public class ScenarioBase {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
+    sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
+    sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -16,8 +16,8 @@ package com.cosmotech.client.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.cosmotech.client.model.ScenarioAllOf;
-import com.cosmotech.client.model.ScenarioAnalysis;
 import com.cosmotech.client.model.ScenarioBase;
+import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Scenario
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,25 +59,33 @@ public class Scenario {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ID = "simulatorId";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ID)
-  private String simulatorId;
+  public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
+  private String solutionId;
+
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_ID = "runTemplateId";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_ID)
+  private String runTemplateId;
 
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
   private List<ScenarioUser> users = null;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_NAME = "simulatorName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_NAME)
-  private String simulatorName;
+  public static final String SERIALIZED_NAME_SOLUTION_NAME = "solutionName";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_NAME)
+  private String solutionName;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME = "simulatorAnalysisName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME)
-  private String simulatorAnalysisName;
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_NAME = "runTemplateName";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_NAME)
+  private String runTemplateName;
 
-  public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
-  @SerializedName(SERIALIZED_NAME_ANALYSIS)
-  private ScenarioAnalysis analysis;
+  public static final String SERIALIZED_NAME_DATASET_LIST = "datasetList";
+  @SerializedName(SERIALIZED_NAME_DATASET_LIST)
+  private List<String> datasetList = null;
+
+  public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
+  private List<ScenarioRunTemplateParameterValue> parametersValues = null;
 
   public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
   @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
@@ -212,17 +220,40 @@ public class Scenario {
 
 
    /**
-   * the Simulator Id associated with this Scenario
-   * @return simulatorId
+   * the Solution Id associated with this Scenario
+   * @return solutionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Simulator Id associated with this Scenario")
+  @ApiModelProperty(value = "the Solution Id associated with this Scenario")
 
-  public String getSimulatorId() {
-    return simulatorId;
+  public String getSolutionId() {
+    return solutionId;
   }
 
 
+
+
+  public Scenario runTemplateId(String runTemplateId) {
+    
+    this.runTemplateId = runTemplateId;
+    return this;
+  }
+
+   /**
+   * the Solution Run Template Id associated with this Scenario
+   * @return runTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Run Template Id associated with this Scenario")
+
+  public String getRunTemplateId() {
+    return runTemplateId;
+  }
+
+
+  public void setRunTemplateId(String runTemplateId) {
+    this.runTemplateId = runTemplateId;
+  }
 
 
   public Scenario users(List<ScenarioUser> users) {
@@ -256,72 +287,93 @@ public class Scenario {
   }
 
 
-  public Scenario simulatorName(String simulatorName) {
+   /**
+   * the Solution name
+   * @return solutionName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution name")
+
+  public String getSolutionName() {
+    return solutionName;
+  }
+
+
+
+
+   /**
+   * the Solution Run Template name associated with this Scenario
+   * @return runTemplateName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Run Template name associated with this Scenario")
+
+  public String getRunTemplateName() {
+    return runTemplateName;
+  }
+
+
+
+
+  public Scenario datasetList(List<String> datasetList) {
     
-    this.simulatorName = simulatorName;
+    this.datasetList = datasetList;
+    return this;
+  }
+
+  public Scenario addDatasetListItem(String datasetListItem) {
+    if (this.datasetList == null) {
+      this.datasetList = new ArrayList<String>();
+    }
+    this.datasetList.add(datasetListItem);
     return this;
   }
 
    /**
-   * Get simulatorName
-   * @return simulatorName
+   * the list of Dataset Id associated to this Scenario Run Template
+   * @return datasetList
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "the list of Dataset Id associated to this Scenario Run Template")
 
-  public String getSimulatorName() {
-    return simulatorName;
+  public List<String> getDatasetList() {
+    return datasetList;
   }
 
 
-  public void setSimulatorName(String simulatorName) {
-    this.simulatorName = simulatorName;
+  public void setDatasetList(List<String> datasetList) {
+    this.datasetList = datasetList;
   }
 
 
-  public Scenario simulatorAnalysisName(String simulatorAnalysisName) {
+  public Scenario parametersValues(List<ScenarioRunTemplateParameterValue> parametersValues) {
     
-    this.simulatorAnalysisName = simulatorAnalysisName;
+    this.parametersValues = parametersValues;
+    return this;
+  }
+
+  public Scenario addParametersValuesItem(ScenarioRunTemplateParameterValue parametersValuesItem) {
+    if (this.parametersValues == null) {
+      this.parametersValues = new ArrayList<ScenarioRunTemplateParameterValue>();
+    }
+    this.parametersValues.add(parametersValuesItem);
     return this;
   }
 
    /**
-   * Get simulatorAnalysisName
-   * @return simulatorAnalysisName
+   * the list of Solution Run Template parameters values
+   * @return parametersValues
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "the list of Solution Run Template parameters values")
 
-  public String getSimulatorAnalysisName() {
-    return simulatorAnalysisName;
+  public List<ScenarioRunTemplateParameterValue> getParametersValues() {
+    return parametersValues;
   }
 
 
-  public void setSimulatorAnalysisName(String simulatorAnalysisName) {
-    this.simulatorAnalysisName = simulatorAnalysisName;
-  }
-
-
-  public Scenario analysis(ScenarioAnalysis analysis) {
-    
-    this.analysis = analysis;
-    return this;
-  }
-
-   /**
-   * Get analysis
-   * @return analysis
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioAnalysis getAnalysis() {
-    return analysis;
-  }
-
-
-  public void setAnalysis(ScenarioAnalysis analysis) {
-    this.analysis = analysis;
+  public void setParametersValues(List<ScenarioRunTemplateParameterValue> parametersValues) {
+    this.parametersValues = parametersValues;
   }
 
 
@@ -332,11 +384,11 @@ public class Scenario {
   }
 
    /**
-   * default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
    * @return sendInputToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
 
   public Boolean getSendInputToDataWarehouse() {
     return sendInputToDataWarehouse;
@@ -363,17 +415,19 @@ public class Scenario {
         Objects.equals(this.tags, scenario.tags) &&
         Objects.equals(this.parentId, scenario.parentId) &&
         Objects.equals(this.ownerId, scenario.ownerId) &&
-        Objects.equals(this.simulatorId, scenario.simulatorId) &&
+        Objects.equals(this.solutionId, scenario.solutionId) &&
+        Objects.equals(this.runTemplateId, scenario.runTemplateId) &&
         Objects.equals(this.users, scenario.users) &&
-        Objects.equals(this.simulatorName, scenario.simulatorName) &&
-        Objects.equals(this.simulatorAnalysisName, scenario.simulatorAnalysisName) &&
-        Objects.equals(this.analysis, scenario.analysis) &&
+        Objects.equals(this.solutionName, scenario.solutionName) &&
+        Objects.equals(this.runTemplateName, scenario.runTemplateName) &&
+        Objects.equals(this.datasetList, scenario.datasetList) &&
+        Objects.equals(this.parametersValues, scenario.parametersValues) &&
         Objects.equals(this.sendInputToDataWarehouse, scenario.sendInputToDataWarehouse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, simulatorId, users, simulatorName, simulatorAnalysisName, analysis, sendInputToDataWarehouse);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users, solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
   }
 
   @Override
@@ -386,11 +440,13 @@ public class Scenario {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    simulatorId: ").append(toIndentedString(simulatorId)).append("\n");
+    sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
+    sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
-    sb.append("    simulatorName: ").append(toIndentedString(simulatorName)).append("\n");
-    sb.append("    simulatorAnalysisName: ").append(toIndentedString(simulatorAnalysisName)).append("\n");
-    sb.append("    analysis: ").append(toIndentedString(analysis)).append("\n");
+    sb.append("    solutionName: ").append(toIndentedString(solutionName)).append("\n");
+    sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
+    sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
+    sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
     sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();

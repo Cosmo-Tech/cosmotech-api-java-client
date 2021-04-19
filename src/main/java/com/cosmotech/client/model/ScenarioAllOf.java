@@ -15,7 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ScenarioAnalysis;
+import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,96 +24,123 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * a Scenario with detailed information
  */
 @ApiModel(description = "a Scenario with detailed information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class ScenarioAllOf {
-  public static final String SERIALIZED_NAME_SIMULATOR_NAME = "simulatorName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_NAME)
-  private String simulatorName;
+  public static final String SERIALIZED_NAME_SOLUTION_NAME = "solutionName";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_NAME)
+  private String solutionName;
 
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME = "simulatorAnalysisName";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_NAME)
-  private String simulatorAnalysisName;
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_NAME = "runTemplateName";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_NAME)
+  private String runTemplateName;
 
-  public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
-  @SerializedName(SERIALIZED_NAME_ANALYSIS)
-  private ScenarioAnalysis analysis;
+  public static final String SERIALIZED_NAME_DATASET_LIST = "datasetList";
+  @SerializedName(SERIALIZED_NAME_DATASET_LIST)
+  private List<String> datasetList = null;
+
+  public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
+  private List<ScenarioRunTemplateParameterValue> parametersValues = null;
 
   public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
   @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
   private Boolean sendInputToDataWarehouse;
 
 
-  public ScenarioAllOf simulatorName(String simulatorName) {
+   /**
+   * the Solution name
+   * @return solutionName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution name")
+
+  public String getSolutionName() {
+    return solutionName;
+  }
+
+
+
+
+   /**
+   * the Solution Run Template name associated with this Scenario
+   * @return runTemplateName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Run Template name associated with this Scenario")
+
+  public String getRunTemplateName() {
+    return runTemplateName;
+  }
+
+
+
+
+  public ScenarioAllOf datasetList(List<String> datasetList) {
     
-    this.simulatorName = simulatorName;
+    this.datasetList = datasetList;
+    return this;
+  }
+
+  public ScenarioAllOf addDatasetListItem(String datasetListItem) {
+    if (this.datasetList == null) {
+      this.datasetList = new ArrayList<String>();
+    }
+    this.datasetList.add(datasetListItem);
     return this;
   }
 
    /**
-   * Get simulatorName
-   * @return simulatorName
+   * the list of Dataset Id associated to this Scenario Run Template
+   * @return datasetList
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "the list of Dataset Id associated to this Scenario Run Template")
 
-  public String getSimulatorName() {
-    return simulatorName;
+  public List<String> getDatasetList() {
+    return datasetList;
   }
 
 
-  public void setSimulatorName(String simulatorName) {
-    this.simulatorName = simulatorName;
+  public void setDatasetList(List<String> datasetList) {
+    this.datasetList = datasetList;
   }
 
 
-  public ScenarioAllOf simulatorAnalysisName(String simulatorAnalysisName) {
+  public ScenarioAllOf parametersValues(List<ScenarioRunTemplateParameterValue> parametersValues) {
     
-    this.simulatorAnalysisName = simulatorAnalysisName;
+    this.parametersValues = parametersValues;
+    return this;
+  }
+
+  public ScenarioAllOf addParametersValuesItem(ScenarioRunTemplateParameterValue parametersValuesItem) {
+    if (this.parametersValues == null) {
+      this.parametersValues = new ArrayList<ScenarioRunTemplateParameterValue>();
+    }
+    this.parametersValues.add(parametersValuesItem);
     return this;
   }
 
    /**
-   * Get simulatorAnalysisName
-   * @return simulatorAnalysisName
+   * the list of Solution Run Template parameters values
+   * @return parametersValues
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "the list of Solution Run Template parameters values")
 
-  public String getSimulatorAnalysisName() {
-    return simulatorAnalysisName;
+  public List<ScenarioRunTemplateParameterValue> getParametersValues() {
+    return parametersValues;
   }
 
 
-  public void setSimulatorAnalysisName(String simulatorAnalysisName) {
-    this.simulatorAnalysisName = simulatorAnalysisName;
-  }
-
-
-  public ScenarioAllOf analysis(ScenarioAnalysis analysis) {
-    
-    this.analysis = analysis;
-    return this;
-  }
-
-   /**
-   * Get analysis
-   * @return analysis
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioAnalysis getAnalysis() {
-    return analysis;
-  }
-
-
-  public void setAnalysis(ScenarioAnalysis analysis) {
-    this.analysis = analysis;
+  public void setParametersValues(List<ScenarioRunTemplateParameterValue> parametersValues) {
+    this.parametersValues = parametersValues;
   }
 
 
@@ -124,11 +151,11 @@ public class ScenarioAllOf {
   }
 
    /**
-   * default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
    * @return sendInputToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "default setting for all Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
 
   public Boolean getSendInputToDataWarehouse() {
     return sendInputToDataWarehouse;
@@ -149,24 +176,26 @@ public class ScenarioAllOf {
       return false;
     }
     ScenarioAllOf scenarioAllOf = (ScenarioAllOf) o;
-    return Objects.equals(this.simulatorName, scenarioAllOf.simulatorName) &&
-        Objects.equals(this.simulatorAnalysisName, scenarioAllOf.simulatorAnalysisName) &&
-        Objects.equals(this.analysis, scenarioAllOf.analysis) &&
+    return Objects.equals(this.solutionName, scenarioAllOf.solutionName) &&
+        Objects.equals(this.runTemplateName, scenarioAllOf.runTemplateName) &&
+        Objects.equals(this.datasetList, scenarioAllOf.datasetList) &&
+        Objects.equals(this.parametersValues, scenarioAllOf.parametersValues) &&
         Objects.equals(this.sendInputToDataWarehouse, scenarioAllOf.sendInputToDataWarehouse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(simulatorName, simulatorAnalysisName, analysis, sendInputToDataWarehouse);
+    return Objects.hash(solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioAllOf {\n");
-    sb.append("    simulatorName: ").append(toIndentedString(simulatorName)).append("\n");
-    sb.append("    simulatorAnalysisName: ").append(toIndentedString(simulatorAnalysisName)).append("\n");
-    sb.append("    analysis: ").append(toIndentedString(analysis)).append("\n");
+    sb.append("    solutionName: ").append(toIndentedString(solutionName)).append("\n");
+    sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
+    sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
+    sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
     sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();

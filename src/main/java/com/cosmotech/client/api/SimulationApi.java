@@ -34,7 +34,7 @@ import com.cosmotech.client.model.SimulationLogsOptions;
 import com.cosmotech.client.model.SimulationSearch;
 import com.cosmotech.client.model.SimulationStartContainers;
 import com.cosmotech.client.model.SimulationStartScenario;
-import com.cosmotech.client.model.SimulationStartSimulator;
+import com.cosmotech.client.model.SimulationStartSolution;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1506,9 +1506,9 @@ public class SimulationApi {
         return localVarCall;
     }
     /**
-     * Build call for startSimulationSimulator
+     * Build call for startSimulationSolution
      * @param organizationId the Organization identifier (required)
-     * @param simulationStartSimulator the Simulator Analysis information to start (required)
+     * @param simulationStartSolution the Solution Run Template information to start (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1520,11 +1520,11 @@ public class SimulationApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call startSimulationSimulatorCall(String organizationId, SimulationStartSimulator simulationStartSimulator, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = simulationStartSimulator;
+    public okhttp3.Call startSimulationSolutionCall(String organizationId, SimulationStartSolution simulationStartSolution, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = simulationStartSolution;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/simulations/startsimulator"
+        String localVarPath = "/organizations/{organization_id}/simulations/startsolution"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1552,29 +1552,29 @@ public class SimulationApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call startSimulationSimulatorValidateBeforeCall(String organizationId, SimulationStartSimulator simulationStartSimulator, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call startSimulationSolutionValidateBeforeCall(String organizationId, SimulationStartSolution simulationStartSolution, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling startSimulationSimulator(Async)");
+            throw new ApiException("Missing the required parameter 'organizationId' when calling startSimulationSolution(Async)");
         }
         
-        // verify the required parameter 'simulationStartSimulator' is set
-        if (simulationStartSimulator == null) {
-            throw new ApiException("Missing the required parameter 'simulationStartSimulator' when calling startSimulationSimulator(Async)");
+        // verify the required parameter 'simulationStartSolution' is set
+        if (simulationStartSolution == null) {
+            throw new ApiException("Missing the required parameter 'simulationStartSolution' when calling startSimulationSolution(Async)");
         }
         
 
-        okhttp3.Call localVarCall = startSimulationSimulatorCall(organizationId, simulationStartSimulator, _callback);
+        okhttp3.Call localVarCall = startSimulationSolutionCall(organizationId, simulationStartSolution, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Start a new simulation for a Simulator Analysis
+     * Start a new simulation for a Solution Run Template
      * 
      * @param organizationId the Organization identifier (required)
-     * @param simulationStartSimulator the Simulator Analysis information to start (required)
+     * @param simulationStartSolution the Solution Run Template information to start (required)
      * @return Simulation
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1585,16 +1585,16 @@ public class SimulationApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Simulation startSimulationSimulator(String organizationId, SimulationStartSimulator simulationStartSimulator) throws ApiException {
-        ApiResponse<Simulation> localVarResp = startSimulationSimulatorWithHttpInfo(organizationId, simulationStartSimulator);
+    public Simulation startSimulationSolution(String organizationId, SimulationStartSolution simulationStartSolution) throws ApiException {
+        ApiResponse<Simulation> localVarResp = startSimulationSolutionWithHttpInfo(organizationId, simulationStartSolution);
         return localVarResp.getData();
     }
 
     /**
-     * Start a new simulation for a Simulator Analysis
+     * Start a new simulation for a Solution Run Template
      * 
      * @param organizationId the Organization identifier (required)
-     * @param simulationStartSimulator the Simulator Analysis information to start (required)
+     * @param simulationStartSolution the Solution Run Template information to start (required)
      * @return ApiResponse&lt;Simulation&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1605,17 +1605,17 @@ public class SimulationApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Simulation> startSimulationSimulatorWithHttpInfo(String organizationId, SimulationStartSimulator simulationStartSimulator) throws ApiException {
-        okhttp3.Call localVarCall = startSimulationSimulatorValidateBeforeCall(organizationId, simulationStartSimulator, null);
+    public ApiResponse<Simulation> startSimulationSolutionWithHttpInfo(String organizationId, SimulationStartSolution simulationStartSolution) throws ApiException {
+        okhttp3.Call localVarCall = startSimulationSolutionValidateBeforeCall(organizationId, simulationStartSolution, null);
         Type localVarReturnType = new TypeToken<Simulation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Start a new simulation for a Simulator Analysis (asynchronously)
+     * Start a new simulation for a Solution Run Template (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
-     * @param simulationStartSimulator the Simulator Analysis information to start (required)
+     * @param simulationStartSolution the Solution Run Template information to start (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1627,9 +1627,9 @@ public class SimulationApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call startSimulationSimulatorAsync(String organizationId, SimulationStartSimulator simulationStartSimulator, final ApiCallback<Simulation> _callback) throws ApiException {
+    public okhttp3.Call startSimulationSolutionAsync(String organizationId, SimulationStartSolution simulationStartSolution, final ApiCallback<Simulation> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = startSimulationSimulatorValidateBeforeCall(organizationId, simulationStartSimulator, _callback);
+        okhttp3.Call localVarCall = startSimulationSolutionValidateBeforeCall(organizationId, simulationStartSolution, _callback);
         Type localVarReturnType = new TypeToken<Simulation>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

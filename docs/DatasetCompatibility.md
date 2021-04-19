@@ -2,15 +2,15 @@
 
 # DatasetCompatibility
 
-a Dataset compatibility constraint to a Simulator version open range
+a Dataset compatibility constraint to a Solution version open range
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**simulatorKey** | **String** | the Simulator key which group Simulator versions | 
-**minimumVersion** | **String** | the Simulator minimum version compatibility (version included) |  [optional]
-**maximumVersion** | **String** | the Simulator maximum version compatibility (version included) |  [optional]
+**solutionKey** | **String** | the Solution key which group Solution versions | 
+**minimumVersion** | **String** | the Solution minimum version compatibility (version included) |  [optional]
+**maximumVersion** | **String** | the Solution maximum version compatibility (version included) |  [optional]
 
 
 

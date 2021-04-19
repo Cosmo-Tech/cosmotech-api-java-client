@@ -27,7 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import java.io.File;
 import com.cosmotech.client.model.Workspace;
+import com.cosmotech.client.model.WorkspaceFile;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -306,6 +308,271 @@ public class WorkspaceApi {
 
         okhttp3.Call localVarCall = deleteWorkspaceValidateBeforeCall(organizationId, workspaceId, _callback);
         Type localVarReturnType = new TypeToken<Workspace>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteWorkspaceFile
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceFile the file to upload (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWorkspaceFileCall(String organizationId, String workspaceId, WorkspaceFile workspaceFile, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = workspaceFile;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, WorkspaceFile workspaceFile, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling deleteWorkspaceFile(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling deleteWorkspaceFile(Async)");
+        }
+        
+        // verify the required parameter 'workspaceFile' is set
+        if (workspaceFile == null) {
+            throw new ApiException("Missing the required parameter 'workspaceFile' when calling deleteWorkspaceFile(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = deleteWorkspaceFileCall(organizationId, workspaceId, workspaceFile, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Delete a workspace file
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceFile the file to upload (required)
+     * @return WorkspaceFile
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public WorkspaceFile deleteWorkspaceFile(String organizationId, String workspaceId, WorkspaceFile workspaceFile) throws ApiException {
+        ApiResponse<WorkspaceFile> localVarResp = deleteWorkspaceFileWithHttpInfo(organizationId, workspaceId, workspaceFile);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete a workspace file
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceFile the file to upload (required)
+     * @return ApiResponse&lt;WorkspaceFile&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WorkspaceFile> deleteWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, WorkspaceFile workspaceFile) throws ApiException {
+        okhttp3.Call localVarCall = deleteWorkspaceFileValidateBeforeCall(organizationId, workspaceId, workspaceFile, null);
+        Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete a workspace file (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceFile the file to upload (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWorkspaceFileAsync(String organizationId, String workspaceId, WorkspaceFile workspaceFile, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteWorkspaceFileValidateBeforeCall(organizationId, workspaceId, workspaceFile, _callback);
+        Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for findAllWorkspaceFiles
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the workspace files </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call findAllWorkspaceFilesCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call findAllWorkspaceFilesValidateBeforeCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling findAllWorkspaceFiles(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling findAllWorkspaceFiles(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = findAllWorkspaceFilesCall(organizationId, workspaceId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * List all Workspace files
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @return List&lt;WorkspaceFile&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the workspace files </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<WorkspaceFile> findAllWorkspaceFiles(String organizationId, String workspaceId) throws ApiException {
+        ApiResponse<List<WorkspaceFile>> localVarResp = findAllWorkspaceFilesWithHttpInfo(organizationId, workspaceId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List all Workspace files
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @return ApiResponse&lt;List&lt;WorkspaceFile&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the workspace files </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<WorkspaceFile>> findAllWorkspaceFilesWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+        okhttp3.Call localVarCall = findAllWorkspaceFilesValidateBeforeCall(organizationId, workspaceId, null);
+        Type localVarReturnType = new TypeToken<List<WorkspaceFile>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List all Workspace files (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the workspace files </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call findAllWorkspaceFilesAsync(String organizationId, String workspaceId, final ApiCallback<List<WorkspaceFile>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = findAllWorkspaceFilesValidateBeforeCall(organizationId, workspaceId, _callback);
+        Type localVarReturnType = new TypeToken<List<WorkspaceFile>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -683,6 +950,140 @@ public class WorkspaceApi {
 
         okhttp3.Call localVarCall = updateWorkspaceValidateBeforeCall(organizationId, workspaceId, workspace, _callback);
         Type localVarReturnType = new TypeToken<Workspace>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for uploadWorkspaceFile
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param fileName  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call uploadWorkspaceFileCall(String organizationId, String workspaceId, File fileName, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fileName != null) {
+            localVarFormParams.put("fileName", fileName);
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call uploadWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, File fileName, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling uploadWorkspaceFile(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling uploadWorkspaceFile(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = uploadWorkspaceFileCall(organizationId, workspaceId, fileName, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Upload a file for the Workspace
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param fileName  (optional)
+     * @return WorkspaceFile
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+     </table>
+     */
+    public WorkspaceFile uploadWorkspaceFile(String organizationId, String workspaceId, File fileName) throws ApiException {
+        ApiResponse<WorkspaceFile> localVarResp = uploadWorkspaceFileWithHttpInfo(organizationId, workspaceId, fileName);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Upload a file for the Workspace
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param fileName  (optional)
+     * @return ApiResponse&lt;WorkspaceFile&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WorkspaceFile> uploadWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, File fileName) throws ApiException {
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, fileName, null);
+        Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Upload a file for the Workspace (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param fileName  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the file resource details </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call uploadWorkspaceFileAsync(String organizationId, String workspaceId, File fileName, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, fileName, _callback);
+        Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

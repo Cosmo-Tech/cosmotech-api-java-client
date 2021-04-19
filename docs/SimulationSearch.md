@@ -8,8 +8,8 @@ the search options
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**simulatorId** | **String** | the Simulator Id to search |  [optional]
-**simulatorAnalysisId** | **String** | the Simulator Analysis Id to search |  [optional]
+**solutionId** | **String** | the Solution Id to search |  [optional]
+**runTemplateId** | **String** | the Solution Analysis Id to search |  [optional]
 **workspaceId** | **String** | the Workspace Id to search |  [optional]
 **scenarioId** | **String** | the Scenario Id to search |  [optional]
 **state** | **String** | the state to search |  [optional]

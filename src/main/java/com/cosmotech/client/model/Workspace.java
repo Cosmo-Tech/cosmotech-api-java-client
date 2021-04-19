@@ -16,7 +16,7 @@ package com.cosmotech.client.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.cosmotech.client.model.WorkspaceServices;
-import com.cosmotech.client.model.WorkspaceSimulator;
+import com.cosmotech.client.model.WorkspaceSolution;
 import com.cosmotech.client.model.WorkspaceUser;
 import com.cosmotech.client.model.WorkspaceWebApp;
 import com.google.gson.TypeAdapter;
@@ -34,7 +34,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -60,13 +60,9 @@ public class Workspace {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_SIMULATOR = "simulator";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR)
-  private WorkspaceSimulator simulator;
-
-  public static final String SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER = "simulatorAnalysisFilter";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR_ANALYSIS_FILTER)
-  private List<String> simulatorAnalysisFilter = null;
+  public static final String SERIALIZED_NAME_SOLUTION = "solution";
+  @SerializedName(SERIALIZED_NAME_SOLUTION)
+  private WorkspaceSolution solution;
 
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
@@ -212,56 +208,25 @@ public class Workspace {
 
 
 
-  public Workspace simulator(WorkspaceSimulator simulator) {
+  public Workspace solution(WorkspaceSolution solution) {
     
-    this.simulator = simulator;
+    this.solution = solution;
     return this;
   }
 
    /**
-   * Get simulator
-   * @return simulator
+   * Get solution
+   * @return solution
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public WorkspaceSimulator getSimulator() {
-    return simulator;
+  public WorkspaceSolution getSolution() {
+    return solution;
   }
 
 
-  public void setSimulator(WorkspaceSimulator simulator) {
-    this.simulator = simulator;
-  }
-
-
-  public Workspace simulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
-    
-    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
-    return this;
-  }
-
-  public Workspace addSimulatorAnalysisFilterItem(String simulatorAnalysisFilterItem) {
-    if (this.simulatorAnalysisFilter == null) {
-      this.simulatorAnalysisFilter = new ArrayList<String>();
-    }
-    this.simulatorAnalysisFilter.add(simulatorAnalysisFilterItem);
-    return this;
-  }
-
-   /**
-   * a filter list of available Simulator Analysis
-   * @return simulatorAnalysisFilter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "a filter list of available Simulator Analysis")
-
-  public List<String> getSimulatorAnalysisFilter() {
-    return simulatorAnalysisFilter;
-  }
-
-
-  public void setSimulatorAnalysisFilter(List<String> simulatorAnalysisFilter) {
-    this.simulatorAnalysisFilter = simulatorAnalysisFilter;
+  public void setSolution(WorkspaceSolution solution) {
+    this.solution = solution;
   }
 
 
@@ -349,11 +314,11 @@ public class Workspace {
   }
 
    /**
-   * default setting for all Scenarios and Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
    * @return sendInputToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "default setting for all Scenarios and Analysis to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+  @ApiModelProperty(value = "default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
 
   public Boolean getSendInputToDataWarehouse() {
     return sendInputToDataWarehouse;
@@ -380,8 +345,7 @@ public class Workspace {
         Objects.equals(this.version, workspace.version) &&
         Objects.equals(this.tags, workspace.tags) &&
         Objects.equals(this.ownerId, workspace.ownerId) &&
-        Objects.equals(this.simulator, workspace.simulator) &&
-        Objects.equals(this.simulatorAnalysisFilter, workspace.simulatorAnalysisFilter) &&
+        Objects.equals(this.solution, workspace.solution) &&
         Objects.equals(this.users, workspace.users) &&
         Objects.equals(this.webApp, workspace.webApp) &&
         Objects.equals(this.services, workspace.services) &&
@@ -390,7 +354,7 @@ public class Workspace {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, version, tags, ownerId, simulator, simulatorAnalysisFilter, users, webApp, services, sendInputToDataWarehouse);
+    return Objects.hash(id, name, description, version, tags, ownerId, solution, users, webApp, services, sendInputToDataWarehouse);
   }
 
   @Override
@@ -403,8 +367,7 @@ public class Workspace {
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    simulator: ").append(toIndentedString(simulator)).append("\n");
-    sb.append("    simulatorAnalysisFilter: ").append(toIndentedString(simulatorAnalysisFilter)).append("\n");
+    sb.append("    solution: ").append(toIndentedString(solution)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
     sb.append("    services: ").append(toIndentedString(services)).append("\n");

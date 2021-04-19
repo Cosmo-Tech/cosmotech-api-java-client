@@ -32,7 +32,7 @@ import java.util.List;
  * a Dataset
  */
 @ApiModel(description = "a Dataset")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class Dataset {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -266,11 +266,11 @@ public class Dataset {
   }
 
    /**
-   * the list of compatible Simulators versions
+   * the list of compatible Solutions versions
    * @return compatibility
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of compatible Simulators versions")
+  @ApiModelProperty(value = "the list of compatible Solutions versions")
 
   public List<DatasetCompatibility> getCompatibility() {
     return compatibility;

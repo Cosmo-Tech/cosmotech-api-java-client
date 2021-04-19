@@ -15,7 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.SimulationAnalysisParameterValue;
+import com.cosmotech.client.model.RunTemplateParameterValue;
 import com.cosmotech.client.model.SimulationContainers;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -32,7 +32,7 @@ import java.util.List;
  * a Simulation
  */
 @ApiModel(description = "a Simulation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-16T16:41:35.745089+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:15:10.143751+02:00[Europe/Paris]")
 public class SimulationAllOf {
   public static final String SERIALIZED_NAME_DATASET_LIST = "datasetList";
   @SerializedName(SERIALIZED_NAME_DATASET_LIST)
@@ -40,7 +40,7 @@ public class SimulationAllOf {
 
   public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
-  private List<SimulationAnalysisParameterValue> parametersValues = null;
+  private List<RunTemplateParameterValue> parametersValues = null;
 
   public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
   @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
@@ -86,13 +86,13 @@ public class SimulationAllOf {
 
 
    /**
-   * the list of Simulator Analysis parameters values
+   * the list of Run Template parameters values
    * @return parametersValues
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of Simulator Analysis parameters values")
+  @ApiModelProperty(value = "the list of Run Template parameters values")
 
-  public List<SimulationAnalysisParameterValue> getParametersValues() {
+  public List<RunTemplateParameterValue> getParametersValues() {
     return parametersValues;
   }
 
