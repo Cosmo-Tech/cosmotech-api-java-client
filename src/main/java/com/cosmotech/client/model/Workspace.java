@@ -34,7 +34,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -314,11 +314,11 @@ public class Workspace {
   }
 
    /**
-   * default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to the ScenarioRun
    * @return sendInputToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+  @ApiModelProperty(value = "default setting for all Scenarios and Run Templates to set whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to the ScenarioRun")
 
   public Boolean getSendInputToDataWarehouse() {
     return sendInputToDataWarehouse;

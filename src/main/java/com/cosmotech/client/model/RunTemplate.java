@@ -32,7 +32,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -46,13 +46,13 @@ public class RunTemplate {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_IS_STANDARD_SIMULATOR = "isStandardSimulator";
-  @SerializedName(SERIALIZED_NAME_IS_STANDARD_SIMULATOR)
-  private Boolean isStandardSimulator;
+  public static final String SERIALIZED_NAME_USE_DIRECT_CSM_SIMULATOR = "useDirectCsmSimulator";
+  @SerializedName(SERIALIZED_NAME_USE_DIRECT_CSM_SIMULATOR)
+  private Boolean useDirectCsmSimulator;
 
-  public static final String SERIALIZED_NAME_SIMULATION = "simulation";
-  @SerializedName(SERIALIZED_NAME_SIMULATION)
-  private String simulation;
+  public static final String SERIALIZED_NAME_CSM_SIMULATION = "csmSimulation";
+  @SerializedName(SERIALIZED_NAME_CSM_SIMULATION)
+  private String csmSimulation;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -70,9 +70,9 @@ public class RunTemplate {
   @SerializedName(SERIALIZED_NAME_DATASET_VALIDATOR_RESOURCE)
   private RunTemplateResourceStorage datasetValidatorResource;
 
-  public static final String SERIALIZED_NAME_CUSTOM_SIMULATOR_RESOURCE = "customSimulatorResource";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_SIMULATOR_RESOURCE)
-  private RunTemplateResourceStorage customSimulatorResource;
+  public static final String SERIALIZED_NAME_ENGINE_RESOURCE = "engineResource";
+  @SerializedName(SERIALIZED_NAME_ENGINE_RESOURCE)
+  private RunTemplateResourceStorage engineResource;
 
   public static final String SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE = "datasetSchemaResource";
   @SerializedName(SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE)
@@ -151,39 +151,39 @@ public class RunTemplate {
 
 
    /**
-   * whether or not the Run Template use the main standard Simulator directly. False if there is a Custom Simulator set
-   * @return isStandardSimulator
+   * whether or not the Run Template use the main standard csmSimulator directly. False if there is an Engine set
+   * @return useDirectCsmSimulator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether or not the Run Template use the main standard Simulator directly. False if there is a Custom Simulator set")
+  @ApiModelProperty(value = "whether or not the Run Template use the main standard csmSimulator directly. False if there is an Engine set")
 
-  public Boolean getIsStandardSimulator() {
-    return isStandardSimulator;
+  public Boolean getUseDirectCsmSimulator() {
+    return useDirectCsmSimulator;
   }
 
 
 
 
-  public RunTemplate simulation(String simulation) {
+  public RunTemplate csmSimulation(String csmSimulation) {
     
-    this.simulation = simulation;
+    this.csmSimulation = csmSimulation;
     return this;
   }
 
    /**
-   * the simulation name. This information is send to the Simulator
-   * @return simulation
+   * the Cosmo Tech simulation name. This information is send to the Engine. Mandatory information if no Engine is defined
+   * @return csmSimulation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the simulation name. This information is send to the Simulator")
+  @ApiModelProperty(value = "the Cosmo Tech simulation name. This information is send to the Engine. Mandatory information if no Engine is defined")
 
-  public String getSimulation() {
-    return simulation;
+  public String getCsmSimulation() {
+    return csmSimulation;
   }
 
 
-  public void setSimulation(String simulation) {
-    this.simulation = simulation;
+  public void setCsmSimulation(String csmSimulation) {
+    this.csmSimulation = csmSimulation;
   }
 
 
@@ -287,26 +287,26 @@ public class RunTemplate {
   }
 
 
-  public RunTemplate customSimulatorResource(RunTemplateResourceStorage customSimulatorResource) {
+  public RunTemplate engineResource(RunTemplateResourceStorage engineResource) {
     
-    this.customSimulatorResource = customSimulatorResource;
+    this.engineResource = engineResource;
     return this;
   }
 
    /**
-   * Get customSimulatorResource
-   * @return customSimulatorResource
+   * Get engineResource
+   * @return engineResource
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public RunTemplateResourceStorage getCustomSimulatorResource() {
-    return customSimulatorResource;
+  public RunTemplateResourceStorage getEngineResource() {
+    return engineResource;
   }
 
 
-  public void setCustomSimulatorResource(RunTemplateResourceStorage customSimulatorResource) {
-    this.customSimulatorResource = customSimulatorResource;
+  public void setEngineResource(RunTemplateResourceStorage engineResource) {
+    this.engineResource = engineResource;
   }
 
 
@@ -376,20 +376,20 @@ public class RunTemplate {
     return Objects.equals(this.id, runTemplate.id) &&
         Objects.equals(this.name, runTemplate.name) &&
         Objects.equals(this.description, runTemplate.description) &&
-        Objects.equals(this.isStandardSimulator, runTemplate.isStandardSimulator) &&
-        Objects.equals(this.simulation, runTemplate.simulation) &&
+        Objects.equals(this.useDirectCsmSimulator, runTemplate.useDirectCsmSimulator) &&
+        Objects.equals(this.csmSimulation, runTemplate.csmSimulation) &&
         Objects.equals(this.tags, runTemplate.tags) &&
         Objects.equals(this.computeSize, runTemplate.computeSize) &&
         Objects.equals(this.parametersHandlerResource, runTemplate.parametersHandlerResource) &&
         Objects.equals(this.datasetValidatorResource, runTemplate.datasetValidatorResource) &&
-        Objects.equals(this.customSimulatorResource, runTemplate.customSimulatorResource) &&
+        Objects.equals(this.engineResource, runTemplate.engineResource) &&
         Objects.equals(this.datasetSchemaResource, runTemplate.datasetSchemaResource) &&
         Objects.equals(this.parameterGroups, runTemplate.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, isStandardSimulator, simulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, customSimulatorResource, datasetSchemaResource, parameterGroups);
+    return Objects.hash(id, name, description, useDirectCsmSimulator, csmSimulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, engineResource, datasetSchemaResource, parameterGroups);
   }
 
   @Override
@@ -399,13 +399,13 @@ public class RunTemplate {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    isStandardSimulator: ").append(toIndentedString(isStandardSimulator)).append("\n");
-    sb.append("    simulation: ").append(toIndentedString(simulation)).append("\n");
+    sb.append("    useDirectCsmSimulator: ").append(toIndentedString(useDirectCsmSimulator)).append("\n");
+    sb.append("    csmSimulation: ").append(toIndentedString(csmSimulation)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
     sb.append("    parametersHandlerResource: ").append(toIndentedString(parametersHandlerResource)).append("\n");
     sb.append("    datasetValidatorResource: ").append(toIndentedString(datasetValidatorResource)).append("\n");
-    sb.append("    customSimulatorResource: ").append(toIndentedString(customSimulatorResource)).append("\n");
+    sb.append("    engineResource: ").append(toIndentedString(engineResource)).append("\n");
     sb.append("    datasetSchemaResource: ").append(toIndentedString(datasetSchemaResource)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");

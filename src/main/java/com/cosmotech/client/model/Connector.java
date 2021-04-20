@@ -31,15 +31,15 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_CONNECTOR_KEY = "connectorKey";
-  @SerializedName(SERIALIZED_NAME_CONNECTOR_KEY)
-  private String connectorKey;
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -139,25 +139,25 @@ public class Connector {
 
 
 
-  public Connector connectorKey(String connectorKey) {
+  public Connector key(String key) {
     
-    this.connectorKey = connectorKey;
+    this.key = key;
     return this;
   }
 
    /**
    * the Connector key which group Connector versions
-   * @return connectorKey
+   * @return key
   **/
   @ApiModelProperty(required = true, value = "the Connector key which group Connector versions")
 
-  public String getConnectorKey() {
-    return connectorKey;
+  public String getKey() {
+    return key;
   }
 
 
-  public void setConnectorKey(String connectorKey) {
-    this.connectorKey = connectorKey;
+  public void setKey(String key) {
+    this.key = key;
   }
 
 
@@ -386,7 +386,7 @@ public class Connector {
     }
     Connector connector = (Connector) o;
     return Objects.equals(this.id, connector.id) &&
-        Objects.equals(this.connectorKey, connector.connectorKey) &&
+        Objects.equals(this.key, connector.key) &&
         Objects.equals(this.name, connector.name) &&
         Objects.equals(this.description, connector.description) &&
         Objects.equals(this.repository, connector.repository) &&
@@ -400,7 +400,7 @@ public class Connector {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, connectorKey, name, description, repository, version, tags, ownerId, url, ioTypes, parameterGroups);
+    return Objects.hash(id, key, name, description, repository, version, tags, ownerId, url, ioTypes, parameterGroups);
   }
 
   @Override
@@ -408,7 +408,7 @@ public class Connector {
     StringBuilder sb = new StringBuilder();
     sb.append("class Connector {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    connectorKey: ").append(toIndentedString(connectorKey)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    repository: ").append(toIndentedString(repository)).append("\n");

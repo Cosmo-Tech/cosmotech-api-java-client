@@ -32,7 +32,7 @@ import java.util.Map;
  * the list of Platform services
  */
 @ApiModel(description = "the list of Platform services")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class PlatformServices {
   /**
    * the Cloud Provider for the services

@@ -18,7 +18,7 @@ import com.cosmotech.client.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class OAuth implements Authentication {
   private String accessToken;
 

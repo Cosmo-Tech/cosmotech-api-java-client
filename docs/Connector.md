@@ -9,7 +9,7 @@ a version of a Connector
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the Connector version unique identifier |  [optional] [readonly]
-**connectorKey** | **String** | the Connector key which group Connector versions | 
+**key** | **String** | the Connector key which group Connector versions | 
 **name** | **String** | the Connector name | 
 **description** | **String** | the Connector description |  [optional]
 **repository** | **String** | the registry repository containing the image | 

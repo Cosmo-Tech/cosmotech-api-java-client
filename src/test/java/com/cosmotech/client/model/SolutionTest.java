@@ -52,11 +52,11 @@ public class SolutionTest {
     }
 
     /**
-     * Test the property 'solutionKey'
+     * Test the property 'key'
      */
     @Test
-    public void solutionKeyTest() {
-        // TODO: test solutionKey
+    public void keyTest() {
+        // TODO: test key
     }
 
     /**
@@ -84,11 +84,11 @@ public class SolutionTest {
     }
 
     /**
-     * Test the property 'simulator'
+     * Test the property 'csmSimulator'
      */
     @Test
-    public void simulatorTest() {
-        // TODO: test simulator
+    public void csmSimulatorTest() {
+        // TODO: test csmSimulator
     }
 
     /**

@@ -31,15 +31,15 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_SOLUTION_KEY = "solutionKey";
-  @SerializedName(SERIALIZED_NAME_SOLUTION_KEY)
-  private String solutionKey;
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -53,9 +53,9 @@ public class Solution {
   @SerializedName(SERIALIZED_NAME_REPOSITORY)
   private String repository;
 
-  public static final String SERIALIZED_NAME_SIMULATOR = "simulator";
-  @SerializedName(SERIALIZED_NAME_SIMULATOR)
-  private String simulator;
+  public static final String SERIALIZED_NAME_CSM_SIMULATOR = "csmSimulator";
+  @SerializedName(SERIALIZED_NAME_CSM_SIMULATOR)
+  private String csmSimulator;
 
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
@@ -92,25 +92,25 @@ public class Solution {
 
 
 
-  public Solution solutionKey(String solutionKey) {
+  public Solution key(String key) {
     
-    this.solutionKey = solutionKey;
+    this.key = key;
     return this;
   }
 
    /**
    * the Solution key which group Solution versions
-   * @return solutionKey
+   * @return key
   **/
   @ApiModelProperty(required = true, value = "the Solution key which group Solution versions")
 
-  public String getSolutionKey() {
-    return solutionKey;
+  public String getKey() {
+    return key;
   }
 
 
-  public void setSolutionKey(String solutionKey) {
-    this.solutionKey = solutionKey;
+  public void setKey(String key) {
+    this.key = key;
   }
 
 
@@ -181,26 +181,26 @@ public class Solution {
   }
 
 
-  public Solution simulator(String simulator) {
+  public Solution csmSimulator(String csmSimulator) {
     
-    this.simulator = simulator;
+    this.csmSimulator = csmSimulator;
     return this;
   }
 
    /**
-   * the main simulator name used in standard Run Template
-   * @return simulator
+   * the main Cosmo Tech simulator name used in standard Run Template
+   * @return csmSimulator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the main simulator name used in standard Run Template")
+  @ApiModelProperty(value = "the main Cosmo Tech simulator name used in standard Run Template")
 
-  public String getSimulator() {
-    return simulator;
+  public String getCsmSimulator() {
+    return csmSimulator;
   }
 
 
-  public void setSimulator(String simulator) {
-    this.simulator = simulator;
+  public void setCsmSimulator(String csmSimulator) {
+    this.csmSimulator = csmSimulator;
   }
 
 
@@ -335,11 +335,11 @@ public class Solution {
     }
     Solution solution = (Solution) o;
     return Objects.equals(this.id, solution.id) &&
-        Objects.equals(this.solutionKey, solution.solutionKey) &&
+        Objects.equals(this.key, solution.key) &&
         Objects.equals(this.name, solution.name) &&
         Objects.equals(this.description, solution.description) &&
         Objects.equals(this.repository, solution.repository) &&
-        Objects.equals(this.simulator, solution.simulator) &&
+        Objects.equals(this.csmSimulator, solution.csmSimulator) &&
         Objects.equals(this.version, solution.version) &&
         Objects.equals(this.ownerId, solution.ownerId) &&
         Objects.equals(this.url, solution.url) &&
@@ -349,7 +349,7 @@ public class Solution {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, solutionKey, name, description, repository, simulator, version, ownerId, url, tags, runTemplates);
+    return Objects.hash(id, key, name, description, repository, csmSimulator, version, ownerId, url, tags, runTemplates);
   }
 
   @Override
@@ -357,11 +357,11 @@ public class Solution {
     StringBuilder sb = new StringBuilder();
     sb.append("class Solution {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    solutionKey: ").append(toIndentedString(solutionKey)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    repository: ").append(toIndentedString(repository)).append("\n");
-    sb.append("    simulator: ").append(toIndentedString(simulator)).append("\n");
+    sb.append("    csmSimulator: ").append(toIndentedString(csmSimulator)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");

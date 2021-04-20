@@ -61,11 +61,11 @@ public class WorkspaceServicesTest {
     }
 
     /**
-     * Test the property 'simulationEventBus'
+     * Test the property 'scenariorunEventBus'
      */
     @Test
-    public void simulationEventBusTest() {
-        // TODO: test simulationEventBus
+    public void scenariorunEventBusTest() {
+        // TODO: test scenariorunEventBus
     }
 
     /**

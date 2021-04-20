@@ -69,19 +69,19 @@ public class RunTemplateTest {
     }
 
     /**
-     * Test the property 'isStandardSimulator'
+     * Test the property 'useDirectCsmSimulator'
      */
     @Test
-    public void isStandardSimulatorTest() {
-        // TODO: test isStandardSimulator
+    public void useDirectCsmSimulatorTest() {
+        // TODO: test useDirectCsmSimulator
     }
 
     /**
-     * Test the property 'simulation'
+     * Test the property 'csmSimulation'
      */
     @Test
-    public void simulationTest() {
-        // TODO: test simulation
+    public void csmSimulationTest() {
+        // TODO: test csmSimulation
     }
 
     /**
@@ -117,11 +117,11 @@ public class RunTemplateTest {
     }
 
     /**
-     * Test the property 'customSimulatorResource'
+     * Test the property 'engineResource'
      */
     @Test
-    public void customSimulatorResourceTest() {
-        // TODO: test customSimulatorResource
+    public void engineResourceTest() {
+        // TODO: test engineResource
     }
 
     /**

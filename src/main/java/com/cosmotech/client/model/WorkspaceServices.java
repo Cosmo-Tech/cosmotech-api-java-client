@@ -32,7 +32,7 @@ import java.util.Map;
  * the cloud service resources of the Workspace
  */
 @ApiModel(description = "the cloud service resources of the Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-19T18:57:39.320413+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:14:52.699718+02:00[Europe/Paris]")
 public class WorkspaceServices {
   public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
   @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)
@@ -42,9 +42,9 @@ public class WorkspaceServices {
   @SerializedName(SERIALIZED_NAME_RESULTS_EVENT_BUS)
   private WorkspaceService resultsEventBus;
 
-  public static final String SERIALIZED_NAME_SIMULATION_EVENT_BUS = "simulationEventBus";
-  @SerializedName(SERIALIZED_NAME_SIMULATION_EVENT_BUS)
-  private WorkspaceService simulationEventBus;
+  public static final String SERIALIZED_NAME_SCENARIORUN_EVENT_BUS = "scenariorunEventBus";
+  @SerializedName(SERIALIZED_NAME_SCENARIORUN_EVENT_BUS)
+  private WorkspaceService scenariorunEventBus;
 
   public static final String SERIALIZED_NAME_DATA_WAREHOUSE = "dataWarehouse";
   @SerializedName(SERIALIZED_NAME_DATA_WAREHOUSE)
@@ -92,26 +92,26 @@ public class WorkspaceServices {
   }
 
 
-  public WorkspaceServices simulationEventBus(WorkspaceService simulationEventBus) {
+  public WorkspaceServices scenariorunEventBus(WorkspaceService scenariorunEventBus) {
     
-    this.simulationEventBus = simulationEventBus;
+    this.scenariorunEventBus = scenariorunEventBus;
     return this;
   }
 
    /**
-   * Get simulationEventBus
-   * @return simulationEventBus
+   * Get scenariorunEventBus
+   * @return scenariorunEventBus
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public WorkspaceService getSimulationEventBus() {
-    return simulationEventBus;
+  public WorkspaceService getScenariorunEventBus() {
+    return scenariorunEventBus;
   }
 
 
-  public void setSimulationEventBus(WorkspaceService simulationEventBus) {
-    this.simulationEventBus = simulationEventBus;
+  public void setScenariorunEventBus(WorkspaceService scenariorunEventBus) {
+    this.scenariorunEventBus = scenariorunEventBus;
   }
 
 
@@ -172,14 +172,14 @@ public class WorkspaceServices {
     WorkspaceServices workspaceServices = (WorkspaceServices) o;
     return Objects.equals(this.tenantCredentials, workspaceServices.tenantCredentials) &&
         Objects.equals(this.resultsEventBus, workspaceServices.resultsEventBus) &&
-        Objects.equals(this.simulationEventBus, workspaceServices.simulationEventBus) &&
+        Objects.equals(this.scenariorunEventBus, workspaceServices.scenariorunEventBus) &&
         Objects.equals(this.dataWarehouse, workspaceServices.dataWarehouse) &&
         Objects.equals(this.storage, workspaceServices.storage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tenantCredentials, resultsEventBus, simulationEventBus, dataWarehouse, storage);
+    return Objects.hash(tenantCredentials, resultsEventBus, scenariorunEventBus, dataWarehouse, storage);
   }
 
   @Override
@@ -188,7 +188,7 @@ public class WorkspaceServices {
     sb.append("class WorkspaceServices {\n");
     sb.append("    tenantCredentials: ").append(toIndentedString(tenantCredentials)).append("\n");
     sb.append("    resultsEventBus: ").append(toIndentedString(resultsEventBus)).append("\n");
-    sb.append("    simulationEventBus: ").append(toIndentedString(simulationEventBus)).append("\n");
+    sb.append("    scenariorunEventBus: ").append(toIndentedString(scenariorunEventBus)).append("\n");
     sb.append("    dataWarehouse: ").append(toIndentedString(dataWarehouse)).append("\n");
     sb.append("    storage: ").append(toIndentedString(storage)).append("\n");
     sb.append("}");

@@ -52,11 +52,11 @@ public class ConnectorTest {
     }
 
     /**
-     * Test the property 'connectorKey'
+     * Test the property 'key'
      */
     @Test
-    public void connectorKeyTest() {
-        // TODO: test connectorKey
+    public void keyTest() {
+        // TODO: test key
     }
 
     /**
