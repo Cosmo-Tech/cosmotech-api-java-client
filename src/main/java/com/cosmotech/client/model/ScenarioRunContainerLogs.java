@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioRunContainer;
 import com.cosmotech.client.model.ScenarioRunContainerLog;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -31,11 +32,11 @@ import java.util.List;
  * logs for a given container
  */
 @ApiModel(description = "logs for a given container")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class ScenarioRunContainerLogs {
-  public static final String SERIALIZED_NAME_CONTAINER_ID = "containerId";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_ID)
-  private String containerId;
+  public static final String SERIALIZED_NAME_CONTAINER = "container";
+  @SerializedName(SERIALIZED_NAME_CONTAINER)
+  private ScenarioRunContainer container;
 
   public static final String SERIALIZED_NAME_COMPUTER = "computer";
   @SerializedName(SERIALIZED_NAME_COMPUTER)
@@ -50,18 +51,27 @@ public class ScenarioRunContainerLogs {
   private String textLog;
 
 
+  public ScenarioRunContainerLogs container(ScenarioRunContainer container) {
+    
+    this.container = container;
+    return this;
+  }
+
    /**
-   * container ID for log source as seen by Docker engine
-   * @return containerId
+   * Get container
+   * @return container
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "container ID for log source as seen by Docker engine")
+  @ApiModelProperty(value = "")
 
-  public String getContainerId() {
-    return containerId;
+  public ScenarioRunContainer getContainer() {
+    return container;
   }
 
 
+  public void setContainer(ScenarioRunContainer container) {
+    this.container = container;
+  }
 
 
    /**
@@ -124,7 +134,7 @@ public class ScenarioRunContainerLogs {
       return false;
     }
     ScenarioRunContainerLogs scenarioRunContainerLogs = (ScenarioRunContainerLogs) o;
-    return Objects.equals(this.containerId, scenarioRunContainerLogs.containerId) &&
+    return Objects.equals(this.container, scenarioRunContainerLogs.container) &&
         Objects.equals(this.computer, scenarioRunContainerLogs.computer) &&
         Objects.equals(this.logs, scenarioRunContainerLogs.logs) &&
         Objects.equals(this.textLog, scenarioRunContainerLogs.textLog);
@@ -132,14 +142,14 @@ public class ScenarioRunContainerLogs {
 
   @Override
   public int hashCode() {
-    return Objects.hash(containerId, computer, logs, textLog);
+    return Objects.hash(container, computer, logs, textLog);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRunContainerLogs {\n");
-    sb.append("    containerId: ").append(toIndentedString(containerId)).append("\n");
+    sb.append("    container: ").append(toIndentedString(container)).append("\n");
     sb.append("    computer: ").append(toIndentedString(computer)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    textLog: ").append(toIndentedString(textLog)).append("\n");

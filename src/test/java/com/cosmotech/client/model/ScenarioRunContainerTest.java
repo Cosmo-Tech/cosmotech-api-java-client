@@ -13,8 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.ScenarioRunContainer;
-import com.cosmotech.client.model.ScenarioRunContainerLog;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,56 +22,58 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ScenarioRunContainerLogs
+ * Model tests for ScenarioRunContainer
  */
-public class ScenarioRunContainerLogsTest {
-    private final ScenarioRunContainerLogs model = new ScenarioRunContainerLogs();
+public class ScenarioRunContainerTest {
+    private final ScenarioRunContainer model = new ScenarioRunContainer();
 
     /**
-     * Model tests for ScenarioRunContainerLogs
+     * Model tests for ScenarioRunContainer
      */
     @Test
-    public void testScenarioRunContainerLogs() {
-        // TODO: test ScenarioRunContainerLogs
+    public void testScenarioRunContainer() {
+        // TODO: test ScenarioRunContainer
     }
 
     /**
-     * Test the property 'container'
+     * Test the property 'id'
      */
     @Test
-    public void containerTest() {
-        // TODO: test container
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
-     * Test the property 'computer'
+     * Test the property 'envVars'
      */
     @Test
-    public void computerTest() {
-        // TODO: test computer
+    public void envVarsTest() {
+        // TODO: test envVars
     }
 
     /**
-     * Test the property 'logs'
+     * Test the property 'image'
      */
     @Test
-    public void logsTest() {
-        // TODO: test logs
+    public void imageTest() {
+        // TODO: test image
     }
 
     /**
-     * Test the property 'textLog'
+     * Test the property 'runArgs'
      */
     @Test
-    public void textLogTest() {
-        // TODO: test textLog
+    public void runArgsTest() {
+        // TODO: test runArgs
     }
 
 }

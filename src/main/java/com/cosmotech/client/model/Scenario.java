@@ -15,8 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ScenarioAllOf;
-import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
@@ -31,9 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Scenario
+ * a Scenario with base information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@ApiModel(description = "a Scenario with base information")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -149,10 +148,6 @@ public class Scenario {
   public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
   private List<ScenarioRunTemplateParameterValue> parametersValues = null;
-
-  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
-  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
-  private Boolean sendInputToDataWarehouse;
 
 
    /**
@@ -482,29 +477,6 @@ public class Scenario {
   }
 
 
-  public Scenario sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
-    
-    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
-    return this;
-  }
-
-   /**
-   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
-   * @return sendInputToDataWarehouse
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
-
-  public Boolean getSendInputToDataWarehouse() {
-    return sendInputToDataWarehouse;
-  }
-
-
-  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
-    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -529,13 +501,12 @@ public class Scenario {
         Objects.equals(this.solutionName, scenario.solutionName) &&
         Objects.equals(this.runTemplateName, scenario.runTemplateName) &&
         Objects.equals(this.datasetList, scenario.datasetList) &&
-        Objects.equals(this.parametersValues, scenario.parametersValues) &&
-        Objects.equals(this.sendInputToDataWarehouse, scenario.sendInputToDataWarehouse);
+        Objects.equals(this.parametersValues, scenario.parametersValues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users, state, creationDate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, sendInputToDataWarehouse);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, users, state, creationDate, ownerName, solutionName, runTemplateName, datasetList, parametersValues);
   }
 
   @Override
@@ -558,7 +529,6 @@ public class Scenario {
     sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
     sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
-    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

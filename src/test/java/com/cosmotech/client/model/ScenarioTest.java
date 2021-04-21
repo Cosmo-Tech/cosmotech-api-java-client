@@ -13,8 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.ScenarioAllOf;
-import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
@@ -172,14 +170,6 @@ public class ScenarioTest {
     @Test
     public void parametersValuesTest() {
         // TODO: test parametersValues
-    }
-
-    /**
-     * Test the property 'sendInputToDataWarehouse'
-     */
-    @Test
-    public void sendInputToDataWarehouseTest() {
-        // TODO: test sendInputToDataWarehouse
     }
 
 }

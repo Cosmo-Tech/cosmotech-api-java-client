@@ -1,6 +1,6 @@
 # UserApi
 
-All URIs are relative to *https://api.azure.cosmo-platform.com*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,7 +34,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -94,7 +94,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -138,7 +138,7 @@ This endpoint does not need any parameter.
 
 <a name="findUserById"></a>
 # **findUserById**
-> UserDetails findUserById(userId)
+> User findUserById(userId)
 
 Get the details of an user
 
@@ -155,7 +155,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -164,7 +164,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String userId = "userId_example"; // String | the User identifier
     try {
-      UserDetails result = apiInstance.findUserById(userId);
+      User result = apiInstance.findUserById(userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#findUserById");
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 <a name="getCurrentUser"></a>
 # **getCurrentUser**
-> UserDetails getCurrentUser()
+> User getCurrentUser()
 
 Get the details of an user
 
@@ -221,7 +221,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -229,7 +229,7 @@ public class Example {
 
     UserApi apiInstance = new UserApi(defaultClient);
     try {
-      UserDetails result = apiInstance.getCurrentUser();
+      User result = apiInstance.getCurrentUser();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#getCurrentUser");
@@ -247,7 +247,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ This endpoint does not need any parameter.
 
 <a name="getOrganizationCurrentUser"></a>
 # **getOrganizationCurrentUser**
-> UserDetails getOrganizationCurrentUser(organizationId)
+> User getOrganizationCurrentUser(organizationId)
 
 Get the details of an user with roles for an Organization
 
@@ -283,7 +283,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -292,7 +292,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     try {
-      UserDetails result = apiInstance.getOrganizationCurrentUser(organizationId);
+      User result = apiInstance.getOrganizationCurrentUser(organizationId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#getOrganizationCurrentUser");
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -332,7 +332,7 @@ Name | Type | Description  | Notes
 
 <a name="getWorkspaceCurrentUser"></a>
 # **getWorkspaceCurrentUser**
-> UserDetails getWorkspaceCurrentUser(organizationId, workspaceId)
+> User getWorkspaceCurrentUser(organizationId, workspaceId)
 
 Get the details of an user with roles for a Workspace
 
@@ -349,7 +349,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -359,7 +359,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     try {
-      UserDetails result = apiInstance.getWorkspaceCurrentUser(organizationId, workspaceId);
+      User result = apiInstance.getWorkspaceCurrentUser(organizationId, workspaceId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#getWorkspaceCurrentUser");
@@ -381,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -417,7 +417,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -483,7 +483,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -550,7 +550,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");

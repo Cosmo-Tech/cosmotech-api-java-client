@@ -17,8 +17,10 @@ Name | Type | Description | Notes
 **computeSize** | **String** | the compute size needed for this Run Template. Standard sizes are basic and highcpu. Default is basic |  [optional]
 **parametersHandlerResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
 **datasetValidatorResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
+**preRunResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
 **engineResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
-**datasetSchemaResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
+**postRunResource** | [**RunTemplateResourceStorage**](RunTemplateResourceStorage.md) |  |  [optional]
+**sendInputToDataWarehouse** | **Boolean** | whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run |  [optional]
 **parameterGroups** | [**List&lt;RunTemplateParameterGroup&gt;**](RunTemplateParameterGroup.md) | the list of parameters groups for the Run Template |  [optional]
 
 

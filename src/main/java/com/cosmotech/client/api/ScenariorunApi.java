@@ -28,7 +28,6 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.ScenarioRun;
-import com.cosmotech.client.model.ScenarioRunBase;
 import com.cosmotech.client.model.ScenarioRunLogs;
 import com.cosmotech.client.model.ScenarioRunLogsOptions;
 import com.cosmotech.client.model.ScenarioRunSearch;
@@ -678,7 +677,7 @@ public class ScenariorunApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return List&lt;ScenarioRunBase&gt;
+     * @return List&lt;ScenarioRun&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -686,8 +685,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public List<ScenarioRunBase> getScenarioScenarioRuns(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        ApiResponse<List<ScenarioRunBase>> localVarResp = getScenarioScenarioRunsWithHttpInfo(organizationId, workspaceId, scenarioId);
+    public List<ScenarioRun> getScenarioScenarioRuns(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        ApiResponse<List<ScenarioRun>> localVarResp = getScenarioScenarioRunsWithHttpInfo(organizationId, workspaceId, scenarioId);
         return localVarResp.getData();
     }
 
@@ -697,7 +696,7 @@ public class ScenariorunApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return ApiResponse&lt;List&lt;ScenarioRunBase&gt;&gt;
+     * @return ApiResponse&lt;List&lt;ScenarioRun&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -705,9 +704,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ScenarioRunBase>> getScenarioScenarioRunsWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+    public ApiResponse<List<ScenarioRun>> getScenarioScenarioRunsWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
         okhttp3.Call localVarCall = getScenarioScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -726,10 +725,10 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunsAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<List<ScenarioRunBase>> _callback) throws ApiException {
+    public okhttp3.Call getScenarioScenarioRunsAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenarioScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -802,7 +801,7 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return List&lt;ScenarioRunBase&gt;
+     * @return List&lt;ScenarioRun&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -810,8 +809,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public List<ScenarioRunBase> getWorkspaceScenarioRuns(String organizationId, String workspaceId) throws ApiException {
-        ApiResponse<List<ScenarioRunBase>> localVarResp = getWorkspaceScenarioRunsWithHttpInfo(organizationId, workspaceId);
+    public List<ScenarioRun> getWorkspaceScenarioRuns(String organizationId, String workspaceId) throws ApiException {
+        ApiResponse<List<ScenarioRun>> localVarResp = getWorkspaceScenarioRunsWithHttpInfo(organizationId, workspaceId);
         return localVarResp.getData();
     }
 
@@ -820,7 +819,7 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return ApiResponse&lt;List&lt;ScenarioRunBase&gt;&gt;
+     * @return ApiResponse&lt;List&lt;ScenarioRun&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -828,9 +827,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ScenarioRunBase>> getWorkspaceScenarioRunsWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+    public ApiResponse<List<ScenarioRun>> getWorkspaceScenarioRunsWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
         okhttp3.Call localVarCall = getWorkspaceScenarioRunsValidateBeforeCall(organizationId, workspaceId, null);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -848,10 +847,10 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getWorkspaceScenarioRunsAsync(String organizationId, String workspaceId, final ApiCallback<List<ScenarioRunBase>> _callback) throws ApiException {
+    public okhttp3.Call getWorkspaceScenarioRunsAsync(String organizationId, String workspaceId, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getWorkspaceScenarioRunsValidateBeforeCall(organizationId, workspaceId, _callback);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -932,7 +931,7 @@ public class ScenariorunApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return ScenarioRunBase
+     * @return ScenarioRun
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -940,8 +939,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public ScenarioRunBase runScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        ApiResponse<ScenarioRunBase> localVarResp = runScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
+    public ScenarioRun runScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        ApiResponse<ScenarioRun> localVarResp = runScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
         return localVarResp.getData();
     }
 
@@ -951,7 +950,7 @@ public class ScenariorunApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return ApiResponse&lt;ScenarioRunBase&gt;
+     * @return ApiResponse&lt;ScenarioRun&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -959,9 +958,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ScenarioRunBase> runScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+    public ApiResponse<ScenarioRun> runScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
         okhttp3.Call localVarCall = runScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
-        Type localVarReturnType = new TypeToken<ScenarioRunBase>(){}.getType();
+        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -980,10 +979,10 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call runScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<ScenarioRunBase> _callback) throws ApiException {
+    public okhttp3.Call runScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<ScenarioRun> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = runScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRunBase>(){}.getType();
+        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1194,7 +1193,7 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param scenarioRunSearch the ScenarioRun search parameters (required)
-     * @return List&lt;ScenarioRunBase&gt;
+     * @return List&lt;ScenarioRun&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1202,8 +1201,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public List<ScenarioRunBase> searchScenarioRuns(String organizationId, ScenarioRunSearch scenarioRunSearch) throws ApiException {
-        ApiResponse<List<ScenarioRunBase>> localVarResp = searchScenarioRunsWithHttpInfo(organizationId, scenarioRunSearch);
+    public List<ScenarioRun> searchScenarioRuns(String organizationId, ScenarioRunSearch scenarioRunSearch) throws ApiException {
+        ApiResponse<List<ScenarioRun>> localVarResp = searchScenarioRunsWithHttpInfo(organizationId, scenarioRunSearch);
         return localVarResp.getData();
     }
 
@@ -1212,7 +1211,7 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param scenarioRunSearch the ScenarioRun search parameters (required)
-     * @return ApiResponse&lt;List&lt;ScenarioRunBase&gt;&gt;
+     * @return ApiResponse&lt;List&lt;ScenarioRun&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1220,9 +1219,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ScenarioRunBase>> searchScenarioRunsWithHttpInfo(String organizationId, ScenarioRunSearch scenarioRunSearch) throws ApiException {
+    public ApiResponse<List<ScenarioRun>> searchScenarioRunsWithHttpInfo(String organizationId, ScenarioRunSearch scenarioRunSearch) throws ApiException {
         okhttp3.Call localVarCall = searchScenarioRunsValidateBeforeCall(organizationId, scenarioRunSearch, null);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1240,10 +1239,10 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchScenarioRunsAsync(String organizationId, ScenarioRunSearch scenarioRunSearch, final ApiCallback<List<ScenarioRunBase>> _callback) throws ApiException {
+    public okhttp3.Call searchScenarioRunsAsync(String organizationId, ScenarioRunSearch scenarioRunSearch, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = searchScenarioRunsValidateBeforeCall(organizationId, scenarioRunSearch, _callback);
-        Type localVarReturnType = new TypeToken<List<ScenarioRunBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -29,7 +29,7 @@ import java.io.IOException;
  * a Platform
  */
 @ApiModel(description = "a Platform")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class Platform {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

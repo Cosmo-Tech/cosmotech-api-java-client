@@ -1,11 +1,22 @@
 openapi: 3.0.3
 info:
+  contact:
+    name: Repository
+    url: https://github.com/Cosmo-Tech/cosmotech-api
   description: Cosmo Tech Platform API
+  license:
+    name: MIT License
+    url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
   version: 0.0.1-SNAPSHOT
+externalDocs:
+  description: Portal
+  url: https://portal.cosmotech.com/
 servers:
-- url: https://api.azure.cosmo-platform.com
-- url: http://localhost:4010
+- description: Local dev environment
+  url: http://localhost:8080
+- description: Production
+  url: https://api.azure.cosmo-platform.com
 security:
 - oAuth2AuthCode: []
 tags:
@@ -1011,7 +1022,7 @@ paths:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
                 items:
-                  $ref: '#/components/schemas/ScenarioRunBase'
+                  $ref: '#/components/schemas/ScenarioRun'
                 type: array
           description: the scenariorun details
       summary: Search ScenarioRuns
@@ -1131,7 +1142,7 @@ paths:
             application/json:
               examples:
                 ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunContainers'
+                  $ref: '#/components/examples/BreweryScenarioRunContainer'
               schema:
                 $ref: '#/components/schemas/ScenarioRun'
           description: the scenariorun details
@@ -1299,7 +1310,7 @@ paths:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
                 items:
-                  $ref: '#/components/schemas/ScenarioRunBase'
+                  $ref: '#/components/schemas/ScenarioRun'
                 type: array
           description: the scenariorun details list
       summary: get the list of ScenarioRuns for the Workspace
@@ -1343,7 +1354,7 @@ paths:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
                 items:
-                  $ref: '#/components/schemas/ScenarioRunBase'
+                  $ref: '#/components/schemas/ScenarioRun'
                 type: array
           description: the scenariorun details list
       summary: get the list of ScenarioRuns for the Scenario
@@ -1484,9 +1495,9 @@ paths:
             application/json:
               examples:
                 ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunBase'
+                  $ref: '#/components/examples/BreweryScenarioRun'
               schema:
-                $ref: '#/components/schemas/ScenarioRunBase'
+                $ref: '#/components/schemas/ScenarioRun'
           description: the scenariorun details
       summary: run a ScenarioRun for the Scenario
       tags:
@@ -1587,9 +1598,9 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/BobDetails'
+                  $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the User details
         "404":
           description: the User specified is unknown or you don't have access to it
@@ -1647,9 +1658,9 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/BobDetails'
+                  $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the User details
         "404":
           description: the User specified is unknown or you don't have access to it
@@ -1675,9 +1686,9 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/BobDetailsOrganization'
+                  $ref: '#/components/examples/BobOrganization'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the User details
         "404":
           description: the User specified is unknown or you don't have access to it
@@ -1711,9 +1722,9 @@ paths:
             application/json:
               examples:
                 Bob:
-                  $ref: '#/components/examples/BobDetailsWorkspace'
+                  $ref: '#/components/examples/BobWorkspace'
               schema:
-                $ref: '#/components/schemas/UserDetails'
+                $ref: '#/components/schemas/User'
           description: the User details
         "404":
           description: the User specified is unknown or you don't have access to it
@@ -1853,7 +1864,7 @@ paths:
                   $ref: '#/components/examples/ScenariosTree'
               schema:
                 items:
-                  $ref: '#/components/schemas/ScenarioBase'
+                  $ref: '#/components/schemas/Scenario'
                 type: array
           description: the scenario tree
       summary: Get the Scenarios Tree
@@ -2721,21 +2732,6 @@ components:
         name: Bob
         platformRoles:
         - Admin
-    BobCreateIn:
-      description: Bob User Create input example
-      summary: Bob User Create input example
-      value:
-        name: Bob
-        platformRoles:
-        - Admin
-    BobDetails:
-      description: Bob User example
-      summary: Bob User
-      value:
-        id: "1"
-        name: Bob
-        platformRoles:
-        - Admin
         organizations:
         - id: "1"
           name: Cosmo Tech
@@ -2750,7 +2746,14 @@ components:
           name: Phoenix
           roles:
           - Admin
-    BobDetailsOrganization:
+    BobCreateIn:
+      description: Bob User Create input example
+      summary: Bob User Create input example
+      value:
+        name: Bob
+        platformRoles:
+        - Admin
+    BobOrganization:
       description: Bob User for Organization 1 example
       summary: Bob User for an Organization example
       value:
@@ -2768,7 +2771,7 @@ components:
             name: Brewery Analysis
             roles:
             - Admin
-    BobDetailsWorkspace:
+    BobWorkspace:
       description: Bob User for Organization 1 and Workspace 1 example
       summary: Bob User for a Workspace example
       value:
@@ -2800,6 +2803,20 @@ components:
         name: Boby
         platformRoles:
         - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     Brewery:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -2831,7 +2848,7 @@ components:
           datasetValidatorResource:
             storageType: local
             resourcePath: run_templates/hundred/validator/
-          EngineResource:
+          engineResource:
             storageType: local
             resourcePath: run_templates/hundred/engine/
           datasetSchemaResource:
@@ -3037,7 +3054,7 @@ components:
         computeSize: highcpu
         parametersHandler: run_templates/hundred/parameters_handler/
         datasetValidator: run_templates/hundred/validator/
-        customDriver: run_templates/hundred/driver/
+        engine: run_templates/hundred/engine/
         datasetList:
         - "1"
         parametersValues:
@@ -3050,7 +3067,7 @@ components:
         state: Running
         starTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
-        initContainers:
+        fetchDatasetContainers:
         - id: azertyuiop
           envVars:
             AZURE_TENANT_ID: "12345678"
@@ -3061,7 +3078,8 @@ components:
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-        - id: aqwzsx
+        fetchScenarioParametersContainer:
+          id: aqwzsx
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3070,7 +3088,8 @@ components:
             CSM_SCENARIO_ID: "1"
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
-        - id: yhnujki
+        applyParametersContainer:
+          id: yhnujki
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3082,7 +3101,8 @@ components:
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - handle-parameters
-        - id: rfvtgb
+        validateDataContainer:
+          id: rfvtgb
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3094,7 +3114,8 @@ components:
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - validate
-        - id: qsdfghjklm
+        sendDataWarehouseContainer:
+          id: qsdfghjklm
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3105,44 +3126,25 @@ components:
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
-        mainContainer:
+        runContainer:
           id: wxcvbn
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
-            CSM_CUSTOM_DRIVER_PROVIDER: local
-            CSM_CUSTOM_DRIVER_PATH: run_templates/hundred/driver/
+            CSM_ENGINE_PROVIDER: local
+            CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-            CSM_CONTROL_PLANE_TOPIC: brewery-scenariorun
+            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - -i
           - DeployedScenarioRun
           - --amqp-consumer
           - amqps://csm-phoenix.servicebus.windows.net/brewery
-    BreweryScenarioRunBase:
-      description: Brewery ScenarioRun base example
-      summary: Brewery ScenarioRun base example
-      value:
-        id: "1"
-        jobId: "1"
-        ownerId: "1"
-        workspaceId: "1"
-        workspaceName: Brewery Analysis
-        scenarioId: "1"
-        scenarioName: Brewery Master Analysis
-        solutionId: "1"
-        solutionName: Brewery Solution
-        solutionVersion: 1.0.0
-        runTemplateId: hundred
-        runTemplateName: Full scenariorun 100 steps
-        computeSize: highcpu
-        state: Running
-        starTime: "4/15/2021, 10:52:18.593 AM"
-    BreweryScenarioRunContainers:
+    BreweryScenarioRunContainer:
       description: Brewery ScenarioRun ran with containers information example
       summary: Brewery ScenarioRun Containers example
       value:
@@ -3152,7 +3154,7 @@ components:
         state: Running
         starTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
-        initContainers:
+        fetchDatasetContainers:
         - id: azertyuiop
           envVars:
             AZURE_TENANT_ID: "12345678"
@@ -3163,41 +3165,8 @@ components:
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-        - id: aqwzsx
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-inline:latest
-          runArgs:
-          - --prefix=new
-        - id: yhnujki
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_PARAMETERS_HANDLER_PROVIDER: local
-            CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
-            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-          image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - handle-parameters
-        - id: rfvtgb
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_DATASET_VALIDATOR_PROVIDER: local
-            CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
-            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-          image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - validate
-        - id: qsdfghjklm
+        sendDataWarehouseContainer:
+          id: qsdfghjklm
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3208,18 +3177,18 @@ components:
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
-        mainContainer:
+        runContainer:
           id: wxcvbn
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
-            CSM_CUSTOM_DRIVER_PROVIDER: local
-            CSM_CUSTOM_DRIVER_PATH: run_templates/hundred/driver/
+            CSM_ENGINE_PROVIDER: local
+            CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-            CSM_CONTROL_PLANE_TOPIC: brewery-scenariorun
+            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - -i
@@ -3236,8 +3205,18 @@ components:
           - azertyuiop
           - wxcvbn
           plainText: false
-        initLogs:
-        - containerId: azertyuiop
+        fetchDatasetContainers:
+        - container:
+            id: azertyuiop
+            envVars:
+              AZURE_TENANT_ID: "12345678"
+              AZURE_CLIENT_ID: "12345678"
+              AZURE_CLIENT_SECRET: azertyuiop
+              CSM_API_URL: https://api.comostech.com
+              ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+              ADT_QUERY: SELECT * FROM digitaltwins
+              EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
           computer: aks-highcpupool-30630301-vmss000000
           logs:
           - timeGenerated: "4/15/2021, 10:52:20.593 AM"
@@ -3246,8 +3225,25 @@ components:
           - timeGenerated: "4/15/2021, 10:52:21.593 AM"
             entrySource: stderr
             logEntry: stopping stream
-        mainLogs:
-          containerId: wxcvbn
+        runLogs:
+          container:
+            id: wxcvbn
+            envVars:
+              AZURE_TENANT_ID: "12345678"
+              AZURE_CLIENT_ID: "12345678"
+              AZURE_CLIENT_SECRET: azertyuiop
+              CSM_API_URL: https://api.comostech.com
+              CSM_ENGINE_PROVIDER: local
+              CSM_ENGINE_PATH: run_templates/hundred/engine/
+              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+              CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+              CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+            image: twinengines.azurecr.io/brewery_simulator:latest
+            runArgs:
+            - -i
+            - DeployedScenarioRun
+            - --amqp-consumer
+            - amqps://csm-phoenix.servicebus.windows.net/brewery
           computer: aks-highcpupool-30630301-vmss000000
           logs:
           - timeGenerated: "4/15/2021, 10:52:22.593 AM"
@@ -3279,7 +3275,7 @@ components:
         computeSize: highcpu
         parametersHandler: run_templates/hundred/parameters_handler/
         datasetValidator: run_templates/hundred/validator/
-        customDriver: run_templates/hundred/driver/
+        engine: run_templates/hundred/engine/
         datasetList:
         - "1"
         parametersValues:
@@ -3292,7 +3288,7 @@ components:
         state: Running
         starTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
-        initContainers:
+        fetchDatasetContainers:
         - id: azertyuiop
           envVars:
             AZURE_TENANT_ID: "12345678"
@@ -3303,17 +3299,18 @@ components:
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-        - id: aqwzsx
+        fetchScenarioParametersContainer:
+          id: aqwzsx
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_SCENARIO_ID: "1"
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-inline:latest
-          runArgs:
-          - --prefix=new
-        - id: yhnujki
+          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
+        applyParametersContainer:
+          id: yhnujki
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3325,7 +3322,8 @@ components:
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - handle-parameters
-        - id: rfvtgb
+        validateDataContainer:
+          id: rfvtgb
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3337,7 +3335,8 @@ components:
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - validate
-        - id: qsdfghjklm
+        sendDataWarehouseContainer:
+          id: qsdfghjklm
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
@@ -3348,18 +3347,18 @@ components:
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
-        mainContainer:
+        runContainer:
           id: wxcvbn
           envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
-            CSM_CUSTOM_DRIVER_PROVIDER: local
-            CSM_CUSTOM_DRIVER_PATH: run_templates/hundred/driver/
+            CSM_ENGINE_PROVIDER: local
+            CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-            CSM_CONTROL_PLANE_TOPIC: brewery-scenariorun
+            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - -i
@@ -3377,24 +3376,41 @@ components:
       summary: Brewery start ScenarioRun directly with containers example
       value:
         nodeLabel: highcpupool
-        initContainers:
-        - envVars:
-            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+        fetchDatasetContainers:
+        - id: azertyuiop
+          envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-        - envVars:
+        sendDataWarehouseContainer:
+          id: qsdfghjklm
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
+          image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
+        runContainer:
+          id: wxcvbn
+          envVars:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
-          image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
-        mainContainer:
-          envVars:
-            CSM_AMQPCONSUMER_USER: k8ssender
-            CSM_AMQPCONSUMER_PASSWORD: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_ENGINE_PROVIDER: local
+            CSM_ENGINE_PATH: run_templates/hundred/engine/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
           - -i
@@ -3949,6 +3965,84 @@ components:
         computeSize: highcpu
         state: Running
         starTime: "4/15/2021, 10:52:18.593 AM"
+        nodeLabel: highcpupool
+        fetchDatasetContainers:
+        - id: azertyuiop
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+            ADT_QUERY: SELECT * FROM digitaltwins
+            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+        fetchScenarioParametersContainer:
+          id: aqwzsx
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_SCENARIO_ID: "1"
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+          image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
+        applyParametersContainer:
+          id: yhnujki
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_PARAMETERS_HANDLER_PROVIDER: local
+            CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - handle-parameters
+        validateDataContainer:
+          id: rfvtgb
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_VALIDATOR_PROVIDER: local
+            CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - validate
+        sendDataWarehouseContainer:
+          id: qsdfghjklm
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+            ADX_DATABASE: Brewery
+          image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
+        runContainer:
+          id: wxcvbn
+          envVars:
+            AZURE_TENANT_ID: "12345678"
+            AZURE_CLIENT_ID: "12345678"
+            AZURE_CLIENT_SECRET: azertyuiop
+            CSM_API_URL: https://api.comostech.com
+            CSM_ENGINE_PROVIDER: local
+            CSM_ENGINE_PATH: run_templates/hundred/engine/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+          image: twinengines.azurecr.io/brewery_simulator:latest
+          runArgs:
+          - -i
+          - DeployedScenarioRun
+          - --amqp-consumer
+          - amqps://csm-phoenix.servicebus.windows.net/brewery
     OneSolution:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -4098,6 +4192,16 @@ components:
           roles: Viewer
         state: Created
         creationDate: "4/15/2021, 10:52:21.593 AM"
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -4115,6 +4219,16 @@ components:
           roles: Viewer
         state: Running
         creationDate: "4/15/2021, 11:52:21.593 AM"
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
       - id: "3"
         name: Brewery Analysis name no change
         description: Brewery analysis with no change on name prefix
@@ -4131,6 +4245,16 @@ components:
           roles: Editor
         state: Failed
         creationDate: "4/16/2021, 10:52:21.593 AM"
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
     ThreeScenarios:
       description: Three Scenarios with parent master Scenario and two children Scenarios
       summary: Three Scenarios with parent and children
@@ -4348,10 +4472,38 @@ components:
         name: Bob
         platformRoles:
         - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
       - id: "2"
         name: Alice
         platformRoles:
         - User
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -5111,10 +5263,24 @@ components:
     RunTemplate:
       description: a Solution Run Template
       example:
-        datasetSchemaResource:
+        preRunResource:
           customUri: customUri
           resourcePath: resourcePath
           storageType: local
+        parametersHandlerResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
+        datasetValidatorResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
+        description: description
+        computeSize: computeSize
+        csmSimulation: csmSimulation
+        tags:
+        - tags
+        - tags
         parameterGroups:
         - options:
             key: "{}"
@@ -5163,26 +5329,17 @@ components:
             key: "{}"
           order: 0
         useDirectCsmSimulator: true
-        parametersHandlerResource:
-          customUri: customUri
-          resourcePath: resourcePath
-          storageType: local
-        datasetValidatorResource:
-          customUri: customUri
-          resourcePath: resourcePath
-          storageType: local
         name: name
         engineResource:
           customUri: customUri
           resourcePath: resourcePath
           storageType: local
-        description: description
-        computeSize: computeSize
+        postRunResource:
+          customUri: customUri
+          resourcePath: resourcePath
+          storageType: local
         id: id
-        csmSimulation: csmSimulation
-        tags:
-        - tags
-        - tags
+        sendInputToDataWarehouse: true
       properties:
         id:
           description: the Solution Run Template id
@@ -5215,10 +5372,17 @@ components:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
         datasetValidatorResource:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
+        preRunResource:
+          $ref: '#/components/schemas/RunTemplateResourceStorage'
         engineResource:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
-        datasetSchemaResource:
+        postRunResource:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
+        sendInputToDataWarehouse:
+          default: true
+          description: whether or not the Dataset values and the input parameters
+            values are send to the DataWarehouse prior to Simulation Run
+          type: boolean
         parameterGroups:
           description: the list of parameters groups for the Run Template
           items:
@@ -5365,18 +5529,11 @@ components:
       - storageType
       type: object
     Scenario:
-      allOf:
-      - $ref: '#/components/schemas/ScenarioBase'
-      - $ref: '#/components/schemas/Scenario_allOf'
-    ScenarioBase:
       description: a Scenario with base information
       example:
-        name: name
+        solutionName: solutionName
         description: description
-        runTemplateId: runTemplateId
-        id: id
-        solutionId: solutionId
-        state: Created
+        runTemplateName: runTemplateName
         ownerId: ownerId
         creationDate: creationDate
         parentId: parentId
@@ -5390,6 +5547,24 @@ components:
         tags:
         - tags
         - tags
+        parametersValues:
+        - varType: varType
+          parameterId: parameterId
+          isInherited: isInherited
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          isInherited: isInherited
+          value: value
+        ownerName: ownerName
+        name: name
+        runTemplateId: runTemplateId
+        id: id
+        solutionId: solutionId
+        state: Created
+        datasetList:
+        - datasetList
+        - datasetList
       properties:
         id:
           description: the Scenario unique identifier
@@ -5438,6 +5613,28 @@ components:
           description: the Scenario creation date
           readOnly: true
           type: string
+        ownerName:
+          description: the name of the owner
+          readOnly: true
+          type: string
+        solutionName:
+          description: the Solution name
+          readOnly: true
+          type: string
+        runTemplateName:
+          description: the Solution Run Template name associated with this Scenario
+          readOnly: true
+          type: string
+        datasetList:
+          description: the list of Dataset Id associated to this Scenario Run Template
+          items:
+            type: string
+          type: array
+        parametersValues:
+          description: the list of Solution Run Template parameters values
+          items:
+            $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
+          type: array
       required:
       - name
       type: object
@@ -5497,28 +5694,112 @@ components:
           type: array
       type: object
     ScenarioRun:
-      allOf:
-      - $ref: '#/components/schemas/ScenarioRunBase'
-      - $ref: '#/components/schemas/ScenarioRun_allOf'
-    ScenarioRunBase:
       description: a ScenarioRun with only base properties
       example:
-        solutionName: solutionName
+        applyParametersContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        failedStep: failedStep
+        resultsEventBusResourceUri: resultsEventBusResourceUri
         computeSize: computeSize
-        runTemplateName: runTemplateName
         ownerId: ownerId
-        jobId: jobId
         solutionVersion: solutionVersion
-        runTemplateId: runTemplateId
+        parametersValues:
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        fetchDatasetContainers:
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        dataWarehouseDB: dataWarehouseDB
+        runContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        postRunContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
         workspaceName: workspaceName
         startTime: startTime
         id: id
-        solutionId: solutionId
-        state: state
-        endTime: endTime
-        scenarioId: scenarioId
+        state: FetchingDatasets
+        preRunContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        failedContainerId: failedContainerId
         scenarioName: scenarioName
+        validateDataContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
         workspaceId: workspaceId
+        sendDataWarehouseContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        solutionName: solutionName
+        runTemplateName: runTemplateName
+        fetchScenarioParametersContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        jobId: jobId
+        runTemplateId: runTemplateId
+        scenariorunEventBusResourceUri: scenariorunEventBusResourceUri
+        solutionId: solutionId
+        endTime: endTime
+        datasetList:
+        - datasetList
+        - datasetList
+        scenarioId: scenarioId
+        sendInputToDataWarehouse: true
+        nodeLabel: nodeLabel
       properties:
         id:
           description: the ScenarioRun
@@ -5575,6 +5856,25 @@ components:
           type: string
         state:
           description: the ScenarioRun state
+          enum:
+          - FetchingDatasets
+          - FetchingScenarioParameters
+          - ApplyingScenarioParameters
+          - ValidatingScenarioData
+          - SendingScenarioDataToDataWarehouse
+          - PreRun
+          - Running
+          - PostRun
+          - Success
+          - Failed
+          readOnly: true
+          type: string
+        failedStep:
+          description: the failed step if state is Failed
+          readOnly: true
+          type: string
+        failedContainerId:
+          description: the failed container Id if state is Failed
           readOnly: true
           type: string
         startTime:
@@ -5585,60 +5885,61 @@ components:
           description: the ScenarioRun end Date Time
           readOnly: true
           type: string
-      type: object
-    ScenarioRunContainerLog:
-      description: a container log line
-      example:
-        timeGenerated: timeGenerated
-        entrySource: entrySource
-        logEntry: logEntry
-      properties:
-        timeGenerated:
-          description: date and time the record was created
-          readOnly: true
-          type: string
-        entrySource:
-          description: source of the log line. Possible values are stdout or stderr
-          readOnly: true
-          type: string
-        logEntry:
-          description: actual log line
-          readOnly: true
-          type: string
-      type: object
-    ScenarioRunContainerLogs:
-      description: logs for a given container
-      example:
-        computer: computer
-        textLog: textLog
-        containerId: containerId
-        logs:
-        - timeGenerated: timeGenerated
-          entrySource: entrySource
-          logEntry: logEntry
-        - timeGenerated: timeGenerated
-          entrySource: entrySource
-          logEntry: logEntry
-      properties:
-        containerId:
-          description: container ID for log source as seen by Docker engine
-          readOnly: true
-          type: string
-        computer:
-          description: computer/node that's generating the log
-          readOnly: true
-          type: string
-        logs:
-          description: the list of container logs in structured format
+        datasetList:
+          description: the list of Dataset Id associated to this Analysis
           items:
-            $ref: '#/components/schemas/ScenarioRunContainerLog'
+            type: string
           readOnly: true
           type: array
-        textLog:
-          description: the plain text log if plainText option has been set
+        parametersValues:
+          description: the list of Run Template parameters values
+          items:
+            $ref: '#/components/schemas/RunTemplateParameterValue'
+          readOnly: true
+          type: array
+        sendInputToDataWarehouse:
+          description: whether or not the Dataset values and the input parameters
+            values are send to the DataWarehouse prior to ScenarioRun Run
+          readOnly: true
+          type: boolean
+        dataWarehouseDB:
+          description: the DataWarehouse database name to send data if sendInputToDataWarehouse
+            is set
           type: string
+        resultsEventBusResourceUri:
+          description: the event bus which receive Workspace ScenarioRun results messages.
+            Message won't be send if this is not set
+          type: string
+        scenariorunEventBusResourceUri:
+          description: the event bus which receive Workspace ScenarioRun events messages.
+            Message won't be send if this is not set
+          type: string
+        nodeLabel:
+          description: the node label request
+          readOnly: true
+          type: string
+        fetchDatasetContainers:
+          description: the containers which fetch the Scenario Datasets
+          items:
+            $ref: '#/components/schemas/ScenarioRunContainer'
+          readOnly: true
+          type: array
+        fetchScenarioParametersContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        applyParametersContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        validateDataContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        sendDataWarehouseContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        preRunContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        runContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        postRunContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
       type: object
-    ScenarioRunContainers:
+    ScenarioRunContainer:
       description: a ScenarioRun container description
       example:
         image: image
@@ -5666,34 +5967,130 @@ components:
             type: string
           type: array
       type: object
+    ScenarioRunContainerLog:
+      description: a container log line
+      example:
+        timeGenerated: timeGenerated
+        entrySource: entrySource
+        logEntry: logEntry
+      properties:
+        timeGenerated:
+          description: date and time the record was created
+          readOnly: true
+          type: string
+        entrySource:
+          description: source of the log line. Possible values are stdout or stderr
+          readOnly: true
+          type: string
+        logEntry:
+          description: actual log line
+          readOnly: true
+          type: string
+      type: object
+    ScenarioRunContainerLogs:
+      description: logs for a given container
+      example:
+        container:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        computer: computer
+        textLog: textLog
+        logs:
+        - timeGenerated: timeGenerated
+          entrySource: entrySource
+          logEntry: logEntry
+        - timeGenerated: timeGenerated
+          entrySource: entrySource
+          logEntry: logEntry
+      properties:
+        container:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        computer:
+          description: computer/node that's generating the log
+          readOnly: true
+          type: string
+        logs:
+          description: the list of container logs in structured format
+          items:
+            $ref: '#/components/schemas/ScenarioRunContainerLog'
+          readOnly: true
+          type: array
+        textLog:
+          description: the plain text log if plainText option has been set
+          type: string
+      type: object
     ScenarioRunLogs:
       description: the scenariorun logs returned by all containers
       example:
-        initLogs:
-        - computer: computer
-          textLog: textLog
-          containerId: containerId
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        - computer: computer
-          textLog: textLog
-          containerId: containerId
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        mainLogs:
+        fetchDatasetLogs:
+        - container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
           computer: computer
           textLog: textLog
-          containerId: containerId
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        - container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        validateDataLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        runLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
           logs:
           - timeGenerated: timeGenerated
             entrySource: entrySource
@@ -5707,6 +6104,96 @@ components:
           - containerIds
           - containerIds
           plainText: true
+        applyParametersLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        fetchScenarioParametersLog:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        sendDataWarehouseLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        preRunLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+        postRunLogs:
+          container:
+            image: image
+            runArgs:
+            - runArgs
+            - runArgs
+            envVars:
+              key: "{}"
+            id: id
+          computer: computer
+          textLog: textLog
+          logs:
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
+          - timeGenerated: timeGenerated
+            entrySource: entrySource
+            logEntry: logEntry
       properties:
         scenariorunId:
           description: the ScenarioRun Id
@@ -5714,13 +6201,25 @@ components:
           type: string
         options:
           $ref: '#/components/schemas/ScenarioRunLogsOptions'
-        initLogs:
-          description: the list of scenariorun logs for init containers
+        fetchDatasetLogs:
+          description: logs for the containers which fetch the Scenario Datasets
           items:
             $ref: '#/components/schemas/ScenarioRunContainerLogs'
           readOnly: true
           type: array
-        mainLogs:
+        fetchScenarioParametersLog:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        applyParametersLogs:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        validateDataLogs:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        sendDataWarehouseLogs:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        preRunLogs:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        runLogs:
+          $ref: '#/components/schemas/ScenarioRunContainerLogs'
+        postRunLogs:
           $ref: '#/components/schemas/ScenarioRunContainerLogs'
       type: object
     ScenarioRunLogsOptions:
@@ -5747,7 +6246,7 @@ components:
         jobId: jobId
         runTemplateId: runTemplateId
         solutionId: solutionId
-        state: state
+        state: FetchingDatasets
         ownerId: ownerId
         scenarioId: scenarioId
         workspaceId: workspaceId
@@ -5766,6 +6265,17 @@ components:
           type: string
         state:
           description: the state to search
+          enum:
+          - FetchingDatasets
+          - FetchingScenarioParameters
+          - ApplyingScenarioParameters
+          - ValidatingScenarioData
+          - SendingScenarioDataToDataWarehouse
+          - PreRun
+          - Running
+          - PostRun
+          - Success
+          - Failed
           type: string
         jobId:
           description: the Cosmo Tech compute cluster Job Id to search
@@ -5790,7 +6300,62 @@ components:
     ScenarioRunStartContainers:
       description: the parameters to run directly containers
       example:
-        mainContainer:
+        applyParametersContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        sendDataWarehouseContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        fetchDatasetContainers:
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        runContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        postRunContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        fetchScenarioParametersContainer:
+          image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          envVars:
+            key: "{}"
+          id: id
+        preRunContainer:
           image: image
           runArgs:
           - runArgs
@@ -5799,15 +6364,8 @@ components:
             key: "{}"
           id: id
         nodeLabel: nodeLabel
-        initContainers:
-        - image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        - image: image
+        validateDataContainer:
+          image: image
           runArgs:
           - runArgs
           - runArgs
@@ -5818,13 +6376,26 @@ components:
         nodeLabel:
           description: the node label request
           type: string
-        initContainers:
-          description: the list of init containers
+        fetchDatasetContainers:
+          description: the containers which fetch the Scenario Datasets
           items:
-            $ref: '#/components/schemas/ScenarioRunContainers'
+            $ref: '#/components/schemas/ScenarioRunContainer'
+          readOnly: true
           type: array
-        mainContainer:
-          $ref: '#/components/schemas/ScenarioRunContainers'
+        fetchScenarioParametersContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        applyParametersContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        validateDataContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        sendDataWarehouseContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        preRunContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        runContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
+        postRunContainer:
+          $ref: '#/components/schemas/ScenarioRunContainer'
       type: object
     ScenarioRunStartSolution:
       description: the parameters to run directly a Solution
@@ -5881,6 +6452,11 @@ components:
       type: object
     ScenarioRunTemplateParameterValue:
       description: the value of a Solution Run Template parameter for a Scenario
+      example:
+        varType: varType
+        parameterId: parameterId
+        isInherited: isInherited
+        value: value
       properties:
         parameterId:
           description: the parameter Id
@@ -5932,10 +6508,24 @@ components:
         csmSimulator: csmSimulator
         id: id
         run_templates:
-        - datasetSchemaResource:
+        - preRunResource:
             customUri: customUri
             resourcePath: resourcePath
             storageType: local
+          parametersHandlerResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          datasetValidatorResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          description: description
+          computeSize: computeSize
+          csmSimulation: csmSimulation
+          tags:
+          - tags
+          - tags
           parameterGroups:
           - options:
               key: "{}"
@@ -5984,6 +6574,21 @@ components:
               key: "{}"
             order: 0
           useDirectCsmSimulator: true
+          name: name
+          engineResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          postRunResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
+          id: id
+          sendInputToDataWarehouse: true
+        - preRunResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
           parametersHandlerResource:
             customUri: customUri
             resourcePath: resourcePath
@@ -5992,22 +6597,12 @@ components:
             customUri: customUri
             resourcePath: resourcePath
             storageType: local
-          name: name
-          engineResource:
-            customUri: customUri
-            resourcePath: resourcePath
-            storageType: local
           description: description
           computeSize: computeSize
-          id: id
           csmSimulation: csmSimulation
           tags:
           - tags
           - tags
-        - datasetSchemaResource:
-            customUri: customUri
-            resourcePath: resourcePath
-            storageType: local
           parameterGroups:
           - options:
               key: "{}"
@@ -6056,26 +6651,17 @@ components:
               key: "{}"
             order: 0
           useDirectCsmSimulator: true
-          parametersHandlerResource:
-            customUri: customUri
-            resourcePath: resourcePath
-            storageType: local
-          datasetValidatorResource:
-            customUri: customUri
-            resourcePath: resourcePath
-            storageType: local
           name: name
           engineResource:
             customUri: customUri
             resourcePath: resourcePath
             storageType: local
-          description: description
-          computeSize: computeSize
+          postRunResource:
+            customUri: customUri
+            resourcePath: resourcePath
+            storageType: local
           id: id
-          csmSimulation: csmSimulation
-          tags:
-          - tags
-          - tags
+          sendInputToDataWarehouse: true
         repository: repository
         ownerId: ownerId
         version: version
@@ -6142,6 +6728,39 @@ components:
         - Admin
         - Admin
         name: name
+        organizations:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
         id: id
       properties:
         id:
@@ -6160,16 +6779,34 @@ components:
             - ConnectorDeveloper
             type: string
           type: array
+        organizations:
+          items:
+            $ref: '#/components/schemas/UserOrganization'
+          readOnly: true
+          type: array
       required:
       - name
       - platformRoles
       type: object
-    UserDetails:
-      allOf:
-      - $ref: '#/components/schemas/User'
-      - $ref: '#/components/schemas/UserDetails_allOf'
     UserOrganization:
       description: The organization of the user
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
+        workspaces:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
       properties:
         id:
           description: the Organization id
@@ -6191,6 +6828,12 @@ components:
       type: object
     UserWorkspace:
       description: the list of User roles for a Workspace
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
       properties:
         id:
           description: the Workspace Id
@@ -6587,90 +7230,6 @@ components:
         fileName:
           format: binary
           type: string
-      type: object
-    Scenario_allOf:
-      description: a Scenario with detailed information
-      properties:
-        ownerName:
-          description: the name of the owner
-          readOnly: true
-          type: string
-        solutionName:
-          description: the Solution name
-          readOnly: true
-          type: string
-        runTemplateName:
-          description: the Solution Run Template name associated with this Scenario
-          readOnly: true
-          type: string
-        datasetList:
-          description: the list of Dataset Id associated to this Scenario Run Template
-          items:
-            type: string
-          type: array
-        parametersValues:
-          description: the list of Solution Run Template parameters values
-          items:
-            $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
-          type: array
-        sendInputToDataWarehouse:
-          description: whether or not the Dataset values and the input parameters
-            values are send to the DataWarehouse prior to Simulation Run
-          type: boolean
-      type: object
-    ScenarioRun_allOf:
-      description: a ScenarioRun
-      properties:
-        datasetList:
-          description: the list of Dataset Id associated to this Analysis
-          items:
-            type: string
-          readOnly: true
-          type: array
-        parametersValues:
-          description: the list of Run Template parameters values
-          items:
-            $ref: '#/components/schemas/RunTemplateParameterValue'
-          readOnly: true
-          type: array
-        sendInputToDataWarehouse:
-          description: whether or not the Dataset values and the input parameters
-            values are send to the DataWarehouse prior to ScenarioRun Run
-          readOnly: true
-          type: boolean
-        dataWarehouseDB:
-          description: the DataWarehouse database name to send data if sendInputToDataWarehouse
-            is set
-          type: string
-        resultsEventBusResourceUri:
-          description: the event bus which receive Workspace ScenarioRun results messages.
-            Message won't be send if this is not set
-          type: string
-        scenariorunEventBusResourceUri:
-          description: the event bus which receive Workspace ScenarioRun events messages.
-            Message won't be send if this is not set
-          type: string
-        nodeLabel:
-          description: the node label request
-          readOnly: true
-          type: string
-        initContainers:
-          description: the list of init containers
-          items:
-            $ref: '#/components/schemas/ScenarioRunContainers'
-          readOnly: true
-          type: array
-        mainContainer:
-          $ref: '#/components/schemas/ScenarioRunContainers'
-      type: object
-    UserDetails_allOf:
-      description: a User with Organization details
-      properties:
-        organizations:
-          items:
-            $ref: '#/components/schemas/UserOrganization'
-          readOnly: true
-          type: array
       type: object
   securitySchemes:
     oAuth2AuthCode:

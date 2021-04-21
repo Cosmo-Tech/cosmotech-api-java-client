@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.UserOrganization;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -64,6 +65,14 @@ public class UserTest {
     @Test
     public void platformRolesTest() {
         // TODO: test platformRoles
+    }
+
+    /**
+     * Test the property 'organizations'
+     */
+    @Test
+    public void organizationsTest() {
+        // TODO: test organizations
     }
 
 }

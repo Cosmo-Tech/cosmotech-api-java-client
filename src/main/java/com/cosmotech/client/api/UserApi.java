@@ -28,7 +28,6 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.User;
-import com.cosmotech.client.model.UserDetails;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -317,7 +316,7 @@ public class UserApi {
      * Get the details of an user
      * 
      * @param userId the User identifier (required)
-     * @return UserDetails
+     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -326,8 +325,8 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public UserDetails findUserById(String userId) throws ApiException {
-        ApiResponse<UserDetails> localVarResp = findUserByIdWithHttpInfo(userId);
+    public User findUserById(String userId) throws ApiException {
+        ApiResponse<User> localVarResp = findUserByIdWithHttpInfo(userId);
         return localVarResp.getData();
     }
 
@@ -335,7 +334,7 @@ public class UserApi {
      * Get the details of an user
      * 
      * @param userId the User identifier (required)
-     * @return ApiResponse&lt;UserDetails&gt;
+     * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -344,9 +343,9 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UserDetails> findUserByIdWithHttpInfo(String userId) throws ApiException {
+    public ApiResponse<User> findUserByIdWithHttpInfo(String userId) throws ApiException {
         okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(userId, null);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -364,10 +363,10 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findUserByIdAsync(String userId, final ApiCallback<UserDetails> _callback) throws ApiException {
+    public okhttp3.Call findUserByIdAsync(String userId, final ApiCallback<User> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(userId, _callback);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -425,7 +424,7 @@ public class UserApi {
     /**
      * Get the details of an user
      * 
-     * @return UserDetails
+     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -434,15 +433,15 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public UserDetails getCurrentUser() throws ApiException {
-        ApiResponse<UserDetails> localVarResp = getCurrentUserWithHttpInfo();
+    public User getCurrentUser() throws ApiException {
+        ApiResponse<User> localVarResp = getCurrentUserWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Get the details of an user
      * 
-     * @return ApiResponse&lt;UserDetails&gt;
+     * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -451,9 +450,9 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UserDetails> getCurrentUserWithHttpInfo() throws ApiException {
+    public ApiResponse<User> getCurrentUserWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getCurrentUserValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -470,10 +469,10 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrentUserAsync(final ApiCallback<UserDetails> _callback) throws ApiException {
+    public okhttp3.Call getCurrentUserAsync(final ApiCallback<User> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getCurrentUserValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -539,7 +538,7 @@ public class UserApi {
      * Get the details of an user with roles for an Organization
      * 
      * @param organizationId the Organization identifier (required)
-     * @return UserDetails
+     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -548,8 +547,8 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public UserDetails getOrganizationCurrentUser(String organizationId) throws ApiException {
-        ApiResponse<UserDetails> localVarResp = getOrganizationCurrentUserWithHttpInfo(organizationId);
+    public User getOrganizationCurrentUser(String organizationId) throws ApiException {
+        ApiResponse<User> localVarResp = getOrganizationCurrentUserWithHttpInfo(organizationId);
         return localVarResp.getData();
     }
 
@@ -557,7 +556,7 @@ public class UserApi {
      * Get the details of an user with roles for an Organization
      * 
      * @param organizationId the Organization identifier (required)
-     * @return ApiResponse&lt;UserDetails&gt;
+     * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -566,9 +565,9 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UserDetails> getOrganizationCurrentUserWithHttpInfo(String organizationId) throws ApiException {
+    public ApiResponse<User> getOrganizationCurrentUserWithHttpInfo(String organizationId) throws ApiException {
         okhttp3.Call localVarCall = getOrganizationCurrentUserValidateBeforeCall(organizationId, null);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -586,10 +585,10 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOrganizationCurrentUserAsync(String organizationId, final ApiCallback<UserDetails> _callback) throws ApiException {
+    public okhttp3.Call getOrganizationCurrentUserAsync(String organizationId, final ApiCallback<User> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getOrganizationCurrentUserValidateBeforeCall(organizationId, _callback);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -663,7 +662,7 @@ public class UserApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return UserDetails
+     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -672,8 +671,8 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public UserDetails getWorkspaceCurrentUser(String organizationId, String workspaceId) throws ApiException {
-        ApiResponse<UserDetails> localVarResp = getWorkspaceCurrentUserWithHttpInfo(organizationId, workspaceId);
+    public User getWorkspaceCurrentUser(String organizationId, String workspaceId) throws ApiException {
+        ApiResponse<User> localVarResp = getWorkspaceCurrentUserWithHttpInfo(organizationId, workspaceId);
         return localVarResp.getData();
     }
 
@@ -682,7 +681,7 @@ public class UserApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return ApiResponse&lt;UserDetails&gt;
+     * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -691,9 +690,9 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UserDetails> getWorkspaceCurrentUserWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+    public ApiResponse<User> getWorkspaceCurrentUserWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
         okhttp3.Call localVarCall = getWorkspaceCurrentUserValidateBeforeCall(organizationId, workspaceId, null);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -712,10 +711,10 @@ public class UserApi {
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getWorkspaceCurrentUserAsync(String organizationId, String workspaceId, final ApiCallback<UserDetails> _callback) throws ApiException {
+    public okhttp3.Call getWorkspaceCurrentUserAsync(String organizationId, String workspaceId, final ApiCallback<User> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getWorkspaceCurrentUserValidateBeforeCall(organizationId, workspaceId, _callback);
-        Type localVarReturnType = new TypeToken<UserDetails>(){}.getType();
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

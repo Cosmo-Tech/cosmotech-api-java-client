@@ -32,7 +32,7 @@ import java.util.List;
  * the scenariorun logs returned by all containers
  */
 @ApiModel(description = "the scenariorun logs returned by all containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class ScenarioRunLogs {
   public static final String SERIALIZED_NAME_SCENARIORUN_ID = "scenariorunId";
   @SerializedName(SERIALIZED_NAME_SCENARIORUN_ID)
@@ -42,13 +42,37 @@ public class ScenarioRunLogs {
   @SerializedName(SERIALIZED_NAME_OPTIONS)
   private ScenarioRunLogsOptions options;
 
-  public static final String SERIALIZED_NAME_INIT_LOGS = "initLogs";
-  @SerializedName(SERIALIZED_NAME_INIT_LOGS)
-  private List<ScenarioRunContainerLogs> initLogs = null;
+  public static final String SERIALIZED_NAME_FETCH_DATASET_LOGS = "fetchDatasetLogs";
+  @SerializedName(SERIALIZED_NAME_FETCH_DATASET_LOGS)
+  private List<ScenarioRunContainerLogs> fetchDatasetLogs = null;
 
-  public static final String SERIALIZED_NAME_MAIN_LOGS = "mainLogs";
-  @SerializedName(SERIALIZED_NAME_MAIN_LOGS)
-  private ScenarioRunContainerLogs mainLogs;
+  public static final String SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS_LOG = "fetchScenarioParametersLog";
+  @SerializedName(SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS_LOG)
+  private ScenarioRunContainerLogs fetchScenarioParametersLog;
+
+  public static final String SERIALIZED_NAME_APPLY_PARAMETERS_LOGS = "applyParametersLogs";
+  @SerializedName(SERIALIZED_NAME_APPLY_PARAMETERS_LOGS)
+  private ScenarioRunContainerLogs applyParametersLogs;
+
+  public static final String SERIALIZED_NAME_VALIDATE_DATA_LOGS = "validateDataLogs";
+  @SerializedName(SERIALIZED_NAME_VALIDATE_DATA_LOGS)
+  private ScenarioRunContainerLogs validateDataLogs;
+
+  public static final String SERIALIZED_NAME_SEND_DATA_WAREHOUSE_LOGS = "sendDataWarehouseLogs";
+  @SerializedName(SERIALIZED_NAME_SEND_DATA_WAREHOUSE_LOGS)
+  private ScenarioRunContainerLogs sendDataWarehouseLogs;
+
+  public static final String SERIALIZED_NAME_PRE_RUN_LOGS = "preRunLogs";
+  @SerializedName(SERIALIZED_NAME_PRE_RUN_LOGS)
+  private ScenarioRunContainerLogs preRunLogs;
+
+  public static final String SERIALIZED_NAME_RUN_LOGS = "runLogs";
+  @SerializedName(SERIALIZED_NAME_RUN_LOGS)
+  private ScenarioRunContainerLogs runLogs;
+
+  public static final String SERIALIZED_NAME_POST_RUN_LOGS = "postRunLogs";
+  @SerializedName(SERIALIZED_NAME_POST_RUN_LOGS)
+  private ScenarioRunContainerLogs postRunLogs;
 
 
    /**
@@ -89,39 +113,177 @@ public class ScenarioRunLogs {
 
 
    /**
-   * the list of scenariorun logs for init containers
-   * @return initLogs
+   * logs for the containers which fetch the Scenario Datasets
+   * @return fetchDatasetLogs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of scenariorun logs for init containers")
+  @ApiModelProperty(value = "logs for the containers which fetch the Scenario Datasets")
 
-  public List<ScenarioRunContainerLogs> getInitLogs() {
-    return initLogs;
+  public List<ScenarioRunContainerLogs> getFetchDatasetLogs() {
+    return fetchDatasetLogs;
   }
 
 
 
 
-  public ScenarioRunLogs mainLogs(ScenarioRunContainerLogs mainLogs) {
+  public ScenarioRunLogs fetchScenarioParametersLog(ScenarioRunContainerLogs fetchScenarioParametersLog) {
     
-    this.mainLogs = mainLogs;
+    this.fetchScenarioParametersLog = fetchScenarioParametersLog;
     return this;
   }
 
    /**
-   * Get mainLogs
-   * @return mainLogs
+   * Get fetchScenarioParametersLog
+   * @return fetchScenarioParametersLog
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public ScenarioRunContainerLogs getMainLogs() {
-    return mainLogs;
+  public ScenarioRunContainerLogs getFetchScenarioParametersLog() {
+    return fetchScenarioParametersLog;
   }
 
 
-  public void setMainLogs(ScenarioRunContainerLogs mainLogs) {
-    this.mainLogs = mainLogs;
+  public void setFetchScenarioParametersLog(ScenarioRunContainerLogs fetchScenarioParametersLog) {
+    this.fetchScenarioParametersLog = fetchScenarioParametersLog;
+  }
+
+
+  public ScenarioRunLogs applyParametersLogs(ScenarioRunContainerLogs applyParametersLogs) {
+    
+    this.applyParametersLogs = applyParametersLogs;
+    return this;
+  }
+
+   /**
+   * Get applyParametersLogs
+   * @return applyParametersLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getApplyParametersLogs() {
+    return applyParametersLogs;
+  }
+
+
+  public void setApplyParametersLogs(ScenarioRunContainerLogs applyParametersLogs) {
+    this.applyParametersLogs = applyParametersLogs;
+  }
+
+
+  public ScenarioRunLogs validateDataLogs(ScenarioRunContainerLogs validateDataLogs) {
+    
+    this.validateDataLogs = validateDataLogs;
+    return this;
+  }
+
+   /**
+   * Get validateDataLogs
+   * @return validateDataLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getValidateDataLogs() {
+    return validateDataLogs;
+  }
+
+
+  public void setValidateDataLogs(ScenarioRunContainerLogs validateDataLogs) {
+    this.validateDataLogs = validateDataLogs;
+  }
+
+
+  public ScenarioRunLogs sendDataWarehouseLogs(ScenarioRunContainerLogs sendDataWarehouseLogs) {
+    
+    this.sendDataWarehouseLogs = sendDataWarehouseLogs;
+    return this;
+  }
+
+   /**
+   * Get sendDataWarehouseLogs
+   * @return sendDataWarehouseLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getSendDataWarehouseLogs() {
+    return sendDataWarehouseLogs;
+  }
+
+
+  public void setSendDataWarehouseLogs(ScenarioRunContainerLogs sendDataWarehouseLogs) {
+    this.sendDataWarehouseLogs = sendDataWarehouseLogs;
+  }
+
+
+  public ScenarioRunLogs preRunLogs(ScenarioRunContainerLogs preRunLogs) {
+    
+    this.preRunLogs = preRunLogs;
+    return this;
+  }
+
+   /**
+   * Get preRunLogs
+   * @return preRunLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getPreRunLogs() {
+    return preRunLogs;
+  }
+
+
+  public void setPreRunLogs(ScenarioRunContainerLogs preRunLogs) {
+    this.preRunLogs = preRunLogs;
+  }
+
+
+  public ScenarioRunLogs runLogs(ScenarioRunContainerLogs runLogs) {
+    
+    this.runLogs = runLogs;
+    return this;
+  }
+
+   /**
+   * Get runLogs
+   * @return runLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getRunLogs() {
+    return runLogs;
+  }
+
+
+  public void setRunLogs(ScenarioRunContainerLogs runLogs) {
+    this.runLogs = runLogs;
+  }
+
+
+  public ScenarioRunLogs postRunLogs(ScenarioRunContainerLogs postRunLogs) {
+    
+    this.postRunLogs = postRunLogs;
+    return this;
+  }
+
+   /**
+   * Get postRunLogs
+   * @return postRunLogs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunContainerLogs getPostRunLogs() {
+    return postRunLogs;
+  }
+
+
+  public void setPostRunLogs(ScenarioRunContainerLogs postRunLogs) {
+    this.postRunLogs = postRunLogs;
   }
 
 
@@ -136,13 +298,19 @@ public class ScenarioRunLogs {
     ScenarioRunLogs scenarioRunLogs = (ScenarioRunLogs) o;
     return Objects.equals(this.scenariorunId, scenarioRunLogs.scenariorunId) &&
         Objects.equals(this.options, scenarioRunLogs.options) &&
-        Objects.equals(this.initLogs, scenarioRunLogs.initLogs) &&
-        Objects.equals(this.mainLogs, scenarioRunLogs.mainLogs);
+        Objects.equals(this.fetchDatasetLogs, scenarioRunLogs.fetchDatasetLogs) &&
+        Objects.equals(this.fetchScenarioParametersLog, scenarioRunLogs.fetchScenarioParametersLog) &&
+        Objects.equals(this.applyParametersLogs, scenarioRunLogs.applyParametersLogs) &&
+        Objects.equals(this.validateDataLogs, scenarioRunLogs.validateDataLogs) &&
+        Objects.equals(this.sendDataWarehouseLogs, scenarioRunLogs.sendDataWarehouseLogs) &&
+        Objects.equals(this.preRunLogs, scenarioRunLogs.preRunLogs) &&
+        Objects.equals(this.runLogs, scenarioRunLogs.runLogs) &&
+        Objects.equals(this.postRunLogs, scenarioRunLogs.postRunLogs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scenariorunId, options, initLogs, mainLogs);
+    return Objects.hash(scenariorunId, options, fetchDatasetLogs, fetchScenarioParametersLog, applyParametersLogs, validateDataLogs, sendDataWarehouseLogs, preRunLogs, runLogs, postRunLogs);
   }
 
   @Override
@@ -151,8 +319,14 @@ public class ScenarioRunLogs {
     sb.append("class ScenarioRunLogs {\n");
     sb.append("    scenariorunId: ").append(toIndentedString(scenariorunId)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    initLogs: ").append(toIndentedString(initLogs)).append("\n");
-    sb.append("    mainLogs: ").append(toIndentedString(mainLogs)).append("\n");
+    sb.append("    fetchDatasetLogs: ").append(toIndentedString(fetchDatasetLogs)).append("\n");
+    sb.append("    fetchScenarioParametersLog: ").append(toIndentedString(fetchScenarioParametersLog)).append("\n");
+    sb.append("    applyParametersLogs: ").append(toIndentedString(applyParametersLogs)).append("\n");
+    sb.append("    validateDataLogs: ").append(toIndentedString(validateDataLogs)).append("\n");
+    sb.append("    sendDataWarehouseLogs: ").append(toIndentedString(sendDataWarehouseLogs)).append("\n");
+    sb.append("    preRunLogs: ").append(toIndentedString(preRunLogs)).append("\n");
+    sb.append("    runLogs: ").append(toIndentedString(runLogs)).append("\n");
+    sb.append("    postRunLogs: ").append(toIndentedString(postRunLogs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

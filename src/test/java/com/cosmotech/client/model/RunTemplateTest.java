@@ -117,6 +117,14 @@ public class RunTemplateTest {
     }
 
     /**
+     * Test the property 'preRunResource'
+     */
+    @Test
+    public void preRunResourceTest() {
+        // TODO: test preRunResource
+    }
+
+    /**
      * Test the property 'engineResource'
      */
     @Test
@@ -125,11 +133,19 @@ public class RunTemplateTest {
     }
 
     /**
-     * Test the property 'datasetSchemaResource'
+     * Test the property 'postRunResource'
      */
     @Test
-    public void datasetSchemaResourceTest() {
-        // TODO: test datasetSchemaResource
+    public void postRunResourceTest() {
+        // TODO: test postRunResource
+    }
+
+    /**
+     * Test the property 'sendInputToDataWarehouse'
+     */
+    @Test
+    public void sendInputToDataWarehouseTest() {
+        // TODO: test sendInputToDataWarehouse
     }
 
     /**

@@ -1,6 +1,6 @@
 # ScenariorunApi
 
-All URIs are relative to *https://api.azure.cosmo-platform.com*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,7 +37,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -106,7 +106,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -174,7 +174,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -245,7 +245,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 <a name="getScenarioScenarioRuns"></a>
 # **getScenarioScenarioRuns**
-> List&lt;ScenarioRunBase&gt; getScenarioScenarioRuns(organizationId, workspaceId, scenarioId)
+> List&lt;ScenarioRun&gt; getScenarioScenarioRuns(organizationId, workspaceId, scenarioId)
 
 get the list of ScenarioRuns for the Scenario
 
@@ -316,7 +316,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -327,7 +327,7 @@ public class Example {
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
     try {
-      List<ScenarioRunBase> result = apiInstance.getScenarioScenarioRuns(organizationId, workspaceId, scenarioId);
+      List<ScenarioRun> result = apiInstance.getScenarioScenarioRuns(organizationId, workspaceId, scenarioId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#getScenarioScenarioRuns");
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ScenarioRunBase&gt;**](ScenarioRunBase.md)
+[**List&lt;ScenarioRun&gt;**](ScenarioRun.md)
 
 ### Authorization
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 <a name="getWorkspaceScenarioRuns"></a>
 # **getWorkspaceScenarioRuns**
-> List&lt;ScenarioRunBase&gt; getWorkspaceScenarioRuns(organizationId, workspaceId)
+> List&lt;ScenarioRun&gt; getWorkspaceScenarioRuns(organizationId, workspaceId)
 
 get the list of ScenarioRuns for the Workspace
 
@@ -385,7 +385,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -395,7 +395,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     try {
-      List<ScenarioRunBase> result = apiInstance.getWorkspaceScenarioRuns(organizationId, workspaceId);
+      List<ScenarioRun> result = apiInstance.getWorkspaceScenarioRuns(organizationId, workspaceId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#getWorkspaceScenarioRuns");
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ScenarioRunBase&gt;**](ScenarioRunBase.md)
+[**List&lt;ScenarioRun&gt;**](ScenarioRun.md)
 
 ### Authorization
 
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 
 <a name="runScenario"></a>
 # **runScenario**
-> ScenarioRunBase runScenario(organizationId, workspaceId, scenarioId)
+> ScenarioRun runScenario(organizationId, workspaceId, scenarioId)
 
 run a ScenarioRun for the Scenario
 
@@ -452,7 +452,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -463,7 +463,7 @@ public class Example {
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
     try {
-      ScenarioRunBase result = apiInstance.runScenario(organizationId, workspaceId, scenarioId);
+      ScenarioRun result = apiInstance.runScenario(organizationId, workspaceId, scenarioId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#runScenario");
@@ -486,7 +486,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScenarioRunBase**](ScenarioRunBase.md)
+[**ScenarioRun**](ScenarioRun.md)
 
 ### Authorization
 
@@ -521,7 +521,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -575,7 +575,7 @@ Name | Type | Description  | Notes
 
 <a name="searchScenarioRuns"></a>
 # **searchScenarioRuns**
-> List&lt;ScenarioRunBase&gt; searchScenarioRuns(organizationId, scenarioRunSearch)
+> List&lt;ScenarioRun&gt; searchScenarioRuns(organizationId, scenarioRunSearch)
 
 Search ScenarioRuns
 
@@ -592,7 +592,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -602,7 +602,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     ScenarioRunSearch scenarioRunSearch = new ScenarioRunSearch(); // ScenarioRunSearch | the ScenarioRun search parameters
     try {
-      List<ScenarioRunBase> result = apiInstance.searchScenarioRuns(organizationId, scenarioRunSearch);
+      List<ScenarioRun> result = apiInstance.searchScenarioRuns(organizationId, scenarioRunSearch);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#searchScenarioRuns");
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ScenarioRunBase&gt;**](ScenarioRunBase.md)
+[**List&lt;ScenarioRun&gt;**](ScenarioRun.md)
 
 ### Authorization
 
@@ -659,7 +659,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -728,7 +728,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -797,7 +797,7 @@ import com.cosmotech.client.api.ScenariorunApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("http://localhost:8080");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");

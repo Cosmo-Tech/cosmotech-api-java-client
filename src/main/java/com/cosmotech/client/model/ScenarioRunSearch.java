@@ -28,7 +28,7 @@ import java.io.IOException;
  * the search options
  */
 @ApiModel(description = "the search options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class ScenarioRunSearch {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
@@ -46,9 +46,72 @@ public class ScenarioRunSearch {
   @SerializedName(SERIALIZED_NAME_SCENARIO_ID)
   private String scenarioId;
 
+  /**
+   * the state to search
+   */
+  @JsonAdapter(StateEnum.Adapter.class)
+  public enum StateEnum {
+    FETCHINGDATASETS("FetchingDatasets"),
+    
+    FETCHINGSCENARIOPARAMETERS("FetchingScenarioParameters"),
+    
+    APPLYINGSCENARIOPARAMETERS("ApplyingScenarioParameters"),
+    
+    VALIDATINGSCENARIODATA("ValidatingScenarioData"),
+    
+    SENDINGSCENARIODATATODATAWAREHOUSE("SendingScenarioDataToDataWarehouse"),
+    
+    PRERUN("PreRun"),
+    
+    RUNNING("Running"),
+    
+    POSTRUN("PostRun"),
+    
+    SUCCESS("Success"),
+    
+    FAILED("Failed");
+
+    private String value;
+
+    StateEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StateEnum fromValue(String value) {
+      for (StateEnum b : StateEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StateEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StateEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StateEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StateEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_STATE = "state";
   @SerializedName(SERIALIZED_NAME_STATE)
-  private String state;
+  private StateEnum state;
 
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
@@ -151,7 +214,7 @@ public class ScenarioRunSearch {
   }
 
 
-  public ScenarioRunSearch state(String state) {
+  public ScenarioRunSearch state(StateEnum state) {
     
     this.state = state;
     return this;
@@ -164,12 +227,12 @@ public class ScenarioRunSearch {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "the state to search")
 
-  public String getState() {
+  public StateEnum getState() {
     return state;
   }
 
 
-  public void setState(String state) {
+  public void setState(StateEnum state) {
     this.state = state;
   }
 

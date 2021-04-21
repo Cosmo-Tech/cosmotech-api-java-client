@@ -2,6 +2,7 @@
 
 # ScenarioRun
 
+a ScenarioRun with only base properties
 
 ## Properties
 
@@ -20,7 +21,9 @@ Name | Type | Description | Notes
 **runTemplateId** | **String** | the Solution Run Template id |  [optional] [readonly]
 **runTemplateName** | **String** | the Run Template name |  [optional] [readonly]
 **computeSize** | **String** | the compute size needed for this Analysis. Standard sizes are basic and highcpu. Default is basic |  [optional] [readonly]
-**state** | **String** | the ScenarioRun state |  [optional] [readonly]
+**state** | [**StateEnum**](#StateEnum) | the ScenarioRun state |  [optional] [readonly]
+**failedStep** | **String** | the failed step if state is Failed |  [optional] [readonly]
+**failedContainerId** | **String** | the failed container Id if state is Failed |  [optional] [readonly]
 **startTime** | **String** | the ScenarioRun start Date Time |  [optional] [readonly]
 **endTime** | **String** | the ScenarioRun end Date Time |  [optional] [readonly]
 **datasetList** | **List&lt;String&gt;** | the list of Dataset Id associated to this Analysis |  [optional] [readonly]
@@ -30,8 +33,31 @@ Name | Type | Description | Notes
 **resultsEventBusResourceUri** | **String** | the event bus which receive Workspace ScenarioRun results messages. Message won&#39;t be send if this is not set |  [optional]
 **scenariorunEventBusResourceUri** | **String** | the event bus which receive Workspace ScenarioRun events messages. Message won&#39;t be send if this is not set |  [optional]
 **nodeLabel** | **String** | the node label request |  [optional] [readonly]
-**initContainers** | [**List&lt;ScenarioRunContainers&gt;**](ScenarioRunContainers.md) | the list of init containers |  [optional] [readonly]
-**mainContainer** | [**ScenarioRunContainers**](ScenarioRunContainers.md) |  |  [optional]
+**fetchDatasetContainers** | [**List&lt;ScenarioRunContainer&gt;**](ScenarioRunContainer.md) | the containers which fetch the Scenario Datasets |  [optional] [readonly]
+**fetchScenarioParametersContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**applyParametersContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**validateDataContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**sendDataWarehouseContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**preRunContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**runContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+**postRunContainer** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
+
+
+
+## Enum: StateEnum
+
+Name | Value
+---- | -----
+FETCHINGDATASETS | &quot;FetchingDatasets&quot;
+FETCHINGSCENARIOPARAMETERS | &quot;FetchingScenarioParameters&quot;
+APPLYINGSCENARIOPARAMETERS | &quot;ApplyingScenarioParameters&quot;
+VALIDATINGSCENARIODATA | &quot;ValidatingScenarioData&quot;
+SENDINGSCENARIODATATODATAWAREHOUSE | &quot;SendingScenarioDataToDataWarehouse&quot;
+PRERUN | &quot;PreRun&quot;
+RUNNING | &quot;Running&quot;
+POSTRUN | &quot;PostRun&quot;
+SUCCESS | &quot;Success&quot;
+FAILED | &quot;Failed&quot;
 
 
 

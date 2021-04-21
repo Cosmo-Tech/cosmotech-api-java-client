@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.UserOrganization;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +31,7 @@ import java.util.List;
  * a User
  */
 @ApiModel(description = "a User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,6 +93,10 @@ public class User {
   public static final String SERIALIZED_NAME_PLATFORM_ROLES = "platformRoles";
   @SerializedName(SERIALIZED_NAME_PLATFORM_ROLES)
   private List<PlatformRolesEnum> platformRoles = new ArrayList<PlatformRolesEnum>();
+
+  public static final String SERIALIZED_NAME_ORGANIZATIONS = "organizations";
+  @SerializedName(SERIALIZED_NAME_ORGANIZATIONS)
+  private List<UserOrganization> organizations = null;
 
 
    /**
@@ -157,6 +162,20 @@ public class User {
   }
 
 
+   /**
+   * Get organizations
+   * @return organizations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<UserOrganization> getOrganizations() {
+    return organizations;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -168,12 +187,13 @@ public class User {
     User user = (User) o;
     return Objects.equals(this.id, user.id) &&
         Objects.equals(this.name, user.name) &&
-        Objects.equals(this.platformRoles, user.platformRoles);
+        Objects.equals(this.platformRoles, user.platformRoles) &&
+        Objects.equals(this.organizations, user.organizations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platformRoles);
+    return Objects.hash(id, name, platformRoles, organizations);
   }
 
   @Override
@@ -183,6 +203,7 @@ public class User {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platformRoles: ").append(toIndentedString(platformRoles)).append("\n");
+    sb.append("    organizations: ").append(toIndentedString(organizations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

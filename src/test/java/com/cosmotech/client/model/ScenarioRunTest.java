@@ -14,9 +14,7 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.RunTemplateParameterValue;
-import com.cosmotech.client.model.ScenarioRunAllOf;
-import com.cosmotech.client.model.ScenarioRunBase;
-import com.cosmotech.client.model.ScenarioRunContainers;
+import com.cosmotech.client.model.ScenarioRunContainer;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -159,6 +157,22 @@ public class ScenarioRunTest {
     }
 
     /**
+     * Test the property 'failedStep'
+     */
+    @Test
+    public void failedStepTest() {
+        // TODO: test failedStep
+    }
+
+    /**
+     * Test the property 'failedContainerId'
+     */
+    @Test
+    public void failedContainerIdTest() {
+        // TODO: test failedContainerId
+    }
+
+    /**
      * Test the property 'startTime'
      */
     @Test
@@ -231,19 +245,67 @@ public class ScenarioRunTest {
     }
 
     /**
-     * Test the property 'initContainers'
+     * Test the property 'fetchDatasetContainers'
      */
     @Test
-    public void initContainersTest() {
-        // TODO: test initContainers
+    public void fetchDatasetContainersTest() {
+        // TODO: test fetchDatasetContainers
     }
 
     /**
-     * Test the property 'mainContainer'
+     * Test the property 'fetchScenarioParametersContainer'
      */
     @Test
-    public void mainContainerTest() {
-        // TODO: test mainContainer
+    public void fetchScenarioParametersContainerTest() {
+        // TODO: test fetchScenarioParametersContainer
+    }
+
+    /**
+     * Test the property 'applyParametersContainer'
+     */
+    @Test
+    public void applyParametersContainerTest() {
+        // TODO: test applyParametersContainer
+    }
+
+    /**
+     * Test the property 'validateDataContainer'
+     */
+    @Test
+    public void validateDataContainerTest() {
+        // TODO: test validateDataContainer
+    }
+
+    /**
+     * Test the property 'sendDataWarehouseContainer'
+     */
+    @Test
+    public void sendDataWarehouseContainerTest() {
+        // TODO: test sendDataWarehouseContainer
+    }
+
+    /**
+     * Test the property 'preRunContainer'
+     */
+    @Test
+    public void preRunContainerTest() {
+        // TODO: test preRunContainer
+    }
+
+    /**
+     * Test the property 'runContainer'
+     */
+    @Test
+    public void runContainerTest() {
+        // TODO: test runContainer
+    }
+
+    /**
+     * Test the property 'postRunContainer'
+     */
+    @Test
+    public void postRunContainerTest() {
+        // TODO: test postRunContainer
     }
 
 }

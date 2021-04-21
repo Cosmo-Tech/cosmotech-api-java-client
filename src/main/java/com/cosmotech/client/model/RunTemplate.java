@@ -32,7 +32,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -70,13 +70,21 @@ public class RunTemplate {
   @SerializedName(SERIALIZED_NAME_DATASET_VALIDATOR_RESOURCE)
   private RunTemplateResourceStorage datasetValidatorResource;
 
+  public static final String SERIALIZED_NAME_PRE_RUN_RESOURCE = "preRunResource";
+  @SerializedName(SERIALIZED_NAME_PRE_RUN_RESOURCE)
+  private RunTemplateResourceStorage preRunResource;
+
   public static final String SERIALIZED_NAME_ENGINE_RESOURCE = "engineResource";
   @SerializedName(SERIALIZED_NAME_ENGINE_RESOURCE)
   private RunTemplateResourceStorage engineResource;
 
-  public static final String SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE = "datasetSchemaResource";
-  @SerializedName(SERIALIZED_NAME_DATASET_SCHEMA_RESOURCE)
-  private RunTemplateResourceStorage datasetSchemaResource;
+  public static final String SERIALIZED_NAME_POST_RUN_RESOURCE = "postRunResource";
+  @SerializedName(SERIALIZED_NAME_POST_RUN_RESOURCE)
+  private RunTemplateResourceStorage postRunResource;
+
+  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
+  private Boolean sendInputToDataWarehouse = true;
 
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
@@ -287,6 +295,29 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate preRunResource(RunTemplateResourceStorage preRunResource) {
+    
+    this.preRunResource = preRunResource;
+    return this;
+  }
+
+   /**
+   * Get preRunResource
+   * @return preRunResource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public RunTemplateResourceStorage getPreRunResource() {
+    return preRunResource;
+  }
+
+
+  public void setPreRunResource(RunTemplateResourceStorage preRunResource) {
+    this.preRunResource = preRunResource;
+  }
+
+
   public RunTemplate engineResource(RunTemplateResourceStorage engineResource) {
     
     this.engineResource = engineResource;
@@ -310,26 +341,49 @@ public class RunTemplate {
   }
 
 
-  public RunTemplate datasetSchemaResource(RunTemplateResourceStorage datasetSchemaResource) {
+  public RunTemplate postRunResource(RunTemplateResourceStorage postRunResource) {
     
-    this.datasetSchemaResource = datasetSchemaResource;
+    this.postRunResource = postRunResource;
     return this;
   }
 
    /**
-   * Get datasetSchemaResource
-   * @return datasetSchemaResource
+   * Get postRunResource
+   * @return postRunResource
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public RunTemplateResourceStorage getDatasetSchemaResource() {
-    return datasetSchemaResource;
+  public RunTemplateResourceStorage getPostRunResource() {
+    return postRunResource;
   }
 
 
-  public void setDatasetSchemaResource(RunTemplateResourceStorage datasetSchemaResource) {
-    this.datasetSchemaResource = datasetSchemaResource;
+  public void setPostRunResource(RunTemplateResourceStorage postRunResource) {
+    this.postRunResource = postRunResource;
+  }
+
+
+  public RunTemplate sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+    return this;
+  }
+
+   /**
+   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * @return sendInputToDataWarehouse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+
+  public Boolean getSendInputToDataWarehouse() {
+    return sendInputToDataWarehouse;
+  }
+
+
+  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
   }
 
 
@@ -382,14 +436,16 @@ public class RunTemplate {
         Objects.equals(this.computeSize, runTemplate.computeSize) &&
         Objects.equals(this.parametersHandlerResource, runTemplate.parametersHandlerResource) &&
         Objects.equals(this.datasetValidatorResource, runTemplate.datasetValidatorResource) &&
+        Objects.equals(this.preRunResource, runTemplate.preRunResource) &&
         Objects.equals(this.engineResource, runTemplate.engineResource) &&
-        Objects.equals(this.datasetSchemaResource, runTemplate.datasetSchemaResource) &&
+        Objects.equals(this.postRunResource, runTemplate.postRunResource) &&
+        Objects.equals(this.sendInputToDataWarehouse, runTemplate.sendInputToDataWarehouse) &&
         Objects.equals(this.parameterGroups, runTemplate.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, useDirectCsmSimulator, csmSimulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, engineResource, datasetSchemaResource, parameterGroups);
+    return Objects.hash(id, name, description, useDirectCsmSimulator, csmSimulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, preRunResource, engineResource, postRunResource, sendInputToDataWarehouse, parameterGroups);
   }
 
   @Override
@@ -405,8 +461,10 @@ public class RunTemplate {
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
     sb.append("    parametersHandlerResource: ").append(toIndentedString(parametersHandlerResource)).append("\n");
     sb.append("    datasetValidatorResource: ").append(toIndentedString(datasetValidatorResource)).append("\n");
+    sb.append("    preRunResource: ").append(toIndentedString(preRunResource)).append("\n");
     sb.append("    engineResource: ").append(toIndentedString(engineResource)).append("\n");
-    sb.append("    datasetSchemaResource: ").append(toIndentedString(datasetSchemaResource)).append("\n");
+    sb.append("    postRunResource: ").append(toIndentedString(postRunResource)).append("\n");
+    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");
     return sb.toString();

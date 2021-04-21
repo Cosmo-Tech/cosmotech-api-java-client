@@ -61,19 +61,67 @@ public class ScenarioRunLogsTest {
     }
 
     /**
-     * Test the property 'initLogs'
+     * Test the property 'fetchDatasetLogs'
      */
     @Test
-    public void initLogsTest() {
-        // TODO: test initLogs
+    public void fetchDatasetLogsTest() {
+        // TODO: test fetchDatasetLogs
     }
 
     /**
-     * Test the property 'mainLogs'
+     * Test the property 'fetchScenarioParametersLog'
      */
     @Test
-    public void mainLogsTest() {
-        // TODO: test mainLogs
+    public void fetchScenarioParametersLogTest() {
+        // TODO: test fetchScenarioParametersLog
+    }
+
+    /**
+     * Test the property 'applyParametersLogs'
+     */
+    @Test
+    public void applyParametersLogsTest() {
+        // TODO: test applyParametersLogs
+    }
+
+    /**
+     * Test the property 'validateDataLogs'
+     */
+    @Test
+    public void validateDataLogsTest() {
+        // TODO: test validateDataLogs
+    }
+
+    /**
+     * Test the property 'sendDataWarehouseLogs'
+     */
+    @Test
+    public void sendDataWarehouseLogsTest() {
+        // TODO: test sendDataWarehouseLogs
+    }
+
+    /**
+     * Test the property 'preRunLogs'
+     */
+    @Test
+    public void preRunLogsTest() {
+        // TODO: test preRunLogs
+    }
+
+    /**
+     * Test the property 'runLogs'
+     */
+    @Test
+    public void runLogsTest() {
+        // TODO: test runLogs
+    }
+
+    /**
+     * Test the property 'postRunLogs'
+     */
+    @Test
+    public void postRunLogsTest() {
+        // TODO: test postRunLogs
     }
 
 }

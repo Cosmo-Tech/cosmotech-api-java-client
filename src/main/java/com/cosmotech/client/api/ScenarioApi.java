@@ -28,7 +28,6 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Scenario;
-import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioComparisonResult;
 
 import java.lang.reflect.Type;
@@ -804,7 +803,7 @@ public class ScenarioApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return List&lt;ScenarioBase&gt;
+     * @return List&lt;Scenario&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -812,8 +811,8 @@ public class ScenarioApi {
         <tr><td> 200 </td><td> the scenario tree </td><td>  -  </td></tr>
      </table>
      */
-    public List<ScenarioBase> getScenariosTree(String organizationId, String workspaceId) throws ApiException {
-        ApiResponse<List<ScenarioBase>> localVarResp = getScenariosTreeWithHttpInfo(organizationId, workspaceId);
+    public List<Scenario> getScenariosTree(String organizationId, String workspaceId) throws ApiException {
+        ApiResponse<List<Scenario>> localVarResp = getScenariosTreeWithHttpInfo(organizationId, workspaceId);
         return localVarResp.getData();
     }
 
@@ -822,7 +821,7 @@ public class ScenarioApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return ApiResponse&lt;List&lt;ScenarioBase&gt;&gt;
+     * @return ApiResponse&lt;List&lt;Scenario&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -830,9 +829,9 @@ public class ScenarioApi {
         <tr><td> 200 </td><td> the scenario tree </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ScenarioBase>> getScenariosTreeWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+    public ApiResponse<List<Scenario>> getScenariosTreeWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
         okhttp3.Call localVarCall = getScenariosTreeValidateBeforeCall(organizationId, workspaceId, null);
-        Type localVarReturnType = new TypeToken<List<ScenarioBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Scenario>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -850,10 +849,10 @@ public class ScenarioApi {
         <tr><td> 200 </td><td> the scenario tree </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenariosTreeAsync(String organizationId, String workspaceId, final ApiCallback<List<ScenarioBase>> _callback) throws ApiException {
+    public okhttp3.Call getScenariosTreeAsync(String organizationId, String workspaceId, final ApiCallback<List<Scenario>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenariosTreeValidateBeforeCall(organizationId, workspaceId, _callback);
-        Type localVarReturnType = new TypeToken<List<ScenarioBase>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Scenario>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

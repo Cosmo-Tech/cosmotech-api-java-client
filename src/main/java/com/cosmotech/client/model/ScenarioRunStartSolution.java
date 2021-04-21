@@ -31,7 +31,7 @@ import java.util.List;
  * the parameters to run directly a Solution
  */
 @ApiModel(description = "the parameters to run directly a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T11:19:04.423677+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:40:51.775294+02:00[Europe/Paris]")
 public class ScenarioRunStartSolution {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
