@@ -15,7 +15,6 @@ package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.ScenarioRun;
-import com.cosmotech.client.model.ScenarioRunBase;
 import com.cosmotech.client.model.ScenarioRunLogs;
 import com.cosmotech.client.model.ScenarioRunLogsOptions;
 import com.cosmotech.client.model.ScenarioRunSearch;
@@ -124,7 +123,7 @@ public class ScenariorunApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        List<ScenarioRunBase> response = api.getScenarioScenarioRuns(organizationId, workspaceId, scenarioId);
+        List<ScenarioRun> response = api.getScenarioScenarioRuns(organizationId, workspaceId, scenarioId);
 
         // TODO: test validations
     }
@@ -141,7 +140,7 @@ public class ScenariorunApiTest {
     public void getWorkspaceScenarioRunsTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<ScenarioRunBase> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId);
+        List<ScenarioRun> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId);
 
         // TODO: test validations
     }
@@ -159,7 +158,7 @@ public class ScenariorunApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        ScenarioRunBase response = api.runScenario(organizationId, workspaceId, scenarioId);
+        ScenarioRun response = api.runScenario(organizationId, workspaceId, scenarioId);
 
         // TODO: test validations
     }
@@ -194,7 +193,7 @@ public class ScenariorunApiTest {
     public void searchScenarioRunsTest() throws ApiException {
         String organizationId = null;
         ScenarioRunSearch scenarioRunSearch = null;
-        List<ScenarioRunBase> response = api.searchScenarioRuns(organizationId, scenarioRunSearch);
+        List<ScenarioRun> response = api.searchScenarioRuns(organizationId, scenarioRunSearch);
 
         // TODO: test validations
     }

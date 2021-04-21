@@ -15,7 +15,6 @@ package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.User;
-import com.cosmotech.client.model.UserDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -74,7 +73,7 @@ public class UserApiTest {
     @Test
     public void findUserByIdTest() throws ApiException {
         String userId = null;
-        UserDetails response = api.findUserById(userId);
+        User response = api.findUserById(userId);
 
         // TODO: test validations
     }
@@ -89,7 +88,7 @@ public class UserApiTest {
      */
     @Test
     public void getCurrentUserTest() throws ApiException {
-        UserDetails response = api.getCurrentUser();
+        User response = api.getCurrentUser();
 
         // TODO: test validations
     }
@@ -105,7 +104,7 @@ public class UserApiTest {
     @Test
     public void getOrganizationCurrentUserTest() throws ApiException {
         String organizationId = null;
-        UserDetails response = api.getOrganizationCurrentUser(organizationId);
+        User response = api.getOrganizationCurrentUser(organizationId);
 
         // TODO: test validations
     }
@@ -122,7 +121,7 @@ public class UserApiTest {
     public void getWorkspaceCurrentUserTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        UserDetails response = api.getWorkspaceCurrentUser(organizationId, workspaceId);
+        User response = api.getWorkspaceCurrentUser(organizationId, workspaceId);
 
         // TODO: test validations
     }

@@ -15,7 +15,6 @@ package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Scenario;
-import com.cosmotech.client.model.ScenarioBase;
 import com.cosmotech.client.model.ScenarioComparisonResult;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -136,7 +135,7 @@ public class ScenarioApiTest {
     public void getScenariosTreeTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<ScenarioBase> response = api.getScenariosTree(organizationId, workspaceId);
+        List<Scenario> response = api.getScenariosTree(organizationId, workspaceId);
 
         // TODO: test validations
     }
