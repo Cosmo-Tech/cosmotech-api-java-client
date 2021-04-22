@@ -15,7 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.RunTemplateParameter;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -33,7 +32,7 @@ import java.util.Map;
  * a Parameter Group for a Run Template
  */
 @ApiModel(description = "a Parameter Group for a Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:44:46.276366+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
 public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -61,7 +60,7 @@ public class RunTemplateParameterGroup {
 
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
-  private List<RunTemplateParameter> parameters = new ArrayList<RunTemplateParameter>();
+  private List<String> parameters = new ArrayList<String>();
 
 
   public RunTemplateParameterGroup id(String id) {
@@ -213,29 +212,29 @@ public class RunTemplateParameterGroup {
   }
 
 
-  public RunTemplateParameterGroup parameters(List<RunTemplateParameter> parameters) {
+  public RunTemplateParameterGroup parameters(List<String> parameters) {
     
     this.parameters = parameters;
     return this;
   }
 
-  public RunTemplateParameterGroup addParametersItem(RunTemplateParameter parametersItem) {
+  public RunTemplateParameterGroup addParametersItem(String parametersItem) {
     this.parameters.add(parametersItem);
     return this;
   }
 
    /**
-   * a list of Run Template Parameters
+   * an ordered list of Run Template Parameters
    * @return parameters
   **/
-  @ApiModelProperty(required = true, value = "a list of Run Template Parameters")
+  @ApiModelProperty(required = true, value = "an ordered list of Run Template Parameters")
 
-  public List<RunTemplateParameter> getParameters() {
+  public List<String> getParameters() {
     return parameters;
   }
 
 
-  public void setParameters(List<RunTemplateParameter> parameters) {
+  public void setParameters(List<String> parameters) {
     this.parameters = parameters;
   }
 

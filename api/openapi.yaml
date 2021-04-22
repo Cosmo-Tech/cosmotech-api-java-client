@@ -2832,11 +2832,23 @@ components:
         url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
+        parameters:
+        - id: prefix
+          labels:
+            fr: Prefix des noms
+            en: Names prefix
+          varType: string
+        parameterGroups:
+        - id: consumers
+          labels:
+            fr: Consommateurs
+            en: Consumers
+          parameters:
+          - prefix
         run_templates:
         - id: hundred
           name: Full simulation 100 steps
           description: Run a full simulation with 100 steps
-          useDirectCsmSimulator: false
           csmSimulation: DeployedSimulation
           tags:
           - Full
@@ -2855,16 +2867,7 @@ components:
             storageType: local
             resourcePath: run_templates/hundred/schema
           parameterGroups:
-          - id: consumers
-            labels:
-              fr: Consommateurs
-              en: Consumers
-            parameters:
-            - id: prefix
-              labels:
-                fr: Prefix des noms
-                en: Names prefix
-              varType: string
+          - consumers
     BreweryADT:
       description: Brewery Dataset in ADT example
       summary: Brewery ADT Dataset
@@ -3059,6 +3062,7 @@ components:
         - "1"
         parametersValues:
         - parameterId: prefix
+          varType: string
           value: new
         sendInputToDataWarehouse: true
         dataWarehouseDB: Brewery
@@ -3074,9 +3078,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
-            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
         fetchScenarioParametersContainer:
           id: aqwzsx
@@ -3085,7 +3090,9 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_SCENARIO_ID: "1"
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
         applyParametersContainer:
@@ -3095,8 +3102,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_PARAMETERS_HANDLER_PROVIDER: local
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
@@ -3108,6 +3117,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3121,8 +3131,11 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+            CSM_SEND_DATAWAREHOUSE_DATASETS: true
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
@@ -3133,6 +3146,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_ENGINE_PROVIDER: local
             CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3161,9 +3175,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
-            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
         sendDataWarehouseContainer:
           id: qsdfghjklm
@@ -3172,8 +3187,11 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+            CSM_SEND_DATAWAREHOUSE_DATASETS: true
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
@@ -3184,6 +3202,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_ENGINE_PROVIDER: local
             CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3213,9 +3232,10 @@ components:
               AZURE_CLIENT_ID: "12345678"
               AZURE_CLIENT_SECRET: azertyuiop
               CSM_API_URL: https://api.comostech.com
+              CSM_API_TOKEN: azertyuiopqsdfghjklm
               ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
               ADT_QUERY: SELECT * FROM digitaltwins
-              EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
           computer: aks-highcpupool-30630301-vmss000000
           logs:
@@ -3233,6 +3253,7 @@ components:
               AZURE_CLIENT_ID: "12345678"
               AZURE_CLIENT_SECRET: azertyuiop
               CSM_API_URL: https://api.comostech.com
+              CSM_API_TOKEN: azertyuiopqsdfghjklm
               CSM_ENGINE_PROVIDER: local
               CSM_ENGINE_PATH: run_templates/hundred/engine/
               CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3280,6 +3301,7 @@ components:
         - "1"
         parametersValues:
         - parameterId: prefix
+          varType: string
           value: new
         sendInputToDataWarehouse: true
         dataWarehouseDB: Brewery
@@ -3295,9 +3317,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
-            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_DATASET_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
         fetchScenarioParametersContainer:
           id: aqwzsx
@@ -3306,6 +3329,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_SCENARIO_ID: "1"
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
@@ -3316,8 +3340,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_PARAMETERS_HANDLER_PROVIDER: local
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
@@ -3329,6 +3355,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3342,8 +3369,11 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+            CSM_SEND_DATAWAREHOUSE_DATASETS: true
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
@@ -3354,6 +3384,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_ENGINE_PROVIDER: local
             CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3383,9 +3414,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
-            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
         sendDataWarehouseContainer:
           id: qsdfghjklm
@@ -3394,8 +3426,11 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+            CSM_SEND_DATAWAREHOUSE_DATASETS: true
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
@@ -3406,6 +3441,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_ENGINE_PROVIDER: local
             CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -3427,6 +3463,7 @@ components:
         - "1"
         parametersValues:
         - parameterId: prefix
+          varType: string
           value: new
         sendInputToDataWarehouse: true
         dataWarehouseDB: Brewery
@@ -3494,11 +3531,23 @@ components:
         url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
+        parameters:
+        - id: prefix
+          labels:
+            fr: Prefix des noms
+            en: Names prefix
+          varType: string
+        parameterGroups:
+        - id: consumers
+          labels:
+            fr: Consommateurs
+            en: Consumers
+          parameters:
+          - prefix
         run_templates:
         - id: hundred
           name: Full simulation 100 steps
           description: Run a full simulation with 100 steps
-          useDirectCsmSimulator: false
           csmSimulation: DeployedSimulation
           tags:
           - Full
@@ -3517,16 +3566,7 @@ components:
             storageType: local
             resourcePath: run_templates/hundred/schema
           parameterGroups:
-          - id: consumers
-            labels:
-              fr: Consommateurs
-              en: Consumers
-            parameters:
-            - id: prefix
-              labels:
-                fr: Prefix des noms
-                en: Names prefix
-              varType: string
+          - consumers
     BreweryWorkspace:
       description: Brewery Workspace example
       summary: Brewery Workspace
@@ -3973,9 +4013,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
-            EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
           image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
         fetchScenarioParametersContainer:
           id: aqwzsx
@@ -3984,6 +4025,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_SCENARIO_ID: "1"
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: csmphoenix.azurecr.io/cosmotech-scenario-parameters-loader:latest
@@ -3994,8 +4036,10 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_PARAMETERS_HANDLER_PROVIDER: local
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
+            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
           runArgs:
@@ -4007,6 +4051,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -4020,8 +4065,11 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+            CSM_SEND_DATAWAREHOUSE_DATASETS: true
             ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
             ADX_DATABASE: Brewery
           image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
@@ -4032,6 +4080,7 @@ components:
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: azertyuiop
             CSM_API_URL: https://api.comostech.com
+            CSM_API_TOKEN: azertyuiopqsdfghjklm
             CSM_ENGINE_PROVIDER: local
             CSM_ENGINE_PATH: run_templates/hundred/engine/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
@@ -4058,11 +4107,23 @@ components:
         url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
+        parameters:
+        - id: prefix
+          labels:
+            fr: Prefix des noms
+            en: Names prefix
+          varType: string
+        parameterGroups:
+        - id: consumers
+          labels:
+            fr: Consommateurs
+            en: Consumers
+          parameters:
+          - prefix
         run_templates:
         - id: hundred
           name: Full simulation 100 steps
           description: Run a full simulation with 100 steps
-          useDirectCsmSimulator: false
           csmSimulation: DeployedSimulation
           tags:
           - Full
@@ -4081,20 +4142,10 @@ components:
             storageType: local
             resourcePath: run_templates/hundred/schema
           parameterGroups:
-          - id: consumers
-            labels:
-              fr: Consommateurs
-              en: Consumers
-            parameters:
-            - id: prefix
-              labels:
-                fr: Prefix des noms
-                en: Names prefix
-              varType: string
+          - consumers
         - id: standard
           name: Standard Simulation
           description: Run the standard Simulation
-          useDirectCsmSimulator: true
           csmSimulation: DeployedSimulation
           tags:
           - Full
@@ -5275,6 +5326,7 @@ components:
           customUri: customUri
           resourcePath: resourcePath
           storageType: local
+        sendDatasetsToDataWarehouse: true
         description: description
         computeSize: computeSize
         csmSimulation: csmSimulation
@@ -5282,53 +5334,8 @@ components:
         - tags
         - tags
         parameterGroups:
-        - options:
-            key: "{}"
-          id: id
-          isTable: true
-          parameters:
-          - varType: varType
-            options:
-              key: "{}"
-            id: id
-            labels:
-              key: "{}"
-            order: 6
-          - varType: varType
-            options:
-              key: "{}"
-            id: id
-            labels:
-              key: "{}"
-            order: 6
-          parentId: parentId
-          labels:
-            key: "{}"
-          order: 0
-        - options:
-            key: "{}"
-          id: id
-          isTable: true
-          parameters:
-          - varType: varType
-            options:
-              key: "{}"
-            id: id
-            labels:
-              key: "{}"
-            order: 6
-          - varType: varType
-            options:
-              key: "{}"
-            id: id
-            labels:
-              key: "{}"
-            order: 6
-          parentId: parentId
-          labels:
-            key: "{}"
-          order: 0
-        useDirectCsmSimulator: true
+        - parameterGroups
+        - parameterGroups
         name: name
         engineResource:
           customUri: customUri
@@ -5339,7 +5346,7 @@ components:
           resourcePath: resourcePath
           storageType: local
         id: id
-        sendInputToDataWarehouse: true
+        sendInputParametersToDataWarehouse: true
       properties:
         id:
           description: the Solution Run Template id
@@ -5350,11 +5357,6 @@ components:
         description:
           description: the Run Template description
           type: string
-        useDirectCsmSimulator:
-          description: whether or not the Run Template use the main standard csmSimulator
-            directly. False if there is an Engine set
-          readOnly: true
-          type: boolean
         csmSimulation:
           description: the Cosmo Tech simulation name. This information is send to
             the Engine. Mandatory information if no Engine is defined
@@ -5378,15 +5380,21 @@ components:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
         postRunResource:
           $ref: '#/components/schemas/RunTemplateResourceStorage'
-        sendInputToDataWarehouse:
+        sendDatasetsToDataWarehouse:
           default: true
-          description: whether or not the Dataset values and the input parameters
-            values are send to the DataWarehouse prior to Simulation Run
+          description: whether or not the Datasets values are send to the DataWarehouse
+            prior to Simulation Run
+          type: boolean
+        sendInputParametersToDataWarehouse:
+          default: true
+          description: whether or not the input parameters values are send to the
+            DataWarehouse prior to Simulation Run
           type: boolean
         parameterGroups:
-          description: the list of parameters groups for the Run Template
+          description: the ordered list of parameters groups for the Run Template
           items:
-            $ref: '#/components/schemas/RunTemplateParameterGroup'
+            description: a Run Template Group Parameter id
+            type: string
           type: array
       required:
       - id
@@ -5401,7 +5409,7 @@ components:
         id: id
         labels:
           key: "{}"
-        order: 6
+        order: 0
       properties:
         id:
           description: the Parameter id
@@ -5411,8 +5419,8 @@ components:
           description: a translated label with key as ISO 639-1 code
           type: object
         varType:
-          description: "the variable type for the parameter. Basic types or special\
-            \ type $DATASETID, $DATAPATH"
+          description: the variable type for the parameter. Basic types or special
+            type %DATASETID%
           type: string
         order:
           description: the Parameter Group order
@@ -5434,24 +5442,12 @@ components:
         id: id
         isTable: true
         parameters:
-        - varType: varType
-          options:
-            key: "{}"
-          id: id
-          labels:
-            key: "{}"
-          order: 6
-        - varType: varType
-          options:
-            key: "{}"
-          id: id
-          labels:
-            key: "{}"
-          order: 6
+        - parameters
+        - parameters
         parentId: parentId
         labels:
           key: "{}"
-        order: 0
+        order: 6
       properties:
         id:
           description: the Parameter Group id
@@ -5474,9 +5470,10 @@ components:
           description: the Run Template Group parent Id
           type: string
         parameters:
-          description: a list of Run Template Parameters
+          description: an ordered list of Run Template Parameters
           items:
-            $ref: '#/components/schemas/RunTemplateParameter'
+            description: a Run Template Parameter id
+            type: string
           type: array
       required:
       - id
@@ -6503,10 +6500,8 @@ components:
     Solution:
       description: a version of a Solution
       example:
-        name: name
         description: description
         csmSimulator: csmSimulator
-        id: id
         run_templates:
         - preRunResource:
             customUri: customUri
@@ -6520,6 +6515,7 @@ components:
             customUri: customUri
             resourcePath: resourcePath
             storageType: local
+          sendDatasetsToDataWarehouse: true
           description: description
           computeSize: computeSize
           csmSimulation: csmSimulation
@@ -6527,53 +6523,8 @@ components:
           - tags
           - tags
           parameterGroups:
-          - options:
-              key: "{}"
-            id: id
-            isTable: true
-            parameters:
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            parentId: parentId
-            labels:
-              key: "{}"
-            order: 0
-          - options:
-              key: "{}"
-            id: id
-            isTable: true
-            parameters:
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            parentId: parentId
-            labels:
-              key: "{}"
-            order: 0
-          useDirectCsmSimulator: true
+          - parameterGroups
+          - parameterGroups
           name: name
           engineResource:
             customUri: customUri
@@ -6584,7 +6535,7 @@ components:
             resourcePath: resourcePath
             storageType: local
           id: id
-          sendInputToDataWarehouse: true
+          sendInputParametersToDataWarehouse: true
         - preRunResource:
             customUri: customUri
             resourcePath: resourcePath
@@ -6597,6 +6548,7 @@ components:
             customUri: customUri
             resourcePath: resourcePath
             storageType: local
+          sendDatasetsToDataWarehouse: true
           description: description
           computeSize: computeSize
           csmSimulation: csmSimulation
@@ -6604,53 +6556,8 @@ components:
           - tags
           - tags
           parameterGroups:
-          - options:
-              key: "{}"
-            id: id
-            isTable: true
-            parameters:
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            parentId: parentId
-            labels:
-              key: "{}"
-            order: 0
-          - options:
-              key: "{}"
-            id: id
-            isTable: true
-            parameters:
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            - varType: varType
-              options:
-                key: "{}"
-              id: id
-              labels:
-                key: "{}"
-              order: 6
-            parentId: parentId
-            labels:
-              key: "{}"
-            order: 0
-          useDirectCsmSimulator: true
+          - parameterGroups
+          - parameterGroups
           name: name
           engineResource:
             customUri: customUri
@@ -6661,15 +6568,55 @@ components:
             resourcePath: resourcePath
             storageType: local
           id: id
-          sendInputToDataWarehouse: true
+          sendInputParametersToDataWarehouse: true
         repository: repository
         ownerId: ownerId
         version: version
-        key: key
         url: url
         tags:
         - tags
         - tags
+        parameterGroups:
+        - options:
+            key: "{}"
+          id: id
+          isTable: true
+          parameters:
+          - parameters
+          - parameters
+          parentId: parentId
+          labels:
+            key: "{}"
+          order: 6
+        - options:
+            key: "{}"
+          id: id
+          isTable: true
+          parameters:
+          - parameters
+          - parameters
+          parentId: parentId
+          labels:
+            key: "{}"
+          order: 6
+        name: name
+        id: id
+        parameters:
+        - varType: varType
+          options:
+            key: "{}"
+          id: id
+          labels:
+            key: "{}"
+          order: 0
+        - varType: varType
+          options:
+            key: "{}"
+          id: id
+          labels:
+            key: "{}"
+          order: 0
+        key: key
       properties:
         id:
           description: the Solution version unique identifier
@@ -6705,6 +6652,16 @@ components:
           description: the list of tags
           items:
             type: string
+          type: array
+        parameters:
+          description: the list of Run Template Parameters
+          items:
+            $ref: '#/components/schemas/RunTemplateParameter'
+          type: array
+        parameterGroups:
+          description: the list of parameters groups for the Run Templates
+          items:
+            $ref: '#/components/schemas/RunTemplateParameterGroup'
           type: array
         run_templates:
           description: list of Run Template

@@ -14,6 +14,8 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.RunTemplate;
+import com.cosmotech.client.model.RunTemplateParameter;
+import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -121,6 +123,22 @@ public class SolutionTest {
     @Test
     public void tagsTest() {
         // TODO: test tags
+    }
+
+    /**
+     * Test the property 'parameters'
+     */
+    @Test
+    public void parametersTest() {
+        // TODO: test parameters
+    }
+
+    /**
+     * Test the property 'parameterGroups'
+     */
+    @Test
+    public void parameterGroupsTest() {
+        // TODO: test parameterGroups
     }
 
     /**

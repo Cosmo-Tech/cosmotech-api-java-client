@@ -16,6 +16,8 @@ package com.cosmotech.client.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.cosmotech.client.model.RunTemplate;
+import com.cosmotech.client.model.RunTemplateParameter;
+import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,7 +33,7 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:44:46.276366+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -72,6 +74,14 @@ public class Solution {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<String> tags = null;
+
+  public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS)
+  private List<RunTemplateParameter> parameters = null;
+
+  public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
+  @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
+  private List<RunTemplateParameterGroup> parameterGroups = null;
 
   public static final String SERIALIZED_NAME_RUN_TEMPLATES = "run_templates";
   @SerializedName(SERIALIZED_NAME_RUN_TEMPLATES)
@@ -294,6 +304,68 @@ public class Solution {
   }
 
 
+  public Solution parameters(List<RunTemplateParameter> parameters) {
+    
+    this.parameters = parameters;
+    return this;
+  }
+
+  public Solution addParametersItem(RunTemplateParameter parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<RunTemplateParameter>();
+    }
+    this.parameters.add(parametersItem);
+    return this;
+  }
+
+   /**
+   * the list of Run Template Parameters
+   * @return parameters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of Run Template Parameters")
+
+  public List<RunTemplateParameter> getParameters() {
+    return parameters;
+  }
+
+
+  public void setParameters(List<RunTemplateParameter> parameters) {
+    this.parameters = parameters;
+  }
+
+
+  public Solution parameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
+    
+    this.parameterGroups = parameterGroups;
+    return this;
+  }
+
+  public Solution addParameterGroupsItem(RunTemplateParameterGroup parameterGroupsItem) {
+    if (this.parameterGroups == null) {
+      this.parameterGroups = new ArrayList<RunTemplateParameterGroup>();
+    }
+    this.parameterGroups.add(parameterGroupsItem);
+    return this;
+  }
+
+   /**
+   * the list of parameters groups for the Run Templates
+   * @return parameterGroups
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of parameters groups for the Run Templates")
+
+  public List<RunTemplateParameterGroup> getParameterGroups() {
+    return parameterGroups;
+  }
+
+
+  public void setParameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
+    this.parameterGroups = parameterGroups;
+  }
+
+
   public Solution runTemplates(List<RunTemplate> runTemplates) {
     
     this.runTemplates = runTemplates;
@@ -344,12 +416,14 @@ public class Solution {
         Objects.equals(this.ownerId, solution.ownerId) &&
         Objects.equals(this.url, solution.url) &&
         Objects.equals(this.tags, solution.tags) &&
+        Objects.equals(this.parameters, solution.parameters) &&
+        Objects.equals(this.parameterGroups, solution.parameterGroups) &&
         Objects.equals(this.runTemplates, solution.runTemplates);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, repository, csmSimulator, version, ownerId, url, tags, runTemplates);
+    return Objects.hash(id, key, name, description, repository, csmSimulator, version, ownerId, url, tags, parameters, parameterGroups, runTemplates);
   }
 
   @Override
@@ -366,6 +440,8 @@ public class Solution {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("    runTemplates: ").append(toIndentedString(runTemplates)).append("\n");
     sb.append("}");
     return sb.toString();

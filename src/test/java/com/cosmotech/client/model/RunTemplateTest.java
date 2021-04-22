@@ -13,7 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.RunTemplateResourceStorage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -66,14 +65,6 @@ public class RunTemplateTest {
     @Test
     public void descriptionTest() {
         // TODO: test description
-    }
-
-    /**
-     * Test the property 'useDirectCsmSimulator'
-     */
-    @Test
-    public void useDirectCsmSimulatorTest() {
-        // TODO: test useDirectCsmSimulator
     }
 
     /**
@@ -141,11 +132,19 @@ public class RunTemplateTest {
     }
 
     /**
-     * Test the property 'sendInputToDataWarehouse'
+     * Test the property 'sendDatasetsToDataWarehouse'
      */
     @Test
-    public void sendInputToDataWarehouseTest() {
-        // TODO: test sendInputToDataWarehouse
+    public void sendDatasetsToDataWarehouseTest() {
+        // TODO: test sendDatasetsToDataWarehouse
+    }
+
+    /**
+     * Test the property 'sendInputParametersToDataWarehouse'
+     */
+    @Test
+    public void sendInputParametersToDataWarehouseTest() {
+        // TODO: test sendInputParametersToDataWarehouse
     }
 
     /**

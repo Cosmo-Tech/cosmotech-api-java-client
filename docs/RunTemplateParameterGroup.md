@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **isTable** | **Boolean** | does the group define a table |  [optional]
 **options** | **Map&lt;String, Object&gt;** | freeform options |  [optional]
 **parentId** | **String** | the Run Template Group parent Id |  [optional]
-**parameters** | [**List&lt;RunTemplateParameter&gt;**](RunTemplateParameter.md) | a list of Run Template Parameters | 
+**parameters** | **List&lt;String&gt;** | an ordered list of Run Template Parameters | 
 
 
 

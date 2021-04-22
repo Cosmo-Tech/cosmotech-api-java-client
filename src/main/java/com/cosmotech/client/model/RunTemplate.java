@@ -15,7 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.RunTemplateResourceStorage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -32,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:44:46.276366+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -45,10 +44,6 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
-
-  public static final String SERIALIZED_NAME_USE_DIRECT_CSM_SIMULATOR = "useDirectCsmSimulator";
-  @SerializedName(SERIALIZED_NAME_USE_DIRECT_CSM_SIMULATOR)
-  private Boolean useDirectCsmSimulator;
 
   public static final String SERIALIZED_NAME_CSM_SIMULATION = "csmSimulation";
   @SerializedName(SERIALIZED_NAME_CSM_SIMULATION)
@@ -82,13 +77,17 @@ public class RunTemplate {
   @SerializedName(SERIALIZED_NAME_POST_RUN_RESOURCE)
   private RunTemplateResourceStorage postRunResource;
 
-  public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
-  @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
-  private Boolean sendInputToDataWarehouse = true;
+  public static final String SERIALIZED_NAME_SEND_DATASETS_TO_DATA_WAREHOUSE = "sendDatasetsToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_DATASETS_TO_DATA_WAREHOUSE)
+  private Boolean sendDatasetsToDataWarehouse = true;
+
+  public static final String SERIALIZED_NAME_SEND_INPUT_PARAMETERS_TO_DATA_WAREHOUSE = "sendInputParametersToDataWarehouse";
+  @SerializedName(SERIALIZED_NAME_SEND_INPUT_PARAMETERS_TO_DATA_WAREHOUSE)
+  private Boolean sendInputParametersToDataWarehouse = true;
 
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
-  private List<RunTemplateParameterGroup> parameterGroups = null;
+  private List<String> parameterGroups = null;
 
 
   public RunTemplate id(String id) {
@@ -156,20 +155,6 @@ public class RunTemplate {
   public void setDescription(String description) {
     this.description = description;
   }
-
-
-   /**
-   * whether or not the Run Template use the main standard csmSimulator directly. False if there is an Engine set
-   * @return useDirectCsmSimulator
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether or not the Run Template use the main standard csmSimulator directly. False if there is an Engine set")
-
-  public Boolean getUseDirectCsmSimulator() {
-    return useDirectCsmSimulator;
-  }
-
-
 
 
   public RunTemplate csmSimulation(String csmSimulation) {
@@ -364,56 +349,79 @@ public class RunTemplate {
   }
 
 
-  public RunTemplate sendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
+  public RunTemplate sendDatasetsToDataWarehouse(Boolean sendDatasetsToDataWarehouse) {
     
-    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+    this.sendDatasetsToDataWarehouse = sendDatasetsToDataWarehouse;
     return this;
   }
 
    /**
-   * whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run
-   * @return sendInputToDataWarehouse
+   * whether or not the Datasets values are send to the DataWarehouse prior to Simulation Run
+   * @return sendDatasetsToDataWarehouse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether or not the Dataset values and the input parameters values are send to the DataWarehouse prior to Simulation Run")
+  @ApiModelProperty(value = "whether or not the Datasets values are send to the DataWarehouse prior to Simulation Run")
 
-  public Boolean getSendInputToDataWarehouse() {
-    return sendInputToDataWarehouse;
+  public Boolean getSendDatasetsToDataWarehouse() {
+    return sendDatasetsToDataWarehouse;
   }
 
 
-  public void setSendInputToDataWarehouse(Boolean sendInputToDataWarehouse) {
-    this.sendInputToDataWarehouse = sendInputToDataWarehouse;
+  public void setSendDatasetsToDataWarehouse(Boolean sendDatasetsToDataWarehouse) {
+    this.sendDatasetsToDataWarehouse = sendDatasetsToDataWarehouse;
   }
 
 
-  public RunTemplate parameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
+  public RunTemplate sendInputParametersToDataWarehouse(Boolean sendInputParametersToDataWarehouse) {
+    
+    this.sendInputParametersToDataWarehouse = sendInputParametersToDataWarehouse;
+    return this;
+  }
+
+   /**
+   * whether or not the input parameters values are send to the DataWarehouse prior to Simulation Run
+   * @return sendInputParametersToDataWarehouse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not the input parameters values are send to the DataWarehouse prior to Simulation Run")
+
+  public Boolean getSendInputParametersToDataWarehouse() {
+    return sendInputParametersToDataWarehouse;
+  }
+
+
+  public void setSendInputParametersToDataWarehouse(Boolean sendInputParametersToDataWarehouse) {
+    this.sendInputParametersToDataWarehouse = sendInputParametersToDataWarehouse;
+  }
+
+
+  public RunTemplate parameterGroups(List<String> parameterGroups) {
     
     this.parameterGroups = parameterGroups;
     return this;
   }
 
-  public RunTemplate addParameterGroupsItem(RunTemplateParameterGroup parameterGroupsItem) {
+  public RunTemplate addParameterGroupsItem(String parameterGroupsItem) {
     if (this.parameterGroups == null) {
-      this.parameterGroups = new ArrayList<RunTemplateParameterGroup>();
+      this.parameterGroups = new ArrayList<String>();
     }
     this.parameterGroups.add(parameterGroupsItem);
     return this;
   }
 
    /**
-   * the list of parameters groups for the Run Template
+   * the ordered list of parameters groups for the Run Template
    * @return parameterGroups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of parameters groups for the Run Template")
+  @ApiModelProperty(value = "the ordered list of parameters groups for the Run Template")
 
-  public List<RunTemplateParameterGroup> getParameterGroups() {
+  public List<String> getParameterGroups() {
     return parameterGroups;
   }
 
 
-  public void setParameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
+  public void setParameterGroups(List<String> parameterGroups) {
     this.parameterGroups = parameterGroups;
   }
 
@@ -430,7 +438,6 @@ public class RunTemplate {
     return Objects.equals(this.id, runTemplate.id) &&
         Objects.equals(this.name, runTemplate.name) &&
         Objects.equals(this.description, runTemplate.description) &&
-        Objects.equals(this.useDirectCsmSimulator, runTemplate.useDirectCsmSimulator) &&
         Objects.equals(this.csmSimulation, runTemplate.csmSimulation) &&
         Objects.equals(this.tags, runTemplate.tags) &&
         Objects.equals(this.computeSize, runTemplate.computeSize) &&
@@ -439,13 +446,14 @@ public class RunTemplate {
         Objects.equals(this.preRunResource, runTemplate.preRunResource) &&
         Objects.equals(this.engineResource, runTemplate.engineResource) &&
         Objects.equals(this.postRunResource, runTemplate.postRunResource) &&
-        Objects.equals(this.sendInputToDataWarehouse, runTemplate.sendInputToDataWarehouse) &&
+        Objects.equals(this.sendDatasetsToDataWarehouse, runTemplate.sendDatasetsToDataWarehouse) &&
+        Objects.equals(this.sendInputParametersToDataWarehouse, runTemplate.sendInputParametersToDataWarehouse) &&
         Objects.equals(this.parameterGroups, runTemplate.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, useDirectCsmSimulator, csmSimulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, preRunResource, engineResource, postRunResource, sendInputToDataWarehouse, parameterGroups);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, parametersHandlerResource, datasetValidatorResource, preRunResource, engineResource, postRunResource, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, parameterGroups);
   }
 
   @Override
@@ -455,7 +463,6 @@ public class RunTemplate {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    useDirectCsmSimulator: ").append(toIndentedString(useDirectCsmSimulator)).append("\n");
     sb.append("    csmSimulation: ").append(toIndentedString(csmSimulation)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
@@ -464,7 +471,8 @@ public class RunTemplate {
     sb.append("    preRunResource: ").append(toIndentedString(preRunResource)).append("\n");
     sb.append("    engineResource: ").append(toIndentedString(engineResource)).append("\n");
     sb.append("    postRunResource: ").append(toIndentedString(postRunResource)).append("\n");
-    sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
+    sb.append("    sendDatasetsToDataWarehouse: ").append(toIndentedString(sendDatasetsToDataWarehouse)).append("\n");
+    sb.append("    sendInputParametersToDataWarehouse: ").append(toIndentedString(sendInputParametersToDataWarehouse)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");
     return sb.toString();

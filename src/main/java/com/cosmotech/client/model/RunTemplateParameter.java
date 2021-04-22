@@ -31,7 +31,7 @@ import java.util.Map;
  * a Run Template Parameter
  */
 @ApiModel(description = "a Run Template Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T17:44:46.276366+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
 public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -110,10 +110,10 @@ public class RunTemplateParameter {
   }
 
    /**
-   * the variable type for the parameter. Basic types or special type $DATASETID, $DATAPATH
+   * the variable type for the parameter. Basic types or special type %DATASETID%
    * @return varType
   **/
-  @ApiModelProperty(required = true, value = "the variable type for the parameter. Basic types or special type $DATASETID, $DATAPATH")
+  @ApiModelProperty(required = true, value = "the variable type for the parameter. Basic types or special type %DATASETID%")
 
   public String getVarType() {
     return varType;

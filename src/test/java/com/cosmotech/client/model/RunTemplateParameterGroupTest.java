@@ -13,7 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.RunTemplateParameter;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
