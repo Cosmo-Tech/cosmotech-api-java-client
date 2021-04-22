@@ -31,7 +31,7 @@ import java.util.Map;
  * a Run Template Parameter
  */
 @ApiModel(description = "a Run Template Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
 public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -44,10 +44,6 @@ public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_VAR_TYPE = "varType";
   @SerializedName(SERIALIZED_NAME_VAR_TYPE)
   private String varType;
-
-  public static final String SERIALIZED_NAME_ORDER = "order";
-  @SerializedName(SERIALIZED_NAME_ORDER)
-  private Integer order;
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
@@ -125,29 +121,6 @@ public class RunTemplateParameter {
   }
 
 
-  public RunTemplateParameter order(Integer order) {
-    
-    this.order = order;
-    return this;
-  }
-
-   /**
-   * the Parameter Group order
-   * @return order
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Parameter Group order")
-
-  public Integer getOrder() {
-    return order;
-  }
-
-
-  public void setOrder(Integer order) {
-    this.order = order;
-  }
-
-
   public RunTemplateParameter options(Map<String, Object> options) {
     
     this.options = options;
@@ -191,13 +164,12 @@ public class RunTemplateParameter {
     return Objects.equals(this.id, runTemplateParameter.id) &&
         Objects.equals(this.labels, runTemplateParameter.labels) &&
         Objects.equals(this.varType, runTemplateParameter.varType) &&
-        Objects.equals(this.order, runTemplateParameter.order) &&
         Objects.equals(this.options, runTemplateParameter.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, labels, varType, order, options);
+    return Objects.hash(id, labels, varType, options);
   }
 
   @Override
@@ -207,7 +179,6 @@ public class RunTemplateParameter {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    varType: ").append(toIndentedString(varType)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();

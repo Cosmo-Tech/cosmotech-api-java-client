@@ -5409,7 +5409,6 @@ components:
         id: id
         labels:
           key: "{}"
-        order: 0
       properties:
         id:
           description: the Parameter id
@@ -5422,9 +5421,6 @@ components:
           description: the variable type for the parameter. Basic types or special
             type %DATASETID%
           type: string
-        order:
-          description: the Parameter Group order
-          type: integer
         options:
           additionalProperties: true
           description: freeform options
@@ -5447,7 +5443,6 @@ components:
         parentId: parentId
         labels:
           key: "{}"
-        order: 6
       properties:
         id:
           description: the Parameter Group id
@@ -5456,9 +5451,6 @@ components:
           additionalProperties: true
           description: a translated label with key as ISO 639-1 code
           type: object
-        order:
-          description: the Parameter Group order
-          type: integer
         isTable:
           description: does the group define a table
           type: boolean
@@ -6587,7 +6579,6 @@ components:
           parentId: parentId
           labels:
             key: "{}"
-          order: 6
         - options:
             key: "{}"
           id: id
@@ -6598,7 +6589,6 @@ components:
           parentId: parentId
           labels:
             key: "{}"
-          order: 6
         name: name
         id: id
         parameters:
@@ -6608,14 +6598,12 @@ components:
           id: id
           labels:
             key: "{}"
-          order: 0
         - varType: varType
           options:
             key: "{}"
           id: id
           labels:
             key: "{}"
-          order: 0
         key: key
       properties:
         id:

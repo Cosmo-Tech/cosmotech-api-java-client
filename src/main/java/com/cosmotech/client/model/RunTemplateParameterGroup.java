@@ -32,7 +32,7 @@ import java.util.Map;
  * a Parameter Group for a Run Template
  */
 @ApiModel(description = "a Parameter Group for a Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:27:09.848905+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
 public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -41,10 +41,6 @@ public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
   private Map<String, Object> labels = new HashMap<String, Object>();
-
-  public static final String SERIALIZED_NAME_ORDER = "order";
-  @SerializedName(SERIALIZED_NAME_ORDER)
-  private Integer order;
 
   public static final String SERIALIZED_NAME_IS_TABLE = "isTable";
   @SerializedName(SERIALIZED_NAME_IS_TABLE)
@@ -109,29 +105,6 @@ public class RunTemplateParameterGroup {
 
   public void setLabels(Map<String, Object> labels) {
     this.labels = labels;
-  }
-
-
-  public RunTemplateParameterGroup order(Integer order) {
-    
-    this.order = order;
-    return this;
-  }
-
-   /**
-   * the Parameter Group order
-   * @return order
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Parameter Group order")
-
-  public Integer getOrder() {
-    return order;
-  }
-
-
-  public void setOrder(Integer order) {
-    this.order = order;
   }
 
 
@@ -250,7 +223,6 @@ public class RunTemplateParameterGroup {
     RunTemplateParameterGroup runTemplateParameterGroup = (RunTemplateParameterGroup) o;
     return Objects.equals(this.id, runTemplateParameterGroup.id) &&
         Objects.equals(this.labels, runTemplateParameterGroup.labels) &&
-        Objects.equals(this.order, runTemplateParameterGroup.order) &&
         Objects.equals(this.isTable, runTemplateParameterGroup.isTable) &&
         Objects.equals(this.options, runTemplateParameterGroup.options) &&
         Objects.equals(this.parentId, runTemplateParameterGroup.parentId) &&
@@ -259,7 +231,7 @@ public class RunTemplateParameterGroup {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, labels, order, isTable, options, parentId, parameters);
+    return Objects.hash(id, labels, isTable, options, parentId, parameters);
   }
 
   @Override
@@ -268,7 +240,6 @@ public class RunTemplateParameterGroup {
     sb.append("class RunTemplateParameterGroup {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    isTable: ").append(toIndentedString(isTable)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
