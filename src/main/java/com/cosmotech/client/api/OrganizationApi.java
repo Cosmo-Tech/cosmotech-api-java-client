@@ -28,6 +28,8 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Organization;
+import com.cosmotech.client.model.OrganizationService;
+import com.cosmotech.client.model.OrganizationUser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -55,6 +57,135 @@ public class OrganizationApi {
     }
 
     /**
+     * Build call for addOrReplaceUsersInOrganization
+     * @param organizationId the Organization identifier (required)
+     * @param organizationUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Organization Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceUsersInOrganizationCall(String organizationId, List<OrganizationUser> organizationUser, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = organizationUser;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addOrReplaceUsersInOrganizationValidateBeforeCall(String organizationId, List<OrganizationUser> organizationUser, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addOrReplaceUsersInOrganization(Async)");
+        }
+        
+        // verify the required parameter 'organizationUser' is set
+        if (organizationUser == null) {
+            throw new ApiException("Missing the required parameter 'organizationUser' when calling addOrReplaceUsersInOrganization(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addOrReplaceUsersInOrganizationCall(organizationId, organizationUser, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add (or replace) users in the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return List&lt;OrganizationUser&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Organization Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<OrganizationUser> addOrReplaceUsersInOrganization(String organizationId, List<OrganizationUser> organizationUser) throws ApiException {
+        ApiResponse<List<OrganizationUser>> localVarResp = addOrReplaceUsersInOrganizationWithHttpInfo(organizationId, organizationUser);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add (or replace) users in the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return ApiResponse&lt;List&lt;OrganizationUser&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Organization Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<OrganizationUser>> addOrReplaceUsersInOrganizationWithHttpInfo(String organizationId, List<OrganizationUser> organizationUser) throws ApiException {
+        okhttp3.Call localVarCall = addOrReplaceUsersInOrganizationValidateBeforeCall(organizationId, organizationUser, null);
+        Type localVarReturnType = new TypeToken<List<OrganizationUser>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add (or replace) users in the Organization specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Organization Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceUsersInOrganizationAsync(String organizationId, List<OrganizationUser> organizationUser, final ApiCallback<List<OrganizationUser>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addOrReplaceUsersInOrganizationValidateBeforeCall(organizationId, organizationUser, _callback);
+        Type localVarReturnType = new TypeToken<List<OrganizationUser>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for findAllOrganizations
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -62,7 +193,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Organizations </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllOrganizationsCall(final ApiCallback _callback) throws ApiException {
@@ -112,7 +243,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Organizations </td><td>  -  </td></tr>
      </table>
      */
     public List<Organization> findAllOrganizations() throws ApiException {
@@ -128,7 +259,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Organizations </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<Organization>> findAllOrganizationsWithHttpInfo() throws ApiException {
@@ -146,7 +277,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Organizations </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllOrganizationsAsync(final ApiCallback<List<Organization>> _callback) throws ApiException {
@@ -215,7 +346,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Get the details of an organization
+     * Get the details of an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @return Organization
@@ -233,7 +364,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Get the details of an organization
+     * Get the details of an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @return ApiResponse&lt;Organization&gt;
@@ -252,7 +383,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Get the details of an organization (asynchronously)
+     * Get the details of an Organization (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -281,7 +412,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Organization details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
@@ -306,7 +437,7 @@ public class OrganizationApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -338,7 +469,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Organization details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
@@ -356,7 +487,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Organization details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
@@ -376,7 +507,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the organization details </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Organization details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
@@ -388,6 +519,240 @@ public class OrganizationApi {
         return localVarCall;
     }
     /**
+     * Build call for removeAllUsersInOrganization
+     * @param organizationId the Organization identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersInOrganizationCall(String organizationId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeAllUsersInOrganizationValidateBeforeCall(String organizationId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllUsersInOrganization(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeAllUsersInOrganizationCall(organizationId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove all users from the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeAllUsersInOrganization(String organizationId) throws ApiException {
+        removeAllUsersInOrganizationWithHttpInfo(organizationId);
+    }
+
+    /**
+     * Remove all users from the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeAllUsersInOrganizationWithHttpInfo(String organizationId) throws ApiException {
+        okhttp3.Call localVarCall = removeAllUsersInOrganizationValidateBeforeCall(organizationId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove all users from the Organization specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersInOrganizationAsync(String organizationId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeAllUsersInOrganizationValidateBeforeCall(organizationId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for removeUserFromOrganization
+     * @param organizationId the Organization identifier (required)
+     * @param userId the User identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeUserFromOrganizationCall(String organizationId, String userId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/users/{user_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "user_id" + "\\}", localVarApiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeUserFromOrganizationValidateBeforeCall(String organizationId, String userId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeUserFromOrganization(Async)");
+        }
+        
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling removeUserFromOrganization(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeUserFromOrganizationCall(organizationId, userId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove the specified user from the given Organization
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param userId the User identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeUserFromOrganization(String organizationId, String userId) throws ApiException {
+        removeUserFromOrganizationWithHttpInfo(organizationId, userId);
+    }
+
+    /**
+     * Remove the specified user from the given Organization
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param userId the User identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeUserFromOrganizationWithHttpInfo(String organizationId, String userId) throws ApiException {
+        okhttp3.Call localVarCall = removeUserFromOrganizationValidateBeforeCall(organizationId, userId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove the specified user from the given Organization (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param userId the User identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeUserFromOrganizationAsync(String organizationId, String userId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeUserFromOrganizationValidateBeforeCall(organizationId, userId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for unregisterOrganization
      * @param organizationId the Organization identifier (required)
      * @param _callback Callback for upload/download progress
@@ -396,8 +761,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -415,7 +779,7 @@ public class OrganizationApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -450,39 +814,34 @@ public class OrganizationApi {
      * Unregister an organization
      * 
      * @param organizationId the Organization identifier (required)
-     * @return Organization
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Organization unregisterOrganization(String organizationId) throws ApiException {
-        ApiResponse<Organization> localVarResp = unregisterOrganizationWithHttpInfo(organizationId);
-        return localVarResp.getData();
+    public void unregisterOrganization(String organizationId) throws ApiException {
+        unregisterOrganizationWithHttpInfo(organizationId);
     }
 
     /**
      * Unregister an organization
      * 
      * @param organizationId the Organization identifier (required)
-     * @return ApiResponse&lt;Organization&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Organization> unregisterOrganizationWithHttpInfo(String organizationId) throws ApiException {
+    public ApiResponse<Void> unregisterOrganizationWithHttpInfo(String organizationId) throws ApiException {
         okhttp3.Call localVarCall = unregisterOrganizationValidateBeforeCall(organizationId, null);
-        Type localVarReturnType = new TypeToken<Organization>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -495,16 +854,14 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the organization details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call unregisterOrganizationAsync(String organizationId, final ApiCallback<Organization> _callback) throws ApiException {
+    public okhttp3.Call unregisterOrganizationAsync(String organizationId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = unregisterOrganizationValidateBeforeCall(organizationId, _callback);
-        Type localVarReturnType = new TypeToken<Organization>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -544,7 +901,7 @@ public class OrganizationApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -573,7 +930,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Update an organization
+     * Update an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @param organization the new Organization details (required)
@@ -593,7 +950,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Update an organization
+     * Update an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @param organization the new Organization details (required)
@@ -614,7 +971,7 @@ public class OrganizationApi {
     }
 
     /**
-     * Update an organization (asynchronously)
+     * Update an Organization (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param organization the new Organization details (required)
@@ -633,6 +990,381 @@ public class OrganizationApi {
 
         okhttp3.Call localVarCall = updateOrganizationValidateBeforeCall(organizationId, organization, _callback);
         Type localVarReturnType = new TypeToken<Organization>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateSolutionsContainerRegistryByOrganizationId
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new solutions container registry configuration to use (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization solutions container registry configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionsContainerRegistryByOrganizationIdCall(String organizationId, OrganizationService organizationService, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = organizationService;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/services/solutionsContainerRegistry"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateSolutionsContainerRegistryByOrganizationIdValidateBeforeCall(String organizationId, OrganizationService organizationService, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling updateSolutionsContainerRegistryByOrganizationId(Async)");
+        }
+        
+        // verify the required parameter 'organizationService' is set
+        if (organizationService == null) {
+            throw new ApiException("Missing the required parameter 'organizationService' when calling updateSolutionsContainerRegistryByOrganizationId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateSolutionsContainerRegistryByOrganizationIdCall(organizationId, organizationService, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update the solutions container registry configuration for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new solutions container registry configuration to use (required)
+     * @return OrganizationService
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization solutions container registry configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrganizationService updateSolutionsContainerRegistryByOrganizationId(String organizationId, OrganizationService organizationService) throws ApiException {
+        ApiResponse<OrganizationService> localVarResp = updateSolutionsContainerRegistryByOrganizationIdWithHttpInfo(organizationId, organizationService);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update the solutions container registry configuration for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new solutions container registry configuration to use (required)
+     * @return ApiResponse&lt;OrganizationService&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization solutions container registry configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrganizationService> updateSolutionsContainerRegistryByOrganizationIdWithHttpInfo(String organizationId, OrganizationService organizationService) throws ApiException {
+        okhttp3.Call localVarCall = updateSolutionsContainerRegistryByOrganizationIdValidateBeforeCall(organizationId, organizationService, null);
+        Type localVarReturnType = new TypeToken<OrganizationService>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update the solutions container registry configuration for the Organization specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new solutions container registry configuration to use (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization solutions container registry configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionsContainerRegistryByOrganizationIdAsync(String organizationId, OrganizationService organizationService, final ApiCallback<OrganizationService> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSolutionsContainerRegistryByOrganizationIdValidateBeforeCall(organizationId, organizationService, _callback);
+        Type localVarReturnType = new TypeToken<OrganizationService>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateStorageByOrganizationId
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new Storage configuration to use (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Storage configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateStorageByOrganizationIdCall(String organizationId, OrganizationService organizationService, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = organizationService;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/services/storage"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateStorageByOrganizationIdValidateBeforeCall(String organizationId, OrganizationService organizationService, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling updateStorageByOrganizationId(Async)");
+        }
+        
+        // verify the required parameter 'organizationService' is set
+        if (organizationService == null) {
+            throw new ApiException("Missing the required parameter 'organizationService' when calling updateStorageByOrganizationId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateStorageByOrganizationIdCall(organizationId, organizationService, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update storage configuration for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new Storage configuration to use (required)
+     * @return OrganizationService
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Storage configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrganizationService updateStorageByOrganizationId(String organizationId, OrganizationService organizationService) throws ApiException {
+        ApiResponse<OrganizationService> localVarResp = updateStorageByOrganizationIdWithHttpInfo(organizationId, organizationService);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update storage configuration for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new Storage configuration to use (required)
+     * @return ApiResponse&lt;OrganizationService&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Storage configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrganizationService> updateStorageByOrganizationIdWithHttpInfo(String organizationId, OrganizationService organizationService) throws ApiException {
+        okhttp3.Call localVarCall = updateStorageByOrganizationIdValidateBeforeCall(organizationId, organizationService, null);
+        Type localVarReturnType = new TypeToken<OrganizationService>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update storage configuration for the Organization specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param organizationService the new Storage configuration to use (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Storage configuration </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateStorageByOrganizationIdAsync(String organizationId, OrganizationService organizationService, final ApiCallback<OrganizationService> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateStorageByOrganizationIdValidateBeforeCall(organizationId, organizationService, _callback);
+        Type localVarReturnType = new TypeToken<OrganizationService>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateTenantCredentialsByOrganizationId
+     * @param organizationId the Organization identifier (required)
+     * @param requestBody the new Tenant Credentials to use (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Tenant Credentials </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateTenantCredentialsByOrganizationIdCall(String organizationId, Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = requestBody;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/services/tenantCredentials"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateTenantCredentialsByOrganizationIdValidateBeforeCall(String organizationId, Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling updateTenantCredentialsByOrganizationId(Async)");
+        }
+        
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling updateTenantCredentialsByOrganizationId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateTenantCredentialsByOrganizationIdCall(organizationId, requestBody, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update tenant credentials for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param requestBody the new Tenant Credentials to use (required)
+     * @return Map&lt;String, Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Tenant Credentials </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public Map<String, Object> updateTenantCredentialsByOrganizationId(String organizationId, Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Map<String, Object>> localVarResp = updateTenantCredentialsByOrganizationIdWithHttpInfo(organizationId, requestBody);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update tenant credentials for the Organization specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param requestBody the new Tenant Credentials to use (required)
+     * @return ApiResponse&lt;Map&lt;String, Object&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Tenant Credentials </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Map<String, Object>> updateTenantCredentialsByOrganizationIdWithHttpInfo(String organizationId, Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = updateTenantCredentialsByOrganizationIdValidateBeforeCall(organizationId, requestBody, null);
+        Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update tenant credentials for the Organization specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param requestBody the new Tenant Credentials to use (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Organization Tenant Credentials </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateTenantCredentialsByOrganizationIdAsync(String organizationId, Map<String, Object> requestBody, final ApiCallback<Map<String, Object>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateTenantCredentialsByOrganizationIdValidateBeforeCall(organizationId, requestBody, _callback);
+        Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

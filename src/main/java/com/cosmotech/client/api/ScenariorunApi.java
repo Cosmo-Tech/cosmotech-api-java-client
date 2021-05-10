@@ -29,11 +29,8 @@ import java.io.IOException;
 
 import com.cosmotech.client.model.ScenarioRun;
 import com.cosmotech.client.model.ScenarioRunLogs;
-import com.cosmotech.client.model.ScenarioRunLogsOptions;
 import com.cosmotech.client.model.ScenarioRunSearch;
-import com.cosmotech.client.model.ScenarioRunStart;
 import com.cosmotech.client.model.ScenarioRunStartContainers;
-import com.cosmotech.client.model.ScenarioRunStartSolution;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -70,7 +67,7 @@ public class ScenariorunApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
@@ -90,7 +87,7 @@ public class ScenariorunApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -131,19 +128,17 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
-     * @return ScenarioRun
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ScenarioRun deleteScenarioRun(String organizationId, String scenariorunId) throws ApiException {
-        ApiResponse<ScenarioRun> localVarResp = deleteScenarioRunWithHttpInfo(organizationId, scenariorunId);
-        return localVarResp.getData();
+    public void deleteScenarioRun(String organizationId, String scenariorunId) throws ApiException {
+        deleteScenarioRunWithHttpInfo(organizationId, scenariorunId);
     }
 
     /**
@@ -151,20 +146,19 @@ public class ScenariorunApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
-     * @return ApiResponse&lt;ScenarioRun&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ScenarioRun> deleteScenarioRunWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
+    public ApiResponse<Void> deleteScenarioRunWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = deleteScenarioRunValidateBeforeCall(organizationId, scenariorunId, null);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -178,16 +172,15 @@ public class ScenariorunApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteScenarioRunAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRun> _callback) throws ApiException {
+    public okhttp3.Call deleteScenarioRunAsync(String organizationId, String scenariorunId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteScenarioRunValidateBeforeCall(organizationId, scenariorunId, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -317,10 +310,8 @@ public class ScenariorunApi {
         return localVarCall;
     }
     /**
-     * Build call for getScenarioScenarioRun
+     * Build call for getScenarioRunCumulatedLogs
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -328,17 +319,17 @@ public class ScenariorunApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the ScenarioRun cumulated logs </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunCall(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunCumulatedLogsCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}"
+        String localVarPath = "/organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
-            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()))
             .replaceAll("\\{" + "scenariorun_id" + "\\}", localVarApiClient.escapeString(scenariorunId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -348,7 +339,7 @@ public class ScenariorunApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -366,81 +357,69 @@ public class ScenariorunApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getScenarioScenarioRunValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getScenarioRunCumulatedLogsValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioScenarioRun(Async)");
-        }
-        
-        // verify the required parameter 'workspaceId' is set
-        if (workspaceId == null) {
-            throw new ApiException("Missing the required parameter 'workspaceId' when calling getScenarioScenarioRun(Async)");
-        }
-        
-        // verify the required parameter 'scenarioId' is set
-        if (scenarioId == null) {
-            throw new ApiException("Missing the required parameter 'scenarioId' when calling getScenarioScenarioRun(Async)");
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioRunCumulatedLogs(Async)");
         }
         
         // verify the required parameter 'scenariorunId' is set
         if (scenariorunId == null) {
-            throw new ApiException("Missing the required parameter 'scenariorunId' when calling getScenarioScenarioRun(Async)");
+            throw new ApiException("Missing the required parameter 'scenariorunId' when calling getScenarioRunCumulatedLogs(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunCall(organizationId, workspaceId, scenarioId, scenariorunId, _callback);
+        okhttp3.Call localVarCall = getScenarioRunCumulatedLogsCall(organizationId, scenariorunId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * get the ScenarioRun for the Scenario
+     * Get the cumulated logs of a scenariorun
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
-     * @return ScenarioRun
+     * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the ScenarioRun cumulated logs </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ScenarioRun getScenarioScenarioRun(String organizationId, String workspaceId, String scenarioId, String scenariorunId) throws ApiException {
-        ApiResponse<ScenarioRun> localVarResp = getScenarioScenarioRunWithHttpInfo(organizationId, workspaceId, scenarioId, scenariorunId);
+    public String getScenarioRunCumulatedLogs(String organizationId, String scenariorunId) throws ApiException {
+        ApiResponse<String> localVarResp = getScenarioRunCumulatedLogsWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
     }
 
     /**
-     * get the ScenarioRun for the Scenario
+     * Get the cumulated logs of a scenariorun
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
-     * @return ApiResponse&lt;ScenarioRun&gt;
+     * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the ScenarioRun cumulated logs </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ScenarioRun> getScenarioScenarioRunWithHttpInfo(String organizationId, String workspaceId, String scenarioId, String scenariorunId) throws ApiException {
-        okhttp3.Call localVarCall = getScenarioScenarioRunValidateBeforeCall(organizationId, workspaceId, scenarioId, scenariorunId, null);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
+    public ApiResponse<String> getScenarioRunCumulatedLogsWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
+        okhttp3.Call localVarCall = getScenarioRunCumulatedLogsValidateBeforeCall(organizationId, scenariorunId, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * get the ScenarioRun for the Scenario (asynchronously)
+     * Get the cumulated logs of a scenariorun (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -448,21 +427,21 @@ public class ScenariorunApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the ScenarioRun cumulated logs </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunAsync(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback<ScenarioRun> _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunCumulatedLogsAsync(String organizationId, String scenariorunId, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunValidateBeforeCall(organizationId, workspaceId, scenarioId, scenariorunId, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
+        okhttp3.Call localVarCall = getScenarioRunCumulatedLogsValidateBeforeCall(organizationId, scenariorunId, _callback);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getScenarioScenarioRunLogs
+     * Build call for getScenarioRunLogs
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -473,14 +452,12 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunLogsCall(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunLogsCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/logs"
+        String localVarPath = "/organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
-            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()))
             .replaceAll("\\{" + "scenariorun_id" + "\\}", localVarApiClient.escapeString(scenariorunId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -508,30 +485,20 @@ public class ScenariorunApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getScenarioScenarioRunLogsValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getScenarioRunLogsValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioScenarioRunLogs(Async)");
-        }
-        
-        // verify the required parameter 'workspaceId' is set
-        if (workspaceId == null) {
-            throw new ApiException("Missing the required parameter 'workspaceId' when calling getScenarioScenarioRunLogs(Async)");
-        }
-        
-        // verify the required parameter 'scenarioId' is set
-        if (scenarioId == null) {
-            throw new ApiException("Missing the required parameter 'scenarioId' when calling getScenarioScenarioRunLogs(Async)");
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioRunLogs(Async)");
         }
         
         // verify the required parameter 'scenariorunId' is set
         if (scenariorunId == null) {
-            throw new ApiException("Missing the required parameter 'scenariorunId' when calling getScenarioScenarioRunLogs(Async)");
+            throw new ApiException("Missing the required parameter 'scenariorunId' when calling getScenarioRunLogs(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunLogsCall(organizationId, workspaceId, scenarioId, scenariorunId, _callback);
+        okhttp3.Call localVarCall = getScenarioRunLogsCall(organizationId, scenariorunId, _callback);
         return localVarCall;
 
     }
@@ -540,8 +507,6 @@ public class ScenariorunApi {
      * get the logs for the ScenarioRun
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @return ScenarioRunLogs
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -551,8 +516,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
      */
-    public ScenarioRunLogs getScenarioScenarioRunLogs(String organizationId, String workspaceId, String scenarioId, String scenariorunId) throws ApiException {
-        ApiResponse<ScenarioRunLogs> localVarResp = getScenarioScenarioRunLogsWithHttpInfo(organizationId, workspaceId, scenarioId, scenariorunId);
+    public ScenarioRunLogs getScenarioRunLogs(String organizationId, String scenariorunId) throws ApiException {
+        ApiResponse<ScenarioRunLogs> localVarResp = getScenarioRunLogsWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
     }
 
@@ -560,8 +525,6 @@ public class ScenariorunApi {
      * get the logs for the ScenarioRun
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @return ApiResponse&lt;ScenarioRunLogs&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -571,8 +534,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ScenarioRunLogs> getScenarioScenarioRunLogsWithHttpInfo(String organizationId, String workspaceId, String scenarioId, String scenariorunId) throws ApiException {
-        okhttp3.Call localVarCall = getScenarioScenarioRunLogsValidateBeforeCall(organizationId, workspaceId, scenarioId, scenariorunId, null);
+    public ApiResponse<ScenarioRunLogs> getScenarioRunLogsWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
+        okhttp3.Call localVarCall = getScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<ScenarioRunLogs>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -581,8 +544,6 @@ public class ScenariorunApi {
      * get the logs for the ScenarioRun (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
-     * @param workspaceId the Workspace identifier (required)
-     * @param scenarioId the Scenario identifier (required)
      * @param scenariorunId the ScenarioRun identifier (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -593,15 +554,15 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunLogsAsync(String organizationId, String workspaceId, String scenarioId, String scenariorunId, final ApiCallback<ScenarioRunLogs> _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunLogsAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRunLogs> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunLogsValidateBeforeCall(organizationId, workspaceId, scenarioId, scenariorunId, _callback);
+        okhttp3.Call localVarCall = getScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, _callback);
         Type localVarReturnType = new TypeToken<ScenarioRunLogs>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getScenarioScenarioRuns
+     * Build call for getScenarioRuns
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
@@ -614,7 +575,7 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunsCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunsCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -648,25 +609,25 @@ public class ScenariorunApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getScenarioScenarioRunsValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getScenarioRunsValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioScenarioRuns(Async)");
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioRuns(Async)");
         }
         
         // verify the required parameter 'workspaceId' is set
         if (workspaceId == null) {
-            throw new ApiException("Missing the required parameter 'workspaceId' when calling getScenarioScenarioRuns(Async)");
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling getScenarioRuns(Async)");
         }
         
         // verify the required parameter 'scenarioId' is set
         if (scenarioId == null) {
-            throw new ApiException("Missing the required parameter 'scenarioId' when calling getScenarioScenarioRuns(Async)");
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling getScenarioRuns(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunsCall(organizationId, workspaceId, scenarioId, _callback);
+        okhttp3.Call localVarCall = getScenarioRunsCall(organizationId, workspaceId, scenarioId, _callback);
         return localVarCall;
 
     }
@@ -685,8 +646,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public List<ScenarioRun> getScenarioScenarioRuns(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        ApiResponse<List<ScenarioRun>> localVarResp = getScenarioScenarioRunsWithHttpInfo(organizationId, workspaceId, scenarioId);
+    public List<ScenarioRun> getScenarioRuns(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        ApiResponse<List<ScenarioRun>> localVarResp = getScenarioRunsWithHttpInfo(organizationId, workspaceId, scenarioId);
         return localVarResp.getData();
     }
 
@@ -704,8 +665,8 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ScenarioRun>> getScenarioScenarioRunsWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        okhttp3.Call localVarCall = getScenarioScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
+    public ApiResponse<List<ScenarioRun>> getScenarioRunsWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        okhttp3.Call localVarCall = getScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
         Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -725,9 +686,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenarioScenarioRunsAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
+    public okhttp3.Call getScenarioRunsAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getScenarioScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
+        okhttp3.Call localVarCall = getScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
         Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -987,145 +948,6 @@ public class ScenariorunApi {
         return localVarCall;
     }
     /**
-     * Build call for searchScenarioRunLogs
-     * @param organizationId the Organization identifier (required)
-     * @param scenariorunId the ScenarioRun identifier (required)
-     * @param scenarioRunLogsOptions the options to search logs (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the ScenarioRun logs </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call searchScenarioRunLogsCall(String organizationId, String scenariorunId, ScenarioRunLogsOptions scenarioRunLogsOptions, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = scenarioRunLogsOptions;
-
-        // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs/search"
-            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "scenariorun_id" + "\\}", localVarApiClient.escapeString(scenariorunId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchScenarioRunLogsValidateBeforeCall(String organizationId, String scenariorunId, ScenarioRunLogsOptions scenarioRunLogsOptions, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling searchScenarioRunLogs(Async)");
-        }
-        
-        // verify the required parameter 'scenariorunId' is set
-        if (scenariorunId == null) {
-            throw new ApiException("Missing the required parameter 'scenariorunId' when calling searchScenarioRunLogs(Async)");
-        }
-        
-        // verify the required parameter 'scenarioRunLogsOptions' is set
-        if (scenarioRunLogsOptions == null) {
-            throw new ApiException("Missing the required parameter 'scenarioRunLogsOptions' when calling searchScenarioRunLogs(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = searchScenarioRunLogsCall(organizationId, scenariorunId, scenarioRunLogsOptions, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Search the logs of a scenariorun
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenariorunId the ScenarioRun identifier (required)
-     * @param scenarioRunLogsOptions the options to search logs (required)
-     * @return ScenarioRunLogs
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the ScenarioRun logs </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ScenarioRunLogs searchScenarioRunLogs(String organizationId, String scenariorunId, ScenarioRunLogsOptions scenarioRunLogsOptions) throws ApiException {
-        ApiResponse<ScenarioRunLogs> localVarResp = searchScenarioRunLogsWithHttpInfo(organizationId, scenariorunId, scenarioRunLogsOptions);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Search the logs of a scenariorun
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenariorunId the ScenarioRun identifier (required)
-     * @param scenarioRunLogsOptions the options to search logs (required)
-     * @return ApiResponse&lt;ScenarioRunLogs&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the ScenarioRun logs </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ScenarioRunLogs> searchScenarioRunLogsWithHttpInfo(String organizationId, String scenariorunId, ScenarioRunLogsOptions scenarioRunLogsOptions) throws ApiException {
-        okhttp3.Call localVarCall = searchScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, scenarioRunLogsOptions, null);
-        Type localVarReturnType = new TypeToken<ScenarioRunLogs>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Search the logs of a scenariorun (asynchronously)
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenariorunId the ScenarioRun identifier (required)
-     * @param scenarioRunLogsOptions the options to search logs (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the ScenarioRun logs </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call searchScenarioRunLogsAsync(String organizationId, String scenariorunId, ScenarioRunLogsOptions scenarioRunLogsOptions, final ApiCallback<ScenarioRunLogs> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = searchScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, scenarioRunLogsOptions, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRunLogs>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for searchScenarioRuns
      * @param organizationId the Organization identifier (required)
      * @param scenarioRunSearch the ScenarioRun search parameters (required)
@@ -1160,7 +982,7 @@ public class ScenariorunApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -1283,7 +1105,7 @@ public class ScenariorunApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -1371,264 +1193,6 @@ public class ScenariorunApi {
     public okhttp3.Call startScenarioRunContainersAsync(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers, final ApiCallback<ScenarioRun> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = startScenarioRunContainersValidateBeforeCall(organizationId, scenarioRunStartContainers, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for startScenarioRunScenario
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStart the Scenario information to start (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call startScenarioRunScenarioCall(String organizationId, ScenarioRunStart scenarioRunStart, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = scenarioRunStart;
-
-        // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/scenarioruns/start"
-            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call startScenarioRunScenarioValidateBeforeCall(String organizationId, ScenarioRunStart scenarioRunStart, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling startScenarioRunScenario(Async)");
-        }
-        
-        // verify the required parameter 'scenarioRunStart' is set
-        if (scenarioRunStart == null) {
-            throw new ApiException("Missing the required parameter 'scenarioRunStart' when calling startScenarioRunScenario(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = startScenarioRunScenarioCall(organizationId, scenarioRunStart, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Start a new scenariorun for a Scenario
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStart the Scenario information to start (required)
-     * @return ScenarioRun
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ScenarioRun startScenarioRunScenario(String organizationId, ScenarioRunStart scenarioRunStart) throws ApiException {
-        ApiResponse<ScenarioRun> localVarResp = startScenarioRunScenarioWithHttpInfo(organizationId, scenarioRunStart);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Start a new scenariorun for a Scenario
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStart the Scenario information to start (required)
-     * @return ApiResponse&lt;ScenarioRun&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ScenarioRun> startScenarioRunScenarioWithHttpInfo(String organizationId, ScenarioRunStart scenarioRunStart) throws ApiException {
-        okhttp3.Call localVarCall = startScenarioRunScenarioValidateBeforeCall(organizationId, scenarioRunStart, null);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Start a new scenariorun for a Scenario (asynchronously)
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStart the Scenario information to start (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call startScenarioRunScenarioAsync(String organizationId, ScenarioRunStart scenarioRunStart, final ApiCallback<ScenarioRun> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = startScenarioRunScenarioValidateBeforeCall(organizationId, scenarioRunStart, _callback);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for startScenarioRunSolution
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStartSolution the Solution Run Template information to start (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call startScenarioRunSolutionCall(String organizationId, ScenarioRunStartSolution scenarioRunStartSolution, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = scenarioRunStartSolution;
-
-        // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/scenarioruns/startsolution"
-            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call startScenarioRunSolutionValidateBeforeCall(String organizationId, ScenarioRunStartSolution scenarioRunStartSolution, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling startScenarioRunSolution(Async)");
-        }
-        
-        // verify the required parameter 'scenarioRunStartSolution' is set
-        if (scenarioRunStartSolution == null) {
-            throw new ApiException("Missing the required parameter 'scenarioRunStartSolution' when calling startScenarioRunSolution(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = startScenarioRunSolutionCall(organizationId, scenarioRunStartSolution, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Start a new scenariorun for a Solution Run Template
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStartSolution the Solution Run Template information to start (required)
-     * @return ScenarioRun
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ScenarioRun startScenarioRunSolution(String organizationId, ScenarioRunStartSolution scenarioRunStartSolution) throws ApiException {
-        ApiResponse<ScenarioRun> localVarResp = startScenarioRunSolutionWithHttpInfo(organizationId, scenarioRunStartSolution);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Start a new scenariorun for a Solution Run Template
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStartSolution the Solution Run Template information to start (required)
-     * @return ApiResponse&lt;ScenarioRun&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ScenarioRun> startScenarioRunSolutionWithHttpInfo(String organizationId, ScenarioRunStartSolution scenarioRunStartSolution) throws ApiException {
-        okhttp3.Call localVarCall = startScenarioRunSolutionValidateBeforeCall(organizationId, scenarioRunStartSolution, null);
-        Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Start a new scenariorun for a Solution Run Template (asynchronously)
-     * 
-     * @param organizationId the Organization identifier (required)
-     * @param scenarioRunStartSolution the Solution Run Template information to start (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> the scenariorun details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call startScenarioRunSolutionAsync(String organizationId, ScenarioRunStartSolution scenarioRunStartSolution, final ApiCallback<ScenarioRun> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = startScenarioRunSolutionValidateBeforeCall(organizationId, scenarioRunStartSolution, _callback);
         Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -53,6 +53,14 @@ public class ScenarioRunContainerTest {
     }
 
     /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
      * Test the property 'envVars'
      */
     @Test
@@ -69,11 +77,27 @@ public class ScenarioRunContainerTest {
     }
 
     /**
+     * Test the property 'entrypoint'
+     */
+    @Test
+    public void entrypointTest() {
+        // TODO: test entrypoint
+    }
+
+    /**
      * Test the property 'runArgs'
      */
     @Test
     public void runArgsTest() {
         // TODO: test runArgs
+    }
+
+    /**
+     * Test the property 'dependencies'
+     */
+    @Test
+    public void dependenciesTest() {
+        // TODO: test dependencies
     }
 
 }

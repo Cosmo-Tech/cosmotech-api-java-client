@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.File;
 import com.cosmotech.client.model.Workspace;
 import com.cosmotech.client.model.WorkspaceFile;
+import com.cosmotech.client.model.WorkspaceUser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,6 +57,141 @@ public class WorkspaceApi {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for addUsersToOrganizationWorkspace
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Workspace Users </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addUsersToOrganizationWorkspaceCall(String organizationId, String workspaceId, List<WorkspaceUser> workspaceUser, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = workspaceUser;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addUsersToOrganizationWorkspaceValidateBeforeCall(String organizationId, String workspaceId, List<WorkspaceUser> workspaceUser, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addUsersToOrganizationWorkspace(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling addUsersToOrganizationWorkspace(Async)");
+        }
+        
+        // verify the required parameter 'workspaceUser' is set
+        if (workspaceUser == null) {
+            throw new ApiException("Missing the required parameter 'workspaceUser' when calling addUsersToOrganizationWorkspace(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addUsersToOrganizationWorkspaceCall(organizationId, workspaceId, workspaceUser, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add (or replace) users to the Workspace specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return List&lt;WorkspaceUser&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Workspace Users </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<WorkspaceUser> addUsersToOrganizationWorkspace(String organizationId, String workspaceId, List<WorkspaceUser> workspaceUser) throws ApiException {
+        ApiResponse<List<WorkspaceUser>> localVarResp = addUsersToOrganizationWorkspaceWithHttpInfo(organizationId, workspaceId, workspaceUser);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add (or replace) users to the Workspace specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return ApiResponse&lt;List&lt;WorkspaceUser&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Workspace Users </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<WorkspaceUser>> addUsersToOrganizationWorkspaceWithHttpInfo(String organizationId, String workspaceId, List<WorkspaceUser> workspaceUser) throws ApiException {
+        okhttp3.Call localVarCall = addUsersToOrganizationWorkspaceValidateBeforeCall(organizationId, workspaceId, workspaceUser, null);
+        Type localVarReturnType = new TypeToken<List<WorkspaceUser>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add (or replace) users to the Workspace specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param workspaceUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Workspace Users </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addUsersToOrganizationWorkspaceAsync(String organizationId, String workspaceId, List<WorkspaceUser> workspaceUser, final ApiCallback<List<WorkspaceUser>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addUsersToOrganizationWorkspaceValidateBeforeCall(organizationId, workspaceId, workspaceUser, _callback);
+        Type localVarReturnType = new TypeToken<List<WorkspaceUser>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for createWorkspace
      * @param organizationId the Organization identifier (required)
@@ -92,7 +228,7 @@ public class WorkspaceApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -815,6 +951,128 @@ public class WorkspaceApi {
         return localVarCall;
     }
     /**
+     * Build call for removeAllUsersOfWorkspace
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersOfWorkspaceCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeAllUsersOfWorkspaceValidateBeforeCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllUsersOfWorkspace(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling removeAllUsersOfWorkspace(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeAllUsersOfWorkspaceCall(organizationId, workspaceId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove all users from the Workspace specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeAllUsersOfWorkspace(String organizationId, String workspaceId) throws ApiException {
+        removeAllUsersOfWorkspaceWithHttpInfo(organizationId, workspaceId);
+    }
+
+    /**
+     * Remove all users from the Workspace specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeAllUsersOfWorkspaceWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+        okhttp3.Call localVarCall = removeAllUsersOfWorkspaceValidateBeforeCall(organizationId, workspaceId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove all users from the Workspace specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersOfWorkspaceAsync(String organizationId, String workspaceId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeAllUsersOfWorkspaceValidateBeforeCall(organizationId, workspaceId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateWorkspace
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -853,7 +1111,7 @@ public class WorkspaceApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);

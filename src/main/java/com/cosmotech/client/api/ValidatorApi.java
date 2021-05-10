@@ -91,7 +91,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -218,7 +218,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -325,8 +325,7 @@ public class ValidatorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Validator specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -345,7 +344,7 @@ public class ValidatorApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -386,19 +385,16 @@ public class ValidatorApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param validatorId the Validator identifier (required)
-     * @return Validator
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Validator specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Validator deleteValidator(String organizationId, String validatorId) throws ApiException {
-        ApiResponse<Validator> localVarResp = deleteValidatorWithHttpInfo(organizationId, validatorId);
-        return localVarResp.getData();
+    public void deleteValidator(String organizationId, String validatorId) throws ApiException {
+        deleteValidatorWithHttpInfo(organizationId, validatorId);
     }
 
     /**
@@ -406,20 +402,18 @@ public class ValidatorApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param validatorId the Validator identifier (required)
-     * @return ApiResponse&lt;Validator&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Validator specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Validator> deleteValidatorWithHttpInfo(String organizationId, String validatorId) throws ApiException {
+    public ApiResponse<Void> deleteValidatorWithHttpInfo(String organizationId, String validatorId) throws ApiException {
         okhttp3.Call localVarCall = deleteValidatorValidateBeforeCall(organizationId, validatorId, null);
-        Type localVarReturnType = new TypeToken<Validator>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -433,16 +427,14 @@ public class ValidatorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Validator specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteValidatorAsync(String organizationId, String validatorId, final ApiCallback<Validator> _callback) throws ApiException {
+    public okhttp3.Call deleteValidatorAsync(String organizationId, String validatorId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteValidatorValidateBeforeCall(organizationId, validatorId, _callback);
-        Type localVarReturnType = new TypeToken<Validator>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -456,8 +448,7 @@ public class ValidatorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator run details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ValidatorRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -477,7 +468,7 @@ public class ValidatorApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -524,19 +515,16 @@ public class ValidatorApi {
      * @param organizationId the Organization identifier (required)
      * @param validatorId the Validator identifier (required)
      * @param validatorrunId the Validator Run identifier (required)
-     * @return ValidatorRun
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator run details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ValidatorRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ValidatorRun deleteValidatorRun(String organizationId, String validatorId, String validatorrunId) throws ApiException {
-        ApiResponse<ValidatorRun> localVarResp = deleteValidatorRunWithHttpInfo(organizationId, validatorId, validatorrunId);
-        return localVarResp.getData();
+    public void deleteValidatorRun(String organizationId, String validatorId, String validatorrunId) throws ApiException {
+        deleteValidatorRunWithHttpInfo(organizationId, validatorId, validatorrunId);
     }
 
     /**
@@ -545,20 +533,18 @@ public class ValidatorApi {
      * @param organizationId the Organization identifier (required)
      * @param validatorId the Validator identifier (required)
      * @param validatorrunId the Validator Run identifier (required)
-     * @return ApiResponse&lt;ValidatorRun&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator run details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ValidatorRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ValidatorRun> deleteValidatorRunWithHttpInfo(String organizationId, String validatorId, String validatorrunId) throws ApiException {
+    public ApiResponse<Void> deleteValidatorRunWithHttpInfo(String organizationId, String validatorId, String validatorrunId) throws ApiException {
         okhttp3.Call localVarCall = deleteValidatorRunValidateBeforeCall(organizationId, validatorId, validatorrunId, null);
-        Type localVarReturnType = new TypeToken<ValidatorRun>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -573,16 +559,14 @@ public class ValidatorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the validator run details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ValidatorRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteValidatorRunAsync(String organizationId, String validatorId, String validatorrunId, final ApiCallback<ValidatorRun> _callback) throws ApiException {
+    public okhttp3.Call deleteValidatorRunAsync(String organizationId, String validatorId, String validatorrunId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteValidatorRunValidateBeforeCall(organizationId, validatorId, validatorrunId, _callback);
-        Type localVarReturnType = new TypeToken<ValidatorRun>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -1119,7 +1103,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);

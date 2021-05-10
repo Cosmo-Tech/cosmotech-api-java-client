@@ -44,6 +44,14 @@ public class ScenarioRunStartContainersTest {
     }
 
     /**
+     * Test the property 'generateName'
+     */
+    @Test
+    public void generateNameTest() {
+        // TODO: test generateName
+    }
+
+    /**
      * Test the property 'nodeLabel'
      */
     @Test
@@ -52,67 +60,11 @@ public class ScenarioRunStartContainersTest {
     }
 
     /**
-     * Test the property 'fetchDatasetContainers'
+     * Test the property 'containers'
      */
     @Test
-    public void fetchDatasetContainersTest() {
-        // TODO: test fetchDatasetContainers
-    }
-
-    /**
-     * Test the property 'fetchScenarioParametersContainer'
-     */
-    @Test
-    public void fetchScenarioParametersContainerTest() {
-        // TODO: test fetchScenarioParametersContainer
-    }
-
-    /**
-     * Test the property 'applyParametersContainer'
-     */
-    @Test
-    public void applyParametersContainerTest() {
-        // TODO: test applyParametersContainer
-    }
-
-    /**
-     * Test the property 'validateDataContainer'
-     */
-    @Test
-    public void validateDataContainerTest() {
-        // TODO: test validateDataContainer
-    }
-
-    /**
-     * Test the property 'sendDataWarehouseContainer'
-     */
-    @Test
-    public void sendDataWarehouseContainerTest() {
-        // TODO: test sendDataWarehouseContainer
-    }
-
-    /**
-     * Test the property 'preRunContainer'
-     */
-    @Test
-    public void preRunContainerTest() {
-        // TODO: test preRunContainer
-    }
-
-    /**
-     * Test the property 'runContainer'
-     */
-    @Test
-    public void runContainerTest() {
-        // TODO: test runContainer
-    }
-
-    /**
-     * Test the property 'postRunContainer'
-     */
-    @Test
-    public void postRunContainerTest() {
-        // TODO: test postRunContainer
+    public void containersTest() {
+        // TODO: test containers
     }
 
 }

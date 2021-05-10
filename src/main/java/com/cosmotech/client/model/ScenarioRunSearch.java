@@ -28,7 +28,7 @@ import java.io.IOException;
  * the search options
  */
 @ApiModel(description = "the search options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class ScenarioRunSearch {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
@@ -113,9 +113,13 @@ public class ScenarioRunSearch {
   @SerializedName(SERIALIZED_NAME_STATE)
   private StateEnum state;
 
-  public static final String SERIALIZED_NAME_JOB_ID = "jobId";
-  @SerializedName(SERIALIZED_NAME_JOB_ID)
-  private String jobId;
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  private String workflowId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_NAME = "workflowName";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_NAME)
+  private String workflowName;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
@@ -237,26 +241,49 @@ public class ScenarioRunSearch {
   }
 
 
-  public ScenarioRunSearch jobId(String jobId) {
+  public ScenarioRunSearch workflowId(String workflowId) {
     
-    this.jobId = jobId;
+    this.workflowId = workflowId;
     return this;
   }
 
    /**
-   * the Cosmo Tech compute cluster Job Id to search
-   * @return jobId
+   * the Cosmo Tech compute cluster Argo Workflow Id to search
+   * @return workflowId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Cosmo Tech compute cluster Job Id to search")
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Id to search")
 
-  public String getJobId() {
-    return jobId;
+  public String getWorkflowId() {
+    return workflowId;
   }
 
 
-  public void setJobId(String jobId) {
-    this.jobId = jobId;
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
+  }
+
+
+  public ScenarioRunSearch workflowName(String workflowName) {
+    
+    this.workflowName = workflowName;
+    return this;
+  }
+
+   /**
+   * the Cosmo Tech compute cluster Argo Workflow Name
+   * @return workflowName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Name")
+
+  public String getWorkflowName() {
+    return workflowName;
+  }
+
+
+  public void setWorkflowName(String workflowName) {
+    this.workflowName = workflowName;
   }
 
 
@@ -297,13 +324,14 @@ public class ScenarioRunSearch {
         Objects.equals(this.workspaceId, scenarioRunSearch.workspaceId) &&
         Objects.equals(this.scenarioId, scenarioRunSearch.scenarioId) &&
         Objects.equals(this.state, scenarioRunSearch.state) &&
-        Objects.equals(this.jobId, scenarioRunSearch.jobId) &&
+        Objects.equals(this.workflowId, scenarioRunSearch.workflowId) &&
+        Objects.equals(this.workflowName, scenarioRunSearch.workflowName) &&
         Objects.equals(this.ownerId, scenarioRunSearch.ownerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(solutionId, runTemplateId, workspaceId, scenarioId, state, jobId, ownerId);
+    return Objects.hash(solutionId, runTemplateId, workspaceId, scenarioId, state, workflowId, workflowName, ownerId);
   }
 
   @Override
@@ -315,7 +343,8 @@ public class ScenarioRunSearch {
     sb.append("    workspaceId: ").append(toIndentedString(workspaceId)).append("\n");
     sb.append("    scenarioId: ").append(toIndentedString(scenarioId)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    jobId: ").append(toIndentedString(jobId)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    workflowName: ").append(toIndentedString(workflowName)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("}");
     return sb.toString();

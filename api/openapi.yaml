@@ -13,8 +13,6 @@ externalDocs:
   description: Portal
   url: https://portal.cosmotech.com/
 servers:
-- description: Local dev environment
-  url: http://localhost:8080
 - description: Production
   url: https://api.azure.cosmo-platform.com
 security:
@@ -22,8 +20,6 @@ security:
 tags:
 - description: Solution Management
   name: solution
-- description: Platform Management
-  name: platform
 - description: Workspace Management
   name: workspace
 - description: Connector Management
@@ -86,6 +82,13 @@ paths:
                 $ref: '#/components/examples/Brewery'
             schema:
               $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              format: binary
+              type: string
         description: the Solution to create
         required: true
       responses:
@@ -104,46 +107,6 @@ paths:
       tags:
       - solution
       x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/upload:
-    post:
-      operationId: upload
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              format: binary
-              type: string
-        description: the Solution to upload and register
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Upload and register a new solution
-      tags:
-      - solution
-      x-contentType: application/yaml
       x-accepts: application/json
   /organizations/{organization_id}/solutions/{solution_id}:
     delete:
@@ -166,17 +129,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the Solution specified is unknown or you don't have access
             to it
@@ -247,6 +201,13 @@ paths:
                 $ref: '#/components/examples/BreweryUpdate'
             schema:
               $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
+            schema:
+              format: binary
+              type: string
         description: the new Solution details.
         required: true
       responses:
@@ -269,83 +230,294 @@ paths:
       - solution
       x-contentType: application/json
       x-accepts: application/json
-  /platform:
-    get:
-      operationId: getPlatform
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                CosmoTechPlatform:
-                  $ref: '#/components/examples/CosmoTechPlatform'
-              schema:
-                $ref: '#/components/schemas/Platform'
-          description: the Platform details
-      summary: Get the details of the platform
-      tags:
-      - platform
-      x-accepts: application/json
-    patch:
-      operationId: updatePlatform
-      requestBody:
-        content:
-          application/json:
-            examples:
-              CosmoTechPlatformUpdate:
-                $ref: '#/components/examples/CosmoTechPlatformUpdate'
-            schema:
-              $ref: '#/components/schemas/Platform'
-        description: the new Platform details.
+  /organizations/{organization_id}/solutions/{solution_id}/parameters:
+    delete:
+      operationId: removeAllSolutionParameters
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
         required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                CosmoTechPlatformUpdated:
-                  $ref: '#/components/examples/CosmoTechPlatformUpdated'
-              schema:
-                $ref: '#/components/schemas/Platform'
-          description: the platform details
-        "400":
-          description: Bad request
+        "204":
+          description: the operation succeeded
         "404":
-          description: the Platform specified is unknown or you don't have access
+          description: the Solution specified is unknown or you don't have access
             to it
-      summary: Update a platform
+      summary: Remove all Parameters from the Solution specified
       tags:
-      - platform
-      x-contentType: application/json
+      - solution
       x-accepts: application/json
     post:
-      operationId: createPlatform
+      operationId: addOrReplaceParameters
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
-            examples:
-              CosmoTechPlatform:
-                $ref: '#/components/examples/CosmoTechPlatform'
             schema:
-              $ref: '#/components/schemas/Platform'
-        description: the Platform to create
+              items:
+                $ref: '#/components/schemas/RunTemplateParameter'
+              type: array
+        description: the Parameters
         required: true
       responses:
         "201":
           content:
             application/json:
-              examples:
-                CosmoTechPlatform:
-                  $ref: '#/components/examples/CosmoTechPlatform'
               schema:
-                $ref: '#/components/schemas/Platform'
-          description: the platform details
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameter'
+                type: array
+          description: the Parameters
         "400":
           description: Bad request
-      summary: Create a new platform
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameters. Any item with the same ID will be overwritten
       tags:
-      - platform
+      - solution
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/parameterGroups:
+    delete:
+      operationId: removeAllSolutionParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameter Groups from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplateParameterGroup'
+              type: array
+        description: the Parameter Groups
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameterGroup'
+                type: array
+          description: the Parameter Groups
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameter Groups. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates:
+    delete:
+      operationId: removeAllRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Run Templates from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplate'
+              type: array
+        description: the Run Templates
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Run Templates. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
+    post:
+      operationId: uploadRunTemplateHandler
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler id identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          enum:
+          - parameters_handler
+          - validator
+          - prerun
+          - engine
+          - postrun
+          type: string
+        style: simple
+      requestBody:
+        content:
+          image/zip:
+            schema:
+              format: binary
+              type: string
+      responses:
+        "201":
+          description: zip file uploaded
+        "400":
+          description: Bad request
+      summary: Upload a Run Template step handler zip file
+      tags:
+      - solution
+      x-contentType: image/zip
       x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
@@ -394,6 +566,13 @@ paths:
                 $ref: '#/components/examples/BreweryWorkspaceCreateIn'
             schema:
               $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+            schema:
+              format: binary
+              type: string
         description: the Workspace to create
         required: true
       responses:
@@ -515,6 +694,13 @@ paths:
                 $ref: '#/components/examples/BreweryWorkspaceUpdate'
             schema:
               $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryWorkspaceUpdate'
+            schema:
+              format: binary
+              type: string
         description: the new Workspace details.
         required: true
       responses:
@@ -673,6 +859,84 @@ paths:
       - workspace
       x-contentType: multipart/form-data
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/users:
+    delete:
+      operationId: removeAllUsersOfWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Remove all users from the Workspace specified
+      tags:
+      - workspace
+      x-accepts: application/json
+    post:
+      operationId: addUsersToOrganizationWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/WorkspaceUser'
+              type: array
+        description: the Users to add. Any User with the same ID is overwritten
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                TwoWorkspaceUsers:
+                  $ref: '#/components/examples/TwoWorkspaceUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/WorkspaceUser'
+                type: array
+          description: the Workspace Users
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Add (or replace) users to the Workspace specified
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
   /connectors:
     get:
       operationId: findAllConnectors
@@ -687,7 +951,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Connector'
                 type: array
-          description: the connector details
+          description: the list of Connectors
       summary: List all Connectors
       tags:
       - connector
@@ -702,6 +966,13 @@ paths:
                 $ref: '#/components/examples/ADTConnector'
             schema:
               $ref: '#/components/schemas/Connector'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              format: binary
+              type: string
         description: the Connector to register
         required: true
       responses:
@@ -721,37 +992,6 @@ paths:
       - connector
       x-contentType: application/json
       x-accepts: application/json
-  /connectors/upload:
-    post:
-      operationId: uploadConnector
-      requestBody:
-        content:
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              format: binary
-              type: string
-        description: the Connector to upload and register
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
-      summary: Upload and register a new connector
-      tags:
-      - connector
-      x-contentType: application/yaml
-      x-accepts: application/json
   /connectors/{connector_id}:
     delete:
       operationId: unregisterConnector
@@ -765,21 +1005,12 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
+        "204":
+          description: Request successful
         "404":
           description: the Connector specified is unknown or you don't have access
             to it
-      summary: Unregister an connector
+      summary: Unregister a connector
       tags:
       - connector
       x-accepts: application/json
@@ -807,7 +1038,7 @@ paths:
         "404":
           description: the Connector specified is unknown or you don't have access
             to it
-      summary: Get the details of an connector
+      summary: Get the details of a connector
       tags:
       - connector
       x-accepts: application/json
@@ -825,7 +1056,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Organization'
                 type: array
-          description: the organization details
+          description: the list of Organizations
       summary: List all Organizations
       tags:
       - organization
@@ -840,6 +1071,13 @@ paths:
                 $ref: '#/components/examples/NewOrganizationIn'
             schema:
               $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              format: binary
+              type: string
         description: the Organization to register
         required: true
       responses:
@@ -851,7 +1089,7 @@ paths:
                   $ref: '#/components/examples/CosmoOrganization'
               schema:
                 $ref: '#/components/schemas/Organization'
-          description: the organization details
+          description: the Organization details
         "400":
           description: Bad request
       summary: Register a new organization
@@ -872,17 +1110,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
-              schema:
-                $ref: '#/components/schemas/Organization'
-          description: the organization details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the Organization specified is unknown or you don't have access
             to it
@@ -914,7 +1143,7 @@ paths:
         "404":
           description: the Organization specified is unknown or you don't have access
             to it
-      summary: Get the details of an organization
+      summary: Get the details of an Organization
       tags:
       - organization
       x-accepts: application/json
@@ -939,36 +1168,19 @@ paths:
                 summary: Change Name of Organization
                 value:
                   name: CosmoTech Digital Twins Engine
-              AddUser:
-                description: Add the user Charles to organization Cosmo Tech
-                summary: Add a user
-                value:
-                  users:
-                  - name: Charles
-                    roles:
-                    - Developer
-              RenameUser:
-                description: Rename the user Charles to Xavier
-                summary: Rename a user
-                value:
-                  users:
-                  - id: "3"
-                    name: Xavier
-              RemoveUser:
-                description: Remove the user Charles from organization Cosmo Tech
-                summary: Remove a user
-                value:
-                  users:
-                  - id: "1"
-                    name: Bob
-                    roles:
-                    - Admin
-                  - id: "2"
-                    name: Alice
-                    roles:
-                    - User
             schema:
               $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+            schema:
+              format: binary
+              type: string
         description: the new Organization details
         required: true
       responses:
@@ -986,7 +1198,277 @@ paths:
         "404":
           description: the Organization specified is unknown or you don't have access
             to it
-      summary: Update an organization
+      summary: Update an Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/users:
+    delete:
+      operationId: removeAllUsersInOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Remove all users from the Organization specified
+      tags:
+      - organization
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceUsersInOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              AddUser:
+                description: Add the user Charles to organization Cosmo Tech
+                summary: Add a user
+                value:
+                - name: Charles
+                  id: "3"
+                  roles:
+                  - User
+                - name: Alice
+                  id: "3"
+                  roles:
+                  - Developer
+              RenameUser:
+                description: Rename the user Charles to Xavier
+                summary: Rename a user
+                value:
+                - id: "3"
+                  name: Xavier
+            schema:
+              items:
+                $ref: '#/components/schemas/OrganizationUser'
+              type: array
+        description: the Users to add. Any User with the same ID is overwritten
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                TwoOrganizationUsers:
+                  $ref: '#/components/examples/TwoOrganizationUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrganizationUser'
+                type: array
+          description: the Organization Users
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Add (or replace) users in the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/users/{user_id}:
+    delete:
+      operationId: removeUserFromOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization or the User specified is unknown or you don't
+            have access to them
+      summary: Remove the specified user from the given Organization
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/services/tenantCredentials:
+    put:
+      operationId: updateTenantCredentialsByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  azureTenantId: <my_azure_tenant_id>
+                  azureClientId: <my_azure_client_id>
+                  azureClientSecret: <my_azure_client_secret>
+            schema:
+              additionalProperties: true
+              description: a freeform credentials object for the Organization tenant.
+                Structure depends on cloud provider
+              type: object
+        description: the new Tenant Credentials to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    azureTenantId: <my_azure_tenant_id>
+                    azureClientId: <my_azure_client_id>
+                    azureClientSecret: <my_azure_client_secret>
+              schema:
+                additionalProperties: true
+                description: a freeform credentials object for the Organization tenant.
+                  Structure depends on cloud provider
+                type: object
+          description: the Organization Tenant Credentials
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update tenant credentials for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/storage:
+    patch:
+      operationId: updateStorageByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              format: binary
+              type: string
+        description: the new Storage configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    platformService: storage
+                    cloudService: AzureStorage
+                    baseUri: https://csmphoenixcontainer.blob.core.windows.net
+                    resourceUri: organization-2/files
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization Storage configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update storage configuration for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/solutionsContainerRegistry:
+    patch:
+      operationId: updateSolutionsContainerRegistryByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              format: binary
+              type: string
+        description: the new solutions container registry configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationSolutionContainerRegistry:
+                  value:
+                    cloudService: AzureStorage
+                    baseUri: mysolutiontwinengines.azurecr.io
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization solutions container registry configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update the solutions container registry configuration for the Organization
+        specified
       tags:
       - organization
       x-contentType: application/json
@@ -1011,6 +1493,13 @@ paths:
                 $ref: '#/components/examples/BrewerySearch'
             schema:
               $ref: '#/components/schemas/ScenarioRunSearch'
+          application/yaml:
+            examples:
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
+            schema:
+              format: binary
+              type: string
         description: the ScenarioRun search parameters
         required: true
       responses:
@@ -1026,90 +1515,6 @@ paths:
                 type: array
           description: the scenariorun details
       summary: Search ScenarioRuns
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/start:
-    post:
-      operationId: startScenarioRunScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunStart:
-                $ref: '#/components/examples/BreweryScenarioRunStart'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunStart'
-        description: the Scenario information to start
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Start a new scenariorun for a Scenario
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/startsolution:
-    post:
-      operationId: startScenarioRunSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunStartSolution:
-                $ref: '#/components/examples/BreweryScenarioRunStartSolution'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunStartSolution'
-        description: the Solution Run Template information to start
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunSolution'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Start a new scenariorun for a Solution Run Template
       tags:
       - scenariorun
       x-contentType: application/json
@@ -1134,6 +1539,13 @@ paths:
                 $ref: '#/components/examples/BreweryScenarioRunStartContainers'
             schema:
               $ref: '#/components/schemas/ScenarioRunStartContainers'
+          application/yaml:
+            examples:
+              ScenarioRunStartContainers:
+                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
+            schema:
+              format: binary
+              type: string
         description: the raw containers definition
         required: true
       responses:
@@ -1177,15 +1589,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
+        "204":
+          description: Request succeeded
         "400":
           description: Bad request
         "404":
@@ -1231,9 +1636,9 @@ paths:
       tags:
       - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs/search:
-    post:
-      operationId: searchScenarioRunLogs
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs:
+    get:
+      operationId: getScenarioRunLogs
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1251,16 +1656,6 @@ paths:
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunLogsOptions:
-                $ref: '#/components/examples/BreweryScenarioRunLogsOptions'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunLogsOptions'
-        description: the options to search logs
-        required: true
       responses:
         "200":
           content:
@@ -1270,17 +1665,47 @@ paths:
                   $ref: '#/components/examples/BreweryScenarioRunLogs'
               schema:
                 $ref: '#/components/schemas/ScenarioRunLogs'
-          description: the ScenarioRun logs
+          description: the scenariorun logs details
+      summary: get the logs for the ScenarioRun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs:
+    get:
+      operationId: getScenarioRunCumulatedLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: the ScenarioRun cumulated logs
         "400":
           description: Bad request
         "404":
           description: the ScenarioRun specified is unknown or you don't have access
             to it
-      summary: Search the logs of a scenariorun
+      summary: Get the cumulated logs of a scenariorun
       tags:
       - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
+      x-accepts: text/plain
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns:
     get:
       operationId: getWorkspaceScenarioRuns
@@ -1319,7 +1744,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
     get:
-      operationId: getScenarioScenarioRuns
+      operationId: getScenarioRuns
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1358,106 +1783,6 @@ paths:
                 type: array
           description: the scenariorun details list
       summary: get the list of ScenarioRuns for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}:
-    get:
-      operationId: getScenarioScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: get the ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/logs:
-    get:
-      operationId: getScenarioScenarioRunLogs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunLogs'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunLogs'
-          description: the scenariorun logs details
-      summary: get the logs for the ScenarioRun
       tags:
       - scenariorun
       x-accepts: application/json
@@ -1532,6 +1857,13 @@ paths:
                 $ref: '#/components/examples/BobCreateIn'
             schema:
               $ref: '#/components/schemas/User'
+          application/yaml:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
+            schema:
+              format: binary
+              type: string
         description: the User to register
         required: true
       responses:
@@ -1564,17 +1896,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the user details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the User specified is unknown or you don't have access to it
       summary: Unregister an user
@@ -1627,8 +1950,15 @@ paths:
                 $ref: '#/components/examples/BobyUpdateIn'
             schema:
               $ref: '#/components/schemas/User'
-        description: the new User details. Organization membership is handled in Organzation
-          service.
+          application/yaml:
+            examples:
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
+            schema:
+              format: binary
+              type: string
+        description: the new User details. Organization membership is handled via
+          the /organizations endpoint.
         required: true
       responses:
         "200":
@@ -1644,7 +1974,7 @@ paths:
           description: Bad request
         "404":
           description: the User specified is unknown or you don't have access to it
-      summary: Update an user
+      summary: Update a User
       tags:
       - user
       x-contentType: application/json
@@ -1662,9 +1992,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: the User details
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Get the details of an user
+      summary: Get the details of the logged-in User
       tags:
       - user
       x-accepts: application/json
@@ -1690,9 +2018,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: the User details
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Get the details of an user with roles for an Organization
+      summary: Get the details of a logged-in User with roles for an Organization
       tags:
       - user
       x-accepts: application/json
@@ -1726,9 +2052,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: the User details
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Get the details of an user with roles for a Workspace
+      summary: Get the details of the logged-in user with roles for a Workspace
       tags:
       - user
       x-accepts: application/json
@@ -1782,7 +2106,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Scenario'
                 type: array
-          description: the scenario details
+          description: the list of Scenarios
       summary: List all Scenarios
       tags:
       - scenario
@@ -1816,6 +2140,15 @@ paths:
                 $ref: '#/components/examples/BreweryChildScenarioIn'
             schema:
               $ref: '#/components/schemas/Scenario'
+          application/yaml:
+            examples:
+              MasterScenario:
+                $ref: '#/components/examples/BreweryScenarioIn'
+              ChildScenario:
+                $ref: '#/components/examples/BreweryChildScenarioIn'
+            schema:
+              format: binary
+              type: string
         description: the Scenario to create
         required: true
       responses:
@@ -1830,7 +2163,7 @@ paths:
           description: the scenario details
         "400":
           description: Bad request
-      summary: Create a new scenario
+      summary: Create a new Scenario
       tags:
       - scenario
       x-contentType: application/json
@@ -1900,17 +2233,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Scenario:
-                  $ref: '#/components/examples/BreweryScenario'
-              schema:
-                $ref: '#/components/schemas/Scenario'
-          description: the scenario details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the Scenario specified is unknown or you don't have access
             to it
@@ -1997,6 +2321,13 @@ paths:
                 $ref: '#/components/examples/BreweryScenarioUpdate'
             schema:
               $ref: '#/components/schemas/Scenario'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryScenarioUpdate'
+            schema:
+              format: binary
+              type: string
         description: the new Scenario details.
         required: true
       responses:
@@ -2066,12 +2397,245 @@ paths:
                 $ref: '#/components/schemas/ScenarioComparisonResult'
           description: the comparison result for parameters values
         "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
+          description: one of the Scenarios specified is unknown or you don't have
+            access to it
       summary: Compare the Scenario with another one and returns the difference for
         parameters values
       tags:
       - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users:
+    delete:
+      operationId: removeAllUsersOfScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Remove all users from the Scenario specified
+      tags:
+      - scenario
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceUsersInScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ScenarioUser'
+              type: array
+        description: the Users to add. Any User with the same ID is overwritten
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioUser'
+                type: array
+          description: the Scenario Users
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Add (or replace) users in the Scenario specified
+      tags:
+      - scenario
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users/{user_id}:
+    delete:
+      operationId: removeUserFromScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Scenario or the User specified is unknown or you don't
+            have access to them
+      summary: Remove the specified user from the given Scenario
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues:
+    delete:
+      operationId: removeAllScenarioParameterValues
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameter Values from the Scenario specified
+      tags:
+      - scenario
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceScenarioParameterValues
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
+              type: array
+        description: the Parameter Value to add. Any Parameter Value with the same
+          ID is overwritten
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
+                type: array
+          description: the Parameter values
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Add (or replace) Parameter Values for the Scenario specified
+      tags:
+      - scenario
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/datasets:
     get:
@@ -2096,7 +2660,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Dataset'
                 type: array
-          description: the dataset details
+          description: the list of Datasets
       summary: List all Datasets
       tags:
       - dataset
@@ -2120,6 +2684,13 @@ paths:
                 $ref: '#/components/examples/BreweryADT'
             schema:
               $ref: '#/components/schemas/Dataset'
+          application/yaml:
+            examples:
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
+            schema:
+              format: binary
+              type: string
         description: the Dataset to create
         required: true
       responses:
@@ -2134,7 +2705,7 @@ paths:
           description: the dataset details
         "400":
           description: Bad request
-      summary: Create a new dataset
+      summary: Create a new Dataset
       tags:
       - dataset
       x-contentType: application/json
@@ -2159,10 +2730,17 @@ paths:
                 $ref: '#/components/examples/BreweryDatasetCopyParameters'
             schema:
               $ref: '#/components/schemas/DatasetCopyParameters'
+          application/yaml:
+            examples:
+              BreweryDatasetCopyParameters:
+                $ref: '#/components/examples/BreweryDatasetCopyParameters'
+            schema:
+              format: binary
+              type: string
         description: the Dataset copy parameters
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -2174,8 +2752,8 @@ paths:
         "400":
           description: Bad request
         "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
+          description: the Dataset specified as Source or Target is unknown or you
+            don't have access to it
       summary: Copy a Dataset to another Dataset. Source must have a read capable
         connector and Target a write capable connector.
       tags:
@@ -2203,17 +2781,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
+        "204":
+          description: Request successful
         "404":
           description: the Dataset specified is unknown or you don't have access to
             it
@@ -2253,7 +2822,7 @@ paths:
         "404":
           description: the Dataset specified is unknown or you don't have access to
             it
-      summary: Get the details of a dataset
+      summary: Get the details of a Dataset
       tags:
       - dataset
       x-accepts: application/json
@@ -2284,6 +2853,13 @@ paths:
                 $ref: '#/components/examples/BreweryADTUpdate'
             schema:
               $ref: '#/components/schemas/Dataset'
+          application/yaml:
+            examples:
+              BreweryADTUpdate:
+                $ref: '#/components/examples/BreweryADTUpdate'
+            schema:
+              format: binary
+              type: string
         description: the new Dataset details.
         required: true
       responses:
@@ -2302,6 +2878,84 @@ paths:
           description: the Dataset specified is unknown or you don't have access to
             it
       summary: Update a dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/compatibility:
+    delete:
+      operationId: removeAllDatasetCompatibilityElements
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Remove all Dataset Compatibility elements from the Dataset specified
+      tags:
+      - dataset
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceDatasetCompatibilityElements
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/DatasetCompatibility'
+              type: array
+        description: the Dataset Compatibility elements
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DatasetCompatibility'
+                type: array
+          description: the Dataset Compatibility elements
+        "400":
+          description: Bad request
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Add Dataset Compatibility elements. Any item with the same solutionKey
+        will be overwritten
       tags:
       - dataset
       x-contentType: application/json
@@ -2353,6 +3007,13 @@ paths:
                 $ref: '#/components/examples/BreweryADTValidator'
             schema:
               $ref: '#/components/schemas/Validator'
+          application/yaml:
+            examples:
+              BreweryADTValidator:
+                $ref: '#/components/examples/BreweryADTValidator'
+            schema:
+              format: binary
+              type: string
         description: the Validator to create
         required: true
       responses:
@@ -2393,17 +3054,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidator:
-                  $ref: '#/components/examples/BreweryADTValidator'
-              schema:
-                $ref: '#/components/schemas/Validator'
-          description: the validator details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the Validator specified is unknown or you don't have access
             to it
@@ -2475,6 +3127,13 @@ paths:
                 $ref: '#/components/examples/BreweryADTRunValidator'
             schema:
               $ref: '#/components/schemas/ValidatorRun'
+          application/yaml:
+            examples:
+              BreweryADTRunValidator:
+                $ref: '#/components/examples/BreweryADTRunValidator'
+            schema:
+              format: binary
+              type: string
         description: the Validator to run
         required: true
       responses:
@@ -2557,6 +3216,13 @@ paths:
                 $ref: '#/components/examples/BreweryADTValidatorRun'
             schema:
               $ref: '#/components/schemas/ValidatorRun'
+          application/yaml:
+            examples:
+              BreweryADTValidatorRun:
+                $ref: '#/components/examples/BreweryADTValidatorRun'
+            schema:
+              format: binary
+              type: string
         description: the Validator Run to create
         required: true
       responses:
@@ -2605,17 +3271,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidatorRun:
-                  $ref: '#/components/examples/BreweryADTValidatorRun'
-              schema:
-                $ref: '#/components/schemas/ValidatorRun'
-          description: the validator run details
-        "400":
-          description: Bad request
+        "204":
+          description: Request succeeded
         "404":
           description: the ValidatorRun specified is unknown or you don't have access
             to it
@@ -2793,7 +3450,6 @@ components:
       description: Bob User renamed to Boby input example
       summary: Boby update User input example
       value:
-        id: "1"
         name: Boby
     BobyUpdated:
       description: Bob User renamed to Boby example
@@ -3043,7 +3699,8 @@ components:
       summary: Brewery ScenarioRun example
       value:
         id: "1"
-        jobId: "1"
+        workflowId: "1"
+        workflowName: w1
         ownerId: "1"
         workspaceId: "1"
         workspaceName: Brewery Analysis
@@ -3069,7 +3726,7 @@ components:
         resultsEventBusResourceUri: brewery
         scenariorunEventBusResourceUri: brewery-scenariorun
         state: Running
-        starTime: "4/15/2021, 10:52:18.593 AM"
+        startTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
         fetchDatasetContainers:
         - id: azertyuiop
@@ -3107,9 +3764,10 @@ components:
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_RUN_TEMPLATE_ID: hundred
+            CSM_CONTAINER_MODE: handle-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - handle-parameters
+          entrypoint: entrypoint.py
         validateDataContainer:
           id: rfvtgb
           envVars:
@@ -3121,9 +3779,9 @@ components:
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_CONTAINER_MODE: validate
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - validate
+          entrypoint: entrypoint.py
         sendDataWarehouseContainer:
           id: qsdfghjklm
           envVars:
@@ -3152,21 +3810,21 @@ components:
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
             CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+            CSM_PROBES_MEASURES_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery
+            CSM_CONTAINER_MODE: engine
+            CSM_SIMULATION: DeployedScenarioRun
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - -i
-          - DeployedScenarioRun
-          - --amqp-consumer
-          - amqps://csm-phoenix.servicebus.windows.net/brewery
+          entrypoint: entrypoint.py
     BreweryScenarioRunContainer:
       description: Brewery ScenarioRun ran with containers information example
       summary: Brewery ScenarioRun Containers example
       value:
         id: "1"
-        jobId: "1"
+        workflowId: "1"
+        workflowName: w1
         ownerId: "1"
         state: Running
-        starTime: "4/15/2021, 10:52:18.593 AM"
+        startTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
         fetchDatasetContainers:
         - id: azertyuiop
@@ -3208,85 +3866,34 @@ components:
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
             CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+            CSM_PROBES_MEASURES_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery
+            CSM_CONTAINER_MODE: engine
+            CSM_SIMULATION: DeployedScenarioRun
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - -i
-          - DeployedScenarioRun
-          - --amqp-consumer
-          - amqps://csm-phoenix.servicebus.windows.net/brewery
+          entrypoint: entrypoint.py
     BreweryScenarioRunLogs:
       description: Brewery ScenarioRun logs with plain text example
       summary: Brewery ScenarioRun logs  example
       value:
         scenariorunId: "1"
-        options:
-          containerIds:
-          - azertyuiop
-          - wxcvbn
-          plainText: false
-        fetchDatasetContainers:
-        - container:
-            id: azertyuiop
-            envVars:
-              AZURE_TENANT_ID: "12345678"
-              AZURE_CLIENT_ID: "12345678"
-              AZURE_CLIENT_SECRET: azertyuiop
-              CSM_API_URL: https://api.comostech.com
-              CSM_API_TOKEN: azertyuiopqsdfghjklm
-              ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
-              ADT_QUERY: SELECT * FROM digitaltwins
-              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-            image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-          computer: aks-highcpupool-30630301-vmss000000
-          logs:
-          - timeGenerated: "4/15/2021, 10:52:20.593 AM"
-            entrySource: stderr
-            logEntry: cannot read source file
-          - timeGenerated: "4/15/2021, 10:52:21.593 AM"
-            entrySource: stderr
-            logEntry: stopping stream
-        runLogs:
-          container:
-            id: wxcvbn
-            envVars:
-              AZURE_TENANT_ID: "12345678"
-              AZURE_CLIENT_ID: "12345678"
-              AZURE_CLIENT_SECRET: azertyuiop
-              CSM_API_URL: https://api.comostech.com
-              CSM_API_TOKEN: azertyuiopqsdfghjklm
-              CSM_ENGINE_PROVIDER: local
-              CSM_ENGINE_PATH: run_templates/hundred/engine/
-              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-              CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-              CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
-            image: twinengines.azurecr.io/brewery_simulator:latest
-            runArgs:
-            - -i
-            - DeployedScenarioRun
-            - --amqp-consumer
-            - amqps://csm-phoenix.servicebus.windows.net/brewery
-          computer: aks-highcpupool-30630301-vmss000000
-          logs:
-          - timeGenerated: "4/15/2021, 10:52:22.593 AM"
-            entrySource: stderr
-            logEntry: cannot run solution
-          - timeGenerated: "4/15/2021, 10:52:23.593 AM"
-            entrySource: stderr
-            logEntry: critical error
-    BreweryScenarioRunLogsOptions:
-      description: Brewery ScenarioRun logs options with plain text example
-      summary: Brewery ScenarioRun logs options example
-      value:
-        containerIds:
-        - azertyuiop
-        - wxcvbn
-        plainText: false
+        containers:
+          fetchDatasetContainers:
+            nodeId: azertyuiop-123
+            containerName: azertyuiop
+            children:
+            - wxcvbn
+            logs: cannot read source file
+          runLogs:
+            nodeid: wxcvbn-123
+            containerName: wxcvbn
+            logs: cannot run solution
     BreweryScenarioRunSolution:
       description: Brewery ScenarioRun ran with Solution information example
       summary: Brewery ScenarioRun Solution example
       value:
         id: "1"
-        jobId: "1"
+        workflowId: "1"
+        workflowName: w1
         ownerId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
@@ -3308,7 +3915,7 @@ components:
         resultsEventBusResourceUri: brewery
         scenariorunEventBusResourceUri: brewery-scenariorun
         state: Running
-        starTime: "4/15/2021, 10:52:18.593 AM"
+        startTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
         fetchDatasetContainers:
         - id: azertyuiop
@@ -3345,9 +3952,9 @@ components:
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_CONTAINER_MODE: handle-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - handle-parameters
+          entrypoint: entrypoint.py
         validateDataContainer:
           id: rfvtgb
           envVars:
@@ -3359,9 +3966,9 @@ components:
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_CONTAINER_MODE: validate
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - validate
+          entrypoint: entrypoint.py
         sendDataWarehouseContainer:
           id: qsdfghjklm
           envVars:
@@ -3390,85 +3997,63 @@ components:
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
             CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+            CSM_PROBES_MEASURES_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery
+            CSM_CONTAINER_MODE: engine
+            CSM_SIMULATION: DeployedScenarioRun
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - -i
-          - DeployedScenarioRun
-          - --amqp-consumer
-          - amqps://csm-phoenix.servicebus.windows.net/brewery
-    BreweryScenarioRunStart:
-      description: Brewery start ScenarioRun for Scenario 1 example
-      summary: Brewery start ScenarioRun for a Scenario example
-      value:
-        workspaceId: "1"
-        scenarioId: "1"
+          entrypoint: entrypoint.py
     BreweryScenarioRunStartContainers:
       description: Brewery start ScenarioRun directly with containers example
       summary: Brewery start ScenarioRun directly with containers example
       value:
+        generateName: workflow-
         nodeLabel: highcpupool
-        fetchDatasetContainers:
-        - id: azertyuiop
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_API_TOKEN: azertyuiopqsdfghjklm
-            ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
-            ADT_QUERY: SELECT * FROM digitaltwins
-            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-          image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
-        sendDataWarehouseContainer:
-          id: qsdfghjklm
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_API_TOKEN: azertyuiopqsdfghjklm
-            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-            CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
-            CSM_SEND_DATAWAREHOUSE_DATASETS: true
-            ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
-            ADX_DATABASE: Brewery
-          image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
-        runContainer:
-          id: wxcvbn
-          envVars:
-            AZURE_TENANT_ID: "12345678"
-            AZURE_CLIENT_ID: "12345678"
-            AZURE_CLIENT_SECRET: azertyuiop
-            CSM_API_URL: https://api.comostech.com
-            CSM_API_TOKEN: azertyuiopqsdfghjklm
-            CSM_ENGINE_PROVIDER: local
-            CSM_ENGINE_PATH: run_templates/hundred/engine/
-            CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
-            CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
-            CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
-          image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - -i
-          - DeployedScenarioRun
-          - --amqp-consumer
-          - amqps://csm-phoenix.servicebus.windows.net/brewery
-    BreweryScenarioRunStartSolution:
-      description: Brewery start ScenarioRun for Solution 1 example
-      summary: Brewery start ScenarioRun for a Solution example
-      value:
-        solutionId: "1"
-        runTemplateId: "1"
-        datasetList:
-        - "1"
-        parametersValues:
-        - parameterId: prefix
-          varType: string
-          value: new
-        sendInputToDataWarehouse: true
-        dataWarehouseDB: Brewery
-        resultsEventBusResourceUri: brewery
-        scenariorunEventBusResourceUri: brewery-scenariorun
+        containers:
+          fetchDatasetContainers:
+            name: azertyuiop
+            envVars:
+              AZURE_TENANT_ID: "12345678"
+              AZURE_CLIENT_ID: "12345678"
+              AZURE_CLIENT_SECRET: azertyuiop
+              CSM_API_URL: https://api.comostech.com
+              CSM_API_TOKEN: azertyuiopqsdfghjklm
+              ADT_INSTANCE_URL: https://supply.api.weu.digitaltwins.azure.net
+              ADT_QUERY: SELECT * FROM digitaltwins
+              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            image: csmphoenix.azurecr.io/azure-digital-twins-simulator-connector:latest
+          sendDataWarehouseContainer:
+            name: qsdfghjklm
+            envVars:
+              AZURE_TENANT_ID: "12345678"
+              AZURE_CLIENT_ID: "12345678"
+              AZURE_CLIENT_SECRET: azertyuiop
+              CSM_API_URL: https://api.comostech.com
+              CSM_API_TOKEN: azertyuiopqsdfghjklm
+              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+              CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+              CSM_SEND_DATAWAREHOUSE_PARAMETERS: true
+              CSM_SEND_DATAWAREHOUSE_DATASETS: true
+              ADX_DATA_INGESTION_URI: https://ingest-phoenix.westeurope.kusto.windows.net
+              ADX_DATABASE: Brewery
+            image: csmphoenix.azurecr.io/azure-data-explorer-scenariorun-sender:latest
+          runContainer:
+            name: wxcvbn
+            envVars:
+              AZURE_TENANT_ID: "12345678"
+              AZURE_CLIENT_ID: "12345678"
+              AZURE_CLIENT_SECRET: azertyuiop
+              CSM_API_URL: https://api.comostech.com
+              CSM_API_TOKEN: azertyuiopqsdfghjklm
+              CSM_ENGINE_PROVIDER: local
+              CSM_ENGINE_PATH: run_templates/hundred/engine/
+              CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+              CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+              CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+              CSM_PROBES_MEASURES_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery
+              CSM_CONTAINER_MODE: engine
+              CSM_SIMULATION: DeployedScenarioRun
+            image: twinengines.azurecr.io/brewery_simulator:latest
+            entrypoint: entrypoint.py
     BreweryScenarioUpdate:
       description: Update the Brewery Scenario by changing its name
       summary: Update the Brewery Scenario
@@ -3761,125 +4346,6 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
-    CosmoTechPlatform:
-      description: Cosmo Tech Platform example
-      summary: Cosmo Tech Platform
-      value:
-        name: Cosmo Tech Platform
-        description: Cosmo Tech Digital Twins Simulation Platform
-        version: 1.0.0
-        ownerId: "1"
-        apiHost: api.cosmotech.com
-        webAppUrl: https://app.cosmotech.com
-        services:
-          provider: Azure
-          credentials:
-            name: phoenix-core
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
-          storage:
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: core
-          coreContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: csmphoenix.azurecr.io
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines.azurecr.io
-          eventBusCluster:
-            cloudService: AzureEventHub
-            baseUri: csm-phoenix.servicebus.windows.net
-          dataWarehouseCluster:
-            cloudService: AzureDataExplorer
-            baseUri: https://phoenix.westeurope.kusto.windows.net
-            options:
-              ingestionUri: https://ingest-phoenix.westeurope.kusto.windows.net
-          databaseCluster:
-            cloudService: AzureCosmosDB
-            baseUri: https://cosmophoenix.documents.azure.com:443/
-          keyVault:
-            cloudService: AzureKeyVault
-            baseUri: https://csmphoenixkeyvault.vault.azure.net/
-          kubernetesCluster:
-            cloudService: AzureKubernetesService
-            baseUri: phoenixaks-phoenix-659096-de4a5810.hcp.westeurope.azmk8s.io
-            resourceUri: phoenixAKS
-          directory:
-            cloudService: AzureActiveDirectory
-            baseUri: thecosmocompany69.onmicrosoft.com
-            options:
-              tenantId: e9641c78-d0d6-4d09-af63-168922724e7f
-          monitoring:
-            cloudService: AzureMonitor
-          analytic:
-            resourceUri: csmphoenixinsights
-            options:
-              instrumentationKey: 05ef985d-8209-46db-acb0-d035da80faa1
-              connectionString: InstrumentationKey=05ef985d-8209-46db-acb0-d035da80faa1;IngestionEndpoint=https://francecentral-0.in.applicationinsights.azure.com/
-    CosmoTechPlatformUpdate:
-      description: Update the Cosmo Tech Platform by changing its name
-      summary: Update the Cosmo Tech Platform
-      value:
-        name: Cosmo Tech Platform for Azure
-    CosmoTechPlatformUpdated:
-      description: Cosmo Tech Platform updated example
-      summary: Cosmo Tech Platform updated example
-      value:
-        name: Cosmo Tech Platform for Azure
-        description: Cosmo Tech Digital Twins Simulation Platform
-        version: 1.0.0
-        ownerId: "1"
-        apiHost: api.cosmotech.com
-        webAppUrl: https://app.cosmotech.com
-        services:
-          provider: Azure
-          credentials:
-            name: phoenix-core
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
-          storage:
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: core
-          coreContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: csmphoenix.azurecr.io
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines.azurecr.io
-          eventBusCluster:
-            cloudService: AzureEventHub
-            baseUri: csm-phoenix.servicebus.windows.net
-          dataWarehouseCluster:
-            cloudService: AzureDataExplorer
-            baseUri: https://phoenix.westeurope.kusto.windows.net
-            options:
-              ingestionUri: https://ingest-phoenix.westeurope.kusto.windows.net
-          databaseCluster:
-            cloudService: AzureCosmosDB
-            baseUri: https://cosmophoenix.documents.azure.com:443/
-          keyVault:
-            cloudService: AzureKeyVault
-            baseUri: https://csmphoenixkeyvault.vault.azure.net/
-          kubernetesCluster:
-            cloudService: AzureKubernetesService
-            baseUri: phoenixaks-phoenix-659096-de4a5810.hcp.westeurope.azmk8s.io
-            resourceUri: phoenixAKS
-          directory:
-            cloudService: AzureActiveDirectory
-            baseUri: thecosmocompany69.onmicrosoft.com
-            options:
-              tenantId: e9641c78-d0d6-4d09-af63-168922724e7f
-          monitoring:
-            cloudService: AzureMonitor
-          analytic:
-            resourceUri: csmphoenixinsights
-            options:
-              instrumentationKey: 05ef985d-8209-46db-acb0-d035da80faa1
-              connectionString: InstrumentationKey=05ef985d-8209-46db-acb0-d035da80faa1;IngestionEndpoint=https://francecentral-0.in.applicationinsights.azure.com/
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
@@ -3920,9 +4386,11 @@ components:
         name: Cosmo Tech
         users:
         - id: "1"
+          name: admin
           roles:
           - Admin
         - id: "2"
+          name: user
           roles:
           - User
         services:
@@ -3991,7 +4459,8 @@ components:
       summary: Brewery ScenarioRun list example
       value:
       - id: "1"
-        jobId: "1"
+        workflowId: "1"
+        workflowName: w1
         ownerId: "1"
         workspaceId: "1"
         workspaceName: Brewery Analysis
@@ -4004,7 +4473,7 @@ components:
         runTemplateName: Full scenariorun 100 steps
         computeSize: highcpu
         state: Running
-        starTime: "4/15/2021, 10:52:18.593 AM"
+        startTime: "4/15/2021, 10:52:18.593 AM"
         nodeLabel: highcpupool
         fetchDatasetContainers:
         - id: azertyuiop
@@ -4041,9 +4510,9 @@ components:
             CSM_PARAMETERS_HANDLER_PATH: run_templates/hundred/parameters_handler/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
+            CSM_CONTAINER_MODE: handle-parameters
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - handle-parameters
+          entrypoint: entrypoint.py
         validateDataContainer:
           id: rfvtgb
           envVars:
@@ -4055,9 +4524,9 @@ components:
             CSM_DATASET_VALIDATOR_PROVIDER: local
             CSM_DATASET_VALIDATOR_PATH: run_templates/hundred/validator/
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
+            CSM_CONTAINER_MODE: validate
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - validate
+          entrypoint: entrypoint.py
         sendDataWarehouseContainer:
           id: qsdfghjklm
           envVars:
@@ -4086,12 +4555,11 @@ components:
             CSM_DATASET_ABSOLUTE_PATH: /mnt/scenariorun-data
             CSM_PARAMETERS_ABSOLUTE_PATH: /mnt/scenariorun-parameters
             CSM_CONTROL_PLANE_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery-scenariorun
+            CSM_PROBES_MEASURES_TOPIC: amqps://csm-phoenix.servicebus.windows.net/brewery
+            CSM_CONTAINER_MODE: engine
+            CSM_SIMULATION: DeployedScenarioRun
           image: twinengines.azurecr.io/brewery_simulator:latest
-          runArgs:
-          - -i
-          - DeployedScenarioRun
-          - --amqp-consumer
-          - amqps://csm-phoenix.servicebus.windows.net/brewery
+          entrypoint: entrypoint.py
     OneSolution:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -4466,6 +4934,18 @@ components:
             AZURE_DIGITAL_TWINS_URL: myotherdt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+    TwoOrganizationUsers:
+      description: Two Users of an Organization example
+      summary: Two users of an Organization
+      value:
+      - id: "1"
+        name: Bob
+        roles:
+        - Admin
+      - id: "2"
+        name: Alice
+        roles:
+        - User
     TwoOrganizations:
       description: Two Organizations example
       summary: Two Orgnizations
@@ -4555,6 +5035,28 @@ components:
           name: Phoenix
           roles:
           - Admin
+    TwoWorkspaceToAddOrReplace:
+      description: Two Users of a Workspace example
+      summary: Two users of a Workspace
+      value:
+      - id: "1"
+        roles:
+        - Admin
+      - id: "2"
+        roles:
+        - User
+    TwoWorkspaceUsers:
+      description: Two Users of a Workspace example
+      summary: Two users of a Workspace
+      value:
+      - id: "1"
+        name: Bob
+        roles:
+        - Admin
+      - id: "2"
+        name: Alice
+        roles:
+        - User
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -4714,7 +5216,6 @@ components:
       required:
       - id
       - label
-      - valueType
       type: object
     ConnectorParameterGroup:
       description: a connector parameters group
@@ -4760,7 +5261,7 @@ components:
       example:
         connector:
           parametersValues:
-            key: "{}"
+            key: parametersValues
           id: id
         name: name
         description: description
@@ -4842,14 +5343,15 @@ components:
       description: a Connector setup
       example:
         parametersValues:
-          key: "{}"
+          key: parametersValues
         id: id
       properties:
         id:
           description: the Connector id
           type: string
         parametersValues:
-          additionalProperties: true
+          additionalProperties:
+            type: string
           type: object
       required:
       - id
@@ -4897,14 +5399,12 @@ components:
             cloudService: cloudService
         ownerId: ownerId
         users:
-        - organizationId: organizationId
-          roles:
+        - roles:
           - Admin
           - Admin
           name: name
           id: id
-        - organizationId: organizationId
-          roles:
+        - roles:
           - Admin
           - Admin
           name: name
@@ -4927,8 +5427,6 @@ components:
           type: array
         services:
           $ref: '#/components/schemas/OrganizationServices'
-      required:
-      - name
       type: object
     OrganizationService:
       description: a cloud service resource
@@ -4990,7 +5488,6 @@ components:
     OrganizationUser:
       description: a User
       example:
-        organizationId: organizationId
         roles:
         - Admin
         - Admin
@@ -5004,10 +5501,6 @@ components:
         name:
           description: the User name
           type: string
-        organizationId:
-          description: the Organization Id context
-          readOnly: true
-          type: string
         roles:
           description: the User's roles for the Organization
           items:
@@ -5019,311 +5512,24 @@ components:
             type: string
           type: array
       required:
-      - name
       - roles
-      type: object
-    Platform:
-      description: a Platform
-      example:
-        webAppUrl: webAppUrl
-        apiHost: apiHost
-        name: name
-        description: description
-        services:
-          keyVault:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          credentials:
-            key: "{}"
-          kubernetesCluster:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          databaseCluster:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          storage:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          monitoring:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          directory:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          eventBusCluster:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          coreContainerRegistry:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          solutionsContainerRegistry:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          provider: Azure
-          dataWarehouseCluster:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-          analytic:
-            credentials:
-              key: "{}"
-            baseUri: baseUri
-            options:
-              key: "{}"
-            resourceUri: resourceUri
-            cloudService: cloudService
-        ownerId: ownerId
-        version: version
-      properties:
-        name:
-          description: the Platform name
-          type: string
-        description:
-          description: the Platform description
-          type: string
-        version:
-          description: the Platform version MAJOR.MINOR.PATCH.
-          type: string
-        ownerId:
-          description: the Platform owner Id
-          type: string
-        apiHost:
-          description: Platform host name
-          type: string
-        webAppUrl:
-          description: the Web Application Portal to use the Platform
-          type: string
-        services:
-          $ref: '#/components/schemas/PlatformServices'
-      required:
-      - name
-      - ownerId
-      - services
-      - version
-      type: object
-    PlatformService:
-      description: a Cloud Service resource
-      example:
-        credentials:
-          key: "{}"
-        baseUri: baseUri
-        options:
-          key: "{}"
-        resourceUri: resourceUri
-        cloudService: cloudService
-      properties:
-        cloudService:
-          description: the cloud service name
-          readOnly: true
-          type: string
-        baseUri:
-          description: the platform base uri for this service
-          readOnly: true
-          type: string
-        resourceUri:
-          description: the workspace specific uri for this service resource
-          type: string
-        credentials:
-          additionalProperties: true
-          description: a freeform credentials object. Structure depends on service
-          type: object
-        options:
-          additionalProperties: true
-          description: the service specific options
-          type: object
-      type: object
-    PlatformServices:
-      description: the list of Platform services
-      example:
-        keyVault:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        credentials:
-          key: "{}"
-        kubernetesCluster:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        databaseCluster:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        storage:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        monitoring:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        directory:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        eventBusCluster:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        coreContainerRegistry:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        solutionsContainerRegistry:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        provider: Azure
-        dataWarehouseCluster:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-        analytic:
-          credentials:
-            key: "{}"
-          baseUri: baseUri
-          options:
-            key: "{}"
-          resourceUri: resourceUri
-          cloudService: cloudService
-      properties:
-        provider:
-          description: the Cloud Provider for the services
-          enum:
-          - Azure
-          type: string
-        credentials:
-          additionalProperties: true
-          description: a freeform credentials object for the Platform. Structure depends
-            on cloud provider
-          type: object
-        storage:
-          $ref: '#/components/schemas/PlatformService'
-        coreContainerRegistry:
-          $ref: '#/components/schemas/PlatformService'
-        solutionsContainerRegistry:
-          $ref: '#/components/schemas/PlatformService'
-        eventBusCluster:
-          $ref: '#/components/schemas/PlatformService'
-        dataWarehouseCluster:
-          $ref: '#/components/schemas/PlatformService'
-        databaseCluster:
-          $ref: '#/components/schemas/PlatformService'
-        keyVault:
-          $ref: '#/components/schemas/PlatformService'
-        kubernetesCluster:
-          $ref: '#/components/schemas/PlatformService'
-        directory:
-          $ref: '#/components/schemas/PlatformService'
-        monitoring:
-          $ref: '#/components/schemas/PlatformService'
-        analytic:
-          $ref: '#/components/schemas/PlatformService'
-      required:
-      - provider
       type: object
     RunTemplate:
       description: a Solution Run Template
       example:
         preRunResource:
-          customUri: customUri
+          storageOptions:
+            key: "{}"
           resourcePath: resourcePath
           storageType: local
         parametersHandlerResource:
-          customUri: customUri
+          storageOptions:
+            key: "{}"
           resourcePath: resourcePath
           storageType: local
         datasetValidatorResource:
-          customUri: customUri
+          storageOptions:
+            key: "{}"
           resourcePath: resourcePath
           storageType: local
         sendDatasetsToDataWarehouse: true
@@ -5338,11 +5544,13 @@ components:
         - parameterGroups
         name: name
         engineResource:
-          customUri: customUri
+          storageOptions:
+            key: "{}"
           resourcePath: resourcePath
           storageType: local
         postRunResource:
-          customUri: customUri
+          storageOptions:
+            key: "{}"
           resourcePath: resourcePath
           storageType: local
         id: id
@@ -5495,24 +5703,24 @@ components:
       type: object
     RunTemplateResourceStorage:
       example:
-        customUri: customUri
+        storageOptions:
+          key: "{}"
         resourcePath: resourcePath
         storageType: local
       properties:
         storageType:
-          description: "the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR}\
-            \ behind the scene"
+          description: the storage type
           enum:
           - local
-          - cloud
-          - customUri
+          - cloudStorage
           type: string
         resourcePath:
           description: the resource path
           type: string
-        customUri:
-          description: a custom Uri to provide the resource in resourcePath
-          type: string
+        storageOptions:
+          additionalProperties: true
+          description: freeform options for storage
+          type: object
       required:
       - resourcePath
       - storageType
@@ -5690,9 +5898,14 @@ components:
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         failedStep: failedStep
         resultsEventBusResourceUri: resultsEventBusResourceUri
         computeSize: computeSize
@@ -5710,33 +5923,53 @@ components:
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         - image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         dataWarehouseDB: dataWarehouseDB
         runContainer:
           image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         postRunContainer:
           image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         workspaceName: workspaceName
         startTime: startTime
         id: id
@@ -5746,9 +5979,14 @@ components:
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         failedContainerId: failedContainerId
         scenarioName: scenarioName
         validateDataContainer:
@@ -5756,29 +5994,44 @@ components:
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         workspaceId: workspaceId
         sendDataWarehouseContainer:
           image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         solutionName: solutionName
+        workflowName: workflowName
         runTemplateName: runTemplateName
         fetchScenarioParametersContainer:
           image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
-        jobId: jobId
+          dependencies:
+          - dependencies
+          - dependencies
         runTemplateId: runTemplateId
         scenariorunEventBusResourceUri: scenariorunEventBusResourceUri
         solutionId: solutionId
@@ -5789,14 +6042,17 @@ components:
         scenarioId: scenarioId
         sendInputToDataWarehouse: true
         nodeLabel: nodeLabel
+        workflowId: workflowId
       properties:
         id:
           description: the ScenarioRun
           readOnly: true
           type: string
-        jobId:
-          description: the Platform compute cluster Job Id
-          readOnly: true
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
           type: string
         ownerId:
           description: the user id which own this scenariorun
@@ -5935,309 +6191,110 @@ components:
         runArgs:
         - runArgs
         - runArgs
+        entrypoint: entrypoint
+        name: name
         envVars:
-          key: "{}"
+          key: envVars
         id: id
+        dependencies:
+        - dependencies
+        - dependencies
       properties:
         id:
           description: the container Id
           readOnly: true
           type: string
+        name:
+          description: the container name
+          type: string
         envVars:
-          additionalProperties: true
-          description: a freeform environment variable map
+          additionalProperties:
+            type: string
+          description: environment variable map
           type: object
         image:
           description: the container image URI
+          type: string
+        entrypoint:
+          description: the container entry point
           type: string
         runArgs:
           description: the list of run arguments for the container
           items:
             type: string
           type: array
-      type: object
-    ScenarioRunContainerLog:
-      description: a container log line
-      example:
-        timeGenerated: timeGenerated
-        entrySource: entrySource
-        logEntry: logEntry
-      properties:
-        timeGenerated:
-          description: date and time the record was created
-          readOnly: true
-          type: string
-        entrySource:
-          description: source of the log line. Possible values are stdout or stderr
-          readOnly: true
-          type: string
-        logEntry:
-          description: actual log line
-          readOnly: true
-          type: string
+        dependencies:
+          description: the list of dependencies container name to run this container
+          items:
+            type: string
+          type: array
+      required:
+      - image
+      - name
       type: object
     ScenarioRunContainerLogs:
       description: logs for a given container
       example:
-        container:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        computer: computer
-        textLog: textLog
-        logs:
-        - timeGenerated: timeGenerated
-          entrySource: entrySource
-          logEntry: logEntry
-        - timeGenerated: timeGenerated
-          entrySource: entrySource
-          logEntry: logEntry
+        children:
+        - children
+        - children
+        containerName: containerName
+        nodeId: nodeId
+        logs: logs
       properties:
-        container:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        computer:
-          description: computer/node that's generating the log
+        nodeId:
+          description: the node Id which has executed this log
           readOnly: true
           type: string
-        logs:
-          description: the list of container logs in structured format
+        containerName:
+          description: the container name
+          readOnly: true
+          type: string
+        children:
+          description: the list of children node id
           items:
-            $ref: '#/components/schemas/ScenarioRunContainerLog'
+            type: string
           readOnly: true
           type: array
-        textLog:
-          description: the plain text log if plainText option has been set
+        logs:
+          description: the node logs in plain text
+          readOnly: true
           type: string
       type: object
     ScenarioRunLogs:
       description: the scenariorun logs returned by all containers
       example:
-        fetchDatasetLogs:
-        - container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        - container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        validateDataLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        runLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
         scenariorunId: scenariorunId
-        options:
-          containerIds:
-          - containerIds
-          - containerIds
-          plainText: true
-        applyParametersLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        fetchScenarioParametersLog:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        sendDataWarehouseLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        preRunLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-        postRunLogs:
-          container:
-            image: image
-            runArgs:
-            - runArgs
-            - runArgs
-            envVars:
-              key: "{}"
-            id: id
-          computer: computer
-          textLog: textLog
-          logs:
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
-          - timeGenerated: timeGenerated
-            entrySource: entrySource
-            logEntry: logEntry
+        containers:
+          key:
+            children:
+            - children
+            - children
+            containerName: containerName
+            nodeId: nodeId
+            logs: logs
       properties:
         scenariorunId:
           description: the ScenarioRun Id
           readOnly: true
           type: string
-        options:
-          $ref: '#/components/schemas/ScenarioRunLogsOptions'
-        fetchDatasetLogs:
-          description: logs for the containers which fetch the Scenario Datasets
-          items:
+        containers:
+          additionalProperties:
             $ref: '#/components/schemas/ScenarioRunContainerLogs'
+          description: the container map of logs
           readOnly: true
-          type: array
-        fetchScenarioParametersLog:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        applyParametersLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        validateDataLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        sendDataWarehouseLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        preRunLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        runLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-        postRunLogs:
-          $ref: '#/components/schemas/ScenarioRunContainerLogs'
-      type: object
-    ScenarioRunLogsOptions:
-      description: the scenariorun logs options
-      example:
-        containerIds:
-        - containerIds
-        - containerIds
-        plainText: true
-      properties:
-        containerIds:
-          description: the list of container Id to get the log for
-          items:
-            type: string
-          type: array
-        plainText:
-          description: whether or not to return the log in plain text instead of structured
-            form
-          type: boolean
+          type: object
       type: object
     ScenarioRunSearch:
       description: the search options
       example:
-        jobId: jobId
         runTemplateId: runTemplateId
+        workflowName: workflowName
         solutionId: solutionId
         state: FetchingDatasets
         ownerId: ownerId
         scenarioId: scenarioId
+        workflowId: workflowId
         workspaceId: workspaceId
       properties:
         solutionId:
@@ -6266,178 +6323,60 @@ components:
           - Success
           - Failed
           type: string
-        jobId:
-          description: the Cosmo Tech compute cluster Job Id to search
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
           type: string
         ownerId:
           description: the owner Id to search
           type: string
       type: object
-    ScenarioRunStart:
-      description: the parameters to run a Scenario
-      example:
-        scenarioId: scenarioId
-        workspaceId: workspaceId
-      properties:
-        workspaceId:
-          description: the Workspace Id
-          type: string
-        scenarioId:
-          description: the Scenario Id
-          type: string
-      type: object
     ScenarioRunStartContainers:
       description: the parameters to run directly containers
       example:
-        applyParametersContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        sendDataWarehouseContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        fetchDatasetContainers:
+        containers:
         - image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
+          dependencies:
+          - dependencies
+          - dependencies
         - image: image
           runArgs:
           - runArgs
           - runArgs
+          entrypoint: entrypoint
+          name: name
           envVars:
-            key: "{}"
+            key: envVars
           id: id
-        runContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        postRunContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        fetchScenarioParametersContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
-        preRunContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
+          dependencies:
+          - dependencies
+          - dependencies
+        generateName: generateName
         nodeLabel: nodeLabel
-        validateDataContainer:
-          image: image
-          runArgs:
-          - runArgs
-          - runArgs
-          envVars:
-            key: "{}"
-          id: id
       properties:
+        generateName:
+          description: the base name for workflow name generation
+          type: string
         nodeLabel:
           description: the node label request
           type: string
-        fetchDatasetContainers:
-          description: the containers which fetch the Scenario Datasets
+        containers:
+          description: the containers map with name and ScenarioRunContainer
           items:
             $ref: '#/components/schemas/ScenarioRunContainer'
-          readOnly: true
           type: array
-        fetchScenarioParametersContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        applyParametersContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        validateDataContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        sendDataWarehouseContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        preRunContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        runContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-        postRunContainer:
-          $ref: '#/components/schemas/ScenarioRunContainer'
-      type: object
-    ScenarioRunStartSolution:
-      description: the parameters to run directly a Solution
-      example:
-        parametersValues:
-        - varType: varType
-          parameterId: parameterId
-          value: value
-        - varType: varType
-          parameterId: parameterId
-          value: value
-        dataWarehouseDB: dataWarehouseDB
-        resultsEventBusResourceUri: resultsEventBusResourceUri
-        runTemplateId: runTemplateId
-        scenariorunEventBusResourceUri: scenariorunEventBusResourceUri
-        solutionId: solutionId
-        datasetList:
-        - datasetList
-        - datasetList
-        sendInputToDataWarehouse: true
-      properties:
-        solutionId:
-          description: the Solution Id
-          type: string
-        runTemplateId:
-          description: the Solution Run Template id
-          type: string
-        datasetList:
-          description: the list of Dataset Id associated to this Analysis
-          items:
-            type: string
-          type: array
-        parametersValues:
-          description: the list of Solution Run Template parameters values
-          items:
-            $ref: '#/components/schemas/RunTemplateParameterValue'
-          type: array
-        sendInputToDataWarehouse:
-          description: whether or not the Dataset values and the input parameters
-            values are send to the DataWarehouse prior to ScenarioRun Run
-          type: boolean
-        dataWarehouseDB:
-          description: the DataWarehouse database name to send data if sendInputToDataWarehouse
-            is set
-          type: string
-        resultsEventBusResourceUri:
-          description: the event bus which receive Workspace ScenarioRun results messages.
-            Message won't be send if this is not set
-          type: string
-        scenariorunEventBusResourceUri:
-          description: the event bus which receive Workspace ScenarioRun events messages.
-            Message won't be send if this is not set
-          type: string
+      required:
+      - containers
       type: object
     ScenarioRunTemplateParameterValue:
       description: the value of a Solution Run Template parameter for a Scenario
@@ -6496,15 +6435,18 @@ components:
         csmSimulator: csmSimulator
         run_templates:
         - preRunResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           parametersHandlerResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           datasetValidatorResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           sendDatasetsToDataWarehouse: true
@@ -6519,25 +6461,30 @@ components:
           - parameterGroups
           name: name
           engineResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           postRunResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           id: id
           sendInputParametersToDataWarehouse: true
         - preRunResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           parametersHandlerResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           datasetValidatorResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           sendDatasetsToDataWarehouse: true
@@ -6552,11 +6499,13 @@ components:
           - parameterGroups
           name: name
           engineResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           postRunResource:
-            customUri: customUri
+            storageOptions:
+              key: "{}"
             resourcePath: resourcePath
             storageType: local
           id: id
@@ -6729,9 +6678,6 @@ components:
             $ref: '#/components/schemas/UserOrganization'
           readOnly: true
           type: array
-      required:
-      - name
-      - platformRoles
       type: object
     UserOrganization:
       description: The organization of the user
@@ -7178,7 +7124,7 @@ components:
       type: object
   securitySchemes:
     oAuth2AuthCode:
-      description: Azure Active Directory authentication
+      description: OAuth2 authentication
       flows:
         implicit:
           authorizationUrl: oauth2/authorize

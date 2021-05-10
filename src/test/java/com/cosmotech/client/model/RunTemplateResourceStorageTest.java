@@ -21,6 +21,9 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -57,11 +60,11 @@ public class RunTemplateResourceStorageTest {
     }
 
     /**
-     * Test the property 'customUri'
+     * Test the property 'storageOptions'
      */
     @Test
-    public void customUriTest() {
-        // TODO: test customUri
+    public void storageOptionsTest() {
+        // TODO: test storageOptions
     }
 
 }

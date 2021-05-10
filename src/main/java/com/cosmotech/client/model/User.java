@@ -31,7 +31,7 @@ import java.util.List;
  * a User
  */
 @ApiModel(description = "a User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,7 +92,7 @@ public class User {
 
   public static final String SERIALIZED_NAME_PLATFORM_ROLES = "platformRoles";
   @SerializedName(SERIALIZED_NAME_PLATFORM_ROLES)
-  private List<PlatformRolesEnum> platformRoles = new ArrayList<PlatformRolesEnum>();
+  private List<PlatformRolesEnum> platformRoles = null;
 
   public static final String SERIALIZED_NAME_ORGANIZATIONS = "organizations";
   @SerializedName(SERIALIZED_NAME_ORGANIZATIONS)
@@ -123,7 +123,8 @@ public class User {
    * the User name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "the User name")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the User name")
 
   public String getName() {
     return name;
@@ -142,6 +143,9 @@ public class User {
   }
 
   public User addPlatformRolesItem(PlatformRolesEnum platformRolesItem) {
+    if (this.platformRoles == null) {
+      this.platformRoles = new ArrayList<PlatformRolesEnum>();
+    }
     this.platformRoles.add(platformRolesItem);
     return this;
   }
@@ -150,7 +154,8 @@ public class User {
    * the list of Platform roles
    * @return platformRoles
   **/
-  @ApiModelProperty(required = true, value = "the list of Platform roles")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of Platform roles")
 
   public List<PlatformRolesEnum> getPlatformRoles() {
     return platformRoles;

@@ -61,14 +61,6 @@ public class RunTemplateParameterGroupTest {
     }
 
     /**
-     * Test the property 'order'
-     */
-    @Test
-    public void orderTest() {
-        // TODO: test order
-    }
-
-    /**
      * Test the property 'isTable'
      */
     @Test

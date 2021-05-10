@@ -13,8 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.ScenarioRunContainer;
-import com.cosmotech.client.model.ScenarioRunContainerLog;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -45,19 +43,27 @@ public class ScenarioRunContainerLogsTest {
     }
 
     /**
-     * Test the property 'container'
+     * Test the property 'nodeId'
      */
     @Test
-    public void containerTest() {
-        // TODO: test container
+    public void nodeIdTest() {
+        // TODO: test nodeId
     }
 
     /**
-     * Test the property 'computer'
+     * Test the property 'containerName'
      */
     @Test
-    public void computerTest() {
-        // TODO: test computer
+    public void containerNameTest() {
+        // TODO: test containerName
+    }
+
+    /**
+     * Test the property 'children'
+     */
+    @Test
+    public void childrenTest() {
+        // TODO: test children
     }
 
     /**
@@ -66,14 +72,6 @@ public class ScenarioRunContainerLogsTest {
     @Test
     public void logsTest() {
         // TODO: test logs
-    }
-
-    /**
-     * Test the property 'textLog'
-     */
-    @Test
-    public void textLogTest() {
-        // TODO: test textLog
     }
 
 }

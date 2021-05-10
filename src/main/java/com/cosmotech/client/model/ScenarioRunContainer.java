@@ -32,23 +32,35 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_ENV_VARS = "envVars";
   @SerializedName(SERIALIZED_NAME_ENV_VARS)
-  private Map<String, Object> envVars = null;
+  private Map<String, String> envVars = null;
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
   @SerializedName(SERIALIZED_NAME_IMAGE)
   private String image;
 
+  public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
+  @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+  private String entrypoint;
+
   public static final String SERIALIZED_NAME_RUN_ARGS = "runArgs";
   @SerializedName(SERIALIZED_NAME_RUN_ARGS)
   private List<String> runArgs = null;
+
+  public static final String SERIALIZED_NAME_DEPENDENCIES = "dependencies";
+  @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
+  private List<String> dependencies = null;
 
 
    /**
@@ -65,33 +77,55 @@ public class ScenarioRunContainer {
 
 
 
-  public ScenarioRunContainer envVars(Map<String, Object> envVars) {
+  public ScenarioRunContainer name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * the container name
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "the container name")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public ScenarioRunContainer envVars(Map<String, String> envVars) {
     
     this.envVars = envVars;
     return this;
   }
 
-  public ScenarioRunContainer putEnvVarsItem(String key, Object envVarsItem) {
+  public ScenarioRunContainer putEnvVarsItem(String key, String envVarsItem) {
     if (this.envVars == null) {
-      this.envVars = new HashMap<String, Object>();
+      this.envVars = new HashMap<String, String>();
     }
     this.envVars.put(key, envVarsItem);
     return this;
   }
 
    /**
-   * a freeform environment variable map
+   * environment variable map
    * @return envVars
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a freeform environment variable map")
+  @ApiModelProperty(value = "environment variable map")
 
-  public Map<String, Object> getEnvVars() {
+  public Map<String, String> getEnvVars() {
     return envVars;
   }
 
 
-  public void setEnvVars(Map<String, Object> envVars) {
+  public void setEnvVars(Map<String, String> envVars) {
     this.envVars = envVars;
   }
 
@@ -106,8 +140,7 @@ public class ScenarioRunContainer {
    * the container image URI
    * @return image
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the container image URI")
+  @ApiModelProperty(required = true, value = "the container image URI")
 
   public String getImage() {
     return image;
@@ -116,6 +149,29 @@ public class ScenarioRunContainer {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+
+  public ScenarioRunContainer entrypoint(String entrypoint) {
+    
+    this.entrypoint = entrypoint;
+    return this;
+  }
+
+   /**
+   * the container entry point
+   * @return entrypoint
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the container entry point")
+
+  public String getEntrypoint() {
+    return entrypoint;
+  }
+
+
+  public void setEntrypoint(String entrypoint) {
+    this.entrypoint = entrypoint;
   }
 
 
@@ -150,6 +206,37 @@ public class ScenarioRunContainer {
   }
 
 
+  public ScenarioRunContainer dependencies(List<String> dependencies) {
+    
+    this.dependencies = dependencies;
+    return this;
+  }
+
+  public ScenarioRunContainer addDependenciesItem(String dependenciesItem) {
+    if (this.dependencies == null) {
+      this.dependencies = new ArrayList<String>();
+    }
+    this.dependencies.add(dependenciesItem);
+    return this;
+  }
+
+   /**
+   * the list of dependencies container name to run this container
+   * @return dependencies
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of dependencies container name to run this container")
+
+  public List<String> getDependencies() {
+    return dependencies;
+  }
+
+
+  public void setDependencies(List<String> dependencies) {
+    this.dependencies = dependencies;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -160,14 +247,17 @@ public class ScenarioRunContainer {
     }
     ScenarioRunContainer scenarioRunContainer = (ScenarioRunContainer) o;
     return Objects.equals(this.id, scenarioRunContainer.id) &&
+        Objects.equals(this.name, scenarioRunContainer.name) &&
         Objects.equals(this.envVars, scenarioRunContainer.envVars) &&
         Objects.equals(this.image, scenarioRunContainer.image) &&
-        Objects.equals(this.runArgs, scenarioRunContainer.runArgs);
+        Objects.equals(this.entrypoint, scenarioRunContainer.entrypoint) &&
+        Objects.equals(this.runArgs, scenarioRunContainer.runArgs) &&
+        Objects.equals(this.dependencies, scenarioRunContainer.dependencies);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, envVars, image, runArgs);
+    return Objects.hash(id, name, envVars, image, entrypoint, runArgs, dependencies);
   }
 
   @Override
@@ -175,9 +265,12 @@ public class ScenarioRunContainer {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRunContainer {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    envVars: ").append(toIndentedString(envVars)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
     sb.append("    runArgs: ").append(toIndentedString(runArgs)).append("\n");
+    sb.append("    dependencies: ").append(toIndentedString(dependencies)).append("\n");
     sb.append("}");
     return sb.toString();
   }

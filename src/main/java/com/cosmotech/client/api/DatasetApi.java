@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Dataset;
+import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
 
 import java.lang.reflect.Type;
@@ -56,6 +57,145 @@ public class DatasetApi {
     }
 
     /**
+     * Build call for addOrReplaceDatasetCompatibilityElements
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetCompatibility the Dataset Compatibility elements (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Dataset Compatibility elements </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceDatasetCompatibilityElementsCall(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = datasetCompatibility;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/compatibility"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addOrReplaceDatasetCompatibilityElementsValidateBeforeCall(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addOrReplaceDatasetCompatibilityElements(Async)");
+        }
+        
+        // verify the required parameter 'datasetId' is set
+        if (datasetId == null) {
+            throw new ApiException("Missing the required parameter 'datasetId' when calling addOrReplaceDatasetCompatibilityElements(Async)");
+        }
+        
+        // verify the required parameter 'datasetCompatibility' is set
+        if (datasetCompatibility == null) {
+            throw new ApiException("Missing the required parameter 'datasetCompatibility' when calling addOrReplaceDatasetCompatibilityElements(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addOrReplaceDatasetCompatibilityElementsCall(organizationId, datasetId, datasetCompatibility, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add Dataset Compatibility elements. Any item with the same solutionKey will be overwritten
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetCompatibility the Dataset Compatibility elements (required)
+     * @return List&lt;DatasetCompatibility&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Dataset Compatibility elements </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<DatasetCompatibility> addOrReplaceDatasetCompatibilityElements(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility) throws ApiException {
+        ApiResponse<List<DatasetCompatibility>> localVarResp = addOrReplaceDatasetCompatibilityElementsWithHttpInfo(organizationId, datasetId, datasetCompatibility);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add Dataset Compatibility elements. Any item with the same solutionKey will be overwritten
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetCompatibility the Dataset Compatibility elements (required)
+     * @return ApiResponse&lt;List&lt;DatasetCompatibility&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Dataset Compatibility elements </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<DatasetCompatibility>> addOrReplaceDatasetCompatibilityElementsWithHttpInfo(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility) throws ApiException {
+        okhttp3.Call localVarCall = addOrReplaceDatasetCompatibilityElementsValidateBeforeCall(organizationId, datasetId, datasetCompatibility, null);
+        Type localVarReturnType = new TypeToken<List<DatasetCompatibility>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add Dataset Compatibility elements. Any item with the same solutionKey will be overwritten (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetCompatibility the Dataset Compatibility elements (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Dataset Compatibility elements </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceDatasetCompatibilityElementsAsync(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility, final ApiCallback<List<DatasetCompatibility>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addOrReplaceDatasetCompatibilityElementsValidateBeforeCall(organizationId, datasetId, datasetCompatibility, _callback);
+        Type localVarReturnType = new TypeToken<List<DatasetCompatibility>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for copyDataset
      * @param organizationId the Organization identifier (required)
      * @param datasetCopyParameters the Dataset copy parameters (required)
@@ -65,9 +205,9 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified as Source or Target is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call copyDatasetCall(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback _callback) throws ApiException {
@@ -92,7 +232,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -130,9 +270,9 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified as Source or Target is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public DatasetCopyParameters copyDataset(String organizationId, DatasetCopyParameters datasetCopyParameters) throws ApiException {
@@ -150,9 +290,9 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified as Source or Target is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DatasetCopyParameters> copyDatasetWithHttpInfo(String organizationId, DatasetCopyParameters datasetCopyParameters) throws ApiException {
@@ -172,9 +312,9 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> the Dataset copy operation parameters </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified as Source or Target is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call copyDatasetAsync(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback<DatasetCopyParameters> _callback) throws ApiException {
@@ -220,7 +360,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -249,7 +389,7 @@ public class DatasetApi {
     }
 
     /**
-     * Create a new dataset
+     * Create a new Dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -268,7 +408,7 @@ public class DatasetApi {
     }
 
     /**
-     * Create a new dataset
+     * Create a new Dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -288,7 +428,7 @@ public class DatasetApi {
     }
 
     /**
-     * Create a new dataset (asynchronously)
+     * Create a new Dataset (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param dataset the Dataset to create (required)
@@ -319,8 +459,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -339,7 +478,7 @@ public class DatasetApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -380,19 +519,16 @@ public class DatasetApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
-     * @return Dataset
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Dataset deleteDataset(String organizationId, String datasetId) throws ApiException {
-        ApiResponse<Dataset> localVarResp = deleteDatasetWithHttpInfo(organizationId, datasetId);
-        return localVarResp.getData();
+    public void deleteDataset(String organizationId, String datasetId) throws ApiException {
+        deleteDatasetWithHttpInfo(organizationId, datasetId);
     }
 
     /**
@@ -400,20 +536,18 @@ public class DatasetApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
-     * @return ApiResponse&lt;Dataset&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Dataset> deleteDatasetWithHttpInfo(String organizationId, String datasetId) throws ApiException {
+    public ApiResponse<Void> deleteDatasetWithHttpInfo(String organizationId, String datasetId) throws ApiException {
         okhttp3.Call localVarCall = deleteDatasetValidateBeforeCall(organizationId, datasetId, null);
-        Type localVarReturnType = new TypeToken<Dataset>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -427,16 +561,14 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteDatasetAsync(String organizationId, String datasetId, final ApiCallback<Dataset> _callback) throws ApiException {
+    public okhttp3.Call deleteDatasetAsync(String organizationId, String datasetId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteDatasetValidateBeforeCall(organizationId, datasetId, _callback);
-        Type localVarReturnType = new TypeToken<Dataset>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -448,7 +580,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllDatasetsCall(String organizationId, final ApiCallback _callback) throws ApiException {
@@ -505,7 +637,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
      </table>
      */
     public List<Dataset> findAllDatasets(String organizationId) throws ApiException {
@@ -522,7 +654,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<Dataset>> findAllDatasetsWithHttpInfo(String organizationId) throws ApiException {
@@ -541,7 +673,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the dataset details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllDatasetsAsync(String organizationId, final ApiCallback<List<Dataset>> _callback) throws ApiException {
@@ -617,7 +749,7 @@ public class DatasetApi {
     }
 
     /**
-     * Get the details of a dataset
+     * Get the details of a Dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
@@ -636,7 +768,7 @@ public class DatasetApi {
     }
 
     /**
-     * Get the details of a dataset
+     * Get the details of a Dataset
      * 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
@@ -656,7 +788,7 @@ public class DatasetApi {
     }
 
     /**
-     * Get the details of a dataset (asynchronously)
+     * Get the details of a Dataset (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
@@ -675,6 +807,128 @@ public class DatasetApi {
         okhttp3.Call localVarCall = findDatasetByIdValidateBeforeCall(organizationId, datasetId, _callback);
         Type localVarReturnType = new TypeToken<Dataset>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for removeAllDatasetCompatibilityElements
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllDatasetCompatibilityElementsCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/compatibility"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeAllDatasetCompatibilityElementsValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllDatasetCompatibilityElements(Async)");
+        }
+        
+        // verify the required parameter 'datasetId' is set
+        if (datasetId == null) {
+            throw new ApiException("Missing the required parameter 'datasetId' when calling removeAllDatasetCompatibilityElements(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeAllDatasetCompatibilityElementsCall(organizationId, datasetId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove all Dataset Compatibility elements from the Dataset specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeAllDatasetCompatibilityElements(String organizationId, String datasetId) throws ApiException {
+        removeAllDatasetCompatibilityElementsWithHttpInfo(organizationId, datasetId);
+    }
+
+    /**
+     * Remove all Dataset Compatibility elements from the Dataset specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeAllDatasetCompatibilityElementsWithHttpInfo(String organizationId, String datasetId) throws ApiException {
+        okhttp3.Call localVarCall = removeAllDatasetCompatibilityElementsValidateBeforeCall(organizationId, datasetId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove all Dataset Compatibility elements from the Dataset specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllDatasetCompatibilityElementsAsync(String organizationId, String datasetId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeAllDatasetCompatibilityElementsValidateBeforeCall(organizationId, datasetId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -716,7 +970,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);

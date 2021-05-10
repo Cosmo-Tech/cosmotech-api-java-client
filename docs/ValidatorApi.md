@@ -1,6 +1,6 @@
 # ValidatorApi
 
-All URIs are relative to *http://localhost:8080*
+All URIs are relative to *https://api.azure.cosmo-platform.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,7 +34,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details
@@ -102,7 +102,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteValidator"></a>
 # **deleteValidator**
-> Validator deleteValidator(organizationId, validatorId)
+> deleteValidator(organizationId, validatorId)
 
 Delete a validator
 
@@ -172,7 +172,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -182,8 +182,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String validatorId = "validatorId_example"; // String | the Validator identifier
     try {
-      Validator result = apiInstance.deleteValidator(organizationId, validatorId);
-      System.out.println(result);
+      apiInstance.deleteValidator(organizationId, validatorId);
     } catch (ApiException e) {
       System.err.println("Exception when calling ValidatorApi#deleteValidator");
       System.err.println("Status code: " + e.getCode());
@@ -204,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Validator**](Validator.md)
+null (empty response body)
 
 ### Authorization
 
@@ -213,18 +212,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the validator details |  -  |
-**400** | Bad request |  -  |
+**204** | Request succeeded |  -  |
 **404** | the Validator specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="deleteValidatorRun"></a>
 # **deleteValidatorRun**
-> ValidatorRun deleteValidatorRun(organizationId, validatorId, validatorrunId)
+> deleteValidatorRun(organizationId, validatorId, validatorrunId)
 
 Delete a validator run
 
@@ -241,7 +239,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -252,8 +250,7 @@ public class Example {
     String validatorId = "validatorId_example"; // String | the Validator identifier
     String validatorrunId = "validatorrunId_example"; // String | the Validator Run identifier
     try {
-      ValidatorRun result = apiInstance.deleteValidatorRun(organizationId, validatorId, validatorrunId);
-      System.out.println(result);
+      apiInstance.deleteValidatorRun(organizationId, validatorId, validatorrunId);
     } catch (ApiException e) {
       System.err.println("Exception when calling ValidatorApi#deleteValidatorRun");
       System.err.println("Status code: " + e.getCode());
@@ -275,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ValidatorRun**](ValidatorRun.md)
+null (empty response body)
 
 ### Authorization
 
@@ -284,13 +281,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the validator run details |  -  |
-**400** | Bad request |  -  |
+**204** | Request succeeded |  -  |
 **404** | the ValidatorRun specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllValidatorRuns"></a>
@@ -312,7 +308,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -379,7 +375,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -444,7 +440,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -512,7 +508,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -582,7 +578,7 @@ import com.cosmotech.client.api.ValidatorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -624,7 +620,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details

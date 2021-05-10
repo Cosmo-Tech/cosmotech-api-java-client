@@ -379,7 +379,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getCurrentUserCall(final ApiCallback _callback) throws ApiException {
@@ -422,7 +421,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user
+     * Get the details of the logged-in User
      * 
      * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -430,7 +429,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public User getCurrentUser() throws ApiException {
@@ -439,7 +437,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user
+     * Get the details of the logged-in User
      * 
      * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -447,7 +445,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<User> getCurrentUserWithHttpInfo() throws ApiException {
@@ -457,7 +454,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user (asynchronously)
+     * Get the details of the logged-in User (asynchronously)
      * 
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -466,7 +463,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getCurrentUserAsync(final ApiCallback<User> _callback) throws ApiException {
@@ -486,7 +482,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getOrganizationCurrentUserCall(String organizationId, final ApiCallback _callback) throws ApiException {
@@ -535,7 +530,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for an Organization
+     * Get the details of a logged-in User with roles for an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @return User
@@ -544,7 +539,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public User getOrganizationCurrentUser(String organizationId) throws ApiException {
@@ -553,7 +547,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for an Organization
+     * Get the details of a logged-in User with roles for an Organization
      * 
      * @param organizationId the Organization identifier (required)
      * @return ApiResponse&lt;User&gt;
@@ -562,7 +556,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<User> getOrganizationCurrentUserWithHttpInfo(String organizationId) throws ApiException {
@@ -572,7 +565,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for an Organization (asynchronously)
+     * Get the details of a logged-in User with roles for an Organization (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -582,7 +575,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getOrganizationCurrentUserAsync(String organizationId, final ApiCallback<User> _callback) throws ApiException {
@@ -603,7 +595,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getWorkspaceCurrentUserCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
@@ -658,7 +649,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for a Workspace
+     * Get the details of the logged-in user with roles for a Workspace
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -668,7 +659,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public User getWorkspaceCurrentUser(String organizationId, String workspaceId) throws ApiException {
@@ -677,7 +667,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for a Workspace
+     * Get the details of the logged-in user with roles for a Workspace
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -687,7 +677,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<User> getWorkspaceCurrentUserWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
@@ -697,7 +686,7 @@ public class UserApi {
     }
 
     /**
-     * Get the details of an user with roles for a Workspace (asynchronously)
+     * Get the details of the logged-in user with roles for a Workspace (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -708,7 +697,6 @@ public class UserApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the User details </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getWorkspaceCurrentUserAsync(String organizationId, String workspaceId, final ApiCallback<User> _callback) throws ApiException {
@@ -752,7 +740,7 @@ public class UserApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -842,8 +830,7 @@ public class UserApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the user details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -861,7 +848,7 @@ public class UserApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -896,39 +883,34 @@ public class UserApi {
      * Unregister an user
      * 
      * @param userId the User identifier (required)
-     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the user details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public User unregisterUser(String userId) throws ApiException {
-        ApiResponse<User> localVarResp = unregisterUserWithHttpInfo(userId);
-        return localVarResp.getData();
+    public void unregisterUser(String userId) throws ApiException {
+        unregisterUserWithHttpInfo(userId);
     }
 
     /**
      * Unregister an user
      * 
      * @param userId the User identifier (required)
-     * @return ApiResponse&lt;User&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the user details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<User> unregisterUserWithHttpInfo(String userId) throws ApiException {
+    public ApiResponse<Void> unregisterUserWithHttpInfo(String userId) throws ApiException {
         okhttp3.Call localVarCall = unregisterUserValidateBeforeCall(userId, null);
-        Type localVarReturnType = new TypeToken<User>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -941,22 +923,20 @@ public class UserApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the user details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the User specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call unregisterUserAsync(String userId, final ApiCallback<User> _callback) throws ApiException {
+    public okhttp3.Call unregisterUserAsync(String userId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = unregisterUserValidateBeforeCall(userId, _callback);
-        Type localVarReturnType = new TypeToken<User>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateUser
      * @param userId the User identifier (required)
-     * @param user the new User details. Organization membership is handled in Organzation service. (required)
+     * @param user the new User details. Organization membership is handled via the /organizations endpoint. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -990,7 +970,7 @@ public class UserApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -1019,10 +999,10 @@ public class UserApi {
     }
 
     /**
-     * Update an user
+     * Update a User
      * 
      * @param userId the User identifier (required)
-     * @param user the new User details. Organization membership is handled in Organzation service. (required)
+     * @param user the new User details. Organization membership is handled via the /organizations endpoint. (required)
      * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1039,10 +1019,10 @@ public class UserApi {
     }
 
     /**
-     * Update an user
+     * Update a User
      * 
      * @param userId the User identifier (required)
-     * @param user the new User details. Organization membership is handled in Organzation service. (required)
+     * @param user the new User details. Organization membership is handled via the /organizations endpoint. (required)
      * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1060,10 +1040,10 @@ public class UserApi {
     }
 
     /**
-     * Update an user (asynchronously)
+     * Update a User (asynchronously)
      * 
      * @param userId the User identifier (required)
-     * @param user the new User details. Organization membership is handled in Organzation service. (required)
+     * @param user the new User details. Organization membership is handled via the /organizations endpoint. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

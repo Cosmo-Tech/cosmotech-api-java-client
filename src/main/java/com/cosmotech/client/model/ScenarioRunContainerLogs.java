@@ -15,8 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ScenarioRunContainer;
-import com.cosmotech.client.model.ScenarioRunContainerLog;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,97 +30,79 @@ import java.util.List;
  * logs for a given container
  */
 @ApiModel(description = "logs for a given container")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class ScenarioRunContainerLogs {
-  public static final String SERIALIZED_NAME_CONTAINER = "container";
-  @SerializedName(SERIALIZED_NAME_CONTAINER)
-  private ScenarioRunContainer container;
+  public static final String SERIALIZED_NAME_NODE_ID = "nodeId";
+  @SerializedName(SERIALIZED_NAME_NODE_ID)
+  private String nodeId;
 
-  public static final String SERIALIZED_NAME_COMPUTER = "computer";
-  @SerializedName(SERIALIZED_NAME_COMPUTER)
-  private String computer;
+  public static final String SERIALIZED_NAME_CONTAINER_NAME = "containerName";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_NAME)
+  private String containerName;
+
+  public static final String SERIALIZED_NAME_CHILDREN = "children";
+  @SerializedName(SERIALIZED_NAME_CHILDREN)
+  private List<String> children = null;
 
   public static final String SERIALIZED_NAME_LOGS = "logs";
   @SerializedName(SERIALIZED_NAME_LOGS)
-  private List<ScenarioRunContainerLog> logs = null;
+  private String logs;
 
-  public static final String SERIALIZED_NAME_TEXT_LOG = "textLog";
-  @SerializedName(SERIALIZED_NAME_TEXT_LOG)
-  private String textLog;
-
-
-  public ScenarioRunContainerLogs container(ScenarioRunContainer container) {
-    
-    this.container = container;
-    return this;
-  }
 
    /**
-   * Get container
-   * @return container
+   * the node Id which has executed this log
+   * @return nodeId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "the node Id which has executed this log")
 
-  public ScenarioRunContainer getContainer() {
-    return container;
+  public String getNodeId() {
+    return nodeId;
   }
 
 
-  public void setContainer(ScenarioRunContainer container) {
-    this.container = container;
-  }
 
 
    /**
-   * computer/node that&#39;s generating the log
-   * @return computer
+   * the container name
+   * @return containerName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "computer/node that's generating the log")
+  @ApiModelProperty(value = "the container name")
 
-  public String getComputer() {
-    return computer;
+  public String getContainerName() {
+    return containerName;
   }
 
 
 
 
    /**
-   * the list of container logs in structured format
+   * the list of children node id
+   * @return children
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of children node id")
+
+  public List<String> getChildren() {
+    return children;
+  }
+
+
+
+
+   /**
+   * the node logs in plain text
    * @return logs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of container logs in structured format")
+  @ApiModelProperty(value = "the node logs in plain text")
 
-  public List<ScenarioRunContainerLog> getLogs() {
+  public String getLogs() {
     return logs;
   }
 
 
-
-
-  public ScenarioRunContainerLogs textLog(String textLog) {
-    
-    this.textLog = textLog;
-    return this;
-  }
-
-   /**
-   * the plain text log if plainText option has been set
-   * @return textLog
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the plain text log if plainText option has been set")
-
-  public String getTextLog() {
-    return textLog;
-  }
-
-
-  public void setTextLog(String textLog) {
-    this.textLog = textLog;
-  }
 
 
   @Override
@@ -134,25 +114,25 @@ public class ScenarioRunContainerLogs {
       return false;
     }
     ScenarioRunContainerLogs scenarioRunContainerLogs = (ScenarioRunContainerLogs) o;
-    return Objects.equals(this.container, scenarioRunContainerLogs.container) &&
-        Objects.equals(this.computer, scenarioRunContainerLogs.computer) &&
-        Objects.equals(this.logs, scenarioRunContainerLogs.logs) &&
-        Objects.equals(this.textLog, scenarioRunContainerLogs.textLog);
+    return Objects.equals(this.nodeId, scenarioRunContainerLogs.nodeId) &&
+        Objects.equals(this.containerName, scenarioRunContainerLogs.containerName) &&
+        Objects.equals(this.children, scenarioRunContainerLogs.children) &&
+        Objects.equals(this.logs, scenarioRunContainerLogs.logs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(container, computer, logs, textLog);
+    return Objects.hash(nodeId, containerName, children, logs);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRunContainerLogs {\n");
-    sb.append("    container: ").append(toIndentedString(container)).append("\n");
-    sb.append("    computer: ").append(toIndentedString(computer)).append("\n");
+    sb.append("    nodeId: ").append(toIndentedString(nodeId)).append("\n");
+    sb.append("    containerName: ").append(toIndentedString(containerName)).append("\n");
+    sb.append("    children: ").append(toIndentedString(children)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
-    sb.append("    textLog: ").append(toIndentedString(textLog)).append("\n");
     sb.append("}");
     return sb.toString();
   }

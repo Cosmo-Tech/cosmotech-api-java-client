@@ -30,7 +30,7 @@ import java.util.List;
  * a User
  */
 @ApiModel(description = "a User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class OrganizationUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,10 +39,6 @@ public class OrganizationUser {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
-
-  public static final String SERIALIZED_NAME_ORGANIZATION_ID = "organizationId";
-  @SerializedName(SERIALIZED_NAME_ORGANIZATION_ID)
-  private String organizationId;
 
   /**
    * Gets or Sets roles
@@ -124,7 +120,8 @@ public class OrganizationUser {
    * the User name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "the User name")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the User name")
 
   public String getName() {
     return name;
@@ -134,20 +131,6 @@ public class OrganizationUser {
   public void setName(String name) {
     this.name = name;
   }
-
-
-   /**
-   * the Organization Id context
-   * @return organizationId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Organization Id context")
-
-  public String getOrganizationId() {
-    return organizationId;
-  }
-
-
 
 
   public OrganizationUser roles(List<RolesEnum> roles) {
@@ -188,13 +171,12 @@ public class OrganizationUser {
     OrganizationUser organizationUser = (OrganizationUser) o;
     return Objects.equals(this.id, organizationUser.id) &&
         Objects.equals(this.name, organizationUser.name) &&
-        Objects.equals(this.organizationId, organizationUser.organizationId) &&
         Objects.equals(this.roles, organizationUser.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, organizationId, roles);
+    return Objects.hash(id, name, roles);
   }
 
   @Override
@@ -203,7 +185,6 @@ public class OrganizationUser {
     sb.append("class OrganizationUser {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();

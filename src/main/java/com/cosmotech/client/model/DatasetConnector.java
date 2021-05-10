@@ -31,7 +31,7 @@ import java.util.Map;
  * a Connector setup
  */
 @ApiModel(description = "a Connector setup")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class DatasetConnector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,7 +39,7 @@ public class DatasetConnector {
 
   public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
-  private Map<String, Object> parametersValues = null;
+  private Map<String, String> parametersValues = null;
 
 
   public DatasetConnector id(String id) {
@@ -64,15 +64,15 @@ public class DatasetConnector {
   }
 
 
-  public DatasetConnector parametersValues(Map<String, Object> parametersValues) {
+  public DatasetConnector parametersValues(Map<String, String> parametersValues) {
     
     this.parametersValues = parametersValues;
     return this;
   }
 
-  public DatasetConnector putParametersValuesItem(String key, Object parametersValuesItem) {
+  public DatasetConnector putParametersValuesItem(String key, String parametersValuesItem) {
     if (this.parametersValues == null) {
-      this.parametersValues = new HashMap<String, Object>();
+      this.parametersValues = new HashMap<String, String>();
     }
     this.parametersValues.put(key, parametersValuesItem);
     return this;
@@ -85,12 +85,12 @@ public class DatasetConnector {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, Object> getParametersValues() {
+  public Map<String, String> getParametersValues() {
     return parametersValues;
   }
 
 
-  public void setParametersValues(Map<String, Object> parametersValues) {
+  public void setParametersValues(Map<String, String> parametersValues) {
     this.parametersValues = parametersValues;
   }
 

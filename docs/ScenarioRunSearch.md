@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **workspaceId** | **String** | the Workspace Id to search |  [optional]
 **scenarioId** | **String** | the Scenario Id to search |  [optional]
 **state** | [**StateEnum**](#StateEnum) | the state to search |  [optional]
-**jobId** | **String** | the Cosmo Tech compute cluster Job Id to search |  [optional]
+**workflowId** | **String** | the Cosmo Tech compute cluster Argo Workflow Id to search |  [optional]
+**workflowName** | **String** | the Cosmo Tech compute cluster Argo Workflow Name |  [optional]
 **ownerId** | **String** | the owner Id to search |  [optional]
 
 

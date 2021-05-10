@@ -32,15 +32,19 @@ import java.util.List;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_JOB_ID = "jobId";
-  @SerializedName(SERIALIZED_NAME_JOB_ID)
-  private String jobId;
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  private String workflowId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_NAME = "workflowName";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_NAME)
+  private String workflowName;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
@@ -244,18 +248,50 @@ public class ScenarioRun {
 
 
 
+  public ScenarioRun workflowId(String workflowId) {
+    
+    this.workflowId = workflowId;
+    return this;
+  }
+
    /**
-   * the Platform compute cluster Job Id
-   * @return jobId
+   * the Cosmo Tech compute cluster Argo Workflow Id to search
+   * @return workflowId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Platform compute cluster Job Id")
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Id to search")
 
-  public String getJobId() {
-    return jobId;
+  public String getWorkflowId() {
+    return workflowId;
   }
 
 
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
+  }
+
+
+  public ScenarioRun workflowName(String workflowName) {
+    
+    this.workflowName = workflowName;
+    return this;
+  }
+
+   /**
+   * the Cosmo Tech compute cluster Argo Workflow Name
+   * @return workflowName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Name")
+
+  public String getWorkflowName() {
+    return workflowName;
+  }
+
+
+  public void setWorkflowName(String workflowName) {
+    this.workflowName = workflowName;
+  }
 
 
    /**
@@ -792,7 +828,8 @@ public class ScenarioRun {
     }
     ScenarioRun scenarioRun = (ScenarioRun) o;
     return Objects.equals(this.id, scenarioRun.id) &&
-        Objects.equals(this.jobId, scenarioRun.jobId) &&
+        Objects.equals(this.workflowId, scenarioRun.workflowId) &&
+        Objects.equals(this.workflowName, scenarioRun.workflowName) &&
         Objects.equals(this.ownerId, scenarioRun.ownerId) &&
         Objects.equals(this.workspaceId, scenarioRun.workspaceId) &&
         Objects.equals(this.workspaceName, scenarioRun.workspaceName) &&
@@ -828,7 +865,7 @@ public class ScenarioRun {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, jobId, ownerId, workspaceId, workspaceName, scenarioId, scenarioName, solutionId, solutionName, solutionVersion, runTemplateId, runTemplateName, computeSize, state, failedStep, failedContainerId, startTime, endTime, datasetList, parametersValues, sendInputToDataWarehouse, dataWarehouseDB, resultsEventBusResourceUri, scenariorunEventBusResourceUri, nodeLabel, fetchDatasetContainers, fetchScenarioParametersContainer, applyParametersContainer, validateDataContainer, sendDataWarehouseContainer, preRunContainer, runContainer, postRunContainer);
+    return Objects.hash(id, workflowId, workflowName, ownerId, workspaceId, workspaceName, scenarioId, scenarioName, solutionId, solutionName, solutionVersion, runTemplateId, runTemplateName, computeSize, state, failedStep, failedContainerId, startTime, endTime, datasetList, parametersValues, sendInputToDataWarehouse, dataWarehouseDB, resultsEventBusResourceUri, scenariorunEventBusResourceUri, nodeLabel, fetchDatasetContainers, fetchScenarioParametersContainer, applyParametersContainer, validateDataContainer, sendDataWarehouseContainer, preRunContainer, runContainer, postRunContainer);
   }
 
   @Override
@@ -836,7 +873,8 @@ public class ScenarioRun {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRun {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    jobId: ").append(toIndentedString(jobId)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    workflowName: ").append(toIndentedString(workflowName)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    workspaceId: ").append(toIndentedString(workspaceId)).append("\n");
     sb.append("    workspaceName: ").append(toIndentedString(workspaceName)).append("\n");

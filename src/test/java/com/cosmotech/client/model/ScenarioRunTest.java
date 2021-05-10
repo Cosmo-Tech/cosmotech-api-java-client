@@ -53,11 +53,19 @@ public class ScenarioRunTest {
     }
 
     /**
-     * Test the property 'jobId'
+     * Test the property 'workflowId'
      */
     @Test
-    public void jobIdTest() {
-        // TODO: test jobId
+    public void workflowIdTest() {
+        // TODO: test workflowId
+    }
+
+    /**
+     * Test the property 'workflowName'
+     */
+    @Test
+    public void workflowNameTest() {
+        // TODO: test workflowName
     }
 
     /**

@@ -1,18 +1,18 @@
 # UserApi
 
-All URIs are relative to *http://localhost:8080*
+All URIs are relative to *https://api.azure.cosmo-platform.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authorizeUser**](UserApi.md#authorizeUser) | **GET** /oauth2/authorize | Authorize an User with OAuth2. Delegated to configured OAuth2 service
 [**findAllUsers**](UserApi.md#findAllUsers) | **GET** /users | List all Users
 [**findUserById**](UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
-[**getCurrentUser**](UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of an user
-[**getOrganizationCurrentUser**](UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of an user with roles for an Organization
-[**getWorkspaceCurrentUser**](UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of an user with roles for a Workspace
+[**getCurrentUser**](UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of the logged-in User
+[**getOrganizationCurrentUser**](UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of a logged-in User with roles for an Organization
+[**getWorkspaceCurrentUser**](UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of the logged-in user with roles for a Workspace
 [**registerUser**](UserApi.md#registerUser) | **POST** /users | Register a new user
 [**unregisterUser**](UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
-[**updateUser**](UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update an user
+[**updateUser**](UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update a User
 
 
 <a name="authorizeUser"></a>
@@ -34,7 +34,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -94,7 +94,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -155,7 +155,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 # **getCurrentUser**
 > User getCurrentUser()
 
-Get the details of an user
+Get the details of the logged-in User
 
 ### Example
 ```java
@@ -221,7 +221,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -262,13 +262,12 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the User details |  -  |
-**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="getOrganizationCurrentUser"></a>
 # **getOrganizationCurrentUser**
 > User getOrganizationCurrentUser(organizationId)
 
-Get the details of an user with roles for an Organization
+Get the details of a logged-in User with roles for an Organization
 
 ### Example
 ```java
@@ -283,7 +282,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -328,13 +327,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the User details |  -  |
-**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="getWorkspaceCurrentUser"></a>
 # **getWorkspaceCurrentUser**
 > User getWorkspaceCurrentUser(organizationId, workspaceId)
 
-Get the details of an user with roles for a Workspace
+Get the details of the logged-in user with roles for a Workspace
 
 ### Example
 ```java
@@ -349,7 +347,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -396,7 +394,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the User details |  -  |
-**404** | the User specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="registerUser"></a>
 # **registerUser**
@@ -417,7 +414,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -455,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details
@@ -466,7 +463,7 @@ Name | Type | Description  | Notes
 
 <a name="unregisterUser"></a>
 # **unregisterUser**
-> User unregisterUser(userId)
+> unregisterUser(userId)
 
 Unregister an user
 
@@ -483,7 +480,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -492,8 +489,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String userId = "userId_example"; // String | the User identifier
     try {
-      User result = apiInstance.unregisterUser(userId);
-      System.out.println(result);
+      apiInstance.unregisterUser(userId);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#unregisterUser");
       System.err.println("Status code: " + e.getCode());
@@ -513,7 +509,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+null (empty response body)
 
 ### Authorization
 
@@ -522,20 +518,19 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the user details |  -  |
-**400** | Bad request |  -  |
+**204** | Request succeeded |  -  |
 **404** | the User specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateUser"></a>
 # **updateUser**
 > User updateUser(userId, user)
 
-Update an user
+Update a User
 
 ### Example
 ```java
@@ -550,7 +545,7 @@ import com.cosmotech.client.api.UserApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost:8080");
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -558,7 +553,7 @@ public class Example {
 
     UserApi apiInstance = new UserApi(defaultClient);
     String userId = "userId_example"; // String | the User identifier
-    User user = new User(); // User | the new User details. Organization membership is handled in Organzation service.
+    User user = new User(); // User | the new User details. Organization membership is handled via the /organizations endpoint.
     try {
       User result = apiInstance.updateUser(userId, user);
       System.out.println(result);
@@ -578,7 +573,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**| the User identifier |
- **user** | [**User**](User.md)| the new User details. Organization membership is handled in Organzation service. |
+ **user** | [**User**](User.md)| the new User details. Organization membership is handled via the /organizations endpoint. |
 
 ### Return type
 
@@ -590,7 +585,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details

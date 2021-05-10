@@ -23,22 +23,23 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * RunTemplateResourceStorage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class RunTemplateResourceStorage {
   /**
-   * the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR} behind the scene
+   * the storage type
    */
   @JsonAdapter(StorageTypeEnum.Adapter.class)
   public enum StorageTypeEnum {
     LOCAL("local"),
     
-    CLOUD("cloud"),
-    
-    CUSTOMURI("customUri");
+    CLOUDSTORAGE("cloudStorage");
 
     private String value;
 
@@ -86,9 +87,9 @@ public class RunTemplateResourceStorage {
   @SerializedName(SERIALIZED_NAME_RESOURCE_PATH)
   private String resourcePath;
 
-  public static final String SERIALIZED_NAME_CUSTOM_URI = "customUri";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_URI)
-  private String customUri;
+  public static final String SERIALIZED_NAME_STORAGE_OPTIONS = "storageOptions";
+  @SerializedName(SERIALIZED_NAME_STORAGE_OPTIONS)
+  private Map<String, Object> storageOptions = null;
 
 
   public RunTemplateResourceStorage storageType(StorageTypeEnum storageType) {
@@ -98,10 +99,10 @@ public class RunTemplateResourceStorage {
   }
 
    /**
-   * the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR} behind the scene
+   * the storage type
    * @return storageType
   **/
-  @ApiModelProperty(required = true, value = "the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR} behind the scene")
+  @ApiModelProperty(required = true, value = "the storage type")
 
   public StorageTypeEnum getStorageType() {
     return storageType;
@@ -135,26 +136,34 @@ public class RunTemplateResourceStorage {
   }
 
 
-  public RunTemplateResourceStorage customUri(String customUri) {
+  public RunTemplateResourceStorage storageOptions(Map<String, Object> storageOptions) {
     
-    this.customUri = customUri;
+    this.storageOptions = storageOptions;
+    return this;
+  }
+
+  public RunTemplateResourceStorage putStorageOptionsItem(String key, Object storageOptionsItem) {
+    if (this.storageOptions == null) {
+      this.storageOptions = new HashMap<String, Object>();
+    }
+    this.storageOptions.put(key, storageOptionsItem);
     return this;
   }
 
    /**
-   * a custom Uri to provide the resource in resourcePath
-   * @return customUri
+   * freeform options for storage
+   * @return storageOptions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a custom Uri to provide the resource in resourcePath")
+  @ApiModelProperty(value = "freeform options for storage")
 
-  public String getCustomUri() {
-    return customUri;
+  public Map<String, Object> getStorageOptions() {
+    return storageOptions;
   }
 
 
-  public void setCustomUri(String customUri) {
-    this.customUri = customUri;
+  public void setStorageOptions(Map<String, Object> storageOptions) {
+    this.storageOptions = storageOptions;
   }
 
 
@@ -169,12 +178,12 @@ public class RunTemplateResourceStorage {
     RunTemplateResourceStorage runTemplateResourceStorage = (RunTemplateResourceStorage) o;
     return Objects.equals(this.storageType, runTemplateResourceStorage.storageType) &&
         Objects.equals(this.resourcePath, runTemplateResourceStorage.resourcePath) &&
-        Objects.equals(this.customUri, runTemplateResourceStorage.customUri);
+        Objects.equals(this.storageOptions, runTemplateResourceStorage.storageOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(storageType, resourcePath, customUri);
+    return Objects.hash(storageType, resourcePath, storageOptions);
   }
 
   @Override
@@ -183,7 +192,7 @@ public class RunTemplateResourceStorage {
     sb.append("class RunTemplateResourceStorage {\n");
     sb.append("    storageType: ").append(toIndentedString(storageType)).append("\n");
     sb.append("    resourcePath: ").append(toIndentedString(resourcePath)).append("\n");
-    sb.append("    customUri: ").append(toIndentedString(customUri)).append("\n");
+    sb.append("    storageOptions: ").append(toIndentedString(storageOptions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

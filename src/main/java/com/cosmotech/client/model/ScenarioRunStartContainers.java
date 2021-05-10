@@ -31,43 +31,42 @@ import java.util.List;
  * the parameters to run directly containers
  */
 @ApiModel(description = "the parameters to run directly containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T12:34:21.716581+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:33:04.431588+02:00[Europe/Paris]")
 public class ScenarioRunStartContainers {
+  public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
+  @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
+  private String generateName;
+
   public static final String SERIALIZED_NAME_NODE_LABEL = "nodeLabel";
   @SerializedName(SERIALIZED_NAME_NODE_LABEL)
   private String nodeLabel;
 
-  public static final String SERIALIZED_NAME_FETCH_DATASET_CONTAINERS = "fetchDatasetContainers";
-  @SerializedName(SERIALIZED_NAME_FETCH_DATASET_CONTAINERS)
-  private List<ScenarioRunContainer> fetchDatasetContainers = null;
+  public static final String SERIALIZED_NAME_CONTAINERS = "containers";
+  @SerializedName(SERIALIZED_NAME_CONTAINERS)
+  private List<ScenarioRunContainer> containers = new ArrayList<ScenarioRunContainer>();
 
-  public static final String SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS_CONTAINER = "fetchScenarioParametersContainer";
-  @SerializedName(SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS_CONTAINER)
-  private ScenarioRunContainer fetchScenarioParametersContainer;
 
-  public static final String SERIALIZED_NAME_APPLY_PARAMETERS_CONTAINER = "applyParametersContainer";
-  @SerializedName(SERIALIZED_NAME_APPLY_PARAMETERS_CONTAINER)
-  private ScenarioRunContainer applyParametersContainer;
+  public ScenarioRunStartContainers generateName(String generateName) {
+    
+    this.generateName = generateName;
+    return this;
+  }
 
-  public static final String SERIALIZED_NAME_VALIDATE_DATA_CONTAINER = "validateDataContainer";
-  @SerializedName(SERIALIZED_NAME_VALIDATE_DATA_CONTAINER)
-  private ScenarioRunContainer validateDataContainer;
+   /**
+   * the base name for workflow name generation
+   * @return generateName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the base name for workflow name generation")
 
-  public static final String SERIALIZED_NAME_SEND_DATA_WAREHOUSE_CONTAINER = "sendDataWarehouseContainer";
-  @SerializedName(SERIALIZED_NAME_SEND_DATA_WAREHOUSE_CONTAINER)
-  private ScenarioRunContainer sendDataWarehouseContainer;
+  public String getGenerateName() {
+    return generateName;
+  }
 
-  public static final String SERIALIZED_NAME_PRE_RUN_CONTAINER = "preRunContainer";
-  @SerializedName(SERIALIZED_NAME_PRE_RUN_CONTAINER)
-  private ScenarioRunContainer preRunContainer;
 
-  public static final String SERIALIZED_NAME_RUN_CONTAINER = "runContainer";
-  @SerializedName(SERIALIZED_NAME_RUN_CONTAINER)
-  private ScenarioRunContainer runContainer;
-
-  public static final String SERIALIZED_NAME_POST_RUN_CONTAINER = "postRunContainer";
-  @SerializedName(SERIALIZED_NAME_POST_RUN_CONTAINER)
-  private ScenarioRunContainer postRunContainer;
+  public void setGenerateName(String generateName) {
+    this.generateName = generateName;
+  }
 
 
   public ScenarioRunStartContainers nodeLabel(String nodeLabel) {
@@ -93,178 +92,30 @@ public class ScenarioRunStartContainers {
   }
 
 
-   /**
-   * the containers which fetch the Scenario Datasets
-   * @return fetchDatasetContainers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the containers which fetch the Scenario Datasets")
-
-  public List<ScenarioRunContainer> getFetchDatasetContainers() {
-    return fetchDatasetContainers;
+  public ScenarioRunStartContainers containers(List<ScenarioRunContainer> containers) {
+    
+    this.containers = containers;
+    return this;
   }
 
-
-
-
-  public ScenarioRunStartContainers fetchScenarioParametersContainer(ScenarioRunContainer fetchScenarioParametersContainer) {
-    
-    this.fetchScenarioParametersContainer = fetchScenarioParametersContainer;
+  public ScenarioRunStartContainers addContainersItem(ScenarioRunContainer containersItem) {
+    this.containers.add(containersItem);
     return this;
   }
 
    /**
-   * Get fetchScenarioParametersContainer
-   * @return fetchScenarioParametersContainer
+   * the containers map with name and ScenarioRunContainer
+   * @return containers
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "the containers map with name and ScenarioRunContainer")
 
-  public ScenarioRunContainer getFetchScenarioParametersContainer() {
-    return fetchScenarioParametersContainer;
+  public List<ScenarioRunContainer> getContainers() {
+    return containers;
   }
 
 
-  public void setFetchScenarioParametersContainer(ScenarioRunContainer fetchScenarioParametersContainer) {
-    this.fetchScenarioParametersContainer = fetchScenarioParametersContainer;
-  }
-
-
-  public ScenarioRunStartContainers applyParametersContainer(ScenarioRunContainer applyParametersContainer) {
-    
-    this.applyParametersContainer = applyParametersContainer;
-    return this;
-  }
-
-   /**
-   * Get applyParametersContainer
-   * @return applyParametersContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getApplyParametersContainer() {
-    return applyParametersContainer;
-  }
-
-
-  public void setApplyParametersContainer(ScenarioRunContainer applyParametersContainer) {
-    this.applyParametersContainer = applyParametersContainer;
-  }
-
-
-  public ScenarioRunStartContainers validateDataContainer(ScenarioRunContainer validateDataContainer) {
-    
-    this.validateDataContainer = validateDataContainer;
-    return this;
-  }
-
-   /**
-   * Get validateDataContainer
-   * @return validateDataContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getValidateDataContainer() {
-    return validateDataContainer;
-  }
-
-
-  public void setValidateDataContainer(ScenarioRunContainer validateDataContainer) {
-    this.validateDataContainer = validateDataContainer;
-  }
-
-
-  public ScenarioRunStartContainers sendDataWarehouseContainer(ScenarioRunContainer sendDataWarehouseContainer) {
-    
-    this.sendDataWarehouseContainer = sendDataWarehouseContainer;
-    return this;
-  }
-
-   /**
-   * Get sendDataWarehouseContainer
-   * @return sendDataWarehouseContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getSendDataWarehouseContainer() {
-    return sendDataWarehouseContainer;
-  }
-
-
-  public void setSendDataWarehouseContainer(ScenarioRunContainer sendDataWarehouseContainer) {
-    this.sendDataWarehouseContainer = sendDataWarehouseContainer;
-  }
-
-
-  public ScenarioRunStartContainers preRunContainer(ScenarioRunContainer preRunContainer) {
-    
-    this.preRunContainer = preRunContainer;
-    return this;
-  }
-
-   /**
-   * Get preRunContainer
-   * @return preRunContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getPreRunContainer() {
-    return preRunContainer;
-  }
-
-
-  public void setPreRunContainer(ScenarioRunContainer preRunContainer) {
-    this.preRunContainer = preRunContainer;
-  }
-
-
-  public ScenarioRunStartContainers runContainer(ScenarioRunContainer runContainer) {
-    
-    this.runContainer = runContainer;
-    return this;
-  }
-
-   /**
-   * Get runContainer
-   * @return runContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getRunContainer() {
-    return runContainer;
-  }
-
-
-  public void setRunContainer(ScenarioRunContainer runContainer) {
-    this.runContainer = runContainer;
-  }
-
-
-  public ScenarioRunStartContainers postRunContainer(ScenarioRunContainer postRunContainer) {
-    
-    this.postRunContainer = postRunContainer;
-    return this;
-  }
-
-   /**
-   * Get postRunContainer
-   * @return postRunContainer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ScenarioRunContainer getPostRunContainer() {
-    return postRunContainer;
-  }
-
-
-  public void setPostRunContainer(ScenarioRunContainer postRunContainer) {
-    this.postRunContainer = postRunContainer;
+  public void setContainers(List<ScenarioRunContainer> containers) {
+    this.containers = containers;
   }
 
 
@@ -277,35 +128,23 @@ public class ScenarioRunStartContainers {
       return false;
     }
     ScenarioRunStartContainers scenarioRunStartContainers = (ScenarioRunStartContainers) o;
-    return Objects.equals(this.nodeLabel, scenarioRunStartContainers.nodeLabel) &&
-        Objects.equals(this.fetchDatasetContainers, scenarioRunStartContainers.fetchDatasetContainers) &&
-        Objects.equals(this.fetchScenarioParametersContainer, scenarioRunStartContainers.fetchScenarioParametersContainer) &&
-        Objects.equals(this.applyParametersContainer, scenarioRunStartContainers.applyParametersContainer) &&
-        Objects.equals(this.validateDataContainer, scenarioRunStartContainers.validateDataContainer) &&
-        Objects.equals(this.sendDataWarehouseContainer, scenarioRunStartContainers.sendDataWarehouseContainer) &&
-        Objects.equals(this.preRunContainer, scenarioRunStartContainers.preRunContainer) &&
-        Objects.equals(this.runContainer, scenarioRunStartContainers.runContainer) &&
-        Objects.equals(this.postRunContainer, scenarioRunStartContainers.postRunContainer);
+    return Objects.equals(this.generateName, scenarioRunStartContainers.generateName) &&
+        Objects.equals(this.nodeLabel, scenarioRunStartContainers.nodeLabel) &&
+        Objects.equals(this.containers, scenarioRunStartContainers.containers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nodeLabel, fetchDatasetContainers, fetchScenarioParametersContainer, applyParametersContainer, validateDataContainer, sendDataWarehouseContainer, preRunContainer, runContainer, postRunContainer);
+    return Objects.hash(generateName, nodeLabel, containers);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRunStartContainers {\n");
+    sb.append("    generateName: ").append(toIndentedString(generateName)).append("\n");
     sb.append("    nodeLabel: ").append(toIndentedString(nodeLabel)).append("\n");
-    sb.append("    fetchDatasetContainers: ").append(toIndentedString(fetchDatasetContainers)).append("\n");
-    sb.append("    fetchScenarioParametersContainer: ").append(toIndentedString(fetchScenarioParametersContainer)).append("\n");
-    sb.append("    applyParametersContainer: ").append(toIndentedString(applyParametersContainer)).append("\n");
-    sb.append("    validateDataContainer: ").append(toIndentedString(validateDataContainer)).append("\n");
-    sb.append("    sendDataWarehouseContainer: ").append(toIndentedString(sendDataWarehouseContainer)).append("\n");
-    sb.append("    preRunContainer: ").append(toIndentedString(preRunContainer)).append("\n");
-    sb.append("    runContainer: ").append(toIndentedString(runContainer)).append("\n");
-    sb.append("    postRunContainer: ").append(toIndentedString(postRunContainer)).append("\n");
+    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

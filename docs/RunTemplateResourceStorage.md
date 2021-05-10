@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**storageType** | [**StorageTypeEnum**](#StorageTypeEnum) | the storage type. Use ${CSM_PROJECT_PATH} or ${CSM_STORAGE_SIMULATOR} behind the scene | 
+**storageType** | [**StorageTypeEnum**](#StorageTypeEnum) | the storage type | 
 **resourcePath** | **String** | the resource path | 
-**customUri** | **String** | a custom Uri to provide the resource in resourcePath |  [optional]
+**storageOptions** | **Map&lt;String, Object&gt;** | freeform options for storage |  [optional]
 
 
 
@@ -18,8 +18,7 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 LOCAL | &quot;local&quot;
-CLOUD | &quot;cloud&quot;
-CUSTOMURI | &quot;customUri&quot;
+CLOUDSTORAGE | &quot;cloudStorage&quot;
 
 
 

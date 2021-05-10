@@ -8,10 +8,10 @@ logs for a given container
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**container** | [**ScenarioRunContainer**](ScenarioRunContainer.md) |  |  [optional]
-**computer** | **String** | computer/node that&#39;s generating the log |  [optional] [readonly]
-**logs** | [**List&lt;ScenarioRunContainerLog&gt;**](ScenarioRunContainerLog.md) | the list of container logs in structured format |  [optional] [readonly]
-**textLog** | **String** | the plain text log if plainText option has been set |  [optional]
+**nodeId** | **String** | the node Id which has executed this log |  [optional] [readonly]
+**containerName** | **String** | the container name |  [optional] [readonly]
+**children** | **List&lt;String&gt;** | the list of children node id |  [optional] [readonly]
+**logs** | **String** | the node logs in plain text |  [optional] [readonly]
 
 
 

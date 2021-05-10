@@ -59,14 +59,6 @@ public class OrganizationUserTest {
     }
 
     /**
-     * Test the property 'organizationId'
-     */
-    @Test
-    public void organizationIdTest() {
-        // TODO: test organizationId
-    }
-
-    /**
      * Test the property 'roles'
      */
     @Test

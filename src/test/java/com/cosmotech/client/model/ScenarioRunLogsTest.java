@@ -14,7 +14,6 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.ScenarioRunContainerLogs;
-import com.cosmotech.client.model.ScenarioRunLogsOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,8 +22,9 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -53,75 +53,11 @@ public class ScenarioRunLogsTest {
     }
 
     /**
-     * Test the property 'options'
+     * Test the property 'containers'
      */
     @Test
-    public void optionsTest() {
-        // TODO: test options
-    }
-
-    /**
-     * Test the property 'fetchDatasetLogs'
-     */
-    @Test
-    public void fetchDatasetLogsTest() {
-        // TODO: test fetchDatasetLogs
-    }
-
-    /**
-     * Test the property 'fetchScenarioParametersLog'
-     */
-    @Test
-    public void fetchScenarioParametersLogTest() {
-        // TODO: test fetchScenarioParametersLog
-    }
-
-    /**
-     * Test the property 'applyParametersLogs'
-     */
-    @Test
-    public void applyParametersLogsTest() {
-        // TODO: test applyParametersLogs
-    }
-
-    /**
-     * Test the property 'validateDataLogs'
-     */
-    @Test
-    public void validateDataLogsTest() {
-        // TODO: test validateDataLogs
-    }
-
-    /**
-     * Test the property 'sendDataWarehouseLogs'
-     */
-    @Test
-    public void sendDataWarehouseLogsTest() {
-        // TODO: test sendDataWarehouseLogs
-    }
-
-    /**
-     * Test the property 'preRunLogs'
-     */
-    @Test
-    public void preRunLogsTest() {
-        // TODO: test preRunLogs
-    }
-
-    /**
-     * Test the property 'runLogs'
-     */
-    @Test
-    public void runLogsTest() {
-        // TODO: test runLogs
-    }
-
-    /**
-     * Test the property 'postRunLogs'
-     */
-    @Test
-    public void postRunLogsTest() {
-        // TODO: test postRunLogs
+    public void containersTest() {
+        // TODO: test containers
     }
 
 }

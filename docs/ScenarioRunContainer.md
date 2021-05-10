@@ -9,9 +9,12 @@ a ScenarioRun container description
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the container Id |  [optional] [readonly]
-**envVars** | **Map&lt;String, Object&gt;** | a freeform environment variable map |  [optional]
-**image** | **String** | the container image URI |  [optional]
+**name** | **String** | the container name | 
+**envVars** | **Map&lt;String, String&gt;** | environment variable map |  [optional]
+**image** | **String** | the container image URI | 
+**entrypoint** | **String** | the container entry point |  [optional]
 **runArgs** | **List&lt;String&gt;** | the list of run arguments for the container |  [optional]
+**dependencies** | **List&lt;String&gt;** | the list of dependencies container name to run this container |  [optional]
 
 
 

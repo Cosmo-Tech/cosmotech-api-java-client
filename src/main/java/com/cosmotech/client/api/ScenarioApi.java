@@ -29,6 +29,8 @@ import java.io.IOException;
 
 import com.cosmotech.client.model.Scenario;
 import com.cosmotech.client.model.ScenarioComparisonResult;
+import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
+import com.cosmotech.client.model.ScenarioUser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,6 +58,304 @@ public class ScenarioApi {
     }
 
     /**
+     * Build call for addOrReplaceScenarioParameterValues
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioRunTemplateParameterValue the Parameter Value to add. Any Parameter Value with the same ID is overwritten (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Parameter values </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceScenarioParameterValuesCall(String organizationId, String workspaceId, String scenarioId, List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = scenarioRunTemplateParameterValue;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addOrReplaceScenarioParameterValuesValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addOrReplaceScenarioParameterValues(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling addOrReplaceScenarioParameterValues(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling addOrReplaceScenarioParameterValues(Async)");
+        }
+        
+        // verify the required parameter 'scenarioRunTemplateParameterValue' is set
+        if (scenarioRunTemplateParameterValue == null) {
+            throw new ApiException("Missing the required parameter 'scenarioRunTemplateParameterValue' when calling addOrReplaceScenarioParameterValues(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addOrReplaceScenarioParameterValuesCall(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add (or replace) Parameter Values for the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioRunTemplateParameterValue the Parameter Value to add. Any Parameter Value with the same ID is overwritten (required)
+     * @return List&lt;ScenarioRunTemplateParameterValue&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Parameter values </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<ScenarioRunTemplateParameterValue> addOrReplaceScenarioParameterValues(String organizationId, String workspaceId, String scenarioId, List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue) throws ApiException {
+        ApiResponse<List<ScenarioRunTemplateParameterValue>> localVarResp = addOrReplaceScenarioParameterValuesWithHttpInfo(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add (or replace) Parameter Values for the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioRunTemplateParameterValue the Parameter Value to add. Any Parameter Value with the same ID is overwritten (required)
+     * @return ApiResponse&lt;List&lt;ScenarioRunTemplateParameterValue&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Parameter values </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<ScenarioRunTemplateParameterValue>> addOrReplaceScenarioParameterValuesWithHttpInfo(String organizationId, String workspaceId, String scenarioId, List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue) throws ApiException {
+        okhttp3.Call localVarCall = addOrReplaceScenarioParameterValuesValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue, null);
+        Type localVarReturnType = new TypeToken<List<ScenarioRunTemplateParameterValue>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add (or replace) Parameter Values for the Scenario specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioRunTemplateParameterValue the Parameter Value to add. Any Parameter Value with the same ID is overwritten (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Parameter values </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceScenarioParameterValuesAsync(String organizationId, String workspaceId, String scenarioId, List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue, final ApiCallback<List<ScenarioRunTemplateParameterValue>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addOrReplaceScenarioParameterValuesValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue, _callback);
+        Type localVarReturnType = new TypeToken<List<ScenarioRunTemplateParameterValue>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for addOrReplaceUsersInScenario
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceUsersInScenarioCall(String organizationId, String workspaceId, String scenarioId, List<ScenarioUser> scenarioUser, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = scenarioUser;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addOrReplaceUsersInScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, List<ScenarioUser> scenarioUser, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addOrReplaceUsersInScenario(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling addOrReplaceUsersInScenario(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling addOrReplaceUsersInScenario(Async)");
+        }
+        
+        // verify the required parameter 'scenarioUser' is set
+        if (scenarioUser == null) {
+            throw new ApiException("Missing the required parameter 'scenarioUser' when calling addOrReplaceUsersInScenario(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addOrReplaceUsersInScenarioCall(organizationId, workspaceId, scenarioId, scenarioUser, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add (or replace) users in the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return List&lt;ScenarioUser&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<ScenarioUser> addOrReplaceUsersInScenario(String organizationId, String workspaceId, String scenarioId, List<ScenarioUser> scenarioUser) throws ApiException {
+        ApiResponse<List<ScenarioUser>> localVarResp = addOrReplaceUsersInScenarioWithHttpInfo(organizationId, workspaceId, scenarioId, scenarioUser);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add (or replace) users in the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioUser the Users to add. Any User with the same ID is overwritten (required)
+     * @return ApiResponse&lt;List&lt;ScenarioUser&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<ScenarioUser>> addOrReplaceUsersInScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId, List<ScenarioUser> scenarioUser) throws ApiException {
+        okhttp3.Call localVarCall = addOrReplaceUsersInScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioUser, null);
+        Type localVarReturnType = new TypeToken<List<ScenarioUser>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add (or replace) users in the Scenario specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param scenarioUser the Users to add. Any User with the same ID is overwritten (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Users </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addOrReplaceUsersInScenarioAsync(String organizationId, String workspaceId, String scenarioId, List<ScenarioUser> scenarioUser, final ApiCallback<List<ScenarioUser>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addOrReplaceUsersInScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, scenarioUser, _callback);
+        Type localVarReturnType = new TypeToken<List<ScenarioUser>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for compareScenarios
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -68,7 +368,7 @@ public class ScenarioApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the comparison result for parameters values </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> one of the Scenarios specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call compareScenariosCall(String organizationId, String workspaceId, String scenarioId, String comparedScenarioId, final ApiCallback _callback) throws ApiException {
@@ -147,7 +447,7 @@ public class ScenarioApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the comparison result for parameters values </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> one of the Scenarios specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ScenarioComparisonResult compareScenarios(String organizationId, String workspaceId, String scenarioId, String comparedScenarioId) throws ApiException {
@@ -168,7 +468,7 @@ public class ScenarioApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the comparison result for parameters values </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> one of the Scenarios specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ScenarioComparisonResult> compareScenariosWithHttpInfo(String organizationId, String workspaceId, String scenarioId, String comparedScenarioId) throws ApiException {
@@ -191,7 +491,7 @@ public class ScenarioApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the comparison result for parameters values </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> one of the Scenarios specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call compareScenariosAsync(String organizationId, String workspaceId, String scenarioId, String comparedScenarioId, final ApiCallback<ScenarioComparisonResult> _callback) throws ApiException {
@@ -239,7 +539,7 @@ public class ScenarioApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -273,7 +573,7 @@ public class ScenarioApi {
     }
 
     /**
-     * Create a new scenario
+     * Create a new Scenario
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -293,7 +593,7 @@ public class ScenarioApi {
     }
 
     /**
-     * Create a new scenario
+     * Create a new Scenario
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -314,7 +614,7 @@ public class ScenarioApi {
     }
 
     /**
-     * Create a new scenario (asynchronously)
+     * Create a new Scenario (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -347,8 +647,7 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -368,7 +667,7 @@ public class ScenarioApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -415,19 +714,16 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return Scenario
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Scenario deleteScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        ApiResponse<Scenario> localVarResp = deleteScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
-        return localVarResp.getData();
+    public void deleteScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        deleteScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
     }
 
     /**
@@ -436,20 +732,18 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
-     * @return ApiResponse&lt;Scenario&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Scenario> deleteScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+    public ApiResponse<Void> deleteScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
         okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
-        Type localVarReturnType = new TypeToken<Scenario>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -464,16 +758,14 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<Scenario> _callback) throws ApiException {
+    public okhttp3.Call deleteScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
-        Type localVarReturnType = new TypeToken<Scenario>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -486,7 +778,7 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Scenarios </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllScenariosCall(String organizationId, String workspaceId, final ApiCallback _callback) throws ApiException {
@@ -550,7 +842,7 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Scenarios </td><td>  -  </td></tr>
      </table>
      */
     public List<Scenario> findAllScenarios(String organizationId, String workspaceId) throws ApiException {
@@ -568,7 +860,7 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Scenarios </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<Scenario>> findAllScenariosWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
@@ -588,7 +880,7 @@ public class ScenarioApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the scenario details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Scenarios </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllScenariosAsync(String organizationId, String workspaceId, final ApiCallback<List<Scenario>> _callback) throws ApiException {
@@ -857,6 +1149,412 @@ public class ScenarioApi {
         return localVarCall;
     }
     /**
+     * Build call for removeAllScenarioParameterValues
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllScenarioParameterValuesCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeAllScenarioParameterValuesValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllScenarioParameterValues(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling removeAllScenarioParameterValues(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling removeAllScenarioParameterValues(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeAllScenarioParameterValuesCall(organizationId, workspaceId, scenarioId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove all Parameter Values from the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeAllScenarioParameterValues(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        removeAllScenarioParameterValuesWithHttpInfo(organizationId, workspaceId, scenarioId);
+    }
+
+    /**
+     * Remove all Parameter Values from the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeAllScenarioParameterValuesWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        okhttp3.Call localVarCall = removeAllScenarioParameterValuesValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove all Parameter Values from the Scenario specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllScenarioParameterValuesAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeAllScenarioParameterValuesValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for removeAllUsersOfScenario
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersOfScenarioCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeAllUsersOfScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllUsersOfScenario(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling removeAllUsersOfScenario(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling removeAllUsersOfScenario(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeAllUsersOfScenarioCall(organizationId, workspaceId, scenarioId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove all users from the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeAllUsersOfScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        removeAllUsersOfScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
+    }
+
+    /**
+     * Remove all users from the Scenario specified
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeAllUsersOfScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        okhttp3.Call localVarCall = removeAllUsersOfScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove all users from the Scenario specified (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeAllUsersOfScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeAllUsersOfScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for removeUserFromScenario
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param userId the User identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeUserFromScenarioCall(String organizationId, String workspaceId, String scenarioId, String userId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users/{user_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()))
+            .replaceAll("\\{" + "user_id" + "\\}", localVarApiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeUserFromScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, String userId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeUserFromScenario(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling removeUserFromScenario(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling removeUserFromScenario(Async)");
+        }
+        
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling removeUserFromScenario(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeUserFromScenarioCall(organizationId, workspaceId, scenarioId, userId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove the specified user from the given Scenario
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param userId the User identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeUserFromScenario(String organizationId, String workspaceId, String scenarioId, String userId) throws ApiException {
+        removeUserFromScenarioWithHttpInfo(organizationId, workspaceId, scenarioId, userId);
+    }
+
+    /**
+     * Remove the specified user from the given Scenario
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param userId the User identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeUserFromScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId, String userId) throws ApiException {
+        okhttp3.Call localVarCall = removeUserFromScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, userId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove the specified user from the given Scenario (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param userId the User identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeUserFromScenarioAsync(String organizationId, String workspaceId, String scenarioId, String userId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeUserFromScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, userId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateScenario
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -897,7 +1595,7 @@ public class ScenarioApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);

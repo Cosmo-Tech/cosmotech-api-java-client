@@ -9,7 +9,7 @@ a Connector setup
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the Connector id | 
-**parametersValues** | **Map&lt;String, Object&gt;** |  |  [optional]
+**parametersValues** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

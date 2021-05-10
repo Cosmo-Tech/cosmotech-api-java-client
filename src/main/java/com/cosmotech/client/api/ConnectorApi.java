@@ -28,7 +28,6 @@ import java.io.IOException;
 
 
 import com.cosmotech.client.model.Connector;
-import java.io.File;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Connectors </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllConnectorsCall(final ApiCallback _callback) throws ApiException {
@@ -113,7 +112,7 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Connectors </td><td>  -  </td></tr>
      </table>
      */
     public List<Connector> findAllConnectors() throws ApiException {
@@ -129,7 +128,7 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Connectors </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<Connector>> findAllConnectorsWithHttpInfo() throws ApiException {
@@ -147,7 +146,7 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the list of Connectors </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call findAllConnectorsAsync(final ApiCallback<List<Connector>> _callback) throws ApiException {
@@ -216,7 +215,7 @@ public class ConnectorApi {
     }
 
     /**
-     * Get the details of an connector
+     * Get the details of a connector
      * 
      * @param connectorId the Connector identifier (required)
      * @return Connector
@@ -234,7 +233,7 @@ public class ConnectorApi {
     }
 
     /**
-     * Get the details of an connector
+     * Get the details of a connector
      * 
      * @param connectorId the Connector identifier (required)
      * @return ApiResponse&lt;Connector&gt;
@@ -253,7 +252,7 @@ public class ConnectorApi {
     }
 
     /**
-     * Get the details of an connector (asynchronously)
+     * Get the details of a connector (asynchronously)
      * 
      * @param connectorId the Connector identifier (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -307,7 +306,7 @@ public class ConnectorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -397,8 +396,7 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Connector specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -416,7 +414,7 @@ public class ConnectorApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -448,46 +446,41 @@ public class ConnectorApi {
     }
 
     /**
-     * Unregister an connector
+     * Unregister a connector
      * 
      * @param connectorId the Connector identifier (required)
-     * @return Connector
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Connector specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Connector unregisterConnector(String connectorId) throws ApiException {
-        ApiResponse<Connector> localVarResp = unregisterConnectorWithHttpInfo(connectorId);
-        return localVarResp.getData();
+    public void unregisterConnector(String connectorId) throws ApiException {
+        unregisterConnectorWithHttpInfo(connectorId);
     }
 
     /**
-     * Unregister an connector
+     * Unregister a connector
      * 
      * @param connectorId the Connector identifier (required)
-     * @return ApiResponse&lt;Connector&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Connector specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Connector> unregisterConnectorWithHttpInfo(String connectorId) throws ApiException {
+    public ApiResponse<Void> unregisterConnectorWithHttpInfo(String connectorId) throws ApiException {
         okhttp3.Call localVarCall = unregisterConnectorValidateBeforeCall(connectorId, null);
-        Type localVarReturnType = new TypeToken<Connector>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Unregister an connector (asynchronously)
+     * Unregister a connector (asynchronously)
      * 
      * @param connectorId the Connector identifier (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -496,131 +489,14 @@ public class ConnectorApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Request successful </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Connector specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call unregisterConnectorAsync(String connectorId, final ApiCallback<Connector> _callback) throws ApiException {
+    public okhttp3.Call unregisterConnectorAsync(String connectorId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = unregisterConnectorValidateBeforeCall(connectorId, _callback);
-        Type localVarReturnType = new TypeToken<Connector>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for uploadConnector
-     * @param body the Connector to upload and register (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call uploadConnectorCall(File body, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/connectors/upload";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/yaml"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadConnectorValidateBeforeCall(File body, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling uploadConnector(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = uploadConnectorCall(body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Upload and register a new connector
-     * 
-     * @param body the Connector to upload and register (required)
-     * @return Connector
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-     </table>
-     */
-    public Connector uploadConnector(File body) throws ApiException {
-        ApiResponse<Connector> localVarResp = uploadConnectorWithHttpInfo(body);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Upload and register a new connector
-     * 
-     * @param body the Connector to upload and register (required)
-     * @return ApiResponse&lt;Connector&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Connector> uploadConnectorWithHttpInfo(File body) throws ApiException {
-        okhttp3.Call localVarCall = uploadConnectorValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<Connector>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Upload and register a new connector (asynchronously)
-     * 
-     * @param body the Connector to upload and register (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the connector details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call uploadConnectorAsync(File body, final ApiCallback<Connector> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = uploadConnectorValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<Connector>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 }
