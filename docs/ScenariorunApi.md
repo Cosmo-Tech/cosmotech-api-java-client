@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**findScenarioRunById**](ScenariorunApi.md#findScenarioRunById) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Get the details of a scenariorun
 [**getScenarioRunCumulatedLogs**](ScenariorunApi.md#getScenarioRunCumulatedLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs | Get the cumulated logs of a scenariorun
 [**getScenarioRunLogs**](ScenariorunApi.md#getScenarioRunLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs | get the logs for the ScenarioRun
+[**getScenarioRunStatus**](ScenariorunApi.md#getScenarioRunStatus) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status | get the status for the ScenarioRun
 [**getScenarioRuns**](ScenariorunApi.md#getScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | get the list of ScenarioRuns for the Scenario
 [**getWorkspaceScenarioRuns**](ScenariorunApi.md#getWorkspaceScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns | get the list of ScenarioRuns for the Workspace
 [**runScenario**](ScenariorunApi.md#runScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run | run a ScenarioRun for the Scenario
@@ -286,6 +287,73 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the scenariorun logs details |  -  |
+
+<a name="getScenarioRunStatus"></a>
+# **getScenarioRunStatus**
+> ScenarioRunStatus getScenarioRunStatus(organizationId, scenariorunId)
+
+get the status for the ScenarioRun
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenariorunApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String scenariorunId = "scenariorunId_example"; // String | the ScenarioRun identifier
+    try {
+      ScenarioRunStatus result = apiInstance.getScenarioRunStatus(organizationId, scenariorunId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenariorunApi#getScenarioRunStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **scenariorunId** | **String**| the ScenarioRun identifier |
+
+### Return type
+
+[**ScenarioRunStatus**](ScenarioRunStatus.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the scenariorun status details |  -  |
 
 <a name="getScenarioRuns"></a>
 # **getScenarioRuns**

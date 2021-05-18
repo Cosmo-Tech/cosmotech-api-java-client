@@ -9,12 +9,14 @@ Method | HTTP request | Description
 [**addOrReplaceRunTemplates**](SolutionApi.md#addOrReplaceRunTemplates) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Add Run Templates. Any item with the same ID will be overwritten
 [**createSolution**](SolutionApi.md#createSolution) | **POST** /organizations/{organization_id}/solutions | Register a new solution
 [**deleteSolution**](SolutionApi.md#deleteSolution) | **DELETE** /organizations/{organization_id}/solutions/{solution_id} | Delete a solution
+[**deleteSolutionRunTemplate**](SolutionApi.md#deleteSolutionRunTemplate) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Remove the specified Solution Run Template
 [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
 [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
 [**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
 [**removeAllSolutionParameterGroups**](SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified
 [**removeAllSolutionParameters**](SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified
 [**updateSolution**](SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution
+[**updateSolutionRunTemplate**](SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template
 [**uploadRunTemplateHandler**](SolutionApi.md#uploadRunTemplateHandler) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload | Upload a Run Template step handler zip file
 
 
@@ -364,6 +366,75 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Request succeeded |  -  |
+**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="deleteSolutionRunTemplate"></a>
+# **deleteSolutionRunTemplate**
+> deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId)
+
+Remove the specified Solution Run Template
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
+    try {
+      apiInstance.deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#deleteSolutionRunTemplate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **solutionId** | **String**| the Solution identifier |
+ **runTemplateId** | **String**| the Run Template identifier |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | the operation succeeded |  -  |
 **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllSolutions"></a>
@@ -771,9 +842,82 @@ Name | Type | Description  | Notes
 **400** | Bad request |  -  |
 **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="updateSolutionRunTemplate"></a>
+# **updateSolutionRunTemplate**
+> List&lt;RunTemplate&gt; updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate)
+
+Update the specified Solution Run Template
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
+    RunTemplate runTemplate = new RunTemplate(); // RunTemplate | the Run Templates
+    try {
+      List<RunTemplate> result = apiInstance.updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#updateSolutionRunTemplate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **solutionId** | **String**| the Solution identifier |
+ **runTemplateId** | **String**| the Run Template identifier |
+ **runTemplate** | [**RunTemplate**](RunTemplate.md)| the Run Templates |
+
+### Return type
+
+[**List&lt;RunTemplate&gt;**](RunTemplate.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the Parameters |  -  |
+**400** | Bad request |  -  |
+**404** | the Solution or Run Template specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="uploadRunTemplateHandler"></a>
 # **uploadRunTemplateHandler**
-> uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body)
+> uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite)
 
 Upload a Run Template step handler zip file
 
@@ -800,10 +944,11 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String solutionId = "solutionId_example"; // String | the Solution identifier
     String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
-    String handlerId = "handlerId_example"; // String | the Handler id identifier
+    RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
     File body = new File("/path/to/file"); // File | 
+    Boolean overwrite = false; // Boolean | whether to overwrite any existing handler resource
     try {
-      apiInstance.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body);
+      apiInstance.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolutionApi#uploadRunTemplateHandler");
       System.err.println("Status code: " + e.getCode());
@@ -822,8 +967,9 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **solutionId** | **String**| the Solution identifier |
  **runTemplateId** | **String**| the Run Template identifier |
- **handlerId** | **String**| the Handler id identifier | [enum: parameters_handler, validator, prerun, engine, postrun]
- **body** | **File**|  | [optional]
+ **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun]
+ **body** | **File**|  |
+ **overwrite** | **Boolean**| whether to overwrite any existing handler resource | [optional] [default to false]
 
 ### Return type
 
@@ -835,7 +981,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: image/zip
+ - **Content-Type**: application/octet-stream
  - **Accept**: Not defined
 
 ### HTTP response details

@@ -461,6 +461,100 @@ paths:
       - solution
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}:
+    delete:
+      operationId: deleteSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove the specified Solution Run Template
+      tags:
+      - solution
+      x-accepts: application/json
+    patch:
+      operationId: updateSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+        description: the Run Templates
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution or Run Template specified is unknown or you don't
+            have access to it
+      summary: Update the specified Solution Run Template
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
     post:
       operationId: uploadRunTemplateHandler
@@ -489,26 +583,30 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Handler id identifier
+      - description: the Handler identifier
         explode: false
         in: path
         name: handler_id
         required: true
         schema:
-          enum:
-          - parameters_handler
-          - validator
-          - prerun
-          - engine
-          - postrun
-          type: string
+          $ref: '#/components/schemas/RunTemplateHandlerId'
         style: simple
+      - description: whether to overwrite any existing handler resource
+        explode: true
+        in: query
+        name: overwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       requestBody:
         content:
-          image/zip:
+          application/octet-stream:
             schema:
               format: binary
               type: string
+        required: true
       responses:
         "201":
           description: zip file uploaded
@@ -517,7 +615,7 @@ paths:
       summary: Upload a Run Template step handler zip file
       tags:
       - solution
-      x-contentType: image/zip
+      x-contentType: application/octet-stream
       x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
@@ -1731,6 +1829,40 @@ paths:
           description: the ScenarioRun specified is unknown or you don't have access
             to it
       summary: Get the details of a scenariorun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status:
+    get:
+      operationId: getScenarioRunStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunStatus'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunStatus'
+          description: the scenariorun status details
+      summary: get the status for the ScenarioRun
       tags:
       - scenariorun
       x-accepts: application/json
@@ -4060,6 +4192,11 @@ components:
               CSM_SIMULATION: DeployedScenarioRun
             image: twinengines.azurecr.io/brewery_simulator:latest
             entrypoint: entrypoint.py
+    BreweryScenarioRunStatus:
+      description: Brewery Scenario Run status example
+      summary: Brewery status example
+      value:
+        id: "1"
     BreweryScenarioUpdate:
       description: Update the Brewery Scenario by changing its name
       summary: Update the Brewery Scenario
@@ -5569,6 +5706,15 @@ components:
       - id
       - name
       type: object
+    RunTemplateHandlerId:
+      description: the Run Template step handler identifier
+      enum:
+      - parameters_handler
+      - validator
+      - prerun
+      - engine
+      - postrun
+      type: string
     RunTemplateParameter:
       description: a Run Template Parameter
       example:
@@ -5852,12 +5998,12 @@ components:
     ScenarioRun:
       description: a ScenarioRun with only base properties
       example:
-        failedStep: failedStep
         sendDatasetsToDataWarehouse: true
         computeSize: computeSize
         workflowName: workflowName
         generateName: generateName
         ownerId: ownerId
+        organizationId: organizationId
         parametersValues:
         - varType: varType
           parameterId: parameterId
@@ -5866,7 +6012,6 @@ components:
           parameterId: parameterId
           value: value
         runTemplateId: runTemplateId
-        startTime: startTime
         containers:
         - image: image
           runArgs:
@@ -5894,9 +6039,6 @@ components:
           - dependencies
         id: id
         solutionId: solutionId
-        state: FetchingDatasets
-        endTime: endTime
-        failedContainerId: failedContainerId
         datasetList:
         - datasetList
         - datasetList
@@ -5910,6 +6052,9 @@ components:
         id:
           description: the ScenarioRun
           readOnly: true
+          type: string
+        organizationId:
+          description: the Organization id
           type: string
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
@@ -5948,37 +6093,6 @@ components:
         computeSize:
           description: the compute size needed for this Analysis. Standard sizes are
             basic and highcpu. Default is basic
-          readOnly: true
-          type: string
-        state:
-          description: the ScenarioRun state
-          enum:
-          - FetchingDatasets
-          - FetchingScenarioParameters
-          - ApplyingScenarioParameters
-          - ValidatingScenarioData
-          - SendingScenarioDataToDataWarehouse
-          - PreRun
-          - Running
-          - PostRun
-          - Success
-          - Failed
-          readOnly: true
-          type: string
-        failedStep:
-          description: the failed step if state is Failed
-          readOnly: true
-          type: string
-        failedContainerId:
-          description: the failed container Id if state is Failed
-          readOnly: true
-          type: string
-        startTime:
-          description: the ScenarioRun start Date Time
-          readOnly: true
-          type: string
-        endTime:
-          description: the ScenarioRun end Date Time
           readOnly: true
           type: string
         datasetList:
@@ -6207,6 +6321,125 @@ components:
           type: array
       required:
       - containers
+      type: object
+    ScenarioRunStatus:
+      description: a ScenarioRun status
+      example:
+        organizationId: organizationId
+        phase: phase
+        nodes:
+        - phase: phase
+          displayName: displayName
+          name: name
+          hostNodeName: hostNodeName
+          progress: progress
+          startTime: startTime
+          id: id
+          endTime: endTime
+          message: message
+          estimatedDuration: 6
+        - phase: phase
+          displayName: displayName
+          name: name
+          hostNodeName: hostNodeName
+          progress: progress
+          startTime: startTime
+          id: id
+          endTime: endTime
+          message: message
+          estimatedDuration: 6
+        progress: progress
+        workflowName: workflowName
+        startTime: startTime
+        id: id
+        endTime: endTime
+        message: message
+        estimatedDuration: 0
+        workflowId: workflowId
+      properties:
+        id:
+          description: the ScenarioRun id
+          type: string
+        organizationId:
+          description: the ScenarioRun id
+          type: string
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
+          type: string
+        startTime:
+          description: the ScenarioRun start Date Time
+          type: string
+        endTime:
+          description: the ScenarioRun end Date Time
+          type: string
+        phase:
+          description: high-level summary of where the workflow is in its lifecycle
+          type: string
+        progress:
+          description: progress to completion
+          type: string
+        message:
+          description: a  human readable message indicating details about why the
+            workflow is in this condition
+          type: string
+        estimatedDuration:
+          description: estimatedDuration in seconds
+          type: integer
+        nodes:
+          description: status of ScenarioRun nodes
+          items:
+            $ref: '#/components/schemas/ScenarioRunStatusNode'
+          type: array
+      type: object
+    ScenarioRunStatusNode:
+      description: status of a ScenarioRun Node
+      example:
+        phase: phase
+        displayName: displayName
+        name: name
+        hostNodeName: hostNodeName
+        progress: progress
+        startTime: startTime
+        id: id
+        endTime: endTime
+        message: message
+        estimatedDuration: 6
+      properties:
+        id:
+          description: the node id
+          type: string
+        name:
+          description: the node unique name
+          type: string
+        displayName:
+          description: "the display name, equivalent to ScenarioRun Container name"
+          type: string
+        estimatedDuration:
+          description: estimatedDuration in seconds
+          type: integer
+        hostNodeName:
+          description: "HostNodeName name of the Kubernetes node on which the Pod\
+            \ is running, if applicable"
+          type: string
+        message:
+          description: a human readable message indicating details about why the node
+            is in this condition
+          type: string
+        phase:
+          description: high-level summary of where the node is in its lifecycle
+          type: string
+        progress:
+          description: progress to completion
+          type: string
+        startTime:
+          description: the node start time
+          type: string
+        endTime:
+          description: the node end time
+          type: string
       type: object
     ScenarioRunTemplateParameterValue:
       description: the value of a Solution Run Template parameter for a Scenario

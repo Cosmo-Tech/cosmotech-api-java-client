@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import java.io.File;
 import com.cosmotech.client.model.RunTemplate;
+import com.cosmotech.client.model.RunTemplateHandlerId;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.Solution;
@@ -719,6 +720,138 @@ public class SolutionApi {
     public okhttp3.Call deleteSolutionAsync(String organizationId, String solutionId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteSolutionValidateBeforeCall(organizationId, solutionId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteSolutionRunTemplate
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteSolutionRunTemplateCall(String organizationId, String solutionId, String runTemplateId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "run_template_id" + "\\}", localVarApiClient.escapeString(runTemplateId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteSolutionRunTemplateValidateBeforeCall(String organizationId, String solutionId, String runTemplateId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling deleteSolutionRunTemplate(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling deleteSolutionRunTemplate(Async)");
+        }
+        
+        // verify the required parameter 'runTemplateId' is set
+        if (runTemplateId == null) {
+            throw new ApiException("Missing the required parameter 'runTemplateId' when calling deleteSolutionRunTemplate(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = deleteSolutionRunTemplateCall(organizationId, solutionId, runTemplateId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove the specified Solution Run Template
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public void deleteSolutionRunTemplate(String organizationId, String solutionId, String runTemplateId) throws ApiException {
+        deleteSolutionRunTemplateWithHttpInfo(organizationId, solutionId, runTemplateId);
+    }
+
+    /**
+     * Remove the specified Solution Run Template
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> deleteSolutionRunTemplateWithHttpInfo(String organizationId, String solutionId, String runTemplateId) throws ApiException {
+        okhttp3.Call localVarCall = deleteSolutionRunTemplateValidateBeforeCall(organizationId, solutionId, runTemplateId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove the specified Solution Run Template (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> the operation succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteSolutionRunTemplateAsync(String organizationId, String solutionId, String runTemplateId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteSolutionRunTemplateValidateBeforeCall(organizationId, solutionId, runTemplateId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -1466,12 +1599,162 @@ public class SolutionApi {
         return localVarCall;
     }
     /**
+     * Build call for updateSolutionRunTemplate
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param runTemplate the Run Templates (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or Run Template specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionRunTemplateCall(String organizationId, String solutionId, String runTemplateId, RunTemplate runTemplate, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = runTemplate;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "run_template_id" + "\\}", localVarApiClient.escapeString(runTemplateId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateSolutionRunTemplateValidateBeforeCall(String organizationId, String solutionId, String runTemplateId, RunTemplate runTemplate, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling updateSolutionRunTemplate(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling updateSolutionRunTemplate(Async)");
+        }
+        
+        // verify the required parameter 'runTemplateId' is set
+        if (runTemplateId == null) {
+            throw new ApiException("Missing the required parameter 'runTemplateId' when calling updateSolutionRunTemplate(Async)");
+        }
+        
+        // verify the required parameter 'runTemplate' is set
+        if (runTemplate == null) {
+            throw new ApiException("Missing the required parameter 'runTemplate' when calling updateSolutionRunTemplate(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateSolutionRunTemplateCall(organizationId, solutionId, runTemplateId, runTemplate, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update the specified Solution Run Template
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param runTemplate the Run Templates (required)
+     * @return List&lt;RunTemplate&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or Run Template specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<RunTemplate> updateSolutionRunTemplate(String organizationId, String solutionId, String runTemplateId, RunTemplate runTemplate) throws ApiException {
+        ApiResponse<List<RunTemplate>> localVarResp = updateSolutionRunTemplateWithHttpInfo(organizationId, solutionId, runTemplateId, runTemplate);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update the specified Solution Run Template
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param runTemplate the Run Templates (required)
+     * @return ApiResponse&lt;List&lt;RunTemplate&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or Run Template specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<RunTemplate>> updateSolutionRunTemplateWithHttpInfo(String organizationId, String solutionId, String runTemplateId, RunTemplate runTemplate) throws ApiException {
+        okhttp3.Call localVarCall = updateSolutionRunTemplateValidateBeforeCall(organizationId, solutionId, runTemplateId, runTemplate, null);
+        Type localVarReturnType = new TypeToken<List<RunTemplate>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update the specified Solution Run Template (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param runTemplate the Run Templates (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the Parameters </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or Run Template specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionRunTemplateAsync(String organizationId, String solutionId, String runTemplateId, RunTemplate runTemplate, final ApiCallback<List<RunTemplate>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSolutionRunTemplateValidateBeforeCall(organizationId, solutionId, runTemplateId, runTemplate, _callback);
+        Type localVarReturnType = new TypeToken<List<RunTemplate>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for uploadRunTemplateHandler
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
-     * @param handlerId the Handler id identifier (required)
-     * @param body  (optional)
+     * @param handlerId the Handler identifier (required)
+     * @param body  (required)
+     * @param overwrite whether to overwrite any existing handler resource (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1482,7 +1765,7 @@ public class SolutionApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadRunTemplateHandlerCall(String organizationId, String solutionId, String runTemplateId, String handlerId, File body, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call uploadRunTemplateHandlerCall(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, File body, Boolean overwrite, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1498,6 +1781,10 @@ public class SolutionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (overwrite != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("overwrite", overwrite));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -1507,7 +1794,7 @@ public class SolutionApi {
         }
 
         final String[] localVarContentTypes = {
-            "image/zip"
+            "application/octet-stream"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -1517,7 +1804,7 @@ public class SolutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadRunTemplateHandlerValidateBeforeCall(String organizationId, String solutionId, String runTemplateId, String handlerId, File body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call uploadRunTemplateHandlerValidateBeforeCall(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, File body, Boolean overwrite, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -1539,8 +1826,13 @@ public class SolutionApi {
             throw new ApiException("Missing the required parameter 'handlerId' when calling uploadRunTemplateHandler(Async)");
         }
         
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling uploadRunTemplateHandler(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = uploadRunTemplateHandlerCall(organizationId, solutionId, runTemplateId, handlerId, body, _callback);
+        okhttp3.Call localVarCall = uploadRunTemplateHandlerCall(organizationId, solutionId, runTemplateId, handlerId, body, overwrite, _callback);
         return localVarCall;
 
     }
@@ -1551,8 +1843,9 @@ public class SolutionApi {
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
-     * @param handlerId the Handler id identifier (required)
-     * @param body  (optional)
+     * @param handlerId the Handler identifier (required)
+     * @param body  (required)
+     * @param overwrite whether to overwrite any existing handler resource (optional, default to false)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1561,8 +1854,8 @@ public class SolutionApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public void uploadRunTemplateHandler(String organizationId, String solutionId, String runTemplateId, String handlerId, File body) throws ApiException {
-        uploadRunTemplateHandlerWithHttpInfo(organizationId, solutionId, runTemplateId, handlerId, body);
+    public void uploadRunTemplateHandler(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, File body, Boolean overwrite) throws ApiException {
+        uploadRunTemplateHandlerWithHttpInfo(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
     }
 
     /**
@@ -1571,8 +1864,9 @@ public class SolutionApi {
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
-     * @param handlerId the Handler id identifier (required)
-     * @param body  (optional)
+     * @param handlerId the Handler identifier (required)
+     * @param body  (required)
+     * @param overwrite whether to overwrite any existing handler resource (optional, default to false)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1582,8 +1876,8 @@ public class SolutionApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> uploadRunTemplateHandlerWithHttpInfo(String organizationId, String solutionId, String runTemplateId, String handlerId, File body) throws ApiException {
-        okhttp3.Call localVarCall = uploadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, body, null);
+    public ApiResponse<Void> uploadRunTemplateHandlerWithHttpInfo(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, File body, Boolean overwrite) throws ApiException {
+        okhttp3.Call localVarCall = uploadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, body, overwrite, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -1593,8 +1887,9 @@ public class SolutionApi {
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
-     * @param handlerId the Handler id identifier (required)
-     * @param body  (optional)
+     * @param handlerId the Handler identifier (required)
+     * @param body  (required)
+     * @param overwrite whether to overwrite any existing handler resource (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1605,9 +1900,9 @@ public class SolutionApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadRunTemplateHandlerAsync(String organizationId, String solutionId, String runTemplateId, String handlerId, File body, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call uploadRunTemplateHandlerAsync(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, File body, Boolean overwrite, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = uploadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, body, _callback);
+        okhttp3.Call localVarCall = uploadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, body, overwrite, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }

@@ -53,6 +53,14 @@ public class ScenarioRunTest {
     }
 
     /**
+     * Test the property 'organizationId'
+     */
+    @Test
+    public void organizationIdTest() {
+        // TODO: test organizationId
+    }
+
+    /**
      * Test the property 'workflowId'
      */
     @Test
@@ -130,46 +138,6 @@ public class ScenarioRunTest {
     @Test
     public void computeSizeTest() {
         // TODO: test computeSize
-    }
-
-    /**
-     * Test the property 'state'
-     */
-    @Test
-    public void stateTest() {
-        // TODO: test state
-    }
-
-    /**
-     * Test the property 'failedStep'
-     */
-    @Test
-    public void failedStepTest() {
-        // TODO: test failedStep
-    }
-
-    /**
-     * Test the property 'failedContainerId'
-     */
-    @Test
-    public void failedContainerIdTest() {
-        // TODO: test failedContainerId
-    }
-
-    /**
-     * Test the property 'startTime'
-     */
-    @Test
-    public void startTimeTest() {
-        // TODO: test startTime
-    }
-
-    /**
-     * Test the property 'endTime'
-     */
-    @Test
-    public void endTimeTest() {
-        // TODO: test endTime
     }
 
     /**
