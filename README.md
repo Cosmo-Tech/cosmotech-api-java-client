@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Plaform API
-- API version: 0.0.2-SNAPSHOT
-  - Build date: 2021-05-18T18:17:46.946024+02:00[Europe/Paris]
+- API version: 0.0.4-SNAPSHOT
+  - Build date: 2021-05-18T18:40:41.314984+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.4-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.cosmotech:cosmotech-api-java-client:0.0.2-SNAPSHOT"
+compile "com.cosmotech:cosmotech-api-java-client:0.0.4-SNAPSHOT"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-0.0.2-SNAPSHOT.jar`
+* `target/cosmotech-api-java-client-0.0.4-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
