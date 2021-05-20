@@ -69,6 +69,14 @@ public class ScenarioRunTest {
     }
 
     /**
+     * Test the property 'csmSimulationRun'
+     */
+    @Test
+    public void csmSimulationRunTest() {
+        // TODO: test csmSimulationRun
+    }
+
+    /**
      * Test the property 'generateName'
      */
     @Test

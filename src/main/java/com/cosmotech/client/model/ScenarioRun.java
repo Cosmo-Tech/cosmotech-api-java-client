@@ -32,7 +32,7 @@ import java.util.List;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-18T18:40:41.314984+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-20T13:21:24.296098+02:00[Europe/Paris]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -45,6 +45,10 @@ public class ScenarioRun {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
   private String workflowId;
+
+  public static final String SERIALIZED_NAME_CSM_SIMULATION_RUN = "csmSimulationRun";
+  @SerializedName(SERIALIZED_NAME_CSM_SIMULATION_RUN)
+  private String csmSimulationRun;
 
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
@@ -165,6 +169,20 @@ public class ScenarioRun {
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
   }
+
+
+   /**
+   * the Cosmo Tech Simulation Run Id
+   * @return csmSimulationRun
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Cosmo Tech Simulation Run Id")
+
+  public String getCsmSimulationRun() {
+    return csmSimulationRun;
+  }
+
+
 
 
   public ScenarioRun generateName(String generateName) {
@@ -424,6 +442,7 @@ public class ScenarioRun {
     return Objects.equals(this.id, scenarioRun.id) &&
         Objects.equals(this.organizationId, scenarioRun.organizationId) &&
         Objects.equals(this.workflowId, scenarioRun.workflowId) &&
+        Objects.equals(this.csmSimulationRun, scenarioRun.csmSimulationRun) &&
         Objects.equals(this.generateName, scenarioRun.generateName) &&
         Objects.equals(this.workflowName, scenarioRun.workflowName) &&
         Objects.equals(this.ownerId, scenarioRun.ownerId) &&
@@ -443,7 +462,7 @@ public class ScenarioRun {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, organizationId, workflowId, generateName, workflowName, ownerId, workspaceId, workspaceKey, scenarioId, solutionId, runTemplateId, computeSize, datasetList, parametersValues, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, nodeLabel, containers);
+    return Objects.hash(id, organizationId, workflowId, csmSimulationRun, generateName, workflowName, ownerId, workspaceId, workspaceKey, scenarioId, solutionId, runTemplateId, computeSize, datasetList, parametersValues, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, nodeLabel, containers);
   }
 
   @Override
@@ -453,6 +472,7 @@ public class ScenarioRun {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    csmSimulationRun: ").append(toIndentedString(csmSimulationRun)).append("\n");
     sb.append("    generateName: ").append(toIndentedString(generateName)).append("\n");
     sb.append("    workflowName: ").append(toIndentedString(workflowName)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");

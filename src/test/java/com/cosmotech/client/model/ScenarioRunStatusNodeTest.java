@@ -57,11 +57,11 @@ public class ScenarioRunStatusNodeTest {
     }
 
     /**
-     * Test the property 'displayName'
+     * Test the property 'containerName'
      */
     @Test
-    public void displayNameTest() {
-        // TODO: test displayName
+    public void containerNameTest() {
+        // TODO: test containerName
     }
 
     /**

@@ -52,6 +52,14 @@ public class ScenarioRunStartContainersTest {
     }
 
     /**
+     * Test the property 'csmSimulationId'
+     */
+    @Test
+    public void csmSimulationIdTest() {
+        // TODO: test csmSimulationId
+    }
+
+    /**
      * Test the property 'nodeLabel'
      */
     @Test

@@ -28,7 +28,7 @@ import java.io.IOException;
  * status of a ScenarioRun Node
  */
 @ApiModel(description = "status of a ScenarioRun Node")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-18T18:40:41.314984+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-20T13:21:24.296098+02:00[Europe/Paris]")
 public class ScenarioRunStatusNode {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -38,9 +38,9 @@ public class ScenarioRunStatusNode {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
+  public static final String SERIALIZED_NAME_CONTAINER_NAME = "containerName";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_NAME)
+  private String containerName;
 
   public static final String SERIALIZED_NAME_ESTIMATED_DURATION = "estimatedDuration";
   @SerializedName(SERIALIZED_NAME_ESTIMATED_DURATION)
@@ -117,26 +117,26 @@ public class ScenarioRunStatusNode {
   }
 
 
-  public ScenarioRunStatusNode displayName(String displayName) {
+  public ScenarioRunStatusNode containerName(String containerName) {
     
-    this.displayName = displayName;
+    this.containerName = containerName;
     return this;
   }
 
    /**
-   * the display name, equivalent to ScenarioRun Container name
-   * @return displayName
+   * the ScenarioRun container name
+   * @return containerName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the display name, equivalent to ScenarioRun Container name")
+  @ApiModelProperty(value = "the ScenarioRun container name")
 
-  public String getDisplayName() {
-    return displayName;
+  public String getContainerName() {
+    return containerName;
   }
 
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
+  public void setContainerName(String containerName) {
+    this.containerName = containerName;
   }
 
 
@@ -312,7 +312,7 @@ public class ScenarioRunStatusNode {
     ScenarioRunStatusNode scenarioRunStatusNode = (ScenarioRunStatusNode) o;
     return Objects.equals(this.id, scenarioRunStatusNode.id) &&
         Objects.equals(this.name, scenarioRunStatusNode.name) &&
-        Objects.equals(this.displayName, scenarioRunStatusNode.displayName) &&
+        Objects.equals(this.containerName, scenarioRunStatusNode.containerName) &&
         Objects.equals(this.estimatedDuration, scenarioRunStatusNode.estimatedDuration) &&
         Objects.equals(this.hostNodeName, scenarioRunStatusNode.hostNodeName) &&
         Objects.equals(this.message, scenarioRunStatusNode.message) &&
@@ -324,7 +324,7 @@ public class ScenarioRunStatusNode {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, displayName, estimatedDuration, hostNodeName, message, phase, progress, startTime, endTime);
+    return Objects.hash(id, name, containerName, estimatedDuration, hostNodeName, message, phase, progress, startTime, endTime);
   }
 
   @Override
@@ -333,7 +333,7 @@ public class ScenarioRunStatusNode {
     sb.append("class ScenarioRunStatusNode {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    containerName: ").append(toIndentedString(containerName)).append("\n");
     sb.append("    estimatedDuration: ").append(toIndentedString(estimatedDuration)).append("\n");
     sb.append("    hostNodeName: ").append(toIndentedString(hostNodeName)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");

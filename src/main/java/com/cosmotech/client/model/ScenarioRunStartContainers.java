@@ -31,11 +31,15 @@ import java.util.List;
  * the parameters to run directly containers
  */
 @ApiModel(description = "the parameters to run directly containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-18T18:40:41.314984+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-20T13:21:24.296098+02:00[Europe/Paris]")
 public class ScenarioRunStartContainers {
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
   private String generateName;
+
+  public static final String SERIALIZED_NAME_CSM_SIMULATION_ID = "csmSimulationId";
+  @SerializedName(SERIALIZED_NAME_CSM_SIMULATION_ID)
+  private String csmSimulationId;
 
   public static final String SERIALIZED_NAME_NODE_LABEL = "nodeLabel";
   @SerializedName(SERIALIZED_NAME_NODE_LABEL)
@@ -66,6 +70,28 @@ public class ScenarioRunStartContainers {
 
   public void setGenerateName(String generateName) {
     this.generateName = generateName;
+  }
+
+
+  public ScenarioRunStartContainers csmSimulationId(String csmSimulationId) {
+    
+    this.csmSimulationId = csmSimulationId;
+    return this;
+  }
+
+   /**
+   * Cosmo Tech Simulation Run Id
+   * @return csmSimulationId
+  **/
+  @ApiModelProperty(required = true, value = "Cosmo Tech Simulation Run Id")
+
+  public String getCsmSimulationId() {
+    return csmSimulationId;
+  }
+
+
+  public void setCsmSimulationId(String csmSimulationId) {
+    this.csmSimulationId = csmSimulationId;
   }
 
 
@@ -129,13 +155,14 @@ public class ScenarioRunStartContainers {
     }
     ScenarioRunStartContainers scenarioRunStartContainers = (ScenarioRunStartContainers) o;
     return Objects.equals(this.generateName, scenarioRunStartContainers.generateName) &&
+        Objects.equals(this.csmSimulationId, scenarioRunStartContainers.csmSimulationId) &&
         Objects.equals(this.nodeLabel, scenarioRunStartContainers.nodeLabel) &&
         Objects.equals(this.containers, scenarioRunStartContainers.containers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(generateName, nodeLabel, containers);
+    return Objects.hash(generateName, csmSimulationId, nodeLabel, containers);
   }
 
   @Override
@@ -143,6 +170,7 @@ public class ScenarioRunStartContainers {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScenarioRunStartContainers {\n");
     sb.append("    generateName: ").append(toIndentedString(generateName)).append("\n");
+    sb.append("    csmSimulationId: ").append(toIndentedString(csmSimulationId)).append("\n");
     sb.append("    nodeLabel: ").append(toIndentedString(nodeLabel)).append("\n");
     sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
     sb.append("}");
