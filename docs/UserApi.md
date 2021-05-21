@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getOrganizationCurrentUser**](UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of a logged-in User with roles for an Organization
 [**getWorkspaceCurrentUser**](UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of the logged-in user with roles for a Workspace
 [**registerUser**](UserApi.md#registerUser) | **POST** /users | Register a new user
+[**testPlatform**](UserApi.md#testPlatform) | **GET** /test | test platform API call
 [**unregisterUser**](UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
 [**updateUser**](UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update a User
 
@@ -460,6 +461,67 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | the user details |  -  |
 **400** | Bad request |  -  |
+
+<a name="testPlatform"></a>
+# **testPlatform**
+> String testPlatform()
+
+test platform API call
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    try {
+      String result = apiInstance.testPlatform();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#testPlatform");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | test string |  -  |
 
 <a name="unregisterUser"></a>
 # **unregisterUser**

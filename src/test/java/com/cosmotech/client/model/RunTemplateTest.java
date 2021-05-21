@@ -164,6 +164,14 @@ public class RunTemplateTest {
     }
 
     /**
+     * Test the property 'parametersJson'
+     */
+    @Test
+    public void parametersJsonTest() {
+        // TODO: test parametersJson
+    }
+
+    /**
      * Test the property 'parametersHandlerSource'
      */
     @Test

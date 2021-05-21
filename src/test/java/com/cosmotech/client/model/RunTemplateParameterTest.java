@@ -68,6 +68,38 @@ public class RunTemplateParameterTest {
     }
 
     /**
+     * Test the property 'defaultValue'
+     */
+    @Test
+    public void defaultValueTest() {
+        // TODO: test defaultValue
+    }
+
+    /**
+     * Test the property 'minValue'
+     */
+    @Test
+    public void minValueTest() {
+        // TODO: test minValue
+    }
+
+    /**
+     * Test the property 'maxValue'
+     */
+    @Test
+    public void maxValueTest() {
+        // TODO: test maxValue
+    }
+
+    /**
+     * Test the property 'regexValidation'
+     */
+    @Test
+    public void regexValidationTest() {
+        // TODO: test regexValidation
+    }
+
+    /**
      * Test the property 'options'
      */
     @Test

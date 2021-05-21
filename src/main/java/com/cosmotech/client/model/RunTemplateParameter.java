@@ -31,7 +31,7 @@ import java.util.Map;
  * a Run Template Parameter
  */
 @ApiModel(description = "a Run Template Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-20T13:21:24.296098+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-21T19:06:45.401101+02:00[Europe/Paris]")
 public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -44,6 +44,22 @@ public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_VAR_TYPE = "varType";
   @SerializedName(SERIALIZED_NAME_VAR_TYPE)
   private String varType;
+
+  public static final String SERIALIZED_NAME_DEFAULT_VALUE = "defaultValue";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_VALUE)
+  private String defaultValue;
+
+  public static final String SERIALIZED_NAME_MIN_VALUE = "minValue";
+  @SerializedName(SERIALIZED_NAME_MIN_VALUE)
+  private String minValue;
+
+  public static final String SERIALIZED_NAME_MAX_VALUE = "maxValue";
+  @SerializedName(SERIALIZED_NAME_MAX_VALUE)
+  private String maxValue;
+
+  public static final String SERIALIZED_NAME_REGEX_VALIDATION = "regexValidation";
+  @SerializedName(SERIALIZED_NAME_REGEX_VALIDATION)
+  private String regexValidation;
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
@@ -121,6 +137,98 @@ public class RunTemplateParameter {
   }
 
 
+  public RunTemplateParameter defaultValue(String defaultValue) {
+    
+    this.defaultValue = defaultValue;
+    return this;
+  }
+
+   /**
+   * the default value for this parameter
+   * @return defaultValue
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the default value for this parameter")
+
+  public String getDefaultValue() {
+    return defaultValue;
+  }
+
+
+  public void setDefaultValue(String defaultValue) {
+    this.defaultValue = defaultValue;
+  }
+
+
+  public RunTemplateParameter minValue(String minValue) {
+    
+    this.minValue = minValue;
+    return this;
+  }
+
+   /**
+   * the minimum value for this parameter
+   * @return minValue
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the minimum value for this parameter")
+
+  public String getMinValue() {
+    return minValue;
+  }
+
+
+  public void setMinValue(String minValue) {
+    this.minValue = minValue;
+  }
+
+
+  public RunTemplateParameter maxValue(String maxValue) {
+    
+    this.maxValue = maxValue;
+    return this;
+  }
+
+   /**
+   * the maximum value for this parameter
+   * @return maxValue
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the maximum value for this parameter")
+
+  public String getMaxValue() {
+    return maxValue;
+  }
+
+
+  public void setMaxValue(String maxValue) {
+    this.maxValue = maxValue;
+  }
+
+
+  public RunTemplateParameter regexValidation(String regexValidation) {
+    
+    this.regexValidation = regexValidation;
+    return this;
+  }
+
+   /**
+   * a regex to validate the value
+   * @return regexValidation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "a regex to validate the value")
+
+  public String getRegexValidation() {
+    return regexValidation;
+  }
+
+
+  public void setRegexValidation(String regexValidation) {
+    this.regexValidation = regexValidation;
+  }
+
+
   public RunTemplateParameter options(Map<String, Object> options) {
     
     this.options = options;
@@ -164,12 +272,16 @@ public class RunTemplateParameter {
     return Objects.equals(this.id, runTemplateParameter.id) &&
         Objects.equals(this.labels, runTemplateParameter.labels) &&
         Objects.equals(this.varType, runTemplateParameter.varType) &&
+        Objects.equals(this.defaultValue, runTemplateParameter.defaultValue) &&
+        Objects.equals(this.minValue, runTemplateParameter.minValue) &&
+        Objects.equals(this.maxValue, runTemplateParameter.maxValue) &&
+        Objects.equals(this.regexValidation, runTemplateParameter.regexValidation) &&
         Objects.equals(this.options, runTemplateParameter.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, labels, varType, options);
+    return Objects.hash(id, labels, varType, defaultValue, minValue, maxValue, regexValidation, options);
   }
 
   @Override
@@ -179,6 +291,10 @@ public class RunTemplateParameter {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    varType: ").append(toIndentedString(varType)).append("\n");
+    sb.append("    defaultValue: ").append(toIndentedString(defaultValue)).append("\n");
+    sb.append("    minValue: ").append(toIndentedString(minValue)).append("\n");
+    sb.append("    maxValue: ").append(toIndentedString(maxValue)).append("\n");
+    sb.append("    regexValidation: ").append(toIndentedString(regexValidation)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();

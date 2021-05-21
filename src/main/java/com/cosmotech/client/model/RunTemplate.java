@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-20T13:21:24.296098+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-21T19:06:45.401101+02:00[Europe/Paris]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,6 +92,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_POST_RUN = "postRun";
   @SerializedName(SERIALIZED_NAME_POST_RUN)
   private Boolean postRun;
+
+  public static final String SERIALIZED_NAME_PARAMETERS_JSON = "parametersJson";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS_JSON)
+  private Boolean parametersJson;
 
   public static final String SERIALIZED_NAME_PARAMETERS_HANDLER_SOURCE = "parametersHandlerSource";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_HANDLER_SOURCE)
@@ -469,6 +473,29 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate parametersJson(Boolean parametersJson) {
+    
+    this.parametersJson = parametersJson;
+    return this;
+  }
+
+   /**
+   * whether or not to store the scenario parameters in json instead of csv
+   * @return parametersJson
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not to store the scenario parameters in json instead of csv")
+
+  public Boolean getParametersJson() {
+    return parametersJson;
+  }
+
+
+  public void setParametersJson(Boolean parametersJson) {
+    this.parametersJson = parametersJson;
+  }
+
+
   public RunTemplate parametersHandlerSource(RunTemplateStepSource parametersHandlerSource) {
     
     this.parametersHandlerSource = parametersHandlerSource;
@@ -639,6 +666,7 @@ public class RunTemplate {
         Objects.equals(this.preRun, runTemplate.preRun) &&
         Objects.equals(this.run, runTemplate.run) &&
         Objects.equals(this.postRun, runTemplate.postRun) &&
+        Objects.equals(this.parametersJson, runTemplate.parametersJson) &&
         Objects.equals(this.parametersHandlerSource, runTemplate.parametersHandlerSource) &&
         Objects.equals(this.datasetValidatorSource, runTemplate.datasetValidatorSource) &&
         Objects.equals(this.preRunSource, runTemplate.preRunSource) &&
@@ -649,7 +677,7 @@ public class RunTemplate {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, parameterGroups);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, parameterGroups);
   }
 
   @Override
@@ -671,6 +699,7 @@ public class RunTemplate {
     sb.append("    preRun: ").append(toIndentedString(preRun)).append("\n");
     sb.append("    run: ").append(toIndentedString(run)).append("\n");
     sb.append("    postRun: ").append(toIndentedString(postRun)).append("\n");
+    sb.append("    parametersJson: ").append(toIndentedString(parametersJson)).append("\n");
     sb.append("    parametersHandlerSource: ").append(toIndentedString(parametersHandlerSource)).append("\n");
     sb.append("    datasetValidatorSource: ").append(toIndentedString(datasetValidatorSource)).append("\n");
     sb.append("    preRunSource: ").append(toIndentedString(preRunSource)).append("\n");

@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.4-SNAPSHOT
-  - Build date: 2021-05-20T13:21:24.296098+02:00[Europe/Paris]
+  - Build date: 2021-05-21T19:06:45.401101+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -178,6 +178,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**getOrganizationCurrentUser**](docs/UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of a logged-in User with roles for an Organization
 *UserApi* | [**getWorkspaceCurrentUser**](docs/UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of the logged-in user with roles for a Workspace
 *UserApi* | [**registerUser**](docs/UserApi.md#registerUser) | **POST** /users | Register a new user
+*UserApi* | [**testPlatform**](docs/UserApi.md#testPlatform) | **GET** /test | test platform API call
 *UserApi* | [**unregisterUser**](docs/UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
 *UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update a User
 *ValidatorApi* | [**createValidator**](docs/ValidatorApi.md#createValidator) | **POST** /organizations/{organization_id}/datasets/validators | Register a new validator

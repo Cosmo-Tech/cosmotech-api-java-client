@@ -143,6 +143,21 @@ public class UserApiTest {
     }
     
     /**
+     * test platform API call
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void testPlatformTest() throws ApiException {
+        String response = api.testPlatform();
+
+        // TODO: test validations
+    }
+    
+    /**
      * Unregister an user
      *
      * 

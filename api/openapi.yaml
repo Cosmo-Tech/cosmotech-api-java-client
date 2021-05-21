@@ -2286,6 +2286,20 @@ paths:
       tags:
       - user
       x-accepts: application/json
+  /test:
+    get:
+      operationId: testPlatform
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: test string
+      summary: test platform API call
+      tags:
+      - user
+      x-accepts: text/plain
   /oauth2/authorize:
     get:
       operationId: authorizeUser
@@ -3954,6 +3968,7 @@ components:
         id: SR-bDMr5lM9Vp
         organizationId: O-x2QOMVXpjX
         workflowId: 07193ced-9895-444f-b2be-31e8bfc3e768
+        csmSimulationRun: a2880d46-a60d-4215-a593-783452e0df8f
         generateName: workflow-s-eeypwem0kw-
         workflowName: workflow-s-eeypwem0kw-lsczk
         ownerId: null
@@ -4597,6 +4612,7 @@ components:
       - id: SR-bDMr5lM9Vp
         organizationId: O-x2QOMVXpjX
         workflowId: 07193ced-9895-444f-b2be-31e8bfc3e768
+        csmSimulationRun: a2880d46-a60d-4215-a593-783452e0df8f
         generateName: workflow-s-eeypwem0kw-
         workflowName: workflow-s-eeypwem0kw-lsczk
         ownerId: null
@@ -5678,6 +5694,7 @@ components:
         preRunSource: null
         runSource: null
         postRun: true
+        parametersJson: true
         sendDatasetsToDataWarehouse: true
         parametersHandlerSource: null
         description: description
@@ -5753,6 +5770,10 @@ components:
         postRun:
           description: whether or not the post-run step is done
           type: boolean
+        parametersJson:
+          description: whether or not to store the scenario parameters in json instead
+            of csv
+          type: boolean
         parametersHandlerSource:
           $ref: '#/components/schemas/RunTemplateStepSource'
         datasetValidatorSource:
@@ -5785,7 +5806,11 @@ components:
     RunTemplateParameter:
       description: a Run Template Parameter
       example:
+        regexValidation: regexValidation
         varType: varType
+        minValue: minValue
+        defaultValue: defaultValue
+        maxValue: maxValue
         options:
           key: "{}"
         id: id
@@ -5803,6 +5828,18 @@ components:
         varType:
           description: the variable type for the parameter. Basic types or special
             type %DATASETID%
+          type: string
+        defaultValue:
+          description: the default value for this parameter
+          type: string
+        minValue:
+          description: the minimum value for this parameter
+          type: string
+        maxValue:
+          description: the maximum value for this parameter
+          type: string
+        regexValidation:
+          description: a regex to validate the value
           type: string
         options:
           additionalProperties: true
@@ -6585,6 +6622,7 @@ components:
         - preRunSource: null
           runSource: null
           postRun: true
+          parametersJson: true
           sendDatasetsToDataWarehouse: true
           parametersHandlerSource: null
           description: description
@@ -6610,6 +6648,7 @@ components:
         - preRunSource: null
           runSource: null
           postRun: true
+          parametersJson: true
           sendDatasetsToDataWarehouse: true
           parametersHandlerSource: null
           description: description
@@ -6659,13 +6698,21 @@ components:
         name: name
         id: id
         parameters:
-        - varType: varType
+        - regexValidation: regexValidation
+          varType: varType
+          minValue: minValue
+          defaultValue: defaultValue
+          maxValue: maxValue
           options:
             key: "{}"
           id: id
           labels:
             key: labels
-        - varType: varType
+        - regexValidation: regexValidation
+          varType: varType
+          minValue: minValue
+          defaultValue: defaultValue
+          maxValue: maxValue
           options:
             key: "{}"
           id: id
