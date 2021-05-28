@@ -7122,8 +7122,6 @@ components:
           description: a map of RunTemplateId/DatasetId to set a default dataset for
             a Run Template
           type: object
-      required:
-      - solutionId
       type: object
     WorkspaceUser:
       description: a Workspace user with roles
