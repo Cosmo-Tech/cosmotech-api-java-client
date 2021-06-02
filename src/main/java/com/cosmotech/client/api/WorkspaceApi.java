@@ -1600,6 +1600,7 @@ public class WorkspaceApi {
      * @param workspaceId the Workspace identifier (required)
      * @param file  (required)
      * @param overwrite  (optional, default to false)
+     * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1610,7 +1611,7 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadWorkspaceFileCall(String organizationId, String workspaceId, File file, Boolean overwrite, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call uploadWorkspaceFileCall(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1626,6 +1627,10 @@ public class WorkspaceApi {
 
         if (overwrite != null) {
             localVarFormParams.put("overwrite", overwrite);
+        }
+
+        if (destination != null) {
+            localVarFormParams.put("destination", destination);
         }
 
         if (file != null) {
@@ -1651,7 +1656,7 @@ public class WorkspaceApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, File file, Boolean overwrite, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call uploadWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -1669,7 +1674,7 @@ public class WorkspaceApi {
         }
         
 
-        okhttp3.Call localVarCall = uploadWorkspaceFileCall(organizationId, workspaceId, file, overwrite, _callback);
+        okhttp3.Call localVarCall = uploadWorkspaceFileCall(organizationId, workspaceId, file, overwrite, destination, _callback);
         return localVarCall;
 
     }
@@ -1681,6 +1686,7 @@ public class WorkspaceApi {
      * @param workspaceId the Workspace identifier (required)
      * @param file  (required)
      * @param overwrite  (optional, default to false)
+     * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @return WorkspaceFile
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1690,8 +1696,8 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public WorkspaceFile uploadWorkspaceFile(String organizationId, String workspaceId, File file, Boolean overwrite) throws ApiException {
-        ApiResponse<WorkspaceFile> localVarResp = uploadWorkspaceFileWithHttpInfo(organizationId, workspaceId, file, overwrite);
+    public WorkspaceFile uploadWorkspaceFile(String organizationId, String workspaceId, File file, Boolean overwrite, String destination) throws ApiException {
+        ApiResponse<WorkspaceFile> localVarResp = uploadWorkspaceFileWithHttpInfo(organizationId, workspaceId, file, overwrite, destination);
         return localVarResp.getData();
     }
 
@@ -1702,6 +1708,7 @@ public class WorkspaceApi {
      * @param workspaceId the Workspace identifier (required)
      * @param file  (required)
      * @param overwrite  (optional, default to false)
+     * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @return ApiResponse&lt;WorkspaceFile&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1711,8 +1718,8 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WorkspaceFile> uploadWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, File file, Boolean overwrite) throws ApiException {
-        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, null);
+    public ApiResponse<WorkspaceFile> uploadWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, File file, Boolean overwrite, String destination) throws ApiException {
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, destination, null);
         Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1724,6 +1731,7 @@ public class WorkspaceApi {
      * @param workspaceId the Workspace identifier (required)
      * @param file  (required)
      * @param overwrite  (optional, default to false)
+     * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1734,9 +1742,9 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadWorkspaceFileAsync(String organizationId, String workspaceId, File file, Boolean overwrite, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
+    public okhttp3.Call uploadWorkspaceFileAsync(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, _callback);
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, destination, _callback);
         Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

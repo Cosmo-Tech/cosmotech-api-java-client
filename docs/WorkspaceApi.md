@@ -842,7 +842,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadWorkspaceFile"></a>
 # **uploadWorkspaceFile**
-> WorkspaceFile uploadWorkspaceFile(organizationId, workspaceId, file, overwrite)
+> WorkspaceFile uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination)
 
 Upload a file for the Workspace
 
@@ -870,8 +870,9 @@ public class Example {
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     File file = new File("/path/to/file"); // File | 
     Boolean overwrite = false; // Boolean | 
+    String destination = "destination_example"; // String | Destination path. Must end with a '/' if specifying a folder. Note that paths may or may not start with a '/', but they are always treated as relative to the Workspace root location. 
     try {
-      WorkspaceFile result = apiInstance.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite);
+      WorkspaceFile result = apiInstance.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WorkspaceApi#uploadWorkspaceFile");
@@ -892,6 +893,7 @@ Name | Type | Description  | Notes
  **workspaceId** | **String**| the Workspace identifier |
  **file** | **File**|  |
  **overwrite** | **Boolean**|  | [optional] [default to false]
+ **destination** | **String**| Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  | [optional]
 
 ### Return type
 

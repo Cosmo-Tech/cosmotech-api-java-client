@@ -257,7 +257,8 @@ public class WorkspaceApiTest {
         String workspaceId = null;
         File file = null;
         Boolean overwrite = null;
-        WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite);
+        String destination = null;
+        WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination);
 
         // TODO: test validations
     }
