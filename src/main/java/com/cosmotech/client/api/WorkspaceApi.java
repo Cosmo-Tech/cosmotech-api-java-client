@@ -588,16 +588,19 @@ public class WorkspaceApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files/{file_name}"
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files/delete"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
-            .replaceAll("\\{" + "file_name" + "\\}", localVarApiClient.escapeString(fileName.toString()));
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fileName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("file_name", fileName));
+        }
 
         final String[] localVarAccepts = {
             
@@ -720,16 +723,19 @@ public class WorkspaceApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files/{file_name}"
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/files/download"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
-            .replaceAll("\\{" + "file_name" + "\\}", localVarApiClient.escapeString(fileName.toString()));
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fileName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("file_name", fileName));
+        }
 
         final String[] localVarAccepts = {
             "application/octet-stream"

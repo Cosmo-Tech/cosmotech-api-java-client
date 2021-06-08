@@ -3169,44 +3169,7 @@ paths:
       - workspace
       x-contentType: multipart/form-data
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/files/{file_name}:
-    delete:
-      operationId: deleteWorkspaceFile
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the file name
-        explode: false
-        in: path
-        name: file_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Workspace or the file specified is unknown or you don't
-            have access to them
-      summary: Delete a workspace file
-      tags:
-      - workspace
-      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/files/download:
     get:
       operationId: downloadWorkspaceFile
       parameters:
@@ -3227,13 +3190,13 @@ paths:
           type: string
         style: simple
       - description: the file name
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: file_name
         required: true
         schema:
           type: string
-        style: simple
+        style: form
       responses:
         "200":
           content:
@@ -3249,6 +3212,44 @@ paths:
       tags:
       - workspace
       x-accepts: application/octet-stream
+  /organizations/{organization_id}/workspaces/{workspace_id}/files/delete:
+    delete:
+      operationId: deleteWorkspaceFile
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the file name
+        explode: true
+        in: query
+        name: file_name
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Workspace or the file specified is unknown or you don't
+            have access to them
+      summary: Delete a workspace file
+      tags:
+      - workspace
+      x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/users:
     delete:
       operationId: removeAllUsersOfWorkspace
@@ -3914,7 +3915,7 @@ components:
         description: Brewery child reference analysis
         tags:
         - Brewery
-        runTemplateId: "1"
+        runTemplateId: hundred
         parentId: "1"
     BreweryDatasetCopyParameters:
       description: Parameters for Dataset copy from Dataset 1 to 2 example
@@ -3936,7 +3937,7 @@ components:
         worskspaceId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
-        runTemplateId: "1"
+        runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
         users:
         - id: "1"
@@ -3977,7 +3978,7 @@ components:
         tags:
         - Brewery
         - reference
-        runTemplateId: "1"
+        runTemplateId: hundred
         users:
         - id: "1"
           name: Bob
@@ -4324,7 +4325,7 @@ components:
         worskspaceId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
-        runTemplateId: "1"
+        runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
         users:
         - id: "1"
@@ -4954,7 +4955,7 @@ components:
         worskspaceId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
-        runTemplateId: "1"
+        runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
         users:
         - id: "1"
@@ -4986,7 +4987,7 @@ components:
         worskspaceId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
-        runTemplateId: "1"
+        runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
         users:
         - id: "1"
@@ -5017,7 +5018,7 @@ components:
         worskspaceId: "1"
         solutionId: "1"
         solutionName: Brewery Solution
-        runTemplateId: "1"
+        runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
         users:
         - id: "1"
@@ -7229,7 +7230,8 @@ components:
       description: OAuth2 authentication
       flows:
         implicit:
-          authorizationUrl: oauth2/authorize
-          scopes: {}
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          scopes:
+            http://dev.api.cosmotech.com/platform: Platform scope
       type: oauth2
 
