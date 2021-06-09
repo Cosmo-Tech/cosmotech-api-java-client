@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioLastRun;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
@@ -33,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-08T14:28:56.403610+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-09T11:27:28.819349+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -157,6 +158,10 @@ public class Scenario {
   public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
   private List<ScenarioRunTemplateParameterValue> parametersValues = null;
+
+  public static final String SERIALIZED_NAME_LAST_RUN = "lastRun";
+  @SerializedName(SERIALIZED_NAME_LAST_RUN)
+  private ScenarioLastRun lastRun;
 
 
    /**
@@ -515,6 +520,29 @@ public class Scenario {
   }
 
 
+  public Scenario lastRun(ScenarioLastRun lastRun) {
+    
+    this.lastRun = lastRun;
+    return this;
+  }
+
+   /**
+   * Get lastRun
+   * @return lastRun
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioLastRun getLastRun() {
+    return lastRun;
+  }
+
+
+  public void setLastRun(ScenarioLastRun lastRun) {
+    this.lastRun = lastRun;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -541,12 +569,13 @@ public class Scenario {
         Objects.equals(this.solutionName, scenario.solutionName) &&
         Objects.equals(this.runTemplateName, scenario.runTemplateName) &&
         Objects.equals(this.datasetList, scenario.datasetList) &&
-        Objects.equals(this.parametersValues, scenario.parametersValues);
+        Objects.equals(this.parametersValues, scenario.parametersValues) &&
+        Objects.equals(this.lastRun, scenario.lastRun);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, lastRun);
   }
 
   @Override
@@ -571,6 +600,7 @@ public class Scenario {
     sb.append("    runTemplateName: ").append(toIndentedString(runTemplateName)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
     sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
+    sb.append("    lastRun: ").append(toIndentedString(lastRun)).append("\n");
     sb.append("}");
     return sb.toString();
   }

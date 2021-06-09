@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.4-SNAPSHOT
-  - Build date: 2021-06-08T14:28:56.403610+02:00[Europe/Paris]
+  - Build date: 2021-06-09T11:27:28.819349+02:00[Europe/Paris]
 
 Cosmo Tech Platform API
 
@@ -227,6 +227,7 @@ Class | Method | HTTP request | Description
  - [Scenario](docs/Scenario.md)
  - [ScenarioChangedParameterValue](docs/ScenarioChangedParameterValue.md)
  - [ScenarioComparisonResult](docs/ScenarioComparisonResult.md)
+ - [ScenarioLastRun](docs/ScenarioLastRun.md)
  - [ScenarioRun](docs/ScenarioRun.md)
  - [ScenarioRunContainer](docs/ScenarioRunContainer.md)
  - [ScenarioRunContainerLogs](docs/ScenarioRunContainerLogs.md)
