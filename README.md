@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.4-SNAPSHOT
-  - Build date: 2021-07-09T10:39:51.992926+02:00[Europe/Paris]
+  - Build date: 2021-07-09T13:33:30.419381101Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -84,7 +84,7 @@ import com.cosmotech.client.api.ConnectorApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.cosmotech.com");
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -108,7 +108,7 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.cosmotech.com*
+All URIs are relative to *https://dev.api.cosmotech.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -270,5 +270,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-
+platform@cosmotech.com
 
