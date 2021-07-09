@@ -111,6 +111,23 @@ public class ScenarioApiTest {
     }
     
     /**
+     * Delete all Scenarios of the Workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteAllScenariosTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        api.deleteAllScenarios(organizationId, workspaceId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Delete a scenario
      *
      * 

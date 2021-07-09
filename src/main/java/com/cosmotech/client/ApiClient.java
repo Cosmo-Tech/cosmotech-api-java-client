@@ -61,7 +61,7 @@ import com.cosmotech.client.auth.OAuthFlow;
 
 public class ApiClient {
 
-    private String basePath = "https://api.azure.cosmo-platform.com";
+    private String basePath = "https://api.cosmotech.com";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private Map<String, String> defaultCookieMap = new HashMap<String, String>();
@@ -199,7 +199,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://api.azure.cosmo-platform.com
+     * @param basePath Base path of the URL (e.g https://api.cosmotech.com
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

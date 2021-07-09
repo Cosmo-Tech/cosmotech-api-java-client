@@ -41,11 +41,11 @@ public class ScenarioLastRunTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'scenarioRunId'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void scenarioRunIdTest() {
+        // TODO: test scenarioRunId
     }
 
     /**

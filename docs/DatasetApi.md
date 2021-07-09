@@ -1,6 +1,6 @@
 # DatasetApi
 
-All URIs are relative to *https://api.azure.cosmo-platform.com*
+All URIs are relative to *https://api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,7 +33,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -104,7 +104,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -173,7 +173,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -241,7 +241,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -308,7 +308,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -373,7 +373,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -441,7 +441,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
@@ -508,7 +508,7 @@ import com.cosmotech.client.api.DatasetApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.azure.cosmo-platform.com");
+    defaultClient.setBasePath("https://api.cosmotech.com");
     
     // Configure OAuth2 access token for authorization: oAuth2AuthCode
     OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");

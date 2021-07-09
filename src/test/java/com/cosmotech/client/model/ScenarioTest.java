@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.ScenarioLastRun;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import com.google.gson.TypeAdapter;
@@ -91,6 +92,14 @@ public class ScenarioTest {
     @Test
     public void ownerIdTest() {
         // TODO: test ownerId
+    }
+
+    /**
+     * Test the property 'rootId'
+     */
+    @Test
+    public void rootIdTest() {
+        // TODO: test rootId
     }
 
     /**
@@ -187,6 +196,14 @@ public class ScenarioTest {
     @Test
     public void parametersValuesTest() {
         // TODO: test parametersValues
+    }
+
+    /**
+     * Test the property 'lastRun'
+     */
+    @Test
+    public void lastRunTest() {
+        // TODO: test lastRun
     }
 
 }

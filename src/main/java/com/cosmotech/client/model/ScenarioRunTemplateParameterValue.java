@@ -28,7 +28,7 @@ import java.io.IOException;
  * the value of a Solution Run Template parameter for a Scenario
  */
 @ApiModel(description = "the value of a Solution Run Template parameter for a Scenario")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-09T11:27:28.819349+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-09T10:39:51.992926+02:00[Europe/Paris]")
 public class ScenarioRunTemplateParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)
@@ -44,7 +44,7 @@ public class ScenarioRunTemplateParameterValue {
 
   public static final String SERIALIZED_NAME_IS_INHERITED = "isInherited";
   @SerializedName(SERIALIZED_NAME_IS_INHERITED)
-  private String isInherited;
+  private Boolean isInherited;
 
 
   public ScenarioRunTemplateParameterValue parameterId(String parameterId) {
@@ -105,7 +105,7 @@ public class ScenarioRunTemplateParameterValue {
   }
 
 
-  public ScenarioRunTemplateParameterValue isInherited(String isInherited) {
+  public ScenarioRunTemplateParameterValue isInherited(Boolean isInherited) {
     
     this.isInherited = isInherited;
     return this;
@@ -118,12 +118,12 @@ public class ScenarioRunTemplateParameterValue {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "whether or not the value is inherited from parent or has been changed")
 
-  public String getIsInherited() {
+  public Boolean getIsInherited() {
     return isInherited;
   }
 
 
-  public void setIsInherited(String isInherited) {
+  public void setIsInherited(Boolean isInherited) {
     this.isInherited = isInherited;
   }
 

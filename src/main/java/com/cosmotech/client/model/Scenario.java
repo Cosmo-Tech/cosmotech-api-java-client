@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-09T11:27:28.819349+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-09T10:39:51.992926+02:00[Europe/Paris]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,6 +59,10 @@ public class Scenario {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
+
+  public static final String SERIALIZED_NAME_ROOT_ID = "rootId";
+  @SerializedName(SERIALIZED_NAME_ROOT_ID)
+  private String rootId;
 
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
@@ -287,6 +291,20 @@ public class Scenario {
 
   public String getOwnerId() {
     return ownerId;
+  }
+
+
+
+
+   /**
+   * the scenario root id
+   * @return rootId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the scenario root id")
+
+  public String getRootId() {
+    return rootId;
   }
 
 
@@ -558,6 +576,7 @@ public class Scenario {
         Objects.equals(this.tags, scenario.tags) &&
         Objects.equals(this.parentId, scenario.parentId) &&
         Objects.equals(this.ownerId, scenario.ownerId) &&
+        Objects.equals(this.rootId, scenario.rootId) &&
         Objects.equals(this.solutionId, scenario.solutionId) &&
         Objects.equals(this.runTemplateId, scenario.runTemplateId) &&
         Objects.equals(this.workspaceId, scenario.workspaceId) &&
@@ -575,7 +594,7 @@ public class Scenario {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, lastRun);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, rootId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, lastRun);
   }
 
   @Override
@@ -588,6 +607,7 @@ public class Scenario {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    rootId: ").append(toIndentedString(rootId)).append("\n");
     sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
     sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    workspaceId: ").append(toIndentedString(workspaceId)).append("\n");
