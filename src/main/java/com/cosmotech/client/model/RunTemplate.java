@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-12T08:46:28.501213764Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-12T08:47:05.217368904Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
