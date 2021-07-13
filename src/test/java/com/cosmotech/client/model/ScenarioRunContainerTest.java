@@ -61,6 +61,14 @@ public class ScenarioRunContainerTest {
     }
 
     /**
+     * Test the property 'labels'
+     */
+    @Test
+    public void labelsTest() {
+        // TODO: test labels
+    }
+
+    /**
      * Test the property 'envVars'
      */
     @Test

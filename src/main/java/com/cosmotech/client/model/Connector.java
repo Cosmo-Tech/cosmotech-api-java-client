@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-12T08:49:16.121819398Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-13T10:45:51.969097470Z[Etc/UTC]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -68,6 +68,10 @@ public class Connector {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
+
+  public static final String SERIALIZED_NAME_AZURE_MANAGED_IDENTITY = "azureManagedIdentity";
+  @SerializedName(SERIALIZED_NAME_AZURE_MANAGED_IDENTITY)
+  private Boolean azureManagedIdentity;
 
   /**
    * The read and write capabilities of connector
@@ -318,6 +322,29 @@ public class Connector {
   }
 
 
+  public Connector azureManagedIdentity(Boolean azureManagedIdentity) {
+    
+    this.azureManagedIdentity = azureManagedIdentity;
+    return this;
+  }
+
+   /**
+   * whether or not the connector uses Azure Managed Identity
+   * @return azureManagedIdentity
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not the connector uses Azure Managed Identity")
+
+  public Boolean getAzureManagedIdentity() {
+    return azureManagedIdentity;
+  }
+
+
+  public void setAzureManagedIdentity(Boolean azureManagedIdentity) {
+    this.azureManagedIdentity = azureManagedIdentity;
+  }
+
+
   public Connector ioTypes(List<IoTypesEnum> ioTypes) {
     
     this.ioTypes = ioTypes;
@@ -394,13 +421,14 @@ public class Connector {
         Objects.equals(this.tags, connector.tags) &&
         Objects.equals(this.ownerId, connector.ownerId) &&
         Objects.equals(this.url, connector.url) &&
+        Objects.equals(this.azureManagedIdentity, connector.azureManagedIdentity) &&
         Objects.equals(this.ioTypes, connector.ioTypes) &&
         Objects.equals(this.parameterGroups, connector.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, repository, version, tags, ownerId, url, ioTypes, parameterGroups);
+    return Objects.hash(id, key, name, description, repository, version, tags, ownerId, url, azureManagedIdentity, ioTypes, parameterGroups);
   }
 
   @Override
@@ -416,6 +444,7 @@ public class Connector {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    azureManagedIdentity: ").append(toIndentedString(azureManagedIdentity)).append("\n");
     sb.append("    ioTypes: ").append(toIndentedString(ioTypes)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");

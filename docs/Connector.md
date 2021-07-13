@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **tags** | **List&lt;String&gt;** | the list of tags |  [optional]
 **ownerId** | **String** | the user id which own this connector version |  [optional] [readonly]
 **url** | **String** | an optional URL link to connector page |  [optional]
+**azureManagedIdentity** | **Boolean** | whether or not the connector uses Azure Managed Identity |  [optional]
 **ioTypes** | [**List&lt;IoTypesEnum&gt;**](#List&lt;IoTypesEnum&gt;) |  | 
 **parameterGroups** | [**List&lt;ConnectorParameterGroup&gt;**](ConnectorParameterGroup.md) | the list of connector parameters groups |  [optional]
 

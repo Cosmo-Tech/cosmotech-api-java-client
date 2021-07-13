@@ -5381,6 +5381,7 @@ components:
         repository: repository
         ownerId: ownerId
         version: version
+        azureManagedIdentity: true
         key: key
         url: url
         tags:
@@ -5419,6 +5420,9 @@ components:
         url:
           description: an optional URL link to connector page
           type: string
+        azureManagedIdentity:
+          description: whether or not the connector uses Azure Managed Identity
+          type: boolean
         ioTypes:
           items:
             description: The read and write capabilities of connector
@@ -6228,6 +6232,8 @@ components:
           envVars:
             key: envVars
           id: id
+          labels:
+            key: labels
           dependencies:
           - dependencies
           - dependencies
@@ -6240,6 +6246,8 @@ components:
           envVars:
             key: envVars
           id: id
+          labels:
+            key: labels
           dependencies:
           - dependencies
           - dependencies
@@ -6350,6 +6358,8 @@ components:
         envVars:
           key: envVars
         id: id
+        labels:
+          key: labels
         dependencies:
         - dependencies
         - dependencies
@@ -6361,6 +6371,11 @@ components:
         name:
           description: the container name
           type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: the metadata labels
+          type: object
         envVars:
           additionalProperties:
             type: string
@@ -6500,6 +6515,8 @@ components:
           envVars:
             key: envVars
           id: id
+          labels:
+            key: labels
           dependencies:
           - dependencies
           - dependencies
@@ -6512,6 +6529,8 @@ components:
           envVars:
             key: envVars
           id: id
+          labels:
+            key: labels
           dependencies:
           - dependencies
           - dependencies

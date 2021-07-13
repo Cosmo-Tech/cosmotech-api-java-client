@@ -32,7 +32,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-12T08:49:16.121819398Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-13T10:45:51.969097470Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -41,6 +41,10 @@ public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_LABELS = "labels";
+  @SerializedName(SERIALIZED_NAME_LABELS)
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_ENV_VARS = "envVars";
   @SerializedName(SERIALIZED_NAME_ENV_VARS)
@@ -96,6 +100,37 @@ public class ScenarioRunContainer {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public ScenarioRunContainer labels(Map<String, String> labels) {
+    
+    this.labels = labels;
+    return this;
+  }
+
+  public ScenarioRunContainer putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<String, String>();
+    }
+    this.labels.put(key, labelsItem);
+    return this;
+  }
+
+   /**
+   * the metadata labels
+   * @return labels
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the metadata labels")
+
+  public Map<String, String> getLabels() {
+    return labels;
+  }
+
+
+  public void setLabels(Map<String, String> labels) {
+    this.labels = labels;
   }
 
 
@@ -248,6 +283,7 @@ public class ScenarioRunContainer {
     ScenarioRunContainer scenarioRunContainer = (ScenarioRunContainer) o;
     return Objects.equals(this.id, scenarioRunContainer.id) &&
         Objects.equals(this.name, scenarioRunContainer.name) &&
+        Objects.equals(this.labels, scenarioRunContainer.labels) &&
         Objects.equals(this.envVars, scenarioRunContainer.envVars) &&
         Objects.equals(this.image, scenarioRunContainer.image) &&
         Objects.equals(this.entrypoint, scenarioRunContainer.entrypoint) &&
@@ -257,7 +293,7 @@ public class ScenarioRunContainer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, envVars, image, entrypoint, runArgs, dependencies);
+    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies);
   }
 
   @Override
@@ -266,6 +302,7 @@ public class ScenarioRunContainer {
     sb.append("class ScenarioRunContainer {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    envVars: ").append(toIndentedString(envVars)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");

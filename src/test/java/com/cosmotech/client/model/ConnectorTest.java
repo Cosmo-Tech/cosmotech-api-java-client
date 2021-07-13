@@ -116,6 +116,14 @@ public class ConnectorTest {
     }
 
     /**
+     * Test the property 'azureManagedIdentity'
+     */
+    @Test
+    public void azureManagedIdentityTest() {
+        // TODO: test azureManagedIdentity
+    }
+
+    /**
      * Test the property 'ioTypes'
      */
     @Test
