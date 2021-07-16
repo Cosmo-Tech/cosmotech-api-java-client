@@ -6112,6 +6112,7 @@ components:
           - Running
           - Successful
           - Failed
+          - Unknown
           readOnly: true
           type: string
         creationDate:

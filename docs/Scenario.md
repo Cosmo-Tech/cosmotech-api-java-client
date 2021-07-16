@@ -39,6 +39,7 @@ CREATED | &quot;Created&quot;
 RUNNING | &quot;Running&quot;
 SUCCESSFUL | &quot;Successful&quot;
 FAILED | &quot;Failed&quot;
+UNKNOWN | &quot;Unknown&quot;
 
 
 
