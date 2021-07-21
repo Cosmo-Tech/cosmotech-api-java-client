@@ -5333,6 +5333,19 @@ components:
     Connector:
       description: a version of a Connector
       example:
+        ioTypes:
+        - read
+        - read
+        azureAuthenticationWithCustomerAppRegistration: true
+        description: description
+        repository: repository
+        ownerId: ownerId
+        version: version
+        azureManagedIdentity: true
+        url: url
+        tags:
+        - tags
+        - tags
         parameterGroups:
         - id: id
           label: label
@@ -5372,21 +5385,9 @@ components:
             - options
             id: id
             label: label
-        ioTypes:
-        - read
-        - read
         name: name
-        description: description
         id: id
-        repository: repository
-        ownerId: ownerId
-        version: version
-        azureManagedIdentity: true
         key: key
-        url: url
-        tags:
-        - tags
-        - tags
       properties:
         id:
           description: the Connector version unique identifier
@@ -5422,6 +5423,10 @@ components:
           type: string
         azureManagedIdentity:
           description: whether or not the connector uses Azure Managed Identity
+          type: boolean
+        azureAuthenticationWithCustomerAppRegistration:
+          description: whether to authenticate against Azure using the app registration
+            credentials provided by the customer
           type: boolean
         ioTypes:
           items:

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **ownerId** | **String** | the user id which own this connector version |  [optional] [readonly]
 **url** | **String** | an optional URL link to connector page |  [optional]
 **azureManagedIdentity** | **Boolean** | whether or not the connector uses Azure Managed Identity |  [optional]
+**azureAuthenticationWithCustomerAppRegistration** | **Boolean** | whether to authenticate against Azure using the app registration credentials provided by the customer |  [optional]
 **ioTypes** | [**List&lt;IoTypesEnum&gt;**](#List&lt;IoTypesEnum&gt;) |  | 
 **parameterGroups** | [**List&lt;ConnectorParameterGroup&gt;**](ConnectorParameterGroup.md) | the list of connector parameters groups |  [optional]
 

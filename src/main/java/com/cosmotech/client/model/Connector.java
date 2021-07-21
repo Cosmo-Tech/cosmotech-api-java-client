@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-19T14:45:20.153739556Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-21T13:57:27.915425986Z[Etc/UTC]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -72,6 +72,10 @@ public class Connector {
   public static final String SERIALIZED_NAME_AZURE_MANAGED_IDENTITY = "azureManagedIdentity";
   @SerializedName(SERIALIZED_NAME_AZURE_MANAGED_IDENTITY)
   private Boolean azureManagedIdentity;
+
+  public static final String SERIALIZED_NAME_AZURE_AUTHENTICATION_WITH_CUSTOMER_APP_REGISTRATION = "azureAuthenticationWithCustomerAppRegistration";
+  @SerializedName(SERIALIZED_NAME_AZURE_AUTHENTICATION_WITH_CUSTOMER_APP_REGISTRATION)
+  private Boolean azureAuthenticationWithCustomerAppRegistration;
 
   /**
    * The read and write capabilities of connector
@@ -345,6 +349,29 @@ public class Connector {
   }
 
 
+  public Connector azureAuthenticationWithCustomerAppRegistration(Boolean azureAuthenticationWithCustomerAppRegistration) {
+    
+    this.azureAuthenticationWithCustomerAppRegistration = azureAuthenticationWithCustomerAppRegistration;
+    return this;
+  }
+
+   /**
+   * whether to authenticate against Azure using the app registration credentials provided by the customer
+   * @return azureAuthenticationWithCustomerAppRegistration
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether to authenticate against Azure using the app registration credentials provided by the customer")
+
+  public Boolean getAzureAuthenticationWithCustomerAppRegistration() {
+    return azureAuthenticationWithCustomerAppRegistration;
+  }
+
+
+  public void setAzureAuthenticationWithCustomerAppRegistration(Boolean azureAuthenticationWithCustomerAppRegistration) {
+    this.azureAuthenticationWithCustomerAppRegistration = azureAuthenticationWithCustomerAppRegistration;
+  }
+
+
   public Connector ioTypes(List<IoTypesEnum> ioTypes) {
     
     this.ioTypes = ioTypes;
@@ -422,13 +449,14 @@ public class Connector {
         Objects.equals(this.ownerId, connector.ownerId) &&
         Objects.equals(this.url, connector.url) &&
         Objects.equals(this.azureManagedIdentity, connector.azureManagedIdentity) &&
+        Objects.equals(this.azureAuthenticationWithCustomerAppRegistration, connector.azureAuthenticationWithCustomerAppRegistration) &&
         Objects.equals(this.ioTypes, connector.ioTypes) &&
         Objects.equals(this.parameterGroups, connector.parameterGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, repository, version, tags, ownerId, url, azureManagedIdentity, ioTypes, parameterGroups);
+    return Objects.hash(id, key, name, description, repository, version, tags, ownerId, url, azureManagedIdentity, azureAuthenticationWithCustomerAppRegistration, ioTypes, parameterGroups);
   }
 
   @Override
@@ -445,6 +473,7 @@ public class Connector {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    azureManagedIdentity: ").append(toIndentedString(azureManagedIdentity)).append("\n");
+    sb.append("    azureAuthenticationWithCustomerAppRegistration: ").append(toIndentedString(azureAuthenticationWithCustomerAppRegistration)).append("\n");
     sb.append("    ioTypes: ").append(toIndentedString(ioTypes)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("}");

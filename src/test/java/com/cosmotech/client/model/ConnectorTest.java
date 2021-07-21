@@ -124,6 +124,14 @@ public class ConnectorTest {
     }
 
     /**
+     * Test the property 'azureAuthenticationWithCustomerAppRegistration'
+     */
+    @Test
+    public void azureAuthenticationWithCustomerAppRegistrationTest() {
+        // TODO: test azureAuthenticationWithCustomerAppRegistration
+    }
+
+    /**
      * Test the property 'ioTypes'
      */
     @Test
