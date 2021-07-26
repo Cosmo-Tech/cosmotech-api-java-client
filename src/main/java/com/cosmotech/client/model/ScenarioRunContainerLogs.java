@@ -30,7 +30,7 @@ import java.util.List;
  * logs for a given container
  */
 @ApiModel(description = "logs for a given container")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-26T07:17:32.007870444Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-26T08:31:16.685547303Z[Etc/UTC]")
 public class ScenarioRunContainerLogs {
   public static final String SERIALIZED_NAME_NODE_ID = "nodeId";
   @SerializedName(SERIALIZED_NAME_NODE_ID)
