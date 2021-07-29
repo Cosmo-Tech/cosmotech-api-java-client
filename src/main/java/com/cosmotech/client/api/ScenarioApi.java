@@ -763,6 +763,7 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
+     * @param waitRelationshipPropagation whether to wait until child scenarios are effectively updated (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -773,7 +774,7 @@ public class ScenarioApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteScenarioCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteScenarioCall(String organizationId, String workspaceId, String scenarioId, Boolean waitRelationshipPropagation, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -787,6 +788,10 @@ public class ScenarioApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (waitRelationshipPropagation != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("wait_relationship_propagation", waitRelationshipPropagation));
+        }
 
         final String[] localVarAccepts = {
             
@@ -807,7 +812,7 @@ public class ScenarioApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, Boolean waitRelationshipPropagation, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -825,7 +830,7 @@ public class ScenarioApi {
         }
         
 
-        okhttp3.Call localVarCall = deleteScenarioCall(organizationId, workspaceId, scenarioId, _callback);
+        okhttp3.Call localVarCall = deleteScenarioCall(organizationId, workspaceId, scenarioId, waitRelationshipPropagation, _callback);
         return localVarCall;
 
     }
@@ -836,6 +841,7 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
+     * @param waitRelationshipPropagation whether to wait until child scenarios are effectively updated (optional, default to false)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -844,8 +850,8 @@ public class ScenarioApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public void deleteScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        deleteScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
+    public void deleteScenario(String organizationId, String workspaceId, String scenarioId, Boolean waitRelationshipPropagation) throws ApiException {
+        deleteScenarioWithHttpInfo(organizationId, workspaceId, scenarioId, waitRelationshipPropagation);
     }
 
     /**
@@ -854,6 +860,7 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
+     * @param waitRelationshipPropagation whether to wait until child scenarios are effectively updated (optional, default to false)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -863,8 +870,8 @@ public class ScenarioApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deleteScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
-        okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
+    public ApiResponse<Void> deleteScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId, Boolean waitRelationshipPropagation) throws ApiException {
+        okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, waitRelationshipPropagation, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -874,6 +881,7 @@ public class ScenarioApi {
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
      * @param scenarioId the Scenario identifier (required)
+     * @param waitRelationshipPropagation whether to wait until child scenarios are effectively updated (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -884,9 +892,9 @@ public class ScenarioApi {
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteScenarioAsync(String organizationId, String workspaceId, String scenarioId, Boolean waitRelationshipPropagation, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
+        okhttp3.Call localVarCall = deleteScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, waitRelationshipPropagation, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
