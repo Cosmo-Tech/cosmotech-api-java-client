@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **runSource** | **RunTemplateStepSource** |  |  [optional]
 **postRunSource** | **RunTemplateStepSource** |  |  [optional]
 **parameterGroups** | **List&lt;String&gt;** | the ordered list of parameters groups for the Run Template |  [optional]
+**stackSteps** | **Boolean** | whether or not to stack adjacent scenario run steps in one container run which will chain steps |  [optional]
 
 
 

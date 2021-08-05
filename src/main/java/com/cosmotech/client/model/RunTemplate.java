@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-02T15:09:33.784335573Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-05T09:30:21.472304157Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -120,6 +120,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
   private List<String> parameterGroups = null;
+
+  public static final String SERIALIZED_NAME_STACK_STEPS = "stackSteps";
+  @SerializedName(SERIALIZED_NAME_STACK_STEPS)
+  private Boolean stackSteps;
 
 
   public RunTemplate id(String id) {
@@ -642,6 +646,29 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate stackSteps(Boolean stackSteps) {
+    
+    this.stackSteps = stackSteps;
+    return this;
+  }
+
+   /**
+   * whether or not to stack adjacent scenario run steps in one container run which will chain steps
+   * @return stackSteps
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not to stack adjacent scenario run steps in one container run which will chain steps")
+
+  public Boolean getStackSteps() {
+    return stackSteps;
+  }
+
+
+  public void setStackSteps(Boolean stackSteps) {
+    this.stackSteps = stackSteps;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -672,12 +699,13 @@ public class RunTemplate {
         Objects.equals(this.preRunSource, runTemplate.preRunSource) &&
         Objects.equals(this.runSource, runTemplate.runSource) &&
         Objects.equals(this.postRunSource, runTemplate.postRunSource) &&
-        Objects.equals(this.parameterGroups, runTemplate.parameterGroups);
+        Objects.equals(this.parameterGroups, runTemplate.parameterGroups) &&
+        Objects.equals(this.stackSteps, runTemplate.stackSteps);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, parameterGroups);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, parameterGroups, stackSteps);
   }
 
   @Override
@@ -706,6 +734,7 @@ public class RunTemplate {
     sb.append("    runSource: ").append(toIndentedString(runSource)).append("\n");
     sb.append("    postRunSource: ").append(toIndentedString(postRunSource)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
+    sb.append("    stackSteps: ").append(toIndentedString(stackSteps)).append("\n");
     sb.append("}");
     return sb.toString();
   }

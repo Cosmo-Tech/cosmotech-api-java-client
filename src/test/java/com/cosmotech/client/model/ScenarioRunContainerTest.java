@@ -108,4 +108,12 @@ public class ScenarioRunContainerTest {
         // TODO: test dependencies
     }
 
+    /**
+     * Test the property 'solutionContainer'
+     */
+    @Test
+    public void solutionContainerTest() {
+        // TODO: test solutionContainer
+    }
+
 }

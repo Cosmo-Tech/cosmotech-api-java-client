@@ -219,4 +219,12 @@ public class RunTemplateTest {
         // TODO: test parameterGroups
     }
 
+    /**
+     * Test the property 'stackSteps'
+     */
+    @Test
+    public void stackStepsTest() {
+        // TODO: test stackSteps
+    }
+
 }

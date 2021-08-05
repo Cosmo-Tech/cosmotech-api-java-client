@@ -32,7 +32,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-02T15:09:33.784335573Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-05T09:30:21.472304157Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -65,6 +65,10 @@ public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_DEPENDENCIES = "dependencies";
   @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
   private List<String> dependencies = null;
+
+  public static final String SERIALIZED_NAME_SOLUTION_CONTAINER = "solutionContainer";
+  @SerializedName(SERIALIZED_NAME_SOLUTION_CONTAINER)
+  private Boolean solutionContainer;
 
 
    /**
@@ -272,6 +276,20 @@ public class ScenarioRunContainer {
   }
 
 
+   /**
+   * whether or not this container is a Cosmo Tech solution container
+   * @return solutionContainer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not this container is a Cosmo Tech solution container")
+
+  public Boolean getSolutionContainer() {
+    return solutionContainer;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -288,12 +306,13 @@ public class ScenarioRunContainer {
         Objects.equals(this.image, scenarioRunContainer.image) &&
         Objects.equals(this.entrypoint, scenarioRunContainer.entrypoint) &&
         Objects.equals(this.runArgs, scenarioRunContainer.runArgs) &&
-        Objects.equals(this.dependencies, scenarioRunContainer.dependencies);
+        Objects.equals(this.dependencies, scenarioRunContainer.dependencies) &&
+        Objects.equals(this.solutionContainer, scenarioRunContainer.solutionContainer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies);
+    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies, solutionContainer);
   }
 
   @Override
@@ -308,6 +327,7 @@ public class ScenarioRunContainer {
     sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
     sb.append("    runArgs: ").append(toIndentedString(runArgs)).append("\n");
     sb.append("    dependencies: ").append(toIndentedString(dependencies)).append("\n");
+    sb.append("    solutionContainer: ").append(toIndentedString(solutionContainer)).append("\n");
     sb.append("}");
     return sb.toString();
   }
