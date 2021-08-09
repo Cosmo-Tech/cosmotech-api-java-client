@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Dataset compatibility constraint to a Solution version open range
  */
 @ApiModel(description = "a Dataset compatibility constraint to a Solution version open range")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-09T21:57:01.764321994Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-09T21:59:33.099519840Z[Etc/UTC]")
 public class DatasetCompatibility {
   public static final String SERIALIZED_NAME_SOLUTION_KEY = "solutionKey";
   @SerializedName(SERIALIZED_NAME_SOLUTION_KEY)
