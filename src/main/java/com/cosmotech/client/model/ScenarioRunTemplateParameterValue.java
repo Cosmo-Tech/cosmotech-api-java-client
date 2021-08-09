@@ -28,7 +28,7 @@ import java.io.IOException;
  * the value of a Solution Run Template parameter for a Scenario
  */
 @ApiModel(description = "the value of a Solution Run Template parameter for a Scenario")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-09T22:04:08.155971304Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-09T22:14:02.309767695Z[Etc/UTC]")
 public class ScenarioRunTemplateParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)
