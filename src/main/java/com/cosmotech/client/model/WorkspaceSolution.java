@@ -32,7 +32,7 @@ import java.util.Map;
  * the Workspace Solution configuration
  */
 @ApiModel(description = "the Workspace Solution configuration")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T10:04:33.138820147Z[Etc/UTC]")
 public class WorkspaceSolution {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
