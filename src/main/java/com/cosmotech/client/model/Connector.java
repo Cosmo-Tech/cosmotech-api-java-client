@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -157,6 +157,7 @@ public class Connector {
    * the Connector key which group Connector versions
    * @return key
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Connector key which group Connector versions")
 
   public String getKey() {
@@ -179,6 +180,7 @@ public class Connector {
    * the Connector name
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Connector name")
 
   public String getName() {
@@ -224,6 +226,7 @@ public class Connector {
    * the registry repository containing the image
    * @return repository
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the registry repository containing the image")
 
   public String getRepository() {
@@ -246,6 +249,7 @@ public class Connector {
    * the Connector version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag
    * @return version
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Connector version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag")
 
   public String getVersion() {
@@ -387,6 +391,7 @@ public class Connector {
    * Get ioTypes
    * @return ioTypes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<IoTypesEnum> getIoTypes() {

@@ -30,7 +30,7 @@ import java.util.List;
  * a Validator to validate a Dataset
  */
 @ApiModel(description = "a Validator to validate a Dataset")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class Validator {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,6 +69,7 @@ public class Validator {
    * the Validator id
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Validator id")
 
   public String getId() {
@@ -88,6 +89,7 @@ public class Validator {
    * the Validator name
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Validator name")
 
   public String getName() {
@@ -133,6 +135,7 @@ public class Validator {
    * the registry repository containing the Validator image
    * @return repository
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the registry repository containing the Validator image")
 
   public String getRepository() {
@@ -155,6 +158,7 @@ public class Validator {
    * the Validator version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag
    * @return version
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Validator version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag")
 
   public String getVersion() {

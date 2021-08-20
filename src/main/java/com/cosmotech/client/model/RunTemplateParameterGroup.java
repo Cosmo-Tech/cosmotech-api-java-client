@@ -32,7 +32,7 @@ import java.util.Map;
  * a Parameter Group for a Run Template
  */
 @ApiModel(description = "a Parameter Group for a Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,6 +69,7 @@ public class RunTemplateParameterGroup {
    * the Parameter Group id
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Parameter Group id")
 
   public String getId() {
@@ -96,6 +97,7 @@ public class RunTemplateParameterGroup {
    * a translated label with key as ISO 639-1 code
    * @return labels
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "a translated label with key as ISO 639-1 code")
 
   public Map<String, String> getLabels() {
@@ -200,6 +202,7 @@ public class RunTemplateParameterGroup {
    * an ordered list of Run Template Parameters
    * @return parameters
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "an ordered list of Run Template Parameters")
 
   public List<String> getParameters() {

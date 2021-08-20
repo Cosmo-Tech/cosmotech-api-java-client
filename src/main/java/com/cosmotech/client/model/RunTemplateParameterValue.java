@@ -28,7 +28,7 @@ import java.io.IOException;
  * the value of Analysis parameter for a Scenario for this ScenarioRun
  */
 @ApiModel(description = "the value of Analysis parameter for a Scenario for this ScenarioRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class RunTemplateParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)
@@ -53,6 +53,7 @@ public class RunTemplateParameterValue {
    * the parameter Id
    * @return parameterId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the parameter Id")
 
   public String getParameterId() {
@@ -89,6 +90,7 @@ public class RunTemplateParameterValue {
    * the parameter value
    * @return value
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the parameter value")
 
   public String getValue() {

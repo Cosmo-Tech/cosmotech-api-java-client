@@ -31,7 +31,7 @@ import java.util.List;
  * the parameters to run directly containers
  */
 @ApiModel(description = "the parameters to run directly containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class ScenarioRunStartContainers {
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
@@ -83,6 +83,7 @@ public class ScenarioRunStartContainers {
    * Cosmo Tech Simulation Run Id
    * @return csmSimulationId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Cosmo Tech Simulation Run Id")
 
   public String getCsmSimulationId() {
@@ -133,6 +134,7 @@ public class ScenarioRunStartContainers {
    * the containerslist
    * @return containers
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the containerslist")
 
   public List<ScenarioRunContainer> getContainers() {

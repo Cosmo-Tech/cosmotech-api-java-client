@@ -30,7 +30,7 @@ import java.util.List;
  * a connector parameter
  */
 @ApiModel(description = "a connector parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class ConnectorParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -67,6 +67,7 @@ public class ConnectorParameter {
    * the connector parameter id
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the connector parameter id")
 
   public String getId() {
@@ -89,6 +90,7 @@ public class ConnectorParameter {
    * the list of translated parameter group labels
    * @return label
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the list of translated parameter group labels")
 
   public String getLabel() {

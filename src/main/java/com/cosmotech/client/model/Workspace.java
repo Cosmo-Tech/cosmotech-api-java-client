@@ -33,7 +33,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:12:39.747392388Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-20T09:42:52.494744949Z[Etc/UTC]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -104,6 +104,7 @@ public class Workspace {
    * technical key for resource name convention and version grouping. Must be unique
    * @return key
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "technical key for resource name convention and version grouping. Must be unique")
 
   public String getKey() {
@@ -126,6 +127,7 @@ public class Workspace {
    * the Workspace name
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "the Workspace name")
 
   public String getName() {
@@ -239,6 +241,7 @@ public class Workspace {
    * Get solution
    * @return solution
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public WorkspaceSolution getSolution() {
