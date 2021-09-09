@@ -31,7 +31,7 @@ import java.util.Map;
  * a cloud service resource
  */
 @ApiModel(description = "a cloud service resource")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-09T14:20:31.242641836Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-09T14:23:21.159138807Z[Etc/UTC]")
 public class OrganizationService {
   public static final String SERIALIZED_NAME_CLOUD_SERVICE = "cloudService";
   @SerializedName(SERIALIZED_NAME_CLOUD_SERVICE)
