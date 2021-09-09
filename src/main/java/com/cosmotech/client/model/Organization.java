@@ -32,7 +32,7 @@ import java.util.List;
  * an Organization
  */
 @ApiModel(description = "an Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-09T13:10:14.944828804Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-09T13:12:27.494650752Z[Etc/UTC]")
 public class Organization {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
