@@ -28,7 +28,7 @@ import java.io.IOException;
  * the last Scenarion Run for this Scenario
  */
 @ApiModel(description = "the last Scenarion Run for this Scenario")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-09T14:36:54.698272454Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-10T10:18:55.430517457Z[Etc/UTC]")
 public class ScenarioLastRun {
   public static final String SERIALIZED_NAME_SCENARIO_RUN_ID = "scenarioRunId";
   @SerializedName(SERIALIZED_NAME_SCENARIO_RUN_ID)
