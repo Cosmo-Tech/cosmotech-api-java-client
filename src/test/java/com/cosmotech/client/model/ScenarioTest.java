@@ -206,4 +206,20 @@ public class ScenarioTest {
         // TODO: test lastRun
     }
 
+    /**
+     * Test the property 'parentLastRun'
+     */
+    @Test
+    public void parentLastRunTest() {
+        // TODO: test parentLastRun
+    }
+
+    /**
+     * Test the property 'rootLastRun'
+     */
+    @Test
+    public void rootLastRunTest() {
+        // TODO: test rootLastRun
+    }
+
 }

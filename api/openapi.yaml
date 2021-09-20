@@ -6035,12 +6035,9 @@ components:
     Scenario:
       description: a Scenario with base information
       example:
-        lastRun:
-          csmSimulationRun: csmSimulationRun
-          scenarioRunId: scenarioRunId
-          workflowName: workflowName
-          workflowId: workflowId
+        lastRun: ""
         rootId: rootId
+        parentLastRun: ""
         solutionName: solutionName
         description: description
         runTemplateName: runTemplateName
@@ -6080,6 +6077,7 @@ components:
         datasetList:
         - datasetList
         - datasetList
+        rootLastRun: ""
         workspaceId: workspaceId
       properties:
         id:
@@ -6167,7 +6165,20 @@ components:
             $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
           type: array
         lastRun:
-          $ref: '#/components/schemas/Scenario_lastRun'
+          allOf:
+          - $ref: '#/components/schemas/ScenarioLastRun'
+          - description: the last Scenario Run for this Scenario
+            type: object
+        parentLastRun:
+          allOf:
+          - $ref: '#/components/schemas/ScenarioLastRun'
+          - description: the last Scenario Run for the parent of this Scenario
+            type: object
+        rootLastRun:
+          allOf:
+          - $ref: '#/components/schemas/ScenarioLastRun'
+          - description: the last Scenario Run for the root (master) of Scenario
+            type: object
       type: object
     ScenarioChangedParameterValue:
       description: the difference between the values of a parameter
@@ -6223,6 +6234,21 @@ components:
             $ref: '#/components/schemas/ScenarioChangedParameterValue'
           readOnly: true
           type: array
+      type: object
+    ScenarioLastRun:
+      properties:
+        scenarioRunId:
+          description: the last Scenario Run id
+          type: string
+        csmSimulationRun:
+          description: the last Cosmo Tech Simulation Run id
+          type: string
+        workflowId:
+          description: the last Workflow Id
+          type: string
+        workflowName:
+          description: the last Workflow name
+          type: string
       type: object
     ScenarioRun:
       description: a ScenarioRun with only base properties
@@ -7343,27 +7369,6 @@ components:
           type: string
       required:
       - file
-      type: object
-    Scenario_lastRun:
-      description: the last Scenarion Run for this Scenario
-      example:
-        csmSimulationRun: csmSimulationRun
-        scenarioRunId: scenarioRunId
-        workflowName: workflowName
-        workflowId: workflowId
-      properties:
-        scenarioRunId:
-          description: the last Scenario Run id
-          type: string
-        csmSimulationRun:
-          description: the last Cosmo Tech Simulation Run id
-          type: string
-        workflowId:
-          description: the last Workflow Id
-          type: string
-        workflowName:
-          description: the last Workflow name
-          type: string
       type: object
   securitySchemes:
     oAuth2AuthCode:

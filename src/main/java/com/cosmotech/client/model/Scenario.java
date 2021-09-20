@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-20T11:02:46.477720285Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-20T14:51:58.200423530Z[Etc/UTC]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -168,6 +168,14 @@ public class Scenario {
   public static final String SERIALIZED_NAME_LAST_RUN = "lastRun";
   @SerializedName(SERIALIZED_NAME_LAST_RUN)
   private ScenarioLastRun lastRun;
+
+  public static final String SERIALIZED_NAME_PARENT_LAST_RUN = "parentLastRun";
+  @SerializedName(SERIALIZED_NAME_PARENT_LAST_RUN)
+  private ScenarioLastRun parentLastRun;
+
+  public static final String SERIALIZED_NAME_ROOT_LAST_RUN = "rootLastRun";
+  @SerializedName(SERIALIZED_NAME_ROOT_LAST_RUN)
+  private ScenarioLastRun rootLastRun;
 
 
    /**
@@ -563,6 +571,52 @@ public class Scenario {
   }
 
 
+  public Scenario parentLastRun(ScenarioLastRun parentLastRun) {
+    
+    this.parentLastRun = parentLastRun;
+    return this;
+  }
+
+   /**
+   * Get parentLastRun
+   * @return parentLastRun
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioLastRun getParentLastRun() {
+    return parentLastRun;
+  }
+
+
+  public void setParentLastRun(ScenarioLastRun parentLastRun) {
+    this.parentLastRun = parentLastRun;
+  }
+
+
+  public Scenario rootLastRun(ScenarioLastRun rootLastRun) {
+    
+    this.rootLastRun = rootLastRun;
+    return this;
+  }
+
+   /**
+   * Get rootLastRun
+   * @return rootLastRun
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioLastRun getRootLastRun() {
+    return rootLastRun;
+  }
+
+
+  public void setRootLastRun(ScenarioLastRun rootLastRun) {
+    this.rootLastRun = rootLastRun;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -591,12 +645,14 @@ public class Scenario {
         Objects.equals(this.runTemplateName, scenario.runTemplateName) &&
         Objects.equals(this.datasetList, scenario.datasetList) &&
         Objects.equals(this.parametersValues, scenario.parametersValues) &&
-        Objects.equals(this.lastRun, scenario.lastRun);
+        Objects.equals(this.lastRun, scenario.lastRun) &&
+        Objects.equals(this.parentLastRun, scenario.parentLastRun) &&
+        Objects.equals(this.rootLastRun, scenario.rootLastRun);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, tags, parentId, ownerId, rootId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, lastRun);
+    return Objects.hash(id, name, description, tags, parentId, ownerId, rootId, solutionId, runTemplateId, workspaceId, users, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, parametersValues, lastRun, parentLastRun, rootLastRun);
   }
 
   @Override
@@ -623,6 +679,8 @@ public class Scenario {
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
     sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
     sb.append("    lastRun: ").append(toIndentedString(lastRun)).append("\n");
+    sb.append("    parentLastRun: ").append(toIndentedString(parentLastRun)).append("\n");
+    sb.append("    rootLastRun: ").append(toIndentedString(rootLastRun)).append("\n");
     sb.append("}");
     return sb.toString();
   }
