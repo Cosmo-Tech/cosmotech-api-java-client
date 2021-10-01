@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.ScenarioRunContainerArtifact;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -114,6 +115,14 @@ public class ScenarioRunContainerTest {
     @Test
     public void solutionContainerTest() {
         // TODO: test solutionContainer
+    }
+
+    /**
+     * Test the property 'artifacts'
+     */
+    @Test
+    public void artifactsTest() {
+        // TODO: test artifacts
     }
 
 }

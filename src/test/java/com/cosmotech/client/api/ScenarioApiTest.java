@@ -16,6 +16,8 @@ package com.cosmotech.client.api;
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Scenario;
 import com.cosmotech.client.model.ScenarioComparisonResult;
+import com.cosmotech.client.model.ScenarioDataDownloadInfo;
+import com.cosmotech.client.model.ScenarioDataDownloadJob;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 import org.junit.Test;
@@ -147,6 +149,24 @@ public class ScenarioApiTest {
     }
     
     /**
+     * Download Scenario data
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadScenarioDataTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+        ScenarioDataDownloadJob response = api.downloadScenarioData(organizationId, workspaceId, scenarioId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List all Scenarios
      *
      * 
@@ -177,6 +197,25 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         Scenario response = api.findScenarioById(organizationId, workspaceId, scenarioId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get Scenario data download URL
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getScenarioDataDownloadJobInfoTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+        String downloadId = null;
+        ScenarioDataDownloadInfo response = api.getScenarioDataDownloadJobInfo(organizationId, workspaceId, scenarioId, downloadId);
 
         // TODO: test validations
     }

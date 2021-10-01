@@ -25,36 +25,63 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Workspace File resource
+ * a scenario run container artifact
  */
-@ApiModel(description = "a Workspace File resource")
+@ApiModel(description = "a scenario run container artifact")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
-public class WorkspaceFile {
-  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
-  @SerializedName(SERIALIZED_NAME_FILE_NAME)
-  private String fileName;
+public class ScenarioRunContainerArtifact {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_PATH = "path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
 
 
-  public WorkspaceFile fileName(String fileName) {
+  public ScenarioRunContainerArtifact name(String name) {
     
-    this.fileName = fileName;
+    this.name = name;
     return this;
   }
 
    /**
-   * the Workspace File name
-   * @return fileName
+   * the artifact name
+   * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Workspace File name")
+  @ApiModelProperty(value = "the artifact name")
 
-  public String getFileName() {
-    return fileName;
+  public String getName() {
+    return name;
   }
 
 
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public ScenarioRunContainerArtifact path(String path) {
+    
+    this.path = path;
+    return this;
+  }
+
+   /**
+   * the artifact path (relative to /var/csmoutput)
+   * @return path
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the artifact path (relative to /var/csmoutput)")
+
+  public String getPath() {
+    return path;
+  }
+
+
+  public void setPath(String path) {
+    this.path = path;
   }
 
 
@@ -66,20 +93,22 @@ public class WorkspaceFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkspaceFile workspaceFile = (WorkspaceFile) o;
-    return Objects.equals(this.fileName, workspaceFile.fileName);
+    ScenarioRunContainerArtifact scenarioRunContainerArtifact = (ScenarioRunContainerArtifact) o;
+    return Objects.equals(this.name, scenarioRunContainerArtifact.name) &&
+        Objects.equals(this.path, scenarioRunContainerArtifact.path);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName);
+    return Objects.hash(name, path);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkspaceFile {\n");
-    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
+    sb.append("class ScenarioRunContainerArtifact {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -25,37 +25,28 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Workspace File resource
+ * Scenario data download job
  */
-@ApiModel(description = "a Workspace File resource")
+@ApiModel(description = "Scenario data download job")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
-public class WorkspaceFile {
-  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
-  @SerializedName(SERIALIZED_NAME_FILE_NAME)
-  private String fileName;
+public class ScenarioDataDownloadJob {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-
-  public WorkspaceFile fileName(String fileName) {
-    
-    this.fileName = fileName;
-    return this;
-  }
 
    /**
-   * the Workspace File name
-   * @return fileName
+   * the Scenario Data Download job identifier
+   * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Workspace File name")
+  @ApiModelProperty(value = "the Scenario Data Download job identifier")
 
-  public String getFileName() {
-    return fileName;
+  public String getId() {
+    return id;
   }
 
 
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
 
 
   @Override
@@ -66,20 +57,20 @@ public class WorkspaceFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkspaceFile workspaceFile = (WorkspaceFile) o;
-    return Objects.equals(this.fileName, workspaceFile.fileName);
+    ScenarioDataDownloadJob scenarioDataDownloadJob = (ScenarioDataDownloadJob) o;
+    return Objects.equals(this.id, scenarioDataDownloadJob.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName);
+    return Objects.hash(id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkspaceFile {\n");
-    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
+    sb.append("class ScenarioDataDownloadJob {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

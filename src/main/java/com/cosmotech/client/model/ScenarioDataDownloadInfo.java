@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioJobState;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,36 +26,54 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Workspace File resource
+ * Scenario data download job info
  */
-@ApiModel(description = "a Workspace File resource")
+@ApiModel(description = "Scenario data download job info")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
-public class WorkspaceFile {
-  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
-  @SerializedName(SERIALIZED_NAME_FILE_NAME)
-  private String fileName;
+public class ScenarioDataDownloadInfo {
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private String url;
+
+  public static final String SERIALIZED_NAME_STATE = "state";
+  @SerializedName(SERIALIZED_NAME_STATE)
+  private ScenarioJobState state;
 
 
-  public WorkspaceFile fileName(String fileName) {
+   /**
+   * the Scenario Data Download URL
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Scenario Data Download URL")
+
+  public String getUrl() {
+    return url;
+  }
+
+
+
+
+  public ScenarioDataDownloadInfo state(ScenarioJobState state) {
     
-    this.fileName = fileName;
+    this.state = state;
     return this;
   }
 
    /**
-   * the Workspace File name
-   * @return fileName
+   * Get state
+   * @return state
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Workspace File name")
+  @ApiModelProperty(value = "")
 
-  public String getFileName() {
-    return fileName;
+  public ScenarioJobState getState() {
+    return state;
   }
 
 
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
+  public void setState(ScenarioJobState state) {
+    this.state = state;
   }
 
 
@@ -66,20 +85,22 @@ public class WorkspaceFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkspaceFile workspaceFile = (WorkspaceFile) o;
-    return Objects.equals(this.fileName, workspaceFile.fileName);
+    ScenarioDataDownloadInfo scenarioDataDownloadInfo = (ScenarioDataDownloadInfo) o;
+    return Objects.equals(this.url, scenarioDataDownloadInfo.url) &&
+        Objects.equals(this.state, scenarioDataDownloadInfo.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName);
+    return Objects.hash(url, state);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkspaceFile {\n");
-    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
+    sb.append("class ScenarioDataDownloadInfo {\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **runTemplateId** | **String** | the Solution Run Template Id associated with this Scenario |  [optional]
 **workspaceId** | **String** | the associated Workspace Id |  [optional] [readonly]
 **users** | [**List&lt;ScenarioUser&gt;**](ScenarioUser.md) | the list of users Id with their role |  [optional]
-**state** | [**StateEnum**](#StateEnum) | the Scenario state |  [optional] [readonly]
+**state** | **ScenarioJobState** |  |  [optional]
 **creationDate** | **OffsetDateTime** | the Scenario creation date |  [optional] [readonly]
 **lastUpdate** | **OffsetDateTime** | the last time a Scenario was updated |  [optional] [readonly]
 **ownerName** | **String** | the name of the owner |  [optional] [readonly]
@@ -30,18 +30,6 @@ Name | Type | Description | Notes
 **lastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **parentLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **rootLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
-
-
-
-## Enum: StateEnum
-
-Name | Value
----- | -----
-CREATED | &quot;Created&quot;
-RUNNING | &quot;Running&quot;
-SUCCESSFUL | &quot;Successful&quot;
-FAILED | &quot;Failed&quot;
-UNKNOWN | &quot;Unknown&quot;
 
 
 

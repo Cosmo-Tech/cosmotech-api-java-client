@@ -29,6 +29,8 @@ import java.io.IOException;
 
 import com.cosmotech.client.model.Scenario;
 import com.cosmotech.client.model.ScenarioComparisonResult;
+import com.cosmotech.client.model.ScenarioDataDownloadInfo;
+import com.cosmotech.client.model.ScenarioDataDownloadJob;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
 
@@ -899,6 +901,142 @@ public class ScenarioApi {
         return localVarCall;
     }
     /**
+     * Build call for downloadScenarioData
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Data response, once acknowledged. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadScenarioDataCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadScenarioDataValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling downloadScenarioData(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling downloadScenarioData(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling downloadScenarioData(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = downloadScenarioDataCall(organizationId, workspaceId, scenarioId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Download Scenario data
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @return ScenarioDataDownloadJob
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Data response, once acknowledged. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ScenarioDataDownloadJob downloadScenarioData(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        ApiResponse<ScenarioDataDownloadJob> localVarResp = downloadScenarioDataWithHttpInfo(organizationId, workspaceId, scenarioId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Download Scenario data
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @return ApiResponse&lt;ScenarioDataDownloadJob&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Data response, once acknowledged. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ScenarioDataDownloadJob> downloadScenarioDataWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
+        okhttp3.Call localVarCall = downloadScenarioDataValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
+        Type localVarReturnType = new TypeToken<ScenarioDataDownloadJob>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Download Scenario data (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> the Scenario Data response, once acknowledged. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadScenarioDataAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<ScenarioDataDownloadJob> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadScenarioDataValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
+        Type localVarReturnType = new TypeToken<ScenarioDataDownloadJob>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for findAllScenarios
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
@@ -1153,6 +1291,152 @@ public class ScenarioApi {
 
         okhttp3.Call localVarCall = findScenarioByIdValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
         Type localVarReturnType = new TypeToken<Scenario>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getScenarioDataDownloadJobInfo
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param downloadId the Scenario Download identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenario data download URL. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getScenarioDataDownloadJobInfoCall(String organizationId, String workspaceId, String scenarioId, String downloadId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "workspace_id" + "\\}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "scenario_id" + "\\}", localVarApiClient.escapeString(scenarioId.toString()))
+            .replaceAll("\\{" + "download_id" + "\\}", localVarApiClient.escapeString(downloadId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getScenarioDataDownloadJobInfoValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, String downloadId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getScenarioDataDownloadJobInfo(Async)");
+        }
+        
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling getScenarioDataDownloadJobInfo(Async)");
+        }
+        
+        // verify the required parameter 'scenarioId' is set
+        if (scenarioId == null) {
+            throw new ApiException("Missing the required parameter 'scenarioId' when calling getScenarioDataDownloadJobInfo(Async)");
+        }
+        
+        // verify the required parameter 'downloadId' is set
+        if (downloadId == null) {
+            throw new ApiException("Missing the required parameter 'downloadId' when calling getScenarioDataDownloadJobInfo(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getScenarioDataDownloadJobInfoCall(organizationId, workspaceId, scenarioId, downloadId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get Scenario data download URL
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param downloadId the Scenario Download identifier (required)
+     * @return ScenarioDataDownloadInfo
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenario data download URL. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ScenarioDataDownloadInfo getScenarioDataDownloadJobInfo(String organizationId, String workspaceId, String scenarioId, String downloadId) throws ApiException {
+        ApiResponse<ScenarioDataDownloadInfo> localVarResp = getScenarioDataDownloadJobInfoWithHttpInfo(organizationId, workspaceId, scenarioId, downloadId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get Scenario data download URL
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param downloadId the Scenario Download identifier (required)
+     * @return ApiResponse&lt;ScenarioDataDownloadInfo&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenario data download URL. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ScenarioDataDownloadInfo> getScenarioDataDownloadJobInfoWithHttpInfo(String organizationId, String workspaceId, String scenarioId, String downloadId) throws ApiException {
+        okhttp3.Call localVarCall = getScenarioDataDownloadJobInfoValidateBeforeCall(organizationId, workspaceId, scenarioId, downloadId, null);
+        Type localVarReturnType = new TypeToken<ScenarioDataDownloadInfo>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get Scenario data download URL (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param scenarioId the Scenario identifier (required)
+     * @param downloadId the Scenario Download identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenario data download URL. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getScenarioDataDownloadJobInfoAsync(String organizationId, String workspaceId, String scenarioId, String downloadId, final ApiCallback<ScenarioDataDownloadInfo> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getScenarioDataDownloadJobInfoValidateBeforeCall(organizationId, workspaceId, scenarioId, downloadId, _callback);
+        Type localVarReturnType = new TypeToken<ScenarioDataDownloadInfo>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

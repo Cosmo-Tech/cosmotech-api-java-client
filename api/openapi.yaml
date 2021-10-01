@@ -1595,6 +1595,106 @@ paths:
       - scenario
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads:
+    post:
+      operationId: downloadScenarioData
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Scenario:
+                  $ref: '#/components/examples/BreweryScenarioDataDownloadJob'
+              schema:
+                $ref: '#/components/schemas/ScenarioDataDownloadJob'
+          description: "the Scenario Data response, once acknowledged."
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Download Scenario data
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id}:
+    get:
+      operationId: getScenarioDataDownloadJobInfo
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario Download identifier
+        explode: false
+        in: path
+        name: download_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioDataDownloadJobInfoResponse:
+                  value:
+                    url: https://link/to/a/file/to/download
+                    state: Successful
+              schema:
+                $ref: '#/components/schemas/ScenarioDataDownloadInfo'
+          description: the scenario data download URL.
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Get Scenario data download URL
+      tags:
+      - scenario
+      x-accepts: application/json
   /organizations:
     get:
       operationId: findAllOrganizations
@@ -4014,6 +4114,11 @@ components:
           varType: string
           value: Brewery Master Analysis
           comparedValue: Brewery Master Analysis 2021
+    BreweryScenarioDataDownloadJob:
+      description: Brewery Scenario Data Download Job
+      summary: Example of a scenario data download job
+      value:
+        id: sdl-abc123defghi
     BreweryScenarioIn:
       description: Brewery Scenario input example
       summary: Brewery Scenario input example
@@ -5798,31 +5903,33 @@ components:
     RunTemplate:
       description: a Solution Run Template
       example:
-        preRunSource: null
         runSource: null
-        postRun: true
-        parametersJson: true
         stackSteps: true
-        sendDatasetsToDataWarehouse: true
-        parametersHandlerSource: null
         description: description
         computeSize: computeSize
         applyParameters: true
         run: true
         validateData: true
         csmSimulation: csmSimulation
-        tags:
-        - tags
-        - tags
         parameterGroups:
         - parameterGroups
         - parameterGroups
-        fetchScenarioParameters: true
         postRunSource: null
-        name: name
         id: id
-        preRun: true
+        scenarioDataDownloadTransform: true
         datasetValidatorSource: null
+        preRunSource: null
+        scenariodataTransformSource: null
+        postRun: true
+        parametersJson: true
+        sendDatasetsToDataWarehouse: true
+        parametersHandlerSource: null
+        tags:
+        - tags
+        - tags
+        fetchScenarioParameters: true
+        name: name
+        preRun: true
         sendInputParametersToDataWarehouse: true
         fetchDatasets: true
       properties:
@@ -5850,6 +5957,10 @@ components:
           type: string
         fetchDatasets:
           description: whether or not the fetch dataset step is done
+          type: boolean
+        scenarioDataDownloadTransform:
+          description: whether or not the scenario data download transform step step
+            is done
           type: boolean
         fetchScenarioParameters:
           description: whether or not the fetch parameters step is done
@@ -5892,6 +6003,8 @@ components:
           $ref: '#/components/schemas/RunTemplateStepSource'
         postRunSource:
           $ref: '#/components/schemas/RunTemplateStepSource'
+        scenariodataTransformSource:
+          $ref: '#/components/schemas/RunTemplateStepSource'
         parameterGroups:
           description: the ordered list of parameters groups for the Run Template
           items:
@@ -5914,6 +6027,7 @@ components:
       - prerun
       - engine
       - postrun
+      - scenariodata_transform
       type: string
     RunTemplateParameter:
       description: a Run Template Parameter
@@ -6073,7 +6187,7 @@ components:
         runTemplateId: runTemplateId
         id: id
         solutionId: solutionId
-        state: Created
+        state: null
         datasetList:
         - datasetList
         - datasetList
@@ -6123,15 +6237,7 @@ components:
             $ref: '#/components/schemas/ScenarioUser'
           type: array
         state:
-          description: the Scenario state
-          enum:
-          - Created
-          - Running
-          - Successful
-          - Failed
-          - Unknown
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ScenarioJobState'
         creationDate:
           description: the Scenario creation date
           format: date-time
@@ -6235,6 +6341,39 @@ components:
           readOnly: true
           type: array
       type: object
+    ScenarioDataDownloadInfo:
+      description: Scenario data download job info
+      example:
+        state: null
+        url: url
+      properties:
+        url:
+          description: the Scenario Data Download URL
+          readOnly: true
+          type: string
+        state:
+          $ref: '#/components/schemas/ScenarioJobState'
+      type: object
+    ScenarioDataDownloadJob:
+      description: Scenario data download job
+      example:
+        id: id
+      properties:
+        id:
+          description: the Scenario Data Download job identifier
+          readOnly: true
+          type: string
+      type: object
+    ScenarioJobState:
+      description: the Scenario job state
+      enum:
+      - Created
+      - Running
+      - Successful
+      - Failed
+      - Unknown
+      readOnly: true
+      type: string
     ScenarioLastRun:
       properties:
         scenarioRunId:
@@ -6284,6 +6423,11 @@ components:
           dependencies:
           - dependencies
           - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
         - image: image
           runArgs:
           - runArgs
@@ -6299,6 +6443,11 @@ components:
           dependencies:
           - dependencies
           - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
         id: id
         solutionId: solutionId
         datasetList:
@@ -6412,6 +6561,11 @@ components:
         dependencies:
         - dependencies
         - dependencies
+        artifacts:
+        - path: path
+          name: name
+        - path: path
+          name: name
       properties:
         id:
           description: the container Id
@@ -6450,9 +6604,27 @@ components:
           description: whether or not this container is a Cosmo Tech solution container
           readOnly: true
           type: boolean
+        artifacts:
+          description: the list of artifacts
+          items:
+            $ref: '#/components/schemas/ScenarioRunContainerArtifact'
+          type: array
       required:
       - image
       - name
+      type: object
+    ScenarioRunContainerArtifact:
+      description: a scenario run container artifact
+      example:
+        path: path
+        name: name
+      properties:
+        name:
+          description: the artifact name
+          type: string
+        path:
+          description: the artifact path (relative to /var/csmoutput)
+          type: string
       type: object
     ScenarioRunContainerLogs:
       description: logs for a given container
@@ -6574,6 +6746,11 @@ components:
           dependencies:
           - dependencies
           - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
         - image: image
           runArgs:
           - runArgs
@@ -6589,9 +6766,16 @@ components:
           dependencies:
           - dependencies
           - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
         generateName: generateName
         nodeLabel: nodeLabel
         csmSimulationId: csmSimulationId
+        labels:
+          key: labels
       properties:
         generateName:
           description: the base name for workflow name generation
@@ -6602,6 +6786,11 @@ components:
         nodeLabel:
           description: the node label request
           type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: the workflow labels
+          type: object
         containers:
           description: the containerslist
           items:
@@ -6794,58 +6983,62 @@ components:
         version: version
         url: url
         runTemplates:
-        - preRunSource: null
-          runSource: null
-          postRun: true
-          parametersJson: true
+        - runSource: null
           stackSteps: true
-          sendDatasetsToDataWarehouse: true
-          parametersHandlerSource: null
           description: description
           computeSize: computeSize
           applyParameters: true
           run: true
           validateData: true
           csmSimulation: csmSimulation
-          tags:
-          - tags
-          - tags
           parameterGroups:
           - parameterGroups
           - parameterGroups
-          fetchScenarioParameters: true
           postRunSource: null
-          name: name
           id: id
-          preRun: true
+          scenarioDataDownloadTransform: true
           datasetValidatorSource: null
+          preRunSource: null
+          scenariodataTransformSource: null
+          postRun: true
+          parametersJson: true
+          sendDatasetsToDataWarehouse: true
+          parametersHandlerSource: null
+          tags:
+          - tags
+          - tags
+          fetchScenarioParameters: true
+          name: name
+          preRun: true
           sendInputParametersToDataWarehouse: true
           fetchDatasets: true
-        - preRunSource: null
-          runSource: null
-          postRun: true
-          parametersJson: true
+        - runSource: null
           stackSteps: true
-          sendDatasetsToDataWarehouse: true
-          parametersHandlerSource: null
           description: description
           computeSize: computeSize
           applyParameters: true
           run: true
           validateData: true
           csmSimulation: csmSimulation
-          tags:
-          - tags
-          - tags
           parameterGroups:
           - parameterGroups
           - parameterGroups
-          fetchScenarioParameters: true
           postRunSource: null
-          name: name
           id: id
-          preRun: true
+          scenarioDataDownloadTransform: true
           datasetValidatorSource: null
+          preRunSource: null
+          scenariodataTransformSource: null
+          postRun: true
+          parametersJson: true
+          sendDatasetsToDataWarehouse: true
+          parametersHandlerSource: null
+          tags:
+          - tags
+          - tags
+          fetchScenarioParameters: true
+          name: name
+          preRun: true
           sendInputParametersToDataWarehouse: true
           fetchDatasets: true
         tags:

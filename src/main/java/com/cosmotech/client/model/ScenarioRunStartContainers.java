@@ -25,13 +25,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * the parameters to run directly containers
  */
 @ApiModel(description = "the parameters to run directly containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-27T12:27:58.118031455Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
 public class ScenarioRunStartContainers {
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
@@ -44,6 +46,10 @@ public class ScenarioRunStartContainers {
   public static final String SERIALIZED_NAME_NODE_LABEL = "nodeLabel";
   @SerializedName(SERIALIZED_NAME_NODE_LABEL)
   private String nodeLabel;
+
+  public static final String SERIALIZED_NAME_LABELS = "labels";
+  @SerializedName(SERIALIZED_NAME_LABELS)
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_CONTAINERS = "containers";
   @SerializedName(SERIALIZED_NAME_CONTAINERS)
@@ -119,6 +125,37 @@ public class ScenarioRunStartContainers {
   }
 
 
+  public ScenarioRunStartContainers labels(Map<String, String> labels) {
+    
+    this.labels = labels;
+    return this;
+  }
+
+  public ScenarioRunStartContainers putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<String, String>();
+    }
+    this.labels.put(key, labelsItem);
+    return this;
+  }
+
+   /**
+   * the workflow labels
+   * @return labels
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the workflow labels")
+
+  public Map<String, String> getLabels() {
+    return labels;
+  }
+
+
+  public void setLabels(Map<String, String> labels) {
+    this.labels = labels;
+  }
+
+
   public ScenarioRunStartContainers containers(List<ScenarioRunContainer> containers) {
     
     this.containers = containers;
@@ -159,12 +196,13 @@ public class ScenarioRunStartContainers {
     return Objects.equals(this.generateName, scenarioRunStartContainers.generateName) &&
         Objects.equals(this.csmSimulationId, scenarioRunStartContainers.csmSimulationId) &&
         Objects.equals(this.nodeLabel, scenarioRunStartContainers.nodeLabel) &&
+        Objects.equals(this.labels, scenarioRunStartContainers.labels) &&
         Objects.equals(this.containers, scenarioRunStartContainers.containers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(generateName, csmSimulationId, nodeLabel, containers);
+    return Objects.hash(generateName, csmSimulationId, nodeLabel, labels, containers);
   }
 
   @Override
@@ -174,6 +212,7 @@ public class ScenarioRunStartContainers {
     sb.append("    generateName: ").append(toIndentedString(generateName)).append("\n");
     sb.append("    csmSimulationId: ").append(toIndentedString(csmSimulationId)).append("\n");
     sb.append("    nodeLabel: ").append(toIndentedString(nodeLabel)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
     sb.append("}");
     return sb.toString();

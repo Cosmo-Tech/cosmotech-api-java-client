@@ -100,6 +100,14 @@ public class RunTemplateTest {
     }
 
     /**
+     * Test the property 'scenarioDataDownloadTransform'
+     */
+    @Test
+    public void scenarioDataDownloadTransformTest() {
+        // TODO: test scenarioDataDownloadTransform
+    }
+
+    /**
      * Test the property 'fetchScenarioParameters'
      */
     @Test
@@ -209,6 +217,14 @@ public class RunTemplateTest {
     @Test
     public void postRunSourceTest() {
         // TODO: test postRunSource
+    }
+
+    /**
+     * Test the property 'scenariodataTransformSource'
+     */
+    @Test
+    public void scenariodataTransformSourceTest() {
+        // TODO: test scenariodataTransformSource
     }
 
     /**

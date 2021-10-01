@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioRunContainerArtifact;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,7 +33,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-27T12:27:58.118031455Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,6 +70,10 @@ public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_SOLUTION_CONTAINER = "solutionContainer";
   @SerializedName(SERIALIZED_NAME_SOLUTION_CONTAINER)
   private Boolean solutionContainer;
+
+  public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
+  @SerializedName(SERIALIZED_NAME_ARTIFACTS)
+  private List<ScenarioRunContainerArtifact> artifacts = null;
 
 
    /**
@@ -292,6 +297,37 @@ public class ScenarioRunContainer {
 
 
 
+  public ScenarioRunContainer artifacts(List<ScenarioRunContainerArtifact> artifacts) {
+    
+    this.artifacts = artifacts;
+    return this;
+  }
+
+  public ScenarioRunContainer addArtifactsItem(ScenarioRunContainerArtifact artifactsItem) {
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<ScenarioRunContainerArtifact>();
+    }
+    this.artifacts.add(artifactsItem);
+    return this;
+  }
+
+   /**
+   * the list of artifacts
+   * @return artifacts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of artifacts")
+
+  public List<ScenarioRunContainerArtifact> getArtifacts() {
+    return artifacts;
+  }
+
+
+  public void setArtifacts(List<ScenarioRunContainerArtifact> artifacts) {
+    this.artifacts = artifacts;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -309,12 +345,13 @@ public class ScenarioRunContainer {
         Objects.equals(this.entrypoint, scenarioRunContainer.entrypoint) &&
         Objects.equals(this.runArgs, scenarioRunContainer.runArgs) &&
         Objects.equals(this.dependencies, scenarioRunContainer.dependencies) &&
-        Objects.equals(this.solutionContainer, scenarioRunContainer.solutionContainer);
+        Objects.equals(this.solutionContainer, scenarioRunContainer.solutionContainer) &&
+        Objects.equals(this.artifacts, scenarioRunContainer.artifacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies, solutionContainer);
+    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies, solutionContainer, artifacts);
   }
 
   @Override
@@ -330,6 +367,7 @@ public class ScenarioRunContainer {
     sb.append("    runArgs: ").append(toIndentedString(runArgs)).append("\n");
     sb.append("    dependencies: ").append(toIndentedString(dependencies)).append("\n");
     sb.append("    solutionContainer: ").append(toIndentedString(solutionContainer)).append("\n");
+    sb.append("    artifacts: ").append(toIndentedString(artifacts)).append("\n");
     sb.append("}");
     return sb.toString();
   }

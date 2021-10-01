@@ -967,7 +967,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **solutionId** | **String**| the Solution identifier |
  **runTemplateId** | **String**| the Run Template identifier |
- **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun]
+ **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform]
  **body** | **File**|  |
  **overwrite** | **Boolean**| whether to overwrite any existing handler resource | [optional] [default to false]
 

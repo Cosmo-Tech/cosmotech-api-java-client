@@ -23,7 +23,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -65,6 +67,14 @@ public class ScenarioRunStartContainersTest {
     @Test
     public void nodeLabelTest() {
         // TODO: test nodeLabel
+    }
+
+    /**
+     * Test the property 'labels'
+     */
+    @Test
+    public void labelsTest() {
+        // TODO: test labels
     }
 
     /**

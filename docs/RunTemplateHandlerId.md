@@ -15,5 +15,7 @@
 
 * `POSTRUN` (value: `"postrun"`)
 
+* `SCENARIODATA_TRANSFORM` (value: `"scenariodata_transform"`)
+
 
 

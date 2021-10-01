@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.8-SNAPSHOT
-  - Build date: 2021-09-27T12:27:58.118031455Z[Etc/UTC]
+  - Build date: 2021-10-01T14:08:50.967221996Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -141,8 +141,10 @@ Class | Method | HTTP request | Description
 *ScenarioApi* | [**createScenario**](docs/ScenarioApi.md#createScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Create a new Scenario
 *ScenarioApi* | [**deleteAllScenarios**](docs/ScenarioApi.md#deleteAllScenarios) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Delete all Scenarios of the Workspace
 *ScenarioApi* | [**deleteScenario**](docs/ScenarioApi.md#deleteScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Delete a scenario
+*ScenarioApi* | [**downloadScenarioData**](docs/ScenarioApi.md#downloadScenarioData) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads | Download Scenario data
 *ScenarioApi* | [**findAllScenarios**](docs/ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios
 *ScenarioApi* | [**findScenarioById**](docs/ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
+*ScenarioApi* | [**getScenarioDataDownloadJobInfo**](docs/ScenarioApi.md#getScenarioDataDownloadJobInfo) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id} | Get Scenario data download URL
 *ScenarioApi* | [**getScenariosTree**](docs/ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
 *ScenarioApi* | [**removeAllScenarioParameterValues**](docs/ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified
 *ScenarioApi* | [**removeAllUsersOfScenario**](docs/ScenarioApi.md#removeAllUsersOfScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users | Remove all users from the Scenario specified
@@ -228,9 +230,13 @@ Class | Method | HTTP request | Description
  - [Scenario](docs/Scenario.md)
  - [ScenarioChangedParameterValue](docs/ScenarioChangedParameterValue.md)
  - [ScenarioComparisonResult](docs/ScenarioComparisonResult.md)
+ - [ScenarioDataDownloadInfo](docs/ScenarioDataDownloadInfo.md)
+ - [ScenarioDataDownloadJob](docs/ScenarioDataDownloadJob.md)
+ - [ScenarioJobState](docs/ScenarioJobState.md)
  - [ScenarioLastRun](docs/ScenarioLastRun.md)
  - [ScenarioRun](docs/ScenarioRun.md)
  - [ScenarioRunContainer](docs/ScenarioRunContainer.md)
+ - [ScenarioRunContainerArtifact](docs/ScenarioRunContainerArtifact.md)
  - [ScenarioRunContainerLogs](docs/ScenarioRunContainerLogs.md)
  - [ScenarioRunLogs](docs/ScenarioRunLogs.md)
  - [ScenarioRunSearch](docs/ScenarioRunSearch.md)

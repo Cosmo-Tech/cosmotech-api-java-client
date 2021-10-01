@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **runArgs** | **List&lt;String&gt;** | the list of run arguments for the container |  [optional]
 **dependencies** | **List&lt;String&gt;** | the list of dependencies container name to run this container |  [optional]
 **solutionContainer** | **Boolean** | whether or not this container is a Cosmo Tech solution container |  [optional] [readonly]
+**artifacts** | [**List&lt;ScenarioRunContainerArtifact&gt;**](ScenarioRunContainerArtifact.md) | the list of artifacts |  [optional]
 
 
 

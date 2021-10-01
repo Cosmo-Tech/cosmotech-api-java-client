@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioJobState;
 import com.cosmotech.client.model.ScenarioLastRun;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
@@ -34,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-27T12:27:58.118031455Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -80,62 +81,9 @@ public class Scenario {
   @SerializedName(SERIALIZED_NAME_USERS)
   private List<ScenarioUser> users = null;
 
-  /**
-   * the Scenario state
-   */
-  @JsonAdapter(StateEnum.Adapter.class)
-  public enum StateEnum {
-    CREATED("Created"),
-    
-    RUNNING("Running"),
-    
-    SUCCESSFUL("Successful"),
-    
-    FAILED("Failed"),
-    
-    UNKNOWN("Unknown");
-
-    private String value;
-
-    StateEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StateEnum fromValue(String value) {
-      for (StateEnum b : StateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StateEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StateEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StateEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StateEnum.fromValue(value);
-      }
-    }
-  }
-
   public static final String SERIALIZED_NAME_STATE = "state";
   @SerializedName(SERIALIZED_NAME_STATE)
-  private StateEnum state;
+  private ScenarioJobState state;
 
   public static final String SERIALIZED_NAME_CREATION_DATE = "creationDate";
   @SerializedName(SERIALIZED_NAME_CREATION_DATE)
@@ -402,18 +350,27 @@ public class Scenario {
   }
 
 
+  public Scenario state(ScenarioJobState state) {
+    
+    this.state = state;
+    return this;
+  }
+
    /**
-   * the Scenario state
+   * Get state
    * @return state
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Scenario state")
+  @ApiModelProperty(value = "")
 
-  public StateEnum getState() {
+  public ScenarioJobState getState() {
     return state;
   }
 
 
+  public void setState(ScenarioJobState state) {
+    this.state = state;
+  }
 
 
    /**

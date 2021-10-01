@@ -25,26 +25,24 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * the Run Template step handler identifier
+ * the Scenario job state
  */
-@JsonAdapter(RunTemplateHandlerId.Adapter.class)
-public enum RunTemplateHandlerId {
+@JsonAdapter(ScenarioJobState.Adapter.class)
+public enum ScenarioJobState {
   
-  PARAMETERS_HANDLER("parameters_handler"),
+  CREATED("Created"),
   
-  VALIDATOR("validator"),
+  RUNNING("Running"),
   
-  PRERUN("prerun"),
+  SUCCESSFUL("Successful"),
   
-  ENGINE("engine"),
+  FAILED("Failed"),
   
-  POSTRUN("postrun"),
-  
-  SCENARIODATA_TRANSFORM("scenariodata_transform");
+  UNKNOWN("Unknown");
 
   private String value;
 
-  RunTemplateHandlerId(String value) {
+  ScenarioJobState(String value) {
     this.value = value;
   }
 
@@ -57,8 +55,8 @@ public enum RunTemplateHandlerId {
     return String.valueOf(value);
   }
 
-  public static RunTemplateHandlerId fromValue(String value) {
-    for (RunTemplateHandlerId b : RunTemplateHandlerId.values()) {
+  public static ScenarioJobState fromValue(String value) {
+    for (ScenarioJobState b : ScenarioJobState.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -66,16 +64,16 @@ public enum RunTemplateHandlerId {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<RunTemplateHandlerId> {
+  public static class Adapter extends TypeAdapter<ScenarioJobState> {
     @Override
-    public void write(final JsonWriter jsonWriter, final RunTemplateHandlerId enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ScenarioJobState enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public RunTemplateHandlerId read(final JsonReader jsonReader) throws IOException {
+    public ScenarioJobState read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return RunTemplateHandlerId.fromValue(value);
+      return ScenarioJobState.fromValue(value);
     }
   }
 }

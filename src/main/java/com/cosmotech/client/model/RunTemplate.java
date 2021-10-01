@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-27T12:27:58.118031455Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-01T14:08:50.967221996Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -60,6 +60,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_FETCH_DATASETS = "fetchDatasets";
   @SerializedName(SERIALIZED_NAME_FETCH_DATASETS)
   private Boolean fetchDatasets;
+
+  public static final String SERIALIZED_NAME_SCENARIO_DATA_DOWNLOAD_TRANSFORM = "scenarioDataDownloadTransform";
+  @SerializedName(SERIALIZED_NAME_SCENARIO_DATA_DOWNLOAD_TRANSFORM)
+  private Boolean scenarioDataDownloadTransform;
 
   public static final String SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS = "fetchScenarioParameters";
   @SerializedName(SERIALIZED_NAME_FETCH_SCENARIO_PARAMETERS)
@@ -116,6 +120,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_POST_RUN_SOURCE = "postRunSource";
   @SerializedName(SERIALIZED_NAME_POST_RUN_SOURCE)
   private RunTemplateStepSource postRunSource;
+
+  public static final String SERIALIZED_NAME_SCENARIODATA_TRANSFORM_SOURCE = "scenariodataTransformSource";
+  @SerializedName(SERIALIZED_NAME_SCENARIODATA_TRANSFORM_SOURCE)
+  private RunTemplateStepSource scenariodataTransformSource;
 
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
@@ -292,6 +300,29 @@ public class RunTemplate {
 
   public void setFetchDatasets(Boolean fetchDatasets) {
     this.fetchDatasets = fetchDatasets;
+  }
+
+
+  public RunTemplate scenarioDataDownloadTransform(Boolean scenarioDataDownloadTransform) {
+    
+    this.scenarioDataDownloadTransform = scenarioDataDownloadTransform;
+    return this;
+  }
+
+   /**
+   * whether or not the scenario data download transform step step is done
+   * @return scenarioDataDownloadTransform
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "whether or not the scenario data download transform step step is done")
+
+  public Boolean getScenarioDataDownloadTransform() {
+    return scenarioDataDownloadTransform;
+  }
+
+
+  public void setScenarioDataDownloadTransform(Boolean scenarioDataDownloadTransform) {
+    this.scenarioDataDownloadTransform = scenarioDataDownloadTransform;
   }
 
 
@@ -617,6 +648,29 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate scenariodataTransformSource(RunTemplateStepSource scenariodataTransformSource) {
+    
+    this.scenariodataTransformSource = scenariodataTransformSource;
+    return this;
+  }
+
+   /**
+   * Get scenariodataTransformSource
+   * @return scenariodataTransformSource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public RunTemplateStepSource getScenariodataTransformSource() {
+    return scenariodataTransformSource;
+  }
+
+
+  public void setScenariodataTransformSource(RunTemplateStepSource scenariodataTransformSource) {
+    this.scenariodataTransformSource = scenariodataTransformSource;
+  }
+
+
   public RunTemplate parameterGroups(List<String> parameterGroups) {
     
     this.parameterGroups = parameterGroups;
@@ -687,6 +741,7 @@ public class RunTemplate {
         Objects.equals(this.tags, runTemplate.tags) &&
         Objects.equals(this.computeSize, runTemplate.computeSize) &&
         Objects.equals(this.fetchDatasets, runTemplate.fetchDatasets) &&
+        Objects.equals(this.scenarioDataDownloadTransform, runTemplate.scenarioDataDownloadTransform) &&
         Objects.equals(this.fetchScenarioParameters, runTemplate.fetchScenarioParameters) &&
         Objects.equals(this.applyParameters, runTemplate.applyParameters) &&
         Objects.equals(this.validateData, runTemplate.validateData) &&
@@ -701,13 +756,14 @@ public class RunTemplate {
         Objects.equals(this.preRunSource, runTemplate.preRunSource) &&
         Objects.equals(this.runSource, runTemplate.runSource) &&
         Objects.equals(this.postRunSource, runTemplate.postRunSource) &&
+        Objects.equals(this.scenariodataTransformSource, runTemplate.scenariodataTransformSource) &&
         Objects.equals(this.parameterGroups, runTemplate.parameterGroups) &&
         Objects.equals(this.stackSteps, runTemplate.stackSteps);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, parameterGroups, stackSteps);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps);
   }
 
   @Override
@@ -721,6 +777,7 @@ public class RunTemplate {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
     sb.append("    fetchDatasets: ").append(toIndentedString(fetchDatasets)).append("\n");
+    sb.append("    scenarioDataDownloadTransform: ").append(toIndentedString(scenarioDataDownloadTransform)).append("\n");
     sb.append("    fetchScenarioParameters: ").append(toIndentedString(fetchScenarioParameters)).append("\n");
     sb.append("    applyParameters: ").append(toIndentedString(applyParameters)).append("\n");
     sb.append("    validateData: ").append(toIndentedString(validateData)).append("\n");
@@ -735,6 +792,7 @@ public class RunTemplate {
     sb.append("    preRunSource: ").append(toIndentedString(preRunSource)).append("\n");
     sb.append("    runSource: ").append(toIndentedString(runSource)).append("\n");
     sb.append("    postRunSource: ").append(toIndentedString(postRunSource)).append("\n");
+    sb.append("    scenariodataTransformSource: ").append(toIndentedString(scenariodataTransformSource)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("    stackSteps: ").append(toIndentedString(stackSteps)).append("\n");
     sb.append("}");

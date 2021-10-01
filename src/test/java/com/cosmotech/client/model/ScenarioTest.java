@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.ScenarioJobState;
 import com.cosmotech.client.model.ScenarioLastRun;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioUser;
