@@ -33,7 +33,7 @@ import java.util.Map;
  * the parameters to run directly containers
  */
 @ApiModel(description = "the parameters to run directly containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-18T10:04:33.650008571Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-18T11:43:26.939016205Z[Etc/UTC]")
 public class ScenarioRunStartContainers {
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)
