@@ -36,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T15:37:33.125699089Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T15:55:42.561298292Z[Etc/UTC]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

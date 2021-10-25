@@ -28,7 +28,7 @@ import java.io.IOException;
  * status of a ScenarioRun Node
  */
 @ApiModel(description = "status of a ScenarioRun Node")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T15:37:33.125699089Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T15:55:42.561298292Z[Etc/UTC]")
 public class ScenarioRunStatusNode {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
