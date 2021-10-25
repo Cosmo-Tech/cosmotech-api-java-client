@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Validator Run
  */
 @ApiModel(description = "a Validator Run")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T16:05:20.151408141Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T16:07:12.319445276Z[Etc/UTC]")
 public class ValidatorRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
