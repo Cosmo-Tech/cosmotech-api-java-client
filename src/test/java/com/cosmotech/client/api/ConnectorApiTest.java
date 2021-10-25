@@ -42,8 +42,7 @@ public class ConnectorApiTest {
      */
     @Test
     public void findAllConnectorsTest() throws ApiException {
-        List<Connector> response = api.findAllConnectors();
-
+                List<Connector> response = api.findAllConnectors();
         // TODO: test validations
     }
     
@@ -58,8 +57,7 @@ public class ConnectorApiTest {
     @Test
     public void findConnectorByIdTest() throws ApiException {
         String connectorId = null;
-        Connector response = api.findConnectorById(connectorId);
-
+                Connector response = api.findConnectorById(connectorId);
         // TODO: test validations
     }
     
@@ -74,8 +72,7 @@ public class ConnectorApiTest {
     @Test
     public void registerConnectorTest() throws ApiException {
         Connector connector = null;
-        Connector response = api.registerConnector(connector);
-
+                Connector response = api.registerConnector(connector);
         // TODO: test validations
     }
     
@@ -90,8 +87,7 @@ public class ConnectorApiTest {
     @Test
     public void unregisterConnectorTest() throws ApiException {
         String connectorId = null;
-        api.unregisterConnector(connectorId);
-
+                api.unregisterConnector(connectorId);
         // TODO: test validations
     }
     

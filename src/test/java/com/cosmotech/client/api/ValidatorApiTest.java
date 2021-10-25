@@ -45,8 +45,7 @@ public class ValidatorApiTest {
     public void createValidatorTest() throws ApiException {
         String organizationId = null;
         Validator validator = null;
-        Validator response = api.createValidator(organizationId, validator);
-
+                Validator response = api.createValidator(organizationId, validator);
         // TODO: test validations
     }
     
@@ -63,8 +62,7 @@ public class ValidatorApiTest {
         String organizationId = null;
         String validatorId = null;
         ValidatorRun validatorRun = null;
-        ValidatorRun response = api.createValidatorRun(organizationId, validatorId, validatorRun);
-
+                ValidatorRun response = api.createValidatorRun(organizationId, validatorId, validatorRun);
         // TODO: test validations
     }
     
@@ -80,8 +78,7 @@ public class ValidatorApiTest {
     public void deleteValidatorTest() throws ApiException {
         String organizationId = null;
         String validatorId = null;
-        api.deleteValidator(organizationId, validatorId);
-
+                api.deleteValidator(organizationId, validatorId);
         // TODO: test validations
     }
     
@@ -98,8 +95,7 @@ public class ValidatorApiTest {
         String organizationId = null;
         String validatorId = null;
         String validatorrunId = null;
-        api.deleteValidatorRun(organizationId, validatorId, validatorrunId);
-
+                api.deleteValidatorRun(organizationId, validatorId, validatorrunId);
         // TODO: test validations
     }
     
@@ -115,8 +111,7 @@ public class ValidatorApiTest {
     public void findAllValidatorRunsTest() throws ApiException {
         String organizationId = null;
         String validatorId = null;
-        List<ValidatorRun> response = api.findAllValidatorRuns(organizationId, validatorId);
-
+                List<ValidatorRun> response = api.findAllValidatorRuns(organizationId, validatorId);
         // TODO: test validations
     }
     
@@ -131,8 +126,7 @@ public class ValidatorApiTest {
     @Test
     public void findAllValidatorsTest() throws ApiException {
         String organizationId = null;
-        List<Validator> response = api.findAllValidators(organizationId);
-
+                List<Validator> response = api.findAllValidators(organizationId);
         // TODO: test validations
     }
     
@@ -148,8 +142,7 @@ public class ValidatorApiTest {
     public void findValidatorByIdTest() throws ApiException {
         String organizationId = null;
         String validatorId = null;
-        Validator response = api.findValidatorById(organizationId, validatorId);
-
+                Validator response = api.findValidatorById(organizationId, validatorId);
         // TODO: test validations
     }
     
@@ -166,8 +159,7 @@ public class ValidatorApiTest {
         String organizationId = null;
         String validatorId = null;
         String validatorrunId = null;
-        ValidatorRun response = api.findValidatorRunById(organizationId, validatorId, validatorrunId);
-
+                ValidatorRun response = api.findValidatorRunById(organizationId, validatorId, validatorrunId);
         // TODO: test validations
     }
     
@@ -184,8 +176,7 @@ public class ValidatorApiTest {
         String organizationId = null;
         String validatorId = null;
         ValidatorRun validatorRun = null;
-        ValidatorRun response = api.runValidator(organizationId, validatorId, validatorRun);
-
+                ValidatorRun response = api.runValidator(organizationId, validatorId, validatorRun);
         // TODO: test validations
     }
     

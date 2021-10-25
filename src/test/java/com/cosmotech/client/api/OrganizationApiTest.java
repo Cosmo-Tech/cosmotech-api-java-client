@@ -46,8 +46,7 @@ public class OrganizationApiTest {
     public void addOrReplaceUsersInOrganizationTest() throws ApiException {
         String organizationId = null;
         List<OrganizationUser> organizationUser = null;
-        List<OrganizationUser> response = api.addOrReplaceUsersInOrganization(organizationId, organizationUser);
-
+                List<OrganizationUser> response = api.addOrReplaceUsersInOrganization(organizationId, organizationUser);
         // TODO: test validations
     }
     
@@ -61,8 +60,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void findAllOrganizationsTest() throws ApiException {
-        List<Organization> response = api.findAllOrganizations();
-
+                List<Organization> response = api.findAllOrganizations();
         // TODO: test validations
     }
     
@@ -77,8 +75,7 @@ public class OrganizationApiTest {
     @Test
     public void findOrganizationByIdTest() throws ApiException {
         String organizationId = null;
-        Organization response = api.findOrganizationById(organizationId);
-
+                Organization response = api.findOrganizationById(organizationId);
         // TODO: test validations
     }
     
@@ -93,8 +90,7 @@ public class OrganizationApiTest {
     @Test
     public void registerOrganizationTest() throws ApiException {
         Organization organization = null;
-        Organization response = api.registerOrganization(organization);
-
+                Organization response = api.registerOrganization(organization);
         // TODO: test validations
     }
     
@@ -109,8 +105,7 @@ public class OrganizationApiTest {
     @Test
     public void removeAllUsersInOrganizationTest() throws ApiException {
         String organizationId = null;
-        api.removeAllUsersInOrganization(organizationId);
-
+                api.removeAllUsersInOrganization(organizationId);
         // TODO: test validations
     }
     
@@ -126,8 +121,7 @@ public class OrganizationApiTest {
     public void removeUserFromOrganizationTest() throws ApiException {
         String organizationId = null;
         String userId = null;
-        api.removeUserFromOrganization(organizationId, userId);
-
+                api.removeUserFromOrganization(organizationId, userId);
         // TODO: test validations
     }
     
@@ -142,8 +136,7 @@ public class OrganizationApiTest {
     @Test
     public void unregisterOrganizationTest() throws ApiException {
         String organizationId = null;
-        api.unregisterOrganization(organizationId);
-
+                api.unregisterOrganization(organizationId);
         // TODO: test validations
     }
     
@@ -159,8 +152,7 @@ public class OrganizationApiTest {
     public void updateOrganizationTest() throws ApiException {
         String organizationId = null;
         Organization organization = null;
-        Organization response = api.updateOrganization(organizationId, organization);
-
+                Organization response = api.updateOrganization(organizationId, organization);
         // TODO: test validations
     }
     
@@ -176,8 +168,7 @@ public class OrganizationApiTest {
     public void updateSolutionsContainerRegistryByOrganizationIdTest() throws ApiException {
         String organizationId = null;
         OrganizationService organizationService = null;
-        OrganizationService response = api.updateSolutionsContainerRegistryByOrganizationId(organizationId, organizationService);
-
+                OrganizationService response = api.updateSolutionsContainerRegistryByOrganizationId(organizationId, organizationService);
         // TODO: test validations
     }
     
@@ -193,8 +184,7 @@ public class OrganizationApiTest {
     public void updateStorageByOrganizationIdTest() throws ApiException {
         String organizationId = null;
         OrganizationService organizationService = null;
-        OrganizationService response = api.updateStorageByOrganizationId(organizationId, organizationService);
-
+                OrganizationService response = api.updateStorageByOrganizationId(organizationId, organizationService);
         // TODO: test validations
     }
     
@@ -210,8 +200,7 @@ public class OrganizationApiTest {
     public void updateTenantCredentialsByOrganizationIdTest() throws ApiException {
         String organizationId = null;
         Map<String, Object> requestBody = null;
-        Map<String, Object> response = api.updateTenantCredentialsByOrganizationId(organizationId, requestBody);
-
+                Map<String, Object> response = api.updateTenantCredentialsByOrganizationId(organizationId, requestBody);
         // TODO: test validations
     }
     

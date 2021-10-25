@@ -42,8 +42,7 @@ public class UserApiTest {
      */
     @Test
     public void authorizeUserTest() throws ApiException {
-        api.authorizeUser();
-
+                api.authorizeUser();
         // TODO: test validations
     }
     
@@ -57,8 +56,7 @@ public class UserApiTest {
      */
     @Test
     public void findAllUsersTest() throws ApiException {
-        List<User> response = api.findAllUsers();
-
+                List<User> response = api.findAllUsers();
         // TODO: test validations
     }
     
@@ -73,8 +71,7 @@ public class UserApiTest {
     @Test
     public void findUserByIdTest() throws ApiException {
         String userId = null;
-        User response = api.findUserById(userId);
-
+                User response = api.findUserById(userId);
         // TODO: test validations
     }
     
@@ -88,8 +85,7 @@ public class UserApiTest {
      */
     @Test
     public void getCurrentUserTest() throws ApiException {
-        User response = api.getCurrentUser();
-
+                User response = api.getCurrentUser();
         // TODO: test validations
     }
     
@@ -104,8 +100,7 @@ public class UserApiTest {
     @Test
     public void getOrganizationCurrentUserTest() throws ApiException {
         String organizationId = null;
-        User response = api.getOrganizationCurrentUser(organizationId);
-
+                User response = api.getOrganizationCurrentUser(organizationId);
         // TODO: test validations
     }
     
@@ -121,8 +116,7 @@ public class UserApiTest {
     public void getWorkspaceCurrentUserTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        User response = api.getWorkspaceCurrentUser(organizationId, workspaceId);
-
+                User response = api.getWorkspaceCurrentUser(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -137,8 +131,7 @@ public class UserApiTest {
     @Test
     public void registerUserTest() throws ApiException {
         User user = null;
-        User response = api.registerUser(user);
-
+                User response = api.registerUser(user);
         // TODO: test validations
     }
     
@@ -152,8 +145,7 @@ public class UserApiTest {
      */
     @Test
     public void testPlatformTest() throws ApiException {
-        String response = api.testPlatform();
-
+                String response = api.testPlatform();
         // TODO: test validations
     }
     
@@ -168,8 +160,7 @@ public class UserApiTest {
     @Test
     public void unregisterUserTest() throws ApiException {
         String userId = null;
-        api.unregisterUser(userId);
-
+                api.unregisterUser(userId);
         // TODO: test validations
     }
     
@@ -185,8 +176,7 @@ public class UserApiTest {
     public void updateUserTest() throws ApiException {
         String userId = null;
         User user = null;
-        User response = api.updateUser(userId, user);
-
+                User response = api.updateUser(userId, user);
         // TODO: test validations
     }
     

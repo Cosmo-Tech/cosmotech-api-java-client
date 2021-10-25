@@ -47,8 +47,7 @@ public class DatasetApiTest {
         String organizationId = null;
         String datasetId = null;
         List<DatasetCompatibility> datasetCompatibility = null;
-        List<DatasetCompatibility> response = api.addOrReplaceDatasetCompatibilityElements(organizationId, datasetId, datasetCompatibility);
-
+                List<DatasetCompatibility> response = api.addOrReplaceDatasetCompatibilityElements(organizationId, datasetId, datasetCompatibility);
         // TODO: test validations
     }
     
@@ -64,8 +63,7 @@ public class DatasetApiTest {
     public void copyDatasetTest() throws ApiException {
         String organizationId = null;
         DatasetCopyParameters datasetCopyParameters = null;
-        DatasetCopyParameters response = api.copyDataset(organizationId, datasetCopyParameters);
-
+                DatasetCopyParameters response = api.copyDataset(organizationId, datasetCopyParameters);
         // TODO: test validations
     }
     
@@ -81,8 +79,7 @@ public class DatasetApiTest {
     public void createDatasetTest() throws ApiException {
         String organizationId = null;
         Dataset dataset = null;
-        Dataset response = api.createDataset(organizationId, dataset);
-
+                Dataset response = api.createDataset(organizationId, dataset);
         // TODO: test validations
     }
     
@@ -98,8 +95,7 @@ public class DatasetApiTest {
     public void deleteDatasetTest() throws ApiException {
         String organizationId = null;
         String datasetId = null;
-        api.deleteDataset(organizationId, datasetId);
-
+                api.deleteDataset(organizationId, datasetId);
         // TODO: test validations
     }
     
@@ -114,8 +110,7 @@ public class DatasetApiTest {
     @Test
     public void findAllDatasetsTest() throws ApiException {
         String organizationId = null;
-        List<Dataset> response = api.findAllDatasets(organizationId);
-
+                List<Dataset> response = api.findAllDatasets(organizationId);
         // TODO: test validations
     }
     
@@ -131,8 +126,7 @@ public class DatasetApiTest {
     public void findDatasetByIdTest() throws ApiException {
         String organizationId = null;
         String datasetId = null;
-        Dataset response = api.findDatasetById(organizationId, datasetId);
-
+                Dataset response = api.findDatasetById(organizationId, datasetId);
         // TODO: test validations
     }
     
@@ -148,8 +142,7 @@ public class DatasetApiTest {
     public void removeAllDatasetCompatibilityElementsTest() throws ApiException {
         String organizationId = null;
         String datasetId = null;
-        api.removeAllDatasetCompatibilityElements(organizationId, datasetId);
-
+                api.removeAllDatasetCompatibilityElements(organizationId, datasetId);
         // TODO: test validations
     }
     
@@ -166,8 +159,7 @@ public class DatasetApiTest {
         String organizationId = null;
         String datasetId = null;
         Dataset dataset = null;
-        Dataset response = api.updateDataset(organizationId, datasetId, dataset);
-
+                Dataset response = api.updateDataset(organizationId, datasetId, dataset);
         // TODO: test validations
     }
     

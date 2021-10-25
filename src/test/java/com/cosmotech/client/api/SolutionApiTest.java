@@ -50,8 +50,7 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
         List<RunTemplateParameterGroup> runTemplateParameterGroup = null;
-        List<RunTemplateParameterGroup> response = api.addOrReplaceParameterGroups(organizationId, solutionId, runTemplateParameterGroup);
-
+                List<RunTemplateParameterGroup> response = api.addOrReplaceParameterGroups(organizationId, solutionId, runTemplateParameterGroup);
         // TODO: test validations
     }
     
@@ -68,8 +67,7 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
         List<RunTemplateParameter> runTemplateParameter = null;
-        List<RunTemplateParameter> response = api.addOrReplaceParameters(organizationId, solutionId, runTemplateParameter);
-
+                List<RunTemplateParameter> response = api.addOrReplaceParameters(organizationId, solutionId, runTemplateParameter);
         // TODO: test validations
     }
     
@@ -86,8 +84,7 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
         List<RunTemplate> runTemplate = null;
-        List<RunTemplate> response = api.addOrReplaceRunTemplates(organizationId, solutionId, runTemplate);
-
+                List<RunTemplate> response = api.addOrReplaceRunTemplates(organizationId, solutionId, runTemplate);
         // TODO: test validations
     }
     
@@ -103,8 +100,7 @@ public class SolutionApiTest {
     public void createSolutionTest() throws ApiException {
         String organizationId = null;
         Solution solution = null;
-        Solution response = api.createSolution(organizationId, solution);
-
+                Solution response = api.createSolution(organizationId, solution);
         // TODO: test validations
     }
     
@@ -120,8 +116,7 @@ public class SolutionApiTest {
     public void deleteSolutionTest() throws ApiException {
         String organizationId = null;
         String solutionId = null;
-        api.deleteSolution(organizationId, solutionId);
-
+                api.deleteSolution(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -138,8 +133,7 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
         String runTemplateId = null;
-        api.deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId);
-
+                api.deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId);
         // TODO: test validations
     }
     
@@ -154,8 +148,7 @@ public class SolutionApiTest {
     @Test
     public void findAllSolutionsTest() throws ApiException {
         String organizationId = null;
-        List<Solution> response = api.findAllSolutions(organizationId);
-
+                List<Solution> response = api.findAllSolutions(organizationId);
         // TODO: test validations
     }
     
@@ -171,8 +164,7 @@ public class SolutionApiTest {
     public void findSolutionByIdTest() throws ApiException {
         String organizationId = null;
         String solutionId = null;
-        Solution response = api.findSolutionById(organizationId, solutionId);
-
+                Solution response = api.findSolutionById(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -188,8 +180,7 @@ public class SolutionApiTest {
     public void removeAllRunTemplatesTest() throws ApiException {
         String organizationId = null;
         String solutionId = null;
-        api.removeAllRunTemplates(organizationId, solutionId);
-
+                api.removeAllRunTemplates(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -205,8 +196,7 @@ public class SolutionApiTest {
     public void removeAllSolutionParameterGroupsTest() throws ApiException {
         String organizationId = null;
         String solutionId = null;
-        api.removeAllSolutionParameterGroups(organizationId, solutionId);
-
+                api.removeAllSolutionParameterGroups(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -222,8 +212,7 @@ public class SolutionApiTest {
     public void removeAllSolutionParametersTest() throws ApiException {
         String organizationId = null;
         String solutionId = null;
-        api.removeAllSolutionParameters(organizationId, solutionId);
-
+                api.removeAllSolutionParameters(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -240,8 +229,7 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
         Solution solution = null;
-        Solution response = api.updateSolution(organizationId, solutionId, solution);
-
+                Solution response = api.updateSolution(organizationId, solutionId, solution);
         // TODO: test validations
     }
     
@@ -259,8 +247,7 @@ public class SolutionApiTest {
         String solutionId = null;
         String runTemplateId = null;
         RunTemplate runTemplate = null;
-        List<RunTemplate> response = api.updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate);
-
+                List<RunTemplate> response = api.updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate);
         // TODO: test validations
     }
     
@@ -280,8 +267,7 @@ public class SolutionApiTest {
         RunTemplateHandlerId handlerId = null;
         File body = null;
         Boolean overwrite = null;
-        api.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
-
+                api.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
         // TODO: test validations
     }
     

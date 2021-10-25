@@ -48,8 +48,7 @@ public class ScenariorunApiTest {
     public void deleteScenarioRunTest() throws ApiException {
         String organizationId = null;
         String scenariorunId = null;
-        api.deleteScenarioRun(organizationId, scenariorunId);
-
+                api.deleteScenarioRun(organizationId, scenariorunId);
         // TODO: test validations
     }
     
@@ -65,8 +64,7 @@ public class ScenariorunApiTest {
     public void findScenarioRunByIdTest() throws ApiException {
         String organizationId = null;
         String scenariorunId = null;
-        ScenarioRun response = api.findScenarioRunById(organizationId, scenariorunId);
-
+                ScenarioRun response = api.findScenarioRunById(organizationId, scenariorunId);
         // TODO: test validations
     }
     
@@ -82,8 +80,7 @@ public class ScenariorunApiTest {
     public void getScenarioRunCumulatedLogsTest() throws ApiException {
         String organizationId = null;
         String scenariorunId = null;
-        String response = api.getScenarioRunCumulatedLogs(organizationId, scenariorunId);
-
+                String response = api.getScenarioRunCumulatedLogs(organizationId, scenariorunId);
         // TODO: test validations
     }
     
@@ -99,8 +96,7 @@ public class ScenariorunApiTest {
     public void getScenarioRunLogsTest() throws ApiException {
         String organizationId = null;
         String scenariorunId = null;
-        ScenarioRunLogs response = api.getScenarioRunLogs(organizationId, scenariorunId);
-
+                ScenarioRunLogs response = api.getScenarioRunLogs(organizationId, scenariorunId);
         // TODO: test validations
     }
     
@@ -116,8 +112,7 @@ public class ScenariorunApiTest {
     public void getScenarioRunStatusTest() throws ApiException {
         String organizationId = null;
         String scenariorunId = null;
-        ScenarioRunStatus response = api.getScenarioRunStatus(organizationId, scenariorunId);
-
+                ScenarioRunStatus response = api.getScenarioRunStatus(organizationId, scenariorunId);
         // TODO: test validations
     }
     
@@ -134,8 +129,7 @@ public class ScenariorunApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        List<ScenarioRun> response = api.getScenarioRuns(organizationId, workspaceId, scenarioId);
-
+                List<ScenarioRun> response = api.getScenarioRuns(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -151,8 +145,7 @@ public class ScenariorunApiTest {
     public void getWorkspaceScenarioRunsTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<ScenarioRun> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId);
-
+                List<ScenarioRun> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -169,8 +162,7 @@ public class ScenariorunApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        ScenarioRun response = api.runScenario(organizationId, workspaceId, scenarioId);
-
+                ScenarioRun response = api.runScenario(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -186,8 +178,7 @@ public class ScenariorunApiTest {
     public void searchScenarioRunsTest() throws ApiException {
         String organizationId = null;
         ScenarioRunSearch scenarioRunSearch = null;
-        List<ScenarioRun> response = api.searchScenarioRuns(organizationId, scenarioRunSearch);
-
+                List<ScenarioRun> response = api.searchScenarioRuns(organizationId, scenarioRunSearch);
         // TODO: test validations
     }
     
@@ -203,8 +194,7 @@ public class ScenariorunApiTest {
     public void startScenarioRunContainersTest() throws ApiException {
         String organizationId = null;
         ScenarioRunStartContainers scenarioRunStartContainers = null;
-        ScenarioRun response = api.startScenarioRunContainers(organizationId, scenarioRunStartContainers);
-
+                ScenarioRun response = api.startScenarioRunContainers(organizationId, scenarioRunStartContainers);
         // TODO: test validations
     }
     

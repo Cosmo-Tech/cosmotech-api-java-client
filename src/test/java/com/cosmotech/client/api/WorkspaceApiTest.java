@@ -48,8 +48,7 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
         List<WorkspaceUser> workspaceUser = null;
-        List<WorkspaceUser> response = api.addOrReplaceUsersInOrganizationWorkspace(organizationId, workspaceId, workspaceUser);
-
+                List<WorkspaceUser> response = api.addOrReplaceUsersInOrganizationWorkspace(organizationId, workspaceId, workspaceUser);
         // TODO: test validations
     }
     
@@ -65,8 +64,7 @@ public class WorkspaceApiTest {
     public void createWorkspaceTest() throws ApiException {
         String organizationId = null;
         Workspace workspace = null;
-        Workspace response = api.createWorkspace(organizationId, workspace);
-
+                Workspace response = api.createWorkspace(organizationId, workspace);
         // TODO: test validations
     }
     
@@ -82,8 +80,7 @@ public class WorkspaceApiTest {
     public void deleteAllWorkspaceFilesTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        api.deleteAllWorkspaceFiles(organizationId, workspaceId);
-
+                api.deleteAllWorkspaceFiles(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -99,8 +96,7 @@ public class WorkspaceApiTest {
     public void deleteWorkspaceTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        Workspace response = api.deleteWorkspace(organizationId, workspaceId);
-
+                Workspace response = api.deleteWorkspace(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -117,8 +113,7 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
         String fileName = null;
-        api.deleteWorkspaceFile(organizationId, workspaceId, fileName);
-
+                api.deleteWorkspaceFile(organizationId, workspaceId, fileName);
         // TODO: test validations
     }
     
@@ -135,8 +130,7 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
         String fileName = null;
-        File response = api.downloadWorkspaceFile(organizationId, workspaceId, fileName);
-
+                File response = api.downloadWorkspaceFile(organizationId, workspaceId, fileName);
         // TODO: test validations
     }
     
@@ -152,8 +146,7 @@ public class WorkspaceApiTest {
     public void findAllWorkspaceFilesTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<WorkspaceFile> response = api.findAllWorkspaceFiles(organizationId, workspaceId);
-
+                List<WorkspaceFile> response = api.findAllWorkspaceFiles(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -168,8 +161,7 @@ public class WorkspaceApiTest {
     @Test
     public void findAllWorkspacesTest() throws ApiException {
         String organizationId = null;
-        List<Workspace> response = api.findAllWorkspaces(organizationId);
-
+                List<Workspace> response = api.findAllWorkspaces(organizationId);
         // TODO: test validations
     }
     
@@ -185,8 +177,7 @@ public class WorkspaceApiTest {
     public void findWorkspaceByIdTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        Workspace response = api.findWorkspaceById(organizationId, workspaceId);
-
+                Workspace response = api.findWorkspaceById(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -202,8 +193,7 @@ public class WorkspaceApiTest {
     public void removeAllUsersOfWorkspaceTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        api.removeAllUsersOfWorkspace(organizationId, workspaceId);
-
+                api.removeAllUsersOfWorkspace(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -220,8 +210,7 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
         String userId = null;
-        api.removeUserFromOrganizationWorkspace(organizationId, workspaceId, userId);
-
+                api.removeUserFromOrganizationWorkspace(organizationId, workspaceId, userId);
         // TODO: test validations
     }
     
@@ -238,8 +227,7 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
         Workspace workspace = null;
-        Workspace response = api.updateWorkspace(organizationId, workspaceId, workspace);
-
+                Workspace response = api.updateWorkspace(organizationId, workspaceId, workspace);
         // TODO: test validations
     }
     
@@ -258,8 +246,7 @@ public class WorkspaceApiTest {
         File file = null;
         Boolean overwrite = null;
         String destination = null;
-        WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination);
-
+                WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination);
         // TODO: test validations
     }
     

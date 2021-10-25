@@ -51,8 +51,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         List<ScenarioRunTemplateParameterValue> scenarioRunTemplateParameterValue = null;
-        List<ScenarioRunTemplateParameterValue> response = api.addOrReplaceScenarioParameterValues(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue);
-
+                List<ScenarioRunTemplateParameterValue> response = api.addOrReplaceScenarioParameterValues(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue);
         // TODO: test validations
     }
     
@@ -70,8 +69,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         List<ScenarioUser> scenarioUser = null;
-        List<ScenarioUser> response = api.addOrReplaceUsersInScenario(organizationId, workspaceId, scenarioId, scenarioUser);
-
+                List<ScenarioUser> response = api.addOrReplaceUsersInScenario(organizationId, workspaceId, scenarioId, scenarioUser);
         // TODO: test validations
     }
     
@@ -89,8 +87,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         String comparedScenarioId = null;
-        ScenarioComparisonResult response = api.compareScenarios(organizationId, workspaceId, scenarioId, comparedScenarioId);
-
+                ScenarioComparisonResult response = api.compareScenarios(organizationId, workspaceId, scenarioId, comparedScenarioId);
         // TODO: test validations
     }
     
@@ -107,8 +104,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         Scenario scenario = null;
-        Scenario response = api.createScenario(organizationId, workspaceId, scenario);
-
+                Scenario response = api.createScenario(organizationId, workspaceId, scenario);
         // TODO: test validations
     }
     
@@ -124,8 +120,7 @@ public class ScenarioApiTest {
     public void deleteAllScenariosTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        api.deleteAllScenarios(organizationId, workspaceId);
-
+                api.deleteAllScenarios(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -143,8 +138,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         Boolean waitRelationshipPropagation = null;
-        api.deleteScenario(organizationId, workspaceId, scenarioId, waitRelationshipPropagation);
-
+                api.deleteScenario(organizationId, workspaceId, scenarioId, waitRelationshipPropagation);
         // TODO: test validations
     }
     
@@ -161,8 +155,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        ScenarioDataDownloadJob response = api.downloadScenarioData(organizationId, workspaceId, scenarioId);
-
+                ScenarioDataDownloadJob response = api.downloadScenarioData(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -178,8 +171,7 @@ public class ScenarioApiTest {
     public void findAllScenariosTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<Scenario> response = api.findAllScenarios(organizationId, workspaceId);
-
+                List<Scenario> response = api.findAllScenarios(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -196,8 +188,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        Scenario response = api.findScenarioById(organizationId, workspaceId, scenarioId);
-
+                Scenario response = api.findScenarioById(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -215,8 +206,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         String downloadId = null;
-        ScenarioDataDownloadInfo response = api.getScenarioDataDownloadJobInfo(organizationId, workspaceId, scenarioId, downloadId);
-
+                ScenarioDataDownloadInfo response = api.getScenarioDataDownloadJobInfo(organizationId, workspaceId, scenarioId, downloadId);
         // TODO: test validations
     }
     
@@ -232,8 +222,7 @@ public class ScenarioApiTest {
     public void getScenariosTreeTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        List<Scenario> response = api.getScenariosTree(organizationId, workspaceId);
-
+                List<Scenario> response = api.getScenariosTree(organizationId, workspaceId);
         // TODO: test validations
     }
     
@@ -250,8 +239,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        api.removeAllScenarioParameterValues(organizationId, workspaceId, scenarioId);
-
+                api.removeAllScenarioParameterValues(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -268,8 +256,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        api.removeAllUsersOfScenario(organizationId, workspaceId, scenarioId);
-
+                api.removeAllUsersOfScenario(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -287,8 +274,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         String userId = null;
-        api.removeUserFromScenario(organizationId, workspaceId, scenarioId, userId);
-
+                api.removeUserFromScenario(organizationId, workspaceId, scenarioId, userId);
         // TODO: test validations
     }
     
@@ -306,8 +292,7 @@ public class ScenarioApiTest {
         String workspaceId = null;
         String scenarioId = null;
         Scenario scenario = null;
-        Scenario response = api.updateScenario(organizationId, workspaceId, scenarioId, scenario);
-
+                Scenario response = api.updateScenario(organizationId, workspaceId, scenarioId, scenario);
         // TODO: test validations
     }
     
