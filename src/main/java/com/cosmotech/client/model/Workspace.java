@@ -33,7 +33,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-25T16:07:12.319445276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-26T09:57:02.539857953Z[Etc/UTC]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -78,6 +78,10 @@ public class Workspace {
   public static final String SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE = "sendInputToDataWarehouse";
   @SerializedName(SERIALIZED_NAME_SEND_INPUT_TO_DATA_WAREHOUSE)
   private Boolean sendInputToDataWarehouse;
+
+  public static final String SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE = "useDedicatedEventHubNamespace";
+  @SerializedName(SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE)
+  private Boolean useDedicatedEventHubNamespace = false;
 
 
    /**
@@ -331,6 +335,29 @@ public class Workspace {
   }
 
 
+  public Workspace useDedicatedEventHubNamespace(Boolean useDedicatedEventHubNamespace) {
+    
+    this.useDedicatedEventHubNamespace = useDedicatedEventHubNamespace;
+    return this;
+  }
+
+   /**
+   * Set this property to true to use a dedicated Azure Event Hub Namespace for this Workspace. The Event Hub Namespace must be named \\&#39;&lt;organization_id\\&gt;-&lt;workspace_id\\&gt;\\&#39; (in lower case). This Namespace must also contain two Event Hubs named \\&#39;probesmeasures\\&#39; and \\&#39;scenariorun\\&#39;.
+   * @return useDedicatedEventHubNamespace
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Set this property to true to use a dedicated Azure Event Hub Namespace for this Workspace. The Event Hub Namespace must be named \\'<organization_id\\>-<workspace_id\\>\\' (in lower case). This Namespace must also contain two Event Hubs named \\'probesmeasures\\' and \\'scenariorun\\'.")
+
+  public Boolean getUseDedicatedEventHubNamespace() {
+    return useDedicatedEventHubNamespace;
+  }
+
+
+  public void setUseDedicatedEventHubNamespace(Boolean useDedicatedEventHubNamespace) {
+    this.useDedicatedEventHubNamespace = useDedicatedEventHubNamespace;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -350,12 +377,13 @@ public class Workspace {
         Objects.equals(this.solution, workspace.solution) &&
         Objects.equals(this.users, workspace.users) &&
         Objects.equals(this.webApp, workspace.webApp) &&
-        Objects.equals(this.sendInputToDataWarehouse, workspace.sendInputToDataWarehouse);
+        Objects.equals(this.sendInputToDataWarehouse, workspace.sendInputToDataWarehouse) &&
+        Objects.equals(this.useDedicatedEventHubNamespace, workspace.useDedicatedEventHubNamespace);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse);
+    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse, useDedicatedEventHubNamespace);
   }
 
   @Override
@@ -373,6 +401,7 @@ public class Workspace {
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
     sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
+    sb.append("    useDedicatedEventHubNamespace: ").append(toIndentedString(useDedicatedEventHubNamespace)).append("\n");
     sb.append("}");
     return sb.toString();
   }

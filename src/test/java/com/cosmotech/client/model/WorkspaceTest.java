@@ -133,4 +133,12 @@ public class WorkspaceTest {
         // TODO: test sendInputToDataWarehouse
     }
 
+    /**
+     * Test the property 'useDedicatedEventHubNamespace'
+     */
+    @Test
+    public void useDedicatedEventHubNamespaceTest() {
+        // TODO: test useDedicatedEventHubNamespace
+    }
+
 }
