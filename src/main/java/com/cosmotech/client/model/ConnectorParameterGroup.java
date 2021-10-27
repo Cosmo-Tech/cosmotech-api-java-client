@@ -31,7 +31,7 @@ import java.util.List;
  * a connector parameters group
  */
 @ApiModel(description = "a connector parameters group")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-27T15:40:18.908311031Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-27T16:02:30.046369036Z[Etc/UTC]")
 public class ConnectorParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
