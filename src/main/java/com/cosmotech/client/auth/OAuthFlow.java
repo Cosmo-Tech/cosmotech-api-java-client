@@ -13,7 +13,7 @@
 
 package com.cosmotech.client.auth;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-08T09:40:03.875515032Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-08T10:12:14.113861264Z[Etc/UTC]")
 public enum OAuthFlow {
     accessCode, //called authorizationCode  in OpenAPI 3.0
     implicit,
