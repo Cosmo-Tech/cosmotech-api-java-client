@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-15T09:50:57.588750059Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-15T12:18:51.368241149Z[Etc/UTC]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
