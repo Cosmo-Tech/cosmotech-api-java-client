@@ -31,7 +31,7 @@ import java.util.Map;
  * a Connector setup
  */
 @ApiModel(description = "a Connector setup")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-15T12:18:51.368241149Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-15T12:40:22.198001282Z[Etc/UTC]")
 public class DatasetConnector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
