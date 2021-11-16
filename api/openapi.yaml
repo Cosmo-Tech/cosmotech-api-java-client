@@ -2014,6 +2014,66 @@ paths:
       - solution
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download:
+    get:
+      operationId: downloadRunTemplateHandler
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/RunTemplateHandlerId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: the run template handle file as a resource
+          headers:
+            Content-Disposition:
+              explode: false
+              schema:
+                default: inline; filename="handler.zip"
+                description: Used only with `application/zip` responses
+                example: inline; filename="handler.zip"
+                type: string
+              style: simple
+        "404":
+          description: the Run Template Handler file specified is unknown or you don't
+            have access to it
+      summary: Download a Run Template step handler zip file
+      tags:
+      - solution
+      x-accepts: application/octet-stream
   /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
     post:
       operationId: uploadRunTemplateHandler

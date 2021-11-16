@@ -856,6 +856,152 @@ public class SolutionApi {
         return localVarCall;
     }
     /**
+     * Build call for downloadRunTemplateHandler
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param handlerId the Handler identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadRunTemplateHandlerCall(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "run_template_id" + "\\}", localVarApiClient.escapeString(runTemplateId.toString()))
+            .replaceAll("\\{" + "handler_id" + "\\}", localVarApiClient.escapeString(handlerId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/octet-stream"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadRunTemplateHandlerValidateBeforeCall(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling downloadRunTemplateHandler(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling downloadRunTemplateHandler(Async)");
+        }
+        
+        // verify the required parameter 'runTemplateId' is set
+        if (runTemplateId == null) {
+            throw new ApiException("Missing the required parameter 'runTemplateId' when calling downloadRunTemplateHandler(Async)");
+        }
+        
+        // verify the required parameter 'handlerId' is set
+        if (handlerId == null) {
+            throw new ApiException("Missing the required parameter 'handlerId' when calling downloadRunTemplateHandler(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = downloadRunTemplateHandlerCall(organizationId, solutionId, runTemplateId, handlerId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Download a Run Template step handler zip file
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param handlerId the Handler identifier (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadRunTemplateHandler(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
+        ApiResponse<File> localVarResp = downloadRunTemplateHandlerWithHttpInfo(organizationId, solutionId, runTemplateId, handlerId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Download a Run Template step handler zip file
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param handlerId the Handler identifier (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadRunTemplateHandlerWithHttpInfo(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
+        okhttp3.Call localVarCall = downloadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Download a Run Template step handler zip file (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param runTemplateId the Run Template identifier (required)
+     * @param handlerId the Handler identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadRunTemplateHandlerAsync(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for findAllSolutions
      * @param organizationId the Organization identifier (required)
      * @param _callback Callback for upload/download progress

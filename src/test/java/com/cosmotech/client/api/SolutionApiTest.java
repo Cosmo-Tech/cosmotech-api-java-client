@@ -138,6 +138,24 @@ public class SolutionApiTest {
     }
     
     /**
+     * Download a Run Template step handler zip file
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadRunTemplateHandlerTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+        String runTemplateId = null;
+        RunTemplateHandlerId handlerId = null;
+                File response = api.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+        // TODO: test validations
+    }
+    
+    /**
      * List all Solutions
      *
      * 

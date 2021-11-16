@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**createSolution**](SolutionApi.md#createSolution) | **POST** /organizations/{organization_id}/solutions | Register a new solution
 [**deleteSolution**](SolutionApi.md#deleteSolution) | **DELETE** /organizations/{organization_id}/solutions/{solution_id} | Delete a solution
 [**deleteSolutionRunTemplate**](SolutionApi.md#deleteSolutionRunTemplate) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Remove the specified Solution Run Template
+[**downloadRunTemplateHandler**](SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file
 [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
 [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
 [**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
@@ -436,6 +437,78 @@ null (empty response body)
 |-------------|-------------|------------------|
 **204** | the operation succeeded |  -  |
 **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="downloadRunTemplateHandler"></a>
+# **downloadRunTemplateHandler**
+> File downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
+
+Download a Run Template step handler zip file
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
+    RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
+    try {
+      File result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#downloadRunTemplateHandler");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **solutionId** | **String**| the Solution identifier |
+ **runTemplateId** | **String**| the Run Template identifier |
+ **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform]
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/octet-stream
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the run template handle file as a resource |  * Content-Disposition -  <br>  |
+**404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllSolutions"></a>
 # **findAllSolutions**
