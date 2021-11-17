@@ -867,7 +867,7 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -946,7 +946,7 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -967,7 +967,7 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -990,7 +990,7 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */

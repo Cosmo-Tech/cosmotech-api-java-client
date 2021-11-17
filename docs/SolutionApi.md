@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run template handle file as a resource |  * Content-Disposition -  <br>  |
+**200** | the run template handle file as a resource |  -  |
 **404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllSolutions"></a>
