@@ -17,6 +17,7 @@ import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Dataset;
 import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
+import com.cosmotech.client.model.DatasetSearch;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -143,6 +144,22 @@ public class DatasetApiTest {
         String organizationId = null;
         String datasetId = null;
                 api.removeAllDatasetCompatibilityElements(organizationId, datasetId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Search Datasets
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void searchDatasetsTest() throws ApiException {
+        String organizationId = null;
+        DatasetSearch datasetSearch = null;
+                List<Dataset> response = api.searchDatasets(organizationId, datasetSearch);
         // TODO: test validations
     }
     

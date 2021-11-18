@@ -15,7 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ScenarioRunContainerLogs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,51 +23,46 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * the scenariorun logs returned by all containers
+ * the search options
  */
-@ApiModel(description = "the scenariorun logs returned by all containers")
+@ApiModel(description = "the search options")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T16:45:48.814025777Z[Etc/UTC]")
-public class ScenarioRunLogs {
-  public static final String SERIALIZED_NAME_SCENARIORUN_ID = "scenariorunId";
-  @SerializedName(SERIALIZED_NAME_SCENARIORUN_ID)
-  private String scenariorunId;
+public class DatasetSearch {
+  public static final String SERIALIZED_NAME_DATASET_TAGS = "datasetTags";
+  @SerializedName(SERIALIZED_NAME_DATASET_TAGS)
+  private List<String> datasetTags = new ArrayList<String>();
 
-  public static final String SERIALIZED_NAME_CONTAINERS = "containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
-  private Map<String, ScenarioRunContainerLogs> containers = null;
 
+  public DatasetSearch datasetTags(List<String> datasetTags) {
+    
+    this.datasetTags = datasetTags;
+    return this;
+  }
+
+  public DatasetSearch addDatasetTagsItem(String datasetTagsItem) {
+    this.datasetTags.add(datasetTagsItem);
+    return this;
+  }
 
    /**
-   * the ScenarioRun Id
-   * @return scenariorunId
+   * the dataset tag list to search
+   * @return datasetTags
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the ScenarioRun Id")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "the dataset tag list to search")
 
-  public String getScenariorunId() {
-    return scenariorunId;
+  public List<String> getDatasetTags() {
+    return datasetTags;
   }
 
 
-
-
-   /**
-   * the container map of logs
-   * @return containers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the container map of logs")
-
-  public Map<String, ScenarioRunContainerLogs> getContainers() {
-    return containers;
+  public void setDatasetTags(List<String> datasetTags) {
+    this.datasetTags = datasetTags;
   }
-
-
 
 
   @Override
@@ -79,22 +73,20 @@ public class ScenarioRunLogs {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScenarioRunLogs scenarioRunLogs = (ScenarioRunLogs) o;
-    return Objects.equals(this.scenariorunId, scenarioRunLogs.scenariorunId) &&
-        Objects.equals(this.containers, scenarioRunLogs.containers);
+    DatasetSearch datasetSearch = (DatasetSearch) o;
+    return Objects.equals(this.datasetTags, datasetSearch.datasetTags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scenariorunId, containers);
+    return Objects.hash(datasetTags);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScenarioRunLogs {\n");
-    sb.append("    scenariorunId: ").append(toIndentedString(scenariorunId)).append("\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
+    sb.append("class DatasetSearch {\n");
+    sb.append("    datasetTags: ").append(toIndentedString(datasetTags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

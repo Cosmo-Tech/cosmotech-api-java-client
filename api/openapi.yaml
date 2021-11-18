@@ -667,6 +667,52 @@ paths:
       - dataset
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/datasets/search:
+    post:
+      operationId: searchDatasets
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              DatasetSearch:
+                $ref: '#/components/examples/DatasetSearch'
+            schema:
+              $ref: '#/components/schemas/DatasetSearch'
+          application/yaml:
+            examples:
+              DatasetSearch:
+                $ref: '#/components/examples/DatasetSearch'
+            schema:
+              format: binary
+              type: string
+        description: the Dataset search parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/TwoDatasets'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Dataset'
+                type: array
+          description: the list of Datasets
+      summary: Search Datasets
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/datasets/copy:
     post:
       operationId: copyDataset
@@ -4764,6 +4810,12 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
+    DatasetSearch:
+      description: Parameters to search for a dataset
+      summary: Example for dataset search
+      value:
+        datasetTags:
+        - dataset
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization
@@ -5811,6 +5863,21 @@ components:
           additionalProperties: true
           description: freeform options to path to connectors
           type: object
+      type: object
+    DatasetSearch:
+      description: the search options
+      example:
+        datasetTags:
+        - datasetTags
+        - datasetTags
+      properties:
+        datasetTags:
+          description: the dataset tag list to search
+          items:
+            type: string
+          type: array
+      required:
+      - datasetTags
       type: object
     Organization:
       description: an Organization

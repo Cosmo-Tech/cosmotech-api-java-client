@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.cosmotech.client.model.Dataset;
 import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
+import com.cosmotech.client.model.DatasetSearch;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -929,6 +930,127 @@ public class DatasetApi {
 
         okhttp3.Call localVarCall = removeAllDatasetCompatibilityElementsValidateBeforeCall(organizationId, datasetId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for searchDatasets
+     * @param organizationId the Organization identifier (required)
+     * @param datasetSearch the Dataset search parameters (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call searchDatasetsCall(String organizationId, DatasetSearch datasetSearch, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = datasetSearch;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/search"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call searchDatasetsValidateBeforeCall(String organizationId, DatasetSearch datasetSearch, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling searchDatasets(Async)");
+        }
+        
+        // verify the required parameter 'datasetSearch' is set
+        if (datasetSearch == null) {
+            throw new ApiException("Missing the required parameter 'datasetSearch' when calling searchDatasets(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = searchDatasetsCall(organizationId, datasetSearch, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Search Datasets
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetSearch the Dataset search parameters (required)
+     * @return List&lt;Dataset&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<Dataset> searchDatasets(String organizationId, DatasetSearch datasetSearch) throws ApiException {
+        ApiResponse<List<Dataset>> localVarResp = searchDatasetsWithHttpInfo(organizationId, datasetSearch);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Search Datasets
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetSearch the Dataset search parameters (required)
+     * @return ApiResponse&lt;List&lt;Dataset&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<Dataset>> searchDatasetsWithHttpInfo(String organizationId, DatasetSearch datasetSearch) throws ApiException {
+        okhttp3.Call localVarCall = searchDatasetsValidateBeforeCall(organizationId, datasetSearch, null);
+        Type localVarReturnType = new TypeToken<List<Dataset>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Search Datasets (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetSearch the Dataset search parameters (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the list of Datasets </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call searchDatasetsAsync(String organizationId, DatasetSearch datasetSearch, final ApiCallback<List<Dataset>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = searchDatasetsValidateBeforeCall(organizationId, datasetSearch, _callback);
+        Type localVarReturnType = new TypeToken<List<Dataset>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**

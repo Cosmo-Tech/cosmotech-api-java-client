@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**findAllDatasets**](DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
 [**findDatasetById**](DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
 [**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
+[**searchDatasets**](DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets
 [**updateDataset**](DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
 
 
@@ -488,6 +489,73 @@ null (empty response body)
 |-------------|-------------|------------------|
 **204** | the operation succeeded |  -  |
 **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="searchDatasets"></a>
+# **searchDatasets**
+> List&lt;Dataset&gt; searchDatasets(organizationId, datasetSearch)
+
+Search Datasets
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.DatasetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    DatasetApi apiInstance = new DatasetApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    DatasetSearch datasetSearch = new DatasetSearch(); // DatasetSearch | the Dataset search parameters
+    try {
+      List<Dataset> result = apiInstance.searchDatasets(organizationId, datasetSearch);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DatasetApi#searchDatasets");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **datasetSearch** | [**DatasetSearch**](DatasetSearch.md)| the Dataset search parameters |
+
+### Return type
+
+[**List&lt;Dataset&gt;**](Dataset.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the list of Datasets |  -  |
 
 <a name="updateDataset"></a>
 # **updateDataset**
