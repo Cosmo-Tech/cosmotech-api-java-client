@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'com.cosmotech'
-version = '0.0.10-dev'
+version = '0.0.10-rc'
 
 buildscript {
     repositories {
