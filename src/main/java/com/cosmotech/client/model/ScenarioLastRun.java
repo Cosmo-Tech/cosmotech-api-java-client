@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ScenarioLastRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T16:45:48.814025777Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T17:01:43.200651890Z[Etc/UTC]")
 public class ScenarioLastRun {
   public static final String SERIALIZED_NAME_SCENARIO_RUN_ID = "scenarioRunId";
   @SerializedName(SERIALIZED_NAME_SCENARIO_RUN_ID)
