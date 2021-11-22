@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Workspace File resource
  */
 @ApiModel(description = "a Workspace File resource")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:08:05.111508413Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-22T12:46:41.265462820Z[Etc/UTC]")
 public class WorkspaceFile {
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
