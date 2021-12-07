@@ -31,7 +31,7 @@ import java.util.List;
  * a ScenarioRun status
  */
 @ApiModel(description = "a ScenarioRun status")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-07T10:07:09.465296324Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-07T10:08:43.951240655Z[Etc/UTC]")
 public class ScenarioRunStatus {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
