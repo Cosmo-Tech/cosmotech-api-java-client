@@ -28,7 +28,7 @@ import java.io.IOException;
  * Scenario data download job
  */
 @ApiModel(description = "Scenario data download job")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-08T08:29:40.855888652Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-08T09:32:51.853195867Z[Etc/UTC]")
 public class ScenarioDataDownloadJob {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
