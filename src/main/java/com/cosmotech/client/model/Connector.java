@@ -31,7 +31,7 @@ import java.util.List;
  * a version of a Connector
  */
 @ApiModel(description = "a version of a Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -132,6 +132,18 @@ public class Connector {
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
   private List<ConnectorParameterGroup> parameterGroups = null;
 
+  public Connector() { 
+  }
+
+  
+  public Connector(
+     String id, 
+     String ownerId
+  ) {
+    this();
+    this.id = id;
+    this.ownerId = ownerId;
+  }
 
    /**
    * the Connector version unique identifier

@@ -32,7 +32,7 @@ import java.util.Map;
  * the scenariorun logs returned by all containers
  */
 @ApiModel(description = "the scenariorun logs returned by all containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ScenarioRunLogs {
   public static final String SERIALIZED_NAME_SCENARIORUN_ID = "scenariorunId";
   @SerializedName(SERIALIZED_NAME_SCENARIORUN_ID)
@@ -42,6 +42,18 @@ public class ScenarioRunLogs {
   @SerializedName(SERIALIZED_NAME_CONTAINERS)
   private Map<String, ScenarioRunContainerLogs> containers = null;
 
+  public ScenarioRunLogs() { 
+  }
+
+  
+  public ScenarioRunLogs(
+     String scenariorunId, 
+     Map<String, ScenarioRunContainerLogs> containers
+  ) {
+    this();
+    this.scenariorunId = scenariorunId;
+    this.containers = containers;
+  }
 
    /**
    * the ScenarioRun Id

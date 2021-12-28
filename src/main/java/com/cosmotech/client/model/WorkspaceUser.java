@@ -30,7 +30,7 @@ import java.util.List;
  * a Workspace user with roles
  */
 @ApiModel(description = "a Workspace user with roles")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class WorkspaceUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -93,6 +93,16 @@ public class WorkspaceUser {
   @SerializedName(SERIALIZED_NAME_ROLES)
   private List<RolesEnum> roles = new ArrayList<RolesEnum>();
 
+  public WorkspaceUser() { 
+  }
+
+  
+  public WorkspaceUser(
+     String name
+  ) {
+    this();
+    this.name = name;
+  }
 
   public WorkspaceUser id(String id) {
     

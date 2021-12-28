@@ -33,7 +33,7 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -87,6 +87,18 @@ public class Solution {
   @SerializedName(SERIALIZED_NAME_RUN_TEMPLATES)
   private List<RunTemplate> runTemplates = new ArrayList<RunTemplate>();
 
+  public Solution() { 
+  }
+
+  
+  public Solution(
+     String id, 
+     String ownerId
+  ) {
+    this();
+    this.id = id;
+    this.ownerId = ownerId;
+  }
 
    /**
    * the Solution version unique identifier

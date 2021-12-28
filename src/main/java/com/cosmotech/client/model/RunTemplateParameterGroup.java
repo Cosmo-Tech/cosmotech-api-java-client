@@ -32,7 +32,7 @@ import java.util.Map;
  * a Parameter Group for a Run Template
  */
 @ApiModel(description = "a Parameter Group for a Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -58,6 +58,8 @@ public class RunTemplateParameterGroup {
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
   private List<String> parameters = new ArrayList<String>();
 
+  public RunTemplateParameterGroup() { 
+  }
 
   public RunTemplateParameterGroup id(String id) {
     

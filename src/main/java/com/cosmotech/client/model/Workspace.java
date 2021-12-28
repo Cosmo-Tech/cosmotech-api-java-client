@@ -33,7 +33,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -83,6 +83,18 @@ public class Workspace {
   @SerializedName(SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE)
   private Boolean useDedicatedEventHubNamespace = false;
 
+  public Workspace() { 
+  }
+
+  
+  public Workspace(
+     String id, 
+     String ownerId
+  ) {
+    this();
+    this.id = id;
+    this.ownerId = ownerId;
+  }
 
    /**
    * the Workspace version unique identifier

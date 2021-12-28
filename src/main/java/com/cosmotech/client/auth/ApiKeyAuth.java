@@ -13,12 +13,14 @@
 
 package com.cosmotech.client.auth;
 
+import com.cosmotech.client.ApiException;
 import com.cosmotech.client.Pair;
 
+import java.net.URI;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;
@@ -56,7 +58,8 @@ public class ApiKeyAuth implements Authentication {
   }
 
   @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
+                           String payload, String method, URI uri) throws ApiException {
     if (apiKey == null) {
       return;
     }

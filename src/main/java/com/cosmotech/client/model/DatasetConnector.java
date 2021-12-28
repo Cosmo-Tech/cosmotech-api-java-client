@@ -31,7 +31,7 @@ import java.util.Map;
  * a Connector setup
  */
 @ApiModel(description = "a Connector setup")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class DatasetConnector {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -49,6 +49,8 @@ public class DatasetConnector {
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
   private Map<String, String> parametersValues = null;
 
+  public DatasetConnector() { 
+  }
 
   public DatasetConnector id(String id) {
     

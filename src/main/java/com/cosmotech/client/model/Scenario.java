@@ -36,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
  * a Scenario with base information
  */
 @ApiModel(description = "a Scenario with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class Scenario {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -126,6 +126,34 @@ public class Scenario {
   @SerializedName(SERIALIZED_NAME_ROOT_LAST_RUN)
   private ScenarioLastRun rootLastRun;
 
+  public Scenario() { 
+  }
+
+  
+  public Scenario(
+     String id, 
+     String ownerId, 
+     String rootId, 
+     String solutionId, 
+     String workspaceId, 
+     OffsetDateTime creationDate, 
+     OffsetDateTime lastUpdate, 
+     String ownerName, 
+     String solutionName, 
+     String runTemplateName
+  ) {
+    this();
+    this.id = id;
+    this.ownerId = ownerId;
+    this.rootId = rootId;
+    this.solutionId = solutionId;
+    this.workspaceId = workspaceId;
+    this.creationDate = creationDate;
+    this.lastUpdate = lastUpdate;
+    this.ownerName = ownerName;
+    this.solutionName = solutionName;
+    this.runTemplateName = runTemplateName;
+  }
 
    /**
    * the Scenario unique identifier

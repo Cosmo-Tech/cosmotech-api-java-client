@@ -30,7 +30,7 @@ import java.util.List;
  * a Validator to validate a Dataset
  */
 @ApiModel(description = "a Validator to validate a Dataset")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class Validator {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -64,6 +64,18 @@ public class Validator {
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<String> tags = null;
 
+  public Validator() { 
+  }
+
+  
+  public Validator(
+     String id, 
+     String ownerId
+  ) {
+    this();
+    this.id = id;
+    this.ownerId = ownerId;
+  }
 
    /**
    * the Validator id

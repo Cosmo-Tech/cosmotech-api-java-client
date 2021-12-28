@@ -30,7 +30,7 @@ import java.util.List;
  * logs for a given container
  */
 @ApiModel(description = "logs for a given container")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ScenarioRunContainerLogs {
   public static final String SERIALIZED_NAME_NODE_ID = "nodeId";
   @SerializedName(SERIALIZED_NAME_NODE_ID)
@@ -48,6 +48,22 @@ public class ScenarioRunContainerLogs {
   @SerializedName(SERIALIZED_NAME_LOGS)
   private String logs;
 
+  public ScenarioRunContainerLogs() { 
+  }
+
+  
+  public ScenarioRunContainerLogs(
+     String nodeId, 
+     String containerName, 
+     List<String> children, 
+     String logs
+  ) {
+    this();
+    this.nodeId = nodeId;
+    this.containerName = containerName;
+    this.children = children;
+    this.logs = logs;
+  }
 
    /**
    * the node Id which has executed this log

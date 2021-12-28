@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -133,6 +133,8 @@ public class RunTemplate {
   @SerializedName(SERIALIZED_NAME_STACK_STEPS)
   private Boolean stackSteps;
 
+  public RunTemplate() { 
+  }
 
   public RunTemplate id(String id) {
     

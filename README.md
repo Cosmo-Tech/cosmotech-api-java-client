@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.0.11-SNAPSHOT
-  - Build date: 2021-12-28T13:13:37.097119104Z[Etc/UTC]
+  - Build date: 2021-12-28T13:27:00.953004176Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -15,7 +15,7 @@ Cosmo Tech Platform API
 
 Building the API client library requires:
 1. Java 1.7+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -51,7 +51,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.cosmotech:cosmotech-api-java-client:0.0.11-SNAPSHOT"
+  repositories {
+    mavenCentral()     // Needed if the 'cosmotech-api-java-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'cosmotech-api-java-client' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.cosmotech:cosmotech-api-java-client:0.0.11-SNAPSHOT"
+  }
 ```
 
 ### Others

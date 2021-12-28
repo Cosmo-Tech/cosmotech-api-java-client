@@ -31,7 +31,7 @@ import java.util.List;
  * The organization of the user
  */
 @ApiModel(description = "The organization of the user")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class UserOrganization {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -49,6 +49,16 @@ public class UserOrganization {
   @SerializedName(SERIALIZED_NAME_WORKSPACES)
   private List<UserWorkspace> workspaces = null;
 
+  public UserOrganization() { 
+  }
+
+  
+  public UserOrganization(
+     List<UserWorkspace> workspaces
+  ) {
+    this();
+    this.workspaces = workspaces;
+  }
 
   public UserOrganization id(String id) {
     

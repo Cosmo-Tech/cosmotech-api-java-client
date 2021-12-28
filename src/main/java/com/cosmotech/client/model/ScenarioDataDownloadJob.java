@@ -28,12 +28,22 @@ import java.io.IOException;
  * Scenario data download job
  */
 @ApiModel(description = "Scenario data download job")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ScenarioDataDownloadJob {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public ScenarioDataDownloadJob() { 
+  }
+
+  
+  public ScenarioDataDownloadJob(
+     String id
+  ) {
+    this();
+    this.id = id;
+  }
 
    /**
    * the Scenario Data Download job identifier

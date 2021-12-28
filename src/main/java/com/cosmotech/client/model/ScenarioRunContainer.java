@@ -33,7 +33,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -75,6 +75,18 @@ public class ScenarioRunContainer {
   @SerializedName(SERIALIZED_NAME_ARTIFACTS)
   private List<ScenarioRunContainerArtifact> artifacts = null;
 
+  public ScenarioRunContainer() { 
+  }
+
+  
+  public ScenarioRunContainer(
+     String id, 
+     Boolean solutionContainer
+  ) {
+    this();
+    this.id = id;
+    this.solutionContainer = solutionContainer;
+  }
 
    /**
    * the container Id

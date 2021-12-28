@@ -28,7 +28,7 @@ import java.io.IOException;
  * the value of a Solution Run Template parameter for a Scenario
  */
 @ApiModel(description = "the value of a Solution Run Template parameter for a Scenario")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:13:37.097119104Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
 public class ScenarioRunTemplateParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)
@@ -46,6 +46,16 @@ public class ScenarioRunTemplateParameterValue {
   @SerializedName(SERIALIZED_NAME_IS_INHERITED)
   private Boolean isInherited;
 
+  public ScenarioRunTemplateParameterValue() { 
+  }
+
+  
+  public ScenarioRunTemplateParameterValue(
+     String varType
+  ) {
+    this();
+    this.varType = varType;
+  }
 
   public ScenarioRunTemplateParameterValue parameterId(String parameterId) {
     
