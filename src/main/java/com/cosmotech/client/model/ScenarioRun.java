@@ -32,7 +32,7 @@ import java.util.List;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:27:00.953004176Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-28T13:34:03.457949163Z[Etc/UTC]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
