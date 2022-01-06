@@ -30,7 +30,7 @@ import java.util.List;
  * the search options
  */
 @ApiModel(description = "the search options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-05T17:09:33.218469778Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-06T13:19:11.519932450Z[Etc/UTC]")
 public class DatasetSearch {
   public static final String SERIALIZED_NAME_DATASET_TAGS = "datasetTags";
   @SerializedName(SERIALIZED_NAME_DATASET_TAGS)
