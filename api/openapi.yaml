@@ -15,6 +15,8 @@ servers:
   url: https://dev.api.cosmotech.com
 - description: Production
   url: https://api.cosmotech.com
+- description: Staging
+  url: https://staging.api.cosmotech.com
 security:
 - oAuth2AuthCode: []
 tags:
