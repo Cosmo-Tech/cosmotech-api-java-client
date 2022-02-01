@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **message** | **String** | a  human readable message indicating details about why the workflow is in this condition |  [optional]
 **estimatedDuration** | **Integer** | estimatedDuration in seconds |  [optional]
 **nodes** | [**List&lt;ScenarioRunStatusNode&gt;**](ScenarioRunStatusNode.md) | status of ScenarioRun nodes |  [optional]
+**state** | **ScenarioRunState** |  |  [optional]
 
 
 

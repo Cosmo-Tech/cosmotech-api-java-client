@@ -25,12 +25,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * the Scenario job state
+ * the ScenarioRun end-to-end state
  */
-@JsonAdapter(ScenarioJobState.Adapter.class)
-public enum ScenarioJobState {
-  
-  CREATED("Created"),
+@JsonAdapter(ScenarioRunState.Adapter.class)
+public enum ScenarioRunState {
   
   RUNNING("Running"),
   
@@ -40,11 +38,13 @@ public enum ScenarioJobState {
   
   UNKNOWN("Unknown"),
   
-  DATAINGESTIONINPROGRESS("DataIngestionInProgress");
+  DATAINGESTIONINPROGRESS("DataIngestionInProgress"),
+  
+  DATAINGESTIONFAILURE("DataIngestionFailure");
 
   private String value;
 
-  ScenarioJobState(String value) {
+  ScenarioRunState(String value) {
     this.value = value;
   }
 
@@ -57,8 +57,8 @@ public enum ScenarioJobState {
     return String.valueOf(value);
   }
 
-  public static ScenarioJobState fromValue(String value) {
-    for (ScenarioJobState b : ScenarioJobState.values()) {
+  public static ScenarioRunState fromValue(String value) {
+    for (ScenarioRunState b : ScenarioRunState.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -66,16 +66,16 @@ public enum ScenarioJobState {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<ScenarioJobState> {
+  public static class Adapter extends TypeAdapter<ScenarioRunState> {
     @Override
-    public void write(final JsonWriter jsonWriter, final ScenarioJobState enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ScenarioRunState enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public ScenarioJobState read(final JsonReader jsonReader) throws IOException {
+    public ScenarioRunState read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return ScenarioJobState.fromValue(value);
+      return ScenarioRunState.fromValue(value);
     }
   }
 }

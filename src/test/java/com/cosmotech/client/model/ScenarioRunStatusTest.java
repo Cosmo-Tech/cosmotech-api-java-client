@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.ScenarioRunState;
 import com.cosmotech.client.model.ScenarioRunStatusNode;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -129,6 +130,14 @@ public class ScenarioRunStatusTest {
     @Test
     public void nodesTest() {
         // TODO: test nodes
+    }
+
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
     }
 
 }

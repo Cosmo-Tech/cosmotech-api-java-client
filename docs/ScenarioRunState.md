@@ -1,11 +1,9 @@
 
 
-# ScenarioJobState
+# ScenarioRunState
 
 ## Enum
 
-
-* `CREATED` (value: `"Created"`)
 
 * `RUNNING` (value: `"Running"`)
 
@@ -16,6 +14,8 @@
 * `UNKNOWN` (value: `"Unknown"`)
 
 * `DATAINGESTIONINPROGRESS` (value: `"DataIngestionInProgress"`)
+
+* `DATAINGESTIONFAILURE` (value: `"DataIngestionFailure"`)
 
 
 

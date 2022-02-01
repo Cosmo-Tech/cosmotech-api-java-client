@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cosmotech.client.model.ScenarioRunState;
 import com.cosmotech.client.model.ScenarioRunStatusNode;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -31,7 +32,7 @@ import java.util.List;
  * a ScenarioRun status
  */
 @ApiModel(description = "a ScenarioRun status")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-31T08:50:35.115839271Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-01T07:58:19.875980891Z[Etc/UTC]")
 public class ScenarioRunStatus {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -76,6 +77,10 @@ public class ScenarioRunStatus {
   public static final String SERIALIZED_NAME_NODES = "nodes";
   @SerializedName(SERIALIZED_NAME_NODES)
   private List<ScenarioRunStatusNode> nodes = null;
+
+  public static final String SERIALIZED_NAME_STATE = "state";
+  @SerializedName(SERIALIZED_NAME_STATE)
+  private ScenarioRunState state;
 
   public ScenarioRunStatus() { 
   }
@@ -341,6 +346,29 @@ public class ScenarioRunStatus {
   }
 
 
+  public ScenarioRunStatus state(ScenarioRunState state) {
+    
+    this.state = state;
+    return this;
+  }
+
+   /**
+   * Get state
+   * @return state
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ScenarioRunState getState() {
+    return state;
+  }
+
+
+  public void setState(ScenarioRunState state) {
+    this.state = state;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -360,12 +388,13 @@ public class ScenarioRunStatus {
         Objects.equals(this.progress, scenarioRunStatus.progress) &&
         Objects.equals(this.message, scenarioRunStatus.message) &&
         Objects.equals(this.estimatedDuration, scenarioRunStatus.estimatedDuration) &&
-        Objects.equals(this.nodes, scenarioRunStatus.nodes);
+        Objects.equals(this.nodes, scenarioRunStatus.nodes) &&
+        Objects.equals(this.state, scenarioRunStatus.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, organizationId, workflowId, workflowName, startTime, endTime, phase, progress, message, estimatedDuration, nodes);
+    return Objects.hash(id, organizationId, workflowId, workflowName, startTime, endTime, phase, progress, message, estimatedDuration, nodes, state);
   }
 
   @Override
@@ -383,6 +412,7 @@ public class ScenarioRunStatus {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    estimatedDuration: ").append(toIndentedString(estimatedDuration)).append("\n");
     sb.append("    nodes: ").append(toIndentedString(nodes)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
   }

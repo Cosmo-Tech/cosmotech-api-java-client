@@ -6492,6 +6492,7 @@ components:
       - Successful
       - Failed
       - Unknown
+      - DataIngestionInProgress
       readOnly: true
       type: string
     ScenarioLastRun:
@@ -6569,6 +6570,7 @@ components:
           - path: path
             name: name
         id: id
+        state: null
         solutionId: solutionId
         datasetList:
         - datasetList
@@ -6584,6 +6586,8 @@ components:
           description: the ScenarioRun
           readOnly: true
           type: string
+        state:
+          $ref: '#/components/schemas/ScenarioRunState'
         organizationId:
           description: the Organization id
           type: string
@@ -6920,6 +6924,17 @@ components:
       - containers
       - csmSimulationId
       type: object
+    ScenarioRunState:
+      description: the ScenarioRun end-to-end state
+      enum:
+      - Running
+      - Successful
+      - Failed
+      - Unknown
+      - DataIngestionInProgress
+      - DataIngestionFailure
+      readOnly: true
+      type: string
     ScenarioRunStatus:
       description: a ScenarioRun status
       example:
@@ -6951,6 +6966,7 @@ components:
         startTime: startTime
         id: id
         endTime: endTime
+        state: null
         message: message
         estimatedDuration: 0
         workflowId: workflowId
@@ -6991,6 +7007,8 @@ components:
           items:
             $ref: '#/components/schemas/ScenarioRunStatusNode'
           type: array
+        state:
+          $ref: '#/components/schemas/ScenarioRunState'
       type: object
     ScenarioRunStatusNode:
       description: status of a ScenarioRun Node

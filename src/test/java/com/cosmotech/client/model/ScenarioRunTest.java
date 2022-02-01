@@ -15,6 +15,7 @@ package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.RunTemplateParameterValue;
 import com.cosmotech.client.model.ScenarioRunContainer;
+import com.cosmotech.client.model.ScenarioRunState;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,6 +51,14 @@ public class ScenarioRunTest {
     @Test
     public void idTest() {
         // TODO: test id
+    }
+
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
     }
 
     /**
