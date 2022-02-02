@@ -33,7 +33,7 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-02T10:05:16.629930554Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-02T15:41:36.579702282Z[Etc/UTC]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

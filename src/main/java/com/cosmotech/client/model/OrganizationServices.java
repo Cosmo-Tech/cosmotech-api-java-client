@@ -32,7 +32,7 @@ import java.util.Map;
  * the cloud service resources of the Organization
  */
 @ApiModel(description = "the cloud service resources of the Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-02T10:05:16.629930554Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-02T15:41:36.579702282Z[Etc/UTC]")
 public class OrganizationServices {
   public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
   @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)
