@@ -18,6 +18,7 @@ import com.cosmotech.client.model.Dataset;
 import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
 import com.cosmotech.client.model.DatasetSearch;
+import java.io.File;
 import org.junit.Test;
 import org.junit.Ignore;
 

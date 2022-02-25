@@ -15,6 +15,7 @@ package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
 import com.cosmotech.client.model.Connector;
+import java.io.File;
 import org.junit.Test;
 import org.junit.Ignore;
 

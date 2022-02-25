@@ -243,10 +243,10 @@ public class WorkspaceApiTest {
     public void uploadWorkspaceFileTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        File file = null;
+        File _file = null;
         Boolean overwrite = null;
         String destination = null;
-                WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, file, overwrite, destination);
+                WorkspaceFile response = api.uploadWorkspaceFile(organizationId, workspaceId, _file, overwrite, destination);
         // TODO: test validations
     }
     

@@ -14,6 +14,7 @@
 package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
+import java.io.File;
 import com.cosmotech.client.model.User;
 import org.junit.Test;
 import org.junit.Ignore;

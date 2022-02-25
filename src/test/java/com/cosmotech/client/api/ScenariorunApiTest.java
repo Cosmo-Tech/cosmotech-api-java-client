@@ -14,6 +14,7 @@
 package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
+import java.io.File;
 import com.cosmotech.client.model.ScenarioRun;
 import com.cosmotech.client.model.ScenarioRunLogs;
 import com.cosmotech.client.model.ScenarioRunSearch;

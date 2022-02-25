@@ -130,7 +130,7 @@ public class WorkspaceApi {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -279,7 +279,7 @@ public class WorkspaceApi {
             "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -421,7 +421,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -560,7 +560,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -710,7 +710,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -861,7 +861,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1011,7 +1011,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1150,7 +1150,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1281,7 +1281,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1423,7 +1423,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1563,7 +1563,7 @@ public class WorkspaceApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1711,7 +1711,7 @@ public class WorkspaceApi {
             "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1814,7 +1814,7 @@ public class WorkspaceApi {
      * Build call for uploadWorkspaceFile
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @param file  (required)
+     * @param _file  (required)
      * @param overwrite  (optional, default to false)
      * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @param _callback Callback for upload/download progress
@@ -1827,7 +1827,7 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadWorkspaceFileCall(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call uploadWorkspaceFileCall(String organizationId, String workspaceId, File _file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -1863,8 +1863,8 @@ public class WorkspaceApi {
             localVarFormParams.put("destination", destination);
         }
 
-        if (file != null) {
-            localVarFormParams.put("file", file);
+        if (_file != null) {
+            localVarFormParams.put("file", _file);
         }
 
         final String[] localVarAccepts = {
@@ -1879,7 +1879,7 @@ public class WorkspaceApi {
             "multipart/form-data"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1888,7 +1888,7 @@ public class WorkspaceApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call uploadWorkspaceFileValidateBeforeCall(String organizationId, String workspaceId, File _file, Boolean overwrite, String destination, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -1900,13 +1900,13 @@ public class WorkspaceApi {
             throw new ApiException("Missing the required parameter 'workspaceId' when calling uploadWorkspaceFile(Async)");
         }
         
-        // verify the required parameter 'file' is set
-        if (file == null) {
-            throw new ApiException("Missing the required parameter 'file' when calling uploadWorkspaceFile(Async)");
+        // verify the required parameter '_file' is set
+        if (_file == null) {
+            throw new ApiException("Missing the required parameter '_file' when calling uploadWorkspaceFile(Async)");
         }
         
 
-        okhttp3.Call localVarCall = uploadWorkspaceFileCall(organizationId, workspaceId, file, overwrite, destination, _callback);
+        okhttp3.Call localVarCall = uploadWorkspaceFileCall(organizationId, workspaceId, _file, overwrite, destination, _callback);
         return localVarCall;
 
     }
@@ -1916,7 +1916,7 @@ public class WorkspaceApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @param file  (required)
+     * @param _file  (required)
      * @param overwrite  (optional, default to false)
      * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @return WorkspaceFile
@@ -1928,8 +1928,8 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public WorkspaceFile uploadWorkspaceFile(String organizationId, String workspaceId, File file, Boolean overwrite, String destination) throws ApiException {
-        ApiResponse<WorkspaceFile> localVarResp = uploadWorkspaceFileWithHttpInfo(organizationId, workspaceId, file, overwrite, destination);
+    public WorkspaceFile uploadWorkspaceFile(String organizationId, String workspaceId, File _file, Boolean overwrite, String destination) throws ApiException {
+        ApiResponse<WorkspaceFile> localVarResp = uploadWorkspaceFileWithHttpInfo(organizationId, workspaceId, _file, overwrite, destination);
         return localVarResp.getData();
     }
 
@@ -1938,7 +1938,7 @@ public class WorkspaceApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @param file  (required)
+     * @param _file  (required)
      * @param overwrite  (optional, default to false)
      * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @return ApiResponse&lt;WorkspaceFile&gt;
@@ -1950,8 +1950,8 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WorkspaceFile> uploadWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, File file, Boolean overwrite, String destination) throws ApiException {
-        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, destination, null);
+    public ApiResponse<WorkspaceFile> uploadWorkspaceFileWithHttpInfo(String organizationId, String workspaceId, File _file, Boolean overwrite, String destination) throws ApiException {
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, _file, overwrite, destination, null);
         Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1961,7 +1961,7 @@ public class WorkspaceApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @param file  (required)
+     * @param _file  (required)
      * @param overwrite  (optional, default to false)
      * @param destination Destination path. Must end with a &#39;/&#39; if specifying a folder. Note that paths may or may not start with a &#39;/&#39;, but they are always treated as relative to the Workspace root location.  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -1974,9 +1974,9 @@ public class WorkspaceApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadWorkspaceFileAsync(String organizationId, String workspaceId, File file, Boolean overwrite, String destination, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
+    public okhttp3.Call uploadWorkspaceFileAsync(String organizationId, String workspaceId, File _file, Boolean overwrite, String destination, final ApiCallback<WorkspaceFile> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, file, overwrite, destination, _callback);
+        okhttp3.Call localVarCall = uploadWorkspaceFileValidateBeforeCall(organizationId, workspaceId, _file, overwrite, destination, _callback);
         Type localVarReturnType = new TypeToken<WorkspaceFile>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
