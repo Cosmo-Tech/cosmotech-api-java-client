@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**runScenario**](ScenariorunApi.md#runScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run | run a ScenarioRun for the Scenario
 [**searchScenarioRuns**](ScenariorunApi.md#searchScenarioRuns) | **POST** /organizations/{organization_id}/scenarioruns/search | Search ScenarioRuns
 [**startScenarioRunContainers**](ScenariorunApi.md#startScenarioRunContainers) | **POST** /organizations/{organization_id}/scenarioruns/startcontainers | Start a new scenariorun with raw containers definition
+[**stopScenarioRun**](ScenariorunApi.md#stopScenarioRun) | **POST** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop | stop a ScenarioRun for the Scenario
 
 
 <a name="deleteScenarioRun"></a>
@@ -695,4 +696,71 @@ Name | Type | Description  | Notes
 **202** | the scenariorun details |  -  |
 **400** | Bad request |  -  |
 **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="stopScenarioRun"></a>
+# **stopScenarioRun**
+> ScenarioRunStatus stopScenarioRun(organizationId, scenariorunId)
+
+stop a ScenarioRun for the Scenario
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenariorunApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String scenariorunId = "scenariorunId_example"; // String | the scenariorun identifier
+    try {
+      ScenarioRunStatus result = apiInstance.stopScenarioRun(organizationId, scenariorunId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenariorunApi#stopScenarioRun");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **scenariorunId** | **String**| the scenariorun identifier |
+
+### Return type
+
+[**ScenarioRunStatus**](ScenarioRunStatus.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the scenariorun status details |  -  |
 

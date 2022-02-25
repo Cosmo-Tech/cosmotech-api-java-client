@@ -1498,4 +1498,142 @@ public class ScenariorunApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+    /**
+     * Build call for stopScenarioRun
+     * @param organizationId the Organization identifier (required)
+     * @param scenariorunId the scenariorun identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call stopScenarioRunCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "scenariorun_id" + "\\}", localVarApiClient.escapeString(scenariorunId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarHeaderParams != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call stopScenarioRunValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling stopScenarioRun(Async)");
+        }
+        
+        // verify the required parameter 'scenariorunId' is set
+        if (scenariorunId == null) {
+            throw new ApiException("Missing the required parameter 'scenariorunId' when calling stopScenarioRun(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = stopScenarioRunCall(organizationId, scenariorunId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * stop a ScenarioRun for the Scenario
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param scenariorunId the scenariorun identifier (required)
+     * @return ScenarioRunStatus
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
+     </table>
+     */
+    public ScenarioRunStatus stopScenarioRun(String organizationId, String scenariorunId) throws ApiException {
+        ApiResponse<ScenarioRunStatus> localVarResp = stopScenarioRunWithHttpInfo(organizationId, scenariorunId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * stop a ScenarioRun for the Scenario
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param scenariorunId the scenariorun identifier (required)
+     * @return ApiResponse&lt;ScenarioRunStatus&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ScenarioRunStatus> stopScenarioRunWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
+        okhttp3.Call localVarCall = stopScenarioRunValidateBeforeCall(organizationId, scenariorunId, null);
+        Type localVarReturnType = new TypeToken<ScenarioRunStatus>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * stop a ScenarioRun for the Scenario (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param scenariorunId the scenariorun identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call stopScenarioRunAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRunStatus> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = stopScenarioRunValidateBeforeCall(organizationId, scenariorunId, _callback);
+        Type localVarReturnType = new TypeToken<ScenarioRunStatus>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

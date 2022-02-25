@@ -198,4 +198,20 @@ public class ScenariorunApiTest {
         // TODO: test validations
     }
     
+    /**
+     * stop a ScenarioRun for the Scenario
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void stopScenarioRunTest() throws ApiException {
+        String organizationId = null;
+        String scenariorunId = null;
+                ScenarioRunStatus response = api.stopScenarioRun(organizationId, scenariorunId);
+        // TODO: test validations
+    }
+    
 }
