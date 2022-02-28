@@ -33,7 +33,7 @@ import java.util.List;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-25T16:14:13.807551757Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-28T09:48:27.240440499Z[Etc/UTC]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -478,11 +478,11 @@ public class ScenarioRun {
   }
 
    /**
-   * the containers list
+   * the containers list. This information is not returned by the API.
    * @return containers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the containers list")
+  @ApiModelProperty(value = "the containers list. This information is not returned by the API.")
 
   public List<ScenarioRunContainer> getContainers() {
     return containers;
