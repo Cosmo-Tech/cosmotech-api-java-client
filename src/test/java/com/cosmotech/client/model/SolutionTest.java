@@ -110,6 +110,14 @@ public class SolutionTest {
     }
 
     /**
+     * Test the property 'sdkVersion'
+     */
+    @Test
+    public void sdkVersionTest() {
+        // TODO: test sdkVersion
+    }
+
+    /**
      * Test the property 'url'
      */
     @Test

@@ -5796,6 +5796,7 @@ components:
         - parameterGroups
         - parameterGroups
         postRunSource: null
+        noDataIngestionState: true
         id: id
         scenarioDataDownloadTransform: true
         datasetValidatorSource: null
@@ -5836,6 +5837,10 @@ components:
           description: the compute size needed for this Run Template. Standard sizes
             are basic and highcpu. Default is basic
           type: string
+        noDataIngestionState:
+          description: set to true if the run template does not want to check data
+            ingestion state (no probes or not control plane)
+          type: boolean
         fetchDatasets:
           description: whether or not the fetch dataset step is done
           type: boolean
@@ -6288,7 +6293,9 @@ components:
           parameterId: parameterId
           value: value
         csmSimulationRun: csmSimulationRun
+        noDataIngestionState: true
         runTemplateId: runTemplateId
+        sdkVersion: sdkVersion
         containers:
         - image: image
           runArgs:
@@ -6395,6 +6402,13 @@ components:
             basic and highcpu. Default is basic
           readOnly: true
           type: string
+        sdkVersion:
+          description: the MAJOR.MINOR version used to build the solution solution
+          type: string
+        noDataIngestionState:
+          description: set to true if the run template does not use any Datawarehouse
+            consumers (AMQP consumers for Azure)
+          type: boolean
         datasetList:
           description: the list of Dataset Id associated to this Analysis
           items:
@@ -6895,6 +6909,7 @@ components:
           - parameterGroups
           - parameterGroups
           postRunSource: null
+          noDataIngestionState: true
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
@@ -6924,6 +6939,7 @@ components:
           - parameterGroups
           - parameterGroups
           postRunSource: null
+          noDataIngestionState: true
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
@@ -6966,6 +6982,7 @@ components:
           labels:
             key: labels
         name: name
+        sdkVersion: sdkVersion
         id: id
         parameters:
         - regexValidation: regexValidation
@@ -7016,6 +7033,9 @@ components:
         ownerId:
           description: the User id which own this Solution
           readOnly: true
+          type: string
+        sdkVersion:
+          description: the MAJOR.MINOR version used to build this solution
           type: string
         url:
           description: an optional URL link to solution page

@@ -33,7 +33,7 @@ import java.util.List;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T14:29:09.609106602Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T15:35:26.951332588Z[Etc/UTC]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -90,6 +90,14 @@ public class ScenarioRun {
   public static final String SERIALIZED_NAME_COMPUTE_SIZE = "computeSize";
   @SerializedName(SERIALIZED_NAME_COMPUTE_SIZE)
   private String computeSize;
+
+  public static final String SERIALIZED_NAME_SDK_VERSION = "sdkVersion";
+  @SerializedName(SERIALIZED_NAME_SDK_VERSION)
+  private String sdkVersion;
+
+  public static final String SERIALIZED_NAME_NO_DATA_INGESTION_STATE = "noDataIngestionState";
+  @SerializedName(SERIALIZED_NAME_NO_DATA_INGESTION_STATE)
+  private Boolean noDataIngestionState;
 
   public static final String SERIALIZED_NAME_DATASET_LIST = "datasetList";
   @SerializedName(SERIALIZED_NAME_DATASET_LIST)
@@ -393,6 +401,52 @@ public class ScenarioRun {
 
 
 
+  public ScenarioRun sdkVersion(String sdkVersion) {
+    
+    this.sdkVersion = sdkVersion;
+    return this;
+  }
+
+   /**
+   * the MAJOR.MINOR version used to build the solution solution
+   * @return sdkVersion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the MAJOR.MINOR version used to build the solution solution")
+
+  public String getSdkVersion() {
+    return sdkVersion;
+  }
+
+
+  public void setSdkVersion(String sdkVersion) {
+    this.sdkVersion = sdkVersion;
+  }
+
+
+  public ScenarioRun noDataIngestionState(Boolean noDataIngestionState) {
+    
+    this.noDataIngestionState = noDataIngestionState;
+    return this;
+  }
+
+   /**
+   * set to true if the run template does not use any Datawarehouse consumers (AMQP consumers for Azure)
+   * @return noDataIngestionState
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "set to true if the run template does not use any Datawarehouse consumers (AMQP consumers for Azure)")
+
+  public Boolean getNoDataIngestionState() {
+    return noDataIngestionState;
+  }
+
+
+  public void setNoDataIngestionState(Boolean noDataIngestionState) {
+    this.noDataIngestionState = noDataIngestionState;
+  }
+
+
    /**
    * the list of Dataset Id associated to this Analysis
    * @return datasetList
@@ -517,6 +571,8 @@ public class ScenarioRun {
         Objects.equals(this.solutionId, scenarioRun.solutionId) &&
         Objects.equals(this.runTemplateId, scenarioRun.runTemplateId) &&
         Objects.equals(this.computeSize, scenarioRun.computeSize) &&
+        Objects.equals(this.sdkVersion, scenarioRun.sdkVersion) &&
+        Objects.equals(this.noDataIngestionState, scenarioRun.noDataIngestionState) &&
         Objects.equals(this.datasetList, scenarioRun.datasetList) &&
         Objects.equals(this.parametersValues, scenarioRun.parametersValues) &&
         Objects.equals(this.sendDatasetsToDataWarehouse, scenarioRun.sendDatasetsToDataWarehouse) &&
@@ -527,7 +583,7 @@ public class ScenarioRun {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, state, organizationId, workflowId, csmSimulationRun, generateName, workflowName, ownerId, workspaceId, workspaceKey, scenarioId, solutionId, runTemplateId, computeSize, datasetList, parametersValues, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, nodeLabel, containers);
+    return Objects.hash(id, state, organizationId, workflowId, csmSimulationRun, generateName, workflowName, ownerId, workspaceId, workspaceKey, scenarioId, solutionId, runTemplateId, computeSize, sdkVersion, noDataIngestionState, datasetList, parametersValues, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, nodeLabel, containers);
   }
 
   @Override
@@ -548,6 +604,8 @@ public class ScenarioRun {
     sb.append("    solutionId: ").append(toIndentedString(solutionId)).append("\n");
     sb.append("    runTemplateId: ").append(toIndentedString(runTemplateId)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
+    sb.append("    sdkVersion: ").append(toIndentedString(sdkVersion)).append("\n");
+    sb.append("    noDataIngestionState: ").append(toIndentedString(noDataIngestionState)).append("\n");
     sb.append("    datasetList: ").append(toIndentedString(datasetList)).append("\n");
     sb.append("    parametersValues: ").append(toIndentedString(parametersValues)).append("\n");
     sb.append("    sendDatasetsToDataWarehouse: ").append(toIndentedString(sendDatasetsToDataWarehouse)).append("\n");

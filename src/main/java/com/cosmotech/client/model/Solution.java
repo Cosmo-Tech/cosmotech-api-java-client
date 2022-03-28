@@ -33,7 +33,7 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T14:29:09.609106602Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T15:35:26.951332588Z[Etc/UTC]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,6 +66,10 @@ public class Solution {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
+
+  public static final String SERIALIZED_NAME_SDK_VERSION = "sdkVersion";
+  @SerializedName(SERIALIZED_NAME_SDK_VERSION)
+  private String sdkVersion;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -266,6 +270,29 @@ public class Solution {
 
 
 
+  public Solution sdkVersion(String sdkVersion) {
+    
+    this.sdkVersion = sdkVersion;
+    return this;
+  }
+
+   /**
+   * the MAJOR.MINOR version used to build this solution
+   * @return sdkVersion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the MAJOR.MINOR version used to build this solution")
+
+  public String getSdkVersion() {
+    return sdkVersion;
+  }
+
+
+  public void setSdkVersion(String sdkVersion) {
+    this.sdkVersion = sdkVersion;
+  }
+
+
   public Solution url(String url) {
     
     this.url = url;
@@ -427,6 +454,7 @@ public class Solution {
         Objects.equals(this.csmSimulator, solution.csmSimulator) &&
         Objects.equals(this.version, solution.version) &&
         Objects.equals(this.ownerId, solution.ownerId) &&
+        Objects.equals(this.sdkVersion, solution.sdkVersion) &&
         Objects.equals(this.url, solution.url) &&
         Objects.equals(this.tags, solution.tags) &&
         Objects.equals(this.parameters, solution.parameters) &&
@@ -436,7 +464,7 @@ public class Solution {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, repository, csmSimulator, version, ownerId, url, tags, parameters, parameterGroups, runTemplates);
+    return Objects.hash(id, key, name, description, repository, csmSimulator, version, ownerId, sdkVersion, url, tags, parameters, parameterGroups, runTemplates);
   }
 
   @Override
@@ -451,6 +479,7 @@ public class Solution {
     sb.append("    csmSimulator: ").append(toIndentedString(csmSimulator)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    sdkVersion: ").append(toIndentedString(sdkVersion)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");

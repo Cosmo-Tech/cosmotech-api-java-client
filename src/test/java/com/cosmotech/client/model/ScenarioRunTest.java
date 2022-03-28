@@ -158,6 +158,22 @@ public class ScenarioRunTest {
     }
 
     /**
+     * Test the property 'sdkVersion'
+     */
+    @Test
+    public void sdkVersionTest() {
+        // TODO: test sdkVersion
+    }
+
+    /**
+     * Test the property 'noDataIngestionState'
+     */
+    @Test
+    public void noDataIngestionStateTest() {
+        // TODO: test noDataIngestionState
+    }
+
+    /**
      * Test the property 'datasetList'
      */
     @Test

@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **solutionId** | **String** | the Solution Id |  [optional] [readonly]
 **runTemplateId** | **String** | the Solution Run Template id |  [optional] [readonly]
 **computeSize** | **String** | the compute size needed for this Analysis. Standard sizes are basic and highcpu. Default is basic |  [optional] [readonly]
+**sdkVersion** | **String** | the MAJOR.MINOR version used to build the solution solution |  [optional]
+**noDataIngestionState** | **Boolean** | set to true if the run template does not use any Datawarehouse consumers (AMQP consumers for Azure) |  [optional]
 **datasetList** | **List&lt;String&gt;** | the list of Dataset Id associated to this Analysis |  [optional] [readonly]
 **parametersValues** | [**List&lt;RunTemplateParameterValue&gt;**](RunTemplateParameterValue.md) | the list of Run Template parameters values |  [optional] [readonly]
 **sendDatasetsToDataWarehouse** | **Boolean** | whether or not the Datasets values are send to the DataWarehouse prior to Simulation Run. If not set follow the Workspace setting |  [optional] [readonly]

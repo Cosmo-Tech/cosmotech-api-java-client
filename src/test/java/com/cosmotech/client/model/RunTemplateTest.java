@@ -92,6 +92,14 @@ public class RunTemplateTest {
     }
 
     /**
+     * Test the property 'noDataIngestionState'
+     */
+    @Test
+    public void noDataIngestionStateTest() {
+        // TODO: test noDataIngestionState
+    }
+
+    /**
      * Test the property 'fetchDatasets'
      */
     @Test

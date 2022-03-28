@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T14:29:09.609106602Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-28T15:35:26.951332588Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -56,6 +56,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_COMPUTE_SIZE = "computeSize";
   @SerializedName(SERIALIZED_NAME_COMPUTE_SIZE)
   private String computeSize;
+
+  public static final String SERIALIZED_NAME_NO_DATA_INGESTION_STATE = "noDataIngestionState";
+  @SerializedName(SERIALIZED_NAME_NO_DATA_INGESTION_STATE)
+  private Boolean noDataIngestionState;
 
   public static final String SERIALIZED_NAME_FETCH_DATASETS = "fetchDatasets";
   @SerializedName(SERIALIZED_NAME_FETCH_DATASETS)
@@ -279,6 +283,29 @@ public class RunTemplate {
 
   public void setComputeSize(String computeSize) {
     this.computeSize = computeSize;
+  }
+
+
+  public RunTemplate noDataIngestionState(Boolean noDataIngestionState) {
+    
+    this.noDataIngestionState = noDataIngestionState;
+    return this;
+  }
+
+   /**
+   * set to true if the run template does not want to check data ingestion state (no probes or not control plane)
+   * @return noDataIngestionState
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "set to true if the run template does not want to check data ingestion state (no probes or not control plane)")
+
+  public Boolean getNoDataIngestionState() {
+    return noDataIngestionState;
+  }
+
+
+  public void setNoDataIngestionState(Boolean noDataIngestionState) {
+    this.noDataIngestionState = noDataIngestionState;
   }
 
 
@@ -742,6 +769,7 @@ public class RunTemplate {
         Objects.equals(this.csmSimulation, runTemplate.csmSimulation) &&
         Objects.equals(this.tags, runTemplate.tags) &&
         Objects.equals(this.computeSize, runTemplate.computeSize) &&
+        Objects.equals(this.noDataIngestionState, runTemplate.noDataIngestionState) &&
         Objects.equals(this.fetchDatasets, runTemplate.fetchDatasets) &&
         Objects.equals(this.scenarioDataDownloadTransform, runTemplate.scenarioDataDownloadTransform) &&
         Objects.equals(this.fetchScenarioParameters, runTemplate.fetchScenarioParameters) &&
@@ -765,7 +793,7 @@ public class RunTemplate {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, noDataIngestionState, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps);
   }
 
   @Override
@@ -778,6 +806,7 @@ public class RunTemplate {
     sb.append("    csmSimulation: ").append(toIndentedString(csmSimulation)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    computeSize: ").append(toIndentedString(computeSize)).append("\n");
+    sb.append("    noDataIngestionState: ").append(toIndentedString(noDataIngestionState)).append("\n");
     sb.append("    fetchDatasets: ").append(toIndentedString(fetchDatasets)).append("\n");
     sb.append("    scenarioDataDownloadTransform: ").append(toIndentedString(scenarioDataDownloadTransform)).append("\n");
     sb.append("    fetchScenarioParameters: ").append(toIndentedString(fetchScenarioParameters)).append("\n");
