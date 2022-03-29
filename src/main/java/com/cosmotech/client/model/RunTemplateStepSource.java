@@ -25,14 +25,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * the source local or cloud
+ * the source local, cloud or git repository
  */
 @JsonAdapter(RunTemplateStepSource.Adapter.class)
 public enum RunTemplateStepSource {
   
+  CLOUD("cloud"),
+  
+  GIT("git"),
+  
   LOCAL("local"),
   
-  CLOUD("cloud");
+  PLATFORM("platform");
 
   private String value;
 

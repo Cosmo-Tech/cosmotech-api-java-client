@@ -5788,6 +5788,7 @@ components:
         stackSteps: true
         description: description
         computeSize: computeSize
+        runTemplateSourceDir: runTemplateSourceDir
         applyParameters: true
         run: true
         validateData: true
@@ -5796,12 +5797,14 @@ components:
         - parameterGroups
         - parameterGroups
         postRunSource: null
+        gitBranchName: gitBranchName
         noDataIngestionState: true
         id: id
         scenarioDataDownloadTransform: true
         datasetValidatorSource: null
         preRunSource: null
         scenariodataTransformSource: null
+        gitRepositoryUrl: gitRepositoryUrl
         postRun: true
         parametersJson: true
         sendDatasetsToDataWarehouse: true
@@ -5901,6 +5904,15 @@ components:
           description: whether or not to stack adjacent scenario run steps in one
             container run which will chain steps
           type: boolean
+        gitRepositoryUrl:
+          description: an optional URL to the git repository
+          type: string
+        gitBranchName:
+          description: an optional git branch name
+          type: string
+        runTemplateSourceDir:
+          description: an optional directory where to find the run template source
+          type: string
       required:
       - id
       - name
@@ -6027,10 +6039,12 @@ components:
       - value
       type: object
     RunTemplateStepSource:
-      description: the source local or cloud
+      description: "the source local, cloud or git repository"
       enum:
-      - local
       - cloud
+      - git
+      - local
+      - platform
       type: string
     Scenario:
       description: a Scenario with base information
@@ -6901,6 +6915,7 @@ components:
           stackSteps: true
           description: description
           computeSize: computeSize
+          runTemplateSourceDir: runTemplateSourceDir
           applyParameters: true
           run: true
           validateData: true
@@ -6909,12 +6924,14 @@ components:
           - parameterGroups
           - parameterGroups
           postRunSource: null
+          gitBranchName: gitBranchName
           noDataIngestionState: true
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
           preRunSource: null
           scenariodataTransformSource: null
+          gitRepositoryUrl: gitRepositoryUrl
           postRun: true
           parametersJson: true
           sendDatasetsToDataWarehouse: true
@@ -6931,6 +6948,7 @@ components:
           stackSteps: true
           description: description
           computeSize: computeSize
+          runTemplateSourceDir: runTemplateSourceDir
           applyParameters: true
           run: true
           validateData: true
@@ -6939,12 +6957,14 @@ components:
           - parameterGroups
           - parameterGroups
           postRunSource: null
+          gitBranchName: gitBranchName
           noDataIngestionState: true
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
           preRunSource: null
           scenariodataTransformSource: null
+          gitRepositoryUrl: gitRepositoryUrl
           postRun: true
           parametersJson: true
           sendDatasetsToDataWarehouse: true

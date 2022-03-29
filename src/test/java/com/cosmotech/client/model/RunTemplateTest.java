@@ -251,4 +251,28 @@ public class RunTemplateTest {
         // TODO: test stackSteps
     }
 
+    /**
+     * Test the property 'gitRepositoryUrl'
+     */
+    @Test
+    public void gitRepositoryUrlTest() {
+        // TODO: test gitRepositoryUrl
+    }
+
+    /**
+     * Test the property 'gitBranchName'
+     */
+    @Test
+    public void gitBranchNameTest() {
+        // TODO: test gitBranchName
+    }
+
+    /**
+     * Test the property 'runTemplateSourceDir'
+     */
+    @Test
+    public void runTemplateSourceDirTest() {
+        // TODO: test runTemplateSourceDir
+    }
+
 }

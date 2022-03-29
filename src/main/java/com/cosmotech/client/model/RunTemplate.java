@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T12:50:24.003654446Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T16:40:26.124251688Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -136,6 +136,18 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_STACK_STEPS = "stackSteps";
   @SerializedName(SERIALIZED_NAME_STACK_STEPS)
   private Boolean stackSteps;
+
+  public static final String SERIALIZED_NAME_GIT_REPOSITORY_URL = "gitRepositoryUrl";
+  @SerializedName(SERIALIZED_NAME_GIT_REPOSITORY_URL)
+  private String gitRepositoryUrl;
+
+  public static final String SERIALIZED_NAME_GIT_BRANCH_NAME = "gitBranchName";
+  @SerializedName(SERIALIZED_NAME_GIT_BRANCH_NAME)
+  private String gitBranchName;
+
+  public static final String SERIALIZED_NAME_RUN_TEMPLATE_SOURCE_DIR = "runTemplateSourceDir";
+  @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_SOURCE_DIR)
+  private String runTemplateSourceDir;
 
   public RunTemplate() { 
   }
@@ -754,6 +766,75 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate gitRepositoryUrl(String gitRepositoryUrl) {
+    
+    this.gitRepositoryUrl = gitRepositoryUrl;
+    return this;
+  }
+
+   /**
+   * an optional URL to the git repository
+   * @return gitRepositoryUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "an optional URL to the git repository")
+
+  public String getGitRepositoryUrl() {
+    return gitRepositoryUrl;
+  }
+
+
+  public void setGitRepositoryUrl(String gitRepositoryUrl) {
+    this.gitRepositoryUrl = gitRepositoryUrl;
+  }
+
+
+  public RunTemplate gitBranchName(String gitBranchName) {
+    
+    this.gitBranchName = gitBranchName;
+    return this;
+  }
+
+   /**
+   * an optional git branch name
+   * @return gitBranchName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "an optional git branch name")
+
+  public String getGitBranchName() {
+    return gitBranchName;
+  }
+
+
+  public void setGitBranchName(String gitBranchName) {
+    this.gitBranchName = gitBranchName;
+  }
+
+
+  public RunTemplate runTemplateSourceDir(String runTemplateSourceDir) {
+    
+    this.runTemplateSourceDir = runTemplateSourceDir;
+    return this;
+  }
+
+   /**
+   * an optional directory where to find the run template source
+   * @return runTemplateSourceDir
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "an optional directory where to find the run template source")
+
+  public String getRunTemplateSourceDir() {
+    return runTemplateSourceDir;
+  }
+
+
+  public void setRunTemplateSourceDir(String runTemplateSourceDir) {
+    this.runTemplateSourceDir = runTemplateSourceDir;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -788,12 +869,15 @@ public class RunTemplate {
         Objects.equals(this.postRunSource, runTemplate.postRunSource) &&
         Objects.equals(this.scenariodataTransformSource, runTemplate.scenariodataTransformSource) &&
         Objects.equals(this.parameterGroups, runTemplate.parameterGroups) &&
-        Objects.equals(this.stackSteps, runTemplate.stackSteps);
+        Objects.equals(this.stackSteps, runTemplate.stackSteps) &&
+        Objects.equals(this.gitRepositoryUrl, runTemplate.gitRepositoryUrl) &&
+        Objects.equals(this.gitBranchName, runTemplate.gitBranchName) &&
+        Objects.equals(this.runTemplateSourceDir, runTemplate.runTemplateSourceDir);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, noDataIngestionState, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, noDataIngestionState, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps, gitRepositoryUrl, gitBranchName, runTemplateSourceDir);
   }
 
   @Override
@@ -826,6 +910,9 @@ public class RunTemplate {
     sb.append("    scenariodataTransformSource: ").append(toIndentedString(scenariodataTransformSource)).append("\n");
     sb.append("    parameterGroups: ").append(toIndentedString(parameterGroups)).append("\n");
     sb.append("    stackSteps: ").append(toIndentedString(stackSteps)).append("\n");
+    sb.append("    gitRepositoryUrl: ").append(toIndentedString(gitRepositoryUrl)).append("\n");
+    sb.append("    gitBranchName: ").append(toIndentedString(gitBranchName)).append("\n");
+    sb.append("    runTemplateSourceDir: ").append(toIndentedString(runTemplateSourceDir)).append("\n");
     sb.append("}");
     return sb.toString();
   }
