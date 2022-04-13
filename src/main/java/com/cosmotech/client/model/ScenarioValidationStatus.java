@@ -25,26 +25,22 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * the ScenarioRun end-to-end state
+ * the validation status of the scenario
  */
-@JsonAdapter(ScenarioRunState.Adapter.class)
-public enum ScenarioRunState {
+@JsonAdapter(ScenarioValidationStatus.Adapter.class)
+public enum ScenarioValidationStatus {
   
-  RUNNING("Running"),
+  DRAFT("Draft"),
   
-  SUCCESSFUL("Successful"),
-  
-  FAILED("Failed"),
+  REJECTED("Rejected"),
   
   UNKNOWN("Unknown"),
   
-  DATAINGESTIONINPROGRESS("DataIngestionInProgress"),
-  
-  DATAINGESTIONFAILURE("DataIngestionFailure");
+  VALIDATED("Validated");
 
   private String value;
 
-  ScenarioRunState(String value) {
+  ScenarioValidationStatus(String value) {
     this.value = value;
   }
 
@@ -57,8 +53,8 @@ public enum ScenarioRunState {
     return String.valueOf(value);
   }
 
-  public static ScenarioRunState fromValue(String value) {
-    for (ScenarioRunState b : ScenarioRunState.values()) {
+  public static ScenarioValidationStatus fromValue(String value) {
+    for (ScenarioValidationStatus b : ScenarioValidationStatus.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -66,16 +62,16 @@ public enum ScenarioRunState {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<ScenarioRunState> {
+  public static class Adapter extends TypeAdapter<ScenarioValidationStatus> {
     @Override
-    public void write(final JsonWriter jsonWriter, final ScenarioRunState enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ScenarioValidationStatus enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public ScenarioRunState read(final JsonReader jsonReader) throws IOException {
+    public ScenarioValidationStatus read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return ScenarioRunState.fromValue(value);
+      return ScenarioValidationStatus.fromValue(value);
     }
   }
 }

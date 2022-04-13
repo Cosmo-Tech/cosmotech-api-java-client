@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **lastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **parentLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **rootLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
+**validationStatus** | **ScenarioValidationStatus** |  |  [optional]
 
 
 

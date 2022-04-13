@@ -21,15 +21,15 @@ import org.junit.Test;
 
 
 /**
- * Model tests for RunTemplateHandlerId
+ * Model tests for ScenarioValidationStatus
  */
-public class RunTemplateHandlerIdTest {
+public class ScenarioValidationStatusTest {
     /**
-     * Model tests for RunTemplateHandlerId
+     * Model tests for ScenarioValidationStatus
      */
     @Test
-    public void testRunTemplateHandlerId() {
-        // TODO: test RunTemplateHandlerId
+    public void testScenarioValidationStatus() {
+        // TODO: test ScenarioValidationStatus
     }
 
 }
