@@ -33,7 +33,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-14T09:37:16.519562292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-14T09:54:53.818810271Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
