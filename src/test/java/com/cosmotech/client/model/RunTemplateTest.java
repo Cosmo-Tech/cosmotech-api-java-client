@@ -275,4 +275,12 @@ public class RunTemplateTest {
         // TODO: test runTemplateSourceDir
     }
 
+    /**
+     * Test the property 'executionTimeout'
+     */
+    @Test
+    public void executionTimeoutTest() {
+        // TODO: test executionTimeout
+    }
+
 }

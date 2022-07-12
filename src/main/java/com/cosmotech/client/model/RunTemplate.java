@@ -31,7 +31,7 @@ import java.util.List;
  * a Solution Run Template
  */
 @ApiModel(description = "a Solution Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T07:55:39.709470615Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T09:46:22.273240598Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -148,6 +148,10 @@ public class RunTemplate {
   public static final String SERIALIZED_NAME_RUN_TEMPLATE_SOURCE_DIR = "runTemplateSourceDir";
   @SerializedName(SERIALIZED_NAME_RUN_TEMPLATE_SOURCE_DIR)
   private String runTemplateSourceDir;
+
+  public static final String SERIALIZED_NAME_EXECUTION_TIMEOUT = "executionTimeout";
+  @SerializedName(SERIALIZED_NAME_EXECUTION_TIMEOUT)
+  private Integer executionTimeout;
 
   public RunTemplate() { 
   }
@@ -835,6 +839,29 @@ public class RunTemplate {
   }
 
 
+  public RunTemplate executionTimeout(Integer executionTimeout) {
+    
+    this.executionTimeout = executionTimeout;
+    return this;
+  }
+
+   /**
+   * an optional duration in seconds in which a workflow is allowed to run
+   * @return executionTimeout
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "an optional duration in seconds in which a workflow is allowed to run")
+
+  public Integer getExecutionTimeout() {
+    return executionTimeout;
+  }
+
+
+  public void setExecutionTimeout(Integer executionTimeout) {
+    this.executionTimeout = executionTimeout;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -872,12 +899,13 @@ public class RunTemplate {
         Objects.equals(this.stackSteps, runTemplate.stackSteps) &&
         Objects.equals(this.gitRepositoryUrl, runTemplate.gitRepositoryUrl) &&
         Objects.equals(this.gitBranchName, runTemplate.gitBranchName) &&
-        Objects.equals(this.runTemplateSourceDir, runTemplate.runTemplateSourceDir);
+        Objects.equals(this.runTemplateSourceDir, runTemplate.runTemplateSourceDir) &&
+        Objects.equals(this.executionTimeout, runTemplate.executionTimeout);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, noDataIngestionState, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps, gitRepositoryUrl, gitBranchName, runTemplateSourceDir);
+    return Objects.hash(id, name, description, csmSimulation, tags, computeSize, noDataIngestionState, fetchDatasets, scenarioDataDownloadTransform, fetchScenarioParameters, applyParameters, validateData, sendDatasetsToDataWarehouse, sendInputParametersToDataWarehouse, preRun, run, postRun, parametersJson, parametersHandlerSource, datasetValidatorSource, preRunSource, runSource, postRunSource, scenariodataTransformSource, parameterGroups, stackSteps, gitRepositoryUrl, gitBranchName, runTemplateSourceDir, executionTimeout);
   }
 
   @Override
@@ -913,6 +941,7 @@ public class RunTemplate {
     sb.append("    gitRepositoryUrl: ").append(toIndentedString(gitRepositoryUrl)).append("\n");
     sb.append("    gitBranchName: ").append(toIndentedString(gitBranchName)).append("\n");
     sb.append("    runTemplateSourceDir: ").append(toIndentedString(runTemplateSourceDir)).append("\n");
+    sb.append("    executionTimeout: ").append(toIndentedString(executionTimeout)).append("\n");
     sb.append("}");
     return sb.toString();
   }
