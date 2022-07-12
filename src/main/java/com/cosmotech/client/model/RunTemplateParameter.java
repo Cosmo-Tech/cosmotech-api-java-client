@@ -31,7 +31,7 @@ import java.util.Map;
  * a Run Template Parameter
  */
 @ApiModel(description = "a Run Template Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T09:46:22.273240598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T12:13:10.148041623Z[Etc/UTC]")
 public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,7 +39,7 @@ public class RunTemplateParameter {
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<String, String>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_VAR_TYPE = "varType";
   @SerializedName(SERIALIZED_NAME_VAR_TYPE)
@@ -98,6 +98,9 @@ public class RunTemplateParameter {
   }
 
   public RunTemplateParameter putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<String, String>();
+    }
     this.labels.put(key, labelsItem);
     return this;
   }
@@ -106,8 +109,8 @@ public class RunTemplateParameter {
    * a translated label with key as ISO 639-1 code
    * @return labels
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "a translated label with key as ISO 639-1 code")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "a translated label with key as ISO 639-1 code")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -129,8 +132,8 @@ public class RunTemplateParameter {
    * the variable type for the parameter. Basic types or special type %DATASETID%
    * @return varType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the variable type for the parameter. Basic types or special type %DATASETID%")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the variable type for the parameter. Basic types or special type %DATASETID%")
 
   public String getVarType() {
     return varType;

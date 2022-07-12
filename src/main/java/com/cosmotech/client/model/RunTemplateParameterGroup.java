@@ -32,7 +32,7 @@ import java.util.Map;
  * a Parameter Group for a Run Template
  */
 @ApiModel(description = "a Parameter Group for a Run Template")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T09:46:22.273240598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T12:13:10.148041623Z[Etc/UTC]")
 public class RunTemplateParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -40,7 +40,7 @@ public class RunTemplateParameterGroup {
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<String, String>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_IS_TABLE = "isTable";
   @SerializedName(SERIALIZED_NAME_IS_TABLE)
@@ -56,7 +56,7 @@ public class RunTemplateParameterGroup {
 
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
-  private List<String> parameters = new ArrayList<String>();
+  private List<String> parameters = null;
 
   public RunTemplateParameterGroup() { 
   }
@@ -91,6 +91,9 @@ public class RunTemplateParameterGroup {
   }
 
   public RunTemplateParameterGroup putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<String, String>();
+    }
     this.labels.put(key, labelsItem);
     return this;
   }
@@ -99,8 +102,8 @@ public class RunTemplateParameterGroup {
    * a translated label with key as ISO 639-1 code
    * @return labels
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "a translated label with key as ISO 639-1 code")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "a translated label with key as ISO 639-1 code")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -196,6 +199,9 @@ public class RunTemplateParameterGroup {
   }
 
   public RunTemplateParameterGroup addParametersItem(String parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<String>();
+    }
     this.parameters.add(parametersItem);
     return this;
   }
@@ -204,8 +210,8 @@ public class RunTemplateParameterGroup {
    * an ordered list of Run Template Parameters
    * @return parameters
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "an ordered list of Run Template Parameters")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "an ordered list of Run Template Parameters")
 
   public List<String> getParameters() {
     return parameters;

@@ -33,7 +33,7 @@ import java.util.List;
  * a version of a Solution
  */
 @ApiModel(description = "a version of a Solution")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T09:46:22.273240598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-12T12:13:10.148041623Z[Etc/UTC]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -89,7 +89,7 @@ public class Solution {
 
   public static final String SERIALIZED_NAME_RUN_TEMPLATES = "runTemplates";
   @SerializedName(SERIALIZED_NAME_RUN_TEMPLATES)
-  private List<RunTemplate> runTemplates = new ArrayList<RunTemplate>();
+  private List<RunTemplate> runTemplates = null;
 
   public Solution() { 
   }
@@ -128,8 +128,8 @@ public class Solution {
    * the Solution key which group Solution versions
    * @return key
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the Solution key which group Solution versions")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution key which group Solution versions")
 
   public String getKey() {
     return key;
@@ -151,8 +151,8 @@ public class Solution {
    * the Solution name
    * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the Solution name")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution name")
 
   public String getName() {
     return name;
@@ -197,8 +197,8 @@ public class Solution {
    * the registry repository containing the image
    * @return repository
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the registry repository containing the image")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the registry repository containing the image")
 
   public String getRepository() {
     return repository;
@@ -243,8 +243,8 @@ public class Solution {
    * the Solution version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag
    * @return version
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the Solution version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag")
 
   public String getVersion() {
     return version;
@@ -416,6 +416,9 @@ public class Solution {
   }
 
   public Solution addRunTemplatesItem(RunTemplate runTemplatesItem) {
+    if (this.runTemplates == null) {
+      this.runTemplates = new ArrayList<RunTemplate>();
+    }
     this.runTemplates.add(runTemplatesItem);
     return this;
   }
@@ -424,8 +427,8 @@ public class Solution {
    * list of Run Template
    * @return runTemplates
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "list of Run Template")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "list of Run Template")
 
   public List<RunTemplate> getRunTemplates() {
     return runTemplates;

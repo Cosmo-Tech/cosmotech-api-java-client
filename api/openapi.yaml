@@ -6003,7 +6003,6 @@ components:
           type: integer
       required:
       - id
-      - name
       type: object
     RunTemplateHandlerId:
       description: the Run Template step handler identifier
@@ -6059,8 +6058,6 @@ components:
           type: object
       required:
       - id
-      - labels
-      - varType
       type: object
     RunTemplateParameterGroup:
       description: a Parameter Group for a Run Template
@@ -6102,8 +6099,6 @@ components:
           type: array
       required:
       - id
-      - labels
-      - parameters
       type: object
     RunTemplateParameterValue:
       description: the value of Analysis parameter for a Scenario for this ScenarioRun
@@ -7181,12 +7176,6 @@ components:
           items:
             $ref: '#/components/schemas/RunTemplate'
           type: array
-      required:
-      - key
-      - name
-      - repository
-      - runTemplates
-      - version
       type: object
     TranslatedLabels:
       additionalProperties:
