@@ -141,4 +141,12 @@ public class WorkspaceTest {
         // TODO: test useDedicatedEventHubNamespace
     }
 
+    /**
+     * Test the property 'sendScenarioMetadataToEventHub'
+     */
+    @Test
+    public void sendScenarioMetadataToEventHubTest() {
+        // TODO: test sendScenarioMetadataToEventHub
+    }
+
 }

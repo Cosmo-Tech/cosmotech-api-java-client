@@ -33,7 +33,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-22T12:41:57.230305676Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-22T16:12:08.241699599Z[Etc/UTC]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -82,6 +82,10 @@ public class Workspace {
   public static final String SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE = "useDedicatedEventHubNamespace";
   @SerializedName(SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE)
   private Boolean useDedicatedEventHubNamespace = false;
+
+  public static final String SERIALIZED_NAME_SEND_SCENARIO_METADATA_TO_EVENT_HUB = "sendScenarioMetadataToEventHub";
+  @SerializedName(SERIALIZED_NAME_SEND_SCENARIO_METADATA_TO_EVENT_HUB)
+  private Boolean sendScenarioMetadataToEventHub = false;
 
   public Workspace() { 
   }
@@ -370,6 +374,29 @@ public class Workspace {
   }
 
 
+  public Workspace sendScenarioMetadataToEventHub(Boolean sendScenarioMetadataToEventHub) {
+    
+    this.sendScenarioMetadataToEventHub = sendScenarioMetadataToEventHub;
+    return this;
+  }
+
+   /**
+   * Set this property to false to not send scenario metada to Azure Event Hub Namespace for this Workspace. The Event Hub Namespace must be named \\&#39;&lt;organization_id\\&gt;-&lt;workspace_id\\&gt;\\&#39; (in lower case). This Namespace must also contain two Event Hubs named \\&#39;scenariometadata\\&#39; and \\&#39;scenariorunmetadata\\&#39;.
+   * @return sendScenarioMetadataToEventHub
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Set this property to false to not send scenario metada to Azure Event Hub Namespace for this Workspace. The Event Hub Namespace must be named \\'<organization_id\\>-<workspace_id\\>\\' (in lower case). This Namespace must also contain two Event Hubs named \\'scenariometadata\\' and \\'scenariorunmetadata\\'.")
+
+  public Boolean getSendScenarioMetadataToEventHub() {
+    return sendScenarioMetadataToEventHub;
+  }
+
+
+  public void setSendScenarioMetadataToEventHub(Boolean sendScenarioMetadataToEventHub) {
+    this.sendScenarioMetadataToEventHub = sendScenarioMetadataToEventHub;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -390,12 +417,13 @@ public class Workspace {
         Objects.equals(this.users, workspace.users) &&
         Objects.equals(this.webApp, workspace.webApp) &&
         Objects.equals(this.sendInputToDataWarehouse, workspace.sendInputToDataWarehouse) &&
-        Objects.equals(this.useDedicatedEventHubNamespace, workspace.useDedicatedEventHubNamespace);
+        Objects.equals(this.useDedicatedEventHubNamespace, workspace.useDedicatedEventHubNamespace) &&
+        Objects.equals(this.sendScenarioMetadataToEventHub, workspace.sendScenarioMetadataToEventHub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse, useDedicatedEventHubNamespace);
+    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse, useDedicatedEventHubNamespace, sendScenarioMetadataToEventHub);
   }
 
   @Override
@@ -414,6 +442,7 @@ public class Workspace {
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
     sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("    useDedicatedEventHubNamespace: ").append(toIndentedString(useDedicatedEventHubNamespace)).append("\n");
+    sb.append("    sendScenarioMetadataToEventHub: ").append(toIndentedString(sendScenarioMetadataToEventHub)).append("\n");
     sb.append("}");
     return sb.toString();
   }

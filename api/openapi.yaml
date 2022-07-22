@@ -7416,21 +7416,10 @@ components:
           url: url
           iframes:
             key: "{}"
-        useDedicatedEventHubNamespace: false
-        solution:
-          runTemplateFilter:
-          - runTemplateFilter
-          - runTemplateFilter
-          solutionId: solutionId
-          defaultRunTemplateDataset:
-            key: "{}"
-        name: name
         description: description
-        id: id
         ownerId: ownerId
         version: version
-        sendInputToDataWarehouse: true
-        key: key
+        sendScenarioMetadataToEventHub: false
         users:
         - roles:
           - Admin
@@ -7445,6 +7434,18 @@ components:
         tags:
         - tags
         - tags
+        useDedicatedEventHubNamespace: false
+        solution:
+          runTemplateFilter:
+          - runTemplateFilter
+          - runTemplateFilter
+          solutionId: solutionId
+          defaultRunTemplateDataset:
+            key: "{}"
+        name: name
+        id: id
+        sendInputToDataWarehouse: true
+        key: key
       properties:
         id:
           description: the Workspace version unique identifier
@@ -7492,6 +7493,13 @@ components:
             Namespace for this Workspace. The Event Hub Namespace must be named \'<organization_id\>-<workspace_id\>\'
             (in lower case). This Namespace must also contain two Event Hubs named
             \'probesmeasures\' and \'scenariorun\'.
+          type: boolean
+        sendScenarioMetadataToEventHub:
+          default: false
+          description: Set this property to false to not send scenario metada to Azure
+            Event Hub Namespace for this Workspace. The Event Hub Namespace must be
+            named \'<organization_id\>-<workspace_id\>\' (in lower case). This Namespace
+            must also contain two Event Hubs named \'scenariometadata\' and \'scenariorunmetadata\'.
           type: boolean
       required:
       - key
