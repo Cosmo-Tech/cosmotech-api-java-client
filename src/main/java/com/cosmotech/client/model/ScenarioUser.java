@@ -30,7 +30,7 @@ import java.util.List;
  * a Scenario user with roles
  */
 @ApiModel(description = "a Scenario user with roles")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-08-30T08:21:20.095090669Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-08-30T09:35:53.439543126Z[Etc/UTC]")
 public class ScenarioUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
