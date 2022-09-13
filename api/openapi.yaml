@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 1.0.6-rc
+  version: 1.0.7-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
