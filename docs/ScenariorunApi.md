@@ -4,6 +4,8 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteHistoricalDataOrganization**](ScenariorunApi.md#deleteHistoricalDataOrganization) | **DELETE** /organizations/{organization_id}/scenarioruns/deletehistoricaldata | Delete all historical ScenarioRuns in the database
+[**deleteHistoricalScenarioRunsByScenario**](ScenariorunApi.md#deleteHistoricalScenarioRunsByScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | Delete all historical ScenarioRuns for the Scenario
 [**deleteScenarioRun**](ScenariorunApi.md#deleteScenarioRun) | **DELETE** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Delete a scenariorun
 [**findScenarioRunById**](ScenariorunApi.md#findScenarioRunById) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Get the details of a scenariorun
 [**getScenarioRunCumulatedLogs**](ScenariorunApi.md#getScenarioRunCumulatedLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs | Get the cumulated logs of a scenariorun
@@ -16,6 +18,142 @@ Method | HTTP request | Description
 [**startScenarioRunContainers**](ScenariorunApi.md#startScenarioRunContainers) | **POST** /organizations/{organization_id}/scenarioruns/startcontainers | Start a new scenariorun with raw containers definition
 [**stopScenarioRun**](ScenariorunApi.md#stopScenarioRun) | **POST** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop | stop a ScenarioRun for the Scenario
 
+
+<a name="deleteHistoricalDataOrganization"></a>
+# **deleteHistoricalDataOrganization**
+> deleteHistoricalDataOrganization(organizationId)
+
+Delete all historical ScenarioRuns in the database
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenariorunApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    try {
+      apiInstance.deleteHistoricalDataOrganization(organizationId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenariorunApi#deleteHistoricalDataOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Request succeeded |  -  |
+**400** | Bad request |  -  |
+**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="deleteHistoricalScenarioRunsByScenario"></a>
+# **deleteHistoricalScenarioRunsByScenario**
+> deleteHistoricalScenarioRunsByScenario(organizationId, workspaceId, scenarioId)
+
+Delete all historical ScenarioRuns for the Scenario
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenariorunApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
+    try {
+      apiInstance.deleteHistoricalScenarioRunsByScenario(organizationId, workspaceId, scenarioId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenariorunApi#deleteHistoricalScenarioRunsByScenario");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Request succeeded |  -  |
+**400** | Bad request |  -  |
+**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="deleteScenarioRun"></a>
 # **deleteScenarioRun**

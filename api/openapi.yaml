@@ -596,6 +596,30 @@ paths:
       tags:
       - workspace
       x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/deletehistoricaldata:
+    delete:
+      operationId: deleteHistoricalDataOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns in the database
+      tags:
+      - scenariorun
+      x-accepts: application/json
   /organizations/{organization_id}/scenarioruns/search:
     post:
       operationId: searchScenarioRuns
@@ -900,6 +924,45 @@ paths:
       - scenariorun
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
+    delete:
+      operationId: deleteHistoricalScenarioRunsByScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
     get:
       operationId: getScenarioRuns
       parameters:
