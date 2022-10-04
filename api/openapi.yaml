@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 1.0.8-SNAPSHOT
+  version: 2.0.0-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -82,12 +82,16 @@ paths:
             examples:
               Workspace:
                 $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
             schema:
               $ref: '#/components/schemas/Workspace'
           application/yaml:
             examples:
               Workspace:
                 $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
             schema:
               format: binary
               type: string
@@ -477,9 +481,54 @@ paths:
       tags:
       - workspace
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/users:
-    delete:
-      operationId: removeAllUsersOfWorkspace
+  /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role}:
+    get:
+      operationId: getWorkspacePermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - commonpermissiondelete
+                - commonpermissionwrite
+                - commonpermissioncreatechildren
+                items:
+                  type: string
+                type: array
+          description: The Workspace security permission list
+      summary: Get the Workspace permission by given role
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security:
+    get:
+      operationId: getWorkspaceSecurity
       parameters:
       - description: the Organization identifier
         explode: false
@@ -498,17 +547,76 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
-          description: the operation succeeded
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceSecurity:
+                  $ref: '#/components/examples/BreweryWorkspaceSecurity'
+              schema:
+                $ref: '#/components/schemas/WorkspaceSecurity'
+          description: The Workspace security
         "404":
           description: the Workspace specified is unknown or you don't have access
             to it
-      summary: Remove all users from the Workspace specified
+      summary: Get the Workspace security information
       tags:
       - workspace
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/default:
     post:
-      operationId: addOrReplaceUsersInOrganizationWorkspace
+      operationId: setWorkspaceDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example: commonrolewriter
+            schema:
+              type: string
+          application/yaml:
+            example: commonrolewriter
+            schema:
+              format: binary
+              type: string
+        description: the new Workspace default security.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WriterWorkspaceSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/WorkspaceSecurity'
+          description: The Workspace default visibility
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: set the Workspace default security
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/access:
+    post:
+      operationId: addWorkspaceAccessControl
       parameters:
       - description: the Organization identifier
         explode: false
@@ -530,37 +638,40 @@ paths:
         content:
           application/json:
             examples:
-              TwoWorkspaceUsersToAddOrReplace:
-                $ref: '#/components/examples/TwoWorkspaceUsers'
+              WorkspaceAccess:
+                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
             schema:
-              items:
-                $ref: '#/components/schemas/WorkspaceUser'
-              type: array
-        description: the Users to add. Any User with the same ID is overwritten
+              $ref: '#/components/schemas/WorkspaceAccessControl'
+          application/yaml:
+            examples:
+              WorkspaceAccess:
+                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+            schema:
+              format: binary
+              type: string
+        description: the new Workspace security access to add.
         required: true
       responses:
         "200":
           content:
             application/json:
               examples:
-                TwoWorkspaceUsers:
-                  $ref: '#/components/examples/TwoWorkspaceUsers'
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
               schema:
-                items:
-                  $ref: '#/components/schemas/WorkspaceUser'
-                type: array
-          description: the Workspace Users
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
         "404":
           description: the Workspace specified is unknown or you don't have access
             to it
-      summary: Add (or replace) users to the Workspace specified
+      summary: add a control acccess to the Workspace
       tags:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/users/{user_id}:
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id}:
     delete:
-      operationId: removeUserFromOrganizationWorkspace
+      operationId: removeWorkspaceAccessControl
       parameters:
       - description: the Organization identifier
         explode: false
@@ -581,7 +692,7 @@ paths:
       - description: the User identifier
         explode: false
         in: path
-        name: user_id
+        name: identity_id
         required: true
         schema:
           type: string
@@ -590,9 +701,92 @@ paths:
         "204":
           description: Request succeeded
         "404":
-          description: the Workspace or the User specified is unknown or you don't
+          description: the Workspace or the user specified is unknown or you don't
             have access to them
-      summary: Remove the specified user from the given Organization Workspace
+      summary: Remove the specified access from the given Organization Workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    get:
+      operationId: getWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+              schema:
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
+        "404":
+          description: the Workspace or user specified is unknown or you don't have
+            access to it
+      summary: get a control acccess for the Workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/users:
+    get:
+      operationId: getWorkspaceSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  type: string
+                type: array
+          description: The Workspace security users list
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Get the Workspace security users list
       tags:
       - workspace
       x-accepts: application/json
@@ -2648,151 +2842,6 @@ paths:
       tags:
       - scenario
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users:
-    delete:
-      operationId: removeAllUsersOfScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Remove all users from the Scenario specified
-      tags:
-      - scenario
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceUsersInScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              TwoScenarioUsersToAddOrReplace:
-                $ref: '#/components/examples/TwoScenarioUsers'
-            schema:
-              items:
-                $ref: '#/components/schemas/ScenarioUser'
-              type: array
-        description: the Users to add. Any User with the same ID is overwritten
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                TwoScenarioUsers:
-                  $ref: '#/components/examples/TwoScenarioUsers'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioUser'
-                type: array
-          description: the Scenario Users
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Add (or replace) users in the Scenario specified
-      tags:
-      - scenario
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users/{user_id}:
-    delete:
-      operationId: removeUserFromScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Scenario or the User specified is unknown or you don't
-            have access to them
-      summary: Remove the specified user from the given Scenario
-      tags:
-      - scenario
-      x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues:
     delete:
       operationId: removeAllScenarioParameterValues
@@ -2990,6 +3039,365 @@ paths:
           description: the Scenario specified is unknown or you don't have access
             to it
       summary: Get Scenario data download URL
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/permissions/{role}:
+    get:
+      operationId: getScenarioPermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - commonpermissiondelete
+                - commonpermissionwrite
+                - commonpermissioncreatechildren
+                items:
+                  type: string
+                type: array
+          description: The Scenarios security permission list
+      summary: Get the Scenario permission by given role
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security:
+    get:
+      operationId: getScenarioSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioSecurity:
+                  $ref: '#/components/examples/BreweryScenarioSecurity'
+              schema:
+                $ref: '#/components/schemas/ScenarioSecurity'
+          description: The Scenario security
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Get the Scenario security information
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default:
+    post:
+      operationId: setScenarioDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example: commonrolewriter
+            schema:
+              type: string
+          application/yaml:
+            example: commonrolewriter
+            schema:
+              format: binary
+              type: string
+        description: the new Scenario default security.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                NoneScenarioSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleNone'
+                WriterScenarioSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/ScenarioSecurity'
+          description: The Scenario default visibility
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: set the Scenario default security
+      tags:
+      - scenario
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access:
+    post:
+      operationId: addScenarioAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ScenarioAccess:
+                $ref: '#/components/examples/BreweryScenarioAccessControl'
+            schema:
+              $ref: '#/components/schemas/ScenarioAccessControl'
+          application/yaml:
+            examples:
+              ScenarioAccess:
+                $ref: '#/components/examples/BreweryScenarioAccessControl'
+            schema:
+              format: binary
+              type: string
+        description: the new Scenario security access to add.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioAccessControl:
+                  $ref: '#/components/examples/BreweryScenarioAccessControl'
+              schema:
+                $ref: '#/components/schemas/ScenarioAccessControl'
+          description: The Scenario access
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: add a control acccess to the Scenario
+      tags:
+      - scenario
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeScenarioAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Scenario or the user specified is unknown or you don't
+            have access to them
+      summary: Remove the specified access from the given Organization Scenario
+      tags:
+      - scenario
+      x-accepts: application/json
+    get:
+      operationId: getScenarioAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioAccessControl:
+                  $ref: '#/components/examples/BreweryScenarioAccessControl'
+              schema:
+                $ref: '#/components/schemas/ScenarioAccessControl'
+          description: The Scenario access
+        "404":
+          description: the Scenario or user specified is unknown or you don't have
+            access to it
+      summary: get a control acccess for the Scenario
+      tags:
+      - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users:
+    get:
+      operationId: getScenarioSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  type: string
+                type: array
+          description: The Scenario security users list
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Get the Scenario security users list
       tags:
       - scenario
       x-accepts: application/json
@@ -3415,6 +3823,275 @@ paths:
       tags:
       - organization
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/permissions:
+    get:
+      operationId: getAllPermissions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComponentRolePermissions'
+                type: array
+          description: The Scenarios security permission list
+      summary: Get the all permission by given role
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/permissions/{role}:
+    get:
+      operationId: getOrganizationPermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - commonpermissiondelete
+                - commonpermissionwrite
+                - commonpermissioncreatechildren
+                items:
+                  type: string
+                type: array
+          description: The Organization security permission list
+      summary: Get the Organization permissions by given role
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/security:
+    get:
+      operationId: getOrganizationSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationSecurity:
+                  $ref: '#/components/examples/BreweryOrganizationSecurity'
+              schema:
+                $ref: '#/components/schemas/OrganizationSecurity'
+          description: The Organization security
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the Organization security information
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/security/default:
+    post:
+      operationId: setOrganizationDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example: commonrolewriter
+            schema:
+              type: string
+          application/yaml:
+            example: commonrolewriter
+            schema:
+              format: binary
+              type: string
+        description: the new Organization default security.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WriterOrganizationSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/OrganizationSecurity'
+          description: The Organization default visibility
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: set the Organization default security
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/security/access:
+    post:
+      operationId: addOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationAccess:
+                $ref: '#/components/examples/BreweryOrganizationAccessControl'
+            schema:
+              $ref: '#/components/schemas/OrganizationAccessControl'
+          application/yaml:
+            examples:
+              OrganizationAccess:
+                $ref: '#/components/examples/BreweryOrganizationAccessControl'
+            schema:
+              format: binary
+              type: string
+        description: the new Organization security access to add.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: add a control acccess to the Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization or the user specified is unknown or you don't
+            have access to them
+      summary: Remove the specified access from the given Organization
+      tags:
+      - organization
+      x-accepts: application/json
+    get:
+      operationId: getOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: the Organization or user specified is unknown or you don't
+            have access to it
+      summary: get a control acccess for the Organization
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/security/users:
+    get:
+      operationId: getOrganizationSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  type: string
+                type: array
+          description: The Organization security users list
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the Organization security users list
+      tags:
+      - organization
       x-accepts: application/json
   /organizations/{organization_id}/solutions:
     get:
@@ -4342,6 +5019,25 @@ components:
       value:
         sourceId: "1"
         targetId: "2"
+    BreweryDefaultSecurityRoleWriter:
+      description: Brewery Workspace example
+      summary: Brewery Workspace Writer default security
+      value:
+        default: commonrolewriter
+    BreweryOrganizationAccessControl:
+      description: Set an access control for a user to an organization.
+      summary: Set an access control.
+      value:
+        id: bob@mycompany.com
+        role: commonrolewriter
+    BreweryOrganizationSecurity:
+      description: Brewery Organization security example
+      summary: Brewery Organization security
+      value:
+        default: commonrolereader
+        accessControlList:
+        - id: bob@mycosmocompany.com
+          role: commonrolewriter
     BreweryScenario:
       description: Brewery Scenario example
       summary: Brewery Scenario
@@ -4358,15 +5054,6 @@ components:
         solutionName: Brewery Solution
         runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Running
         ownerName: Bob
         creationDate: 2021-04-21T17:32:28Z
@@ -4382,6 +5069,19 @@ components:
           scenarioRunId: SR-V9EYbbOE0
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
+    BreweryScenarioAccessControl:
+      description: Set an access control for a user to a workspace.
+      summary: Set an access control.
+      value:
+        id: bob.doe@cosmotech.com
+        role: commonrolewriter
     BreweryScenarioComparison:
       description: Brewery comparison result between a parent Scenario and its child
       summary: Brewery comparison result
@@ -4408,21 +5108,19 @@ components:
         - Brewery
         - reference
         runTemplateId: hundred
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         datasetList:
         - "1"
         parametersValues:
         - parameterId: prefix
           varType: string
           value: ""
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
     BreweryScenarioRun:
       description: Brewery ScenarioRun example
       summary: Brewery ScenarioRun example
@@ -4553,6 +5251,14 @@ components:
           progress: 1/1
           startTime: 2021-05-18T16:15:53.000Z
           endTime: 2021-05-18T16:16:03.000Z
+    BreweryScenarioSecurity:
+      description: Brewery Scenario security example
+      summary: Brewery Scenario security
+      value:
+        default: commonrolereader
+        accessControlList:
+        - id: alice.doe@cosmotech.com
+          role: commonrolewriter
     BreweryScenarioUpdate:
       description: Update the Brewery Scenario by changing its name
       summary: Update the Brewery Scenario
@@ -4574,15 +5280,6 @@ components:
         solutionName: Brewery Solution
         runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Created
         ownerName: Bob
         creationDate: 2021-04-21T17:32:28Z
@@ -4593,6 +5290,13 @@ components:
         - parameterId: prefix
           varType: string
           value: ""
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
     BrewerySearch:
       description: Brewery search ScenarioRun of Workspace 1 in Running state example
       summary: Brewery search ScenarioRun example
@@ -4662,20 +5366,17 @@ components:
           - "1"
           defaultRunTemplateDataset:
             "1": "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
-        webApp:
-          url: https://brewery.app.cosmotech.com
-          iframes:
-            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
-            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: commonroleadmin
+    BreweryWorkspaceAccessControl:
+      description: Set an access control for a user to a workspace.
+      summary: Set an access control.
+      value:
+        id: bob.doe@cosmotech.com
+        role: commonrolewriter
     BreweryWorkspaceCreateIn:
       description: Brewery Workspace Create input parameters example
       summary: Brewery Workspace Create input parameters example
@@ -4693,23 +5394,46 @@ components:
           - "1"
           defaultRunTemplateDataset:
             "1": "1"
-        users:
-        - id: "1"
-          roles:
-          - Admin
-        - id: "2"
-          roles:
-          - Viewer
-        webApp:
-          url: https://brewery.app.cosmotech.com
-          iframes:
-            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
-            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: bob.doe@cosmotech.com
+            role: commonrolewriter
+    BreweryWorkspaceCreateSecurity:
+      description: Brewery Workspace Create with default security
+      summary: Brewery Workspace Create with security
+      value:
+        name: Brewery Analysis
+        key: brewery
+        description: "Brewery analysis for stock, production, transport and customer\
+          \ satisfaction"
+        version: 1.0.0
+        tags:
+        - Brewery
+        solution:
+          solutionId: "1"
+          runTemplateFilter:
+          - "1"
+          defaultRunTemplateDataset:
+            "1": "1"
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: bob.doe@cosmotech.com
+            role: commonrolewriter
     BreweryWorkspaceFile:
       description: Brewery Workspace file uploaded return example
       summary: Brewery Workspace file example
       value:
         fileName: myData.csv
+    BreweryWorkspaceSecurity:
+      description: Brewery Workspace security example
+      summary: Brewery Workspace security
+      value:
+        default: commonrolereader
+        accessControlList:
+        - id: alice.doe@cosmotech.com
+          role: commonrolewriter
     BreweryWorkspaceUpdate:
       description: Update the Brewery Workspace by changing its name
       summary: Update the Brewery Workspace
@@ -4734,20 +5458,11 @@ components:
           - "1"
           defaultRunTemplateDataset:
             "1": "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
-        webApp:
-          url: https://brewery.app.cosmotech.com
-          iframes:
-            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
-            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: commonroleadmin
     CosmoOrganization:
       description: Cosmo Tech Organization example
       summary: Cosmo Tech Organization example
@@ -4777,6 +5492,13 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: commonrolewriter
+          - id: john.doe@cosmotech.com
+            role: commonrolereader
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
@@ -4810,6 +5532,15 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: bob.doe@cosmotech.com
+            role: commonrolewriter
+          - id: alice.doe@cosmotech.com
+            role: commonrolereader
+          - id: xavier.doe@cosmotech.com
+            role: commonrolewriter
     DatasetSearch:
       description: Parameters to search for a dataset
       summary: Example for dataset search
@@ -4841,6 +5572,13 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
+          security:
+            default: commonrolereader
+            accessControlList:
+            - id: jane.doe@cosmotech.com
+              role: commonrolewriter
+            - id: john.doe@cosmotech.com
+              role: commonrolereader
     OneConnector:
       description: One Connector list example
       summary: One Connector list
@@ -4993,20 +5731,11 @@ components:
           - "1"
           defaultRunTemplateDataset:
             "1": "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
-        webApp:
-          url: https://brewery.app.cosmotech.com
-          iframes:
-            main: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
-            dashboard: https://app.powerbi.com/reportEmbed?reportId=05eee4e7-b301-4fb3-8850-9ef00f3516ef&autoAuth=true&ctid=e9641c78-d0d6-4d09-af63-168922724e7f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWZyYW5jZS1jZW50cmFsLWEtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: commonroleadmin
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -5020,15 +5749,6 @@ components:
         - reference
         ownerId: "1"
         worskspaceId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Created
         creationDate: 2021-04-21T17:32:28Z
         lastUpdate: 2021-04-21T17:32:28Z
@@ -5042,6 +5762,13 @@ components:
           varType: string
           value: ""
           inherited: true
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -5051,15 +5778,6 @@ components:
         parentId: "1"
         ownerId: "1"
         worskspaceId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Running
         creationDate: 2021-04-21T17:32:28Z
         lastUpdate: 2021-04-21T17:32:28Z
@@ -5078,6 +5796,13 @@ components:
           scenarioRunId: SR-V9EYbbOE0
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
       - id: "3"
         name: Brewery Analysis name no change
         description: Brewery analysis with no change on name prefix
@@ -5086,15 +5811,6 @@ components:
         parentId: "1"
         ownerId: "2"
         worskspaceId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Editor
         state: Failed
         creationDate: 2021-04-21T17:32:28Z
         lastUpdate: 2021-04-21T17:32:28Z
@@ -5113,6 +5829,13 @@ components:
           scenarioRunId: SR-V9EYbbOE0
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
     ThreeScenarios:
       description: Three Scenarios with parent master Scenario and two children Scenarios
       summary: Three Scenarios with parent and children
@@ -5129,15 +5852,6 @@ components:
         solutionName: Brewery Solution
         runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Created
         ownerName: Bob
         creationDate: 2021-04-21T17:32:28Z
@@ -5148,6 +5862,13 @@ components:
         - parameterId: prefix
           varType: string
           value: ""
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -5161,15 +5882,6 @@ components:
         solutionName: Brewery Solution
         runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Viewer
         state: Running
         ownerName: Bob
         creationDate: 2021-04-21T17:32:28Z
@@ -5185,6 +5897,13 @@ components:
           scenarioRunId: SR-V9EYbbOE0
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
       - id: "3"
         name: Brewery Analysis name no change
         description: Brewery analysis with no change on name prefix
@@ -5197,15 +5916,6 @@ components:
         solutionName: Brewery Solution
         runTemplateId: hundred
         runTemplateName: Full simulation 100 steps
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Editor
-        - id: "2"
-          name: Alice
-          roles:
-          - Editor
         state: Failed
         ownerName: Alice
         creationDate: 2021-04-21T17:32:28Z
@@ -5222,6 +5932,13 @@ components:
           scenarioRunId: SR-V9EYbbOE0
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default:
+          - commonrolereader
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            roles:
+            - commonroleadmin
     ThreeValidatorRun:
       description: a list of Validator Run for the Brewery Dataset
       summary: Brewery ADT Dataset Validator Run list
@@ -5335,6 +6052,13 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-1.azurecr.io
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: bob.doe@cosmotech.com
+            role: commonrolewriter
+          - id: alice.doe@cosmotech.com
+            role: commonrolereader
       - id: "2"
         name: Phoenix
         users:
@@ -5355,6 +6079,11 @@ components:
           solutionsContainerRegistry:
             cloudService: AzureContainerRegistries
             baseUri: twinengines-2.azurecr.io
+        security:
+          default: commonrolereader
+          accessControlList:
+          - id: bob.doe@cosmotech.com
+            role: commonrolewriter
     TwoScenarioRunTemplateParameterValueToAddOrReplace:
       description: Scenarios Run Templates added
       summary: Scenarios Run Templates added
@@ -5367,18 +6096,6 @@ components:
         varType: string
         value: ""
         inherited: true
-    TwoScenarioUsers:
-      description: 2 scenario users
-      summary: 2 scenario users
-      value:
-      - id: "1"
-        name: Bob
-        roles:
-        - Editor
-      - id: "2"
-        name: Alice
-        roles:
-        - Editor
     TwoUsers:
       description: Two Users example
       summary: Two Users example
@@ -5419,28 +6136,6 @@ components:
           name: Phoenix
           roles:
           - Admin
-    TwoWorkspaceToAddOrReplace:
-      description: Two Users of a Workspace example
-      summary: Two users of a Workspace
-      value:
-      - id: "1"
-        roles:
-        - Admin
-      - id: "2"
-        roles:
-        - User
-    TwoWorkspaceUsers:
-      description: Two Users of a Workspace example
-      summary: Two users of a Workspace
-      value:
-      - id: "1"
-        name: Bob
-        roles:
-        - Admin
-      - id: "2"
-        name: Alice
-        roles:
-        - User
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -5456,6 +6151,24 @@ components:
             $ref: '#/components/schemas/inline_object'
       required: true
   schemas:
+    ComponentRolePermissions:
+      description: a RBAC by component
+      example:
+        component: component
+        roles:
+          key:
+          - roles
+          - roles
+      properties:
+        component:
+          type: string
+        roles:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+      type: object
     Connector:
       description: a version of a Connector
       example:
@@ -5791,6 +6504,7 @@ components:
     Organization:
       description: an Organization
       example:
+        security: ""
         name: name
         id: id
         services:
@@ -5840,7 +6554,53 @@ components:
           type: array
         services:
           $ref: '#/components/schemas/OrganizationServices'
+        security:
+          allOf:
+          - $ref: '#/components/schemas/OrganizationSecurity'
       type: object
+    OrganizationAccessControl:
+      description: a Organization access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          type: string
+          x-impl: override
+        role:
+          description: a role
+          type: string
+          x-impl: override
+      required:
+      - id
+      - role
+      type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacAccessControl(id, role)"
+    OrganizationSecurity:
+      description: the Organization security information
+      example:
+        default: default
+        accessControlList:
+        - "{}"
+        - "{}"
+      properties:
+        default:
+          description: the role by default
+          type: string
+          x-impl: override
+        accessControlList:
+          description: the list which can access this Organization with detailed access
+            control information
+          items:
+            $ref: '#/components/schemas/RbacAccessControl'
+          type: array
+          x-impl: override
+      required:
+      - accessControlList
+      - default
+      type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacSecurity(default, accessControlList)"
     OrganizationService:
       description: a cloud service resource
       example:
@@ -6204,20 +6964,10 @@ components:
         ownerId: ownerId
         creationDate: 2000-01-23T04:56:07.000+00:00
         parentId: parentId
-        users:
-        - roles:
-          - Viewer
-          - Viewer
-          name: name
-          id: id
-        - roles:
-          - Viewer
-          - Viewer
-          name: name
-          id: id
         tags:
         - tags
         - tags
+        security: ""
         parametersValues:
         - varType: varType
           parameterId: parameterId
@@ -6278,11 +7028,6 @@ components:
           description: the associated Workspace Id
           readOnly: true
           type: string
-        users:
-          description: the list of users Id with their role
-          items:
-            $ref: '#/components/schemas/ScenarioUser'
-          type: array
         state:
           $ref: '#/components/schemas/ScenarioJobState'
         creationDate:
@@ -6334,7 +7079,29 @@ components:
             type: object
         validationStatus:
           $ref: '#/components/schemas/ScenarioValidationStatus'
+        security:
+          allOf:
+          - $ref: '#/components/schemas/ScenarioSecurity'
       type: object
+    ScenarioAccessControl:
+      description: a Scenario access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          type: string
+          x-impl: override
+        role:
+          description: a role
+          type: string
+          x-impl: override
+      required:
+      - id
+      - role
+      type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacAccessControl(id, role)"
     ScenarioChangedParameterValue:
       description: the difference between the values of a parameter
       example:
@@ -7022,34 +7789,30 @@ components:
       - parameterId
       - value
       type: object
-    ScenarioUser:
-      description: a Scenario user with roles
+    ScenarioSecurity:
+      description: the Scenario security information
       example:
-        roles:
-        - Viewer
-        - Viewer
-        name: name
-        id: id
+        default: default
+        accessControlList:
+        - "{}"
+        - "{}"
       properties:
-        id:
-          description: the User id
+        default:
+          description: the role by default
           type: string
-        name:
-          description: the User name
-          readOnly: true
-          type: string
-        roles:
-          description: the User role
+          x-impl: override
+        accessControlList:
+          description: the list which can access this Scenario with detailed access
+            control information
           items:
-            enum:
-            - Viewer
-            - Editor
-            type: string
+            $ref: '#/components/schemas/RbacAccessControl'
           type: array
+          x-impl: override
       required:
-      - id
-      - roles
+      - accessControlList
+      - default
       type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacSecurity(default, accessControlList)"
     ScenarioValidationStatus:
       description: the validation status of the scenario
       enum:
@@ -7483,21 +8246,11 @@ components:
         ownerId: ownerId
         version: version
         sendScenarioMetadataToEventHub: false
-        users:
-        - roles:
-          - Admin
-          - Admin
-          name: name
-          id: id
-        - roles:
-          - Admin
-          - Admin
-          name: name
-          id: id
         tags:
         - tags
         - tags
         useDedicatedEventHubNamespace: false
+        security: ""
         solution:
           runTemplateFilter:
           - runTemplateFilter
@@ -7538,11 +8291,6 @@ components:
           type: string
         solution:
           $ref: '#/components/schemas/WorkspaceSolution'
-        users:
-          description: the list of users Id with their role
-          items:
-            $ref: '#/components/schemas/WorkspaceUser'
-          type: array
         webApp:
           $ref: '#/components/schemas/WorkspaceWebApp'
         sendInputToDataWarehouse:
@@ -7564,11 +8312,33 @@ components:
             named \'<organization_id\>-<workspace_id\>\' (in lower case). This Namespace
             must also contain two Event Hubs named \'scenariometadata\' and \'scenariorunmetadata\'.
           type: boolean
+        security:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceSecurity'
       required:
       - key
       - name
       - solution
       type: object
+    WorkspaceAccessControl:
+      description: a Workspace access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          type: string
+          x-impl: override
+        role:
+          description: a role
+          type: string
+          x-impl: override
+      required:
+      - id
+      - role
+      type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacAccessControl(id, role)"
     WorkspaceFile:
       description: a Workspace File resource
       example:
@@ -7578,6 +8348,30 @@ components:
           description: the Workspace File name
           type: string
       type: object
+    WorkspaceSecurity:
+      description: the workspace security information
+      example:
+        default: default
+        accessControlList:
+        - "{}"
+        - "{}"
+      properties:
+        default:
+          description: the role by default
+          type: string
+          x-impl: override
+        accessControlList:
+          description: the list which can access this Workspace with detailed access
+            control information
+          items:
+            $ref: '#/components/schemas/RbacAccessControl'
+          type: array
+          x-impl: override
+      required:
+      - accessControlList
+      - default
+      type: object
+      x-impl: "com.cosmotech.api.rbac.model.RbacSecurity(default, accessControlList)"
     WorkspaceSolution:
       description: the Workspace Solution configuration
       example:
@@ -7601,35 +8395,6 @@ components:
           description: a map of RunTemplateId/DatasetId to set a default dataset for
             a Run Template
           type: object
-      type: object
-    WorkspaceUser:
-      description: a Workspace user with roles
-      example:
-        roles:
-        - Admin
-        - Admin
-        name: name
-        id: id
-      properties:
-        id:
-          description: the User id
-          type: string
-        name:
-          description: the User name
-          readOnly: true
-          type: string
-        roles:
-          description: the User roles
-          items:
-            enum:
-            - Admin
-            - User
-            - Viewer
-            type: string
-          type: array
-      required:
-      - id
-      - roles
       type: object
     WorkspaceWebApp:
       description: a Workspace Web Application
