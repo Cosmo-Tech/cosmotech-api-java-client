@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 2.0.0-dev
+  version: 2.0.1-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -3562,111 +3562,6 @@ paths:
       - organization
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/users:
-    delete:
-      operationId: removeAllUsersInOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Remove all users from the Organization specified
-      tags:
-      - organization
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceUsersInOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              AddUser:
-                description: Add the user Bob to organization Cosmo Tech
-                summary: Add a user
-                value:
-                - id: "2"
-                  roles:
-                  - User
-                - id: "3"
-                  roles:
-                  - Developer
-            schema:
-              items:
-                $ref: '#/components/schemas/OrganizationUser'
-              type: array
-        description: the Users to add. Any User with the same ID is overwritten
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                TwoOrganizationUsers:
-                  $ref: '#/components/examples/TwoOrganizationUsers'
-              schema:
-                items:
-                  $ref: '#/components/schemas/OrganizationUser'
-                type: array
-          description: the Organization Users
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Add (or replace) users in the Organization specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/users/{user_id}:
-    delete:
-      operationId: removeUserFromOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Organization or the User specified is unknown or you don't
-            have access to them
-      summary: Remove the specified user from the given Organization
-      tags:
-      - organization
-      x-accepts: application/json
   /organizations/{organization_id}/services/tenantCredentials:
     patch:
       operationId: updateTenantCredentialsByOrganizationId
@@ -5029,15 +4924,15 @@ components:
       summary: Set an access control.
       value:
         id: bob@mycompany.com
-        role: commonrolewriter
+        role: rolewriter
     BreweryOrganizationSecurity:
       description: Brewery Organization security example
       summary: Brewery Organization security
       value:
-        default: commonrolereader
+        default: rolereader
         accessControlList:
         - id: bob@mycosmocompany.com
-          role: commonrolewriter
+          role: rolewriter
     BreweryScenario:
       description: Brewery Scenario example
       summary: Brewery Scenario
@@ -5470,77 +5365,28 @@ components:
         id: "1"
         name: Cosmo Tech
         ownerId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - User
-        services:
-          tenantCredentials:
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
-          storage:
-            platformService: storage
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: organization-1/files
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines-1.azurecr.io
         security:
-          default: commonrolereader
+          default: rolereader
           accessControlList:
           - id: jane.doe@cosmotech.com
-            role: commonrolewriter
+            role: rolewriter
           - id: john.doe@cosmotech.com
-            role: commonrolereader
+            role: rolereader
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
       value:
         id: "1"
         name: Cosmo Tech
-        ownerId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - User
-        - id: "3"
-          name: Xavier
-          roles:
-          - Developer
-        services:
-          tenantCredentials:
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
-          storage:
-            platformService: storage
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: organization-1/files
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines-1.azurecr.io
         security:
-          default: commonrolereader
+          default: rolereader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: commonrolewriter
+            role: rolewriter
           - id: alice.doe@cosmotech.com
-            role: commonrolereader
+            role: rolereader
           - id: xavier.doe@cosmotech.com
-            role: commonrolewriter
+            role: rolewriter
     DatasetSearch:
       description: Parameters to search for a dataset
       summary: Example for dataset search
@@ -5552,33 +5398,13 @@ components:
       summary: Create a new organization
       value:
         name: Cosmo Tech
-        users:
-        - id: "1"
-          name: admin
-          roles:
-          - Admin
-        - id: "2"
-          name: user
-          roles:
-          - User
-        services:
-          tenantCredentials:
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
-          storage:
-            platformService: storage
-            resourceUri: organization-1/files
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines-1.azurecr.io
-          security:
-            default: commonrolereader
-            accessControlList:
-            - id: jane.doe@cosmotech.com
-              role: commonrolewriter
-            - id: john.doe@cosmotech.com
-              role: commonrolereader
+        security:
+          default: rolereader
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: rolewriter
+          - id: john.doe@cosmotech.com
+            role: rolereader
     OneConnector:
       description: One Connector list example
       summary: One Connector list
@@ -6011,18 +5837,6 @@ components:
             AZURE_DIGITAL_TWINS_URL: myotherdt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
-    TwoOrganizationUsers:
-      description: Two Users of an Organization example
-      summary: Two users of an Organization
-      value:
-      - id: "1"
-        name: Bob
-        roles:
-        - Admin
-      - id: "2"
-        name: Alice
-        roles:
-        - User
     TwoOrganizations:
       description: Two Organizations example
       summary: Two Orgnizations
@@ -6030,60 +5844,20 @@ components:
       - id: "1"
         name: Cosmo Tech
         ownerId: "1"
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        - id: "2"
-          name: Alice
-          roles:
-          - User
-        services:
-          tenantCredentials:
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e7g
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278ef
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d3U
-          storage:
-            platformService: storage
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: organization-1/files
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines-1.azurecr.io
         security:
-          default: commonrolereader
+          default: rolereader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: commonrolewriter
+            role: rolewriter
           - id: alice.doe@cosmotech.com
-            role: commonrolereader
+            role: rolereader
       - id: "2"
         name: Phoenix
-        users:
-        - id: "1"
-          name: Bob
-          roles:
-          - Admin
-        services:
-          tenantCredentials:
-            azureTenantId: e9641c78-d0d6-4d09-af63-168922724e8r
-            azureClientId: 857bbfb2-ba5b-4482-92e4-bfdda9e278fu
-            azureClientSecret: F6c6..s6CC9-Cu49u~R7_n8y.tCCy~4d4A
-          storage:
-            platformService: storage
-            cloudService: AzureStorage
-            baseUri: https://csmphoenix.blob.core.windows.net
-            resourceUri: organization-2/files
-          solutionsContainerRegistry:
-            cloudService: AzureContainerRegistries
-            baseUri: twinengines-2.azurecr.io
         security:
-          default: commonrolereader
+          default: rolereader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: commonrolewriter
+            role: rolewriter
     TwoScenarioRunTemplateParameterValueToAddOrReplace:
       description: Scenarios Run Templates added
       summary: Scenarios Run Templates added
@@ -6525,17 +6299,6 @@ components:
             resourceUri: resourceUri
             cloudService: cloudService
         ownerId: ownerId
-        users:
-        - roles:
-          - Admin
-          - Admin
-          name: name
-          id: id
-        - roles:
-          - Admin
-          - Admin
-          name: name
-          id: id
       properties:
         id:
           description: the Organization unique identifier
@@ -6548,10 +6311,6 @@ components:
           description: the Owner User Id
           readOnly: true
           type: string
-        users:
-          items:
-            $ref: '#/components/schemas/OrganizationUser'
-          type: array
         services:
           $ref: '#/components/schemas/OrganizationServices'
         security:
@@ -6657,35 +6416,6 @@ components:
           $ref: '#/components/schemas/OrganizationService'
         solutionsContainerRegistry:
           $ref: '#/components/schemas/OrganizationService'
-      type: object
-    OrganizationUser:
-      description: a User
-      example:
-        roles:
-        - Admin
-        - Admin
-        name: name
-        id: id
-      properties:
-        id:
-          description: "the User unique identifier, in response"
-          readOnly: true
-          type: string
-        name:
-          description: the User name
-          type: string
-        roles:
-          description: the User's roles for the Organization
-          items:
-            enum:
-            - Admin
-            - User
-            - Viewer
-            - Developer
-            type: string
-          type: array
-      required:
-      - roles
       type: object
     RunTemplate:
       description: a Solution Run Template
