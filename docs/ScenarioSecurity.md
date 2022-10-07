@@ -9,7 +9,7 @@ the Scenario security information
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_default** | **String** | the role by default | 
-**accessControlList** | **List&lt;RbacAccessControl&gt;** | the list which can access this Scenario with detailed access control information | 
+**accessControlList** | [**List&lt;ScenarioAccessControl&gt;**](ScenarioAccessControl.md) | the list which can access this Scenario with detailed access control information | 
 
 
 

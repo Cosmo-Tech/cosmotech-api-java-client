@@ -4,12 +4,17 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addOrReplaceUsersInOrganization**](OrganizationApi.md#addOrReplaceUsersInOrganization) | **POST** /organizations/{organization_id}/users | Add (or replace) users in the Organization specified
+[**addOrganizationAccessControl**](OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | add a control acccess to the Organization
 [**findAllOrganizations**](OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations
 [**findOrganizationById**](OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an Organization
+[**getAllPermissions**](OrganizationApi.md#getAllPermissions) | **GET** /organizations/permissions | Get all permissions per components
+[**getOrganizationAccessControl**](OrganizationApi.md#getOrganizationAccessControl) | **GET** /organizations/{organization_id}/security/access/{identity_id} | get a control acccess for the Organization
+[**getOrganizationPermissions**](OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role
+[**getOrganizationSecurity**](OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information
+[**getOrganizationSecurityUsers**](OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list
 [**registerOrganization**](OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
-[**removeAllUsersInOrganization**](OrganizationApi.md#removeAllUsersInOrganization) | **DELETE** /organizations/{organization_id}/users | Remove all users from the Organization specified
-[**removeUserFromOrganization**](OrganizationApi.md#removeUserFromOrganization) | **DELETE** /organizations/{organization_id}/users/{user_id} | Remove the specified user from the given Organization
+[**removeOrganizationAccessControl**](OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization
+[**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | set the Organization default security
 [**unregisterOrganization**](OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
 [**updateOrganization**](OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an Organization
 [**updateSolutionsContainerRegistryByOrganizationId**](OrganizationApi.md#updateSolutionsContainerRegistryByOrganizationId) | **PATCH** /organizations/{organization_id}/services/solutionsContainerRegistry | Update the solutions container registry configuration for the Organization specified
@@ -17,11 +22,11 @@ Method | HTTP request | Description
 [**updateTenantCredentialsByOrganizationId**](OrganizationApi.md#updateTenantCredentialsByOrganizationId) | **PATCH** /organizations/{organization_id}/services/tenantCredentials | Update tenant credentials for the Organization specified
 
 
-<a name="addOrReplaceUsersInOrganization"></a>
-# **addOrReplaceUsersInOrganization**
-> List&lt;OrganizationUser&gt; addOrReplaceUsersInOrganization(organizationId, organizationUser)
+<a name="addOrganizationAccessControl"></a>
+# **addOrganizationAccessControl**
+> OrganizationAccessControl addOrganizationAccessControl(organizationId, organizationAccessControl)
 
-Add (or replace) users in the Organization specified
+add a control acccess to the Organization
 
 ### Example
 ```java
@@ -44,12 +49,12 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    List<OrganizationUser> organizationUser = Arrays.asList(); // List<OrganizationUser> | the Users to add. Any User with the same ID is overwritten
+    OrganizationAccessControl organizationAccessControl = new OrganizationAccessControl(); // OrganizationAccessControl | the new Organization security access to add.
     try {
-      List<OrganizationUser> result = apiInstance.addOrReplaceUsersInOrganization(organizationId, organizationUser);
+      OrganizationAccessControl result = apiInstance.addOrganizationAccessControl(organizationId, organizationAccessControl);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#addOrReplaceUsersInOrganization");
+      System.err.println("Exception when calling OrganizationApi#addOrganizationAccessControl");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -64,11 +69,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organizationUser** | [**List&lt;OrganizationUser&gt;**](OrganizationUser.md)| the Users to add. Any User with the same ID is overwritten |
+ **organizationAccessControl** | [**OrganizationAccessControl**](OrganizationAccessControl.md)| the new Organization security access to add. |
 
 ### Return type
 
-[**List&lt;OrganizationUser&gt;**](OrganizationUser.md)
+[**OrganizationAccessControl**](OrganizationAccessControl.md)
 
 ### Authorization
 
@@ -76,14 +81,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/yaml
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Organization Users |  -  |
-**400** | Bad request |  -  |
+**200** | The Organization access |  -  |
 **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllOrganizations"></a>
@@ -213,6 +217,334 @@ Name | Type | Description  | Notes
 **200** | the Organization details |  -  |
 **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="getAllPermissions"></a>
+# **getAllPermissions**
+> List&lt;ComponentRolePermissions&gt; getAllPermissions()
+
+Get all permissions per components
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    try {
+      List<ComponentRolePermissions> result = apiInstance.getAllPermissions();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#getAllPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;ComponentRolePermissions&gt;**](ComponentRolePermissions.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Scenarios security permission list |  -  |
+
+<a name="getOrganizationAccessControl"></a>
+# **getOrganizationAccessControl**
+> OrganizationAccessControl getOrganizationAccessControl(organizationId, identityId)
+
+get a control acccess for the Organization
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String identityId = "identityId_example"; // String | the User identifier
+    try {
+      OrganizationAccessControl result = apiInstance.getOrganizationAccessControl(organizationId, identityId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#getOrganizationAccessControl");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **identityId** | **String**| the User identifier |
+
+### Return type
+
+[**OrganizationAccessControl**](OrganizationAccessControl.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Organization access |  -  |
+**404** | the Organization or user specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="getOrganizationPermissions"></a>
+# **getOrganizationPermissions**
+> List&lt;String&gt; getOrganizationPermissions(organizationId, role)
+
+Get the Organization permissions by given role
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String role = "role_example"; // String | the Role
+    try {
+      List<String> result = apiInstance.getOrganizationPermissions(organizationId, role);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#getOrganizationPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **role** | **String**| the Role |
+
+### Return type
+
+**List&lt;String&gt;**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Organization security permission list |  -  |
+
+<a name="getOrganizationSecurity"></a>
+# **getOrganizationSecurity**
+> OrganizationSecurity getOrganizationSecurity(organizationId)
+
+Get the Organization security information
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    try {
+      OrganizationSecurity result = apiInstance.getOrganizationSecurity(organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#getOrganizationSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+
+### Return type
+
+[**OrganizationSecurity**](OrganizationSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Organization security |  -  |
+**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="getOrganizationSecurityUsers"></a>
+# **getOrganizationSecurityUsers**
+> List&lt;String&gt; getOrganizationSecurityUsers(organizationId)
+
+Get the Organization security users list
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    try {
+      List<String> result = apiInstance.getOrganizationSecurityUsers(organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#getOrganizationSecurityUsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+
+### Return type
+
+**List&lt;String&gt;**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Organization security users list |  -  |
+**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="registerOrganization"></a>
 # **registerOrganization**
 > Organization registerOrganization(organization)
@@ -279,76 +611,11 @@ Name | Type | Description  | Notes
 **201** | the Organization details |  -  |
 **400** | Bad request |  -  |
 
-<a name="removeAllUsersInOrganization"></a>
-# **removeAllUsersInOrganization**
-> removeAllUsersInOrganization(organizationId)
+<a name="removeOrganizationAccessControl"></a>
+# **removeOrganizationAccessControl**
+> removeOrganizationAccessControl(organizationId, identityId)
 
-Remove all users from the Organization specified
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.OrganizationApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    try {
-      apiInstance.removeAllUsersInOrganization(organizationId);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#removeAllUsersInOrganization");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="removeUserFromOrganization"></a>
-# **removeUserFromOrganization**
-> removeUserFromOrganization(organizationId, userId)
-
-Remove the specified user from the given Organization
+Remove the specified access from the given Organization
 
 ### Example
 ```java
@@ -371,11 +638,11 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    String userId = "userId_example"; // String | the User identifier
+    String identityId = "identityId_example"; // String | the User identifier
     try {
-      apiInstance.removeUserFromOrganization(organizationId, userId);
+      apiInstance.removeOrganizationAccessControl(organizationId, identityId);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#removeUserFromOrganization");
+      System.err.println("Exception when calling OrganizationApi#removeOrganizationAccessControl");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -390,7 +657,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **userId** | **String**| the User identifier |
+ **identityId** | **String**| the User identifier |
 
 ### Return type
 
@@ -409,7 +676,75 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Request succeeded |  -  |
-**404** | the Organization or the User specified is unknown or you don&#39;t have access to them |  -  |
+**404** | the Organization or the user specified is unknown or you don&#39;t have access to them |  -  |
+
+<a name="setOrganizationDefaultSecurity"></a>
+# **setOrganizationDefaultSecurity**
+> OrganizationSecurity setOrganizationDefaultSecurity(organizationId, body)
+
+set the Organization default security
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String body = writer; // String | the new Organization default security.
+    try {
+      OrganizationSecurity result = apiInstance.setOrganizationDefaultSecurity(organizationId, body);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#setOrganizationDefaultSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **body** | **String**| the new Organization default security. |
+
+### Return type
+
+[**OrganizationSecurity**](OrganizationSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Organization default visibility |  -  |
+**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="unregisterOrganization"></a>
 # **unregisterOrganization**
