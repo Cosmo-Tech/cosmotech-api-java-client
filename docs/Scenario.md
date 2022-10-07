@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **solutionId** | **String** | the Solution Id associated with this Scenario |  [optional] [readonly]
 **runTemplateId** | **String** | the Solution Run Template Id associated with this Scenario |  [optional]
 **workspaceId** | **String** | the associated Workspace Id |  [optional] [readonly]
+**users** | [**List&lt;ScenarioUser&gt;**](ScenarioUser.md) | the list of users Id with their role |  [optional]
 **state** | **ScenarioJobState** |  |  [optional]
 **creationDate** | **OffsetDateTime** | the Scenario creation date |  [optional] [readonly]
 **lastUpdate** | **OffsetDateTime** | the last time a Scenario was updated |  [optional] [readonly]
@@ -30,7 +31,6 @@ Name | Type | Description | Notes
 **parentLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **rootLastRun** | [**ScenarioLastRun**](ScenarioLastRun.md) |  |  [optional]
 **validationStatus** | **ScenarioValidationStatus** |  |  [optional]
-**security** | [**ScenarioSecurity**](ScenarioSecurity.md) |  |  [optional]
 
 
 
