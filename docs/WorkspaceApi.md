@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Workspace access |  -  |
+**201** | The Workspace access |  -  |
 **404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="createWorkspace"></a>
@@ -1048,7 +1048,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Workspace default visibility |  -  |
+**201** | The Workspace default visibility |  -  |
 **404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateWorkspace"></a>

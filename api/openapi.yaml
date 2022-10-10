@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 2.0.4-dev
+  version: 2.0.5-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -597,7 +597,7 @@ paths:
         description: the new Workspace default security.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -652,7 +652,7 @@ paths:
         description: the new Workspace security access to add.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -3174,7 +3174,7 @@ paths:
         description: the new Scenario default security.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -3239,7 +3239,7 @@ paths:
         description: the new Scenario security access to add.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -3830,7 +3830,7 @@ paths:
         description: the new Organization default security.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -3877,7 +3877,7 @@ paths:
         description: the new Organization security access to add.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
