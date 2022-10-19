@@ -4,20 +4,19 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addOrganizationAccessControl**](OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | Add a control access to the Organization
+[**addOrganizationAccessControl**](OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | add a control acccess to the Organization
 [**findAllOrganizations**](OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations
 [**findOrganizationById**](OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an Organization
 [**getAllPermissions**](OrganizationApi.md#getAllPermissions) | **GET** /organizations/permissions | Get all permissions per components
-[**getOrganizationAccessControl**](OrganizationApi.md#getOrganizationAccessControl) | **GET** /organizations/{organization_id}/security/access/{identity_id} | Get a control access for the Organization
+[**getOrganizationAccessControl**](OrganizationApi.md#getOrganizationAccessControl) | **GET** /organizations/{organization_id}/security/access/{identity_id} | get a control acccess for the Organization
 [**getOrganizationPermissions**](OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role
 [**getOrganizationSecurity**](OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information
 [**getOrganizationSecurityUsers**](OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list
 [**registerOrganization**](OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
 [**removeOrganizationAccessControl**](OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization
-[**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | Set the Organization default security
+[**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | set the Organization default security
 [**unregisterOrganization**](OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
 [**updateOrganization**](OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an Organization
-[**updateOrganizationAccessControl**](OrganizationApi.md#updateOrganizationAccessControl) | **PATCH** /organizations/{organization_id}/security/access/{identity_id} | Update the specified access to User for an Organization
 [**updateSolutionsContainerRegistryByOrganizationId**](OrganizationApi.md#updateSolutionsContainerRegistryByOrganizationId) | **PATCH** /organizations/{organization_id}/services/solutionsContainerRegistry | Update the solutions container registry configuration for the Organization specified
 [**updateStorageByOrganizationId**](OrganizationApi.md#updateStorageByOrganizationId) | **PATCH** /organizations/{organization_id}/services/storage | Update storage configuration for the Organization specified
 [**updateTenantCredentialsByOrganizationId**](OrganizationApi.md#updateTenantCredentialsByOrganizationId) | **PATCH** /organizations/{organization_id}/services/tenantCredentials | Update tenant credentials for the Organization specified
@@ -27,7 +26,7 @@ Method | HTTP request | Description
 # **addOrganizationAccessControl**
 > OrganizationAccessControl addOrganizationAccessControl(organizationId, organizationAccessControl)
 
-Add a control access to the Organization
+add a control acccess to the Organization
 
 ### Example
 ```java
@@ -283,7 +282,7 @@ This endpoint does not need any parameter.
 # **getOrganizationAccessControl**
 > OrganizationAccessControl getOrganizationAccessControl(organizationId, identityId)
 
-Get a control access for the Organization
+get a control acccess for the Organization
 
 ### Example
 ```java
@@ -345,7 +344,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The Organization access |  -  |
-**404** | The Organization or user specified is unknown or you don&#39;t have access to it |  -  |
+**404** | the Organization or user specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="getOrganizationPermissions"></a>
 # **getOrganizationPermissions**
@@ -506,7 +505,7 @@ public class Example {
     oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | The Organization identifier
+    String organizationId = "organizationId_example"; // String | the Organization identifier
     try {
       List<String> result = apiInstance.getOrganizationSecurityUsers(organizationId);
       System.out.println(result);
@@ -525,7 +524,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The Organization identifier |
+ **organizationId** | **String**| the Organization identifier |
 
 ### Return type
 
@@ -681,9 +680,9 @@ null (empty response body)
 
 <a name="setOrganizationDefaultSecurity"></a>
 # **setOrganizationDefaultSecurity**
-> OrganizationSecurity setOrganizationDefaultSecurity(organizationId, organizationRole)
+> OrganizationSecurity setOrganizationDefaultSecurity(organizationId, body)
 
-Set the Organization default security
+set the Organization default security
 
 ### Example
 ```java
@@ -706,9 +705,9 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | the new Organization default security.
+    String body = writer; // String | the new Organization default security.
     try {
-      OrganizationSecurity result = apiInstance.setOrganizationDefaultSecurity(organizationId, organizationRole);
+      OrganizationSecurity result = apiInstance.setOrganizationDefaultSecurity(organizationId, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrganizationApi#setOrganizationDefaultSecurity");
@@ -726,7 +725,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| the new Organization default security. |
+ **body** | **String**| the new Organization default security. |
 
 ### Return type
 
@@ -880,76 +879,6 @@ Name | Type | Description  | Notes
 **200** | the organization details |  -  |
 **400** | Bad request |  -  |
 **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="updateOrganizationAccessControl"></a>
-# **updateOrganizationAccessControl**
-> OrganizationAccessControl updateOrganizationAccessControl(organizationId, identityId, organizationRole)
-
-Update the specified access to User for an Organization
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.OrganizationApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    String identityId = "identityId_example"; // String | the User identifier
-    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | The new Organization Access Control
-    try {
-      OrganizationAccessControl result = apiInstance.updateOrganizationAccessControl(organizationId, identityId, organizationRole);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#updateOrganizationAccessControl");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **identityId** | **String**| the User identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| The new Organization Access Control |
-
-### Return type
-
-[**OrganizationAccessControl**](OrganizationAccessControl.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The Organization access |  -  |
-**404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateSolutionsContainerRegistryByOrganizationId"></a>
 # **updateSolutionsContainerRegistryByOrganizationId**
