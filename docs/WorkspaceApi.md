@@ -4,7 +4,7 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addWorkspaceAccessControl**](WorkspaceApi.md#addWorkspaceAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/access | Add a control access to the Workspace
+[**addWorkspaceAccessControl**](WorkspaceApi.md#addWorkspaceAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/access | add a control acccess to the Workspace
 [**createWorkspace**](WorkspaceApi.md#createWorkspace) | **POST** /organizations/{organization_id}/workspaces | Create a new workspace
 [**deleteAllWorkspaceFiles**](WorkspaceApi.md#deleteAllWorkspaceFiles) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/files | Delete all Workspace files
 [**deleteWorkspace**](WorkspaceApi.md#deleteWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id} | Delete a workspace
@@ -13,14 +13,13 @@ Method | HTTP request | Description
 [**findAllWorkspaceFiles**](WorkspaceApi.md#findAllWorkspaceFiles) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/files | List all Workspace files
 [**findAllWorkspaces**](WorkspaceApi.md#findAllWorkspaces) | **GET** /organizations/{organization_id}/workspaces | List all Workspaces
 [**findWorkspaceById**](WorkspaceApi.md#findWorkspaceById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id} | Get the details of an workspace
-[**getWorkspaceAccessControl**](WorkspaceApi.md#getWorkspaceAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Get a control access for the Workspace
+[**getWorkspaceAccessControl**](WorkspaceApi.md#getWorkspaceAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | get a control acccess for the Workspace
 [**getWorkspacePermissions**](WorkspaceApi.md#getWorkspacePermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role} | Get the Workspace permission by given role
 [**getWorkspaceSecurity**](WorkspaceApi.md#getWorkspaceSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security | Get the Workspace security information
 [**getWorkspaceSecurityUsers**](WorkspaceApi.md#getWorkspaceSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/users | Get the Workspace security users list
 [**removeWorkspaceAccessControl**](WorkspaceApi.md#removeWorkspaceAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Remove the specified access from the given Organization Workspace
-[**setWorkspaceDefaultSecurity**](WorkspaceApi.md#setWorkspaceDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/default | Set the Workspace default security
+[**setWorkspaceDefaultSecurity**](WorkspaceApi.md#setWorkspaceDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/default | set the Workspace default security
 [**updateWorkspace**](WorkspaceApi.md#updateWorkspace) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id} | Update a workspace
-[**updateWorkspaceAccessControl**](WorkspaceApi.md#updateWorkspaceAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Update the specified access to User for a Workspace
 [**uploadWorkspaceFile**](WorkspaceApi.md#uploadWorkspaceFile) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/files | Upload a file for the Workspace
 
 
@@ -28,7 +27,7 @@ Method | HTTP request | Description
 # **addWorkspaceAccessControl**
 > WorkspaceAccessControl addWorkspaceAccessControl(organizationId, workspaceId, workspaceAccessControl)
 
-Add a control access to the Workspace
+add a control acccess to the Workspace
 
 ### Example
 ```java
@@ -636,13 +635,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the Workspace details |  -  |
-**404** | The Workspace specified is unknown or you don&#39;t have access to it |  -  |
+**404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="getWorkspaceAccessControl"></a>
 # **getWorkspaceAccessControl**
 > WorkspaceAccessControl getWorkspaceAccessControl(organizationId, workspaceId, identityId)
 
-Get a control access for the Workspace
+get a control acccess for the Workspace
 
 ### Example
 ```java
@@ -706,7 +705,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The Workspace access |  -  |
-**404** | The Workspace or user specified is unknown or you don&#39;t have access to it |  -  |
+**404** | the Workspace or user specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="getWorkspacePermissions"></a>
 # **getWorkspacePermissions**
@@ -980,13 +979,13 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Request succeeded |  -  |
-**404** | The Workspace or the user specified is unknown or you don&#39;t have access to them |  -  |
+**404** | the Workspace or the user specified is unknown or you don&#39;t have access to them |  -  |
 
 <a name="setWorkspaceDefaultSecurity"></a>
 # **setWorkspaceDefaultSecurity**
-> WorkspaceSecurity setWorkspaceDefaultSecurity(organizationId, workspaceId, workspaceRole)
+> WorkspaceSecurity setWorkspaceDefaultSecurity(organizationId, workspaceId, body)
 
-Set the Workspace default security
+set the Workspace default security
 
 ### Example
 ```java
@@ -1010,9 +1009,9 @@ public class Example {
     WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    WorkspaceRole workspaceRole = new WorkspaceRole(); // WorkspaceRole | the new Workspace default security.
+    String body = writer; // String | the new Workspace default security.
     try {
-      WorkspaceSecurity result = apiInstance.setWorkspaceDefaultSecurity(organizationId, workspaceId, workspaceRole);
+      WorkspaceSecurity result = apiInstance.setWorkspaceDefaultSecurity(organizationId, workspaceId, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WorkspaceApi#setWorkspaceDefaultSecurity");
@@ -1031,7 +1030,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
- **workspaceRole** | [**WorkspaceRole**](WorkspaceRole.md)| the new Workspace default security. |
+ **body** | **String**| the new Workspace default security. |
 
 ### Return type
 
@@ -1080,7 +1079,7 @@ public class Example {
     WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    Workspace workspace = new Workspace(); // Workspace | The new Workspace details.
+    Workspace workspace = new Workspace(); // Workspace | the new Workspace details.
     try {
       Workspace result = apiInstance.updateWorkspace(organizationId, workspaceId, workspace);
       System.out.println(result);
@@ -1101,7 +1100,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
- **workspace** | [**Workspace**](Workspace.md)| The new Workspace details. |
+ **workspace** | [**Workspace**](Workspace.md)| the new Workspace details. |
 
 ### Return type
 
@@ -1122,78 +1121,6 @@ Name | Type | Description  | Notes
 **200** | the workspace details |  -  |
 **400** | Bad request |  -  |
 **404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="updateWorkspaceAccessControl"></a>
-# **updateWorkspaceAccessControl**
-> WorkspaceAccessControl updateWorkspaceAccessControl(organizationId, workspaceId, identityId, workspaceRole)
-
-Update the specified access to User for a Workspace
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.WorkspaceApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    String identityId = "identityId_example"; // String | the User identifier
-    WorkspaceRole workspaceRole = new WorkspaceRole(); // WorkspaceRole | The new Workspace Access Control
-    try {
-      WorkspaceAccessControl result = apiInstance.updateWorkspaceAccessControl(organizationId, workspaceId, identityId, workspaceRole);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling WorkspaceApi#updateWorkspaceAccessControl");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **identityId** | **String**| the User identifier |
- **workspaceRole** | [**WorkspaceRole**](WorkspaceRole.md)| The new Workspace Access Control |
-
-### Return type
-
-[**WorkspaceAccessControl**](WorkspaceAccessControl.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The Workspace access |  -  |
-**404** | The Workspace specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="uploadWorkspaceFile"></a>
 # **uploadWorkspaceFile**
