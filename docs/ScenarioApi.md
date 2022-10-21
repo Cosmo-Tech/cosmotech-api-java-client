@@ -5,7 +5,7 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addOrReplaceScenarioParameterValues**](ScenarioApi.md#addOrReplaceScenarioParameterValues) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Add (or replace) Parameter Values for the Scenario specified
-[**addScenarioAccessControl**](ScenarioApi.md#addScenarioAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access | add a control acccess to the Scenario
+[**addScenarioAccessControl**](ScenarioApi.md#addScenarioAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access | Add a control access to the Scenario
 [**compareScenarios**](ScenarioApi.md#compareScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id} | Compare the Scenario with another one and returns the difference for parameters values
 [**createScenario**](ScenarioApi.md#createScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Create a new Scenario
 [**deleteAllScenarios**](ScenarioApi.md#deleteAllScenarios) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Delete all Scenarios of the Workspace
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**findAllScenarios**](ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios
 [**findAllScenariosByValidationStatus**](ScenarioApi.md#findAllScenariosByValidationStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/{validationStatus} | List all Scenarios by validation status
 [**findScenarioById**](ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
-[**getScenarioAccessControl**](ScenarioApi.md#getScenarioAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | get a control acccess for the Scenario
+[**getScenarioAccessControl**](ScenarioApi.md#getScenarioAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Get a control access for the Scenario
 [**getScenarioDataDownloadJobInfo**](ScenarioApi.md#getScenarioDataDownloadJobInfo) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id} | Get Scenario data download URL
 [**getScenarioPermissions**](ScenarioApi.md#getScenarioPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/permissions/{role} | Get the Scenario permission by given role
 [**getScenarioSecurity**](ScenarioApi.md#getScenarioSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security | Get the Scenario security information
@@ -23,8 +23,9 @@ Method | HTTP request | Description
 [**getScenariosTree**](ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
 [**removeAllScenarioParameterValues**](ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified
 [**removeScenarioAccessControl**](ScenarioApi.md#removeScenarioAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Remove the specified access from the given Organization Scenario
-[**setScenarioDefaultSecurity**](ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | set the Scenario default security
+[**setScenarioDefaultSecurity**](ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | Set the Scenario default security
 [**updateScenario**](ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
+[**updateScenarioAccessControl**](ScenarioApi.md#updateScenarioAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Update the specified access to User for a Scenario
 
 
 <a name="addOrReplaceScenarioParameterValues"></a>
@@ -104,7 +105,7 @@ Name | Type | Description  | Notes
 # **addScenarioAccessControl**
 > ScenarioAccessControl addScenarioAccessControl(organizationId, workspaceId, scenarioId, scenarioAccessControl)
 
-add a control acccess to the Scenario
+Add a control access to the Scenario
 
 ### Example
 ```java
@@ -732,7 +733,7 @@ Name | Type | Description  | Notes
 # **getScenarioAccessControl**
 > ScenarioAccessControl getScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId)
 
-get a control acccess for the Scenario
+Get a control access for the Scenario
 
 ### Example
 ```java
@@ -1359,9 +1360,9 @@ null (empty response body)
 
 <a name="setScenarioDefaultSecurity"></a>
 # **setScenarioDefaultSecurity**
-> ScenarioSecurity setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, body)
+> ScenarioSecurity setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, scenarioRole)
 
-set the Scenario default security
+Set the Scenario default security
 
 ### Example
 ```java
@@ -1386,9 +1387,9 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    String body = writer; // String | the new Scenario default security.
+    ScenarioRole scenarioRole = new ScenarioRole(); // ScenarioRole | the new Scenario default security.
     try {
-      ScenarioSecurity result = apiInstance.setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, body);
+      ScenarioSecurity result = apiInstance.setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, scenarioRole);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenarioApi#setScenarioDefaultSecurity");
@@ -1408,7 +1409,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
  **scenarioId** | **String**| the Scenario identifier |
- **body** | **String**| the new Scenario default security. |
+ **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| the new Scenario default security. |
 
 ### Return type
 
@@ -1501,4 +1502,78 @@ Name | Type | Description  | Notes
 **200** | the scenario details |  -  |
 **400** | Bad request |  -  |
 **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="updateScenarioAccessControl"></a>
+# **updateScenarioAccessControl**
+> ScenarioAccessControl updateScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId, scenarioRole)
+
+Update the specified access to User for a Scenario
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenarioApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenarioApi apiInstance = new ScenarioApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
+    String identityId = "identityId_example"; // String | the User identifier
+    ScenarioRole scenarioRole = new ScenarioRole(); // ScenarioRole | The new Scenario Access Control
+    try {
+      ScenarioAccessControl result = apiInstance.updateScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId, scenarioRole);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenarioApi#updateScenarioAccessControl");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+ **identityId** | **String**| the User identifier |
+ **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| The new Scenario Access Control |
+
+### Return type
+
+[**ScenarioAccessControl**](ScenarioAccessControl.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Scenario access |  -  |
+**404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
 
