@@ -31,7 +31,7 @@ import java.util.List;
  * The organization of the user
  */
 @ApiModel(description = "The organization of the user")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T12:53:34.977093198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T14:25:31.062408576Z[Etc/UTC]")
 public class UserOrganization {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

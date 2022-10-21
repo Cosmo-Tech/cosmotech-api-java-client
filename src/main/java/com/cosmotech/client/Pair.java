@@ -13,7 +13,7 @@
 
 package com.cosmotech.client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T12:53:34.977093198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T14:25:31.062408576Z[Etc/UTC]")
 public class Pair {
     private String name = "";
     private String value = "";
