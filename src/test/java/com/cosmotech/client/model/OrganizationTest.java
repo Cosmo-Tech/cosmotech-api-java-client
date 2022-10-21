@@ -13,8 +13,8 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.OrganizationSecurity;
 import com.cosmotech.client.model.OrganizationServices;
+import com.cosmotech.client.model.OrganizationUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,7 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -68,19 +69,19 @@ public class OrganizationTest {
     }
 
     /**
+     * Test the property 'users'
+     */
+    @Test
+    public void usersTest() {
+        // TODO: test users
+    }
+
+    /**
      * Test the property 'services'
      */
     @Test
     public void servicesTest() {
         // TODO: test services
-    }
-
-    /**
-     * Test the property 'security'
-     */
-    @Test
-    public void securityTest() {
-        // TODO: test security
     }
 
 }

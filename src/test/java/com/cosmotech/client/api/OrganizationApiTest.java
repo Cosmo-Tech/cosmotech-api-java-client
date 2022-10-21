@@ -14,12 +14,10 @@
 package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
-import com.cosmotech.client.model.ComponentRolePermissions;
 import java.io.File;
 import com.cosmotech.client.model.Organization;
-import com.cosmotech.client.model.OrganizationAccessControl;
-import com.cosmotech.client.model.OrganizationSecurity;
 import com.cosmotech.client.model.OrganizationService;
+import com.cosmotech.client.model.OrganizationUser;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -38,7 +36,7 @@ public class OrganizationApiTest {
 
     
     /**
-     * add a control acccess to the Organization
+     * Add (or replace) users in the Organization specified
      *
      * 
      *
@@ -46,10 +44,10 @@ public class OrganizationApiTest {
      *          if the Api call fails
      */
     @Test
-    public void addOrganizationAccessControlTest() throws ApiException {
+    public void addOrReplaceUsersInOrganizationTest() throws ApiException {
         String organizationId = null;
-        OrganizationAccessControl organizationAccessControl = null;
-                OrganizationAccessControl response = api.addOrganizationAccessControl(organizationId, organizationAccessControl);
+        List<OrganizationUser> organizationUser = null;
+                List<OrganizationUser> response = api.addOrReplaceUsersInOrganization(organizationId, organizationUser);
         // TODO: test validations
     }
     
@@ -83,82 +81,6 @@ public class OrganizationApiTest {
     }
     
     /**
-     * Get all permissions per components
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getAllPermissionsTest() throws ApiException {
-                List<ComponentRolePermissions> response = api.getAllPermissions();
-        // TODO: test validations
-    }
-    
-    /**
-     * get a control acccess for the Organization
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganizationAccessControlTest() throws ApiException {
-        String organizationId = null;
-        String identityId = null;
-                OrganizationAccessControl response = api.getOrganizationAccessControl(organizationId, identityId);
-        // TODO: test validations
-    }
-    
-    /**
-     * Get the Organization permissions by given role
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganizationPermissionsTest() throws ApiException {
-        String organizationId = null;
-        String role = null;
-                List<String> response = api.getOrganizationPermissions(organizationId, role);
-        // TODO: test validations
-    }
-    
-    /**
-     * Get the Organization security information
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganizationSecurityTest() throws ApiException {
-        String organizationId = null;
-                OrganizationSecurity response = api.getOrganizationSecurity(organizationId);
-        // TODO: test validations
-    }
-    
-    /**
-     * Get the Organization security users list
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganizationSecurityUsersTest() throws ApiException {
-        String organizationId = null;
-                List<String> response = api.getOrganizationSecurityUsers(organizationId);
-        // TODO: test validations
-    }
-    
-    /**
      * Register a new organization
      *
      * 
@@ -174,7 +96,7 @@ public class OrganizationApiTest {
     }
     
     /**
-     * Remove the specified access from the given Organization
+     * Remove all users from the Organization specified
      *
      * 
      *
@@ -182,15 +104,14 @@ public class OrganizationApiTest {
      *          if the Api call fails
      */
     @Test
-    public void removeOrganizationAccessControlTest() throws ApiException {
+    public void removeAllUsersInOrganizationTest() throws ApiException {
         String organizationId = null;
-        String identityId = null;
-                api.removeOrganizationAccessControl(organizationId, identityId);
+                api.removeAllUsersInOrganization(organizationId);
         // TODO: test validations
     }
     
     /**
-     * set the Organization default security
+     * Remove the specified user from the given Organization
      *
      * 
      *
@@ -198,10 +119,10 @@ public class OrganizationApiTest {
      *          if the Api call fails
      */
     @Test
-    public void setOrganizationDefaultSecurityTest() throws ApiException {
+    public void removeUserFromOrganizationTest() throws ApiException {
         String organizationId = null;
-        String body = null;
-                OrganizationSecurity response = api.setOrganizationDefaultSecurity(organizationId, body);
+        String userId = null;
+                api.removeUserFromOrganization(organizationId, userId);
         // TODO: test validations
     }
     
