@@ -15,7 +15,6 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ContainerResourceSizing;
 import com.cosmotech.client.model.ScenarioRunContainerArtifact;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -34,7 +33,7 @@ import java.util.Map;
  * a ScenarioRun container description
  */
 @ApiModel(description = "a ScenarioRun container description")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T07:28:16.923120219Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T07:34:58.115912961Z[Etc/UTC]")
 public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,14 +70,6 @@ public class ScenarioRunContainer {
   public static final String SERIALIZED_NAME_SOLUTION_CONTAINER = "solutionContainer";
   @SerializedName(SERIALIZED_NAME_SOLUTION_CONTAINER)
   private Boolean solutionContainer;
-
-  public static final String SERIALIZED_NAME_NODE_LABEL = "nodeLabel";
-  @SerializedName(SERIALIZED_NAME_NODE_LABEL)
-  private String nodeLabel;
-
-  public static final String SERIALIZED_NAME_RUN_SIZING = "runSizing";
-  @SerializedName(SERIALIZED_NAME_RUN_SIZING)
-  private ContainerResourceSizing runSizing;
 
   public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
   @SerializedName(SERIALIZED_NAME_ARTIFACTS)
@@ -318,52 +309,6 @@ public class ScenarioRunContainer {
 
 
 
-  public ScenarioRunContainer nodeLabel(String nodeLabel) {
-    
-    this.nodeLabel = nodeLabel;
-    return this;
-  }
-
-   /**
-   * the node label request
-   * @return nodeLabel
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the node label request")
-
-  public String getNodeLabel() {
-    return nodeLabel;
-  }
-
-
-  public void setNodeLabel(String nodeLabel) {
-    this.nodeLabel = nodeLabel;
-  }
-
-
-  public ScenarioRunContainer runSizing(ContainerResourceSizing runSizing) {
-    
-    this.runSizing = runSizing;
-    return this;
-  }
-
-   /**
-   * Get runSizing
-   * @return runSizing
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ContainerResourceSizing getRunSizing() {
-    return runSizing;
-  }
-
-
-  public void setRunSizing(ContainerResourceSizing runSizing) {
-    this.runSizing = runSizing;
-  }
-
-
   public ScenarioRunContainer artifacts(List<ScenarioRunContainerArtifact> artifacts) {
     
     this.artifacts = artifacts;
@@ -413,14 +358,12 @@ public class ScenarioRunContainer {
         Objects.equals(this.runArgs, scenarioRunContainer.runArgs) &&
         Objects.equals(this.dependencies, scenarioRunContainer.dependencies) &&
         Objects.equals(this.solutionContainer, scenarioRunContainer.solutionContainer) &&
-        Objects.equals(this.nodeLabel, scenarioRunContainer.nodeLabel) &&
-        Objects.equals(this.runSizing, scenarioRunContainer.runSizing) &&
         Objects.equals(this.artifacts, scenarioRunContainer.artifacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies, solutionContainer, nodeLabel, runSizing, artifacts);
+    return Objects.hash(id, name, labels, envVars, image, entrypoint, runArgs, dependencies, solutionContainer, artifacts);
   }
 
   @Override
@@ -436,8 +379,6 @@ public class ScenarioRunContainer {
     sb.append("    runArgs: ").append(toIndentedString(runArgs)).append("\n");
     sb.append("    dependencies: ").append(toIndentedString(dependencies)).append("\n");
     sb.append("    solutionContainer: ").append(toIndentedString(solutionContainer)).append("\n");
-    sb.append("    nodeLabel: ").append(toIndentedString(nodeLabel)).append("\n");
-    sb.append("    runSizing: ").append(toIndentedString(runSizing)).append("\n");
     sb.append("    artifacts: ").append(toIndentedString(artifacts)).append("\n");
     sb.append("}");
     return sb.toString();

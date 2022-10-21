@@ -38,7 +38,7 @@ public class ScenariorunApiTest {
 
     
     /**
-     * Delete all historical ScenarioRuns in the database
+     * Delete all historical ScenarioRuns in the Organization
      *
      * 
      *
@@ -49,6 +49,22 @@ public class ScenariorunApiTest {
     public void deleteHistoricalDataOrganizationTest() throws ApiException {
         String organizationId = null;
                 api.deleteHistoricalDataOrganization(organizationId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete all historical ScenarioRuns in the Workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteHistoricalDataWorkspaceTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+                api.deleteHistoricalDataWorkspace(organizationId, workspaceId);
         // TODO: test validations
     }
     

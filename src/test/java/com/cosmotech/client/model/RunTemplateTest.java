@@ -13,7 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.RunTemplateResourceSizing;
 import com.cosmotech.client.model.RunTemplateStepSource;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -90,14 +89,6 @@ public class RunTemplateTest {
     @Test
     public void computeSizeTest() {
         // TODO: test computeSize
-    }
-
-    /**
-     * Test the property 'runSizing'
-     */
-    @Test
-    public void runSizingTest() {
-        // TODO: test runSizing
     }
 
     /**
