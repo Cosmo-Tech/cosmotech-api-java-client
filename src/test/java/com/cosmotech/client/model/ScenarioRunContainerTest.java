@@ -13,6 +13,7 @@
 
 package com.cosmotech.client.model;
 
+import com.cosmotech.client.model.ContainerResourceSizing;
 import com.cosmotech.client.model.ScenarioRunContainerArtifact;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -115,6 +116,22 @@ public class ScenarioRunContainerTest {
     @Test
     public void solutionContainerTest() {
         // TODO: test solutionContainer
+    }
+
+    /**
+     * Test the property 'nodeLabel'
+     */
+    @Test
+    public void nodeLabelTest() {
+        // TODO: test nodeLabel
+    }
+
+    /**
+     * Test the property 'runSizing'
+     */
+    @Test
+    public void runSizingTest() {
+        // TODO: test runSizing
     }
 
     /**

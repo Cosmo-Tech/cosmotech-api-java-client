@@ -16,11 +16,12 @@ package com.cosmotech.client.api;
 import com.cosmotech.client.ApiException;
 import java.io.File;
 import com.cosmotech.client.model.Scenario;
+import com.cosmotech.client.model.ScenarioAccessControl;
 import com.cosmotech.client.model.ScenarioComparisonResult;
 import com.cosmotech.client.model.ScenarioDataDownloadInfo;
 import com.cosmotech.client.model.ScenarioDataDownloadJob;
 import com.cosmotech.client.model.ScenarioRunTemplateParameterValue;
-import com.cosmotech.client.model.ScenarioUser;
+import com.cosmotech.client.model.ScenarioSecurity;
 import com.cosmotech.client.model.ScenarioValidationStatus;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -58,7 +59,7 @@ public class ScenarioApiTest {
     }
     
     /**
-     * Add (or replace) users in the Scenario specified
+     * add a control acccess to the Scenario
      *
      * 
      *
@@ -66,12 +67,12 @@ public class ScenarioApiTest {
      *          if the Api call fails
      */
     @Test
-    public void addOrReplaceUsersInScenarioTest() throws ApiException {
+    public void addScenarioAccessControlTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        List<ScenarioUser> scenarioUser = null;
-                List<ScenarioUser> response = api.addOrReplaceUsersInScenario(organizationId, workspaceId, scenarioId, scenarioUser);
+        ScenarioAccessControl scenarioAccessControl = null;
+                ScenarioAccessControl response = api.addScenarioAccessControl(organizationId, workspaceId, scenarioId, scenarioAccessControl);
         // TODO: test validations
     }
     
@@ -212,6 +213,24 @@ public class ScenarioApiTest {
     }
     
     /**
+     * get a control acccess for the Scenario
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getScenarioAccessControlTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+        String identityId = null;
+                ScenarioAccessControl response = api.getScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId);
+        // TODO: test validations
+    }
+    
+    /**
      * Get Scenario data download URL
      *
      * 
@@ -226,6 +245,57 @@ public class ScenarioApiTest {
         String scenarioId = null;
         String downloadId = null;
                 ScenarioDataDownloadInfo response = api.getScenarioDataDownloadJobInfo(organizationId, workspaceId, scenarioId, downloadId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the Scenario permission by given role
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getScenarioPermissionsTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String role = null;
+                List<String> response = api.getScenarioPermissions(organizationId, workspaceId, role);
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the Scenario security information
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getScenarioSecurityTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+                ScenarioSecurity response = api.getScenarioSecurity(organizationId, workspaceId, scenarioId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the Scenario security users list
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getScenarioSecurityUsersTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+                List<String> response = api.getScenarioSecurityUsers(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
@@ -280,7 +350,7 @@ public class ScenarioApiTest {
     }
     
     /**
-     * Remove all users from the Scenario specified
+     * Remove the specified access from the given Organization Scenario
      *
      * 
      *
@@ -288,16 +358,17 @@ public class ScenarioApiTest {
      *          if the Api call fails
      */
     @Test
-    public void removeAllUsersOfScenarioTest() throws ApiException {
+    public void removeScenarioAccessControlTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-                api.removeAllUsersOfScenario(organizationId, workspaceId, scenarioId);
+        String identityId = null;
+                api.removeScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId);
         // TODO: test validations
     }
     
     /**
-     * Remove the specified user from the given Scenario
+     * set the Scenario default security
      *
      * 
      *
@@ -305,12 +376,12 @@ public class ScenarioApiTest {
      *          if the Api call fails
      */
     @Test
-    public void removeUserFromScenarioTest() throws ApiException {
+    public void setScenarioDefaultSecurityTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        String userId = null;
-                api.removeUserFromScenario(organizationId, workspaceId, scenarioId, userId);
+        String body = null;
+                ScenarioSecurity response = api.setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, body);
         // TODO: test validations
     }
     
