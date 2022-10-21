@@ -31,7 +31,7 @@ import java.util.List;
  * the workspace security information
  */
 @ApiModel(description = "the workspace security information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T07:28:16.923120219Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-21T12:08:01.493190768Z[Etc/UTC]")
 public class WorkspaceSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
