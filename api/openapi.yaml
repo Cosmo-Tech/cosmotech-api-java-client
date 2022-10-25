@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 2.0.9-dev
+  version: 3.0.1-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -6444,6 +6444,41 @@ components:
       - label
       - parameters
       type: object
+    ContainerResourceSizeInfo:
+      description: define cpus and memory needs
+      example:
+        memory: memory
+        cpu: cpu
+      properties:
+        cpu:
+          description: define cpu needs
+          type: string
+        memory:
+          description: define memory needs
+          type: string
+      required:
+      - cpu
+      - memory
+      type: object
+    ContainerResourceSizing:
+      description: a description object for resource requests and limits (default
+        same configuration as basic sizing)
+      example:
+        requests:
+          memory: memory
+          cpu: cpu
+        limits:
+          memory: memory
+          cpu: cpu
+      properties:
+        requests:
+          $ref: '#/components/schemas/ContainerResourceSizeInfo'
+        limits:
+          $ref: '#/components/schemas/ContainerResourceSizeInfo'
+      required:
+      - limits
+      - requests
+      type: object
     Dataset:
       description: a Dataset
       example:
@@ -6754,6 +6789,22 @@ components:
         solutionsContainerRegistry:
           $ref: '#/components/schemas/OrganizationService'
       type: object
+    ResourceSizeInfo:
+      description: define cpus and memory needs
+      example:
+        memory: memory
+        cpu: cpu
+      properties:
+        cpu:
+          description: define cpu needs
+          type: string
+        memory:
+          description: define memory needs
+          type: string
+      required:
+      - cpu
+      - memory
+      type: object
     RunTemplate:
       description: a Solution Run Template
       example:
@@ -6772,6 +6823,13 @@ components:
         postRunSource: null
         gitBranchName: gitBranchName
         noDataIngestionState: true
+        runSizing:
+          requests:
+            memory: memory
+            cpu: cpu
+          limits:
+            memory: memory
+            cpu: cpu
         id: id
         deleteHistoricalData:
           enable: true
@@ -6818,6 +6876,8 @@ components:
           description: the compute size needed for this Run Template. Standard sizes
             are basic and highcpu. Default is basic
           type: string
+        runSizing:
+          $ref: '#/components/schemas/RunTemplateResourceSizing'
         noDataIngestionState:
           description: set to true if the run template does not want to check data
             ingestion state (no probes or not control plane)
@@ -7017,6 +7077,25 @@ components:
       - parameterId
       - value
       type: object
+    RunTemplateResourceSizing:
+      description: a description object for resource requests and limits (default
+        same configuration as basic sizing)
+      example:
+        requests:
+          memory: memory
+          cpu: cpu
+        limits:
+          memory: memory
+          cpu: cpu
+      properties:
+        requests:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+        limits:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+      required:
+      - limits
+      - requests
+      type: object
     RunTemplateStepSource:
       description: "the source local, cloud or git repository"
       enum:
@@ -7054,6 +7133,13 @@ components:
         lastUpdate: 2000-01-23T04:56:07.000+00:00
         name: name
         runTemplateId: runTemplateId
+        runSizing:
+          requests:
+            memory: memory
+            cpu: cpu
+          limits:
+            memory: memory
+            cpu: cpu
         id: id
         solutionId: solutionId
         state: null
@@ -7130,6 +7216,8 @@ components:
           items:
             type: string
           type: array
+        runSizing:
+          $ref: '#/components/schemas/ScenarioResourceSizing'
         parametersValues:
           description: the list of Solution Run Template parameters values
           items:
@@ -7276,6 +7364,25 @@ components:
           description: the last Workflow name
           type: string
       type: object
+    ScenarioResourceSizing:
+      description: a description object for resource requests and limits (default
+        same configuration as basic sizing)
+      example:
+        requests:
+          memory: memory
+          cpu: cpu
+        limits:
+          memory: memory
+          cpu: cpu
+      properties:
+        requests:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+        limits:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+      required:
+      - limits
+      - requests
+      type: object
     ScenarioRole:
       description: the Scenario Role
       example:
@@ -7316,8 +7423,16 @@ components:
           name: name
           envVars:
             key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           solutionContainer: true
+          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7336,8 +7451,16 @@ components:
           name: name
           envVars:
             key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           solutionContainer: true
+          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7465,8 +7588,16 @@ components:
         name: name
         envVars:
           key: envVars
+        runSizing:
+          requests:
+            memory: memory
+            cpu: cpu
+          limits:
+            memory: memory
+            cpu: cpu
         id: id
         solutionContainer: true
+        nodeLabel: nodeLabel
         labels:
           key: labels
         dependencies:
@@ -7515,6 +7646,11 @@ components:
           description: whether or not this container is a Cosmo Tech solution container
           readOnly: true
           type: boolean
+        nodeLabel:
+          description: the node label request
+          type: string
+        runSizing:
+          $ref: '#/components/schemas/ContainerResourceSizing'
         artifacts:
           description: the list of artifacts
           items:
@@ -7650,8 +7786,16 @@ components:
           name: name
           envVars:
             key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           solutionContainer: true
+          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7670,8 +7814,16 @@ components:
           name: name
           envVars:
             key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           solutionContainer: true
+          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7926,6 +8078,13 @@ components:
           postRunSource: null
           gitBranchName: gitBranchName
           noDataIngestionState: true
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           deleteHistoricalData:
             enable: true
@@ -7964,6 +8123,13 @@ components:
           postRunSource: null
           gitBranchName: gitBranchName
           noDataIngestionState: true
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
           id: id
           deleteHistoricalData:
             enable: true

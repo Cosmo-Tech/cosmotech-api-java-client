@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Plaform API
-- API version: 2.0.9-dev
-  - Build date: 2022-10-25T13:07:40.023364970Z[Etc/UTC]
+- API version: 3.0.1-dev
+  - Build date: 2022-10-25T17:05:04.169890956Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>2.0.9-dev</version>
+  <version>3.0.1-dev</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:2.0.9-dev"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.0.1-dev"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-2.0.9-dev.jar`
+* `target/cosmotech-api-java-client-3.0.1-dev.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -245,6 +245,8 @@ Class | Method | HTTP request | Description
  - [Connector](docs/Connector.md)
  - [ConnectorParameter](docs/ConnectorParameter.md)
  - [ConnectorParameterGroup](docs/ConnectorParameterGroup.md)
+ - [ContainerResourceSizeInfo](docs/ContainerResourceSizeInfo.md)
+ - [ContainerResourceSizing](docs/ContainerResourceSizing.md)
  - [Dataset](docs/Dataset.md)
  - [DatasetCompatibility](docs/DatasetCompatibility.md)
  - [DatasetConnector](docs/DatasetConnector.md)
@@ -257,11 +259,13 @@ Class | Method | HTTP request | Description
  - [OrganizationSecurity](docs/OrganizationSecurity.md)
  - [OrganizationService](docs/OrganizationService.md)
  - [OrganizationServices](docs/OrganizationServices.md)
+ - [ResourceSizeInfo](docs/ResourceSizeInfo.md)
  - [RunTemplate](docs/RunTemplate.md)
  - [RunTemplateHandlerId](docs/RunTemplateHandlerId.md)
  - [RunTemplateParameter](docs/RunTemplateParameter.md)
  - [RunTemplateParameterGroup](docs/RunTemplateParameterGroup.md)
  - [RunTemplateParameterValue](docs/RunTemplateParameterValue.md)
+ - [RunTemplateResourceSizing](docs/RunTemplateResourceSizing.md)
  - [RunTemplateStepSource](docs/RunTemplateStepSource.md)
  - [Scenario](docs/Scenario.md)
  - [ScenarioAccessControl](docs/ScenarioAccessControl.md)
@@ -271,6 +275,7 @@ Class | Method | HTTP request | Description
  - [ScenarioDataDownloadJob](docs/ScenarioDataDownloadJob.md)
  - [ScenarioJobState](docs/ScenarioJobState.md)
  - [ScenarioLastRun](docs/ScenarioLastRun.md)
+ - [ScenarioResourceSizing](docs/ScenarioResourceSizing.md)
  - [ScenarioRole](docs/ScenarioRole.md)
  - [ScenarioRun](docs/ScenarioRun.md)
  - [ScenarioRunContainer](docs/ScenarioRunContainer.md)
