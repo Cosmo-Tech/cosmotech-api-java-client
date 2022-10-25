@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 3.0.0-dev
+  version: 2.0.8-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -183,7 +183,7 @@ paths:
                 $ref: '#/components/schemas/Workspace'
           description: the Workspace details
         "404":
-          description: the Workspace specified is unknown or you don't have access
+          description: The Workspace specified is unknown or you don't have access
             to it
       summary: Get the details of an workspace
       tags:
@@ -223,7 +223,7 @@ paths:
             schema:
               format: binary
               type: string
-        description: the new Workspace details.
+        description: The new Workspace details.
         required: true
       responses:
         "200":
@@ -586,11 +586,15 @@ paths:
       requestBody:
         content:
           application/json:
-            example: writer
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
             schema:
-              type: string
+              $ref: '#/components/schemas/WorkspaceRole'
           application/yaml:
-            example: writer
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
             schema:
               format: binary
               type: string
@@ -609,7 +613,7 @@ paths:
         "404":
           description: the Workspace specified is unknown or you don't have access
             to it
-      summary: set the Workspace default security
+      summary: Set the Workspace default security
       tags:
       - workspace
       x-contentType: application/json
@@ -664,7 +668,7 @@ paths:
         "404":
           description: the Workspace specified is unknown or you don't have access
             to it
-      summary: add a control acccess to the Workspace
+      summary: Add a control access to the Workspace
       tags:
       - workspace
       x-contentType: application/json
@@ -701,7 +705,7 @@ paths:
         "204":
           description: Request succeeded
         "404":
-          description: the Workspace or the user specified is unknown or you don't
+          description: The Workspace or the user specified is unknown or you don't
             have access to them
       summary: Remove the specified access from the given Organization Workspace
       tags:
@@ -745,11 +749,66 @@ paths:
                 $ref: '#/components/schemas/WorkspaceAccessControl'
           description: The Workspace access
         "404":
-          description: the Workspace or user specified is unknown or you don't have
+          description: The Workspace or user specified is unknown or you don't have
             access to it
-      summary: get a control acccess for the Workspace
+      summary: Get a control access for the Workspace
       tags:
       - workspace
+      x-accepts: application/json
+    patch:
+      operationId: updateWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
+            schema:
+              $ref: '#/components/schemas/WorkspaceRole'
+        description: The new Workspace Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+              schema:
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
+        "404":
+          description: The Workspace specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for a Workspace
+      tags:
+      - workspace
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/security/users:
     get:
@@ -2476,11 +2535,15 @@ paths:
       requestBody:
         content:
           application/json:
-            example: writer
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
             schema:
-              type: string
+              $ref: '#/components/schemas/OrganizationRole'
           application/yaml:
-            example: writer
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
             schema:
               format: binary
               type: string
@@ -2499,7 +2562,7 @@ paths:
         "404":
           description: the Organization specified is unknown or you don't have access
             to it
-      summary: set the Organization default security
+      summary: Set the Organization default security
       tags:
       - organization
       x-contentType: application/json
@@ -2546,7 +2609,7 @@ paths:
         "404":
           description: the Organization specified is unknown or you don't have access
             to it
-      summary: add a control acccess to the Organization
+      summary: Add a control access to the Organization
       tags:
       - organization
       x-contentType: application/json
@@ -2611,17 +2674,64 @@ paths:
                 $ref: '#/components/schemas/OrganizationAccessControl'
           description: The Organization access
         "404":
-          description: the Organization or user specified is unknown or you don't
+          description: The Organization or user specified is unknown or you don't
             have access to it
-      summary: get a control acccess for the Organization
+      summary: Get a control access for the Organization
       tags:
       - organization
+      x-accepts: application/json
+    patch:
+      operationId: updateOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
+            schema:
+              $ref: '#/components/schemas/OrganizationRole'
+        description: The new Organization Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: The Organization specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for an Organization
+      tags:
+      - organization
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/security/users:
     get:
       operationId: getOrganizationSecurityUsers
       parameters:
-      - description: the Organization identifier
+      - description: The Organization identifier
         explode: false
         in: path
         name: organization_id
@@ -4313,11 +4423,15 @@ paths:
       requestBody:
         content:
           application/json:
-            example: writer
+            examples:
+              BreweryScenarioRole:
+                $ref: '#/components/examples/BreweryScenarioRole'
             schema:
-              type: string
+              $ref: '#/components/schemas/ScenarioRole'
           application/yaml:
-            example: writer
+            examples:
+              BreweryScenarioRole:
+                $ref: '#/components/examples/BreweryScenarioRole'
             schema:
               format: binary
               type: string
@@ -4338,7 +4452,7 @@ paths:
         "404":
           description: the Scenario specified is unknown or you don't have access
             to it
-      summary: set the Scenario default security
+      summary: Set the Scenario default security
       tags:
       - scenario
       x-contentType: application/json
@@ -4401,7 +4515,7 @@ paths:
         "404":
           description: the Scenario specified is unknown or you don't have access
             to it
-      summary: add a control acccess to the Scenario
+      summary: Add a control access to the Scenario
       tags:
       - scenario
       x-contentType: application/json
@@ -4500,9 +4614,72 @@ paths:
         "404":
           description: the Scenario or user specified is unknown or you don't have
             access to it
-      summary: get a control acccess for the Scenario
+      summary: Get a control access for the Scenario
       tags:
       - scenario
+      x-accepts: application/json
+    patch:
+      operationId: updateScenarioAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryScenarioRole:
+                $ref: '#/components/examples/BreweryScenarioRole'
+            schema:
+              $ref: '#/components/schemas/ScenarioRole'
+        description: The new Scenario Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioAccessControl:
+                  $ref: '#/components/examples/BreweryScenarioAccessControl'
+              schema:
+                $ref: '#/components/schemas/ScenarioAccessControl'
+          description: The Scenario access
+        "404":
+          description: The Organization specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for a Scenario
+      tags:
+      - scenario
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users:
     get:
@@ -4958,21 +5135,26 @@ components:
       description: Brewery Workspace example
       summary: Brewery Workspace Writer default security
       value:
-        default: writer
+        default: editor
     BreweryOrganizationAccessControl:
       description: Set an access control for a user to an organization.
       summary: Set an access control.
       value:
         id: bob@mycompany.com
-        role: writer
+        role: editor
+    BreweryOrganizationRole:
+      description: Set an role for a user to an organization.
+      summary: Set an Organization Role.
+      value:
+        role: editor
     BreweryOrganizationSecurity:
       description: Brewery Organization security example
       summary: Brewery Organization security
       value:
-        default: reader
+        default: viewer
         accessControlList:
         - id: bob@mycosmocompany.com
-          role: writer
+          role: editor
     BreweryScenario:
       description: Brewery Scenario example
       summary: Brewery Scenario
@@ -5006,7 +5188,7 @@ components:
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5016,7 +5198,7 @@ components:
       summary: Set an access control.
       value:
         id: bob.doe@cosmotech.com
-        role: writer
+        role: editor
     BreweryScenarioComparison:
       description: Brewery comparison result between a parent Scenario and its child
       summary: Brewery comparison result
@@ -5051,11 +5233,16 @@ components:
           value: ""
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
             - admin
+    BreweryScenarioRole:
+      description: Set a Role for a User to a Scenario.
+      summary: Set a Scenario Role.
+      value:
+        role: editor
     BreweryScenarioRun:
       description: Brewery ScenarioRun example
       summary: Brewery ScenarioRun example
@@ -5190,10 +5377,10 @@ components:
       description: Brewery Scenario security example
       summary: Brewery Scenario security
       value:
-        default: reader
+        default: viewer
         accessControlList:
         - id: alice.doe@cosmotech.com
-          role: writer
+          role: editor
     BreweryScenarioUpdate:
       description: Update the Brewery Scenario by changing its name
       summary: Update the Brewery Scenario
@@ -5227,7 +5414,7 @@ components:
           value: ""
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5302,7 +5489,7 @@ components:
           defaultRunTemplateDataset:
             "1": "1"
         security:
-          default: reader
+          default: viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             role: admin
@@ -5311,7 +5498,7 @@ components:
       summary: Set an access control.
       value:
         id: bob.doe@cosmotech.com
-        role: writer
+        role: editor
     BreweryWorkspaceCreateIn:
       description: Brewery Workspace Create input parameters example
       summary: Brewery Workspace Create input parameters example
@@ -5333,7 +5520,7 @@ components:
           default: reader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: writer
+            role: editor
     BreweryWorkspaceCreateSecurity:
       description: Brewery Workspace Create with default security
       summary: Brewery Workspace Create with security
@@ -5355,20 +5542,25 @@ components:
           default: reader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: writer
+            role: editor
     BreweryWorkspaceFile:
       description: Brewery Workspace file uploaded return example
       summary: Brewery Workspace file example
       value:
         fileName: myData.csv
+    BreweryWorkspaceRole:
+      description: Set a Role for a user to a workspace.
+      summary: Set a Workspace Role.
+      value:
+        role: editor
     BreweryWorkspaceSecurity:
       description: Brewery Workspace security example
       summary: Brewery Workspace security
       value:
-        default: reader
+        default: viewer
         accessControlList:
         - id: alice.doe@cosmotech.com
-          role: writer
+          role: editor
     BreweryWorkspaceUpdate:
       description: Update the Brewery Workspace by changing its name
       summary: Update the Brewery Workspace
@@ -5394,7 +5586,7 @@ components:
           defaultRunTemplateDataset:
             "1": "1"
         security:
-          default: reader
+          default: viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             role: admin
@@ -5409,9 +5601,9 @@ components:
           default: reader
           accessControlList:
           - id: jane.doe@cosmotech.com
-            role: writer
+            role: editor
           - id: john.doe@cosmotech.com
-            role: reader
+            role: viewer
     CosmoThreeUsers:
       description: Cosmo Tech Organization 3 users example
       summary: Cosmo Tech Organization with 3 users
@@ -5422,11 +5614,11 @@ components:
           default: reader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: writer
+            role: viewer
           - id: alice.doe@cosmotech.com
-            role: reader
+            role: viewer
           - id: xavier.doe@cosmotech.com
-            role: writer
+            role: editor
     DatasetSearch:
       description: Parameters to search for a dataset
       summary: Example for dataset search
@@ -5442,9 +5634,9 @@ components:
           default: reader
           accessControlList:
           - id: jane.doe@cosmotech.com
-            role: writer
+            role: editor
           - id: john.doe@cosmotech.com
-            role: reader
+            role: viewer
     OneConnector:
       description: One Connector list example
       summary: One Connector list
@@ -5598,7 +5790,7 @@ components:
           defaultRunTemplateDataset:
             "1": "1"
         security:
-          default: reader
+          default: viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             role: admin
@@ -5703,7 +5895,7 @@ components:
           inherited: true
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5737,7 +5929,7 @@ components:
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5770,7 +5962,7 @@ components:
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5803,7 +5995,7 @@ components:
           value: ""
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5838,7 +6030,7 @@ components:
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5873,7 +6065,7 @@ components:
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
           default:
-          - reader
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
             roles:
@@ -5961,16 +6153,16 @@ components:
           default: reader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: writer
+            role: editor
           - id: alice.doe@cosmotech.com
-            role: reader
+            role: viewer
       - id: "2"
         name: Phoenix
         security:
           default: rolereader
           accessControlList:
           - id: bob.doe@cosmotech.com
-            role: writer
+            role: editor
     TwoScenarioRunTemplateParameterValueToAddOrReplace:
       description: Scenarios Run Templates added
       summary: Scenarios Run Templates added
@@ -6249,41 +6441,6 @@ components:
       - label
       - parameters
       type: object
-    ContainerResourceSizeInfo:
-      description: define cpus and memory needs
-      example:
-        memory: memory
-        cpu: cpu
-      properties:
-        cpu:
-          description: define cpu needs
-          type: string
-        memory:
-          description: define memory needs
-          type: string
-      required:
-      - cpu
-      - memory
-      type: object
-    ContainerResourceSizing:
-      description: a description object for resource requests and limits (default
-        same configuration as basic sizing)
-      example:
-        requests:
-          memory: memory
-          cpu: cpu
-        limits:
-          memory: memory
-          cpu: cpu
-      properties:
-        requests:
-          $ref: '#/components/schemas/ContainerResourceSizeInfo'
-        limits:
-          $ref: '#/components/schemas/ContainerResourceSizeInfo'
-      required:
-      - limits
-      - requests
-      type: object
     Dataset:
       description: a Dataset
       example:
@@ -6481,6 +6638,17 @@ components:
       - id
       - role
       type: object
+    OrganizationRole:
+      description: the Organization Role
+      example:
+        role: role
+      properties:
+        role:
+          description: the Organization Role
+          type: string
+      required:
+      - role
+      type: object
     OrganizationSecurity:
       description: the Organization security information
       example:
@@ -6561,22 +6729,6 @@ components:
         solutionsContainerRegistry:
           $ref: '#/components/schemas/OrganizationService'
       type: object
-    ResourceSizeInfo:
-      description: define cpus and memory needs
-      example:
-        memory: memory
-        cpu: cpu
-      properties:
-        cpu:
-          description: define cpu needs
-          type: string
-        memory:
-          description: define memory needs
-          type: string
-      required:
-      - cpu
-      - memory
-      type: object
     RunTemplate:
       description: a Solution Run Template
       example:
@@ -6595,13 +6747,6 @@ components:
         postRunSource: null
         gitBranchName: gitBranchName
         noDataIngestionState: true
-        runSizing:
-          requests:
-            memory: memory
-            cpu: cpu
-          limits:
-            memory: memory
-            cpu: cpu
         id: id
         scenarioDataDownloadTransform: true
         datasetValidatorSource: null
@@ -6644,8 +6789,6 @@ components:
           description: the compute size needed for this Run Template. Standard sizes
             are basic and highcpu. Default is basic
           type: string
-        runSizing:
-          $ref: '#/components/schemas/RunTemplateResourceSizing'
         noDataIngestionState:
           description: set to true if the run template does not want to check data
             ingestion state (no probes or not control plane)
@@ -6843,25 +6986,6 @@ components:
       - parameterId
       - value
       type: object
-    RunTemplateResourceSizing:
-      description: a description object for resource requests and limits (default
-        same configuration as basic sizing)
-      example:
-        requests:
-          memory: memory
-          cpu: cpu
-        limits:
-          memory: memory
-          cpu: cpu
-      properties:
-        requests:
-          $ref: '#/components/schemas/ResourceSizeInfo'
-        limits:
-          $ref: '#/components/schemas/ResourceSizeInfo'
-      required:
-      - limits
-      - requests
-      type: object
     RunTemplateStepSource:
       description: "the source local, cloud or git repository"
       enum:
@@ -6899,13 +7023,6 @@ components:
         lastUpdate: 2000-01-23T04:56:07.000+00:00
         name: name
         runTemplateId: runTemplateId
-        runSizing:
-          requests:
-            memory: memory
-            cpu: cpu
-          limits:
-            memory: memory
-            cpu: cpu
         id: id
         solutionId: solutionId
         state: null
@@ -6982,8 +7099,6 @@ components:
           items:
             type: string
           type: array
-        runSizing:
-          $ref: '#/components/schemas/ScenarioResourceSizing'
         parametersValues:
           description: the list of Solution Run Template parameters values
           items:
@@ -7130,24 +7245,16 @@ components:
           description: the last Workflow name
           type: string
       type: object
-    ScenarioResourceSizing:
-      description: a description object for resource requests and limits (default
-        same configuration as basic sizing)
+    ScenarioRole:
+      description: the Scenario Role
       example:
-        requests:
-          memory: memory
-          cpu: cpu
-        limits:
-          memory: memory
-          cpu: cpu
+        role: role
       properties:
-        requests:
-          $ref: '#/components/schemas/ResourceSizeInfo'
-        limits:
-          $ref: '#/components/schemas/ResourceSizeInfo'
+        role:
+          description: the Scenario Role
+          type: string
       required:
-      - limits
-      - requests
+      - role
       type: object
     ScenarioRun:
       description: a ScenarioRun with only base properties
@@ -7178,16 +7285,8 @@ components:
           name: name
           envVars:
             key: envVars
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           solutionContainer: true
-          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7206,16 +7305,8 @@ components:
           name: name
           envVars:
             key: envVars
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           solutionContainer: true
-          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7343,16 +7434,8 @@ components:
         name: name
         envVars:
           key: envVars
-        runSizing:
-          requests:
-            memory: memory
-            cpu: cpu
-          limits:
-            memory: memory
-            cpu: cpu
         id: id
         solutionContainer: true
-        nodeLabel: nodeLabel
         labels:
           key: labels
         dependencies:
@@ -7401,11 +7484,6 @@ components:
           description: whether or not this container is a Cosmo Tech solution container
           readOnly: true
           type: boolean
-        nodeLabel:
-          description: the node label request
-          type: string
-        runSizing:
-          $ref: '#/components/schemas/ContainerResourceSizing'
         artifacts:
           description: the list of artifacts
           items:
@@ -7541,16 +7619,8 @@ components:
           name: name
           envVars:
             key: envVars
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           solutionContainer: true
-          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7569,16 +7639,8 @@ components:
           name: name
           envVars:
             key: envVars
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           solutionContainer: true
-          nodeLabel: nodeLabel
           labels:
             key: labels
           dependencies:
@@ -7833,13 +7895,6 @@ components:
           postRunSource: null
           gitBranchName: gitBranchName
           noDataIngestionState: true
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
@@ -7874,13 +7929,6 @@ components:
           postRunSource: null
           gitBranchName: gitBranchName
           noDataIngestionState: true
-          runSizing:
-            requests:
-              memory: memory
-              cpu: cpu
-            limits:
-              memory: memory
-              cpu: cpu
           id: id
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
@@ -8345,6 +8393,17 @@ components:
         fileName:
           description: the Workspace File name
           type: string
+      type: object
+    WorkspaceRole:
+      description: the Workspace Role
+      example:
+        role: role
+      properties:
+        role:
+          description: the Workspace Role
+          type: string
+      required:
+      - role
       type: object
     WorkspaceSecurity:
       description: the workspace security information
