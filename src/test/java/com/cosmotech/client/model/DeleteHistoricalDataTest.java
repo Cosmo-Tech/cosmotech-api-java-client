@@ -13,7 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.OrganizationService;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,50 +21,47 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for OrganizationServices
+ * Model tests for DeleteHistoricalData
  */
-public class OrganizationServicesTest {
-    private final OrganizationServices model = new OrganizationServices();
+public class DeleteHistoricalDataTest {
+    private final DeleteHistoricalData model = new DeleteHistoricalData();
 
     /**
-     * Model tests for OrganizationServices
+     * Model tests for DeleteHistoricalData
      */
     @Test
-    public void testOrganizationServices() {
-        // TODO: test OrganizationServices
+    public void testDeleteHistoricalData() {
+        // TODO: test DeleteHistoricalData
     }
 
     /**
-     * Test the property 'tenantCredentials'
+     * Test the property 'enable'
      */
     @Test
-    public void tenantCredentialsTest() {
-        // TODO: test tenantCredentials
+    public void enableTest() {
+        // TODO: test enable
     }
 
     /**
-     * Test the property 'storage'
+     * Test the property 'pollFrequency'
      */
     @Test
-    public void storageTest() {
-        // TODO: test storage
+    public void pollFrequencyTest() {
+        // TODO: test pollFrequency
     }
 
     /**
-     * Test the property 'solutionsContainerRegistry'
+     * Test the property 'timeOut'
      */
     @Test
-    public void solutionsContainerRegistryTest() {
-        // TODO: test solutionsContainerRegistry
+    public void timeOutTest() {
+        // TODO: test timeOut
     }
 
 }
