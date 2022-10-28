@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 2.0.4-SNAPSHOT
-  - Build date: 2022-10-28T14:26:09.461832674Z[Etc/UTC]
+  - Build date: 2022-10-28T14:42:04.127744775Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
