@@ -31,7 +31,7 @@ import java.util.Map;
  * a Run Template Parameter
  */
 @ApiModel(description = "a Run Template Parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-28T09:25:01.513412843Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-28T09:39:03.416204717Z[Etc/UTC]")
 public class RunTemplateParameter {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
