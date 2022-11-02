@@ -13,7 +13,7 @@
 
 package com.cosmotech.client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-28T16:03:00.482797084Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-02T08:10:09.376860230Z[Etc/UTC]")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

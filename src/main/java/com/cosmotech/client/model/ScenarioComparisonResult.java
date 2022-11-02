@@ -31,7 +31,7 @@ import java.util.List;
  * the result of the comparison of two scenarios
  */
 @ApiModel(description = "the result of the comparison of two scenarios")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-28T16:03:00.482797084Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-02T08:10:09.376860230Z[Etc/UTC]")
 public class ScenarioComparisonResult {
   public static final String SERIALIZED_NAME_SCENARIO_ID = "scenarioId";
   @SerializedName(SERIALIZED_NAME_SCENARIO_ID)
