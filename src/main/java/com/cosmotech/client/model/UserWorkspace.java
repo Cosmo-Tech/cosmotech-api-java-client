@@ -30,7 +30,7 @@ import java.util.List;
  * the list of User roles for a Workspace
  */
 @ApiModel(description = "the list of User roles for a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-03T11:02:05.797868699Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-03T11:47:15.729993223Z[Etc/UTC]")
 public class UserWorkspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
