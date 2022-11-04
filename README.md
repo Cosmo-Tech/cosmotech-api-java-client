@@ -2,7 +2,7 @@
 
 Cosmo Tech Plaform API
 - API version: 0.1.0-SNAPSHOT
-  - Build date: 2022-11-04T09:41:01.595984685Z[Etc/UTC]
+  - Build date: 2022-11-04T13:12:45.986633888Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -161,8 +161,8 @@ Class | Method | HTTP request | Description
 *ScenarioApi* | [**removeUserFromScenario**](docs/ScenarioApi.md#removeUserFromScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/users/{user_id} | Remove the specified user from the given Scenario
 *ScenarioApi* | [**updateScenario**](docs/ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
 *ScenariorunApi* | [**deleteHistoricalDataOrganization**](docs/ScenariorunApi.md#deleteHistoricalDataOrganization) | **DELETE** /organizations/{organization_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Organization
+*ScenariorunApi* | [**deleteHistoricalDataScenario**](docs/ScenariorunApi.md#deleteHistoricalDataScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Scenario
 *ScenariorunApi* | [**deleteHistoricalDataWorkspace**](docs/ScenariorunApi.md#deleteHistoricalDataWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Workspace
-*ScenariorunApi* | [**deleteHistoricalScenarioRunsByScenario**](docs/ScenariorunApi.md#deleteHistoricalScenarioRunsByScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | Delete all historical ScenarioRuns for the Scenario
 *ScenariorunApi* | [**deleteScenarioRun**](docs/ScenariorunApi.md#deleteScenarioRun) | **DELETE** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Delete a scenariorun
 *ScenariorunApi* | [**findScenarioRunById**](docs/ScenariorunApi.md#findScenarioRunById) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Get the details of a scenariorun
 *ScenariorunApi* | [**getScenarioRunCumulatedLogs**](docs/ScenariorunApi.md#getScenarioRunCumulatedLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs | Get the cumulated logs of a scenariorun
