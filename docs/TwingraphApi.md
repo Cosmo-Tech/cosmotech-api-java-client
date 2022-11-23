@@ -4,9 +4,9 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/delete/{graphId} | 
-[**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/import | 
-[**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/query | 
+[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | 
+[**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | 
+[**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | 
 
 
 <a name="delete"></a>
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 <a name="query"></a>
 # **query**
-> String query(organizationId, twinGraphQuery)
+> String query(organizationId, graphId, twinGraphQuery)
 
 
 
@@ -175,9 +175,10 @@ public class Example {
 
     TwingraphApi apiInstance = new TwingraphApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
+    String graphId = "graphId_example"; // String | the Graph Identifier
     TwinGraphQuery twinGraphQuery = new TwinGraphQuery(); // TwinGraphQuery | the query to run
     try {
-      String result = apiInstance.query(organizationId, twinGraphQuery);
+      String result = apiInstance.query(organizationId, graphId, twinGraphQuery);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#query");
@@ -195,6 +196,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
+ **graphId** | **String**| the Graph Identifier |
  **twinGraphQuery** | [**TwinGraphQuery**](TwinGraphQuery.md)| the query to run |
 
 ### Return type
