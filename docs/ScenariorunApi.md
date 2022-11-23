@@ -5,8 +5,8 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteHistoricalDataOrganization**](ScenariorunApi.md#deleteHistoricalDataOrganization) | **DELETE** /organizations/{organization_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Organization
+[**deleteHistoricalDataScenario**](ScenariorunApi.md#deleteHistoricalDataScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Scenario
 [**deleteHistoricalDataWorkspace**](ScenariorunApi.md#deleteHistoricalDataWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Workspace
-[**deleteHistoricalScenarioRunsByScenario**](ScenariorunApi.md#deleteHistoricalScenarioRunsByScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | Delete all historical ScenarioRuns for the Scenario
 [**deleteScenarioRun**](ScenariorunApi.md#deleteScenarioRun) | **DELETE** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Delete a scenariorun
 [**findScenarioRunById**](ScenariorunApi.md#findScenarioRunById) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Get the details of a scenariorun
 [**getScenarioRunCumulatedLogs**](ScenariorunApi.md#getScenarioRunCumulatedLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs | Get the cumulated logs of a scenariorun
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 <a name="deleteHistoricalDataOrganization"></a>
 # **deleteHistoricalDataOrganization**
-> deleteHistoricalDataOrganization(organizationId)
+> deleteHistoricalDataOrganization(organizationId, deleteUnknown)
 
 Delete all historical ScenarioRuns in the Organization
 
@@ -47,8 +47,9 @@ public class Example {
 
     ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
+    Boolean deleteUnknown = false; // Boolean | condition to delete runs with an Unknown status
     try {
-      apiInstance.deleteHistoricalDataOrganization(organizationId);
+      apiInstance.deleteHistoricalDataOrganization(organizationId, deleteUnknown);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#deleteHistoricalDataOrganization");
       System.err.println("Status code: " + e.getCode());
@@ -65,6 +66,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
+ **deleteUnknown** | **Boolean**| condition to delete runs with an Unknown status | [optional] [default to false]
 
 ### Return type
 
@@ -86,9 +88,81 @@ null (empty response body)
 **400** | Bad request |  -  |
 **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="deleteHistoricalDataScenario"></a>
+# **deleteHistoricalDataScenario**
+> deleteHistoricalDataScenario(organizationId, workspaceId, scenarioId, deleteUnknown)
+
+Delete all historical ScenarioRuns in the Scenario
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.ScenariorunApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
+    Boolean deleteUnknown = false; // Boolean | condition to delete runs with an Unknown status
+    try {
+      apiInstance.deleteHistoricalDataScenario(organizationId, workspaceId, scenarioId, deleteUnknown);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ScenariorunApi#deleteHistoricalDataScenario");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+ **deleteUnknown** | **Boolean**| condition to delete runs with an Unknown status | [optional] [default to false]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Request succeeded |  -  |
+**400** | Bad request |  -  |
+**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="deleteHistoricalDataWorkspace"></a>
 # **deleteHistoricalDataWorkspace**
-> deleteHistoricalDataWorkspace(organizationId, workspaceId)
+> deleteHistoricalDataWorkspace(organizationId, workspaceId, deleteUnknown)
 
 Delete all historical ScenarioRuns in the Workspace
 
@@ -114,8 +188,9 @@ public class Example {
     ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    Boolean deleteUnknown = false; // Boolean | condition to delete runs with an Unknown status
     try {
-      apiInstance.deleteHistoricalDataWorkspace(organizationId, workspaceId);
+      apiInstance.deleteHistoricalDataWorkspace(organizationId, workspaceId, deleteUnknown);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#deleteHistoricalDataWorkspace");
       System.err.println("Status code: " + e.getCode());
@@ -133,6 +208,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
+ **deleteUnknown** | **Boolean**| condition to delete runs with an Unknown status | [optional] [default to false]
 
 ### Return type
 
@@ -153,76 +229,6 @@ null (empty response body)
 **204** | Request succeeded |  -  |
 **400** | Bad request |  -  |
 **404** | the Organization or Workspace specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="deleteHistoricalScenarioRunsByScenario"></a>
-# **deleteHistoricalScenarioRunsByScenario**
-> deleteHistoricalScenarioRunsByScenario(organizationId, workspaceId, scenarioId)
-
-Delete all historical ScenarioRuns for the Scenario
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.ScenariorunApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    try {
-      apiInstance.deleteHistoricalScenarioRunsByScenario(organizationId, workspaceId, scenarioId);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScenariorunApi#deleteHistoricalScenarioRunsByScenario");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**400** | Bad request |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="deleteScenarioRun"></a>
 # **deleteScenarioRun**
