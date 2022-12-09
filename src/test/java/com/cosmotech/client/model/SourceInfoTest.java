@@ -27,41 +27,49 @@ import org.junit.Test;
 
 
 /**
- * Model tests for RunTemplateParameterValue
+ * Model tests for SourceInfo
  */
-public class RunTemplateParameterValueTest {
-    private final RunTemplateParameterValue model = new RunTemplateParameterValue();
+public class SourceInfoTest {
+    private final SourceInfo model = new SourceInfo();
 
     /**
-     * Model tests for RunTemplateParameterValue
+     * Model tests for SourceInfo
      */
     @Test
-    public void testRunTemplateParameterValue() {
-        // TODO: test RunTemplateParameterValue
+    public void testSourceInfo() {
+        // TODO: test SourceInfo
     }
 
     /**
-     * Test the property 'parameterId'
+     * Test the property 'name'
      */
     @Test
-    public void parameterIdTest() {
-        // TODO: test parameterId
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
-     * Test the property 'varType'
+     * Test the property 'location'
      */
     @Test
-    public void varTypeTest() {
-        // TODO: test varType
+    public void locationTest() {
+        // TODO: test location
     }
 
     /**
-     * Test the property 'value'
+     * Test the property 'path'
      */
     @Test
-    public void valueTest() {
-        // TODO: test value
+    public void pathTest() {
+        // TODO: test path
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
     }
 
 }
