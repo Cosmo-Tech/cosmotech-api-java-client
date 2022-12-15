@@ -22,20 +22,20 @@ security:
 tags:
 - description: Workspace Management
   name: workspace
-- description: Dataset Management
-  name: dataset
 - description: ScenarioRun Management
   name: scenariorun
+- description: Organization Management
+  name: organization
 - description: Solution Management
   name: solution
 - description: Connector Management
   name: connector
-- description: Scenario Management
-  name: scenario
-- description: Organization Management
-  name: organization
 - description: User Management
   name: user
+- description: Scenario Management
+  name: scenario
+- description: Dataset Management
+  name: dataset
 paths:
   /organizations/{organization_id}/workspaces:
     get:
@@ -596,9 +596,9 @@ paths:
       tags:
       - workspace
       x-accepts: application/json
-  /organizations/{organization_id}/datasets:
-    get:
-      operationId: findAllDatasets
+  /organizations/{organization_id}/workspaces/{workspace_id}/secret:
+    post:
+      operationId: createSecret
       parameters:
       - description: the Organization identifier
         explode: false
@@ -608,29 +608,10 @@ paths:
         schema:
           type: string
         style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/TwoDatasets'
-              schema:
-                items:
-                  $ref: '#/components/schemas/Dataset'
-                type: array
-          description: the list of Datasets
-      summary: List all Datasets
-      tags:
-      - dataset
-      x-accepts: application/json
-    post:
-      operationId: createDataset
-      parameters:
-      - description: the Organization identifier
+      - description: the Workspace identifier
         explode: false
         in: path
-        name: organization_id
+        name: workspace_id
         required: true
         schema:
           type: string
@@ -639,712 +620,22 @@ paths:
         content:
           application/json:
             examples:
-              BreweryADT:
-                $ref: '#/components/examples/BreweryADT'
+              Workspace:
+                $ref: '#/components/examples/WorkspaceSecretExample'
             schema:
-              $ref: '#/components/schemas/Dataset'
-          application/yaml:
-            examples:
-              BreweryADT:
-                $ref: '#/components/examples/BreweryADT'
-            schema:
-              format: binary
-              type: string
-        description: the Dataset to create
+              $ref: '#/components/schemas/WorkspaceSecret'
+        description: the definition of the secret
         required: true
       responses:
         "201":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
-      summary: Create a new Dataset
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/search:
-    post:
-      operationId: searchDatasets
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              DatasetSearch:
-                $ref: '#/components/examples/DatasetSearch'
-            schema:
-              $ref: '#/components/schemas/DatasetSearch'
-          application/yaml:
-            examples:
-              DatasetSearch:
-                $ref: '#/components/examples/DatasetSearch'
-            schema:
-              format: binary
-              type: string
-        description: the Dataset search parameters
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/TwoDatasets'
-              schema:
-                items:
-                  $ref: '#/components/schemas/Dataset'
-                type: array
-          description: the list of Datasets
-      summary: Search Datasets
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/copy:
-    post:
-      operationId: copyDataset
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryDatasetCopyParameters:
-                $ref: '#/components/examples/BreweryDatasetCopyParameters'
-            schema:
-              $ref: '#/components/schemas/DatasetCopyParameters'
-          application/yaml:
-            examples:
-              BreweryDatasetCopyParameters:
-                $ref: '#/components/examples/BreweryDatasetCopyParameters'
-            schema:
-              format: binary
-              type: string
-        description: the Dataset copy parameters
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryDatasetCopyParameters'
-              schema:
-                $ref: '#/components/schemas/DatasetCopyParameters'
-          description: the Dataset copy operation parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Dataset specified as Source or Target is unknown or you
-            don't have access to it
-      summary: Copy a Dataset to another Dataset. Source must have a read capable
-        connector and Target a write capable connector.
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/{dataset_id}:
-    delete:
-      operationId: deleteDataset
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Dataset identifier
-        explode: false
-        in: path
-        name: dataset_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request successful
-        "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
-      summary: Delete a dataset
-      tags:
-      - dataset
-      x-accepts: application/json
-    get:
-      operationId: findDatasetById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Dataset identifier
-        explode: false
-        in: path
-        name: dataset_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the Dataset details
-        "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
-      summary: Get the details of a Dataset
-      tags:
-      - dataset
-      x-accepts: application/json
-    patch:
-      operationId: updateDataset
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Dataset identifier
-        explode: false
-        in: path
-        name: dataset_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADTUpdate:
-                $ref: '#/components/examples/BreweryADTUpdate'
-            schema:
-              $ref: '#/components/schemas/Dataset'
-          application/yaml:
-            examples:
-              BreweryADTUpdate:
-                $ref: '#/components/examples/BreweryADTUpdate'
-            schema:
-              format: binary
-              type: string
-        description: the new Dataset details.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADTUpdated:
-                  $ref: '#/components/examples/BreweryADTUpdated'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
-        "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
-      summary: Update a dataset
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/{dataset_id}/compatibility:
-    delete:
-      operationId: removeAllDatasetCompatibilityElements
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Dataset identifier
-        explode: false
-        in: path
-        name: dataset_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
-      summary: Remove all Dataset Compatibility elements from the Dataset specified
-      tags:
-      - dataset
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceDatasetCompatibilityElements
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Dataset identifier
-        explode: false
-        in: path
-        name: dataset_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              example:
-                TwoDatasetCompatibility:
-                  summary: 2 Dataset Compatibilities
-                  description: 2 Dataset Compatibilities
-                  value:
-                  - solutionKey: Brewery Solution
-                    minimumVersion: 1.0.0
-                  - solutionKey: Brewery Solution
-                    minimumVersion: 1.0.1
-              items:
-                $ref: '#/components/schemas/DatasetCompatibility'
-              type: array
-        description: the Dataset Compatibility elements
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                TwoDatasetCompatibility:
-                  description: 2 Dataset Compatibilities
-                  summary: 2 Dataset Compatibilities
-                  value:
-                  - solutionKey: Brewery Solution
-                    minimumVersion: 1.0.0
-                  - solutionKey: Brewery Solution
-                    minimumVersion: 1.0.1
-              schema:
-                items:
-                  $ref: '#/components/schemas/DatasetCompatibility'
-                type: array
-          description: the Dataset Compatibility elements
-        "400":
-          description: Bad request
-        "404":
-          description: the Dataset specified is unknown or you don't have access to
-            it
-      summary: Add Dataset Compatibility elements.
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/validators:
-    get:
-      operationId: findAllValidators
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/OneValidator'
-              schema:
-                items:
-                  $ref: '#/components/schemas/Validator'
-                type: array
-          description: the validator details
-      summary: List all Validators
-      tags:
-      - validator
-      x-accepts: application/json
-    post:
-      operationId: createValidator
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADTValidator:
-                $ref: '#/components/examples/BreweryADTValidator'
-            schema:
-              $ref: '#/components/schemas/Validator'
-          application/yaml:
-            examples:
-              BreweryADTValidator:
-                $ref: '#/components/examples/BreweryADTValidator'
-            schema:
-              format: binary
-              type: string
-        description: the Validator to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidator:
-                  $ref: '#/components/examples/BreweryADTValidator'
-              schema:
-                $ref: '#/components/schemas/Validator'
-          description: the validator details
-        "400":
-          description: Bad request
-      summary: Register a new validator
-      tags:
-      - validator
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/validators/{validator_id}:
-    delete:
-      operationId: deleteValidator
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
           description: Request succeeded
         "404":
-          description: the Validator specified is unknown or you don't have access
-            to it
-      summary: Delete a validator
+          description: the Workspace or the User specified is unknown or you don't
+            have access to them
+      summary: Create a secret for the Workspace
       tags:
-      - validator
-      x-accepts: application/json
-    get:
-      operationId: findValidatorById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidator:
-                  $ref: '#/components/examples/BreweryADTValidator'
-              schema:
-                $ref: '#/components/schemas/Validator'
-          description: the Validator details
-        "404":
-          description: the Validator specified is unknown or you don't have access
-            to it
-      summary: Get the details of a validator
-      tags:
-      - validator
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/validators/{validator_id}/run:
-    post:
-      operationId: runValidator
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ValidatorRun identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADTRunValidator:
-                $ref: '#/components/examples/BreweryADTRunValidator'
-            schema:
-              $ref: '#/components/schemas/ValidatorRun'
-          application/yaml:
-            examples:
-              BreweryADTRunValidator:
-                $ref: '#/components/examples/BreweryADTRunValidator'
-            schema:
-              format: binary
-              type: string
-        description: the Validator to run
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidatorRun:
-                  $ref: '#/components/examples/BreweryADTValidatorRun'
-              schema:
-                $ref: '#/components/schemas/ValidatorRun'
-          description: the validator run details
-        "400":
-          description: Bad request
-      summary: Run a Validator
-      tags:
-      - validator
+      - workspace
       x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/validators/{validator_id}/history:
-    get:
-      operationId: findAllValidatorRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ValidatorRun identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/ThreeValidatorRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ValidatorRun'
-                type: array
-          description: the validator run details
-      summary: List all Validator Runs
-      tags:
-      - validator
-      x-accepts: application/json
-    post:
-      operationId: createValidatorRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ValidatorRun identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADTValidatorRun:
-                $ref: '#/components/examples/BreweryADTValidatorRun'
-            schema:
-              $ref: '#/components/schemas/ValidatorRun'
-          application/yaml:
-            examples:
-              BreweryADTValidatorRun:
-                $ref: '#/components/examples/BreweryADTValidatorRun'
-            schema:
-              format: binary
-              type: string
-        description: the Validator Run to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidatorRun:
-                  $ref: '#/components/examples/BreweryADTValidatorRun'
-              schema:
-                $ref: '#/components/schemas/ValidatorRun'
-          description: the validator run details
-        "400":
-          description: Bad request
-      summary: Register a new validator run
-      tags:
-      - validator
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id}:
-    delete:
-      operationId: deleteValidatorRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator Run identifier
-        explode: false
-        in: path
-        name: validatorrun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the ValidatorRun specified is unknown or you don't have access
-            to it
-      summary: Delete a validator run
-      tags:
-      - validator
-      x-accepts: application/json
-    get:
-      operationId: findValidatorRunById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator identifier
-        explode: false
-        in: path
-        name: validator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Validator Run identifier
-        explode: false
-        in: path
-        name: validatorrun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryADTValidatorRun:
-                  $ref: '#/components/examples/BreweryADTValidatorRun'
-              schema:
-                $ref: '#/components/schemas/ValidatorRun'
-          description: the Validator Run details
-        "404":
-          description: the ValidatorRun specified is unknown or you don't have access
-            to it
-      summary: Get the details of a validator run
-      tags:
-      - validator
       x-accepts: application/json
   /organizations/{organization_id}/scenarioruns/historicaldata:
     delete:
@@ -1891,6 +1182,429 @@ paths:
       summary: stop a ScenarioRun for the Scenario
       tags:
       - scenariorun
+      x-accepts: application/json
+  /organizations:
+    get:
+      operationId: findAllOrganizations
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                TwoOrganizations:
+                  $ref: '#/components/examples/TwoOrganizations'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: the list of Organizations
+      summary: List all Organizations
+      tags:
+      - organization
+      x-accepts: application/json
+    post:
+      operationId: registerOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              format: binary
+              type: string
+        description: the Organization to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
+        "400":
+          description: Bad request
+      summary: Register a new organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}:
+    delete:
+      operationId: unregisterOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Unregister an organization
+      tags:
+      - organization
+      x-accepts: application/json
+    get:
+      operationId: findOrganizationById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the details of an Organization
+      tags:
+      - organization
+      x-accepts: application/json
+    patch:
+      operationId: updateOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+            schema:
+              $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+            schema:
+              format: binary
+              type: string
+        description: the new Organization details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoThreeUsers:
+                  $ref: '#/components/examples/CosmoThreeUsers'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the organization details
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update an Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/users:
+    delete:
+      operationId: removeAllUsersInOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Remove all users from the Organization specified
+      tags:
+      - organization
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceUsersInOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              AddUser:
+                description: Add the user Bob to organization Cosmo Tech
+                summary: Add a user
+                value:
+                - id: "2"
+                  roles:
+                  - User
+                - id: "3"
+                  roles:
+                  - Developer
+            schema:
+              items:
+                $ref: '#/components/schemas/OrganizationUser'
+              type: array
+        description: the Users to add. Any User with the same ID is overwritten
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                TwoOrganizationUsers:
+                  $ref: '#/components/examples/TwoOrganizationUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrganizationUser'
+                type: array
+          description: the Organization Users
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Add (or replace) users in the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/users/{user_id}:
+    delete:
+      operationId: removeUserFromOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization or the User specified is unknown or you don't
+            have access to them
+      summary: Remove the specified user from the given Organization
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/services/tenantCredentials:
+    patch:
+      operationId: updateTenantCredentialsByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  azureTenantId: <my_azure_tenant_id>
+                  azureClientId: <my_azure_client_id>
+                  azureClientSecret: <my_azure_client_secret>
+            schema:
+              additionalProperties: true
+              description: a freeform credentials object for the Organization tenant.
+                Structure depends on cloud provider
+              type: object
+        description: the new Tenant Credentials to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    azureTenantId: <my_azure_tenant_id>
+                    azureClientId: <my_azure_client_id>
+                    azureClientSecret: <my_azure_client_secret>
+              schema:
+                additionalProperties: true
+                description: a freeform credentials object for the Organization tenant.
+                  Structure depends on cloud provider
+                type: object
+          description: the Organization Tenant Credentials
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update tenant credentials for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/storage:
+    patch:
+      operationId: updateStorageByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              format: binary
+              type: string
+        description: the new Storage configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    platformService: storage
+                    cloudService: AzureStorage
+                    baseUri: https://csmphoenixcontainer.blob.core.windows.net
+                    resourceUri: organization-2/files
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization Storage configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update storage configuration for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/solutionsContainerRegistry:
+    patch:
+      operationId: updateSolutionsContainerRegistryByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              format: binary
+              type: string
+        description: the new solutions container registry configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationSolutionContainerRegistry:
+                  value:
+                    cloudService: AzureStorage
+                    baseUri: mysolutiontwinengines.azurecr.io
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization solutions container registry configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update the solutions container registry configuration for the Organization
+        specified
+      tags:
+      - organization
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/solutions:
     get:
@@ -2629,6 +2343,267 @@ paths:
       summary: Get the details of a connector
       tags:
       - connector
+      x-accepts: application/json
+  /users:
+    get:
+      operationId: findAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/TwoUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: the user details
+      summary: List all Users
+      tags:
+      - user
+      x-accepts: application/json
+    post:
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+          application/yaml:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
+            schema:
+              format: binary
+              type: string
+        description: the User to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the user details
+        "400":
+          description: Bad request
+      summary: Register a new user
+      tags:
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{user_id}:
+    delete:
+      operationId: unregisterUser
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Unregister an user
+      tags:
+      - user
+      x-accepts: application/json
+    get:
+      operationId: findUserById
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user
+      tags:
+      - user
+      x-accepts: application/json
+    patch:
+      operationId: updateUser
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+          application/yaml:
+            examples:
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
+            schema:
+              format: binary
+              type: string
+        description: the new User details. Organization membership is handled via
+          the /organizations endpoint.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BobyUpdated:
+                  $ref: '#/components/examples/BobyUpdated'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the user details
+        "400":
+          description: Bad request
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Update a User
+      tags:
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in User
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/me:
+    get:
+      operationId: getOrganizationCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobOrganization'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of a logged-in User with roles for an Organization
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/me:
+    get:
+      operationId: getWorkspaceCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobWorkspace'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in user with roles for a Workspace
+      tags:
+      - user
+      x-accepts: application/json
+  /test:
+    get:
+      operationId: testPlatform
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: test string
+      summary: test platform API call
+      tags:
+      - user
+      x-accepts: text/plain
+  /oauth2/authorize:
+    get:
+      operationId: authorizeUser
+      responses:
+        "302":
+          description: Redirection response
+          headers:
+            Location:
+              examples:
+                AzureAD:
+                  $ref: '#/components/examples/AzureADRedirect'
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
+      tags:
+      - user
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     delete:
@@ -3425,113 +3400,82 @@ paths:
       tags:
       - scenario
       x-accepts: application/json
-  /organizations:
+  /organizations/{organization_id}/datasets:
     get:
-      operationId: findAllOrganizations
+      operationId: findAllDatasets
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
               examples:
-                TwoOrganizations:
-                  $ref: '#/components/examples/TwoOrganizations'
+                Two:
+                  $ref: '#/components/examples/TwoDatasets'
               schema:
                 items:
-                  $ref: '#/components/schemas/Organization'
+                  $ref: '#/components/schemas/Dataset'
                 type: array
-          description: the list of Organizations
-      summary: List all Organizations
+          description: the list of Datasets
+      summary: List all Datasets
       tags:
-      - organization
+      - dataset
       x-accepts: application/json
     post:
-      operationId: registerOrganization
+      operationId: createDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/Dataset'
           application/yaml:
             examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
             schema:
               format: binary
               type: string
-        description: the Organization to register
+        description: the Dataset to create
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
               schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
         "400":
           description: Bad request
-      summary: Register a new organization
+      summary: Create a new Dataset
       tags:
-      - organization
+      - dataset
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}:
-    delete:
-      operationId: unregisterOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Unregister an organization
-      tags:
-      - organization
-      x-accepts: application/json
-    get:
-      operationId: findOrganizationById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
-              schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Get the details of an Organization
-      tags:
-      - organization
-      x-accepts: application/json
-    patch:
-      operationId: updateOrganization
+  /organizations/{organization_id}/datasets/search:
+    post:
+      operationId: searchDatasets
       parameters:
       - description: the Organization identifier
         explode: false
@@ -3545,55 +3489,224 @@ paths:
         content:
           application/json:
             examples:
-              ChangeName:
-                description: Change the name of Organization 1 to CosmoTech Digital
-                  Twins Engine
-                summary: Change Name of Organization
-                value:
-                  name: CosmoTech Digital Twins Engine
+              DatasetSearch:
+                $ref: '#/components/examples/DatasetSearch'
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/DatasetSearch'
           application/yaml:
             examples:
-              ChangeName:
-                description: Change the name of Organization 1 to CosmoTech Digital
-                  Twins Engine
-                summary: Change Name of Organization
-                value:
-                  name: CosmoTech Digital Twins Engine
+              DatasetSearch:
+                $ref: '#/components/examples/DatasetSearch'
             schema:
               format: binary
               type: string
-        description: the new Organization details
+        description: the Dataset search parameters
         required: true
       responses:
         "200":
           content:
             application/json:
               examples:
-                CosmoThreeUsers:
-                  $ref: '#/components/examples/CosmoThreeUsers'
+                Two:
+                  $ref: '#/components/examples/TwoDatasets'
               schema:
-                $ref: '#/components/schemas/Organization'
-          description: the organization details
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update an Organization
+                items:
+                  $ref: '#/components/schemas/Dataset'
+                type: array
+          description: the list of Datasets
+      summary: Search Datasets
       tags:
-      - organization
+      - dataset
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/users:
-    delete:
-      operationId: removeAllUsersInOrganization
+  /organizations/{organization_id}/datasets/copy:
+    post:
+      operationId: copyDataset
       parameters:
       - description: the Organization identifier
         explode: false
         in: path
         name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryDatasetCopyParameters:
+                $ref: '#/components/examples/BreweryDatasetCopyParameters'
+            schema:
+              $ref: '#/components/schemas/DatasetCopyParameters'
+          application/yaml:
+            examples:
+              BreweryDatasetCopyParameters:
+                $ref: '#/components/examples/BreweryDatasetCopyParameters'
+            schema:
+              format: binary
+              type: string
+        description: the Dataset copy parameters
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryDatasetCopyParameters'
+              schema:
+                $ref: '#/components/schemas/DatasetCopyParameters'
+          description: the Dataset copy operation parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Dataset specified as Source or Target is unknown or you
+            don't have access to it
+      summary: Copy a Dataset to another Dataset. Source must have a read capable
+        connector and Target a write capable connector.
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}:
+    delete:
+      operationId: deleteDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request successful
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Delete a dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    get:
+      operationId: findDatasetById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the Dataset details
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Get the details of a Dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    patch:
+      operationId: updateDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTUpdate:
+                $ref: '#/components/examples/BreweryADTUpdate'
+            schema:
+              $ref: '#/components/schemas/Dataset'
+          application/yaml:
+            examples:
+              BreweryADTUpdate:
+                $ref: '#/components/examples/BreweryADTUpdate'
+            schema:
+              format: binary
+              type: string
+        description: the new Dataset details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryADTUpdated:
+                  $ref: '#/components/examples/BreweryADTUpdated'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
+        "400":
+          description: Bad request
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Update a dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/compatibility:
+    delete:
+      operationId: removeAllDatasetCompatibilityElements
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
         required: true
         schema:
           type: string
@@ -3602,14 +3715,14 @@ paths:
         "204":
           description: the operation succeeded
         "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Remove all users from the Organization specified
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Remove all Dataset Compatibility elements from the Dataset specified
       tags:
-      - organization
+      - dataset
       x-accepts: application/json
     post:
-      operationId: addOrReplaceUsersInOrganization
+      operationId: addOrReplaceDatasetCompatibilityElements
       parameters:
       - description: the Organization identifier
         explode: false
@@ -3619,298 +3732,149 @@ paths:
         schema:
           type: string
         style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
-            examples:
-              AddUser:
-                description: Add the user Bob to organization Cosmo Tech
-                summary: Add a user
-                value:
-                - id: "2"
-                  roles:
-                  - User
-                - id: "3"
-                  roles:
-                  - Developer
             schema:
+              example:
+                TwoDatasetCompatibility:
+                  summary: 2 Dataset Compatibilities
+                  description: 2 Dataset Compatibilities
+                  value:
+                  - solutionKey: Brewery Solution
+                    minimumVersion: 1.0.0
+                  - solutionKey: Brewery Solution
+                    minimumVersion: 1.0.1
               items:
-                $ref: '#/components/schemas/OrganizationUser'
+                $ref: '#/components/schemas/DatasetCompatibility'
               type: array
-        description: the Users to add. Any User with the same ID is overwritten
+        description: the Dataset Compatibility elements
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                TwoOrganizationUsers:
-                  $ref: '#/components/examples/TwoOrganizationUsers'
+                TwoDatasetCompatibility:
+                  description: 2 Dataset Compatibilities
+                  summary: 2 Dataset Compatibilities
+                  value:
+                  - solutionKey: Brewery Solution
+                    minimumVersion: 1.0.0
+                  - solutionKey: Brewery Solution
+                    minimumVersion: 1.0.1
               schema:
                 items:
-                  $ref: '#/components/schemas/OrganizationUser'
+                  $ref: '#/components/schemas/DatasetCompatibility'
                 type: array
-          description: the Organization Users
+          description: the Dataset Compatibility elements
         "400":
           description: Bad request
         "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Add (or replace) users in the Organization specified
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Add Dataset Compatibility elements.
       tags:
-      - organization
+      - dataset
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/users/{user_id}:
-    delete:
-      operationId: removeUserFromOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Organization or the User specified is unknown or you don't
-            have access to them
-      summary: Remove the specified user from the given Organization
-      tags:
-      - organization
-      x-accepts: application/json
-  /organizations/{organization_id}/services/tenantCredentials:
-    patch:
-      operationId: updateTenantCredentialsByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  azureTenantId: <my_azure_tenant_id>
-                  azureClientId: <my_azure_client_id>
-                  azureClientSecret: <my_azure_client_secret>
-            schema:
-              additionalProperties: true
-              description: a freeform credentials object for the Organization tenant.
-                Structure depends on cloud provider
-              type: object
-        description: the new Tenant Credentials to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationTenantCredentials:
-                  value:
-                    azureTenantId: <my_azure_tenant_id>
-                    azureClientId: <my_azure_client_id>
-                    azureClientSecret: <my_azure_client_secret>
-              schema:
-                additionalProperties: true
-                description: a freeform credentials object for the Organization tenant.
-                  Structure depends on cloud provider
-                type: object
-          description: the Organization Tenant Credentials
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update tenant credentials for the Organization specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/services/storage:
-    patch:
-      operationId: updateStorageByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
-            schema:
-              $ref: '#/components/schemas/OrganizationService'
-          application/yaml:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
-            schema:
-              format: binary
-              type: string
-        description: the new Storage configuration to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationTenantCredentials:
-                  value:
-                    platformService: storage
-                    cloudService: AzureStorage
-                    baseUri: https://csmphoenixcontainer.blob.core.windows.net
-                    resourceUri: organization-2/files
-              schema:
-                $ref: '#/components/schemas/OrganizationService'
-          description: the Organization Storage configuration
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update storage configuration for the Organization specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/services/solutionsContainerRegistry:
-    patch:
-      operationId: updateSolutionsContainerRegistryByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationSolutionContainerRegistry:
-                value:
-                  baseUri: mysolutiontwinengines.azurecr.io
-            schema:
-              $ref: '#/components/schemas/OrganizationService'
-          application/yaml:
-            examples:
-              OrganizationSolutionContainerRegistry:
-                value:
-                  baseUri: mysolutiontwinengines.azurecr.io
-            schema:
-              format: binary
-              type: string
-        description: the new solutions container registry configuration to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationSolutionContainerRegistry:
-                  value:
-                    cloudService: AzureStorage
-                    baseUri: mysolutiontwinengines.azurecr.io
-              schema:
-                $ref: '#/components/schemas/OrganizationService'
-          description: the Organization solutions container registry configuration
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update the solutions container registry configuration for the Organization
-        specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /users:
+  /organizations/{organization_id}/datasets/validators:
     get:
-      operationId: findAllUsers
+      operationId: findAllValidators
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
               examples:
                 Two:
-                  $ref: '#/components/examples/TwoUsers'
+                  $ref: '#/components/examples/OneValidator'
               schema:
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/components/schemas/Validator'
                 type: array
-          description: the user details
-      summary: List all Users
+          description: the validator details
+      summary: List all Validators
       tags:
-      - user
+      - validator
       x-accepts: application/json
     post:
-      operationId: registerUser
+      operationId: createValidator
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              BobCreateIn:
-                $ref: '#/components/examples/BobCreateIn'
+              BreweryADTValidator:
+                $ref: '#/components/examples/BreweryADTValidator'
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Validator'
           application/yaml:
             examples:
-              BobCreateIn:
-                $ref: '#/components/examples/BobCreateIn'
+              BreweryADTValidator:
+                $ref: '#/components/examples/BreweryADTValidator'
             schema:
               format: binary
               type: string
-        description: the User to register
+        description: the Validator to create
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
+                BreweryADTValidator:
+                  $ref: '#/components/examples/BreweryADTValidator'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the user details
+                $ref: '#/components/schemas/Validator'
+          description: the validator details
         "400":
           description: Bad request
-      summary: Register a new user
+      summary: Register a new validator
       tags:
-      - user
+      - validator
       x-contentType: application/json
       x-accepts: application/json
-  /users/{user_id}:
+  /organizations/{organization_id}/datasets/validators/{validator_id}:
     delete:
-      operationId: unregisterUser
+      operationId: deleteValidator
       parameters:
-      - description: the User identifier
+      - description: the Organization identifier
         explode: false
         in: path
-        name: user_id
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
         required: true
         schema:
           type: string
@@ -3919,18 +3883,27 @@ paths:
         "204":
           description: Request succeeded
         "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Unregister an user
+          description: the Validator specified is unknown or you don't have access
+            to it
+      summary: Delete a validator
       tags:
-      - user
+      - validator
       x-accepts: application/json
     get:
-      operationId: findUserById
+      operationId: findValidatorById
       parameters:
-      - description: the User identifier
+      - description: the Organization identifier
         explode: false
         in: path
-        name: user_id
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
         required: true
         schema:
           type: string
@@ -3940,24 +3913,34 @@ paths:
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
+                BreweryADTValidator:
+                  $ref: '#/components/examples/BreweryADTValidator'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
+                $ref: '#/components/schemas/Validator'
+          description: the Validator details
         "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Get the details of an user
+          description: the Validator specified is unknown or you don't have access
+            to it
+      summary: Get the details of a validator
       tags:
-      - user
+      - validator
       x-accepts: application/json
-    patch:
-      operationId: updateUser
+  /organizations/{organization_id}/datasets/validators/{validator_id}/run:
+    post:
+      operationId: runValidator
       parameters:
-      - description: the User identifier
+      - description: the Organization identifier
         explode: false
         in: path
-        name: user_id
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ValidatorRun identifier
+        explode: false
+        in: path
+        name: validator_id
         required: true
         schema:
           type: string
@@ -3966,59 +3949,39 @@ paths:
         content:
           application/json:
             examples:
-              BobyUpdateIn:
-                $ref: '#/components/examples/BobyUpdateIn'
+              BreweryADTRunValidator:
+                $ref: '#/components/examples/BreweryADTRunValidator'
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/ValidatorRun'
           application/yaml:
             examples:
-              BobyUpdateIn:
-                $ref: '#/components/examples/BobyUpdateIn'
+              BreweryADTRunValidator:
+                $ref: '#/components/examples/BreweryADTRunValidator'
             schema:
               format: binary
               type: string
-        description: the new User details. Organization membership is handled via
-          the /organizations endpoint.
+        description: the Validator to run
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
-                BobyUpdated:
-                  $ref: '#/components/examples/BobyUpdated'
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the user details
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the validator run details
         "400":
           description: Bad request
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Update a User
+      summary: Run a Validator
       tags:
-      - user
+      - validator
       x-contentType: application/json
       x-accepts: application/json
-  /users/me:
+  /organizations/{organization_id}/datasets/validators/{validator_id}/history:
     get:
-      operationId: getCurrentUser
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of the logged-in User
-      tags:
-      - user
-      x-accepts: application/json
-  /organizations/{organization_id}/me:
-    get:
-      operationId: getOrganizationCurrentUser
+      operationId: findAllValidatorRuns
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4028,23 +3991,32 @@ paths:
         schema:
           type: string
         style: simple
+      - description: the ValidatorRun identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/BobOrganization'
+                Two:
+                  $ref: '#/components/examples/ThreeValidatorRun'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of a logged-in User with roles for an Organization
+                items:
+                  $ref: '#/components/schemas/ValidatorRun'
+                type: array
+          description: the validator run details
+      summary: List all Validator Runs
       tags:
-      - user
+      - validator
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/me:
-    get:
-      operationId: getWorkspaceCurrentUser
+    post:
+      operationId: createValidatorRun
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4054,10 +4026,109 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Workspace identifier
+      - description: the ValidatorRun identifier
         explode: false
         in: path
-        name: workspace_id
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADTValidatorRun:
+                $ref: '#/components/examples/BreweryADTValidatorRun'
+            schema:
+              $ref: '#/components/schemas/ValidatorRun'
+          application/yaml:
+            examples:
+              BreweryADTValidatorRun:
+                $ref: '#/components/examples/BreweryADTValidatorRun'
+            schema:
+              format: binary
+              type: string
+        description: the Validator Run to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
+              schema:
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the validator run details
+        "400":
+          description: Bad request
+      summary: Register a new validator run
+      tags:
+      - validator
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id}:
+    delete:
+      operationId: deleteValidatorRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator Run identifier
+        explode: false
+        in: path
+        name: validatorrun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the ValidatorRun specified is unknown or you don't have access
+            to it
+      summary: Delete a validator run
+      tags:
+      - validator
+      x-accepts: application/json
+    get:
+      operationId: findValidatorRunById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator identifier
+        explode: false
+        in: path
+        name: validator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Validator Run identifier
+        explode: false
+        in: path
+        name: validatorrun_id
         required: true
         schema:
           type: string
@@ -4067,47 +4138,17 @@ paths:
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/BobWorkspace'
+                BreweryADTValidatorRun:
+                  $ref: '#/components/examples/BreweryADTValidatorRun'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of the logged-in user with roles for a Workspace
+                $ref: '#/components/schemas/ValidatorRun'
+          description: the Validator Run details
+        "404":
+          description: the ValidatorRun specified is unknown or you don't have access
+            to it
+      summary: Get the details of a validator run
       tags:
-      - user
-      x-accepts: application/json
-  /test:
-    get:
-      operationId: testPlatform
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: test string
-      summary: test platform API call
-      tags:
-      - user
-      x-accepts: text/plain
-  /oauth2/authorize:
-    get:
-      operationId: authorizeUser
-      responses:
-        "302":
-          description: Redirection response
-          headers:
-            Location:
-              examples:
-                AzureAD:
-                  $ref: '#/components/examples/AzureADRedirect'
-              explode: false
-              schema:
-                type: string
-              style: simple
-      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
-      tags:
-      - user
+      - validator
       x-accepts: application/json
 components:
   examples:
@@ -5511,6 +5552,11 @@ components:
       - fileName: myData.csv
       - fileName: myData2.csv
       - fileName: myData3.csv
+    WorkspaceSecretExample:
+      description: a shared policy example
+      summary: a shared access policy
+      value:
+        dedicatedEventHubKey: xxx
   requestBodies:
     inline_object:
       content:
@@ -7578,8 +7624,10 @@ components:
           url: url
           iframes:
             key: "{}"
+        sendScenarioRunToEventHub: true
         description: description
         ownerId: ownerId
+        dedicatedEventHubSasKeyName: dedicatedEventHubSasKeyName
         version: version
         sendScenarioMetadataToEventHub: false
         users:
@@ -7604,6 +7652,7 @@ components:
           solutionId: solutionId
           defaultRunTemplateDataset:
             key: "{}"
+        dedicatedEventHubAuthenticationStrategy: dedicatedEventHubAuthenticationStrategy
         name: name
         id: id
         sendInputToDataWarehouse: true
@@ -7656,6 +7705,19 @@ components:
             (in lower case). This Namespace must also contain two Event Hubs named
             \'probesmeasures\' and \'scenariorun\'.
           type: boolean
+        dedicatedEventHubSasKeyName:
+          description: "the Dedicated Event Hub SAS key name, default to RootManageSharedAccessKey.\
+            \ Use the /secret endpoint to set the key value"
+          type: string
+        dedicatedEventHubAuthenticationStrategy:
+          description: "the Event Hub authentication strategy, SHARED_ACCESS_POLICY\
+            \ or TENANT_CLIENT_CREDENTIALS. Default to the one defined for the tenant."
+          type: string
+        sendScenarioRunToEventHub:
+          default: true
+          description: default setting for all Scenarios and Run Templates to set
+            whether or not the ScenarioRun is send to the Event Hub
+          type: boolean
         sendScenarioMetadataToEventHub:
           default: false
           description: Set this property to false to not send scenario metada to Azure
@@ -7675,6 +7737,15 @@ components:
       properties:
         fileName:
           description: the Workspace File name
+          type: string
+      type: object
+    WorkspaceSecret:
+      description: the secret definition
+      example:
+        dedicatedEventHubKey: dedicatedEventHubKey
+      properties:
+        dedicatedEventHubKey:
+          description: the dedicated event hub shared access key
           type: string
       type: object
     WorkspaceSolution:

@@ -142,6 +142,30 @@ public class WorkspaceTest {
     }
 
     /**
+     * Test the property 'dedicatedEventHubSasKeyName'
+     */
+    @Test
+    public void dedicatedEventHubSasKeyNameTest() {
+        // TODO: test dedicatedEventHubSasKeyName
+    }
+
+    /**
+     * Test the property 'dedicatedEventHubAuthenticationStrategy'
+     */
+    @Test
+    public void dedicatedEventHubAuthenticationStrategyTest() {
+        // TODO: test dedicatedEventHubAuthenticationStrategy
+    }
+
+    /**
+     * Test the property 'sendScenarioRunToEventHub'
+     */
+    @Test
+    public void sendScenarioRunToEventHubTest() {
+        // TODO: test sendScenarioRunToEventHub
+    }
+
+    /**
      * Test the property 'sendScenarioMetadataToEventHub'
      */
     @Test

@@ -25,65 +25,38 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a scenario run container artifact
+ * the secret definition
  */
-@ApiModel(description = "a scenario run container artifact")
+@ApiModel(description = "the secret definition")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-15T13:19:20.358460807Z[Etc/UTC]")
-public class ScenarioRunContainerArtifact {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class WorkspaceSecret {
+  public static final String SERIALIZED_NAME_DEDICATED_EVENT_HUB_KEY = "dedicatedEventHubKey";
+  @SerializedName(SERIALIZED_NAME_DEDICATED_EVENT_HUB_KEY)
+  private String dedicatedEventHubKey;
 
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
-  private String path;
-
-  public ScenarioRunContainerArtifact() { 
+  public WorkspaceSecret() { 
   }
 
-  public ScenarioRunContainerArtifact name(String name) {
+  public WorkspaceSecret dedicatedEventHubKey(String dedicatedEventHubKey) {
     
-    this.name = name;
+    this.dedicatedEventHubKey = dedicatedEventHubKey;
     return this;
   }
 
    /**
-   * the artifact name
-   * @return name
+   * the dedicated event hub shared access key
+   * @return dedicatedEventHubKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the artifact name")
+  @ApiModelProperty(value = "the dedicated event hub shared access key")
 
-  public String getName() {
-    return name;
+  public String getDedicatedEventHubKey() {
+    return dedicatedEventHubKey;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ScenarioRunContainerArtifact path(String path) {
-    
-    this.path = path;
-    return this;
-  }
-
-   /**
-   * the artifact path (relative to /var/csmoutput)
-   * @return path
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "the artifact path (relative to /var/csmoutput)")
-
-  public String getPath() {
-    return path;
-  }
-
-
-  public void setPath(String path) {
-    this.path = path;
+  public void setDedicatedEventHubKey(String dedicatedEventHubKey) {
+    this.dedicatedEventHubKey = dedicatedEventHubKey;
   }
 
 
@@ -95,22 +68,20 @@ public class ScenarioRunContainerArtifact {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScenarioRunContainerArtifact scenarioRunContainerArtifact = (ScenarioRunContainerArtifact) o;
-    return Objects.equals(this.name, scenarioRunContainerArtifact.name) &&
-        Objects.equals(this.path, scenarioRunContainerArtifact.path);
+    WorkspaceSecret workspaceSecret = (WorkspaceSecret) o;
+    return Objects.equals(this.dedicatedEventHubKey, workspaceSecret.dedicatedEventHubKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, path);
+    return Objects.hash(dedicatedEventHubKey);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScenarioRunContainerArtifact {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("class WorkspaceSecret {\n");
+    sb.append("    dedicatedEventHubKey: ").append(toIndentedString(dedicatedEventHubKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

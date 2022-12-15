@@ -17,6 +17,7 @@ import com.cosmotech.client.ApiException;
 import java.io.File;
 import com.cosmotech.client.model.Workspace;
 import com.cosmotech.client.model.WorkspaceFile;
+import com.cosmotech.client.model.WorkspaceSecret;
 import com.cosmotech.client.model.WorkspaceUser;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -49,6 +50,23 @@ public class WorkspaceApiTest {
         String workspaceId = null;
         List<WorkspaceUser> workspaceUser = null;
                 List<WorkspaceUser> response = api.addOrReplaceUsersInOrganizationWorkspace(organizationId, workspaceId, workspaceUser);
+        // TODO: test validations
+    }
+    
+    /**
+     * Create a secret for the Workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createSecretTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        WorkspaceSecret workspaceSecret = null;
+                api.createSecret(organizationId, workspaceId, workspaceSecret);
         // TODO: test validations
     }
     

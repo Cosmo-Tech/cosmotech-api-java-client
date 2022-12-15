@@ -33,7 +33,7 @@ import java.util.List;
  * a Workspace
  */
 @ApiModel(description = "a Workspace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-13T11:07:36.323963627Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-15T13:19:20.358460807Z[Etc/UTC]")
 public class Workspace {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -82,6 +82,18 @@ public class Workspace {
   public static final String SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE = "useDedicatedEventHubNamespace";
   @SerializedName(SERIALIZED_NAME_USE_DEDICATED_EVENT_HUB_NAMESPACE)
   private Boolean useDedicatedEventHubNamespace = false;
+
+  public static final String SERIALIZED_NAME_DEDICATED_EVENT_HUB_SAS_KEY_NAME = "dedicatedEventHubSasKeyName";
+  @SerializedName(SERIALIZED_NAME_DEDICATED_EVENT_HUB_SAS_KEY_NAME)
+  private String dedicatedEventHubSasKeyName;
+
+  public static final String SERIALIZED_NAME_DEDICATED_EVENT_HUB_AUTHENTICATION_STRATEGY = "dedicatedEventHubAuthenticationStrategy";
+  @SerializedName(SERIALIZED_NAME_DEDICATED_EVENT_HUB_AUTHENTICATION_STRATEGY)
+  private String dedicatedEventHubAuthenticationStrategy;
+
+  public static final String SERIALIZED_NAME_SEND_SCENARIO_RUN_TO_EVENT_HUB = "sendScenarioRunToEventHub";
+  @SerializedName(SERIALIZED_NAME_SEND_SCENARIO_RUN_TO_EVENT_HUB)
+  private Boolean sendScenarioRunToEventHub = true;
 
   public static final String SERIALIZED_NAME_SEND_SCENARIO_METADATA_TO_EVENT_HUB = "sendScenarioMetadataToEventHub";
   @SerializedName(SERIALIZED_NAME_SEND_SCENARIO_METADATA_TO_EVENT_HUB)
@@ -374,6 +386,75 @@ public class Workspace {
   }
 
 
+  public Workspace dedicatedEventHubSasKeyName(String dedicatedEventHubSasKeyName) {
+    
+    this.dedicatedEventHubSasKeyName = dedicatedEventHubSasKeyName;
+    return this;
+  }
+
+   /**
+   * the Dedicated Event Hub SAS key name, default to RootManageSharedAccessKey. Use the /secret endpoint to set the key value
+   * @return dedicatedEventHubSasKeyName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Dedicated Event Hub SAS key name, default to RootManageSharedAccessKey. Use the /secret endpoint to set the key value")
+
+  public String getDedicatedEventHubSasKeyName() {
+    return dedicatedEventHubSasKeyName;
+  }
+
+
+  public void setDedicatedEventHubSasKeyName(String dedicatedEventHubSasKeyName) {
+    this.dedicatedEventHubSasKeyName = dedicatedEventHubSasKeyName;
+  }
+
+
+  public Workspace dedicatedEventHubAuthenticationStrategy(String dedicatedEventHubAuthenticationStrategy) {
+    
+    this.dedicatedEventHubAuthenticationStrategy = dedicatedEventHubAuthenticationStrategy;
+    return this;
+  }
+
+   /**
+   * the Event Hub authentication strategy, SHARED_ACCESS_POLICY or TENANT_CLIENT_CREDENTIALS. Default to the one defined for the tenant.
+   * @return dedicatedEventHubAuthenticationStrategy
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Event Hub authentication strategy, SHARED_ACCESS_POLICY or TENANT_CLIENT_CREDENTIALS. Default to the one defined for the tenant.")
+
+  public String getDedicatedEventHubAuthenticationStrategy() {
+    return dedicatedEventHubAuthenticationStrategy;
+  }
+
+
+  public void setDedicatedEventHubAuthenticationStrategy(String dedicatedEventHubAuthenticationStrategy) {
+    this.dedicatedEventHubAuthenticationStrategy = dedicatedEventHubAuthenticationStrategy;
+  }
+
+
+  public Workspace sendScenarioRunToEventHub(Boolean sendScenarioRunToEventHub) {
+    
+    this.sendScenarioRunToEventHub = sendScenarioRunToEventHub;
+    return this;
+  }
+
+   /**
+   * default setting for all Scenarios and Run Templates to set whether or not the ScenarioRun is send to the Event Hub
+   * @return sendScenarioRunToEventHub
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "default setting for all Scenarios and Run Templates to set whether or not the ScenarioRun is send to the Event Hub")
+
+  public Boolean getSendScenarioRunToEventHub() {
+    return sendScenarioRunToEventHub;
+  }
+
+
+  public void setSendScenarioRunToEventHub(Boolean sendScenarioRunToEventHub) {
+    this.sendScenarioRunToEventHub = sendScenarioRunToEventHub;
+  }
+
+
   public Workspace sendScenarioMetadataToEventHub(Boolean sendScenarioMetadataToEventHub) {
     
     this.sendScenarioMetadataToEventHub = sendScenarioMetadataToEventHub;
@@ -418,12 +499,15 @@ public class Workspace {
         Objects.equals(this.webApp, workspace.webApp) &&
         Objects.equals(this.sendInputToDataWarehouse, workspace.sendInputToDataWarehouse) &&
         Objects.equals(this.useDedicatedEventHubNamespace, workspace.useDedicatedEventHubNamespace) &&
+        Objects.equals(this.dedicatedEventHubSasKeyName, workspace.dedicatedEventHubSasKeyName) &&
+        Objects.equals(this.dedicatedEventHubAuthenticationStrategy, workspace.dedicatedEventHubAuthenticationStrategy) &&
+        Objects.equals(this.sendScenarioRunToEventHub, workspace.sendScenarioRunToEventHub) &&
         Objects.equals(this.sendScenarioMetadataToEventHub, workspace.sendScenarioMetadataToEventHub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse, useDedicatedEventHubNamespace, sendScenarioMetadataToEventHub);
+    return Objects.hash(id, key, name, description, version, tags, ownerId, solution, users, webApp, sendInputToDataWarehouse, useDedicatedEventHubNamespace, dedicatedEventHubSasKeyName, dedicatedEventHubAuthenticationStrategy, sendScenarioRunToEventHub, sendScenarioMetadataToEventHub);
   }
 
   @Override
@@ -442,6 +526,9 @@ public class Workspace {
     sb.append("    webApp: ").append(toIndentedString(webApp)).append("\n");
     sb.append("    sendInputToDataWarehouse: ").append(toIndentedString(sendInputToDataWarehouse)).append("\n");
     sb.append("    useDedicatedEventHubNamespace: ").append(toIndentedString(useDedicatedEventHubNamespace)).append("\n");
+    sb.append("    dedicatedEventHubSasKeyName: ").append(toIndentedString(dedicatedEventHubSasKeyName)).append("\n");
+    sb.append("    dedicatedEventHubAuthenticationStrategy: ").append(toIndentedString(dedicatedEventHubAuthenticationStrategy)).append("\n");
+    sb.append("    sendScenarioRunToEventHub: ").append(toIndentedString(sendScenarioRunToEventHub)).append("\n");
     sb.append("    sendScenarioMetadataToEventHub: ").append(toIndentedString(sendScenarioMetadataToEventHub)).append("\n");
     sb.append("}");
     return sb.toString();
