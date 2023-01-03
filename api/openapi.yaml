@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Plaform API
-  version: 1.0.9-dev
+  version: 1.0.10-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -624,6 +624,13 @@ paths:
                 $ref: '#/components/examples/WorkspaceSecretExample'
             schema:
               $ref: '#/components/schemas/WorkspaceSecret'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/WorkspaceSecretExample'
+            schema:
+              format: binary
+              type: string
         description: the definition of the secret
         required: true
       responses:
