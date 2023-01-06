@@ -31,7 +31,7 @@ import java.util.Map;
  * a Workspace Web Application
  */
 @ApiModel(description = "a Workspace Web Application")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-06T15:37:13.195750826Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-06T15:39:34.376413522Z[Etc/UTC]")
 public class WorkspaceWebApp {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
