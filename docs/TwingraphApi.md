@@ -5,6 +5,8 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | 
+[**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | 
+[**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | 
 [**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | 
 [**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | 
 [**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | 
@@ -77,6 +79,142 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Successful response |  -  |
+
+<a name="findAllTwingraphs"></a>
+# **findAllTwingraphs**
+> List&lt;String&gt; findAllTwingraphs(organizationId)
+
+
+
+Return the list of all graphs stored in the organization
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.TwingraphApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    TwingraphApi apiInstance = new TwingraphApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    try {
+      List<String> result = apiInstance.findAllTwingraphs(organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TwingraphApi#findAllTwingraphs");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+
+### Return type
+
+**List&lt;String&gt;**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response |  -  |
+
+<a name="getGraphMetaData"></a>
+# **getGraphMetaData**
+> Object getGraphMetaData(organizationId, graphId)
+
+
+
+Return the metaData of the specified graph
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.TwingraphApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    TwingraphApi apiInstance = new TwingraphApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String graphId = "graphId_example"; // String | the Graph Identifier
+    try {
+      Object result = apiInstance.getGraphMetaData(organizationId, graphId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TwingraphApi#getGraphMetaData");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **graphId** | **String**| the Graph Identifier |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response |  -  |
 
 <a name="importGraph"></a>
 # **importGraph**
