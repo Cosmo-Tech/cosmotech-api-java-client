@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**getWorkspacePermissions**](WorkspaceApi.md#getWorkspacePermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role} | Get the Workspace permission by given role
 [**getWorkspaceSecurity**](WorkspaceApi.md#getWorkspaceSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security | Get the Workspace security information
 [**getWorkspaceSecurityUsers**](WorkspaceApi.md#getWorkspaceSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/users | Get the Workspace security users list
+[**importWorkspace**](WorkspaceApi.md#importWorkspace) | **POST** /organizations/{organization_id}/workspaces/import | Import a workspace
 [**removeWorkspaceAccessControl**](WorkspaceApi.md#removeWorkspaceAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Remove the specified access from the given Organization Workspace
 [**setWorkspaceDefaultSecurity**](WorkspaceApi.md#setWorkspaceDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/default | Set the Workspace default security
 [**updateWorkspace**](WorkspaceApi.md#updateWorkspace) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id} | Update a workspace
@@ -982,6 +983,74 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The Workspace security users list |  -  |
 **404** | the Workspace or the User specified is unknown or you don&#39;t have access to them |  -  |
+
+<a name="importWorkspace"></a>
+# **importWorkspace**
+> Workspace importWorkspace(organizationId, workspace)
+
+Import a workspace
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.WorkspaceApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    Workspace workspace = new Workspace(); // Workspace | the Workspace to import
+    try {
+      Workspace result = apiInstance.importWorkspace(organizationId, workspace);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling WorkspaceApi#importWorkspace");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspace** | [**Workspace**](Workspace.md)| the Workspace to import |
+
+### Return type
+
+[**Workspace**](Workspace.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | the workspace details |  -  |
+**400** | Bad request |  -  |
 
 <a name="removeWorkspaceAccessControl"></a>
 # **removeWorkspaceAccessControl**
