@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.2-dev
+  version: 2.3.2-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -22,20 +22,22 @@ security:
 tags:
 - description: Dataset Management
   name: dataset
-- description: Twin Graph Management
-  name: twingraph
-- description: Organization Management
-  name: organization
-- description: ScenarioRun Management
-  name: scenariorun
-- description: Scenario Management
-  name: scenario
-- description: Workspace Management
-  name: workspace
-- description: Connector Management
-  name: connector
 - description: Solution Management
   name: solution
+- description: Scenario Management
+  name: scenario
+- description: Connector Management
+  name: connector
+- description: Organization Management
+  name: organization
+- description: Twin Graph Management
+  name: twingraph
+- description: ScenarioRun Management
+  name: scenariorun
+- description: Workspace Management
+  name: workspace
+- description: User Management
+  name: user
 paths:
   /organizations/{organization_id}/datasets:
     get:
@@ -787,93 +789,9 @@ paths:
       tags:
       - validator
       x-accepts: application/json
-  /organizations/{organization_id}/datasets/import:
-    post:
-      operationId: importDataset
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADT:
-                $ref: '#/components/examples/BreweryADT'
-            schema:
-              $ref: '#/components/schemas/Dataset'
-        description: the Dataset to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
-      summary: Import a new Dataset
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/import:
-    post:
-      description: Import a new version of a twin graph
-      operationId: importGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-          application/yaml:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-        description: the graph to import
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphImportInfo'
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/job/{job_id}/status:
+  /organizations/{organization_id}/solutions:
     get:
-      description: Get the status of a job
-      operationId: jobStatus
+      operationId: findAllSolutions
       parameters:
       - description: the Organization identifier
         explode: false
@@ -883,221 +801,83 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the job identifier
-        explode: false
-        in: path
-        name: job_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/yaml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraphs:
-    get:
-      description: Return the list of all graphs stored in the organization
-      operationId: findAllTwingraphs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/query:
-    post:
-      description: Run a query on a graph instance
-      operationId: query
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-          application/yaml:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-        description: the query to run
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
-    get:
-      description: Return the metaData of the specified graph
-      operationId: getGraphMetaData
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}:
-    delete:
-      description: Launch a mass delete job
-      operationId: delete
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations:
-    get:
-      operationId: findAllOrganizations
       responses:
         "200":
           content:
             application/json:
               examples:
-                TwoOrganizations:
-                  $ref: '#/components/examples/TwoOrganizations'
+                Two:
+                  $ref: '#/components/examples/OneSolution'
               schema:
                 items:
-                  $ref: '#/components/schemas/Organization'
+                  $ref: '#/components/schemas/Solution'
                 type: array
-          description: the list of Organizations
-      summary: List all Organizations
+          description: the solution details
+      summary: List all Solutions
       tags:
-      - organization
+      - solution
       x-accepts: application/json
     post:
-      operationId: registerOrganization
+      operationId: createSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
+              Brewery:
+                $ref: '#/components/examples/Brewery'
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/Solution'
           application/yaml:
             examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
             schema:
               format: binary
               type: string
-        description: the Organization to register
+        description: the Solution to create
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
               schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
         "400":
           description: Bad request
-      summary: Register a new organization
+      summary: Register a new solution
       tags:
-      - organization
+      - solution
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}:
+  /organizations/{organization_id}/solutions/{solution_id}:
     delete:
-      operationId: unregisterOrganization
+      operationId: deleteSolution
       parameters:
       - description: the Organization identifier
         explode: false
         in: path
         name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
         required: true
         schema:
           type: string
@@ -1106,14 +886,14 @@ paths:
         "204":
           description: Request succeeded
         "404":
-          description: the Organization specified is unknown or you don't have access
+          description: the Solution specified is unknown or you don't have access
             to it
-      summary: Unregister an organization
+      summary: Delete a solution
       tags:
-      - organization
+      - solution
       x-accepts: application/json
     get:
-      operationId: findOrganizationById
+      operationId: findSolutionById
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1123,30 +903,46 @@ paths:
         schema:
           type: string
         style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
               examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
               schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
+                $ref: '#/components/schemas/Solution'
+          description: the Solution details
         "404":
-          description: the Organization specified is unknown or you don't have access
+          description: the Solution specified is unknown or you don't have access
             to it
-      summary: Get the details of an Organization
+      summary: Get the details of a solution
       tags:
-      - organization
+      - solution
       x-accepts: application/json
     patch:
-      operationId: updateOrganization
+      operationId: updateSolution
       parameters:
       - description: the Organization identifier
         explode: false
         in: path
         name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
         required: true
         schema:
           type: string
@@ -1155,386 +951,42 @@ paths:
         content:
           application/json:
             examples:
-              ChangeName:
-                description: Change the name of Organization 1 to CosmoTech Digital
-                  Twins Engine
-                summary: Change Name of Organization
-                value:
-                  name: CosmoTech Digital Twins Engine
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/Solution'
           application/yaml:
             examples:
-              ChangeName:
-                description: Change the name of Organization 1 to CosmoTech Digital
-                  Twins Engine
-                summary: Change Name of Organization
-                value:
-                  name: CosmoTech Digital Twins Engine
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
             schema:
               format: binary
               type: string
-        description: the new Organization details
+        description: the new Solution details.
         required: true
       responses:
         "200":
           content:
             application/json:
               examples:
-                CosmoThreeUsers:
-                  $ref: '#/components/examples/CosmoThreeUsers'
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryUpdated'
               schema:
-                $ref: '#/components/schemas/Organization'
-          description: the organization details
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
         "400":
           description: Bad request
         "404":
-          description: the Organization specified is unknown or you don't have access
+          description: the Solution specified is unknown or you don't have access
             to it
-      summary: Update an Organization
+      summary: Update a solution
       tags:
-      - organization
+      - solution
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/services/tenantCredentials:
-    patch:
-      operationId: updateTenantCredentialsByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  azureTenantId: <my_azure_tenant_id>
-                  azureClientId: <my_azure_client_id>
-                  azureClientSecret: <my_azure_client_secret>
-            schema:
-              additionalProperties: true
-              description: a freeform credentials object for the Organization tenant.
-                Structure depends on cloud provider
-              type: object
-        description: the new Tenant Credentials to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationTenantCredentials:
-                  value:
-                    azureTenantId: <my_azure_tenant_id>
-                    azureClientId: <my_azure_client_id>
-                    azureClientSecret: <my_azure_client_secret>
-              schema:
-                additionalProperties: true
-                description: a freeform credentials object for the Organization tenant.
-                  Structure depends on cloud provider
-                type: object
-          description: the Organization Tenant Credentials
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update tenant credentials for the Organization specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/services/storage:
-    patch:
-      operationId: updateStorageByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
-            schema:
-              $ref: '#/components/schemas/OrganizationService'
-          application/yaml:
-            examples:
-              OrganizationTenantCredentials:
-                value:
-                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
-            schema:
-              format: binary
-              type: string
-        description: the new Storage configuration to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationTenantCredentials:
-                  value:
-                    platformService: storage
-                    cloudService: AzureStorage
-                    baseUri: https://csmphoenixcontainer.blob.core.windows.net
-                    resourceUri: organization-2/files
-              schema:
-                $ref: '#/components/schemas/OrganizationService'
-          description: the Organization Storage configuration
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update storage configuration for the Organization specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/services/solutionsContainerRegistry:
-    patch:
-      operationId: updateSolutionsContainerRegistryByOrganizationId
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationSolutionContainerRegistry:
-                value:
-                  baseUri: mysolutiontwinengines.azurecr.io
-            schema:
-              $ref: '#/components/schemas/OrganizationService'
-          application/yaml:
-            examples:
-              OrganizationSolutionContainerRegistry:
-                value:
-                  baseUri: mysolutiontwinengines.azurecr.io
-            schema:
-              format: binary
-              type: string
-        description: the new solutions container registry configuration to use
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationSolutionContainerRegistry:
-                  value:
-                    cloudService: AzureStorage
-                    baseUri: mysolutiontwinengines.azurecr.io
-              schema:
-                $ref: '#/components/schemas/OrganizationService'
-          description: the Organization solutions container registry configuration
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Update the solutions container registry configuration for the Organization
-        specified
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/permissions:
-    get:
-      operationId: getAllPermissions
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                permissions:
-                  $ref: '#/components/examples/Permissions'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ComponentRolePermissions'
-                type: array
-          description: The Scenarios security permission list
-      summary: Get all permissions per components
-      tags:
-      - organization
-      x-accepts: application/json
-  /organizations/{organization_id}/permissions/{role}:
-    get:
-      operationId: getOrganizationPermissions
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Role
-        explode: false
-        in: path
-        name: role
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                example:
-                - read
-                - read_security
-                - create_children
-                items:
-                  type: string
-                type: array
-          description: The Organization security permission list
-      summary: Get the Organization permissions by given role
-      tags:
-      - organization
-      x-accepts: application/json
-  /organizations/{organization_id}/security:
-    get:
-      operationId: getOrganizationSecurity
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OrganizationSecurity:
-                  $ref: '#/components/examples/BreweryOrganizationSecurity'
-              schema:
-                $ref: '#/components/schemas/OrganizationSecurity'
-          description: The Organization security
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Get the Organization security information
-      tags:
-      - organization
-      x-accepts: application/json
-  /organizations/{organization_id}/security/default:
-    post:
-      operationId: setOrganizationDefaultSecurity
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryOrganizationRole:
-                $ref: '#/components/examples/BreweryOrganizationRole'
-            schema:
-              $ref: '#/components/schemas/OrganizationRole'
-          application/yaml:
-            examples:
-              BreweryOrganizationRole:
-                $ref: '#/components/examples/BreweryOrganizationRole'
-            schema:
-              format: binary
-              type: string
-        description: the new Organization default security.
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                WriterOrganizationSecurity:
-                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
-              schema:
-                $ref: '#/components/schemas/OrganizationSecurity'
-          description: The Organization default visibility
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Set the Organization default security
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/security/access:
-    post:
-      operationId: addOrganizationAccessControl
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              OrganizationAccess:
-                $ref: '#/components/examples/BreweryOrganizationAccessControl'
-            schema:
-              $ref: '#/components/schemas/OrganizationAccessControl'
-          application/yaml:
-            examples:
-              OrganizationAccess:
-                $ref: '#/components/examples/BreweryOrganizationAccessControl'
-            schema:
-              format: binary
-              type: string
-        description: the new Organization security access to add.
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                OrganizationAccessControl:
-                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
-              schema:
-                $ref: '#/components/schemas/OrganizationAccessControl'
-          description: The Organization access
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Add a control access to the Organization
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/security/access/{identity_id}:
+  /organizations/{organization_id}/solutions/{solution_id}/parameters:
     delete:
-      operationId: removeOrganizationAccessControl
+      operationId: removeAllSolutionParameters
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1544,26 +996,26 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the User identifier
+      - description: the Solution identifier
         explode: false
         in: path
-        name: identity_id
+        name: solution_id
         required: true
         schema:
           type: string
         style: simple
       responses:
         "204":
-          description: Request succeeded
+          description: the operation succeeded
         "404":
-          description: the Organization or the user specified is unknown or you don't
-            have access to them
-      summary: Remove the specified access from the given Organization
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameters from the Solution specified
       tags:
-      - organization
+      - solution
       x-accepts: application/json
-    get:
-      operationId: getOrganizationAccessControl
+    post:
+      operationId: addOrReplaceParameters
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1573,33 +1025,293 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the User identifier
+      - description: the Solution identifier
         explode: false
         in: path
-        name: identity_id
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplateParameter'
+              type: array
+        description: the Parameters
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameter'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameters. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/parameterGroups:
+    delete:
+      operationId: removeAllSolutionParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
         required: true
         schema:
           type: string
         style: simple
       responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameter Groups from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplateParameterGroup'
+              type: array
+        description: the Parameter Groups
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameterGroup'
+                type: array
+          description: the Parameter Groups
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameter Groups. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates:
+    delete:
+      operationId: removeAllRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Run Templates from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplate'
+              type: array
+        description: the Run Templates
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Run Templates. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}:
+    delete:
+      operationId: deleteSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove the specified Solution Run Template
+      tags:
+      - solution
+      x-accepts: application/json
+    patch:
+      operationId: updateSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+        description: the Run Templates
+        required: true
+      responses:
         "200":
           content:
             application/json:
-              examples:
-                OrganizationAccessControl:
-                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
               schema:
-                $ref: '#/components/schemas/OrganizationAccessControl'
-          description: The Organization access
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
         "404":
-          description: The Organization or user specified is unknown or you don't
+          description: the Solution or Run Template specified is unknown or you don't
             have access to it
-      summary: Get a control access for the Organization
+      summary: Update the specified Solution Run Template
       tags:
-      - organization
+      - solution
+      x-contentType: application/json
       x-accepts: application/json
-    patch:
-      operationId: updateOrganizationAccessControl
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download:
+    get:
+      operationId: downloadRunTemplateHandler
       parameters:
       - description: the Organization identifier
         explode: false
@@ -1609,47 +1321,50 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the User identifier
+      - description: the Solution identifier
         explode: false
         in: path
-        name: identity_id
+        name: solution_id
         required: true
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryOrganizationRole:
-                $ref: '#/components/examples/BreweryOrganizationRole'
-            schema:
-              $ref: '#/components/schemas/OrganizationRole'
-        description: The new Organization Access Control
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
         required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/RunTemplateHandlerId'
+        style: simple
       responses:
         "200":
           content:
-            application/json:
-              examples:
-                OrganizationAccessControl:
-                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+            application/octet-stream:
               schema:
-                $ref: '#/components/schemas/OrganizationAccessControl'
-          description: The Organization access
+                format: binary
+                type: string
+          description: the run template handle file as a resource
         "404":
-          description: The Organization specified is unknown or you don't have access
-            to it
-      summary: Update the specified access to User for an Organization
+          description: the Run Template Handler file specified is unknown or you don't
+            have access to it
+      summary: Download a Run Template step handler zip file
       tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/security/users:
-    get:
-      operationId: getOrganizationSecurityUsers
+      - solution
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
+    post:
+      operationId: uploadRunTemplateHandler
       parameters:
-      - description: The Organization identifier
+      - description: the Organization identifier
         explode: false
         in: path
         name: organization_id
@@ -1657,657 +1372,55 @@ paths:
         schema:
           type: string
         style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                example:
-                - alice@mycompany.com
-                - bob@mycompany.com
-                items:
-                  type: string
-                type: array
-          description: The Organization security users list
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Get the Organization security users list
-      tags:
-      - organization
-      x-accepts: application/json
-  /organizations/import:
-    post:
-      operationId: importOrganization
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/RunTemplateHandlerId'
+        style: simple
+      - description: whether to overwrite any existing handler resource
+        explode: true
+        in: query
+        name: overwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       requestBody:
         content:
-          application/json:
-            examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
-            schema:
-              $ref: '#/components/schemas/Organization'
-          application/yaml:
-            examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
+          application/octet-stream:
             schema:
               format: binary
               type: string
-        description: the Organization to import
         required: true
       responses:
         "201":
-          content:
-            application/json:
-              examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
-              schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
+          description: zip file uploaded
         "400":
           description: Bad request
-      summary: Import an organization
+      summary: Upload a Run Template step handler zip file
       tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Delete all historical ScenarioRuns in the Organization
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization or Workspace specified is unknown or you don't
-            have access to it
-      summary: Delete all historical ScenarioRuns in the Workspace
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Delete all historical ScenarioRuns in the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/search:
-    post:
-      operationId: searchScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BrewerySearch:
-                $ref: '#/components/examples/BrewerySearch'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunSearch'
-          application/yaml:
-            examples:
-              BrewerySearch:
-                $ref: '#/components/examples/BrewerySearch'
-            schema:
-              format: binary
-              type: string
-        description: the ScenarioRun search parameters
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details
-      summary: Search ScenarioRuns
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/startcontainers:
-    post:
-      operationId: startScenarioRunContainers
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunStartContainers:
-                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunStartContainers'
-          application/yaml:
-            examples:
-              ScenarioRunStartContainers:
-                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
-            schema:
-              format: binary
-              type: string
-        description: the raw containers definition
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunContainer'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Start a new scenariorun with raw containers definition
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}:
-    delete:
-      operationId: deleteScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Delete a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-    get:
-      operationId: findScenarioRunById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the ScenarioRun details
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Get the details of a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status:
-    get:
-      operationId: getScenarioRunStatus
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunStatus'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunStatus'
-          description: the scenariorun status details
-      summary: get the status for the ScenarioRun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs:
-    get:
-      operationId: getScenarioRunLogs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunLogs'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunLogs'
-          description: the scenariorun logs details
-      summary: get the logs for the ScenarioRun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs:
-    get:
-      operationId: getScenarioRunCumulatedLogs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: the ScenarioRun cumulated logs
-        "400":
-          description: Bad request
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Get the cumulated logs of a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: text/plain
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns:
-    get:
-      operationId: getWorkspaceScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details list
-      summary: get the list of ScenarioRuns for the Workspace
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
-    get:
-      operationId: getScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details list
-      summary: get the list of ScenarioRuns for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run:
-    post:
-      operationId: runScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: run a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop:
-    post:
-      operationId: stopScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the scenariorun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunStatus'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunStatus'
-          description: the scenariorun status details
-      summary: stop a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
-    post:
-      operationId: importScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScenarioRun'
-        description: the ScenarioRun to import
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: import a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-contentType: application/json
+      - solution
+      x-contentType: application/octet-stream
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     delete:
@@ -3385,9 +2498,997 @@ paths:
       tags:
       - scenario
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/import:
+  /connectors:
+    get:
+      operationId: findAllConnectors
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneConnector:
+                  $ref: '#/components/examples/OneConnector'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Connector'
+                type: array
+          description: the list of Connectors
+      summary: List all Connectors
+      tags:
+      - connector
+      x-accepts: application/json
     post:
-      operationId: importScenario
+      operationId: registerConnector
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              $ref: '#/components/schemas/Connector'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              format: binary
+              type: string
+        description: the Connector to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the connector details
+        "400":
+          description: Bad request
+      summary: Register a new connector
+      tags:
+      - connector
+      x-contentType: application/json
+      x-accepts: application/json
+  /connectors/{connector_id}:
+    delete:
+      operationId: unregisterConnector
+      parameters:
+      - description: the Connector identifier
+        explode: false
+        in: path
+        name: connector_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request successful
+        "404":
+          description: the Connector specified is unknown or you don't have access
+            to it
+      summary: Unregister a connector
+      tags:
+      - connector
+      x-accepts: application/json
+    get:
+      operationId: findConnectorById
+      parameters:
+      - description: the Connector identifier
+        explode: false
+        in: path
+        name: connector_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the Connector details
+        "404":
+          description: the Connector specified is unknown or you don't have access
+            to it
+      summary: Get the details of a connector
+      tags:
+      - connector
+      x-accepts: application/json
+  /organizations:
+    get:
+      operationId: findAllOrganizations
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                TwoOrganizations:
+                  $ref: '#/components/examples/TwoOrganizations'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: the list of Organizations
+      summary: List all Organizations
+      tags:
+      - organization
+      x-accepts: application/json
+    post:
+      operationId: registerOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
+            schema:
+              format: binary
+              type: string
+        description: the Organization to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
+        "400":
+          description: Bad request
+      summary: Register a new organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}:
+    delete:
+      operationId: unregisterOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Unregister an organization
+      tags:
+      - organization
+      x-accepts: application/json
+    get:
+      operationId: findOrganizationById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the details of an Organization
+      tags:
+      - organization
+      x-accepts: application/json
+    patch:
+      operationId: updateOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+            schema:
+              $ref: '#/components/schemas/Organization'
+          application/yaml:
+            examples:
+              ChangeName:
+                description: Change the name of Organization 1 to CosmoTech Digital
+                  Twins Engine
+                summary: Change Name of Organization
+                value:
+                  name: CosmoTech Digital Twins Engine
+            schema:
+              format: binary
+              type: string
+        description: the new Organization details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CosmoThreeUsers:
+                  $ref: '#/components/examples/CosmoThreeUsers'
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: the organization details
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update an Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/tenantCredentials:
+    patch:
+      operationId: updateTenantCredentialsByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  azureTenantId: <my_azure_tenant_id>
+                  azureClientId: <my_azure_client_id>
+                  azureClientSecret: <my_azure_client_secret>
+            schema:
+              additionalProperties: true
+              description: a freeform credentials object for the Organization tenant.
+                Structure depends on cloud provider
+              type: object
+        description: the new Tenant Credentials to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    azureTenantId: <my_azure_tenant_id>
+                    azureClientId: <my_azure_client_id>
+                    azureClientSecret: <my_azure_client_secret>
+              schema:
+                additionalProperties: true
+                description: a freeform credentials object for the Organization tenant.
+                  Structure depends on cloud provider
+                type: object
+          description: the Organization Tenant Credentials
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update tenant credentials for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/storage:
+    patch:
+      operationId: updateStorageByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationTenantCredentials:
+                value:
+                  baseUri: https://csmphoenixcontainer.blob.core.windows.net
+            schema:
+              format: binary
+              type: string
+        description: the new Storage configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationTenantCredentials:
+                  value:
+                    platformService: storage
+                    cloudService: AzureStorage
+                    baseUri: https://csmphoenixcontainer.blob.core.windows.net
+                    resourceUri: organization-2/files
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization Storage configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update storage configuration for the Organization specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/services/solutionsContainerRegistry:
+    patch:
+      operationId: updateSolutionsContainerRegistryByOrganizationId
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              $ref: '#/components/schemas/OrganizationService'
+          application/yaml:
+            examples:
+              OrganizationSolutionContainerRegistry:
+                value:
+                  baseUri: mysolutiontwinengines.azurecr.io
+            schema:
+              format: binary
+              type: string
+        description: the new solutions container registry configuration to use
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationSolutionContainerRegistry:
+                  value:
+                    cloudService: AzureStorage
+                    baseUri: mysolutiontwinengines.azurecr.io
+              schema:
+                $ref: '#/components/schemas/OrganizationService'
+          description: the Organization solutions container registry configuration
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Update the solutions container registry configuration for the Organization
+        specified
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/permissions:
+    get:
+      operationId: getAllPermissions
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                permissions:
+                  $ref: '#/components/examples/Permissions'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComponentRolePermissions'
+                type: array
+          description: The Scenarios security permission list
+      summary: Get all permissions per components
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/permissions/{role}:
+    get:
+      operationId: getOrganizationPermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - read
+                - read_security
+                - create_children
+                items:
+                  type: string
+                type: array
+          description: The Organization security permission list
+      summary: Get the Organization permissions by given role
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/security:
+    get:
+      operationId: getOrganizationSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationSecurity:
+                  $ref: '#/components/examples/BreweryOrganizationSecurity'
+              schema:
+                $ref: '#/components/schemas/OrganizationSecurity'
+          description: The Organization security
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the Organization security information
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/security/default:
+    post:
+      operationId: setOrganizationDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
+            schema:
+              $ref: '#/components/schemas/OrganizationRole'
+          application/yaml:
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
+            schema:
+              format: binary
+              type: string
+        description: the new Organization default security.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                WriterOrganizationSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/OrganizationSecurity'
+          description: The Organization default visibility
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Set the Organization default security
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/security/access:
+    post:
+      operationId: addOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              OrganizationAccess:
+                $ref: '#/components/examples/BreweryOrganizationAccessControl'
+            schema:
+              $ref: '#/components/schemas/OrganizationAccessControl'
+          application/yaml:
+            examples:
+              OrganizationAccess:
+                $ref: '#/components/examples/BreweryOrganizationAccessControl'
+            schema:
+              format: binary
+              type: string
+        description: the new Organization security access to add.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Add a control access to the Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Organization or the user specified is unknown or you don't
+            have access to them
+      summary: Remove the specified access from the given Organization
+      tags:
+      - organization
+      x-accepts: application/json
+    get:
+      operationId: getOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: The Organization or user specified is unknown or you don't
+            have access to it
+      summary: Get a control access for the Organization
+      tags:
+      - organization
+      x-accepts: application/json
+    patch:
+      operationId: updateOrganizationAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryOrganizationRole:
+                $ref: '#/components/examples/BreweryOrganizationRole'
+            schema:
+              $ref: '#/components/schemas/OrganizationRole'
+        description: The new Organization Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OrganizationAccessControl:
+                  $ref: '#/components/examples/BreweryOrganizationAccessControl'
+              schema:
+                $ref: '#/components/schemas/OrganizationAccessControl'
+          description: The Organization access
+        "404":
+          description: The Organization specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for an Organization
+      tags:
+      - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/security/users:
+    get:
+      operationId: getOrganizationSecurityUsers
+      parameters:
+      - description: The Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  type: string
+                type: array
+          description: The Organization security users list
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Get the Organization security users list
+      tags:
+      - organization
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/import:
+    post:
+      description: Import a new version of a twin graph
+      operationId: importGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              RunJobImportWithADT:
+                $ref: '#/components/examples/RunJobImportWithADT'
+              RunJobImportWithStorage:
+                $ref: '#/components/examples/RunJobImportWithStorage'
+            schema:
+              $ref: '#/components/schemas/TwinGraphImport'
+          application/yaml:
+            examples:
+              RunJobImportWithADT:
+                $ref: '#/components/examples/RunJobImportWithADT'
+              RunJobImportWithStorage:
+                $ref: '#/components/examples/RunJobImportWithStorage'
+            schema:
+              $ref: '#/components/schemas/TwinGraphImport'
+        description: the graph to import
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphImportInfo'
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/job/{job_id}/status:
+    get:
+      description: Get the status of a job
+      operationId: jobStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the job identifier
+        explode: false
+        in: path
+        name: job_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/yaml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraphs:
+    get:
+      description: Return the list of all graphs stored in the organization
+      operationId: findAllTwingraphs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/query:
+    post:
+      description: Run a query on a graph instance
+      operationId: query
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+          application/yaml:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
+    get:
+      description: Return the metaData of the specified graph
+      operationId: getGraphMetaData
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}:
+    delete:
+      description: Launch a mass delete job
+      operationId: delete
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/historicaldata:
+    delete:
+      operationId: deleteHistoricalDataOrganization
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: condition to delete runs with an Unknown status
+        explode: true
+        in: query
+        name: deleteUnknown
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns in the Organization
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata:
+    delete:
+      operationId: deleteHistoricalDataWorkspace
       parameters:
       - description: the Organization identifier
         explode: false
@@ -3405,34 +3506,498 @@ paths:
         schema:
           type: string
         style: simple
+      - description: condition to delete runs with an Unknown status
+        explode: true
+        in: query
+        name: deleteUnknown
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization or Workspace specified is unknown or you don't
+            have access to it
+      summary: Delete all historical ScenarioRuns in the Workspace
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata:
+    delete:
+      operationId: deleteHistoricalDataScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: condition to delete runs with an Unknown status
+        explode: true
+        in: query
+        name: deleteUnknown
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns in the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/search:
+    post:
+      operationId: searchScenarioRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              MasterScenario:
-                $ref: '#/components/examples/BreweryScenarioIn'
-              ChildScenario:
-                $ref: '#/components/examples/BreweryChildScenarioIn'
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
             schema:
-              $ref: '#/components/schemas/Scenario'
-        description: the Scenario to import
+              $ref: '#/components/schemas/ScenarioRunSearch'
+          application/yaml:
+            examples:
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
+            schema:
+              format: binary
+              type: string
+        description: the ScenarioRun search parameters
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               examples:
-                Scenario:
-                  $ref: '#/components/examples/BreweryScenario'
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
               schema:
-                $ref: '#/components/schemas/Scenario'
-          description: the scenario details
+                items:
+                  $ref: '#/components/schemas/ScenarioRun'
+                type: array
+          description: the scenariorun details
+      summary: Search ScenarioRuns
+      tags:
+      - scenariorun
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/startcontainers:
+    post:
+      operationId: startScenarioRunContainers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ScenarioRunStartContainers:
+                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
+            schema:
+              $ref: '#/components/schemas/ScenarioRunStartContainers'
+          application/yaml:
+            examples:
+              ScenarioRunStartContainers:
+                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
+            schema:
+              format: binary
+              type: string
+        description: the raw containers definition
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunContainer'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
         "400":
           description: Bad request
-      summary: Import Scenario
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Start a new scenariorun with raw containers definition
       tags:
-      - scenario
+      - scenariorun
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}:
+    delete:
+      operationId: deleteScenarioRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Delete a scenariorun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+    get:
+      operationId: findScenarioRunById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the ScenarioRun details
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Get the details of a scenariorun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status:
+    get:
+      operationId: getScenarioRunStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunStatus'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunStatus'
+          description: the scenariorun status details
+      summary: get the status for the ScenarioRun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs:
+    get:
+      operationId: getScenarioRunLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunLogs'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunLogs'
+          description: the scenariorun logs details
+      summary: get the logs for the ScenarioRun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs:
+    get:
+      operationId: getScenarioRunCumulatedLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: the ScenarioRun cumulated logs
+        "400":
+          description: Bad request
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Get the cumulated logs of a scenariorun
+      tags:
+      - scenariorun
+      x-accepts: text/plain
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns:
+    get:
+      operationId: getWorkspaceScenarioRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioRun'
+                type: array
+          description: the scenariorun details list
+      summary: get the list of ScenarioRuns for the Workspace
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
+    get:
+      operationId: getScenarioRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioRun'
+                type: array
+          description: the scenariorun details list
+      summary: get the list of ScenarioRuns for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run:
+    post:
+      operationId: runScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
+      summary: run a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop:
+    post:
+      operationId: stopScenarioRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the scenariorun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunStatus'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunStatus'
+          description: the scenariorun status details
+      summary: stop a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
       x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
@@ -4294,280 +4859,69 @@ paths:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/import:
-    post:
-      operationId: importWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              $ref: '#/components/schemas/Workspace'
-          application/yaml:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              format: binary
-              type: string
-        description: the Workspace to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
-        "400":
-          description: Bad request
-      summary: Import a workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /connectors:
+  /users:
     get:
-      operationId: findAllConnectors
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneConnector:
-                  $ref: '#/components/examples/OneConnector'
-              schema:
-                items:
-                  $ref: '#/components/schemas/Connector'
-                type: array
-          description: the list of Connectors
-      summary: List all Connectors
-      tags:
-      - connector
-      x-accepts: application/json
-    post:
-      operationId: registerConnector
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              $ref: '#/components/schemas/Connector'
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              format: binary
-              type: string
-        description: the Connector to register
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
-      summary: Register a new connector
-      tags:
-      - connector
-      x-contentType: application/json
-      x-accepts: application/json
-  /connectors/{connector_id}:
-    delete:
-      operationId: unregisterConnector
-      parameters:
-      - description: the Connector identifier
-        explode: false
-        in: path
-        name: connector_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request successful
-        "404":
-          description: the Connector specified is unknown or you don't have access
-            to it
-      summary: Unregister a connector
-      tags:
-      - connector
-      x-accepts: application/json
-    get:
-      operationId: findConnectorById
-      parameters:
-      - description: the Connector identifier
-        explode: false
-        in: path
-        name: connector_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the Connector details
-        "404":
-          description: the Connector specified is unknown or you don't have access
-            to it
-      summary: Get the details of a connector
-      tags:
-      - connector
-      x-accepts: application/json
-  /connectors/import:
-    post:
-      operationId: importConnector
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              $ref: '#/components/schemas/Connector'
-        description: the Connector to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
-      summary: Import existing connector
-      tags:
-      - connector
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions:
-    get:
-      operationId: findAllSolutions
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
+      operationId: findAllUsers
       responses:
         "200":
           content:
             application/json:
               examples:
                 Two:
-                  $ref: '#/components/examples/OneSolution'
+                  $ref: '#/components/examples/TwoUsers'
               schema:
                 items:
-                  $ref: '#/components/schemas/Solution'
+                  $ref: '#/components/schemas/User'
                 type: array
-          description: the solution details
-      summary: List all Solutions
+          description: the user details
+      summary: List all Users
       tags:
-      - solution
+      - user
       x-accepts: application/json
     post:
-      operationId: createSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
+      operationId: registerUser
       requestBody:
         content:
           application/json:
             examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
             schema:
-              $ref: '#/components/schemas/Solution'
+              $ref: '#/components/schemas/User'
           application/yaml:
             examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
             schema:
               format: binary
               type: string
-        description: the Solution to create
+        description: the User to register
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
+                Bob:
+                  $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
+                $ref: '#/components/schemas/User'
+          description: the user details
         "400":
           description: Bad request
-      summary: Register a new solution
+      summary: Register a new user
       tags:
-      - solution
+      - user
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}:
+  /users/{user_id}:
     delete:
-      operationId: deleteSolution
+      operationId: unregisterUser
       parameters:
-      - description: the Organization identifier
+      - description: the User identifier
         explode: false
         in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
+        name: user_id
         required: true
         schema:
           type: string
@@ -4576,27 +4930,18 @@ paths:
         "204":
           description: Request succeeded
         "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Delete a solution
+          description: the User specified is unknown or you don't have access to it
+      summary: Unregister an user
       tags:
-      - solution
+      - user
       x-accepts: application/json
     get:
-      operationId: findSolutionById
+      operationId: findUserById
       parameters:
-      - description: the Organization identifier
+      - description: the User identifier
         explode: false
         in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
+        name: user_id
         required: true
         schema:
           type: string
@@ -4606,33 +4951,24 @@ paths:
           content:
             application/json:
               examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
+                Bob:
+                  $ref: '#/components/examples/Bob'
               schema:
-                $ref: '#/components/schemas/Solution'
-          description: the Solution details
+                $ref: '#/components/schemas/User'
+          description: the User details
         "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Get the details of a solution
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user
       tags:
-      - solution
+      - user
       x-accepts: application/json
     patch:
-      operationId: updateSolution
+      operationId: updateUser
       parameters:
-      - description: the Organization identifier
+      - description: the User identifier
         explode: false
         in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
+        name: user_id
         required: true
         schema:
           type: string
@@ -4641,367 +4977,59 @@ paths:
         content:
           application/json:
             examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryUpdate'
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
             schema:
-              $ref: '#/components/schemas/Solution'
+              $ref: '#/components/schemas/User'
           application/yaml:
             examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryUpdate'
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
             schema:
               format: binary
               type: string
-        description: the new Solution details.
+        description: the new User details. Organization membership is handled via
+          the /organizations endpoint.
         required: true
       responses:
         "200":
           content:
             application/json:
               examples:
-                BreweryUpdated:
-                  $ref: '#/components/examples/BreweryUpdated'
+                BobyUpdated:
+                  $ref: '#/components/examples/BobyUpdated'
               schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
+                $ref: '#/components/schemas/User'
+          description: the user details
         "400":
           description: Bad request
         "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Update a solution
+          description: the User specified is unknown or you don't have access to it
+      summary: Update a User
       tags:
-      - solution
+      - user
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/parameters:
-    delete:
-      operationId: removeAllSolutionParameters
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Parameters from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceParameters
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplateParameter'
-              type: array
-        description: the Parameters
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplateParameter'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Parameters. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/parameterGroups:
-    delete:
-      operationId: removeAllSolutionParameterGroups
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Parameter Groups from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceParameterGroups
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplateParameterGroup'
-              type: array
-        description: the Parameter Groups
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplateParameterGroup'
-                type: array
-          description: the Parameter Groups
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Parameter Groups. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runTemplates:
-    delete:
-      operationId: removeAllRunTemplates
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Run Templates from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceRunTemplates
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplate'
-              type: array
-        description: the Run Templates
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplate'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Run Templates. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}:
-    delete:
-      operationId: deleteSolutionRunTemplate
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove the specified Solution Run Template
-      tags:
-      - solution
-      x-accepts: application/json
-    patch:
-      operationId: updateSolutionRunTemplate
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RunTemplate'
-          application/yaml:
-            schema:
-              $ref: '#/components/schemas/RunTemplate'
-        description: the Run Templates
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplate'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution or Run Template specified is unknown or you don't
-            have access to it
-      summary: Update the specified Solution Run Template
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download:
+  /users/me:
     get:
-      operationId: downloadRunTemplateHandler
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in User
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/me:
+    get:
+      operationId: getOrganizationCurrentUser
       parameters:
       - description: the Organization identifier
         explode: false
@@ -5011,152 +5039,86 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Solution identifier
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobOrganization'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of a logged-in User with roles for an Organization
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/me:
+    get:
+      operationId: getWorkspaceCurrentUser
+      parameters:
+      - description: the Organization identifier
         explode: false
         in: path
-        name: solution_id
+        name: organization_id
         required: true
         schema:
           type: string
         style: simple
-      - description: the Run Template identifier
+      - description: the Workspace identifier
         explode: false
         in: path
-        name: run_template_id
+        name: workspace_id
         required: true
         schema:
           type: string
-        style: simple
-      - description: the Handler identifier
-        explode: false
-        in: path
-        name: handler_id
-        required: true
-        schema:
-          $ref: '#/components/schemas/RunTemplateHandlerId'
         style: simple
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobWorkspace'
               schema:
-                format: binary
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in user with roles for a Workspace
+      tags:
+      - user
+      x-accepts: application/json
+  /test:
+    get:
+      operationId: testPlatform
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
                 type: string
-          description: the run template handle file as a resource
-        "404":
-          description: the Run Template Handler file specified is unknown or you don't
-            have access to it
-      summary: Download a Run Template step handler zip file
+          description: test string
+      summary: test platform API call
       tags:
-      - solution
-      x-accepts: application/octet-stream
-  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
-    post:
-      operationId: uploadRunTemplateHandler
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Handler identifier
-        explode: false
-        in: path
-        name: handler_id
-        required: true
-        schema:
-          $ref: '#/components/schemas/RunTemplateHandlerId'
-        style: simple
-      - description: whether to overwrite any existing handler resource
-        explode: true
-        in: query
-        name: overwrite
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
-        required: true
+      - user
+      x-accepts: text/plain
+  /oauth2/authorize:
+    get:
+      operationId: authorizeUser
       responses:
-        "201":
-          description: zip file uploaded
-        "400":
-          description: Bad request
-      summary: Upload a Run Template step handler zip file
-      tags:
-      - solution
-      x-contentType: application/octet-stream
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/import:
-    post:
-      operationId: importSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              $ref: '#/components/schemas/Solution'
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              format: binary
-              type: string
-        description: the Solution to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
+        "302":
+          description: Redirection response
+          headers:
+            Location:
               examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
+                AzureAD:
+                  $ref: '#/components/examples/AzureADRedirect'
+              explode: false
               schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Import a solution
+                type: string
+              style: simple
+      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
       tags:
-      - solution
-      x-contentType: application/json
+      - user
       x-accepts: application/json
 components:
   examples:
@@ -5210,6 +5172,103 @@ components:
             valueType: string
             default: /mnt/scenariorun-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    AzureADRedirect:
+      description: authorize redirection to Azure Active Directory example
+      summary: Azure AD redirect example
+      value:
+        Location: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
+    Bob:
+      description: Bob User example
+      summary: Bob User
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
+    BobCreateIn:
+      description: Bob User Create input example
+      summary: Bob User Create input example
+      value:
+        name: Bob
+        platformRoles:
+        - Admin
+    BobOrganization:
+      description: Bob User for Organization 1 example
+      summary: Bob User for an Organization example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+    BobWorkspace:
+      description: Bob User for Organization 1 and Workspace 1 example
+      summary: Bob User for a Workspace example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+    BobyUpdateIn:
+      description: Bob User renamed to Boby input example
+      summary: Boby update User input example
+      value:
+        name: Boby
+    BobyUpdated:
+      description: Bob User renamed to Boby example
+      summary: Boby updated User
+      value:
+        id: "1"
+        name: Boby
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     Brewery:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -6411,6 +6470,46 @@ components:
         varType: string
         value: ""
         inherited: true
+    TwoUsers:
+      description: Two Users example
+      summary: Two Users example
+      value:
+      - id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
+      - id: "2"
+        name: Alice
+        platformRoles:
+        - User
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -6512,14 +6611,12 @@ components:
           description: the Connector version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         key:
           description: the Connector key which group Connector versions
           type: string
         name:
           description: the Connector name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Connector description
           type: string
@@ -6569,7 +6666,6 @@ components:
       - repository
       - version
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ConnectorParameter:
       description: a connector parameter
       example:
@@ -6683,8 +6779,12 @@ components:
     Dataset:
       description: a Dataset
       example:
-        organizationId: organizationId
-        connector: ""
+        connector:
+          parametersValues:
+            key: parametersValues
+          name: name
+          id: id
+          version: version
         name: name
         description: description
         validatorId: validatorId
@@ -6708,11 +6808,9 @@ components:
           description: the Dataset unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Dataset name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Dataset description
           type: string
@@ -6720,22 +6818,13 @@ components:
           description: the User id which own this Dataset
           readOnly: true
           type: string
-        organizationId:
-          description: the Organization Id related to this Dataset
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         tags:
           description: the list of tags
           items:
             type: string
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         connector:
-          allOf:
-          - $ref: '#/components/schemas/DatasetConnector'
-          description: the Connector setup bound to a Dataset
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+          $ref: '#/components/schemas/DatasetConnector'
         fragmentsIds:
           description: the list of other Datasets ids to compose as fragments
           items:
@@ -6750,7 +6839,6 @@ components:
             $ref: '#/components/schemas/DatasetCompatibility'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     DatasetCompatibility:
       description: a Dataset compatibility constraint to a Solution version open range
       example:
@@ -6772,15 +6860,19 @@ components:
       type: object
     DatasetConnector:
       description: a Connector setup
+      example:
+        parametersValues:
+          key: parametersValues
+        name: name
+        id: id
+        version: version
       properties:
         id:
           description: the Connector id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         name:
           description: the Connector name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         version:
           description: the Connector version
           type: string
@@ -6874,11 +6966,9 @@ components:
           description: the Organization unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Organization name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         ownerId:
           description: the Owner User Id
           readOnly: true
@@ -6888,9 +6978,7 @@ components:
         security:
           allOf:
           - $ref: '#/components/schemas/OrganizationSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     OrganizationAccessControl:
       description: a Organization access control item
       example:
@@ -6900,7 +6988,6 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
@@ -6932,14 +7019,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Organization with detailed access
             control information
           items:
             $ref: '#/components/schemas/OrganizationAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -7319,11 +7404,18 @@ components:
     Scenario:
       description: a Scenario with base information
       example:
+        lastRun: ""
         rootId: rootId
         parentLastRun: ""
+        solutionName: solutionName
         description: description
+        runTemplateName: runTemplateName
         ownerId: ownerId
-        organizationId: organizationId
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        parentId: parentId
+        tags:
+        - tags
+        - tags
         security: ""
         parametersValues:
         - varType: varType
@@ -7335,6 +7427,9 @@ components:
           isInherited: true
           value: value
         ownerName: ownerName
+        lastUpdate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        runTemplateId: runTemplateId
         runSizing:
           requests:
             memory: memory
@@ -7343,35 +7438,22 @@ components:
             memory: memory
             cpu: cpu
         id: id
-        state: null
-        rootLastRun: ""
-        validationStatus: ""
-        workspaceId: workspaceId
-        lastRun: ""
-        solutionName: solutionName
-        runTemplateName: runTemplateName
-        creationDate: 0
-        parentId: parentId
-        tags:
-        - tags
-        - tags
-        lastUpdate: 6
-        name: name
-        runTemplateId: runTemplateId
         solutionId: solutionId
+        state: null
         datasetList:
         - datasetList
         - datasetList
+        rootLastRun: ""
+        validationStatus: null
+        workspaceId: workspaceId
       properties:
         id:
           description: the Scenario unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Scenario name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Scenario description
           type: string
@@ -7383,17 +7465,14 @@ components:
         parentId:
           description: the Scenario parent id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this Scenario
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         rootId:
           description: the scenario root id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id associated with this Scenario
           readOnly: true
@@ -7401,27 +7480,22 @@ components:
         runTemplateId:
           description: the Solution Run Template Id associated with this Scenario
           type: string
-        organizationId:
-          description: the associated Organization Id
-          readOnly: true
-          type: string
         workspaceId:
           description: the associated Workspace Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         state:
           $ref: '#/components/schemas/ScenarioJobState'
         creationDate:
           description: the Scenario creation date
-          format: int64
+          format: date-time
           readOnly: true
-          type: integer
+          type: string
         lastUpdate:
           description: the last time a Scenario was updated
-          format: int64
+          format: date-time
           readOnly: true
-          type: integer
+          type: string
         ownerName:
           description: the name of the owner
           readOnly: true
@@ -7462,15 +7536,11 @@ components:
           - description: the last Scenario Run for the root (master) of Scenario
             type: object
         validationStatus:
-          allOf:
-          - $ref: '#/components/schemas/ScenarioValidationStatus'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+          $ref: '#/components/schemas/ScenarioValidationStatus'
         security:
           allOf:
           - $ref: '#/components/schemas/ScenarioSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioAccessControl:
       description: a Scenario access control item
       example:
@@ -7480,11 +7550,9 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - id
       - role
@@ -7701,7 +7769,7 @@ components:
           - path: path
             name: name
         id: id
-        state: ""
+        state: null
         solutionId: solutionId
         datasetList:
         - datasetList
@@ -7717,18 +7785,14 @@ components:
           description: the ScenarioRun
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         state:
-          allOf:
-          - $ref: '#/components/schemas/ScenarioRunState'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+          $ref: '#/components/schemas/ScenarioRunState'
         organizationId:
           description: the Organization id
           type: string
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         csmSimulationRun:
           description: the Cosmo Tech Simulation Run Id
           readOnly: true
@@ -7739,17 +7803,14 @@ components:
         workflowName:
           description: the Cosmo Tech compute cluster Argo Workflow Name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this scenariorun
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceId:
           description: the Workspace Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceKey:
           description: technical key for resource name convention and version grouping.
             Must be unique
@@ -7759,17 +7820,14 @@ components:
           description: the Scenario Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         runTemplateId:
           description: the Solution Run Template id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         computeSize:
           description: the compute size needed for this Analysis. Standard sizes are
             basic and highcpu. Default is basic
@@ -7816,7 +7874,6 @@ components:
             $ref: '#/components/schemas/ScenarioRunContainer'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunContainer:
       description: a ScenarioRun container description
       example:
@@ -8275,14 +8332,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Scenario with detailed access
             control information
           items:
             $ref: '#/components/schemas/ScenarioAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -8398,7 +8453,6 @@ components:
         tags:
         - tags
         - tags
-        organizationId: organizationId
         parameterGroups:
         - options:
             key: "{}"
@@ -8450,19 +8504,12 @@ components:
           description: the Solution version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
-        organizationId:
-          description: the Organization unique identifier
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: the Solution key which group Solution versions
           type: string
         name:
           description: the Solution name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Solution description
           type: string
@@ -8507,7 +8554,6 @@ components:
             $ref: '#/components/schemas/RunTemplate'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     SourceInfo:
       description: Source job import information
       example:
@@ -8592,6 +8638,132 @@ components:
           type: string
       required:
       - query
+      type: object
+    User:
+      description: a User
+      example:
+        platformRoles:
+        - Admin
+        - Admin
+        name: name
+        organizations:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+        id: id
+      properties:
+        id:
+          description: the User unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the User name
+          type: string
+        platformRoles:
+          description: the list of Platform roles
+          items:
+            enum:
+            - Admin
+            - User
+            - ConnectorDeveloper
+            type: string
+          type: array
+        organizations:
+          items:
+            $ref: '#/components/schemas/UserOrganization'
+          readOnly: true
+          type: array
+      type: object
+    UserOrganization:
+      description: The organization of the user
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
+        workspaces:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+      properties:
+        id:
+          description: the Organization id
+          type: string
+        name:
+          description: the Organization name
+          type: string
+        roles:
+          description: the roles of the User in the Organization
+          items:
+            type: string
+          type: array
+        workspaces:
+          description: the list of Workspaces roles
+          items:
+            $ref: '#/components/schemas/UserWorkspace'
+          readOnly: true
+          type: array
+      type: object
+    UserWorkspace:
+      description: the list of User roles for a Workspace
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
+      properties:
+        id:
+          description: the Workspace Id
+          readOnly: true
+          type: string
+        name:
+          description: the Workspace name
+          readOnly: true
+          type: string
+        roles:
+          description: the roles of the User in the Workspace
+          items:
+            type: string
+          type: array
+      readOnly: true
       type: object
     Validator:
       description: a Validator to validate a Dataset
@@ -8710,7 +8882,6 @@ components:
         tags:
         - tags
         - tags
-        organizationId: organizationId
         useDedicatedEventHubNamespace: false
         security: ""
         solution:
@@ -8730,12 +8901,6 @@ components:
           description: the Workspace version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
-        organizationId:
-          description: the Organization unique identifier
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: technical key for resource name convention and version grouping.
             Must be unique
@@ -8743,7 +8908,6 @@ components:
         name:
           description: the Workspace name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Workspace description
           type: string
@@ -8798,13 +8962,11 @@ components:
         security:
           allOf:
           - $ref: '#/components/schemas/WorkspaceSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - key
       - name
       - solution
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     WorkspaceAccessControl:
       description: a Workspace access control item
       example:
@@ -8814,7 +8976,6 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
@@ -8864,14 +9025,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Workspace with detailed access
             control information
           items:
             $ref: '#/components/schemas/WorkspaceAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default

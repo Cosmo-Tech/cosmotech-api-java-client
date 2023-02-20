@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.0.2-dev
-  - Build date: 2023-02-17T14:57:54.026236559Z[Etc/UTC]
+- API version: 2.3.2-dev
+  - Build date: 2023-02-20T16:33:06.298853839Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.0.2-dev</version>
+  <version>2.3.2-dev</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.0.2-dev"
+     implementation "com.cosmotech:cosmotech-api-java-client:2.3.2-dev"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.0.2-dev.jar`
+* `target/cosmotech-api-java-client-2.3.2-dev.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -121,7 +121,6 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ConnectorApi* | [**findAllConnectors**](docs/ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors
 *ConnectorApi* | [**findConnectorById**](docs/ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector
-*ConnectorApi* | [**importConnector**](docs/ConnectorApi.md#importConnector) | **POST** /connectors/import | Import existing connector
 *ConnectorApi* | [**registerConnector**](docs/ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
 *ConnectorApi* | [**unregisterConnector**](docs/ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector
 *DatasetApi* | [**addOrReplaceDatasetCompatibilityElements**](docs/DatasetApi.md#addOrReplaceDatasetCompatibilityElements) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Add Dataset Compatibility elements.
@@ -130,7 +129,6 @@ Class | Method | HTTP request | Description
 *DatasetApi* | [**deleteDataset**](docs/DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset
 *DatasetApi* | [**findAllDatasets**](docs/DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
 *DatasetApi* | [**findDatasetById**](docs/DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
-*DatasetApi* | [**importDataset**](docs/DatasetApi.md#importDataset) | **POST** /organizations/{organization_id}/datasets/import | Import a new Dataset
 *DatasetApi* | [**removeAllDatasetCompatibilityElements**](docs/DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
 *DatasetApi* | [**searchDatasets**](docs/DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets
 *DatasetApi* | [**updateDataset**](docs/DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
@@ -142,7 +140,6 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**getOrganizationPermissions**](docs/OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role
 *OrganizationApi* | [**getOrganizationSecurity**](docs/OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information
 *OrganizationApi* | [**getOrganizationSecurityUsers**](docs/OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list
-*OrganizationApi* | [**importOrganization**](docs/OrganizationApi.md#importOrganization) | **POST** /organizations/import | Import an organization
 *OrganizationApi* | [**registerOrganization**](docs/OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
 *OrganizationApi* | [**removeOrganizationAccessControl**](docs/OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization
 *OrganizationApi* | [**setOrganizationDefaultSecurity**](docs/OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | Set the Organization default security
@@ -169,7 +166,6 @@ Class | Method | HTTP request | Description
 *ScenarioApi* | [**getScenarioSecurityUsers**](docs/ScenarioApi.md#getScenarioSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users | Get the Scenario security users list
 *ScenarioApi* | [**getScenarioValidationStatusById**](docs/ScenarioApi.md#getScenarioValidationStatusById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/ValidationStatus | Get the validation status of an scenario
 *ScenarioApi* | [**getScenariosTree**](docs/ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
-*ScenarioApi* | [**importScenario**](docs/ScenarioApi.md#importScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/import | Import Scenario
 *ScenarioApi* | [**removeAllScenarioParameterValues**](docs/ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified
 *ScenarioApi* | [**removeScenarioAccessControl**](docs/ScenarioApi.md#removeScenarioAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Remove the specified access from the given Organization Scenario
 *ScenarioApi* | [**setScenarioDefaultSecurity**](docs/ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | Set the Scenario default security
@@ -185,7 +181,6 @@ Class | Method | HTTP request | Description
 *ScenariorunApi* | [**getScenarioRunStatus**](docs/ScenariorunApi.md#getScenarioRunStatus) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status | get the status for the ScenarioRun
 *ScenariorunApi* | [**getScenarioRuns**](docs/ScenariorunApi.md#getScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | get the list of ScenarioRuns for the Scenario
 *ScenariorunApi* | [**getWorkspaceScenarioRuns**](docs/ScenariorunApi.md#getWorkspaceScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns | get the list of ScenarioRuns for the Workspace
-*ScenariorunApi* | [**importScenarioRun**](docs/ScenariorunApi.md#importScenarioRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import | import a ScenarioRun for the Scenario
 *ScenariorunApi* | [**runScenario**](docs/ScenariorunApi.md#runScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run | run a ScenarioRun for the Scenario
 *ScenariorunApi* | [**searchScenarioRuns**](docs/ScenariorunApi.md#searchScenarioRuns) | **POST** /organizations/{organization_id}/scenarioruns/search | Search ScenarioRuns
 *ScenariorunApi* | [**startScenarioRunContainers**](docs/ScenariorunApi.md#startScenarioRunContainers) | **POST** /organizations/{organization_id}/scenarioruns/startcontainers | Start a new scenariorun with raw containers definition
@@ -199,7 +194,6 @@ Class | Method | HTTP request | Description
 *SolutionApi* | [**downloadRunTemplateHandler**](docs/SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file
 *SolutionApi* | [**findAllSolutions**](docs/SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
 *SolutionApi* | [**findSolutionById**](docs/SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
-*SolutionApi* | [**importSolution**](docs/SolutionApi.md#importSolution) | **POST** /organizations/{organization_id}/solutions/import | Import a solution
 *SolutionApi* | [**removeAllRunTemplates**](docs/SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
 *SolutionApi* | [**removeAllSolutionParameterGroups**](docs/SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified
 *SolutionApi* | [**removeAllSolutionParameters**](docs/SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified
@@ -212,6 +206,16 @@ Class | Method | HTTP request | Description
 *TwingraphApi* | [**importGraph**](docs/TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | 
 *TwingraphApi* | [**jobStatus**](docs/TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | 
 *TwingraphApi* | [**query**](docs/TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | 
+*UserApi* | [**authorizeUser**](docs/UserApi.md#authorizeUser) | **GET** /oauth2/authorize | Authorize an User with OAuth2. Delegated to configured OAuth2 service
+*UserApi* | [**findAllUsers**](docs/UserApi.md#findAllUsers) | **GET** /users | List all Users
+*UserApi* | [**findUserById**](docs/UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
+*UserApi* | [**getCurrentUser**](docs/UserApi.md#getCurrentUser) | **GET** /users/me | Get the details of the logged-in User
+*UserApi* | [**getOrganizationCurrentUser**](docs/UserApi.md#getOrganizationCurrentUser) | **GET** /organizations/{organization_id}/me | Get the details of a logged-in User with roles for an Organization
+*UserApi* | [**getWorkspaceCurrentUser**](docs/UserApi.md#getWorkspaceCurrentUser) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/me | Get the details of the logged-in user with roles for a Workspace
+*UserApi* | [**registerUser**](docs/UserApi.md#registerUser) | **POST** /users | Register a new user
+*UserApi* | [**testPlatform**](docs/UserApi.md#testPlatform) | **GET** /test | test platform API call
+*UserApi* | [**unregisterUser**](docs/UserApi.md#unregisterUser) | **DELETE** /users/{user_id} | Unregister an user
+*UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PATCH** /users/{user_id} | Update a User
 *ValidatorApi* | [**createValidator**](docs/ValidatorApi.md#createValidator) | **POST** /organizations/{organization_id}/datasets/validators | Register a new validator
 *ValidatorApi* | [**createValidatorRun**](docs/ValidatorApi.md#createValidatorRun) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/history | Register a new validator run
 *ValidatorApi* | [**deleteValidator**](docs/ValidatorApi.md#deleteValidator) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id} | Delete a validator
@@ -235,7 +239,6 @@ Class | Method | HTTP request | Description
 *WorkspaceApi* | [**getWorkspacePermissions**](docs/WorkspaceApi.md#getWorkspacePermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role} | Get the Workspace permission by given role
 *WorkspaceApi* | [**getWorkspaceSecurity**](docs/WorkspaceApi.md#getWorkspaceSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security | Get the Workspace security information
 *WorkspaceApi* | [**getWorkspaceSecurityUsers**](docs/WorkspaceApi.md#getWorkspaceSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/users | Get the Workspace security users list
-*WorkspaceApi* | [**importWorkspace**](docs/WorkspaceApi.md#importWorkspace) | **POST** /organizations/{organization_id}/workspaces/import | Import a workspace
 *WorkspaceApi* | [**removeWorkspaceAccessControl**](docs/WorkspaceApi.md#removeWorkspaceAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Remove the specified access from the given Organization Workspace
 *WorkspaceApi* | [**setWorkspaceDefaultSecurity**](docs/WorkspaceApi.md#setWorkspaceDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/default | Set the Workspace default security
 *WorkspaceApi* | [**updateWorkspace**](docs/WorkspaceApi.md#updateWorkspace) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id} | Update a workspace
@@ -299,6 +302,9 @@ Class | Method | HTTP request | Description
  - [TwinGraphImport](docs/TwinGraphImport.md)
  - [TwinGraphImportInfo](docs/TwinGraphImportInfo.md)
  - [TwinGraphQuery](docs/TwinGraphQuery.md)
+ - [User](docs/User.md)
+ - [UserOrganization](docs/UserOrganization.md)
+ - [UserWorkspace](docs/UserWorkspace.md)
  - [Validator](docs/Validator.md)
  - [ValidatorRun](docs/ValidatorRun.md)
  - [Workspace](docs/Workspace.md)
