@@ -8,8 +8,8 @@ info:
   license:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
-  title: Cosmo Tech Plaform API
-  version: 2.2.1
+  title: Cosmo Tech Platform API
+  version: 2.3.6-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -750,6 +750,31 @@ paths:
       tags:
       - twingraph
       x-accepts: application/json
+  /organizations/{organization_id}/twingraphs:
+    get:
+      description: Return the list of all graphs stored in the organization
+      operationId: findAllTwingraphs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/query:
     post:
       description: Run a query on a graph instance
@@ -797,6 +822,37 @@ paths:
       tags:
       - twingraph
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
+    get:
+      description: Return the metaData of the specified graph
+      operationId: getGraphMetaData
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response
+      tags:
+      - twingraph
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}:
     delete:
