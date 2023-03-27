@@ -28,7 +28,7 @@ import java.io.IOException;
  * a scenario run container artifact
  */
 @ApiModel(description = "a scenario run container artifact")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-13T09:47:28.580728339Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-27T13:58:07.411116249Z[Etc/UTC]")
 public class ScenarioRunContainerArtifact {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
