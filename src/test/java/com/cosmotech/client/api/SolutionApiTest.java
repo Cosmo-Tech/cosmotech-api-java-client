@@ -166,7 +166,9 @@ public class SolutionApiTest {
     @Test
     public void findAllSolutionsTest() throws ApiException {
         String organizationId = null;
-                List<Solution> response = api.findAllSolutions(organizationId);
+        Integer page = null;
+        Integer size = null;
+                List<Solution> response = api.findAllSolutions(organizationId, page, size);
         // TODO: test validations
     }
     
@@ -183,6 +185,22 @@ public class SolutionApiTest {
         String organizationId = null;
         String solutionId = null;
                 Solution response = api.findSolutionById(organizationId, solutionId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Import a solution
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importSolutionTest() throws ApiException {
+        String organizationId = null;
+        Solution solution = null;
+                Solution response = api.importSolution(organizationId, solution);
         // TODO: test validations
     }
     

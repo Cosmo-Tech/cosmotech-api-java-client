@@ -181,7 +181,9 @@ public class WorkspaceApiTest {
     @Test
     public void findAllWorkspacesTest() throws ApiException {
         String organizationId = null;
-                List<Workspace> response = api.findAllWorkspaces(organizationId);
+        Integer page = null;
+        Integer size = null;
+                List<Workspace> response = api.findAllWorkspaces(organizationId, page, size);
         // TODO: test validations
     }
     
@@ -264,6 +266,22 @@ public class WorkspaceApiTest {
         String organizationId = null;
         String workspaceId = null;
                 List<String> response = api.getWorkspaceSecurityUsers(organizationId, workspaceId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Import a workspace
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importWorkspaceTest() throws ApiException {
+        String organizationId = null;
+        Workspace workspace = null;
+                Workspace response = api.importWorkspace(organizationId, workspace);
         // TODO: test validations
     }
     

@@ -25,38 +25,39 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Scenario data download job
+ * a twin graph hash
  */
-@ApiModel(description = "Scenario data download job")
+@ApiModel(description = "a twin graph hash")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-04-27T11:44:37.401847806Z[Etc/UTC]")
-public class ScenarioDataDownloadJob {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+public class TwinGraphHash {
+  public static final String SERIALIZED_NAME_HASH = "hash";
+  @SerializedName(SERIALIZED_NAME_HASH)
+  private String hash;
 
-  public ScenarioDataDownloadJob() { 
+  public TwinGraphHash() { 
   }
 
-  
-  public ScenarioDataDownloadJob(
-     String id
-  ) {
-    this();
-    this.id = id;
+  public TwinGraphHash hash(String hash) {
+    
+    this.hash = hash;
+    return this;
   }
 
    /**
-   * the Scenario Data Download job identifier
-   * @return id
+   * the hash of the graph
+   * @return hash
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Scenario Data Download job identifier")
+  @ApiModelProperty(value = "the hash of the graph")
 
-  public String getId() {
-    return id;
+  public String getHash() {
+    return hash;
   }
 
 
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
 
 
   @Override
@@ -67,20 +68,20 @@ public class ScenarioDataDownloadJob {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScenarioDataDownloadJob scenarioDataDownloadJob = (ScenarioDataDownloadJob) o;
-    return Objects.equals(this.id, scenarioDataDownloadJob.id);
+    TwinGraphHash twinGraphHash = (TwinGraphHash) o;
+    return Objects.equals(this.hash, twinGraphHash.hash);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(hash);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScenarioDataDownloadJob {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class TwinGraphHash {\n");
+    sb.append("    hash: ").append(toIndentedString(hash)).append("\n");
     sb.append("}");
     return sb.toString();
   }

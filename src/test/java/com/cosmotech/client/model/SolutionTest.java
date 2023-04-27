@@ -54,6 +54,14 @@ public class SolutionTest {
     }
 
     /**
+     * Test the property 'organizationId'
+     */
+    @Test
+    public void organizationIdTest() {
+        // TODO: test organizationId
+    }
+
+    /**
      * Test the property 'key'
      */
     @Test

@@ -112,7 +112,9 @@ public class DatasetApiTest {
     @Test
     public void findAllDatasetsTest() throws ApiException {
         String organizationId = null;
-                List<Dataset> response = api.findAllDatasets(organizationId);
+        Integer page = null;
+        Integer size = null;
+                List<Dataset> response = api.findAllDatasets(organizationId, page, size);
         // TODO: test validations
     }
     
@@ -129,6 +131,22 @@ public class DatasetApiTest {
         String organizationId = null;
         String datasetId = null;
                 Dataset response = api.findDatasetById(organizationId, datasetId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Import a new Dataset
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importDatasetTest() throws ApiException {
+        String organizationId = null;
+        Dataset dataset = null;
+                Dataset response = api.importDataset(organizationId, dataset);
         // TODO: test validations
     }
     
@@ -160,7 +178,9 @@ public class DatasetApiTest {
     public void searchDatasetsTest() throws ApiException {
         String organizationId = null;
         DatasetSearch datasetSearch = null;
-                List<Dataset> response = api.searchDatasets(organizationId, datasetSearch);
+        Integer page = null;
+        Integer size = null;
+                List<Dataset> response = api.searchDatasets(organizationId, datasetSearch, page, size);
         // TODO: test validations
     }
     

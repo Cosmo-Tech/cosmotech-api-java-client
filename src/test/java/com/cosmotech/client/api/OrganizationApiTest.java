@@ -64,7 +64,9 @@ public class OrganizationApiTest {
      */
     @Test
     public void findAllOrganizationsTest() throws ApiException {
-                List<Organization> response = api.findAllOrganizations();
+        Integer page = null;
+        Integer size = null;
+                List<Organization> response = api.findAllOrganizations(page, size);
         // TODO: test validations
     }
     
@@ -156,6 +158,21 @@ public class OrganizationApiTest {
     public void getOrganizationSecurityUsersTest() throws ApiException {
         String organizationId = null;
                 List<String> response = api.getOrganizationSecurityUsers(organizationId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Import an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importOrganizationTest() throws ApiException {
+        Organization organization = null;
+                Organization response = api.importOrganization(organization);
         // TODO: test validations
     }
     

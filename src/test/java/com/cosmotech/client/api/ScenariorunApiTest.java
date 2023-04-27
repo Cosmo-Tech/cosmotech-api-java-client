@@ -181,7 +181,9 @@ public class ScenariorunApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-                List<ScenarioRun> response = api.getScenarioRuns(organizationId, workspaceId, scenarioId);
+        Integer page = null;
+        Integer size = null;
+                List<ScenarioRun> response = api.getScenarioRuns(organizationId, workspaceId, scenarioId, page, size);
         // TODO: test validations
     }
     
@@ -197,7 +199,27 @@ public class ScenariorunApiTest {
     public void getWorkspaceScenarioRunsTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-                List<ScenarioRun> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId);
+        Integer page = null;
+        Integer size = null;
+                List<ScenarioRun> response = api.getWorkspaceScenarioRuns(organizationId, workspaceId, page, size);
+        // TODO: test validations
+    }
+    
+    /**
+     * import a ScenarioRun for the Scenario
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void importScenarioRunTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String scenarioId = null;
+        ScenarioRun scenarioRun = null;
+                ScenarioRun response = api.importScenarioRun(organizationId, workspaceId, scenarioId, scenarioRun);
         // TODO: test validations
     }
     
@@ -230,7 +252,9 @@ public class ScenariorunApiTest {
     public void searchScenarioRunsTest() throws ApiException {
         String organizationId = null;
         ScenarioRunSearch scenarioRunSearch = null;
-                List<ScenarioRun> response = api.searchScenarioRuns(organizationId, scenarioRunSearch);
+        Integer page = null;
+        Integer size = null;
+                List<ScenarioRun> response = api.searchScenarioRuns(organizationId, scenarioRunSearch, page, size);
         // TODO: test validations
     }
     
