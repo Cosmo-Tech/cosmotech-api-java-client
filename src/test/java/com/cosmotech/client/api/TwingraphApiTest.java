@@ -137,8 +137,8 @@ public class TwingraphApiTest {
         String organizationId = null;
         String graphId = null;
         String modelType = null;
-        List<String> requestBody = null;
-                api.deleteEntities(organizationId, graphId, modelType, requestBody);
+        List<String> ids = null;
+                api.deleteEntities(organizationId, graphId, modelType, ids);
         // TODO: test validations
     }
     
@@ -186,8 +186,8 @@ public class TwingraphApiTest {
         String organizationId = null;
         String graphId = null;
         String modelType = null;
-        List<String> requestBody = null;
-                List<Object> response = api.getEntities(organizationId, graphId, modelType, requestBody);
+        List<String> ids = null;
+                List<Object> response = api.getEntities(organizationId, graphId, modelType, ids);
         // TODO: test validations
     }
     

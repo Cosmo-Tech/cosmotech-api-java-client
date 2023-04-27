@@ -3638,21 +3638,21 @@ paths:
           - relationship
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                type: string
-              type: array
-        description: the entities to delete
+      - description: the entities to delete
+        explode: true
+        in: query
+        name: ids
         required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           description: Successful response
       tags:
       - twingraph
-      x-contentType: application/json
       x-accepts: application/json
     get:
       description: get entities in a graph instance
@@ -3685,15 +3685,16 @@ paths:
           - relationship
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                type: string
-              type: array
-        description: the entities to get
+      - description: the entities to get
+        explode: true
+        in: query
+        name: ids
         required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -3705,7 +3706,6 @@ paths:
           description: Successful response
       tags:
       - twingraph
-      x-contentType: application/json
       x-accepts: application/json
     patch:
       description: update entities in a graph instance

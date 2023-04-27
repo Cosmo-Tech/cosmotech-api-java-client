@@ -382,7 +382,7 @@ null (empty response body)
 
 <a name="deleteEntities"></a>
 # **deleteEntities**
-> deleteEntities(organizationId, graphId, modelType, requestBody)
+> deleteEntities(organizationId, graphId, modelType, ids)
 
 
 
@@ -411,9 +411,9 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
     String modelType = "node"; // String | the entity model type
-    List<String> requestBody = Arrays.asList(); // List<String> | the entities to delete
+    List<String> ids = Arrays.asList(); // List<String> | the entities to delete
     try {
-      apiInstance.deleteEntities(organizationId, graphId, modelType, requestBody);
+      apiInstance.deleteEntities(organizationId, graphId, modelType, ids);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#deleteEntities");
       System.err.println("Status code: " + e.getCode());
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
  **modelType** | **String**| the entity model type | [enum: node, relationship]
- **requestBody** | [**List&lt;String&gt;**](String.md)| the entities to delete |
+ **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete |
 
 ### Return type
 
@@ -444,7 +444,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 ### HTTP response details
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 
 <a name="getEntities"></a>
 # **getEntities**
-> List&lt;Object&gt; getEntities(organizationId, graphId, modelType, requestBody)
+> List&lt;Object&gt; getEntities(organizationId, graphId, modelType, ids)
 
 
 
@@ -619,9 +619,9 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
     String modelType = "node"; // String | the entity model type
-    List<String> requestBody = Arrays.asList(); // List<String> | the entities to get
+    List<String> ids = Arrays.asList(); // List<String> | the entities to get
     try {
-      List<Object> result = apiInstance.getEntities(organizationId, graphId, modelType, requestBody);
+      List<Object> result = apiInstance.getEntities(organizationId, graphId, modelType, ids);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#getEntities");
@@ -641,7 +641,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
  **modelType** | **String**| the entity model type | [enum: node, relationship]
- **requestBody** | [**List&lt;String&gt;**](String.md)| the entities to get |
+ **ids** | [**List&lt;String&gt;**](String.md)| the entities to get |
 
 ### Return type
 
@@ -653,7 +653,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

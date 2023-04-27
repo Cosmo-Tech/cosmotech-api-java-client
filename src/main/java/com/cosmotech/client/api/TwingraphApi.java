@@ -823,7 +823,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to delete (required)
+     * @param ids the entities to delete (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -833,7 +833,7 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteEntitiesCall(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteEntitiesCall(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -848,7 +848,7 @@ public class TwingraphApi {
             basePath = null;
         }
 
-        Object localVarPostBody = requestBody;
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/twingraph/{graph_id}/{modelType}"
@@ -862,6 +862,10 @@ public class TwingraphApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (ids != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "ids", ids));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -871,7 +875,7 @@ public class TwingraphApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -883,7 +887,7 @@ public class TwingraphApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteEntitiesValidateBeforeCall(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteEntitiesValidateBeforeCall(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -900,13 +904,13 @@ public class TwingraphApi {
             throw new ApiException("Missing the required parameter 'modelType' when calling deleteEntities(Async)");
         }
         
-        // verify the required parameter 'requestBody' is set
-        if (requestBody == null) {
-            throw new ApiException("Missing the required parameter 'requestBody' when calling deleteEntities(Async)");
+        // verify the required parameter 'ids' is set
+        if (ids == null) {
+            throw new ApiException("Missing the required parameter 'ids' when calling deleteEntities(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deleteEntitiesCall(organizationId, graphId, modelType, requestBody, _callback);
+        okhttp3.Call localVarCall = deleteEntitiesCall(organizationId, graphId, modelType, ids, _callback);
         return localVarCall;
 
     }
@@ -917,7 +921,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to delete (required)
+     * @param ids the entities to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -925,8 +929,8 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public void deleteEntities(String organizationId, String graphId, String modelType, List<String> requestBody) throws ApiException {
-        deleteEntitiesWithHttpInfo(organizationId, graphId, modelType, requestBody);
+    public void deleteEntities(String organizationId, String graphId, String modelType, List<String> ids) throws ApiException {
+        deleteEntitiesWithHttpInfo(organizationId, graphId, modelType, ids);
     }
 
     /**
@@ -935,7 +939,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to delete (required)
+     * @param ids the entities to delete (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -944,8 +948,8 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deleteEntitiesWithHttpInfo(String organizationId, String graphId, String modelType, List<String> requestBody) throws ApiException {
-        okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, modelType, requestBody, null);
+    public ApiResponse<Void> deleteEntitiesWithHttpInfo(String organizationId, String graphId, String modelType, List<String> ids) throws ApiException {
+        okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, modelType, ids, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -955,7 +959,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to delete (required)
+     * @param ids the entities to delete (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -965,9 +969,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteEntitiesAsync(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteEntitiesAsync(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, modelType, requestBody, _callback);
+        okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, modelType, ids, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -1242,7 +1246,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to get (required)
+     * @param ids the entities to get (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1252,7 +1256,7 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEntitiesCall(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getEntitiesCall(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -1267,7 +1271,7 @@ public class TwingraphApi {
             basePath = null;
         }
 
-        Object localVarPostBody = requestBody;
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/twingraph/{graph_id}/{modelType}"
@@ -1281,6 +1285,10 @@ public class TwingraphApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (ids != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "ids", ids));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1290,7 +1298,7 @@ public class TwingraphApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1302,7 +1310,7 @@ public class TwingraphApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEntitiesValidateBeforeCall(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getEntitiesValidateBeforeCall(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -1319,13 +1327,13 @@ public class TwingraphApi {
             throw new ApiException("Missing the required parameter 'modelType' when calling getEntities(Async)");
         }
         
-        // verify the required parameter 'requestBody' is set
-        if (requestBody == null) {
-            throw new ApiException("Missing the required parameter 'requestBody' when calling getEntities(Async)");
+        // verify the required parameter 'ids' is set
+        if (ids == null) {
+            throw new ApiException("Missing the required parameter 'ids' when calling getEntities(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getEntitiesCall(organizationId, graphId, modelType, requestBody, _callback);
+        okhttp3.Call localVarCall = getEntitiesCall(organizationId, graphId, modelType, ids, _callback);
         return localVarCall;
 
     }
@@ -1336,7 +1344,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to get (required)
+     * @param ids the entities to get (required)
      * @return List&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1345,8 +1353,8 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public List<Object> getEntities(String organizationId, String graphId, String modelType, List<String> requestBody) throws ApiException {
-        ApiResponse<List<Object>> localVarResp = getEntitiesWithHttpInfo(organizationId, graphId, modelType, requestBody);
+    public List<Object> getEntities(String organizationId, String graphId, String modelType, List<String> ids) throws ApiException {
+        ApiResponse<List<Object>> localVarResp = getEntitiesWithHttpInfo(organizationId, graphId, modelType, ids);
         return localVarResp.getData();
     }
 
@@ -1356,7 +1364,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to get (required)
+     * @param ids the entities to get (required)
      * @return ApiResponse&lt;List&lt;Object&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1365,8 +1373,8 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Object>> getEntitiesWithHttpInfo(String organizationId, String graphId, String modelType, List<String> requestBody) throws ApiException {
-        okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, modelType, requestBody, null);
+    public ApiResponse<List<Object>> getEntitiesWithHttpInfo(String organizationId, String graphId, String modelType, List<String> ids) throws ApiException {
+        okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, modelType, ids, null);
         Type localVarReturnType = new TypeToken<List<Object>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1377,7 +1385,7 @@ public class TwingraphApi {
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
      * @param modelType the entity model type (required)
-     * @param requestBody the entities to get (required)
+     * @param ids the entities to get (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1387,9 +1395,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEntitiesAsync(String organizationId, String graphId, String modelType, List<String> requestBody, final ApiCallback<List<Object>> _callback) throws ApiException {
+    public okhttp3.Call getEntitiesAsync(String organizationId, String graphId, String modelType, List<String> ids, final ApiCallback<List<Object>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, modelType, requestBody, _callback);
+        okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, modelType, ids, _callback);
         Type localVarReturnType = new TypeToken<List<Object>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
