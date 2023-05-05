@@ -28,7 +28,7 @@ import java.io.IOException;
  * Configuration of scenario runs deletion automatic mecanism
  */
 @ApiModel(description = "Configuration of scenario runs deletion automatic mecanism")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-05T13:53:16.375298936Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-05T15:32:44.774651405Z[Etc/UTC]")
 public class DeleteHistoricalData {
   public static final String SERIALIZED_NAME_ENABLE = "enable";
   @SerializedName(SERIALIZED_NAME_ENABLE)

@@ -28,7 +28,7 @@ import java.io.IOException;
  * define cpus and memory needs
  */
 @ApiModel(description = "define cpus and memory needs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-05T13:53:16.375298936Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-05T15:32:44.774651405Z[Etc/UTC]")
 public class ContainerResourceSizeInfo {
   public static final String SERIALIZED_NAME_CPU = "cpu";
   @SerializedName(SERIALIZED_NAME_CPU)
