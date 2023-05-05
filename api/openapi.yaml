@@ -8,8 +8,8 @@ info:
   license:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
-  title: Cosmo Tech Platform API
-  version: 2.3.7
+  title: Cosmo Tech Plaform API
+  version: 3.0.1-dev
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -30,8 +30,6 @@ tags:
   name: scenariorun
 - description: Scenario Management
   name: scenario
-- description: Twin Graph Management
-  name: twingraph
 - description: User Management
   name: user
 - description: Workspace Management
@@ -1430,15 +1428,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
       responses:
         "204":
           description: Request succeeded
@@ -1471,15 +1460,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
       responses:
         "204":
           description: Request succeeded
@@ -1489,55 +1469,6 @@ paths:
           description: the Organization or Workspace specified is unknown or you don't
             have access to it
       summary: Delete all historical ScenarioRuns in the Workspace
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Delete all historical ScenarioRuns in the Scenario
       tags:
       - scenariorun
       x-accepts: application/json
@@ -1845,6 +1776,45 @@ paths:
       - scenariorun
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
+    delete:
+      operationId: deleteHistoricalScenarioRunsByScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
     get:
       operationId: getScenarioRuns
       parameters:
@@ -3040,215 +3010,6 @@ paths:
       tags:
       - scenario
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/import:
-    post:
-      description: Import a new version of a twin graph
-      operationId: importGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-          application/yaml:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-        description: the graph to import
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphImportInfo'
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/job/{job_id}/status:
-    get:
-      description: Get the status of a job
-      operationId: jobStatus
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the job identifier
-        explode: false
-        in: path
-        name: job_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/yaml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraphs:
-    get:
-      description: Return the list of all graphs stored in the organization
-      operationId: findAllTwingraphs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/query:
-    post:
-      description: Run a query on a graph instance
-      operationId: query
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-          application/yaml:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-        description: the query to run
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
-    get:
-      description: Return the metaData of the specified graph
-      operationId: getGraphMetaData
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}:
-    delete:
-      description: Launch a mass delete job
-      operationId: delete
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
   /users:
     get:
       operationId: findAllUsers
@@ -4316,59 +4077,11 @@ paths:
                 type: array
           description: The Workspace security users list
         "404":
-          description: the Workspace or the User specified is unknown or you don't
-            have access to them
+          description: the Workspace specified is unknown or you don't have access
+            to it
       summary: Get the Workspace security users list
       tags:
       - workspace
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/secret:
-    post:
-      operationId: createSecret
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/WorkspaceSecretExample'
-            schema:
-              $ref: '#/components/schemas/WorkspaceSecret'
-          application/yaml:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/WorkspaceSecretExample'
-            schema:
-              format: binary
-              type: string
-        description: the definition of the secret
-        required: true
-      responses:
-        "201":
-          description: Request succeeded
-        "404":
-          description: the Workspace or the User specified is unknown or you don't
-            have access to them
-      summary: Create a secret for the Workspace
-      tags:
-      - workspace
-      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/datasets:
     get:
@@ -5477,10 +5190,12 @@ components:
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
     BreweryScenarioAccessControl:
       description: Set an access control for a user to a workspace.
       summary: Set an access control.
@@ -5520,10 +5235,12 @@ components:
           varType: string
           value: ""
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
     BreweryScenarioRole:
       description: Set a Role for a User to a Scenario.
       summary: Set a Scenario Role.
@@ -5699,10 +5416,12 @@ components:
           varType: string
           value: ""
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
     BrewerySearch:
       description: Brewery search ScenarioRun of Workspace 1 in Running state example
       summary: Brewery search ScenarioRun example
@@ -5909,11 +5628,6 @@ components:
       value:
         datasetTags:
         - dataset
-    GetAllNodes:
-      description: Get all nodes query (be careful if you want to query large graph)
-      summary: Get all nodes query
-      value:
-        query: MATCH(n) RETURN n
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization
@@ -6156,24 +5870,6 @@ components:
           - validate
           - write_security
           - delete
-    RunJobImportWithADT:
-      description: Run import job with ADT as source
-      summary: Run import job with ADT as source
-      value:
-        source:
-          location: https://my-adt-name-instance.api.weu.digitaltwins.azure.net
-          type: ADT
-        graphId: my-graph-id
-    RunJobImportWithStorage:
-      description: Run import job with Storage as source
-      summary: Run import job with Storage as source
-      value:
-        source:
-          name: my-storage-account-name
-          location: my-container-name
-          path: my-data-folder
-          type: Storage
-        graphId: my-graph-id
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -6201,10 +5897,12 @@ components:
           value: ""
           inherited: true
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -6233,10 +5931,12 @@ components:
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
       - id: "3"
         name: Brewery Analysis name no change
         description: Brewery analysis with no change on name prefix
@@ -6264,10 +5964,12 @@ components:
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
     ThreeScenarios:
       description: Three Scenarios with parent master Scenario and two children Scenarios
       summary: Three Scenarios with parent and children
@@ -6295,10 +5997,12 @@ components:
           varType: string
           value: ""
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
       - id: "2"
         name: Brewery Analysis name example
         description: Brewery analysis with example as name prefix
@@ -6328,10 +6032,12 @@ components:
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
       - id: "3"
         name: Brewery Analysis name no change
         description: Brewery analysis with no change on name prefix
@@ -6361,10 +6067,12 @@ components:
           workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
           workflowName: workflow-s-dwpxbzmdxn-zkvd7
         security:
-          default: viewer
+          default:
+          - viewer
           accessControlList:
           - id: alice.doe@cosmotech.com
-            role: admin
+            roles:
+            - admin
     ThreeValidatorRun:
       description: a list of Validator Run for the Brewery Dataset
       summary: Brewery ADT Dataset Validator Run list
@@ -6517,11 +6225,6 @@ components:
       - fileName: myData.csv
       - fileName: myData2.csv
       - fileName: myData3.csv
-    WorkspaceSecretExample:
-      description: a shared policy example
-      summary: a shared access policy
-      value:
-        dedicatedEventHubKey: xxx
   requestBodies:
     inline_object:
       content:
@@ -8554,90 +8257,10 @@ components:
             $ref: '#/components/schemas/RunTemplate'
           type: array
       type: object
-    SourceInfo:
-      description: Source job import information
-      example:
-        path: path
-        name: name
-        location: location
-        type: ADT
-      properties:
-        name:
-          description: the source name containing the files to import
-          type: string
-        location:
-          description: the source location containing the files to import
-          type: string
-        path:
-          description: the source location containing the files to import
-          type: string
-        type:
-          description: the source type containing the files to import
-          enum:
-          - ADT
-          - Storage
-          type: string
-      required:
-      - location
-      - type
-      type: object
     TranslatedLabels:
       additionalProperties:
         type: string
       description: a translated label with key as ISO 639-1 code
-      type: object
-    TwinGraphImport:
-      description: a twin graph import info
-      example:
-        source:
-          path: path
-          name: name
-          location: location
-          type: ADT
-        graphId: graphId
-        version: version
-      properties:
-        source:
-          $ref: '#/components/schemas/SourceInfo'
-        graphId:
-          description: the graph id to import to
-          type: string
-        version:
-          description: "The version of the graph to import to. \nWhen not set, the\
-            \ last version before import is upgraded by 1.\nWhen set, the targeted\
-            \ graph is replaced\n"
-          type: string
-      required:
-      - graphId
-      - source
-      type: object
-    TwinGraphImportInfo:
-      description: a twin graph query in cypher language
-      example:
-        jobId: jobId
-        graphName: graphName
-      properties:
-        jobId:
-          description: the import job id
-          type: string
-        graphName:
-          description: the twin graph name
-          type: string
-      type: object
-    TwinGraphQuery:
-      description: a twin graph query in cypher language
-      example:
-        query: query
-        version: version
-      properties:
-        version:
-          description: Twin graph version
-          type: string
-        query:
-          description: the query in cypher language
-          type: string
-      required:
-      - query
       type: object
     User:
       description: a User
@@ -8873,10 +8496,8 @@ components:
           url: url
           iframes:
             key: "{}"
-        sendScenarioRunToEventHub: true
         description: description
         ownerId: ownerId
-        dedicatedEventHubSasKeyName: dedicatedEventHubSasKeyName
         version: version
         sendScenarioMetadataToEventHub: false
         tags:
@@ -8891,7 +8512,6 @@ components:
           solutionId: solutionId
           defaultRunTemplateDataset:
             key: "{}"
-        dedicatedEventHubAuthenticationStrategy: dedicatedEventHubAuthenticationStrategy
         name: name
         id: id
         sendInputToDataWarehouse: true
@@ -8938,19 +8558,6 @@ components:
             Namespace for this Workspace. The Event Hub Namespace must be named \'<organization_id\>-<workspace_id\>\'
             (in lower case). This Namespace must also contain two Event Hubs named
             \'probesmeasures\' and \'scenariorun\'.
-          type: boolean
-        dedicatedEventHubSasKeyName:
-          description: "the Dedicated Event Hub SAS key name, default to RootManageSharedAccessKey.\
-            \ Use the /secret endpoint to set the key value"
-          type: string
-        dedicatedEventHubAuthenticationStrategy:
-          description: "the Event Hub authentication strategy, SHARED_ACCESS_POLICY\
-            \ or TENANT_CLIENT_CREDENTIALS. Default to the one defined for the tenant."
-          type: string
-        sendScenarioRunToEventHub:
-          default: true
-          description: default setting for all Scenarios and Run Templates to set
-            whether or not the ScenarioRun is send to the Event Hub
           type: boolean
         sendScenarioMetadataToEventHub:
           default: false
@@ -9002,15 +8609,6 @@ components:
           type: string
       required:
       - role
-      type: object
-    WorkspaceSecret:
-      description: the secret definition
-      example:
-        dedicatedEventHubKey: dedicatedEventHubKey
-      properties:
-        dedicatedEventHubKey:
-          description: the dedicated event hub shared access key
-          type: string
       type: object
     WorkspaceSecurity:
       description: the workspace security information

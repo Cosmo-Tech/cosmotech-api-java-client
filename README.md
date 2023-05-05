@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
-Cosmo Tech Platform API
-- API version: 2.3.7
-  - Build date: 2023-05-05T10:09:58.238992049Z[Etc/UTC]
+Cosmo Tech Plaform API
+- API version: 3.0.1-dev
+  - Build date: 2023-05-05T10:10:37.559279925Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>2.3.7</version>
+  <version>3.0.1-dev</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:2.3.7"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.0.1-dev"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-2.3.7.jar`
+* `target/cosmotech-api-java-client-3.0.1-dev.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -172,8 +172,8 @@ Class | Method | HTTP request | Description
 *ScenarioApi* | [**updateScenario**](docs/ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
 *ScenarioApi* | [**updateScenarioAccessControl**](docs/ScenarioApi.md#updateScenarioAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Update the specified access to User for a Scenario
 *ScenariorunApi* | [**deleteHistoricalDataOrganization**](docs/ScenariorunApi.md#deleteHistoricalDataOrganization) | **DELETE** /organizations/{organization_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Organization
-*ScenariorunApi* | [**deleteHistoricalDataScenario**](docs/ScenariorunApi.md#deleteHistoricalDataScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Scenario
 *ScenariorunApi* | [**deleteHistoricalDataWorkspace**](docs/ScenariorunApi.md#deleteHistoricalDataWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata | Delete all historical ScenarioRuns in the Workspace
+*ScenariorunApi* | [**deleteHistoricalScenarioRunsByScenario**](docs/ScenariorunApi.md#deleteHistoricalScenarioRunsByScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | Delete all historical ScenarioRuns for the Scenario
 *ScenariorunApi* | [**deleteScenarioRun**](docs/ScenariorunApi.md#deleteScenarioRun) | **DELETE** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Delete a scenariorun
 *ScenariorunApi* | [**findScenarioRunById**](docs/ScenariorunApi.md#findScenarioRunById) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id} | Get the details of a scenariorun
 *ScenariorunApi* | [**getScenarioRunCumulatedLogs**](docs/ScenariorunApi.md#getScenarioRunCumulatedLogs) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs | Get the cumulated logs of a scenariorun
@@ -200,12 +200,6 @@ Class | Method | HTTP request | Description
 *SolutionApi* | [**updateSolution**](docs/SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution
 *SolutionApi* | [**updateSolutionRunTemplate**](docs/SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template
 *SolutionApi* | [**uploadRunTemplateHandler**](docs/SolutionApi.md#uploadRunTemplateHandler) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload | Upload a Run Template step handler zip file
-*TwingraphApi* | [**delete**](docs/TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | 
-*TwingraphApi* | [**findAllTwingraphs**](docs/TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | 
-*TwingraphApi* | [**getGraphMetaData**](docs/TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | 
-*TwingraphApi* | [**importGraph**](docs/TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | 
-*TwingraphApi* | [**jobStatus**](docs/TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | 
-*TwingraphApi* | [**query**](docs/TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | 
 *UserApi* | [**authorizeUser**](docs/UserApi.md#authorizeUser) | **GET** /oauth2/authorize | Authorize an User with OAuth2. Delegated to configured OAuth2 service
 *UserApi* | [**findAllUsers**](docs/UserApi.md#findAllUsers) | **GET** /users | List all Users
 *UserApi* | [**findUserById**](docs/UserApi.md#findUserById) | **GET** /users/{user_id} | Get the details of an user
@@ -226,7 +220,6 @@ Class | Method | HTTP request | Description
 *ValidatorApi* | [**findValidatorRunById**](docs/ValidatorApi.md#findValidatorRunById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Get the details of a validator run
 *ValidatorApi* | [**runValidator**](docs/ValidatorApi.md#runValidator) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/run | Run a Validator
 *WorkspaceApi* | [**addWorkspaceAccessControl**](docs/WorkspaceApi.md#addWorkspaceAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/access | Add a control access to the Workspace
-*WorkspaceApi* | [**createSecret**](docs/WorkspaceApi.md#createSecret) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/secret | Create a secret for the Workspace
 *WorkspaceApi* | [**createWorkspace**](docs/WorkspaceApi.md#createWorkspace) | **POST** /organizations/{organization_id}/workspaces | Create a new workspace
 *WorkspaceApi* | [**deleteAllWorkspaceFiles**](docs/WorkspaceApi.md#deleteAllWorkspaceFiles) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/files | Delete all Workspace files
 *WorkspaceApi* | [**deleteWorkspace**](docs/WorkspaceApi.md#deleteWorkspace) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id} | Delete a workspace
@@ -298,10 +291,6 @@ Class | Method | HTTP request | Description
  - [ScenarioSecurity](docs/ScenarioSecurity.md)
  - [ScenarioValidationStatus](docs/ScenarioValidationStatus.md)
  - [Solution](docs/Solution.md)
- - [SourceInfo](docs/SourceInfo.md)
- - [TwinGraphImport](docs/TwinGraphImport.md)
- - [TwinGraphImportInfo](docs/TwinGraphImportInfo.md)
- - [TwinGraphQuery](docs/TwinGraphQuery.md)
  - [User](docs/User.md)
  - [UserOrganization](docs/UserOrganization.md)
  - [UserWorkspace](docs/UserWorkspace.md)
@@ -311,7 +300,6 @@ Class | Method | HTTP request | Description
  - [WorkspaceAccessControl](docs/WorkspaceAccessControl.md)
  - [WorkspaceFile](docs/WorkspaceFile.md)
  - [WorkspaceRole](docs/WorkspaceRole.md)
- - [WorkspaceSecret](docs/WorkspaceSecret.md)
  - [WorkspaceSecurity](docs/WorkspaceSecurity.md)
  - [WorkspaceSolution](docs/WorkspaceSolution.md)
  - [WorkspaceWebApp](docs/WorkspaceWebApp.md)
