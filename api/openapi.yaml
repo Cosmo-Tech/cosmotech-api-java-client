@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 2.4.1-SNAPSHOT
+  version: 2.3.7
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -32,6 +32,8 @@ tags:
   name: scenario
 - description: Twin Graph Management
   name: twingraph
+- description: User Management
+  name: user
 - description: Workspace Management
   name: workspace
 - description: Dataset Management
@@ -40,23 +42,6 @@ paths:
   /connectors:
     get:
       operationId: findAllConnectors
-      parameters:
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -159,56 +144,9 @@ paths:
       tags:
       - connector
       x-accepts: application/json
-  /connectors/import:
-    post:
-      operationId: importConnector
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              $ref: '#/components/schemas/Connector'
-        description: the Connector to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
-      summary: Import existing connector
-      tags:
-      - connector
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations:
     get:
       operationId: findAllOrganizations
-      parameters:
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -847,43 +785,6 @@ paths:
       tags:
       - organization
       x-accepts: application/json
-  /organizations/import:
-    post:
-      operationId: importOrganization
-      requestBody:
-        content:
-          application/json:
-            examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
-            schema:
-              $ref: '#/components/schemas/Organization'
-          application/yaml:
-            examples:
-              NewOrganizationIn:
-                $ref: '#/components/examples/NewOrganizationIn'
-            schema:
-              format: binary
-              type: string
-        description: the Organization to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                CosmoOrganization:
-                  $ref: '#/components/examples/CosmoOrganization'
-              schema:
-                $ref: '#/components/schemas/Organization'
-          description: the Organization details
-        "400":
-          description: Bad request
-      summary: Import an organization
-      tags:
-      - organization
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/solutions:
     get:
       operationId: findAllSolutions
@@ -896,22 +797,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1533,52 +1418,6 @@ paths:
       - solution
       x-contentType: application/octet-stream
       x-accepts: application/json
-  /organizations/{organization_id}/solutions/import:
-    post:
-      operationId: importSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              $ref: '#/components/schemas/Solution'
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              format: binary
-              type: string
-        description: the Solution to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Import a solution
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/scenarioruns/historicaldata:
     delete:
       operationId: deleteHistoricalDataOrganization
@@ -1714,22 +1553,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       requestBody:
         content:
           application/json:
@@ -2005,22 +1828,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -2065,22 +1872,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -2173,56 +1964,6 @@ paths:
       tags:
       - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
-    post:
-      operationId: importScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScenarioRun'
-        description: the ScenarioRun to import
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: import a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     delete:
       operationId: deleteAllScenarios
@@ -2272,22 +2013,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -2389,22 +2114,6 @@ paths:
         schema:
           $ref: '#/components/schemas/ScenarioValidationStatus'
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -3331,55 +3040,6 @@ paths:
       tags:
       - scenario
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/import:
-    post:
-      operationId: importScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              MasterScenario:
-                $ref: '#/components/examples/BreweryScenarioIn'
-              ChildScenario:
-                $ref: '#/components/examples/BreweryChildScenarioIn'
-            schema:
-              $ref: '#/components/schemas/Scenario'
-        description: the Scenario to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Scenario:
-                  $ref: '#/components/examples/BreweryScenario'
-              schema:
-                $ref: '#/components/schemas/Scenario'
-          description: the scenario details
-        "400":
-          description: Bad request
-      summary: Import Scenario
-      tags:
-      - scenario
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/twingraph/import:
     post:
       description: Import a new version of a twin graph
@@ -3531,294 +3191,6 @@ paths:
       - twingraph
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/batch-query:
-    post:
-      description: Run a query on a graph instance and return the result as a zip
-        file in async mode
-      operationId: batchQuery
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-        description: the query to run
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphHash'
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/bulk-query/download/{hash}:
-    get:
-      description: Download a graph compressed in a zip file
-      operationId: downloadGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph download identifier
-        explode: false
-        in: path
-        name: hash
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/octet-stream:
-              schema:
-                format: binary
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/octet-stream
-  /organizations/{organization_id}/twingraph/{graph_id}/{modelType}:
-    delete:
-      description: delete entities in a graph instance
-      operationId: deleteEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      - description: the entities to delete
-        explode: true
-        in: query
-        name: ids
-        required: true
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    get:
-      description: get entities in a graph instance
-      operationId: getEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      - description: the entities to get
-        explode: true
-        in: query
-        name: ids
-        required: true
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    patch:
-      description: update entities in a graph instance
-      operationId: updateEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              QueryEntities:
-                $ref: '#/components/examples/QueryEntities'
-            schema:
-              items:
-                $ref: '#/components/schemas/GraphProperties'
-              type: array
-        description: the entities to update
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-    post:
-      description: create new entities in a graph instance
-      operationId: createEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              QueryEntities:
-                $ref: '#/components/examples/QueryEntities'
-            schema:
-              items:
-                $ref: '#/components/schemas/GraphProperties'
-              type: array
-        description: the entities to create
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/metadata:
     get:
       description: Return the metaData of the specified graph
@@ -3850,49 +3222,6 @@ paths:
       tags:
       - twingraph
       x-accepts: application/json
-    patch:
-      description: Update the metaData of the specified graph
-      operationId: updateGraphMetaData
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            example:
-              graphName: My Awesome Graph
-              graphRotation: "2"
-            schema:
-              additionalProperties:
-                type: string
-              type: object
-        description: the metaData to update
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}:
     delete:
       description: Launch a mass delete job
@@ -3920,130 +3249,266 @@ paths:
       tags:
       - twingraph
       x-accepts: application/json
+  /users:
+    get:
+      operationId: findAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/TwoUsers'
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: the user details
+      summary: List all Users
+      tags:
+      - user
+      x-accepts: application/json
     post:
-      description: Create a new graph
-      operationId: createGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
+      operationId: registerUser
       requestBody:
         content:
-          application/octet-stream:
+          application/json:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+          application/yaml:
+            examples:
+              BobCreateIn:
+                $ref: '#/components/examples/BobCreateIn'
             schema:
               format: binary
               type: string
-        required: false
+        description: the User to register
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the user details
+        "400":
+          description: Bad request
+      summary: Register a new user
+      tags:
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{user_id}:
+    delete:
+      operationId: unregisterUser
+      parameters:
+      - description: the User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "204":
-          description: Successful response
+          description: Request succeeded
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Unregister an user
       tags:
-      - twingraph
-      x-contentType: application/octet-stream
+      - user
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/batch:
-    post:
-      description: 'Async batch update by loading a CSV file on a graph instance '
-      operationId: batchUploadUpdate
+    get:
+      operationId: findUserById
       parameters:
-      - description: the Organization identifier
+      - description: the User identifier
         explode: false
         in: path
-        name: organization_id
+        name: user_id
         required: true
         schema:
           type: string
         style: simple
-      - description: the Graph Identifier
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Get the details of an user
+      tags:
+      - user
+      x-accepts: application/json
+    patch:
+      operationId: updateUser
+      parameters:
+      - description: the User identifier
         explode: false
         in: path
-        name: graph_id
+        name: user_id
         required: true
         schema:
           type: string
         style: simple
-      - examples:
-          Create Nodes:
-            description: |
-              Nodes creation and column mapping with CSV Header: $id, $name, $rank
-              CSV Separator: ,
-            value:
-              query: "CREATE (:Person {id: toInteger($id), name: $name, rank: toInteger($rank)})"
-          Update Nodes:
-            description: |
-              Nodes updating and column mapping with CSV Header: $id, $rank
-              CSV Separator: ,
-            value:
-              query: "MATCH (p:Person {id: toInteger($id)}) SET p.rank = $rank"
-          Create Relationships:
-            description: |
-              Relationship creation and column mapping with CSV Header: $id, $rank
-              CSV Separator: ,
-            value:
-              query: |
-                MERGE (p1:Person {id: toInteger($UserId1)})
-                MERGE (p2:Person {id: toInteger($UserId2)})
-                CREATE (p1)-[:FOLLOWS {reaction_count: $reaction_count}]->(p2)
-          Delete Nodes:
-            description: |
-              Nodes deleting and column mapping with CSV Header: $id
-              CSV Separator: ,
-            value:
-              query: "MATCH (p:Person {id: toInteger($id)}) DELETE p"
-        explode: true
-        in: query
-        name: twinGraphQuery
-        required: true
-        schema:
-          $ref: '#/components/schemas/TwinGraphQuery'
-        style: form
       requestBody:
         content:
-          text/csv:
+          application/json:
             examples:
-              Create / Update / Delete Nodes:
-                value: |
-                  id,name,rank
-                  1,"John Doe",37
-                  2,"Joe Bloggs",14
-              Create / Update Relationships:
-                value: |
-                  UserId1,UserId2,reaction_count
-                  1,2,25
-                  2,1,37
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
+            schema:
+              $ref: '#/components/schemas/User'
+          application/yaml:
+            examples:
+              BobyUpdateIn:
+                $ref: '#/components/examples/BobyUpdateIn'
             schema:
               format: binary
               type: string
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
+        description: the new User details. Organization membership is handled via
+          the /organizations endpoint.
         required: true
       responses:
         "200":
           content:
             application/json:
+              examples:
+                BobyUpdated:
+                  $ref: '#/components/examples/BobyUpdated'
               schema:
-                $ref: '#/components/schemas/TwinGraphBatchResult'
-          description: csv file processed
+                $ref: '#/components/schemas/User'
+          description: the user details
         "400":
           description: Bad request
+        "404":
+          description: the User specified is unknown or you don't have access to it
+      summary: Update a User
       tags:
-      - twingraph
-      x-contentType: text/csv
+      - user
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/Bob'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in User
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/me:
+    get:
+      operationId: getOrganizationCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobOrganization'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of a logged-in User with roles for an Organization
+      tags:
+      - user
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/me:
+    get:
+      operationId: getWorkspaceCurrentUser
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Bob:
+                  $ref: '#/components/examples/BobWorkspace'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: the User details
+      summary: Get the details of the logged-in user with roles for a Workspace
+      tags:
+      - user
+      x-accepts: application/json
+  /test:
+    get:
+      operationId: testPlatform
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: test string
+      summary: test platform API call
+      tags:
+      - user
+      x-accepts: text/plain
+  /oauth2/authorize:
+    get:
+      operationId: authorizeUser
+      responses:
+        "302":
+          description: Redirection response
+          headers:
+            Location:
+              examples:
+                AzureAD:
+                  $ref: '#/components/examples/AzureADRedirect'
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
+      tags:
+      - user
       x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
@@ -4057,22 +3522,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -4921,56 +4370,6 @@ paths:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/import:
-    post:
-      operationId: importWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              $ref: '#/components/schemas/Workspace'
-          application/yaml:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              format: binary
-              type: string
-        description: the Workspace to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
-        "400":
-          description: Bad request
-      summary: Import a workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/datasets:
     get:
       operationId: findAllDatasets
@@ -4983,22 +4382,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -5072,22 +4455,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
       requestBody:
         content:
           application/json:
@@ -5753,45 +5120,6 @@ paths:
       tags:
       - validator
       x-accepts: application/json
-  /organizations/{organization_id}/datasets/import:
-    post:
-      operationId: importDataset
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryADT:
-                $ref: '#/components/examples/BreweryADT'
-            schema:
-              $ref: '#/components/schemas/Dataset'
-        description: the Dataset to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
-              schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
-      summary: Import a new Dataset
-      tags:
-      - dataset
-      x-contentType: application/json
-      x-accepts: application/json
 components:
   examples:
     ADTConnector:
@@ -5844,6 +5172,103 @@ components:
             valueType: string
             default: /mnt/scenariorun-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    AzureADRedirect:
+      description: authorize redirection to Azure Active Directory example
+      summary: Azure AD redirect example
+      value:
+        Location: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
+    Bob:
+      description: Bob User example
+      summary: Bob User
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
+    BobCreateIn:
+      description: Bob User Create input example
+      summary: Bob User Create input example
+      value:
+        name: Bob
+        platformRoles:
+        - Admin
+    BobOrganization:
+      description: Bob User for Organization 1 example
+      summary: Bob User for an Organization example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+    BobWorkspace:
+      description: Bob User for Organization 1 and Workspace 1 example
+      summary: Bob User for a Workspace example
+      value:
+        id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+    BobyUpdateIn:
+      description: Bob User renamed to Boby input example
+      summary: Boby update User input example
+      value:
+        name: Boby
+    BobyUpdated:
+      description: Bob User renamed to Boby example
+      summary: Boby updated User
+      value:
+        id: "1"
+        name: Boby
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     Brewery:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -6731,22 +6156,6 @@ components:
           - validate
           - write_security
           - delete
-    QueryEntities:
-      description: Run action on a graph relationship
-      summary: Run action on a graph relationship
-      value:
-        firstEntity:
-          type: entity-type
-          source: source-node-name
-          target: target-node-name
-          name: entity-name
-          params: "param1: 'value1', param2: 'value2'"
-        secondEntity:
-          type: entity-type
-          source: source-node-name
-          target: target-node-name
-          name: entity-name
-          params: "param1: 'value1', param2: 'value2'"
     RunJobImportWithADT:
       description: Run import job with ADT as source
       summary: Run import job with ADT as source
@@ -7061,6 +6470,46 @@ components:
         varType: string
         value: ""
         inherited: true
+    TwoUsers:
+      description: Two Users example
+      summary: Two Users example
+      value:
+      - id: "1"
+        name: Bob
+        platformRoles:
+        - Admin
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
+      - id: "2"
+        name: Alice
+        platformRoles:
+        - User
+        organizations:
+        - id: "1"
+          name: Cosmo Tech
+          roles:
+          - Admin
+          workspaces:
+          - id: "1"
+            name: Brewery Analysis
+            roles:
+            - Admin
+        - id: "2"
+          name: Phoenix
+          roles:
+          - Admin
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -7162,14 +6611,12 @@ components:
           description: the Connector version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         key:
           description: the Connector key which group Connector versions
           type: string
         name:
           description: the Connector name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Connector description
           type: string
@@ -7219,7 +6666,6 @@ components:
       - repository
       - version
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ConnectorParameter:
       description: a connector parameter
       example:
@@ -7333,8 +6779,12 @@ components:
     Dataset:
       description: a Dataset
       example:
-        organizationId: organizationId
-        connector: ""
+        connector:
+          parametersValues:
+            key: parametersValues
+          name: name
+          id: id
+          version: version
         name: name
         description: description
         validatorId: validatorId
@@ -7358,11 +6808,9 @@ components:
           description: the Dataset unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Dataset name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Dataset description
           type: string
@@ -7370,22 +6818,13 @@ components:
           description: the User id which own this Dataset
           readOnly: true
           type: string
-        organizationId:
-          description: the Organization Id related to this Dataset
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         tags:
           description: the list of tags
           items:
             type: string
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         connector:
-          allOf:
-          - $ref: '#/components/schemas/DatasetConnector'
-          description: the Connector setup bound to a Dataset
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+          $ref: '#/components/schemas/DatasetConnector'
         fragmentsIds:
           description: the list of other Datasets ids to compose as fragments
           items:
@@ -7400,7 +6839,6 @@ components:
             $ref: '#/components/schemas/DatasetCompatibility'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     DatasetCompatibility:
       description: a Dataset compatibility constraint to a Solution version open range
       example:
@@ -7422,15 +6860,19 @@ components:
       type: object
     DatasetConnector:
       description: a Connector setup
+      example:
+        parametersValues:
+          key: parametersValues
+        name: name
+        id: id
+        version: version
       properties:
         id:
           description: the Connector id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         name:
           description: the Connector name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         version:
           description: the Connector version
           type: string
@@ -7495,30 +6937,6 @@ components:
       required:
       - enable
       type: object
-    GraphProperties:
-      example:
-        name: name
-        source: source
-        type: type
-        params: params
-        target: target
-      properties:
-        type:
-          description: the type of the relationship
-          type: string
-        source:
-          description: the source node of the relationship
-          type: string
-        target:
-          description: the target node of the relationship
-          type: string
-        name:
-          description: the name of the graph data object
-          type: string
-        params:
-          description: the parameters of the graph data object
-          type: string
-      type: object
     Organization:
       description: an Organization
       example:
@@ -7548,11 +6966,9 @@ components:
           description: the Organization unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Organization name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         ownerId:
           description: the Owner User Id
           readOnly: true
@@ -7562,9 +6978,7 @@ components:
         security:
           allOf:
           - $ref: '#/components/schemas/OrganizationSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     OrganizationAccessControl:
       description: a Organization access control item
       example:
@@ -7574,11 +6988,9 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - id
       - role
@@ -7607,14 +7019,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Organization with detailed access
             control information
           items:
             $ref: '#/components/schemas/OrganizationAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -7994,11 +7404,18 @@ components:
     Scenario:
       description: a Scenario with base information
       example:
+        lastRun: ""
         rootId: rootId
         parentLastRun: ""
+        solutionName: solutionName
         description: description
+        runTemplateName: runTemplateName
         ownerId: ownerId
-        organizationId: organizationId
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        parentId: parentId
+        tags:
+        - tags
+        - tags
         security: ""
         parametersValues:
         - varType: varType
@@ -8010,6 +7427,9 @@ components:
           isInherited: true
           value: value
         ownerName: ownerName
+        lastUpdate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        runTemplateId: runTemplateId
         runSizing:
           requests:
             memory: memory
@@ -8018,35 +7438,22 @@ components:
             memory: memory
             cpu: cpu
         id: id
-        state: null
-        rootLastRun: ""
-        validationStatus: ""
-        workspaceId: workspaceId
-        lastRun: ""
-        solutionName: solutionName
-        runTemplateName: runTemplateName
-        creationDate: 0
-        parentId: parentId
-        tags:
-        - tags
-        - tags
-        lastUpdate: 6
-        name: name
-        runTemplateId: runTemplateId
         solutionId: solutionId
+        state: null
         datasetList:
         - datasetList
         - datasetList
+        rootLastRun: ""
+        validationStatus: null
+        workspaceId: workspaceId
       properties:
         id:
           description: the Scenario unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Scenario name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Scenario description
           type: string
@@ -8058,17 +7465,14 @@ components:
         parentId:
           description: the Scenario parent id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this Scenario
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         rootId:
           description: the scenario root id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id associated with this Scenario
           readOnly: true
@@ -8076,27 +7480,22 @@ components:
         runTemplateId:
           description: the Solution Run Template Id associated with this Scenario
           type: string
-        organizationId:
-          description: the associated Organization Id
-          readOnly: true
-          type: string
         workspaceId:
           description: the associated Workspace Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         state:
           $ref: '#/components/schemas/ScenarioJobState'
         creationDate:
           description: the Scenario creation date
-          format: int64
+          format: date-time
           readOnly: true
-          type: integer
+          type: string
         lastUpdate:
           description: the last time a Scenario was updated
-          format: int64
+          format: date-time
           readOnly: true
-          type: integer
+          type: string
         ownerName:
           description: the name of the owner
           readOnly: true
@@ -8137,15 +7536,11 @@ components:
           - description: the last Scenario Run for the root (master) of Scenario
             type: object
         validationStatus:
-          allOf:
-          - $ref: '#/components/schemas/ScenarioValidationStatus'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+          $ref: '#/components/schemas/ScenarioValidationStatus'
         security:
           allOf:
           - $ref: '#/components/schemas/ScenarioSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioAccessControl:
       description: a Scenario access control item
       example:
@@ -8155,11 +7550,9 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - id
       - role
@@ -8376,7 +7769,7 @@ components:
           - path: path
             name: name
         id: id
-        state: ""
+        state: null
         solutionId: solutionId
         datasetList:
         - datasetList
@@ -8392,18 +7785,14 @@ components:
           description: the ScenarioRun
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         state:
-          allOf:
-          - $ref: '#/components/schemas/ScenarioRunState'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+          $ref: '#/components/schemas/ScenarioRunState'
         organizationId:
           description: the Organization id
           type: string
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         csmSimulationRun:
           description: the Cosmo Tech Simulation Run Id
           readOnly: true
@@ -8414,17 +7803,14 @@ components:
         workflowName:
           description: the Cosmo Tech compute cluster Argo Workflow Name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this scenariorun
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceId:
           description: the Workspace Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceKey:
           description: technical key for resource name convention and version grouping.
             Must be unique
@@ -8434,17 +7820,14 @@ components:
           description: the Scenario Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         runTemplateId:
           description: the Solution Run Template id
           readOnly: true
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         computeSize:
           description: the compute size needed for this Analysis. Standard sizes are
             basic and highcpu. Default is basic
@@ -8491,7 +7874,6 @@ components:
             $ref: '#/components/schemas/ScenarioRunContainer'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunContainer:
       description: a ScenarioRun container description
       example:
@@ -8950,14 +8332,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Scenario with detailed access
             control information
           items:
             $ref: '#/components/schemas/ScenarioAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -9073,7 +8453,6 @@ components:
         tags:
         - tags
         - tags
-        organizationId: organizationId
         parameterGroups:
         - options:
             key: "{}"
@@ -9125,19 +8504,12 @@ components:
           description: the Solution version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
-        organizationId:
-          description: the Organization unique identifier
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: the Solution key which group Solution versions
           type: string
         name:
           description: the Solution name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Solution description
           type: string
@@ -9182,7 +8554,6 @@ components:
             $ref: '#/components/schemas/RunTemplate'
           type: array
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     SourceInfo:
       description: Source job import information
       example:
@@ -9214,37 +8585,6 @@ components:
       additionalProperties:
         type: string
       description: a translated label with key as ISO 639-1 code
-      type: object
-    TwinGraphBatchResult:
-      description: Processing result
-      example:
-        processedLines: 6
-        totalLines: 0
-        errors:
-        - errors
-        - errors
-      properties:
-        totalLines:
-          type: integer
-        processedLines:
-          type: integer
-        errors:
-          items:
-            type: string
-          type: array
-      required:
-      - errors
-      - processedLines
-      - totalLines
-      type: object
-    TwinGraphHash:
-      description: a twin graph hash
-      example:
-        hash: hash
-      properties:
-        hash:
-          description: the hash of the graph
-          type: string
       type: object
     TwinGraphImport:
       description: a twin graph import info
@@ -9298,6 +8638,132 @@ components:
           type: string
       required:
       - query
+      type: object
+    User:
+      description: a User
+      example:
+        platformRoles:
+        - Admin
+        - Admin
+        name: name
+        organizations:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+          workspaces:
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+          - roles:
+            - roles
+            - roles
+            name: name
+            id: id
+        id: id
+      properties:
+        id:
+          description: the User unique identifier
+          readOnly: true
+          type: string
+        name:
+          description: the User name
+          type: string
+        platformRoles:
+          description: the list of Platform roles
+          items:
+            enum:
+            - Admin
+            - User
+            - ConnectorDeveloper
+            type: string
+          type: array
+        organizations:
+          items:
+            $ref: '#/components/schemas/UserOrganization'
+          readOnly: true
+          type: array
+      type: object
+    UserOrganization:
+      description: The organization of the user
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
+        workspaces:
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+        - roles:
+          - roles
+          - roles
+          name: name
+          id: id
+      properties:
+        id:
+          description: the Organization id
+          type: string
+        name:
+          description: the Organization name
+          type: string
+        roles:
+          description: the roles of the User in the Organization
+          items:
+            type: string
+          type: array
+        workspaces:
+          description: the list of Workspaces roles
+          items:
+            $ref: '#/components/schemas/UserWorkspace'
+          readOnly: true
+          type: array
+      type: object
+    UserWorkspace:
+      description: the list of User roles for a Workspace
+      example:
+        roles:
+        - roles
+        - roles
+        name: name
+        id: id
+      properties:
+        id:
+          description: the Workspace Id
+          readOnly: true
+          type: string
+        name:
+          description: the Workspace name
+          readOnly: true
+          type: string
+        roles:
+          description: the roles of the User in the Workspace
+          items:
+            type: string
+          type: array
+      readOnly: true
       type: object
     Validator:
       description: a Validator to validate a Dataset
@@ -9416,7 +8882,6 @@ components:
         tags:
         - tags
         - tags
-        organizationId: organizationId
         useDedicatedEventHubNamespace: false
         security: ""
         solution:
@@ -9436,12 +8901,6 @@ components:
           description: the Workspace version unique identifier
           readOnly: true
           type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
-        organizationId:
-          description: the Organization unique identifier
-          readOnly: true
-          type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: technical key for resource name convention and version grouping.
             Must be unique
@@ -9449,7 +8908,6 @@ components:
         name:
           description: the Workspace name
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Workspace description
           type: string
@@ -9504,13 +8962,11 @@ components:
         security:
           allOf:
           - $ref: '#/components/schemas/WorkspaceSecurity'
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - key
       - name
       - solution
       type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     WorkspaceAccessControl:
       description: a Workspace access control item
       example:
@@ -9520,7 +8976,6 @@ components:
         id:
           description: the identity id
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
           type: string
@@ -9570,14 +9025,12 @@ components:
         default:
           description: the role by default
           type: string
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Workspace with detailed access
             control information
           items:
             $ref: '#/components/schemas/WorkspaceAccessControl'
           type: array
-          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
