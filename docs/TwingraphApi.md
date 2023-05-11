@@ -4,28 +4,28 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchQuery**](TwingraphApi.md#batchQuery) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch-query | 
-[**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | 
-[**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | 
-[**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | 
-[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | 
-[**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | 
-[**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/bulk-query/download/{hash} | 
-[**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | 
-[**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | 
-[**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | 
-[**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | 
-[**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | 
-[**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | 
-[**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | 
-[**updateGraphMetaData**](TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | 
+[**batchQuery**](TwingraphApi.md#batchQuery) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
+[**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | Async batch update by loading a CSV file on a graph instance 
+[**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Create new entities in a graph instance
+[**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | Create a new graph
+[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Launch a mass delete job
+[**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Delete entities in a graph instance
+[**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/bulk-query/download/{hash} | Download a graph compressed in a zip file
+[**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | Return the list of all graphs stored in the organization
+[**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Get entities in a graph instance
+[**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Return the metaData of the specified graph
+[**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | Import a new version of a twin graph
+[**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | Get the status of a job
+[**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | Run a query on a graph instance
+[**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Update entities in a graph instance
+[**updateGraphMetaData**](TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Update the metaData of the specified graph
 
 
 <a name="batchQuery"></a>
 # **batchQuery**
 > TwinGraphHash batchQuery(organizationId, graphId, twinGraphQuery)
 
-
+Run a query on a graph instance and return the result as a zip file in async mode
 
 Run a query on a graph instance and return the result as a zip file in async mode
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 # **batchUploadUpdate**
 > TwinGraphBatchResult batchUploadUpdate(organizationId, graphId, twinGraphQuery, body)
 
-
+Async batch update by loading a CSV file on a graph instance 
 
 Async batch update by loading a CSV file on a graph instance 
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 # **createEntities**
 > List&lt;Object&gt; createEntities(organizationId, graphId, modelType, graphProperties)
 
-
+Create new entities in a graph instance
 
 create new entities in a graph instance
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 # **createGraph**
 > createGraph(organizationId, graphId, body)
 
-
+Create a new graph
 
 Create a new graph
 
@@ -316,7 +316,7 @@ null (empty response body)
 # **delete**
 > delete(organizationId, graphId)
 
-
+Launch a mass delete job
 
 Launch a mass delete job
 
@@ -384,7 +384,7 @@ null (empty response body)
 # **deleteEntities**
 > deleteEntities(organizationId, graphId, modelType, ids)
 
-
+Delete entities in a graph instance
 
 delete entities in a graph instance
 
@@ -456,7 +456,7 @@ null (empty response body)
 # **downloadGraph**
 > File downloadGraph(organizationId, hash)
 
-
+Download a graph compressed in a zip file
 
 Download a graph compressed in a zip file
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 # **findAllTwingraphs**
 > List&lt;String&gt; findAllTwingraphs(organizationId)
 
-
+Return the list of all graphs stored in the organization
 
 Return the list of all graphs stored in the organization
 
@@ -592,7 +592,7 @@ Name | Type | Description  | Notes
 # **getEntities**
 > List&lt;Object&gt; getEntities(organizationId, graphId, modelType, ids)
 
-
+Get entities in a graph instance
 
 get entities in a graph instance
 
@@ -665,7 +665,7 @@ Name | Type | Description  | Notes
 # **getGraphMetaData**
 > Object getGraphMetaData(organizationId, graphId)
 
-
+Return the metaData of the specified graph
 
 Return the metaData of the specified graph
 
@@ -734,7 +734,7 @@ Name | Type | Description  | Notes
 # **importGraph**
 > TwinGraphImportInfo importGraph(organizationId, twinGraphImport)
 
-
+Import a new version of a twin graph
 
 Import a new version of a twin graph
 
@@ -803,7 +803,7 @@ Name | Type | Description  | Notes
 # **jobStatus**
 > String jobStatus(organizationId, jobId)
 
-
+Get the status of a job
 
 Get the status of a job
 
@@ -872,7 +872,7 @@ Name | Type | Description  | Notes
 # **query**
 > String query(organizationId, graphId, twinGraphQuery)
 
-
+Run a query on a graph instance
 
 Run a query on a graph instance
 
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 # **updateEntities**
 > List&lt;Object&gt; updateEntities(organizationId, graphId, modelType, graphProperties)
 
-
+Update entities in a graph instance
 
 update entities in a graph instance
 
@@ -1016,7 +1016,7 @@ Name | Type | Description  | Notes
 # **updateGraphMetaData**
 > Object updateGraphMetaData(organizationId, graphId, requestBody)
 
-
+Update the metaData of the specified graph
 
 Update the metaData of the specified graph
 

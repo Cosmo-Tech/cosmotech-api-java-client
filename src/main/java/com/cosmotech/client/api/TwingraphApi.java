@@ -165,7 +165,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Run a query on a graph instance and return the result as a zip file in async mode
      * Run a query on a graph instance and return the result as a zip file in async mode
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -184,7 +184,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Run a query on a graph instance and return the result as a zip file in async mode
      * Run a query on a graph instance and return the result as a zip file in async mode
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -204,7 +204,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Run a query on a graph instance and return the result as a zip file in async mode (asynchronously)
      * Run a query on a graph instance and return the result as a zip file in async mode
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -323,7 +323,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Async batch update by loading a CSV file on a graph instance 
      * Async batch update by loading a CSV file on a graph instance 
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -344,7 +344,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Async batch update by loading a CSV file on a graph instance 
      * Async batch update by loading a CSV file on a graph instance 
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -366,7 +366,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Async batch update by loading a CSV file on a graph instance  (asynchronously)
      * Async batch update by loading a CSV file on a graph instance 
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -483,7 +483,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Create new entities in a graph instance
      * create new entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -503,7 +503,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Create new entities in a graph instance
      * create new entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -524,7 +524,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Create new entities in a graph instance (asynchronously)
      * create new entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -628,7 +628,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Create a new graph
      * Create a new graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -645,7 +645,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Create a new graph
      * Create a new graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -664,7 +664,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Create a new graph (asynchronously)
      * Create a new graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -765,7 +765,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Launch a mass delete job
      * Launch a mass delete job
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -781,7 +781,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Launch a mass delete job
      * Launch a mass delete job
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -799,7 +799,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Launch a mass delete job (asynchronously)
      * Launch a mass delete job
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -916,7 +916,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Delete entities in a graph instance
      * delete entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -934,7 +934,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Delete entities in a graph instance
      * delete entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -954,7 +954,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Delete entities in a graph instance (asynchronously)
      * delete entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1056,7 +1056,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Download a graph compressed in a zip file
      * Download a graph compressed in a zip file
      * @param organizationId the Organization identifier (required)
      * @param hash the Graph download identifier (required)
@@ -1074,7 +1074,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Download a graph compressed in a zip file
      * Download a graph compressed in a zip file
      * @param organizationId the Organization identifier (required)
      * @param hash the Graph download identifier (required)
@@ -1093,7 +1093,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Download a graph compressed in a zip file (asynchronously)
      * Download a graph compressed in a zip file
      * @param organizationId the Organization identifier (required)
      * @param hash the Graph download identifier (required)
@@ -1187,7 +1187,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Return the list of all graphs stored in the organization
      * Return the list of all graphs stored in the organization
      * @param organizationId the Organization identifier (required)
      * @return List&lt;String&gt;
@@ -1204,7 +1204,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Return the list of all graphs stored in the organization
      * Return the list of all graphs stored in the organization
      * @param organizationId the Organization identifier (required)
      * @return ApiResponse&lt;List&lt;String&gt;&gt;
@@ -1222,7 +1222,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Return the list of all graphs stored in the organization (asynchronously)
      * Return the list of all graphs stored in the organization
      * @param organizationId the Organization identifier (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1339,7 +1339,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Get entities in a graph instance
      * get entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1359,7 +1359,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Get entities in a graph instance
      * get entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1380,7 +1380,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Get entities in a graph instance (asynchronously)
      * get entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1483,7 +1483,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Return the metaData of the specified graph
      * Return the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1501,7 +1501,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Return the metaData of the specified graph
      * Return the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1520,7 +1520,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Return the metaData of the specified graph (asynchronously)
      * Return the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1620,7 +1620,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Import a new version of a twin graph
      * Import a new version of a twin graph
      * @param organizationId the Organization identifier (required)
      * @param twinGraphImport the graph to import (required)
@@ -1638,7 +1638,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Import a new version of a twin graph
      * Import a new version of a twin graph
      * @param organizationId the Organization identifier (required)
      * @param twinGraphImport the graph to import (required)
@@ -1657,7 +1657,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Import a new version of a twin graph (asynchronously)
      * Import a new version of a twin graph
      * @param organizationId the Organization identifier (required)
      * @param twinGraphImport the graph to import (required)
@@ -1758,7 +1758,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Get the status of a job
      * Get the status of a job
      * @param organizationId the Organization identifier (required)
      * @param jobId the job identifier (required)
@@ -1776,7 +1776,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Get the status of a job
      * Get the status of a job
      * @param organizationId the Organization identifier (required)
      * @param jobId the job identifier (required)
@@ -1795,7 +1795,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Get the status of a job (asynchronously)
      * Get the status of a job
      * @param organizationId the Organization identifier (required)
      * @param jobId the job identifier (required)
@@ -1902,7 +1902,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Run a query on a graph instance
      * Run a query on a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1921,7 +1921,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Run a query on a graph instance
      * Run a query on a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -1941,7 +1941,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Run a query on a graph instance (asynchronously)
      * Run a query on a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2056,7 +2056,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Update entities in a graph instance
      * update entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2076,7 +2076,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Update entities in a graph instance
      * update entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2097,7 +2097,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Update entities in a graph instance (asynchronously)
      * update entities in a graph instance
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2206,7 +2206,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Update the metaData of the specified graph
      * Update the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2225,7 +2225,7 @@ public class TwingraphApi {
     }
 
     /**
-     * 
+     * Update the metaData of the specified graph
      * Update the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)
@@ -2245,7 +2245,7 @@ public class TwingraphApi {
     }
 
     /**
-     *  (asynchronously)
+     * Update the metaData of the specified graph (asynchronously)
      * Update the metaData of the specified graph
      * @param organizationId the Organization identifier (required)
      * @param graphId the Graph Identifier (required)

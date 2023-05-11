@@ -1155,9 +1155,99 @@ paths:
               schema:
                 $ref: '#/components/schemas/TwinGraphImportInfo'
           description: Successful response
+      summary: Import a new version of a twin graph
       tags:
       - twingraph
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}:
+    delete:
+      description: Launch a mass delete job
+      operationId: delete
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response
+      summary: Launch a mass delete job
+      tags:
+      - twingraph
+      x-accepts: application/json
+    post:
+      description: Create a new graph
+      operationId: createGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: false
+      responses:
+        "204":
+          description: Successful response
+      summary: Create a new graph
+      tags:
+      - twingraph
+      x-contentType: application/octet-stream
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraphs:
+    get:
+      description: Return the list of all graphs stored in the organization
+      operationId: findAllTwingraphs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response
+      summary: Return the list of all graphs stored in the organization
+      tags:
+      - twingraph
       x-accepts: application/json
   /organizations/{organization_id}/job/{job_id}/status:
     get:
@@ -1190,31 +1280,7 @@ paths:
               schema:
                 type: string
           description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraphs:
-    get:
-      description: Return the list of all graphs stored in the organization
-      operationId: findAllTwingraphs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Successful response
+      summary: Get the status of a job
       tags:
       - twingraph
       x-accepts: application/json
@@ -1262,6 +1328,7 @@ paths:
               schema:
                 type: string
           description: Successful response
+      summary: Run a query on a graph instance
       tags:
       - twingraph
       x-contentType: application/json
@@ -1305,6 +1372,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/TwinGraphHash'
           description: Successful response
+      summary: Run a query on a graph instance and return the result as a zip file
+        in async mode
       tags:
       - twingraph
       x-contentType: application/json
@@ -1338,6 +1407,7 @@ paths:
                 format: binary
                 type: string
           description: Successful response
+      summary: Download a graph compressed in a zip file
       tags:
       - twingraph
       x-accepts: application/octet-stream
@@ -1386,6 +1456,7 @@ paths:
       responses:
         "200":
           description: Successful response
+      summary: Delete entities in a graph instance
       tags:
       - twingraph
       x-accepts: application/json
@@ -1439,6 +1510,7 @@ paths:
                   type: object
                 type: array
           description: Successful response
+      summary: Get entities in a graph instance
       tags:
       - twingraph
       x-accepts: application/json
@@ -1494,6 +1566,7 @@ paths:
                   type: object
                 type: array
           description: Successful response
+      summary: Update entities in a graph instance
       tags:
       - twingraph
       x-contentType: application/json
@@ -1547,9 +1620,17 @@ paths:
             application/json:
               schema:
                 items:
+                  example: "-\"[{\\\"a\\\":{\\\"id\\\":\\\"entity-name\\\",\\\"label\\\
+                    \":\\\"entityType\\\",\\\"type\\\":\\\"NODE\\\",\\\"properties\\\
+                    \":{\\\"param1\\\":\\\"value1\\\",\\\"param2\\\":\\\"value2\\\"\
+                    }}}]\" -\"[{\\\"a\\\":{\\\"id\\\":\\\"entity-name\\\",\\\"label\\\
+                    \":\\\"entityType\\\",\\\"type\\\":\\\"NODE\\\",\\\"properties\\\
+                    \":{\\\"param1\\\":\\\"value1\\\",\\\"param2\\\":\\\"value2\\\"\
+                    }}}]\""
                   type: object
                 type: array
           description: Successful response
+      summary: Create new entities in a graph instance
       tags:
       - twingraph
       x-contentType: application/json
@@ -1579,9 +1660,15 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                lastVersion: "1"
+                graphRotation: "3"
+                lastModifiedDate: 2023/08/25 - 11:59:59
+                graphName: graph
               schema:
                 type: object
           description: Successful response
+      summary: Return the metaData of the specified graph
       tags:
       - twingraph
       x-accepts: application/json
@@ -1621,73 +1708,18 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                lastVersion: "1"
+                graphRotation: "3"
+                lastModifiedDate: 2023/08/25 - 11:59:59
+                graphName: graph
               schema:
                 type: object
           description: Successful response
+      summary: Update the metaData of the specified graph
       tags:
       - twingraph
       x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}:
-    delete:
-      description: Launch a mass delete job
-      operationId: delete
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    post:
-      description: Create a new graph
-      operationId: createGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
-        required: false
-      responses:
-        "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/octet-stream
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/batch:
     post:
@@ -1776,6 +1808,7 @@ paths:
           description: csv file processed
         "400":
           description: Bad request
+      summary: 'Async batch update by loading a CSV file on a graph instance '
       tags:
       - twingraph
       x-contentType: text/csv
@@ -6735,18 +6768,16 @@ components:
       description: Run action on a graph relationship
       summary: Run action on a graph relationship
       value:
-        firstEntity:
-          type: entity-type
-          source: source-node-name
-          target: target-node-name
-          name: entity-name
-          params: "param1: 'value1', param2: 'value2'"
-        secondEntity:
-          type: entity-type
-          source: source-node-name
-          target: target-node-name
-          name: entity-name
-          params: "param1: 'value1', param2: 'value2'"
+      - type: entityType
+        source: source-node-name
+        target: target-node-name
+        name: entity-name
+        params: "param1: 'value1', param2: 'value2'"
+      - type: entityType
+        source: source-node-name
+        target: target-node-name
+        name: entity-name
+        params: "param1: 'value1', param2: 'value2'"
     RunJobImportWithADT:
       description: Run import job with ADT as source
       summary: Run import job with ADT as source

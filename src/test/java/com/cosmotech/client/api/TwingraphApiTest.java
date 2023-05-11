@@ -39,7 +39,7 @@ public class TwingraphApiTest {
 
     
     /**
-     * 
+     * Run a query on a graph instance and return the result as a zip file in async mode
      *
      * Run a query on a graph instance and return the result as a zip file in async mode
      *
@@ -56,7 +56,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Async batch update by loading a CSV file on a graph instance 
      *
      * Async batch update by loading a CSV file on a graph instance 
      *
@@ -74,7 +74,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Create new entities in a graph instance
      *
      * create new entities in a graph instance
      *
@@ -92,7 +92,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Create a new graph
      *
      * Create a new graph
      *
@@ -109,7 +109,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Launch a mass delete job
      *
      * Launch a mass delete job
      *
@@ -125,7 +125,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Delete entities in a graph instance
      *
      * delete entities in a graph instance
      *
@@ -143,7 +143,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Download a graph compressed in a zip file
      *
      * Download a graph compressed in a zip file
      *
@@ -159,7 +159,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Return the list of all graphs stored in the organization
      *
      * Return the list of all graphs stored in the organization
      *
@@ -174,7 +174,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Get entities in a graph instance
      *
      * get entities in a graph instance
      *
@@ -192,7 +192,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Return the metaData of the specified graph
      *
      * Return the metaData of the specified graph
      *
@@ -208,7 +208,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Import a new version of a twin graph
      *
      * Import a new version of a twin graph
      *
@@ -224,7 +224,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Get the status of a job
      *
      * Get the status of a job
      *
@@ -240,7 +240,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Run a query on a graph instance
      *
      * Run a query on a graph instance
      *
@@ -257,7 +257,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Update entities in a graph instance
      *
      * update entities in a graph instance
      *
@@ -275,7 +275,7 @@ public class TwingraphApiTest {
     }
     
     /**
-     * 
+     * Update the metaData of the specified graph
      *
      * Update the metaData of the specified graph
      *
