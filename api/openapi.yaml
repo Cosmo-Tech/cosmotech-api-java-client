@@ -20,23 +20,949 @@ servers:
 security:
 - oAuth2AuthCode: []
 tags:
-- description: Connector Management
-  name: connector
-- description: Organization Management
-  name: organization
-- description: Solution Management
-  name: solution
-- description: ScenarioRun Management
-  name: scenariorun
-- description: Scenario Management
-  name: scenario
-- description: Twin Graph Management
-  name: twingraph
 - description: Workspace Management
   name: workspace
+- description: Connector Management
+  name: connector
+- description: Twin Graph Management
+  name: twingraph
+- description: Organization Management
+  name: organization
+- description: Scenario Management
+  name: scenario
+- description: ScenarioRun Management
+  name: scenariorun
 - description: Dataset Management
   name: dataset
+- description: Solution Management
+  name: solution
 paths:
+  /organizations/{organization_id}/workspaces:
+    get:
+      operationId: findAllWorkspaces
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneWorkspace:
+                  $ref: '#/components/examples/OneWorkspace'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Workspace'
+                type: array
+          description: the workspace details
+      summary: List all Workspaces
+      tags:
+      - workspace
+      x-accepts: application/json
+    post:
+      operationId: createWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              format: binary
+              type: string
+        description: the Workspace to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+      summary: Create a new workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}:
+    delete:
+      operationId: deleteWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Delete a workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    get:
+      operationId: findWorkspaceById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the Workspace details
+        "404":
+          description: The Workspace specified is unknown or you don't have access
+            to it
+      summary: Get the details of an workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    patch:
+      operationId: updateWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryWorkspaceUpdate'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryWorkspaceUpdate'
+            schema:
+              format: binary
+              type: string
+        description: The new Workspace details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryWorkspaceUpdated'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Update a workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/files:
+    delete:
+      operationId: deleteAllWorkspaceFiles
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to them
+      summary: Delete all Workspace files
+      tags:
+      - workspace
+      x-accepts: application/json
+    get:
+      operationId: findAllWorkspaceFiles
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceFiles:
+                  $ref: '#/components/examples/WorkspaceFiles'
+              schema:
+                items:
+                  $ref: '#/components/schemas/WorkspaceFile'
+                type: array
+          description: the workspace files
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: List all Workspace files
+      tags:
+      - workspace
+      x-accepts: application/json
+    post:
+      operationId: uploadWorkspaceFile
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          multipart/form-data:
+            examples:
+              use_file_name_as_is:
+                summary: Use the file name as is as destination
+                value:
+                  file: Lorem Ipsum Dolor Sit Amet
+              upload_to_workspace_root_under_a_different_file_name:
+                summary: "Upload to the Workspace root folder, but rename the target\
+                  \ file"
+                value:
+                  destination: my_file_renamed.txt
+                  file: Lorem Ipsum Dolor Sit Amet
+              upload_to_a_folder:
+                summary: |
+                  Upload to a sub-folder.
+                  Destination may or may not start with a '/', but must end with '/' to be treated as a directory.
+                  Final file path will always be relative to the Workspace root location.
+                value:
+                  destination: path/to/a/directory/
+                  file: Lorem Ipsum Dolor Sit Amet
+              upload_to_a_specific_folder_and_under_a_different_file_name:
+                summary: |
+                  Upload to a sub-folder.
+                  Destination may or may not start with a '/', but must not end with '/'.
+                  Final file path will always be relative to the Workspace root location.
+                value:
+                  destination: /path/to/a/directory/my_file_renamed.txt
+                  file: Lorem Ipsum Dolor Sit Amet
+            schema:
+              properties:
+                overwrite:
+                  default: false
+                  type: boolean
+                destination:
+                  description: |
+                    Destination path. Must end with a '/' if specifying a folder.
+                    Note that paths may or may not start with a '/', but they are always treated
+                    as relative to the Workspace root location.
+                  example: path/to/a/directory/
+                  type: string
+                file:
+                  format: binary
+                  type: string
+              required:
+              - file
+              type: object
+        description: the file to upload
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryWorkspaceFile:
+                  $ref: '#/components/examples/BreweryWorkspaceFile'
+              schema:
+                $ref: '#/components/schemas/WorkspaceFile'
+          description: the file resource details
+        "400":
+          description: Bad request
+      summary: Upload a file for the Workspace
+      tags:
+      - workspace
+      x-contentType: multipart/form-data
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/files/download:
+    get:
+      operationId: downloadWorkspaceFile
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the file name
+        explode: true
+        in: query
+        name: file_name
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: the workspace file as a resource
+        "404":
+          description: the Workspace file specified is unknown or you don't have access
+            to it
+      summary: Download the Workspace File specified
+      tags:
+      - workspace
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/workspaces/{workspace_id}/files/delete:
+    delete:
+      operationId: deleteWorkspaceFile
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the file name
+        explode: true
+        in: query
+        name: file_name
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Workspace or the file specified is unknown or you don't
+            have access to them
+      summary: Delete a workspace file
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role}:
+    get:
+      operationId: getWorkspacePermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - read
+                - read_security
+                - create_children
+                items:
+                  type: string
+                type: array
+          description: The Workspace security permission list
+      summary: Get the Workspace permission by given role
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security:
+    get:
+      operationId: getWorkspaceSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceSecurity:
+                  $ref: '#/components/examples/BreweryWorkspaceSecurity'
+              schema:
+                $ref: '#/components/schemas/WorkspaceSecurity'
+          description: The Workspace security
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Get the Workspace security information
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/default:
+    post:
+      operationId: setWorkspaceDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
+            schema:
+              $ref: '#/components/schemas/WorkspaceRole'
+          application/yaml:
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
+            schema:
+              format: binary
+              type: string
+        description: the new Workspace default security.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                WriterWorkspaceSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/WorkspaceSecurity'
+          description: The Workspace default visibility
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Set the Workspace default security
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/access:
+    post:
+      operationId: addWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              WorkspaceAccess:
+                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+            schema:
+              $ref: '#/components/schemas/WorkspaceAccessControl'
+          application/yaml:
+            examples:
+              WorkspaceAccess:
+                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+            schema:
+              format: binary
+              type: string
+        description: the new Workspace security access to add.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+              schema:
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
+        "404":
+          description: the Workspace specified is unknown or you don't have access
+            to it
+      summary: Add a control access to the Workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: The Workspace or the user specified is unknown or you don't
+            have access to them
+      summary: Remove the specified access from the given Organization Workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    get:
+      operationId: getWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+              schema:
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
+        "404":
+          description: The Workspace or user specified is unknown or you don't have
+            access to it
+      summary: Get a control access for the Workspace
+      tags:
+      - workspace
+      x-accepts: application/json
+    patch:
+      operationId: updateWorkspaceAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryWorkspaceRole:
+                $ref: '#/components/examples/BreweryWorkspaceRole'
+            schema:
+              $ref: '#/components/schemas/WorkspaceRole'
+        description: The new Workspace Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                WorkspaceAccessControl:
+                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
+              schema:
+                $ref: '#/components/schemas/WorkspaceAccessControl'
+          description: The Workspace access
+        "404":
+          description: The Workspace specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for a Workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/security/users:
+    get:
+      operationId: getWorkspaceSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  type: string
+                type: array
+          description: The Workspace security users list
+        "404":
+          description: the Workspace or the User specified is unknown or you don't
+            have access to them
+      summary: Get the Workspace security users list
+      tags:
+      - workspace
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/secret:
+    post:
+      operationId: createSecret
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/WorkspaceSecretExample'
+            schema:
+              $ref: '#/components/schemas/WorkspaceSecret'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/WorkspaceSecretExample'
+            schema:
+              format: binary
+              type: string
+        description: the definition of the secret
+        required: true
+      responses:
+        "201":
+          description: Request succeeded
+        "404":
+          description: the Workspace or the User specified is unknown or you don't
+            have access to them
+      summary: Create a secret for the Workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/import:
+    post:
+      operationId: importWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              format: binary
+              type: string
+        description: the Workspace to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+      summary: Import a workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
   /connectors:
     get:
       operationId: findAllConnectors
@@ -188,6 +1114,671 @@ paths:
       tags:
       - connector
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/import:
+    post:
+      description: Import a new version of a twin graph
+      operationId: importGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              RunJobImportWithADT:
+                $ref: '#/components/examples/RunJobImportWithADT'
+              RunJobImportWithStorage:
+                $ref: '#/components/examples/RunJobImportWithStorage'
+            schema:
+              $ref: '#/components/schemas/TwinGraphImport'
+          application/yaml:
+            examples:
+              RunJobImportWithADT:
+                $ref: '#/components/examples/RunJobImportWithADT'
+              RunJobImportWithStorage:
+                $ref: '#/components/examples/RunJobImportWithStorage'
+            schema:
+              $ref: '#/components/schemas/TwinGraphImport'
+        description: the graph to import
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphImportInfo'
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/job/{job_id}/status:
+    get:
+      description: Get the status of a job
+      operationId: jobStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the job identifier
+        explode: false
+        in: path
+        name: job_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/yaml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraphs:
+    get:
+      description: Return the list of all graphs stored in the organization
+      operationId: findAllTwingraphs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/query:
+    post:
+      description: Run a query on a graph instance
+      operationId: query
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+          application/yaml:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/batch-query:
+    post:
+      description: Run a query on a graph instance and return the result as a zip
+        file in async mode
+      operationId: batchQuery
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphHash'
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/bulk-query/download/{hash}:
+    get:
+      description: Download a graph compressed in a zip file
+      operationId: downloadGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph download identifier
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/twingraph/{graph_id}/{modelType}:
+    delete:
+      description: delete entities in a graph instance
+      operationId: deleteEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: modelType
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          type: string
+        style: simple
+      - description: the entities to delete
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+    get:
+      description: get entities in a graph instance
+      operationId: getEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: modelType
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          type: string
+        style: simple
+      - description: the entities to get
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+    patch:
+      description: update entities in a graph instance
+      operationId: updateEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: modelType
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+    post:
+      description: create new entities in a graph instance
+      operationId: createEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: modelType
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to create
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
+    get:
+      description: Return the metaData of the specified graph
+      operationId: getGraphMetaData
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+    patch:
+      description: Update the metaData of the specified graph
+      operationId: updateGraphMetaData
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              graphName: My Awesome Graph
+              graphRotation: "2"
+            schema:
+              additionalProperties:
+                type: string
+              type: object
+        description: the metaData to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}:
+    delete:
+      description: Launch a mass delete job
+      operationId: delete
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response
+      tags:
+      - twingraph
+      x-accepts: application/json
+    post:
+      description: Create a new graph
+      operationId: createGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: false
+      responses:
+        "204":
+          description: Successful response
+      tags:
+      - twingraph
+      x-contentType: application/octet-stream
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/batch:
+    post:
+      description: 'Async batch update by loading a CSV file on a graph instance '
+      operationId: batchUploadUpdate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - examples:
+          Create Nodes:
+            description: |
+              Nodes creation and column mapping with CSV Header: $id, $name, $rank
+              CSV Separator: ,
+            value:
+              query: "CREATE (:Person {id: toInteger($id), name: $name, rank: toInteger($rank)})"
+          Update Nodes:
+            description: |
+              Nodes updating and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) SET p.rank = $rank"
+          Create Relationships:
+            description: |
+              Relationship creation and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: |
+                MERGE (p1:Person {id: toInteger($UserId1)})
+                MERGE (p2:Person {id: toInteger($UserId2)})
+                CREATE (p1)-[:FOLLOWS {reaction_count: $reaction_count}]->(p2)
+          Delete Nodes:
+            description: |
+              Nodes deleting and column mapping with CSV Header: $id
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) DELETE p"
+        explode: true
+        in: query
+        name: twinGraphQuery
+        required: true
+        schema:
+          $ref: '#/components/schemas/TwinGraphQuery'
+        style: form
+      requestBody:
+        content:
+          text/csv:
+            examples:
+              Create / Update / Delete Nodes:
+                value: |
+                  id,name,rank
+                  1,"John Doe",37
+                  2,"Joe Bloggs",14
+              Create / Update Relationships:
+                value: |
+                  UserId1,UserId2,reaction_count
+                  1,2,25
+                  2,1,37
+            schema:
+              format: binary
+              type: string
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphBatchResult'
+          description: csv file processed
+        "400":
+          description: Bad request
+      tags:
+      - twingraph
+      x-contentType: text/csv
       x-accepts: application/json
   /organizations:
     get:
@@ -882,1345 +2473,6 @@ paths:
       summary: Import an organization
       tags:
       - organization
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions:
-    get:
-      operationId: findAllSolutions
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/OneSolution'
-              schema:
-                items:
-                  $ref: '#/components/schemas/Solution'
-                type: array
-          description: the solution details
-      summary: List all Solutions
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: createSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              $ref: '#/components/schemas/Solution'
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              format: binary
-              type: string
-        description: the Solution to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Register a new solution
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}:
-    delete:
-      operationId: deleteSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Delete a solution
-      tags:
-      - solution
-      x-accepts: application/json
-    get:
-      operationId: findSolutionById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the Solution details
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Get the details of a solution
-      tags:
-      - solution
-      x-accepts: application/json
-    patch:
-      operationId: updateSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryUpdate'
-            schema:
-              $ref: '#/components/schemas/Solution'
-          application/yaml:
-            examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryUpdate'
-            schema:
-              format: binary
-              type: string
-        description: the new Solution details.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryUpdated:
-                  $ref: '#/components/examples/BreweryUpdated'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Update a solution
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/parameters:
-    delete:
-      operationId: removeAllSolutionParameters
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Parameters from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceParameters
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplateParameter'
-              type: array
-        description: the Parameters
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplateParameter'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Parameters. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/parameterGroups:
-    delete:
-      operationId: removeAllSolutionParameterGroups
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Parameter Groups from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceParameterGroups
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplateParameterGroup'
-              type: array
-        description: the Parameter Groups
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplateParameterGroup'
-                type: array
-          description: the Parameter Groups
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Parameter Groups. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runTemplates:
-    delete:
-      operationId: removeAllRunTemplates
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove all Run Templates from the Solution specified
-      tags:
-      - solution
-      x-accepts: application/json
-    post:
-      operationId: addOrReplaceRunTemplates
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/RunTemplate'
-              type: array
-        description: the Run Templates
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplate'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Add Run Templates. Any item with the same ID will be overwritten
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}:
-    delete:
-      operationId: deleteSolutionRunTemplate
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: the operation succeeded
-        "404":
-          description: the Solution specified is unknown or you don't have access
-            to it
-      summary: Remove the specified Solution Run Template
-      tags:
-      - solution
-      x-accepts: application/json
-    patch:
-      operationId: updateSolutionRunTemplate
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RunTemplate'
-          application/yaml:
-            schema:
-              $ref: '#/components/schemas/RunTemplate'
-        description: the Run Templates
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RunTemplate'
-                type: array
-          description: the Parameters
-        "400":
-          description: Bad request
-        "404":
-          description: the Solution or Run Template specified is unknown or you don't
-            have access to it
-      summary: Update the specified Solution Run Template
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download:
-    get:
-      operationId: downloadRunTemplateHandler
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Handler identifier
-        explode: false
-        in: path
-        name: handler_id
-        required: true
-        schema:
-          $ref: '#/components/schemas/RunTemplateHandlerId'
-        style: simple
-      responses:
-        "200":
-          content:
-            application/octet-stream:
-              schema:
-                format: binary
-                type: string
-          description: the run template handle file as a resource
-        "404":
-          description: the Run Template Handler file specified is unknown or you don't
-            have access to it
-      summary: Download a Run Template step handler zip file
-      tags:
-      - solution
-      x-accepts: application/octet-stream
-  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
-    post:
-      operationId: uploadRunTemplateHandler
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Solution identifier
-        explode: false
-        in: path
-        name: solution_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Run Template identifier
-        explode: false
-        in: path
-        name: run_template_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Handler identifier
-        explode: false
-        in: path
-        name: handler_id
-        required: true
-        schema:
-          $ref: '#/components/schemas/RunTemplateHandlerId'
-        style: simple
-      - description: whether to overwrite any existing handler resource
-        explode: true
-        in: query
-        name: overwrite
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
-        required: true
-      responses:
-        "201":
-          description: zip file uploaded
-        "400":
-          description: Bad request
-      summary: Upload a Run Template step handler zip file
-      tags:
-      - solution
-      x-contentType: application/octet-stream
-      x-accepts: application/json
-  /organizations/{organization_id}/solutions/import:
-    post:
-      operationId: importSolution
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              $ref: '#/components/schemas/Solution'
-          application/yaml:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
-            schema:
-              format: binary
-              type: string
-        description: the Solution to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
-              schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Import a solution
-      tags:
-      - solution
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataOrganization
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization specified is unknown or you don't have access
-            to it
-      summary: Delete all historical ScenarioRuns in the Organization
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Organization or Workspace specified is unknown or you don't
-            have access to it
-      summary: Delete all historical ScenarioRuns in the Workspace
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata:
-    delete:
-      operationId: deleteHistoricalDataScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: condition to delete runs with an Unknown status
-        explode: true
-        in: query
-        name: deleteUnknown
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Delete all historical ScenarioRuns in the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/search:
-    post:
-      operationId: searchScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BrewerySearch:
-                $ref: '#/components/examples/BrewerySearch'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunSearch'
-          application/yaml:
-            examples:
-              BrewerySearch:
-                $ref: '#/components/examples/BrewerySearch'
-            schema:
-              format: binary
-              type: string
-        description: the ScenarioRun search parameters
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details
-      summary: Search ScenarioRuns
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/startcontainers:
-    post:
-      operationId: startScenarioRunContainers
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunStartContainers:
-                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
-            schema:
-              $ref: '#/components/schemas/ScenarioRunStartContainers'
-          application/yaml:
-            examples:
-              ScenarioRunStartContainers:
-                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
-            schema:
-              format: binary
-              type: string
-        description: the raw containers definition
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunContainer'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-        "400":
-          description: Bad request
-        "404":
-          description: the Scenario specified is unknown or you don't have access
-            to it
-      summary: Start a new scenariorun with raw containers definition
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}:
-    delete:
-      operationId: deleteScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "400":
-          description: Bad request
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Delete a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-    get:
-      operationId: findScenarioRunById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the ScenarioRun details
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Get the details of a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status:
-    get:
-      operationId: getScenarioRunStatus
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunStatus'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunStatus'
-          description: the scenariorun status details
-      summary: get the status for the ScenarioRun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs:
-    get:
-      operationId: getScenarioRunLogs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunLogs'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunLogs'
-          description: the scenariorun logs details
-      summary: get the logs for the ScenarioRun
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs:
-    get:
-      operationId: getScenarioRunCumulatedLogs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: the ScenarioRun cumulated logs
-        "400":
-          description: Bad request
-        "404":
-          description: the ScenarioRun specified is unknown or you don't have access
-            to it
-      summary: Get the cumulated logs of a scenariorun
-      tags:
-      - scenariorun
-      x-accepts: text/plain
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns:
-    get:
-      operationId: getWorkspaceScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details list
-      summary: get the list of ScenarioRuns for the Workspace
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
-    get:
-      operationId: getScenarioRuns
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: page number to query
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: amount of result by page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OneScenarioRun:
-                  $ref: '#/components/examples/OneScenarioRun'
-              schema:
-                items:
-                  $ref: '#/components/schemas/ScenarioRun'
-                type: array
-          description: the scenariorun details list
-      summary: get the list of ScenarioRuns for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run:
-    post:
-      operationId: runScenario
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: run a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop:
-    post:
-      operationId: stopScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the scenariorun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRunStatus'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunStatus'
-          description: the scenariorun status details
-      summary: stop a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
-    post:
-      operationId: importScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScenarioRun'
-        description: the ScenarioRun to import
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: import a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
       x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
@@ -3380,236 +3632,9 @@ paths:
       - scenario
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/import:
-    post:
-      description: Import a new version of a twin graph
-      operationId: importGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-          application/yaml:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-        description: the graph to import
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphImportInfo'
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/job/{job_id}/status:
-    get:
-      description: Get the status of a job
-      operationId: jobStatus
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the job identifier
-        explode: false
-        in: path
-        name: job_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/yaml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraphs:
-    get:
-      description: Return the list of all graphs stored in the organization
-      operationId: findAllTwingraphs
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/query:
-    post:
-      description: Run a query on a graph instance
-      operationId: query
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-          application/yaml:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-        description: the query to run
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/batch-query:
-    post:
-      description: Run a query on a graph instance and return the result as a zip
-        file in async mode
-      operationId: batchQuery
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              GetAllNodes:
-                $ref: '#/components/examples/GetAllNodes'
-            schema:
-              $ref: '#/components/schemas/TwinGraphQuery'
-        description: the query to run
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphHash'
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/bulk-query/download/{hash}:
-    get:
-      description: Download a graph compressed in a zip file
-      operationId: downloadGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph download identifier
-        explode: false
-        in: path
-        name: hash
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/octet-stream:
-              schema:
-                format: binary
-                type: string
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/octet-stream
-  /organizations/{organization_id}/twingraph/{graph_id}/{modelType}:
+  /organizations/{organization_id}/scenarioruns/historicaldata:
     delete:
-      description: delete entities in a graph instance
-      operationId: deleteEntities
+      operationId: deleteHistoricalDataOrganization
       parameters:
       - description: the Organization identifier
         explode: false
@@ -3619,435 +3644,120 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      - description: the entities to delete
+      - description: condition to delete runs with an Unknown status
         explode: true
         in: query
-        name: ids
-        required: true
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    get:
-      description: get entities in a graph instance
-      operationId: getEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      - description: the entities to get
-        explode: true
-        in: query
-        name: ids
-        required: true
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    patch:
-      description: update entities in a graph instance
-      operationId: updateEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              QueryEntities:
-                $ref: '#/components/examples/QueryEntities'
-            schema:
-              items:
-                $ref: '#/components/schemas/GraphProperties'
-              type: array
-        description: the entities to update
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-    post:
-      description: create new entities in a graph instance
-      operationId: createEntities
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the entity model type
-        explode: false
-        in: path
-        name: modelType
-        required: true
-        schema:
-          enum:
-          - node
-          - relationship
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              QueryEntities:
-                $ref: '#/components/examples/QueryEntities'
-            schema:
-              items:
-                $ref: '#/components/schemas/GraphProperties'
-              type: array
-        description: the entities to create
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/metadata:
-    get:
-      description: Return the metaData of the specified graph
-      operationId: getGraphMetaData
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    patch:
-      description: Update the metaData of the specified graph
-      operationId: updateGraphMetaData
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            example:
-              graphName: My Awesome Graph
-              graphRotation: "2"
-            schema:
-              additionalProperties:
-                type: string
-              type: object
-        description: the metaData to update
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}:
-    delete:
-      description: Launch a mass delete job
-      operationId: delete
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-accepts: application/json
-    post:
-      description: Create a new graph
-      operationId: createGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
+        name: deleteUnknown
         required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "204":
-          description: Successful response
-      tags:
-      - twingraph
-      x-contentType: application/octet-stream
-      x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}/batch:
-    post:
-      description: 'Async batch update by loading a CSV file on a graph instance '
-      operationId: batchUploadUpdate
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Graph Identifier
-        explode: false
-        in: path
-        name: graph_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - examples:
-          Create Nodes:
-            description: |
-              Nodes creation and column mapping with CSV Header: $id, $name, $rank
-              CSV Separator: ,
-            value:
-              query: "CREATE (:Person {id: toInteger($id), name: $name, rank: toInteger($rank)})"
-          Update Nodes:
-            description: |
-              Nodes updating and column mapping with CSV Header: $id, $rank
-              CSV Separator: ,
-            value:
-              query: "MATCH (p:Person {id: toInteger($id)}) SET p.rank = $rank"
-          Create Relationships:
-            description: |
-              Relationship creation and column mapping with CSV Header: $id, $rank
-              CSV Separator: ,
-            value:
-              query: |
-                MERGE (p1:Person {id: toInteger($UserId1)})
-                MERGE (p2:Person {id: toInteger($UserId2)})
-                CREATE (p1)-[:FOLLOWS {reaction_count: $reaction_count}]->(p2)
-          Delete Nodes:
-            description: |
-              Nodes deleting and column mapping with CSV Header: $id
-              CSV Separator: ,
-            value:
-              query: "MATCH (p:Person {id: toInteger($id)}) DELETE p"
-        explode: true
-        in: query
-        name: twinGraphQuery
-        required: true
-        schema:
-          $ref: '#/components/schemas/TwinGraphQuery'
-        style: form
-      requestBody:
-        content:
-          text/csv:
-            examples:
-              Create / Update / Delete Nodes:
-                value: |
-                  id,name,rank
-                  1,"John Doe",37
-                  2,"Joe Bloggs",14
-              Create / Update Relationships:
-                value: |
-                  UserId1,UserId2,reaction_count
-                  1,2,25
-                  2,1,37
-            schema:
-              format: binary
-              type: string
-          application/octet-stream:
-            schema:
-              format: binary
-              type: string
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphBatchResult'
-          description: csv file processed
+          description: Request succeeded
         "400":
           description: Bad request
+        "404":
+          description: the Organization specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns in the Organization
       tags:
-      - twingraph
-      x-contentType: text/csv
+      - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces:
-    get:
-      operationId: findAllWorkspaces
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns/historicaldata:
+    delete:
+      operationId: deleteHistoricalDataWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: condition to delete runs with an Unknown status
+        explode: true
+        in: query
+        name: deleteUnknown
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Organization or Workspace specified is unknown or you don't
+            have access to it
+      summary: Delete all historical ScenarioRuns in the Workspace
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/historicaldata:
+    delete:
+      operationId: deleteHistoricalDataScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: condition to delete runs with an Unknown status
+        explode: true
+        in: query
+        name: deleteUnknown
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Delete all historical ScenarioRuns in the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/search:
+    post:
+      operationId: searchScenarioRuns
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4073,24 +3783,43 @@ paths:
         schema:
           type: integer
         style: form
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
+            schema:
+              $ref: '#/components/schemas/ScenarioRunSearch'
+          application/yaml:
+            examples:
+              BrewerySearch:
+                $ref: '#/components/examples/BrewerySearch'
+            schema:
+              format: binary
+              type: string
+        description: the ScenarioRun search parameters
+        required: true
       responses:
         "200":
           content:
             application/json:
               examples:
-                OneWorkspace:
-                  $ref: '#/components/examples/OneWorkspace'
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
               schema:
                 items:
-                  $ref: '#/components/schemas/Workspace'
+                  $ref: '#/components/schemas/ScenarioRun'
                 type: array
-          description: the workspace details
-      summary: List all Workspaces
+          description: the scenariorun details
+      summary: Search ScenarioRuns
       tags:
-      - workspace
+      - scenariorun
+      x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/startcontainers:
     post:
-      operationId: createWorkspace
+      operationId: startScenarioRunContainers
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4104,43 +3833,42 @@ paths:
         content:
           application/json:
             examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+              ScenarioRunStartContainers:
+                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
             schema:
-              $ref: '#/components/schemas/Workspace'
+              $ref: '#/components/schemas/ScenarioRunStartContainers'
           application/yaml:
             examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+              ScenarioRunStartContainers:
+                $ref: '#/components/examples/BreweryScenarioRunStartContainers'
             schema:
               format: binary
               type: string
-        description: the Workspace to create
+        description: the raw containers definition
         required: true
       responses:
-        "201":
+        "202":
           content:
             application/json:
               examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunContainer'
               schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
         "400":
           description: Bad request
-      summary: Create a new workspace
+        "404":
+          description: the Scenario specified is unknown or you don't have access
+            to it
+      summary: Start a new scenariorun with raw containers definition
       tags:
-      - workspace
+      - scenariorun
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}:
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}:
     delete:
-      operationId: deleteWorkspace
+      operationId: deleteScenarioRun
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4150,141 +3878,10 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Workspace identifier
+      - description: the ScenarioRun identifier
         explode: false
         in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
-        "400":
-          description: Bad request
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: Delete a workspace
-      tags:
-      - workspace
-      x-accepts: application/json
-    get:
-      operationId: findWorkspaceById
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the Workspace details
-        "404":
-          description: The Workspace specified is unknown or you don't have access
-            to it
-      summary: Get the details of an workspace
-      tags:
-      - workspace
-      x-accepts: application/json
-    patch:
-      operationId: updateWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryWorkspaceUpdate'
-            schema:
-              $ref: '#/components/schemas/Workspace'
-          application/yaml:
-            examples:
-              BreweryUpdate:
-                $ref: '#/components/examples/BreweryWorkspaceUpdate'
-            schema:
-              format: binary
-              type: string
-        description: The new Workspace details.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BreweryUpdated:
-                  $ref: '#/components/examples/BreweryWorkspaceUpdated'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
-        "400":
-          description: Bad request
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: Update a workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/files:
-    delete:
-      operationId: deleteAllWorkspaceFiles
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
+        name: scenariorun_id
         required: true
         schema:
           type: string
@@ -4292,141 +3889,17 @@ paths:
       responses:
         "204":
           description: Request succeeded
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to them
-      summary: Delete all Workspace files
-      tags:
-      - workspace
-      x-accepts: application/json
-    get:
-      operationId: findAllWorkspaceFiles
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                WorkspaceFiles:
-                  $ref: '#/components/examples/WorkspaceFiles'
-              schema:
-                items:
-                  $ref: '#/components/schemas/WorkspaceFile'
-                type: array
-          description: the workspace files
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: List all Workspace files
-      tags:
-      - workspace
-      x-accepts: application/json
-    post:
-      operationId: uploadWorkspaceFile
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        $ref: '#/components/requestBodies/inline_object'
-        content:
-          multipart/form-data:
-            examples:
-              use_file_name_as_is:
-                summary: Use the file name as is as destination
-                value:
-                  file: Lorem Ipsum Dolor Sit Amet
-              upload_to_workspace_root_under_a_different_file_name:
-                summary: "Upload to the Workspace root folder, but rename the target\
-                  \ file"
-                value:
-                  destination: my_file_renamed.txt
-                  file: Lorem Ipsum Dolor Sit Amet
-              upload_to_a_folder:
-                summary: |
-                  Upload to a sub-folder.
-                  Destination may or may not start with a '/', but must end with '/' to be treated as a directory.
-                  Final file path will always be relative to the Workspace root location.
-                value:
-                  destination: path/to/a/directory/
-                  file: Lorem Ipsum Dolor Sit Amet
-              upload_to_a_specific_folder_and_under_a_different_file_name:
-                summary: |
-                  Upload to a sub-folder.
-                  Destination may or may not start with a '/', but must not end with '/'.
-                  Final file path will always be relative to the Workspace root location.
-                value:
-                  destination: /path/to/a/directory/my_file_renamed.txt
-                  file: Lorem Ipsum Dolor Sit Amet
-            schema:
-              properties:
-                overwrite:
-                  default: false
-                  type: boolean
-                destination:
-                  description: |
-                    Destination path. Must end with a '/' if specifying a folder.
-                    Note that paths may or may not start with a '/', but they are always treated
-                    as relative to the Workspace root location.
-                  example: path/to/a/directory/
-                  type: string
-                file:
-                  format: binary
-                  type: string
-              required:
-              - file
-              type: object
-        description: the file to upload
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                BreweryWorkspaceFile:
-                  $ref: '#/components/examples/BreweryWorkspaceFile'
-              schema:
-                $ref: '#/components/schemas/WorkspaceFile'
-          description: the file resource details
         "400":
           description: Bad request
-      summary: Upload a file for the Workspace
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Delete a scenariorun
       tags:
-      - workspace
-      x-contentType: multipart/form-data
+      - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/files/download:
     get:
-      operationId: downloadWorkspaceFile
+      operationId: findScenarioRunById
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4436,539 +3909,371 @@ paths:
         schema:
           type: string
         style: simple
-      - description: the Workspace identifier
+      - description: the ScenarioRun identifier
         explode: false
         in: path
-        name: workspace_id
+        name: scenariorun_id
         required: true
         schema:
           type: string
         style: simple
-      - description: the file name
-        explode: true
-        in: query
-        name: file_name
-        required: true
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
               schema:
-                format: binary
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the ScenarioRun details
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Get the details of a scenariorun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status:
+    get:
+      operationId: getScenarioRunStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunStatus'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunStatus'
+          description: the scenariorun status details
+      summary: get the status for the ScenarioRun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/logs:
+    get:
+      operationId: getScenarioRunLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunLogs'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunLogs'
+          description: the scenariorun logs details
+      summary: get the logs for the ScenarioRun
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/cumulatedlogs:
+    get:
+      operationId: getScenarioRunCumulatedLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
                 type: string
-          description: the workspace file as a resource
-        "404":
-          description: the Workspace file specified is unknown or you don't have access
-            to it
-      summary: Download the Workspace File specified
-      tags:
-      - workspace
-      x-accepts: application/octet-stream
-  /organizations/{organization_id}/workspaces/{workspace_id}/files/delete:
-    delete:
-      operationId: deleteWorkspaceFile
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the file name
-        explode: true
-        in: query
-        name: file_name
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the Workspace or the file specified is unknown or you don't
-            have access to them
-      summary: Delete a workspace file
-      tags:
-      - workspace
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role}:
-    get:
-      operationId: getWorkspacePermissions
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Role
-        explode: false
-        in: path
-        name: role
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                example:
-                - read
-                - read_security
-                - create_children
-                items:
-                  type: string
-                type: array
-          description: The Workspace security permission list
-      summary: Get the Workspace permission by given role
-      tags:
-      - workspace
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/security:
-    get:
-      operationId: getWorkspaceSecurity
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                WorkspaceSecurity:
-                  $ref: '#/components/examples/BreweryWorkspaceSecurity'
-              schema:
-                $ref: '#/components/schemas/WorkspaceSecurity'
-          description: The Workspace security
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: Get the Workspace security information
-      tags:
-      - workspace
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/security/default:
-    post:
-      operationId: setWorkspaceDefaultSecurity
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryWorkspaceRole:
-                $ref: '#/components/examples/BreweryWorkspaceRole'
-            schema:
-              $ref: '#/components/schemas/WorkspaceRole'
-          application/yaml:
-            examples:
-              BreweryWorkspaceRole:
-                $ref: '#/components/examples/BreweryWorkspaceRole'
-            schema:
-              format: binary
-              type: string
-        description: the new Workspace default security.
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                WriterWorkspaceSecurity:
-                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
-              schema:
-                $ref: '#/components/schemas/WorkspaceSecurity'
-          description: The Workspace default visibility
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: Set the Workspace default security
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/security/access:
-    post:
-      operationId: addWorkspaceAccessControl
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              WorkspaceAccess:
-                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
-            schema:
-              $ref: '#/components/schemas/WorkspaceAccessControl'
-          application/yaml:
-            examples:
-              WorkspaceAccess:
-                $ref: '#/components/examples/BreweryWorkspaceAccessControl'
-            schema:
-              format: binary
-              type: string
-        description: the new Workspace security access to add.
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                WorkspaceAccessControl:
-                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
-              schema:
-                $ref: '#/components/schemas/WorkspaceAccessControl'
-          description: The Workspace access
-        "404":
-          description: the Workspace specified is unknown or you don't have access
-            to it
-      summary: Add a control access to the Workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id}:
-    delete:
-      operationId: removeWorkspaceAccessControl
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: identity_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: The Workspace or the user specified is unknown or you don't
-            have access to them
-      summary: Remove the specified access from the given Organization Workspace
-      tags:
-      - workspace
-      x-accepts: application/json
-    get:
-      operationId: getWorkspaceAccessControl
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: identity_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                WorkspaceAccessControl:
-                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
-              schema:
-                $ref: '#/components/schemas/WorkspaceAccessControl'
-          description: The Workspace access
-        "404":
-          description: The Workspace or user specified is unknown or you don't have
-            access to it
-      summary: Get a control access for the Workspace
-      tags:
-      - workspace
-      x-accepts: application/json
-    patch:
-      operationId: updateWorkspaceAccessControl
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the User identifier
-        explode: false
-        in: path
-        name: identity_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BreweryWorkspaceRole:
-                $ref: '#/components/examples/BreweryWorkspaceRole'
-            schema:
-              $ref: '#/components/schemas/WorkspaceRole'
-        description: The new Workspace Access Control
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                WorkspaceAccessControl:
-                  $ref: '#/components/examples/BreweryWorkspaceAccessControl'
-              schema:
-                $ref: '#/components/schemas/WorkspaceAccessControl'
-          description: The Workspace access
-        "404":
-          description: The Workspace specified is unknown or you don't have access
-            to it
-      summary: Update the specified access to User for a Workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/security/users:
-    get:
-      operationId: getWorkspaceSecurityUsers
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                example:
-                - alice@mycompany.com
-                - bob@mycompany.com
-                items:
-                  type: string
-                type: array
-          description: The Workspace security users list
-        "404":
-          description: the Workspace or the User specified is unknown or you don't
-            have access to them
-      summary: Get the Workspace security users list
-      tags:
-      - workspace
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/secret:
-    post:
-      operationId: createSecret
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/WorkspaceSecretExample'
-            schema:
-              $ref: '#/components/schemas/WorkspaceSecret'
-          application/yaml:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/WorkspaceSecretExample'
-            schema:
-              format: binary
-              type: string
-        description: the definition of the secret
-        required: true
-      responses:
-        "201":
-          description: Request succeeded
-        "404":
-          description: the Workspace or the User specified is unknown or you don't
-            have access to them
-      summary: Create a secret for the Workspace
-      tags:
-      - workspace
-      x-contentType: application/json
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/import:
-    post:
-      operationId: importWorkspace
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              $ref: '#/components/schemas/Workspace'
-          application/yaml:
-            examples:
-              Workspace:
-                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
-              WorkspaceWithSecurity:
-                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
-            schema:
-              format: binary
-              type: string
-        description: the Workspace to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                Workspace:
-                  $ref: '#/components/examples/BreweryWorkspace'
-              schema:
-                $ref: '#/components/schemas/Workspace'
-          description: the workspace details
+          description: the ScenarioRun cumulated logs
         "400":
           description: Bad request
-      summary: Import a workspace
+        "404":
+          description: the ScenarioRun specified is unknown or you don't have access
+            to it
+      summary: Get the cumulated logs of a scenariorun
       tags:
-      - workspace
+      - scenariorun
+      x-accepts: text/plain
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns:
+    get:
+      operationId: getWorkspaceScenarioRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioRun'
+                type: array
+          description: the scenariorun details list
+      summary: get the list of ScenarioRuns for the Workspace
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns:
+    get:
+      operationId: getScenarioRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneScenarioRun:
+                  $ref: '#/components/examples/OneScenarioRun'
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioRun'
+                type: array
+          description: the scenariorun details list
+      summary: get the list of ScenarioRuns for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run:
+    post:
+      operationId: runScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
+      summary: run a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop:
+    post:
+      operationId: stopScenarioRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the scenariorun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRunStatus'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunStatus'
+          description: the scenariorun status details
+      summary: stop a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
+    post:
+      operationId: importScenarioRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRun'
+        description: the ScenarioRun to import
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
+      summary: import a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
       x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/datasets:
@@ -5792,6 +5097,701 @@ paths:
       - dataset
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/solutions:
+    get:
+      operationId: findAllSolutions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Two:
+                  $ref: '#/components/examples/OneSolution'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Solution'
+                type: array
+          description: the solution details
+      summary: List all Solutions
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: createSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Brewery:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              format: binary
+              type: string
+        description: the Solution to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
+        "400":
+          description: Bad request
+      summary: Register a new solution
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}:
+    delete:
+      operationId: deleteSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Delete a solution
+      tags:
+      - solution
+      x-accepts: application/json
+    get:
+      operationId: findSolutionById
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Solution'
+          description: the Solution details
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Get the details of a solution
+      tags:
+      - solution
+      x-accepts: application/json
+    patch:
+      operationId: updateSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
+            schema:
+              $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryUpdate'
+            schema:
+              format: binary
+              type: string
+        description: the new Solution details.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryUpdated'
+              schema:
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Update a solution
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/parameters:
+    delete:
+      operationId: removeAllSolutionParameters
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameters from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceParameters
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplateParameter'
+              type: array
+        description: the Parameters
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameter'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameters. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/parameterGroups:
+    delete:
+      operationId: removeAllSolutionParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Parameter Groups from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceParameterGroups
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplateParameterGroup'
+              type: array
+        description: the Parameter Groups
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplateParameterGroup'
+                type: array
+          description: the Parameter Groups
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Parameter Groups. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates:
+    delete:
+      operationId: removeAllRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove all Run Templates from the Solution specified
+      tags:
+      - solution
+      x-accepts: application/json
+    post:
+      operationId: addOrReplaceRunTemplates
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RunTemplate'
+              type: array
+        description: the Run Templates
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add Run Templates. Any item with the same ID will be overwritten
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id}:
+    delete:
+      operationId: deleteSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: the operation succeeded
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Remove the specified Solution Run Template
+      tags:
+      - solution
+      x-accepts: application/json
+    patch:
+      operationId: updateSolutionRunTemplate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/RunTemplate'
+        description: the Run Templates
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RunTemplate'
+                type: array
+          description: the Parameters
+        "400":
+          description: Bad request
+        "404":
+          description: the Solution or Run Template specified is unknown or you don't
+            have access to it
+      summary: Update the specified Solution Run Template
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download:
+    get:
+      operationId: downloadRunTemplateHandler
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/RunTemplateHandlerId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: the run template handle file as a resource
+        "404":
+          description: the Run Template Handler file specified is unknown or you don't
+            have access to it
+      summary: Download a Run Template step handler zip file
+      tags:
+      - solution
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload:
+    post:
+      operationId: uploadRunTemplateHandler
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Run Template identifier
+        explode: false
+        in: path
+        name: run_template_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the Handler identifier
+        explode: false
+        in: path
+        name: handler_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/RunTemplateHandlerId'
+        style: simple
+      - description: whether to overwrite any existing handler resource
+        explode: true
+        in: query
+        name: overwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: true
+      responses:
+        "201":
+          description: zip file uploaded
+        "400":
+          description: Bad request
+      summary: Upload a Run Template step handler zip file
+      tags:
+      - solution
+      x-contentType: application/octet-stream
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/import:
+    post:
+      operationId: importSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Brewery:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              format: binary
+              type: string
+        description: the Solution to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
+        "400":
+          description: Bad request
+      summary: Import a solution
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
 components:
   examples:
     ADTConnector:
@@ -5997,8 +5997,8 @@ components:
       value:
         default: none
     BreweryDefaultSecurityRoleWriter:
-      description: Brewery Scenario example
-      summary: Brewery Scenario Writer default security
+      description: Brewery Workspace example
+      summary: Brewery Workspace Writer default security
       value:
         default: editor
     BreweryOrganizationAccessControl:
@@ -8401,6 +8401,7 @@ components:
         organizationId:
           description: the Organization id
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
           type: string
