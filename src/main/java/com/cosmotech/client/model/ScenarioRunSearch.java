@@ -28,7 +28,7 @@ import java.io.IOException;
  * the search options
  */
 @ApiModel(description = "the search options")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-16T08:17:32.597034667Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-16T12:27:58.466980547Z[Etc/UTC]")
 public class ScenarioRunSearch {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
