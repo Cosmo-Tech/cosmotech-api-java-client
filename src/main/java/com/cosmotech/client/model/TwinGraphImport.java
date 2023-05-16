@@ -29,7 +29,7 @@ import java.io.IOException;
  * a twin graph import info
  */
 @ApiModel(description = "a twin graph import info")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-16T12:53:57.239128567Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-16T14:16:15.393854700Z[Etc/UTC]")
 public class TwinGraphImport {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
