@@ -28,7 +28,7 @@ import java.io.IOException;
  * Source job import information
  */
 @ApiModel(description = "Source job import information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-25T13:31:07.597103041Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-29T16:10:41.398926567Z[Etc/UTC]")
 public class SourceInfo {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
