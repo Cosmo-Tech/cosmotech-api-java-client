@@ -87,14 +87,14 @@ public class TwingraphApiTest {
         String graphId = null;
         String modelType = null;
         List<GraphProperties> graphProperties = null;
-                List<Object> response = api.createEntities(organizationId, graphId, modelType, graphProperties);
+                String response = api.createEntities(organizationId, graphId, modelType, graphProperties);
         // TODO: test validations
     }
     
     /**
      * Create a new graph
      *
-     * Create a new graph
+     * To create a new graph from flat files,  you need to create a Zip file. This Zip file must countain two folders named Edges and Nodes.  .zip hierarchy: *main_folder/Nodes *main_folder/Edges  In each folder you can place one or multiple csv files containing your Nodes or Edges data.  Your csv files must follow the following header (column name) requirements:  The Nodes CSVs requires at least one column (the 1st).Column name &#x3D; &#39;Id&#39;. It will represent the nodes ID Ids must be populated with string  The Edges CSVs require three columns named, in order, * source * target * Id  those colomns represent * The source of the edge * The target of the edge * The Id of the edge  All following columns content are up to you. 
      *
      * @throws ApiException
      *          if the Api call fails
@@ -109,9 +109,9 @@ public class TwingraphApiTest {
     }
     
     /**
-     * Launch a mass delete job
+     * Delete all versions of a graph and his metadatas
      *
-     * Launch a mass delete job
+     * Delete all versions of a graph and his metadatas
      *
      * @throws ApiException
      *          if the Api call fails
@@ -187,7 +187,7 @@ public class TwingraphApiTest {
         String graphId = null;
         String modelType = null;
         List<String> ids = null;
-                List<Object> response = api.getEntities(organizationId, graphId, modelType, ids);
+                String response = api.getEntities(organizationId, graphId, modelType, ids);
         // TODO: test validations
     }
     
@@ -270,7 +270,7 @@ public class TwingraphApiTest {
         String graphId = null;
         String modelType = null;
         List<GraphProperties> graphProperties = null;
-                List<Object> response = api.updateEntities(organizationId, graphId, modelType, graphProperties);
+                String response = api.updateEntities(organizationId, graphId, modelType, graphProperties);
         // TODO: test validations
     }
     

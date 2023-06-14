@@ -5343,7 +5343,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}:
     delete:
-      description: Launch a mass delete job
+      description: Delete all versions of a graph and his metadatas
       operationId: delete
       parameters:
       - description: the Organization identifier
@@ -5367,12 +5367,39 @@ paths:
       responses:
         "204":
           description: Successful response
-      summary: Launch a mass delete job
+      summary: Delete all versions of a graph and his metadatas
       tags:
       - twingraph
       x-accepts: application/json
     post:
-      description: Create a new graph
+      description: |
+        To create a new graph from flat files,  you need to create a Zip file. This Zip
+        file must countain two folders named Edges and Nodes.
+
+        .zip hierarchy:
+        *main_folder/Nodes
+        *main_folder/Edges
+
+        In each folder you can place one or multiple csv files containing your Nodes or
+        Edges data.
+
+        Your csv files must follow the following header (column name) requirements:
+
+        The Nodes CSVs requires at least one column (the 1st).Column name = 'Id'. It
+        will represent the nodes ID
+        Ids must be populated with string
+
+        The Edges CSVs require three columns named, in order,
+        * source
+        * target
+        * Id
+
+        those colomns represent
+        * The source of the edge
+        * The target of the edge
+        * The Id of the edge
+
+        All following columns content are up to you.
       operationId: createGraph
       parameters:
       - description: the Organization identifier
@@ -5718,10 +5745,7 @@ paths:
             application/json:
               schema:
                 example: null
-                items:
-                  example: null
-                  type: object
-                type: array
+                type: string
           description: Successful response
       summary: Get entities in a graph instance
       tags:
@@ -5780,10 +5804,7 @@ paths:
             application/json:
               schema:
                 example: null
-                items:
-                  example: null
-                  type: object
-                type: array
+                type: string
           description: Successful response
       summary: Update entities in a graph instance
       tags:
@@ -5843,16 +5864,7 @@ paths:
             application/json:
               schema:
                 example: null
-                items:
-                  example: "-\"[{\\\"a\\\":{\\\"id\\\":\\\"entity-name\\\",\\\"label\\\
-                    \":\\\"entityType\\\",\\\"type\\\":\\\"NODE\\\",\\\"properties\\\
-                    \":{\\\"param1\\\":\\\"value1\\\",\\\"param2\\\":\\\"value2\\\"\
-                    }}}]\" -\"[{\\\"a\\\":{\\\"id\\\":\\\"entity-name\\\",\\\"label\\\
-                    \":\\\"entityType\\\",\\\"type\\\":\\\"NODE\\\",\\\"properties\\\
-                    \":{\\\"param1\\\":\\\"value1\\\",\\\"param2\\\":\\\"value2\\\"\
-                    }}}]\""
-                  type: object
-                type: array
+                type: string
           description: Successful response
       summary: Create new entities in a graph instance
       tags:
@@ -5887,10 +5899,7 @@ paths:
           content:
             application/json:
               example:
-                lastVersion: "1"
-                graphRotation: "3"
-                lastModifiedDate: 2023/08/25 - 11:59:59
-                graphName: graph
+                $ref: '#/components/examples/MetaDataResponse'
               schema:
                 example: null
                 type: object
@@ -5940,10 +5949,7 @@ paths:
           content:
             application/json:
               example:
-                lastVersion: "1"
-                graphRotation: "3"
-                lastModifiedDate: 2023/08/25 - 11:59:59
-                graphName: graph
+                $ref: '#/components/examples/MetaDataResponse'
               schema:
                 example: null
                 type: object
@@ -5953,6 +5959,7 @@ paths:
       - twingraph
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/graph: {}
   /organizations/{organization_id}/twingraph/{graph_id}/batch:
     post:
       description: 'Async batch update by loading a CSV file on a graph instance '
@@ -6904,6 +6911,13 @@ components:
       summary: Get all nodes query
       value:
         query: MATCH(n) RETURN n
+    MetaDataResponse:
+      summary: the response of a MetaData creation or modification
+      value:
+        lastVersion: "1"
+        graphRotation: "3"
+        lastModifiedDate: 2023/08/25 - 11:59:59
+        graphName: graph
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization

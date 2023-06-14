@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | Async batch update by loading a CSV file on a graph instance 
 [**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Create new entities in a graph instance
 [**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | Create a new graph
-[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Launch a mass delete job
+[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Delete all versions of a graph and his metadatas
 [**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Delete entities in a graph instance
 [**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/bulk-query/download/{hash} | Download a graph compressed in a zip file
 [**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | Return the list of all graphs stored in the organization
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 <a name="createEntities"></a>
 # **createEntities**
-> List&lt;Object&gt; createEntities(organizationId, graphId, modelType, graphProperties)
+> String createEntities(organizationId, graphId, modelType, graphProperties)
 
 Create new entities in a graph instance
 
@@ -202,7 +202,7 @@ public class Example {
     String modelType = "node"; // String | the entity model type
     List<GraphProperties> graphProperties = Arrays.asList(); // List<GraphProperties> | the entities to create
     try {
-      List<Object> result = apiInstance.createEntities(organizationId, graphId, modelType, graphProperties);
+      String result = apiInstance.createEntities(organizationId, graphId, modelType, graphProperties);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#createEntities");
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;Object&gt;**
+**String**
 
 ### Authorization
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 Create a new graph
 
-Create a new graph
+To create a new graph from flat files,  you need to create a Zip file. This Zip file must countain two folders named Edges and Nodes.  .zip hierarchy: *main_folder/Nodes *main_folder/Edges  In each folder you can place one or multiple csv files containing your Nodes or Edges data.  Your csv files must follow the following header (column name) requirements:  The Nodes CSVs requires at least one column (the 1st).Column name &#x3D; &#39;Id&#39;. It will represent the nodes ID Ids must be populated with string  The Edges CSVs require three columns named, in order, * source * target * Id  those colomns represent * The source of the edge * The target of the edge * The Id of the edge  All following columns content are up to you. 
 
 ### Example
 ```java
@@ -316,9 +316,9 @@ null (empty response body)
 # **delete**
 > delete(organizationId, graphId)
 
-Launch a mass delete job
+Delete all versions of a graph and his metadatas
 
-Launch a mass delete job
+Delete all versions of a graph and his metadatas
 
 ### Example
 ```java
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 
 <a name="getEntities"></a>
 # **getEntities**
-> List&lt;Object&gt; getEntities(organizationId, graphId, modelType, ids)
+> String getEntities(organizationId, graphId, modelType, ids)
 
 Get entities in a graph instance
 
@@ -621,7 +621,7 @@ public class Example {
     String modelType = "node"; // String | the entity model type
     List<String> ids = Arrays.asList(); // List<String> | the entities to get
     try {
-      List<Object> result = apiInstance.getEntities(organizationId, graphId, modelType, ids);
+      String result = apiInstance.getEntities(organizationId, graphId, modelType, ids);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#getEntities");
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;Object&gt;**
+**String**
 
 ### Authorization
 
@@ -941,7 +941,7 @@ Name | Type | Description  | Notes
 
 <a name="updateEntities"></a>
 # **updateEntities**
-> List&lt;Object&gt; updateEntities(organizationId, graphId, modelType, graphProperties)
+> String updateEntities(organizationId, graphId, modelType, graphProperties)
 
 Update entities in a graph instance
 
@@ -972,7 +972,7 @@ public class Example {
     String modelType = "node"; // String | the entity model type
     List<GraphProperties> graphProperties = Arrays.asList(); // List<GraphProperties> | the entities to update
     try {
-      List<Object> result = apiInstance.updateEntities(organizationId, graphId, modelType, graphProperties);
+      String result = apiInstance.updateEntities(organizationId, graphId, modelType, graphProperties);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#updateEntities");
@@ -996,7 +996,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;Object&gt;**
+**String**
 
 ### Authorization
 
