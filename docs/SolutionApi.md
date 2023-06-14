@@ -13,7 +13,6 @@ Method | HTTP request | Description
 [**downloadRunTemplateHandler**](SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file
 [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
 [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
-[**importSolution**](SolutionApi.md#importSolution) | **POST** /organizations/{organization_id}/solutions/import | Import a solution
 [**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
 [**removeAllSolutionParameterGroups**](SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified
 [**removeAllSolutionParameters**](SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified
@@ -513,7 +512,7 @@ Name | Type | Description  | Notes
 
 <a name="findAllSolutions"></a>
 # **findAllSolutions**
-> List&lt;Solution&gt; findAllSolutions(organizationId, page, size)
+> List&lt;Solution&gt; findAllSolutions(organizationId)
 
 List all Solutions
 
@@ -538,10 +537,8 @@ public class Example {
 
     SolutionApi apiInstance = new SolutionApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    Integer page = 56; // Integer | page number to query
-    Integer size = 56; // Integer | amount of result by page
     try {
-      List<Solution> result = apiInstance.findAllSolutions(organizationId, page, size);
+      List<Solution> result = apiInstance.findAllSolutions(organizationId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolutionApi#findAllSolutions");
@@ -559,8 +556,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
@@ -647,74 +642,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | the Solution details |  -  |
 **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="importSolution"></a>
-# **importSolution**
-> Solution importSolution(organizationId, solution)
-
-Import a solution
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.SolutionApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    SolutionApi apiInstance = new SolutionApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    Solution solution = new Solution(); // Solution | the Solution to import
-    try {
-      Solution result = apiInstance.importSolution(organizationId, solution);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SolutionApi#importSolution");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solution** | [**Solution**](Solution.md)| the Solution to import |
-
-### Return type
-
-[**Solution**](Solution.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/yaml
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | the solution details |  -  |
-**400** | Bad request |  -  |
 
 <a name="removeAllRunTemplates"></a>
 # **removeAllRunTemplates**
