@@ -5603,7 +5603,7 @@ paths:
       - twingraph
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/bulk-query/download/{hash}:
+  /organizations/{organization_id}/twingraph/download/{hash}:
     get:
       description: Download a graph compressed in a zip file
       operationId: downloadGraph
@@ -5639,7 +5639,7 @@ paths:
       tags:
       - twingraph
       x-accepts: application/octet-stream
-  /organizations/{organization_id}/twingraph/{graph_id}/{modelType}:
+  /organizations/{organization_id}/twingraph/{graph_id}/entity/{type}:
     delete:
       description: delete entities in a graph instance
       operationId: deleteEntities
@@ -5665,7 +5665,7 @@ paths:
       - description: the entity model type
         explode: false
         in: path
-        name: modelType
+        name: type
         required: true
         schema:
           enum:
@@ -5718,7 +5718,7 @@ paths:
       - description: the entity model type
         explode: false
         in: path
-        name: modelType
+        name: type
         required: true
         schema:
           enum:
@@ -5776,7 +5776,7 @@ paths:
       - description: the entity model type
         explode: false
         in: path
-        name: modelType
+        name: type
         required: true
         schema:
           enum:
@@ -5836,7 +5836,7 @@ paths:
       - description: the entity model type
         explode: false
         in: path
-        name: modelType
+        name: type
         required: true
         schema:
           enum:

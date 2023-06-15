@@ -6,18 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batchQuery**](TwingraphApi.md#batchQuery) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
 [**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | Async batch update by loading a CSV file on a graph instance 
-[**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Create new entities in a graph instance
+[**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Create new entities in a graph instance
 [**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | Create a new graph
 [**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Delete all versions of a graph and his metadatas
-[**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Delete entities in a graph instance
-[**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/bulk-query/download/{hash} | Download a graph compressed in a zip file
+[**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Delete entities in a graph instance
+[**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/download/{hash} | Download a graph compressed in a zip file
 [**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | Return the list of all graphs stored in the organization
-[**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Get entities in a graph instance
+[**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Get entities in a graph instance
 [**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Return the metaData of the specified graph
 [**importGraph**](TwingraphApi.md#importGraph) | **POST** /organizations/{organization_id}/twingraph/import | Import a new version of a twin graph
 [**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | Get the status of a job
 [**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | Run a query on a graph instance
-[**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/{modelType} | Update entities in a graph instance
+[**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Update entities in a graph instance
 [**updateGraphMetaData**](TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Update the metaData of the specified graph
 
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 <a name="createEntities"></a>
 # **createEntities**
-> String createEntities(organizationId, graphId, modelType, graphProperties)
+> String createEntities(organizationId, graphId, type, graphProperties)
 
 Create new entities in a graph instance
 
@@ -199,10 +199,10 @@ public class Example {
     TwingraphApi apiInstance = new TwingraphApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
-    String modelType = "node"; // String | the entity model type
+    String type = "node"; // String | the entity model type
     List<GraphProperties> graphProperties = Arrays.asList(); // List<GraphProperties> | the entities to create
     try {
-      String result = apiInstance.createEntities(organizationId, graphId, modelType, graphProperties);
+      String result = apiInstance.createEntities(organizationId, graphId, type, graphProperties);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#createEntities");
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
- **modelType** | **String**| the entity model type | [enum: node, relationship]
+ **type** | **String**| the entity model type | [enum: node, relationship]
  **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to create |
 
 ### Return type
@@ -382,7 +382,7 @@ null (empty response body)
 
 <a name="deleteEntities"></a>
 # **deleteEntities**
-> deleteEntities(organizationId, graphId, modelType, ids)
+> deleteEntities(organizationId, graphId, type, ids)
 
 Delete entities in a graph instance
 
@@ -410,10 +410,10 @@ public class Example {
     TwingraphApi apiInstance = new TwingraphApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
-    String modelType = "node"; // String | the entity model type
+    String type = "node"; // String | the entity model type
     List<String> ids = Arrays.asList(); // List<String> | the entities to delete
     try {
-      apiInstance.deleteEntities(organizationId, graphId, modelType, ids);
+      apiInstance.deleteEntities(organizationId, graphId, type, ids);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#deleteEntities");
       System.err.println("Status code: " + e.getCode());
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
- **modelType** | **String**| the entity model type | [enum: node, relationship]
+ **type** | **String**| the entity model type | [enum: node, relationship]
  **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete |
 
 ### Return type
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 
 <a name="getEntities"></a>
 # **getEntities**
-> String getEntities(organizationId, graphId, modelType, ids)
+> String getEntities(organizationId, graphId, type, ids)
 
 Get entities in a graph instance
 
@@ -618,10 +618,10 @@ public class Example {
     TwingraphApi apiInstance = new TwingraphApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
-    String modelType = "node"; // String | the entity model type
+    String type = "node"; // String | the entity model type
     List<String> ids = Arrays.asList(); // List<String> | the entities to get
     try {
-      String result = apiInstance.getEntities(organizationId, graphId, modelType, ids);
+      String result = apiInstance.getEntities(organizationId, graphId, type, ids);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#getEntities");
@@ -640,7 +640,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
- **modelType** | **String**| the entity model type | [enum: node, relationship]
+ **type** | **String**| the entity model type | [enum: node, relationship]
  **ids** | [**List&lt;String&gt;**](String.md)| the entities to get |
 
 ### Return type
@@ -941,7 +941,7 @@ Name | Type | Description  | Notes
 
 <a name="updateEntities"></a>
 # **updateEntities**
-> String updateEntities(organizationId, graphId, modelType, graphProperties)
+> String updateEntities(organizationId, graphId, type, graphProperties)
 
 Update entities in a graph instance
 
@@ -969,10 +969,10 @@ public class Example {
     TwingraphApi apiInstance = new TwingraphApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String graphId = "graphId_example"; // String | the Graph Identifier
-    String modelType = "node"; // String | the entity model type
+    String type = "node"; // String | the entity model type
     List<GraphProperties> graphProperties = Arrays.asList(); // List<GraphProperties> | the entities to update
     try {
-      String result = apiInstance.updateEntities(organizationId, graphId, modelType, graphProperties);
+      String result = apiInstance.updateEntities(organizationId, graphId, type, graphProperties);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TwingraphApi#updateEntities");
@@ -991,7 +991,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **graphId** | **String**| the Graph Identifier |
- **modelType** | **String**| the entity model type | [enum: node, relationship]
+ **type** | **String**| the entity model type | [enum: node, relationship]
  **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to update |
 
 ### Return type

@@ -85,9 +85,9 @@ public class TwingraphApiTest {
     public void createEntitiesTest() throws ApiException {
         String organizationId = null;
         String graphId = null;
-        String modelType = null;
+        String type = null;
         List<GraphProperties> graphProperties = null;
-                String response = api.createEntities(organizationId, graphId, modelType, graphProperties);
+                String response = api.createEntities(organizationId, graphId, type, graphProperties);
         // TODO: test validations
     }
     
@@ -136,9 +136,9 @@ public class TwingraphApiTest {
     public void deleteEntitiesTest() throws ApiException {
         String organizationId = null;
         String graphId = null;
-        String modelType = null;
+        String type = null;
         List<String> ids = null;
-                api.deleteEntities(organizationId, graphId, modelType, ids);
+                api.deleteEntities(organizationId, graphId, type, ids);
         // TODO: test validations
     }
     
@@ -185,9 +185,9 @@ public class TwingraphApiTest {
     public void getEntitiesTest() throws ApiException {
         String organizationId = null;
         String graphId = null;
-        String modelType = null;
+        String type = null;
         List<String> ids = null;
-                String response = api.getEntities(organizationId, graphId, modelType, ids);
+                String response = api.getEntities(organizationId, graphId, type, ids);
         // TODO: test validations
     }
     
@@ -268,9 +268,9 @@ public class TwingraphApiTest {
     public void updateEntitiesTest() throws ApiException {
         String organizationId = null;
         String graphId = null;
-        String modelType = null;
+        String type = null;
         List<GraphProperties> graphProperties = null;
-                String response = api.updateEntities(organizationId, graphId, modelType, graphProperties);
+                String response = api.updateEntities(organizationId, graphId, type, graphProperties);
         // TODO: test validations
     }
     
