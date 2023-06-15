@@ -31,7 +31,7 @@ import java.util.List;
  * the Scenario security information
  */
 @ApiModel(description = "the Scenario security information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-14T15:25:19.884991901Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-15T09:47:04.994005176Z[Etc/UTC]")
 public class ScenarioSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
