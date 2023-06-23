@@ -9,7 +9,6 @@ a version of a Solution
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the Solution version unique identifier |  [optional] [readonly]
-**organizationId** | **String** | the Organization unique identifier |  [optional] [readonly]
 **key** | **String** | the Solution key which group Solution versions |  [optional]
 **name** | **String** | the Solution name |  [optional]
 **description** | **String** | the Solution description |  [optional]
