@@ -29,7 +29,7 @@ import java.io.IOException;
  * a description object for resource requests and limits (default same configuration as basic sizing)
  */
 @ApiModel(description = "a description object for resource requests and limits (default same configuration as basic sizing)")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-19T09:55:37.359049237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-23T13:13:09.762055154Z[Etc/UTC]")
 public class ContainerResourceSizing {
   public static final String SERIALIZED_NAME_REQUESTS = "requests";
   @SerializedName(SERIALIZED_NAME_REQUESTS)
