@@ -30,7 +30,7 @@ import java.util.List;
  * Processing result
  */
 @ApiModel(description = "Processing result")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-28T14:33:08.530600276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-28T15:10:17.167029194Z[Etc/UTC]")
 public class TwinGraphBatchResult {
   public static final String SERIALIZED_NAME_TOTAL_LINES = "totalLines";
   @SerializedName(SERIALIZED_NAME_TOTAL_LINES)
