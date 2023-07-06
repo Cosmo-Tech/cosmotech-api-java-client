@@ -29,7 +29,7 @@ import java.io.IOException;
  * Scenario data download job info
  */
 @ApiModel(description = "Scenario data download job info")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-06T14:02:11.919096237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-06T14:16:07.187182633Z[Etc/UTC]")
 public class ScenarioDataDownloadInfo {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)

@@ -5098,16 +5098,6 @@ paths:
           example: null
           type: string
         style: simple
-      - description: whether to wait until child scenarios are effectively updated
-        explode: true
-        in: query
-        name: wait_relationship_propagation
-        required: false
-        schema:
-          default: false
-          example: null
-          type: boolean
-        style: form
       responses:
         "204":
           description: Request succeeded

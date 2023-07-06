@@ -141,8 +141,7 @@ public class ScenarioApiTest {
         String organizationId = null;
         String workspaceId = null;
         String scenarioId = null;
-        Boolean waitRelationshipPropagation = null;
-                api.deleteScenario(organizationId, workspaceId, scenarioId, waitRelationshipPropagation);
+                api.deleteScenario(organizationId, workspaceId, scenarioId);
         // TODO: test validations
     }
     
