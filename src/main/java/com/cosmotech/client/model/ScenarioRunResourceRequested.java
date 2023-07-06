@@ -25,65 +25,65 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * a Organization access control item
+ * the memory and CPU requested by the pod
  */
-@ApiModel(description = "a Organization access control item")
+@ApiModel(description = "the memory and CPU requested by the pod")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-06T12:55:55.703751790Z[Etc/UTC]")
-public class OrganizationAccessControl {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+public class ScenarioRunResourceRequested {
+  public static final String SERIALIZED_NAME_CPU = "cpu";
+  @SerializedName(SERIALIZED_NAME_CPU)
+  private Long cpu;
 
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private String role;
+  public static final String SERIALIZED_NAME_MEMORY = "memory";
+  @SerializedName(SERIALIZED_NAME_MEMORY)
+  private Long memory;
 
-  public OrganizationAccessControl() { 
+  public ScenarioRunResourceRequested() { 
   }
 
-  public OrganizationAccessControl id(String id) {
+  public ScenarioRunResourceRequested cpu(Long cpu) {
     
-    this.id = id;
+    this.cpu = cpu;
     return this;
   }
 
    /**
-   * the identity id
-   * @return id
+   * the cpu requested
+   * @return cpu
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the identity id")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the cpu requested")
 
-  public String getId() {
-    return id;
+  public Long getCpu() {
+    return cpu;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setCpu(Long cpu) {
+    this.cpu = cpu;
   }
 
 
-  public OrganizationAccessControl role(String role) {
+  public ScenarioRunResourceRequested memory(Long memory) {
     
-    this.role = role;
+    this.memory = memory;
     return this;
   }
 
    /**
-   * a role
-   * @return role
+   * the memory requested
+   * @return memory
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "a role")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the memory requested")
 
-  public String getRole() {
-    return role;
+  public Long getMemory() {
+    return memory;
   }
 
 
-  public void setRole(String role) {
-    this.role = role;
+  public void setMemory(Long memory) {
+    this.memory = memory;
   }
 
 
@@ -95,22 +95,22 @@ public class OrganizationAccessControl {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationAccessControl organizationAccessControl = (OrganizationAccessControl) o;
-    return Objects.equals(this.id, organizationAccessControl.id) &&
-        Objects.equals(this.role, organizationAccessControl.role);
+    ScenarioRunResourceRequested scenarioRunResourceRequested = (ScenarioRunResourceRequested) o;
+    return Objects.equals(this.cpu, scenarioRunResourceRequested.cpu) &&
+        Objects.equals(this.memory, scenarioRunResourceRequested.memory);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, role);
+    return Objects.hash(cpu, memory);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationAccessControl {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("class ScenarioRunResourceRequested {\n");
+    sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
+    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
     sb.append("}");
     return sb.toString();
   }

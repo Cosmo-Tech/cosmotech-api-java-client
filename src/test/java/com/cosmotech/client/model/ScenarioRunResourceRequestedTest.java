@@ -13,7 +13,6 @@
 
 package com.cosmotech.client.model;
 
-import com.cosmotech.client.model.SourceInfo;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,41 +27,33 @@ import org.junit.Test;
 
 
 /**
- * Model tests for TwinGraphImport
+ * Model tests for ScenarioRunResourceRequested
  */
-public class TwinGraphImportTest {
-    private final TwinGraphImport model = new TwinGraphImport();
+public class ScenarioRunResourceRequestedTest {
+    private final ScenarioRunResourceRequested model = new ScenarioRunResourceRequested();
 
     /**
-     * Model tests for TwinGraphImport
+     * Model tests for ScenarioRunResourceRequested
      */
     @Test
-    public void testTwinGraphImport() {
-        // TODO: test TwinGraphImport
+    public void testScenarioRunResourceRequested() {
+        // TODO: test ScenarioRunResourceRequested
     }
 
     /**
-     * Test the property 'source'
+     * Test the property 'cpu'
      */
     @Test
-    public void sourceTest() {
-        // TODO: test source
+    public void cpuTest() {
+        // TODO: test cpu
     }
 
     /**
-     * Test the property 'graphId'
+     * Test the property 'memory'
      */
     @Test
-    public void graphIdTest() {
-        // TODO: test graphId
-    }
-
-    /**
-     * Test the property 'version'
-     */
-    @Test
-    public void versionTest() {
-        // TODO: test version
+    public void memoryTest() {
+        // TODO: test memory
     }
 
 }
