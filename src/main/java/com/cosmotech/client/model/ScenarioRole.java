@@ -28,7 +28,7 @@ import java.io.IOException;
  * the Scenario Role
  */
 @ApiModel(description = "the Scenario Role")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-27T13:52:57.655680996Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-01T15:41:01.883670272Z[Etc/UTC]")
 public class ScenarioRole {
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
