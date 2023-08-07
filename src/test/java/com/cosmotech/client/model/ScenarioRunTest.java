@@ -167,6 +167,14 @@ public class ScenarioRunTest {
     }
 
     /**
+     * Test the property 'createdAt'
+     */
+    @Test
+    public void createdAtTest() {
+        // TODO: test createdAt
+    }
+
+    /**
      * Test the property 'noDataIngestionState'
      */
     @Test

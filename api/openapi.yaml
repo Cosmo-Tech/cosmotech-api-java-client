@@ -8877,6 +8877,7 @@ components:
         generateName: generateName
         ownerId: ownerId
         organizationId: organizationId
+        createdAt: createdAt
         parametersValues:
         - varType: varType
           parameterId: parameterId
@@ -9038,6 +9039,11 @@ components:
         sdkVersion:
           description: the MAJOR.MINOR version used to build the solution solution
           example: null
+          type: string
+        createdAt:
+          description: the ScenarioRun creation date
+          example: null
+          readOnly: true
           type: string
         noDataIngestionState:
           description: set to true if the run template does not use any Datawarehouse
