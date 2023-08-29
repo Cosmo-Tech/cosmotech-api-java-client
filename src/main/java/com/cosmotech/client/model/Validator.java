@@ -30,7 +30,7 @@ import java.util.List;
  * a Validator to validate a Dataset
  */
 @ApiModel(description = "a Validator to validate a Dataset")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-29T12:20:57.771265825Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-29T13:04:27.203624883Z[Etc/UTC]")
 public class Validator {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
