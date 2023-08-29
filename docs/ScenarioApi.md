@@ -385,7 +385,7 @@ null (empty response body)
 
 <a name="deleteScenario"></a>
 # **deleteScenario**
-> deleteScenario(organizationId, workspaceId, scenarioId)
+> deleteScenario(organizationId, workspaceId, scenarioId, waitRelationshipPropagation)
 
 Delete a scenario
 
@@ -412,8 +412,9 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
+    Boolean waitRelationshipPropagation = false; // Boolean | whether to wait until child scenarios are effectively updated
     try {
-      apiInstance.deleteScenario(organizationId, workspaceId, scenarioId);
+      apiInstance.deleteScenario(organizationId, workspaceId, scenarioId, waitRelationshipPropagation);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenarioApi#deleteScenario");
       System.err.println("Status code: " + e.getCode());
@@ -432,6 +433,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
  **scenarioId** | **String**| the Scenario identifier |
+ **waitRelationshipPropagation** | **Boolean**| whether to wait until child scenarios are effectively updated | [optional] [default to false]
 
 ### Return type
 

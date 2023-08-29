@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 2.3.12-SNAPSHOT
-  - Build date: 2023-08-29T10:52:10.936494808Z[Etc/UTC]
+- API version: 2.4.7-public
+  - Build date: 2023-08-29T12:20:57.771265825Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>2.3.12-SNAPSHOT</version>
+  <version>2.4.7-public</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:2.3.12-SNAPSHOT"
+     implementation "com.cosmotech:cosmotech-api-java-client:2.4.7-public"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-2.3.12-SNAPSHOT.jar`
+* `target/cosmotech-api-java-client-2.4.7-public.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -298,7 +298,6 @@ Class | Method | HTTP request | Description
  - [ScenarioRunContainerArtifact](docs/ScenarioRunContainerArtifact.md)
  - [ScenarioRunContainerLogs](docs/ScenarioRunContainerLogs.md)
  - [ScenarioRunLogs](docs/ScenarioRunLogs.md)
- - [ScenarioRunResourceRequested](docs/ScenarioRunResourceRequested.md)
  - [ScenarioRunSearch](docs/ScenarioRunSearch.md)
  - [ScenarioRunStartContainers](docs/ScenarioRunStartContainers.md)
  - [ScenarioRunState](docs/ScenarioRunState.md)
