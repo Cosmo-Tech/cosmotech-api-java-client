@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 2.3.12-SNAPSHOT
-  - Build date: 2023-09-05T14:03:05.126952302Z[Etc/UTC]
+  - Build date: 2023-09-06T12:00:05.064353760Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -278,6 +278,7 @@ Class | Method | HTTP request | Description
  - [ResourceSizeInfo](docs/ResourceSizeInfo.md)
  - [RunTemplate](docs/RunTemplate.md)
  - [RunTemplateHandlerId](docs/RunTemplateHandlerId.md)
+ - [RunTemplateOrchestrator](docs/RunTemplateOrchestrator.md)
  - [RunTemplateParameter](docs/RunTemplateParameter.md)
  - [RunTemplateParameterGroup](docs/RunTemplateParameterGroup.md)
  - [RunTemplateParameterValue](docs/RunTemplateParameterValue.md)
