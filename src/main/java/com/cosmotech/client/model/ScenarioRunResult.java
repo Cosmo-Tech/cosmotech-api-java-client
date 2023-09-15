@@ -23,36 +23,39 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
- * a Scenario access control item
+ * a ScenarioRunProbeResult with all ScenarioRunResult
  */
-@ApiModel(description = "a Scenario access control item")
+@ApiModel(description = "a ScenarioRunProbeResult with all ScenarioRunResult")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T14:27:49.514879497Z[Etc/UTC]")
-public class ScenarioAccessControl {
+public class ScenarioRunResult {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private String role;
+  public static final String SERIALIZED_NAME_RESULTS = "results";
+  @SerializedName(SERIALIZED_NAME_RESULTS)
+  private List<Map<String, String>> results = null;
 
-  public ScenarioAccessControl() { 
+  public ScenarioRunResult() { 
   }
 
-  public ScenarioAccessControl id(String id) {
+  public ScenarioRunResult id(String id) {
     
     this.id = id;
     return this;
   }
 
    /**
-   * the identity id
+   * Get id
    * @return id
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the identity id")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
@@ -64,26 +67,34 @@ public class ScenarioAccessControl {
   }
 
 
-  public ScenarioAccessControl role(String role) {
+  public ScenarioRunResult results(List<Map<String, String>> results) {
     
-    this.role = role;
+    this.results = results;
+    return this;
+  }
+
+  public ScenarioRunResult addResultsItem(Map<String, String> resultsItem) {
+    if (this.results == null) {
+      this.results = new ArrayList<Map<String, String>>();
+    }
+    this.results.add(resultsItem);
     return this;
   }
 
    /**
-   * a role
-   * @return role
+   * Get results
+   * @return results
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "a role")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public String getRole() {
-    return role;
+  public List<Map<String, String>> getResults() {
+    return results;
   }
 
 
-  public void setRole(String role) {
-    this.role = role;
+  public void setResults(List<Map<String, String>> results) {
+    this.results = results;
   }
 
 
@@ -95,22 +106,22 @@ public class ScenarioAccessControl {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScenarioAccessControl scenarioAccessControl = (ScenarioAccessControl) o;
-    return Objects.equals(this.id, scenarioAccessControl.id) &&
-        Objects.equals(this.role, scenarioAccessControl.role);
+    ScenarioRunResult scenarioRunResult = (ScenarioRunResult) o;
+    return Objects.equals(this.id, scenarioRunResult.id) &&
+        Objects.equals(this.results, scenarioRunResult.results);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, role);
+    return Objects.hash(id, results);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScenarioAccessControl {\n");
+    sb.append("class ScenarioRunResult {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    results: ").append(toIndentedString(results)).append("\n");
     sb.append("}");
     return sb.toString();
   }

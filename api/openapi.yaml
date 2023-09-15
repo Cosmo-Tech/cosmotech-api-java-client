@@ -28,6 +28,8 @@ tags:
   name: dataset
 - description: Organization Management
   name: organization
+- description: ScenarioRunResult Management
+  name: scenariorunresult
 - description: Scenario Management
   name: scenario
 - description: ScenarioRun Management
@@ -3362,6 +3364,152 @@ paths:
       summary: Import an organization
       tags:
       - organization
+      x-contentType: application/json
+      x-accepts: application/json
+  ? /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id}
+  : get:
+      operationId: getScenarioRunResult
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Probe identifier
+        explode: false
+        in: path
+        name: probe_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRunResult:
+                  $ref: '#/components/examples/ScenarioRunResultExample'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunResult'
+          description: the Organization details
+        "404":
+          description: the ScenarioRunResult specified is unknown or you don't have
+            access to it
+      summary: Get a ScenarioRunResult in the Organization
+      tags:
+      - scenariorunresult
+      x-accepts: application/json
+    post:
+      operationId: sendScenarioRunResult
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Probe identifier
+        explode: false
+        in: path
+        name: probe_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ScenarioRunResult:
+                $ref: '#/components/examples/ScenarioRunProbeResultExample'
+            schema:
+              additionalProperties:
+                example: null
+                type: string
+              example: null
+              type: object
+        description: the ScenarioRunResult to register
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRunResult:
+                  $ref: '#/components/examples/ScenarioRunResultExample'
+              schema:
+                $ref: '#/components/schemas/ScenarioRunResult'
+          description: the Organization details
+        "400":
+          description: the ScenarioRunResult specified is unknown or you don't have
+            access to it
+      summary: Create a new ScenarioRunResult in the Organization
+      tags:
+      - scenariorunresult
       x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
@@ -7182,6 +7330,20 @@ components:
           path: my-data-folder
           type: Storage
         graphId: my-graph-id
+    ScenarioRunProbeResultExample:
+      description: "null"
+      summary: "null"
+      value:
+        name: StockProbe
+        run: 0
+        stockMeasure: 50
+    ScenarioRunResultExample:
+      description: "null"
+      summary: "null"
+      value:
+        id: sr-feai8feu44_stock
+        results:
+          $ref: '#/components/examples/ScenarioRunResultExample'
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -9292,6 +9454,29 @@ components:
           format: int64
           type: integer
       type: object
+    ScenarioRunResult:
+      description: a ScenarioRunProbeResult with all ScenarioRunResult
+      example:
+        id: id
+        results:
+        - key: results
+        - key: results
+      properties:
+        id:
+          example: null
+          type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        results:
+          example: null
+          items:
+            additionalProperties:
+              example: null
+              type: string
+            example: null
+            type: object
+          type: array
+      type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunSearch:
       description: the search options
       example:
