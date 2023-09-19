@@ -9,6 +9,7 @@ a Workspace
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | the Workspace version unique identifier |  [optional] [readonly]
+**organizationId** | **String** | the Organization unique identifier |  [optional] [readonly]
 **key** | **String** | technical key for resource name convention and version grouping. Must be unique | 
 **name** | **String** | the Workspace name | 
 **description** | **String** | the Workspace description |  [optional]
