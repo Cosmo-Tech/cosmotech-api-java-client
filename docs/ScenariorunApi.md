@@ -14,7 +14,6 @@ Method | HTTP request | Description
 [**getScenarioRunStatus**](ScenariorunApi.md#getScenarioRunStatus) | **GET** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/status | get the status for the ScenarioRun
 [**getScenarioRuns**](ScenariorunApi.md#getScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns | get the list of ScenarioRuns for the Scenario
 [**getWorkspaceScenarioRuns**](ScenariorunApi.md#getWorkspaceScenarioRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarioruns | get the list of ScenarioRuns for the Workspace
-[**importScenarioRun**](ScenariorunApi.md#importScenarioRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import | import a ScenarioRun for the Scenario
 [**runScenario**](ScenariorunApi.md#runScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run | run a ScenarioRun for the Scenario
 [**searchScenarioRuns**](ScenariorunApi.md#searchScenarioRuns) | **POST** /organizations/{organization_id}/scenarioruns/search | Search ScenarioRuns
 [**startScenarioRunContainers**](ScenariorunApi.md#startScenarioRunContainers) | **POST** /organizations/{organization_id}/scenarioruns/startcontainers | Start a new scenariorun with raw containers definition
@@ -572,7 +571,7 @@ Name | Type | Description  | Notes
 
 <a name="getScenarioRuns"></a>
 # **getScenarioRuns**
-> List&lt;ScenarioRun&gt; getScenarioRuns(organizationId, workspaceId, scenarioId, page, size)
+> List&lt;ScenarioRun&gt; getScenarioRuns(organizationId, workspaceId, scenarioId)
 
 get the list of ScenarioRuns for the Scenario
 
@@ -599,10 +598,8 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    Integer page = 56; // Integer | page number to query
-    Integer size = 56; // Integer | amount of result by page
     try {
-      List<ScenarioRun> result = apiInstance.getScenarioRuns(organizationId, workspaceId, scenarioId, page, size);
+      List<ScenarioRun> result = apiInstance.getScenarioRuns(organizationId, workspaceId, scenarioId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#getScenarioRuns");
@@ -622,8 +619,6 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
  **scenarioId** | **String**| the Scenario identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
@@ -645,7 +640,7 @@ Name | Type | Description  | Notes
 
 <a name="getWorkspaceScenarioRuns"></a>
 # **getWorkspaceScenarioRuns**
-> List&lt;ScenarioRun&gt; getWorkspaceScenarioRuns(organizationId, workspaceId, page, size)
+> List&lt;ScenarioRun&gt; getWorkspaceScenarioRuns(organizationId, workspaceId)
 
 get the list of ScenarioRuns for the Workspace
 
@@ -671,10 +666,8 @@ public class Example {
     ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    Integer page = 56; // Integer | page number to query
-    Integer size = 56; // Integer | amount of result by page
     try {
-      List<ScenarioRun> result = apiInstance.getWorkspaceScenarioRuns(organizationId, workspaceId, page, size);
+      List<ScenarioRun> result = apiInstance.getWorkspaceScenarioRuns(organizationId, workspaceId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#getWorkspaceScenarioRuns");
@@ -693,8 +686,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
@@ -713,77 +704,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the scenariorun details list |  -  |
-
-<a name="importScenarioRun"></a>
-# **importScenarioRun**
-> ScenarioRun importScenarioRun(organizationId, workspaceId, scenarioId, scenarioRun)
-
-import a ScenarioRun for the Scenario
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.ScenariorunApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    ScenarioRun scenarioRun = new ScenarioRun(); // ScenarioRun | the ScenarioRun to import
-    try {
-      ScenarioRun result = apiInstance.importScenarioRun(organizationId, workspaceId, scenarioId, scenarioRun);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScenariorunApi#importScenarioRun");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **scenarioRun** | [**ScenarioRun**](ScenarioRun.md)| the ScenarioRun to import |
-
-### Return type
-
-[**ScenarioRun**](ScenarioRun.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | the scenariorun details |  -  |
 
 <a name="runScenario"></a>
 # **runScenario**
@@ -856,7 +776,7 @@ Name | Type | Description  | Notes
 
 <a name="searchScenarioRuns"></a>
 # **searchScenarioRuns**
-> List&lt;ScenarioRun&gt; searchScenarioRuns(organizationId, scenarioRunSearch, page, size)
+> List&lt;ScenarioRun&gt; searchScenarioRuns(organizationId, scenarioRunSearch)
 
 Search ScenarioRuns
 
@@ -882,10 +802,8 @@ public class Example {
     ScenariorunApi apiInstance = new ScenariorunApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     ScenarioRunSearch scenarioRunSearch = new ScenarioRunSearch(); // ScenarioRunSearch | the ScenarioRun search parameters
-    Integer page = 56; // Integer | page number to query
-    Integer size = 56; // Integer | amount of result by page
     try {
-      List<ScenarioRun> result = apiInstance.searchScenarioRuns(organizationId, scenarioRunSearch, page, size);
+      List<ScenarioRun> result = apiInstance.searchScenarioRuns(organizationId, scenarioRunSearch);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenariorunApi#searchScenarioRuns");
@@ -904,8 +822,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **scenarioRunSearch** | [**ScenarioRunSearch**](ScenarioRunSearch.md)| the ScenarioRun search parameters |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
