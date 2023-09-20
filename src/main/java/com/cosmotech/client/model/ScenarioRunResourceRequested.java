@@ -28,7 +28,7 @@ import java.io.IOException;
  * the memory and CPU requested by the pod
  */
 @ApiModel(description = "the memory and CPU requested by the pod")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-19T15:14:30.964247403Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-20T07:58:52.814595609Z[Etc/UTC]")
 public class ScenarioRunResourceRequested {
   public static final String SERIALIZED_NAME_CPU = "cpu";
   @SerializedName(SERIALIZED_NAME_CPU)
