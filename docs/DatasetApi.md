@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**deleteDataset**](DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset
 [**findAllDatasets**](DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
 [**findDatasetById**](DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
+[**importDataset**](DatasetApi.md#importDataset) | **POST** /organizations/{organization_id}/datasets/import | Import a new Dataset
 [**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
 [**searchDatasets**](DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets
 [**updateDataset**](DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
@@ -292,7 +293,7 @@ null (empty response body)
 
 <a name="findAllDatasets"></a>
 # **findAllDatasets**
-> List&lt;Dataset&gt; findAllDatasets(organizationId)
+> List&lt;Dataset&gt; findAllDatasets(organizationId, page, size)
 
 List all Datasets
 
@@ -317,8 +318,10 @@ public class Example {
 
     DatasetApi apiInstance = new DatasetApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
+    Integer page = 56; // Integer | page number to query
+    Integer size = 56; // Integer | amount of result by page
     try {
-      List<Dataset> result = apiInstance.findAllDatasets(organizationId);
+      List<Dataset> result = apiInstance.findAllDatasets(organizationId, page, size);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DatasetApi#findAllDatasets");
@@ -336,6 +339,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
+ **page** | **Integer**| page number to query | [optional]
+ **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
@@ -423,6 +428,74 @@ Name | Type | Description  | Notes
 **200** | the Dataset details |  -  |
 **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="importDataset"></a>
+# **importDataset**
+> Dataset importDataset(organizationId, dataset)
+
+Import a new Dataset
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.DatasetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    DatasetApi apiInstance = new DatasetApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    Dataset dataset = new Dataset(); // Dataset | the Dataset to import
+    try {
+      Dataset result = apiInstance.importDataset(organizationId, dataset);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DatasetApi#importDataset");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **dataset** | [**Dataset**](Dataset.md)| the Dataset to import |
+
+### Return type
+
+[**Dataset**](Dataset.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | the dataset details |  -  |
+**400** | Bad request |  -  |
+
 <a name="removeAllDatasetCompatibilityElements"></a>
 # **removeAllDatasetCompatibilityElements**
 > removeAllDatasetCompatibilityElements(organizationId, datasetId)
@@ -492,7 +565,7 @@ null (empty response body)
 
 <a name="searchDatasets"></a>
 # **searchDatasets**
-> List&lt;Dataset&gt; searchDatasets(organizationId, datasetSearch)
+> List&lt;Dataset&gt; searchDatasets(organizationId, datasetSearch, page, size)
 
 Search Datasets
 
@@ -518,8 +591,10 @@ public class Example {
     DatasetApi apiInstance = new DatasetApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     DatasetSearch datasetSearch = new DatasetSearch(); // DatasetSearch | the Dataset search parameters
+    Integer page = 56; // Integer | page number to query
+    Integer size = 56; // Integer | amount of result by page
     try {
-      List<Dataset> result = apiInstance.searchDatasets(organizationId, datasetSearch);
+      List<Dataset> result = apiInstance.searchDatasets(organizationId, datasetSearch, page, size);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DatasetApi#searchDatasets");
@@ -538,6 +613,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **datasetSearch** | [**DatasetSearch**](DatasetSearch.md)| the Dataset search parameters |
+ **page** | **Integer**| page number to query | [optional]
+ **size** | **Integer**| amount of result by page | [optional]
 
 ### Return type
 
