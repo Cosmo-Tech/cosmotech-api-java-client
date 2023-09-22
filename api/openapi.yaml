@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 2.3.12-SNAPSHOT
+  version: 2.4.9
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -28,8 +28,6 @@ tags:
   name: dataset
 - description: Organization Management
   name: organization
-- description: ScenarioRunResult Management
-  name: scenariorunresult
 - description: Scenario Management
   name: scenario
 - description: ScenarioRun Management
@@ -3366,152 +3364,6 @@ paths:
       - organization
       x-contentType: application/json
       x-accepts: application/json
-  ? /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id}
-  : get:
-      operationId: getScenarioRunResult
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Probe identifier
-        explode: false
-        in: path
-        name: probe_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRunResult:
-                  $ref: '#/components/examples/ScenarioRunResultExample'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunResult'
-          description: the Organization details
-        "404":
-          description: the ScenarioRunResult specified is unknown or you don't have
-            access to it
-      summary: Get a ScenarioRunResult in the Organization
-      tags:
-      - scenariorunresult
-      x-accepts: application/json
-    post:
-      operationId: sendScenarioRunResult
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the ScenarioRun identifier
-        explode: false
-        in: path
-        name: scenariorun_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Probe identifier
-        explode: false
-        in: path
-        name: probe_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ScenarioRunResult:
-                $ref: '#/components/examples/ScenarioRunProbeResultExample'
-            schema:
-              additionalProperties:
-                example: null
-                type: string
-              example: null
-              type: object
-        description: the ScenarioRunResult to register
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRunResult:
-                  $ref: '#/components/examples/ScenarioRunResultExample'
-              schema:
-                $ref: '#/components/schemas/ScenarioRunResult'
-          description: the Organization details
-        "400":
-          description: the ScenarioRunResult specified is unknown or you don't have
-            access to it
-      summary: Create a new ScenarioRunResult in the Organization
-      tags:
-      - scenariorunresult
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     delete:
       operationId: deleteAllScenarios
@@ -3795,6 +3647,16 @@ paths:
           example: null
           type: string
         style: simple
+      - description: whether to wait until child scenarios are effectively updated
+        explode: true
+        in: query
+        name: wait_relationship_propagation
+        required: false
+        schema:
+          default: false
+          example: null
+          type: boolean
+        style: form
       responses:
         "204":
           description: Request succeeded
@@ -5681,19 +5543,19 @@ paths:
 
         Your csv files must follow the following header (column name) requirements:
 
-        The Nodes CSVs requires at least one column (the 1st).Column name = 'id'. It
+        The Nodes CSVs requires at least one column (the 1st).Column name = 'Id'. It
         will represent the nodes ID
         Ids must be populated with string
 
         The Edges CSVs require three columns named, in order,
         * source
         * target
-        * id
+        * Id
 
         those colomns represent
         * The source of the edge
         * The target of the edge
-        * The id of the edge
+        * The Id of the edge
 
         All following columns content are up to you.
       operationId: createGraph
@@ -6416,7 +6278,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosmo-Tech/brewery_sample_solution
+        url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
         parameters:
@@ -6861,7 +6723,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosmo-Tech/brewery_sample_solution
+        url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
         parameters:
@@ -7152,7 +7014,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosmo-Tech/brewery_sample_solution
+        url: https://github.com/Cosm-Tech/brewery.git
         tags:
         - Brewery
         parameters:
@@ -7330,20 +7192,6 @@ components:
           path: my-data-folder
           type: Storage
         graphId: my-graph-id
-    ScenarioRunProbeResultExample:
-      description: "null"
-      summary: "null"
-      value:
-        name: StockProbe
-        run: 0
-        stockMeasure: 50
-    ScenarioRunResultExample:
-      description: "null"
-      summary: "null"
-      value:
-        id: sr-feai8feu44_stock
-        results:
-          $ref: '#/components/examples/ScenarioRunResultExample'
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -8361,7 +8209,6 @@ components:
           timeOut: 1
         scenarioDataDownloadTransform: true
         datasetValidatorSource: null
-        orchestratorType: null
         preRunSource: null
         scenariodataTransformSource: null
         gitRepositoryUrl: gitRepositoryUrl
@@ -8501,8 +8348,6 @@ components:
           description: an optional directory where to find the run template source
           example: null
           type: string
-        orchestratorType:
-          $ref: '#/components/schemas/RunTemplateOrchestrator'
         executionTimeout:
           description: an optional duration in seconds in which a workflow is allowed
             to run
@@ -8522,13 +8367,6 @@ components:
       - engine
       - postrun
       - scenariodata_transform
-      example: null
-      type: string
-    RunTemplateOrchestrator:
-      description: the Orchestrator to use for the Run Template
-      enum:
-      - argo-workflow
-      - csm-orc
       example: null
       type: string
     RunTemplateParameter:
@@ -9049,7 +8887,6 @@ components:
         generateName: generateName
         ownerId: ownerId
         organizationId: organizationId
-        createdAt: createdAt
         parametersValues:
         - varType: varType
           parameterId: parameterId
@@ -9211,11 +9048,6 @@ components:
         sdkVersion:
           description: the MAJOR.MINOR version used to build the solution solution
           example: null
-          type: string
-        createdAt:
-          description: the ScenarioRun creation date
-          example: null
-          readOnly: true
           type: string
         noDataIngestionState:
           description: set to true if the run template does not use any Datawarehouse
@@ -9437,46 +9269,6 @@ components:
           readOnly: true
           type: object
       type: object
-    ScenarioRunResourceRequested:
-      description: the memory and CPU requested by the pod
-      example:
-        memory: 1
-        cpu: 6
-      properties:
-        cpu:
-          description: the cpu requested
-          example: null
-          format: int64
-          type: integer
-        memory:
-          description: the memory requested
-          example: null
-          format: int64
-          type: integer
-      type: object
-    ScenarioRunResult:
-      description: a ScenarioRunProbeResult with all ScenarioRunResult
-      example:
-        id: id
-        results:
-        - key: results
-        - key: results
-      properties:
-        id:
-          example: null
-          type: string
-          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
-        results:
-          example: null
-          items:
-            additionalProperties:
-              example: null
-              type: string
-            example: null
-            type: object
-          type: array
-      type: object
-      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunSearch:
       description: the search options
       example:
@@ -9647,37 +9439,25 @@ components:
         phase: phase
         nodes:
         - phase: phase
-          outboundNodes:
-          - outboundNodes
-          - outboundNodes
           containerName: containerName
           name: name
-          resourcesDuration:
-            memory: 1
-            cpu: 6
           hostNodeName: hostNodeName
           progress: progress
           startTime: startTime
           id: id
           endTime: endTime
           message: message
-          estimatedDuration: 5
+          estimatedDuration: 6
         - phase: phase
-          outboundNodes:
-          - outboundNodes
-          - outboundNodes
           containerName: containerName
           name: name
-          resourcesDuration:
-            memory: 1
-            cpu: 6
           hostNodeName: hostNodeName
           progress: progress
           startTime: startTime
           id: id
           endTime: endTime
           message: message
-          estimatedDuration: 5
+          estimatedDuration: 6
         progress: progress
         workflowName: workflowName
         startTime: startTime
@@ -9742,21 +9522,15 @@ components:
       description: status of a ScenarioRun Node
       example:
         phase: phase
-        outboundNodes:
-        - outboundNodes
-        - outboundNodes
         containerName: containerName
         name: name
-        resourcesDuration:
-          memory: 1
-          cpu: 6
         hostNodeName: hostNodeName
         progress: progress
         startTime: startTime
         id: id
         endTime: endTime
         message: message
-        estimatedDuration: 5
+        estimatedDuration: 6
       properties:
         id:
           description: the node id
@@ -9770,16 +9544,6 @@ components:
           description: the ScenarioRun container name
           example: null
           type: string
-        outboundNodes:
-          description: the list of outbound nodes
-          example: null
-          items:
-            example: null
-            type: string
-          readOnly: true
-          type: array
-        resourcesDuration:
-          $ref: '#/components/schemas/ScenarioRunResourceRequested'
         estimatedDuration:
           description: estimatedDuration in seconds
           example: null
@@ -9916,7 +9680,6 @@ components:
             timeOut: 1
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
-          orchestratorType: null
           preRunSource: null
           scenariodataTransformSource: null
           gitRepositoryUrl: gitRepositoryUrl
@@ -9962,7 +9725,6 @@ components:
             timeOut: 1
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
-          orchestratorType: null
           preRunSource: null
           scenariodataTransformSource: null
           gitRepositoryUrl: gitRepositoryUrl
