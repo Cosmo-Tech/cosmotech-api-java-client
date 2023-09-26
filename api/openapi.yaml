@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 2.3.17
+  version: 3.0.2-test
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -28,8 +28,8 @@ tags:
   name: dataset
 - description: Organization Management
   name: organization
-- description: User Management
-  name: user
+- description: ScenarioRunResult Management
+  name: scenariorunresult
 - description: Scenario Management
   name: scenario
 - description: ScenarioRun Management
@@ -49,8 +49,27 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -59,6 +78,7 @@ paths:
                 Two:
                   $ref: '#/components/examples/OneSolution'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Solution'
                 type: array
@@ -76,6 +96,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -91,6 +112,7 @@ paths:
               ADTConnector:
                 $ref: '#/components/examples/Brewery'
             schema:
+              example: null
               format: binary
               type: string
         description: the Solution to create
@@ -122,6 +144,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -130,6 +153,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -151,6 +175,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -159,6 +184,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -187,6 +213,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -195,6 +222,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -210,6 +238,7 @@ paths:
               BreweryUpdate:
                 $ref: '#/components/examples/BreweryUpdate'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Solution details.
@@ -244,6 +273,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -252,6 +282,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -273,6 +304,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -281,12 +313,14 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
         content:
           application/json:
             schema:
+              example: null
               items:
                 $ref: '#/components/schemas/RunTemplateParameter'
               type: array
@@ -297,6 +331,7 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/RunTemplateParameter'
                 type: array
@@ -321,6 +356,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -329,6 +365,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -350,6 +387,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -358,12 +396,14 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
         content:
           application/json:
             schema:
+              example: null
               items:
                 $ref: '#/components/schemas/RunTemplateParameterGroup'
               type: array
@@ -374,6 +414,7 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/RunTemplateParameterGroup'
                 type: array
@@ -398,6 +439,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -406,6 +448,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -427,6 +470,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -435,12 +479,14 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
         content:
           application/json:
             schema:
+              example: null
               items:
                 $ref: '#/components/schemas/RunTemplate'
               type: array
@@ -451,6 +497,7 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/RunTemplate'
                 type: array
@@ -475,6 +522,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -483,6 +531,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Run Template identifier
@@ -491,6 +540,7 @@ paths:
         name: run_template_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -512,6 +562,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -520,6 +571,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Run Template identifier
@@ -528,6 +580,7 @@ paths:
         name: run_template_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -545,6 +598,7 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/RunTemplate'
                 type: array
@@ -569,6 +623,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -577,6 +632,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Run Template identifier
@@ -585,6 +641,7 @@ paths:
         name: run_template_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Handler identifier
@@ -600,6 +657,7 @@ paths:
           content:
             application/octet-stream:
               schema:
+                example: null
                 format: binary
                 type: string
           description: the run template handle file as a resource
@@ -620,6 +678,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Solution identifier
@@ -628,6 +687,7 @@ paths:
         name: solution_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Run Template identifier
@@ -636,6 +696,7 @@ paths:
         name: run_template_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Handler identifier
@@ -653,12 +714,14 @@ paths:
         required: false
         schema:
           default: false
+          example: null
           type: boolean
         style: form
       requestBody:
         content:
           application/octet-stream:
             schema:
+              example: null
               format: binary
               type: string
         required: true
@@ -672,6 +735,54 @@ paths:
       - solution
       x-contentType: application/octet-stream
       x-accepts: application/json
+  /organizations/{organization_id}/solutions/import:
+    post:
+      operationId: importSolution
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Brewery:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              $ref: '#/components/schemas/Solution'
+          application/yaml:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/Brewery'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the Solution to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Brewery:
+                  $ref: '#/components/examples/Brewery'
+              schema:
+                $ref: '#/components/schemas/Solution'
+          description: the solution details
+        "400":
+          description: Bad request
+      summary: Import a solution
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
       operationId: findAllWorkspaces
@@ -682,8 +793,27 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -692,6 +822,7 @@ paths:
                 OneWorkspace:
                   $ref: '#/components/examples/OneWorkspace'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Workspace'
                 type: array
@@ -709,6 +840,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -728,6 +860,7 @@ paths:
               WorkspaceWithSecurity:
                 $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
             schema:
+              example: null
               format: binary
               type: string
         description: the Workspace to create
@@ -759,6 +892,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -767,6 +901,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -797,6 +932,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -805,6 +941,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -833,6 +970,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -841,6 +979,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -856,6 +995,7 @@ paths:
               BreweryUpdate:
                 $ref: '#/components/examples/BreweryWorkspaceUpdate'
             schema:
+              example: null
               format: binary
               type: string
         description: The new Workspace details.
@@ -890,6 +1030,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -898,6 +1039,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -919,6 +1061,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -927,6 +1070,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -937,6 +1081,7 @@ paths:
                 WorkspaceFiles:
                   $ref: '#/components/examples/WorkspaceFiles'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/WorkspaceFile'
                 type: array
@@ -957,6 +1102,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -965,6 +1111,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -999,9 +1146,11 @@ paths:
                   destination: /path/to/a/directory/my_file_renamed.txt
                   file: Lorem Ipsum Dolor Sit Amet
             schema:
+              example: null
               properties:
                 overwrite:
                   default: false
+                  example: null
                   type: boolean
                 destination:
                   description: |
@@ -1011,6 +1160,7 @@ paths:
                   example: path/to/a/directory/
                   type: string
                 file:
+                  example: null
                   format: binary
                   type: string
               required:
@@ -1045,6 +1195,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1053,6 +1204,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the file name
@@ -1061,6 +1213,7 @@ paths:
         name: file_name
         required: true
         schema:
+          example: null
           type: string
         style: form
       responses:
@@ -1068,6 +1221,7 @@ paths:
           content:
             application/octet-stream:
               schema:
+                example: null
                 format: binary
                 type: string
           description: the workspace file as a resource
@@ -1088,6 +1242,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1096,6 +1251,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the file name
@@ -1104,6 +1260,7 @@ paths:
         name: file_name
         required: true
         schema:
+          example: null
           type: string
         style: form
       responses:
@@ -1126,6 +1283,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1134,6 +1292,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Role
@@ -1142,6 +1301,7 @@ paths:
         name: role
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1154,6 +1314,7 @@ paths:
                 - read_security
                 - create_children
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Workspace security permission list
@@ -1171,6 +1332,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1179,6 +1341,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1208,6 +1371,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1216,6 +1380,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1231,6 +1396,7 @@ paths:
               BreweryWorkspaceRole:
                 $ref: '#/components/examples/BreweryWorkspaceRole'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Workspace default security.
@@ -1263,6 +1429,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1271,6 +1438,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1286,6 +1454,7 @@ paths:
               WorkspaceAccess:
                 $ref: '#/components/examples/BreweryWorkspaceAccessControl'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Workspace security access to add.
@@ -1318,6 +1487,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1326,6 +1496,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -1334,6 +1505,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1355,6 +1527,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1363,6 +1536,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -1371,6 +1545,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1399,6 +1574,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1407,6 +1583,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -1415,6 +1592,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1455,6 +1633,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1463,6 +1642,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1474,6 +1654,7 @@ paths:
                 - alice@mycompany.com
                 - bob@mycompany.com
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Workspace security users list
@@ -1494,6 +1675,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -1502,6 +1684,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1517,6 +1700,7 @@ paths:
               Workspace:
                 $ref: '#/components/examples/WorkspaceSecretExample'
             schema:
+              example: null
               format: binary
               type: string
         description: the definition of the secret
@@ -1532,6 +1716,58 @@ paths:
       - workspace
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/import:
+    post:
+      operationId: importWorkspace
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/yaml:
+            examples:
+              Workspace:
+                $ref: '#/components/examples/BreweryWorkspaceCreateIn'
+              WorkspaceWithSecurity:
+                $ref: '#/components/examples/BreweryWorkspaceCreateSecurity'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the Workspace to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Workspace:
+                  $ref: '#/components/examples/BreweryWorkspace'
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: the workspace details
+        "400":
+          description: Bad request
+      summary: Import a workspace
+      tags:
+      - workspace
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/datasets:
     get:
       operationId: findAllDatasets
@@ -1542,8 +1778,27 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -1552,6 +1807,7 @@ paths:
                 Two:
                   $ref: '#/components/examples/TwoDatasets'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Dataset'
                 type: array
@@ -1569,6 +1825,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1584,6 +1841,7 @@ paths:
               BreweryADT:
                 $ref: '#/components/examples/BreweryADT'
             schema:
+              example: null
               format: binary
               type: string
         description: the Dataset to create
@@ -1615,8 +1873,27 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       requestBody:
         content:
           application/json:
@@ -1630,6 +1907,7 @@ paths:
               DatasetSearch:
                 $ref: '#/components/examples/DatasetSearch'
             schema:
+              example: null
               format: binary
               type: string
         description: the Dataset search parameters
@@ -1642,6 +1920,7 @@ paths:
                 Two:
                   $ref: '#/components/examples/TwoDatasets'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Dataset'
                 type: array
@@ -1661,6 +1940,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1676,6 +1956,7 @@ paths:
               BreweryDatasetCopyParameters:
                 $ref: '#/components/examples/BreweryDatasetCopyParameters'
             schema:
+              example: null
               format: binary
               type: string
         description: the Dataset copy parameters
@@ -1711,6 +1992,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Dataset identifier
@@ -1719,6 +2001,7 @@ paths:
         name: dataset_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1740,6 +2023,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Dataset identifier
@@ -1748,6 +2032,7 @@ paths:
         name: dataset_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1776,6 +2061,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Dataset identifier
@@ -1784,6 +2070,7 @@ paths:
         name: dataset_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1799,6 +2086,7 @@ paths:
               BreweryADTUpdate:
                 $ref: '#/components/examples/BreweryADTUpdate'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Dataset details.
@@ -1833,6 +2121,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Dataset identifier
@@ -1841,6 +2130,7 @@ paths:
         name: dataset_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1862,6 +2152,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Dataset identifier
@@ -1870,6 +2161,7 @@ paths:
         name: dataset_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1904,6 +2196,7 @@ paths:
                   - solutionKey: Brewery Solution
                     minimumVersion: 1.0.1
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/DatasetCompatibility'
                 type: array
@@ -1928,6 +2221,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -1938,6 +2232,7 @@ paths:
                 Two:
                   $ref: '#/components/examples/OneValidator'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Validator'
                 type: array
@@ -1955,6 +2250,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -1970,6 +2266,7 @@ paths:
               BreweryADTValidator:
                 $ref: '#/components/examples/BreweryADTValidator'
             schema:
+              example: null
               format: binary
               type: string
         description: the Validator to create
@@ -2001,6 +2298,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator identifier
@@ -2009,6 +2307,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2030,6 +2329,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator identifier
@@ -2038,6 +2338,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2067,6 +2368,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ValidatorRun identifier
@@ -2075,6 +2377,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2090,6 +2393,7 @@ paths:
               BreweryADTRunValidator:
                 $ref: '#/components/examples/BreweryADTRunValidator'
             schema:
+              example: null
               format: binary
               type: string
         description: the Validator to run
@@ -2121,6 +2425,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ValidatorRun identifier
@@ -2129,6 +2434,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2139,6 +2445,7 @@ paths:
                 Two:
                   $ref: '#/components/examples/ThreeValidatorRun'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ValidatorRun'
                 type: array
@@ -2156,6 +2463,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ValidatorRun identifier
@@ -2164,6 +2472,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2179,6 +2488,7 @@ paths:
               BreweryADTValidatorRun:
                 $ref: '#/components/examples/BreweryADTValidatorRun'
             schema:
+              example: null
               format: binary
               type: string
         description: the Validator Run to create
@@ -2210,6 +2520,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator identifier
@@ -2218,6 +2529,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator Run identifier
@@ -2226,6 +2538,7 @@ paths:
         name: validatorrun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2247,6 +2560,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator identifier
@@ -2255,6 +2569,7 @@ paths:
         name: validator_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Validator Run identifier
@@ -2263,6 +2578,7 @@ paths:
         name: validatorrun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2282,9 +2598,68 @@ paths:
       tags:
       - validator
       x-accepts: application/json
+  /organizations/{organization_id}/datasets/import:
+    post:
+      operationId: importDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
+            schema:
+              $ref: '#/components/schemas/Dataset'
+        description: the Dataset to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: the dataset details
+        "400":
+          description: Bad request
+      summary: Import a new Dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations:
     get:
       operationId: findAllOrganizations
+      parameters:
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -2293,6 +2668,7 @@ paths:
                 TwoOrganizations:
                   $ref: '#/components/examples/TwoOrganizations'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Organization'
                 type: array
@@ -2316,6 +2692,7 @@ paths:
               NewOrganizationIn:
                 $ref: '#/components/examples/NewOrganizationIn'
             schema:
+              example: null
               format: binary
               type: string
         description: the Organization to register
@@ -2347,6 +2724,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2368,6 +2746,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2396,6 +2775,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2419,6 +2799,7 @@ paths:
                 value:
                   name: CosmoTech Digital Twins Engine
             schema:
+              example: null
               format: binary
               type: string
         description: the new Organization details
@@ -2453,6 +2834,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2468,6 +2850,7 @@ paths:
               additionalProperties: true
               description: a freeform credentials object for the Organization tenant.
                 Structure depends on cloud provider
+              example: null
               type: object
         description: the new Tenant Credentials to use
         required: true
@@ -2485,6 +2868,7 @@ paths:
                 additionalProperties: true
                 description: a freeform credentials object for the Organization tenant.
                   Structure depends on cloud provider
+                example: null
                 type: object
           description: the Organization Tenant Credentials
         "404":
@@ -2505,6 +2889,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2522,6 +2907,7 @@ paths:
                 value:
                   baseUri: https://csmphoenixcontainer.blob.core.windows.net
             schema:
+              example: null
               format: binary
               type: string
         description: the new Storage configuration to use
@@ -2558,6 +2944,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2575,6 +2962,7 @@ paths:
                 value:
                   baseUri: mysolutiontwinengines.azurecr.io
             schema:
+              example: null
               format: binary
               type: string
         description: the new solutions container registry configuration to use
@@ -2611,6 +2999,7 @@ paths:
                 permissions:
                   $ref: '#/components/examples/Permissions'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ComponentRolePermissions'
                 type: array
@@ -2629,6 +3018,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Role
@@ -2637,6 +3027,7 @@ paths:
         name: role
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2649,6 +3040,7 @@ paths:
                 - read_security
                 - create_children
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Organization security permission list
@@ -2666,6 +3058,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2695,6 +3088,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2710,6 +3104,7 @@ paths:
               BreweryOrganizationRole:
                 $ref: '#/components/examples/BreweryOrganizationRole'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Organization default security.
@@ -2742,6 +3137,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2757,6 +3153,7 @@ paths:
               OrganizationAccess:
                 $ref: '#/components/examples/BreweryOrganizationAccessControl'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Organization security access to add.
@@ -2789,6 +3186,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -2797,6 +3195,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2818,6 +3217,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -2826,6 +3226,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2854,6 +3255,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -2862,6 +3264,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -2902,6 +3305,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -2913,6 +3317,7 @@ paths:
                 - alice@mycompany.com
                 - bob@mycompany.com
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Organization security users list
@@ -2923,177 +3328,47 @@ paths:
       tags:
       - organization
       x-accepts: application/json
-  /users:
-    get:
-      operationId: findAllUsers
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Two:
-                  $ref: '#/components/examples/TwoUsers'
-              schema:
-                items:
-                  $ref: '#/components/schemas/User'
-                type: array
-          description: the user details
-      summary: List all Users
-      tags:
-      - user
-      x-accepts: application/json
+  /organizations/import:
     post:
-      operationId: registerUser
+      operationId: importOrganization
       requestBody:
         content:
           application/json:
             examples:
-              BobCreateIn:
-                $ref: '#/components/examples/BobCreateIn'
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Organization'
           application/yaml:
             examples:
-              BobCreateIn:
-                $ref: '#/components/examples/BobCreateIn'
+              NewOrganizationIn:
+                $ref: '#/components/examples/NewOrganizationIn'
             schema:
+              example: null
               format: binary
               type: string
-        description: the User to register
+        description: the Organization to import
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
+                CosmoOrganization:
+                  $ref: '#/components/examples/CosmoOrganization'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the user details
+                $ref: '#/components/schemas/Organization'
+          description: the Organization details
         "400":
           description: Bad request
-      summary: Register a new user
+      summary: Import an organization
       tags:
-      - user
+      - organization
       x-contentType: application/json
       x-accepts: application/json
-  /users/{user_id}:
-    delete:
-      operationId: unregisterUser
-      parameters:
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Request succeeded
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Unregister an user
-      tags:
-      - user
-      x-accepts: application/json
-    get:
-      operationId: findUserById
-      parameters:
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Get the details of an user
-      tags:
-      - user
-      x-accepts: application/json
-    patch:
-      operationId: updateUser
-      parameters:
-      - description: the User identifier
-        explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              BobyUpdateIn:
-                $ref: '#/components/examples/BobyUpdateIn'
-            schema:
-              $ref: '#/components/schemas/User'
-          application/yaml:
-            examples:
-              BobyUpdateIn:
-                $ref: '#/components/examples/BobyUpdateIn'
-            schema:
-              format: binary
-              type: string
-        description: the new User details. Organization membership is handled via
-          the /organizations endpoint.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                BobyUpdated:
-                  $ref: '#/components/examples/BobyUpdated'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the user details
-        "400":
-          description: Bad request
-        "404":
-          description: the User specified is unknown or you don't have access to it
-      summary: Update a User
-      tags:
-      - user
-      x-contentType: application/json
-      x-accepts: application/json
-  /users/me:
-    get:
-      operationId: getCurrentUser
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Bob:
-                  $ref: '#/components/examples/Bob'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of the logged-in User
-      tags:
-      - user
-      x-accepts: application/json
-  /organizations/{organization_id}/me:
-    get:
-      operationId: getOrganizationCurrentUser
+  ? /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id}
+  : get:
+      operationId: getScenarioRunResult
       parameters:
       - description: the Organization identifier
         explode: false
@@ -3101,32 +3376,7 @@ paths:
         name: organization_id
         required: true
         schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Bob:
-                  $ref: '#/components/examples/BobOrganization'
-              schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of a logged-in User with roles for an Organization
-      tags:
-      - user
-      x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/me:
-    get:
-      operationId: getWorkspaceCurrentUser
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3135,6 +3385,34 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Probe identifier
+        explode: false
+        in: path
+        name: probe_id
+        required: true
+        schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3142,47 +3420,97 @@ paths:
           content:
             application/json:
               examples:
-                Bob:
-                  $ref: '#/components/examples/BobWorkspace'
+                ScenarioRunResult:
+                  $ref: '#/components/examples/ScenarioRunResultExample'
               schema:
-                $ref: '#/components/schemas/User'
-          description: the User details
-      summary: Get the details of the logged-in user with roles for a Workspace
+                $ref: '#/components/schemas/ScenarioRunResult'
+          description: the Organization details
+        "404":
+          description: the ScenarioRunResult specified is unknown or you don't have
+            access to it
+      summary: Get a ScenarioRunResult in the Organization
       tags:
-      - user
+      - scenariorunresult
       x-accepts: application/json
-  /test:
-    get:
-      operationId: testPlatform
+    post:
+      operationId: sendScenarioRunResult
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the ScenarioRun identifier
+        explode: false
+        in: path
+        name: scenariorun_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Probe identifier
+        explode: false
+        in: path
+        name: probe_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ScenarioRunResult:
+                $ref: '#/components/examples/ScenarioRunProbeResultExample'
+            schema:
+              additionalProperties:
+                example: null
+                type: string
+              example: null
+              type: object
+        description: the ScenarioRunResult to register
+        required: true
       responses:
         "200":
           content:
-            text/plain:
-              schema:
-                type: string
-          description: test string
-      summary: test platform API call
-      tags:
-      - user
-      x-accepts: text/plain
-  /oauth2/authorize:
-    get:
-      operationId: authorizeUser
-      responses:
-        "302":
-          description: Redirection response
-          headers:
-            Location:
+            application/json:
               examples:
-                AzureAD:
-                  $ref: '#/components/examples/AzureADRedirect'
-              explode: false
+                ScenarioRunResult:
+                  $ref: '#/components/examples/ScenarioRunResultExample'
               schema:
-                type: string
-              style: simple
-      summary: Authorize an User with OAuth2. Delegated to configured OAuth2 service
+                $ref: '#/components/schemas/ScenarioRunResult'
+          description: the Organization details
+        "400":
+          description: the ScenarioRunResult specified is unknown or you don't have
+            access to it
+      summary: Create a new ScenarioRunResult in the Organization
       tags:
-      - user
+      - scenariorunresult
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/scenarios:
     delete:
@@ -3194,6 +3522,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3202,6 +3531,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3223,6 +3553,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3231,8 +3562,27 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -3241,6 +3591,7 @@ paths:
                 ThreeScenario:
                   $ref: '#/components/examples/ThreeScenarios'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Scenario'
                 type: array
@@ -3258,6 +3609,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3266,6 +3618,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -3285,6 +3638,7 @@ paths:
               ChildScenario:
                 $ref: '#/components/examples/BreweryChildScenarioIn'
             schema:
+              example: null
               format: binary
               type: string
         description: the Scenario to create
@@ -3316,6 +3670,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3324,6 +3679,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario Validation Status
@@ -3334,6 +3690,24 @@ paths:
         schema:
           $ref: '#/components/schemas/ScenarioValidationStatus'
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -3342,6 +3716,7 @@ paths:
                 ThreeScenario:
                   $ref: '#/components/examples/ThreeScenarios'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Scenario'
                 type: array
@@ -3360,6 +3735,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3368,6 +3744,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3378,6 +3755,7 @@ paths:
                 ScenariosTree:
                   $ref: '#/components/examples/ScenariosTree'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Scenario'
                 type: array
@@ -3396,6 +3774,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3404,6 +3783,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3412,17 +3792,9 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
-      - description: whether to wait until child scenarios are effectively updated
-        explode: true
-        in: query
-        name: wait_relationship_propagation
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
       responses:
         "204":
           description: Request succeeded
@@ -3442,6 +3814,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3450,6 +3823,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3458,6 +3832,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3486,6 +3861,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3494,6 +3870,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3502,6 +3879,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -3517,6 +3895,7 @@ paths:
               BreweryUpdate:
                 $ref: '#/components/examples/BreweryScenarioUpdate'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Scenario details.
@@ -3551,6 +3930,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3559,6 +3939,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3567,6 +3948,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3590,6 +3972,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3598,6 +3981,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3606,6 +3990,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier to compare to
@@ -3614,6 +3999,7 @@ paths:
         name: compared_scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3644,6 +4030,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3652,6 +4039,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3660,6 +4048,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3681,6 +4070,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3689,6 +4079,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3697,6 +4088,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -3706,6 +4098,7 @@ paths:
               TwoScenarioRunTemplateParameterValueToAddOrReplace:
                 $ref: '#/components/examples/TwoScenarioRunTemplateParameterValueToAddOrReplace'
             schema:
+              example: null
               items:
                 $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
               type: array
@@ -3720,6 +4113,7 @@ paths:
                 TwoScenarioRunTemplateParameterValueToAddOrReplace:
                   $ref: '#/components/examples/TwoScenarioRunTemplateParameterValueToAddOrReplace'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
                 type: array
@@ -3744,6 +4138,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3752,6 +4147,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3760,6 +4156,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3789,6 +4186,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3797,6 +4195,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3805,6 +4204,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario Download identifier
@@ -3813,6 +4213,7 @@ paths:
         name: download_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3844,6 +4245,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3852,6 +4254,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Role
@@ -3860,6 +4263,7 @@ paths:
         name: role
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3872,6 +4276,7 @@ paths:
                 - write
                 - createchildren
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Scenarios security permission list
@@ -3889,6 +4294,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3897,6 +4303,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3905,6 +4312,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -3934,6 +4342,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -3942,6 +4351,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -3950,6 +4360,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -3965,6 +4376,7 @@ paths:
               BreweryScenarioRole:
                 $ref: '#/components/examples/BreweryScenarioRole'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Scenario default security.
@@ -3999,6 +4411,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4007,6 +4420,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4015,6 +4429,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -4030,6 +4445,7 @@ paths:
               ScenarioAccess:
                 $ref: '#/components/examples/BreweryScenarioAccessControl'
             schema:
+              example: null
               format: binary
               type: string
         description: the new Scenario security access to add.
@@ -4062,6 +4478,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4070,6 +4487,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4078,6 +4496,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -4086,6 +4505,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4107,6 +4527,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4115,6 +4536,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4123,6 +4545,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -4131,6 +4554,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4159,6 +4583,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4167,6 +4592,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4175,6 +4601,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the User identifier
@@ -4183,6 +4610,7 @@ paths:
         name: identity_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -4223,6 +4651,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4231,6 +4660,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4239,6 +4669,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4250,6 +4681,7 @@ paths:
                 - alice@mycompany.com
                 - bob@mycompany.com
                 items:
+                  example: null
                   type: string
                 type: array
           description: The Scenario security users list
@@ -4259,6 +4691,57 @@ paths:
       summary: Get the Scenario security users list
       tags:
       - scenario
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/import:
+    post:
+      operationId: importScenario
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              MasterScenario:
+                $ref: '#/components/examples/BreweryScenarioIn'
+              ChildScenario:
+                $ref: '#/components/examples/BreweryChildScenarioIn'
+            schema:
+              $ref: '#/components/schemas/Scenario'
+        description: the Scenario to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Scenario:
+                  $ref: '#/components/examples/BreweryScenario'
+              schema:
+                $ref: '#/components/schemas/Scenario'
+          description: the scenario details
+        "400":
+          description: Bad request
+      summary: Import Scenario
+      tags:
+      - scenario
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/scenarioruns/historicaldata:
     delete:
@@ -4270,6 +4753,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: condition to delete runs with an Unknown status
@@ -4279,6 +4763,7 @@ paths:
         required: false
         schema:
           default: false
+          example: null
           type: boolean
         style: form
       responses:
@@ -4303,6 +4788,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4311,6 +4797,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: condition to delete runs with an Unknown status
@@ -4320,6 +4807,7 @@ paths:
         required: false
         schema:
           default: false
+          example: null
           type: boolean
         style: form
       responses:
@@ -4344,6 +4832,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4352,6 +4841,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4360,6 +4850,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: condition to delete runs with an Unknown status
@@ -4369,6 +4860,7 @@ paths:
         required: false
         schema:
           default: false
+          example: null
           type: boolean
         style: form
       responses:
@@ -4393,8 +4885,27 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       requestBody:
         content:
           application/json:
@@ -4408,6 +4919,7 @@ paths:
               BrewerySearch:
                 $ref: '#/components/examples/BrewerySearch'
             schema:
+              example: null
               format: binary
               type: string
         description: the ScenarioRun search parameters
@@ -4420,6 +4932,7 @@ paths:
                 OneScenarioRun:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ScenarioRun'
                 type: array
@@ -4439,6 +4952,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -4454,6 +4968,7 @@ paths:
               ScenarioRunStartContainers:
                 $ref: '#/components/examples/BreweryScenarioRunStartContainers'
             schema:
+              example: null
               format: binary
               type: string
         description: the raw containers definition
@@ -4488,6 +5003,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ScenarioRun identifier
@@ -4496,6 +5012,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4519,6 +5036,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ScenarioRun identifier
@@ -4527,6 +5045,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4556,6 +5075,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ScenarioRun identifier
@@ -4564,6 +5084,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4590,6 +5111,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ScenarioRun identifier
@@ -4598,6 +5120,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4624,6 +5147,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the ScenarioRun identifier
@@ -4632,6 +5156,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4639,6 +5164,7 @@ paths:
           content:
             text/plain:
               schema:
+                example: null
                 type: string
           description: the ScenarioRun cumulated logs
         "400":
@@ -4660,6 +5186,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4668,8 +5195,27 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -4678,6 +5224,7 @@ paths:
                 OneScenarioRun:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ScenarioRun'
                 type: array
@@ -4696,6 +5243,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4704,6 +5252,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4712,8 +5261,27 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -4722,6 +5290,7 @@ paths:
                 OneScenarioRun:
                   $ref: '#/components/examples/OneScenarioRun'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/ScenarioRun'
                 type: array
@@ -4740,6 +5309,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Workspace identifier
@@ -4748,6 +5318,7 @@ paths:
         name: workspace_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Scenario identifier
@@ -4756,6 +5327,7 @@ paths:
         name: scenario_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4782,6 +5354,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the scenariorun identifier
@@ -4790,6 +5363,7 @@ paths:
         name: scenariorun_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4806,9 +5380,81 @@ paths:
       tags:
       - scenariorun
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
+    post:
+      operationId: importScenarioRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Scenario identifier
+        explode: false
+        in: path
+        name: scenario_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRun'
+        description: the ScenarioRun to import
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ScenarioRun:
+                  $ref: '#/components/examples/BreweryScenarioRun'
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+          description: the scenariorun details
+      summary: import a ScenarioRun for the Scenario
+      tags:
+      - scenariorun
+      x-contentType: application/json
+      x-accepts: application/json
   /connectors:
     get:
       operationId: findAllConnectors
+      parameters:
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -4817,6 +5463,7 @@ paths:
                 OneConnector:
                   $ref: '#/components/examples/OneConnector'
               schema:
+                example: null
                 items:
                   $ref: '#/components/schemas/Connector'
                 type: array
@@ -4840,6 +5487,7 @@ paths:
               ADTConnector:
                 $ref: '#/components/examples/ADTConnector'
             schema:
+              example: null
               format: binary
               type: string
         description: the Connector to register
@@ -4871,6 +5519,7 @@ paths:
         name: connector_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4892,6 +5541,7 @@ paths:
         name: connector_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -4911,6 +5561,36 @@ paths:
       tags:
       - connector
       x-accepts: application/json
+  /connectors/import:
+    post:
+      operationId: importConnector
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ADTConnector:
+                $ref: '#/components/examples/ADTConnector'
+            schema:
+              $ref: '#/components/schemas/Connector'
+        description: the Connector to import
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the connector details
+        "400":
+          description: Bad request
+      summary: Import existing connector
+      tags:
+      - connector
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/twingraph/import:
     post:
       description: Import a new version of a twin graph
@@ -4922,6 +5602,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -4951,14 +5632,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/TwinGraphImportInfo'
           description: Successful response
+      summary: Import a new version of a twin graph
       tags:
       - twingraph
       x-contentType: application/json
       x-accepts: application/json
-  /organizations/{organization_id}/job/{job_id}/status:
-    get:
-      description: Get the status of a job
-      operationId: jobStatus
+  /organizations/{organization_id}/twingraph/{graph_id}:
+    delete:
+      description: Delete all versions of a graph and his metadatas
+      operationId: delete
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4966,28 +5648,89 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
-      - description: the job identifier
+      - description: the Graph Identifier
         explode: false
         in: path
-        name: job_id
+        name: graph_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/yaml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
+        "204":
           description: Successful response
+      summary: Delete all versions of a graph and his metadatas
       tags:
       - twingraph
+      x-accepts: application/json
+    post:
+      description: |
+        To create a new graph from flat files,  you need to create a Zip file. This Zip
+        file must countain two folders named Edges and Nodes.
+
+        .zip hierarchy:
+        *main_folder/Nodes
+        *main_folder/Edges
+
+        In each folder you can place one or multiple csv files containing your Nodes or
+        Edges data.
+
+        Your csv files must follow the following header (column name) requirements:
+
+        The Nodes CSVs requires at least one column (the 1st).Column name = 'id'. It
+        will represent the nodes ID
+        Ids must be populated with string
+
+        The Edges CSVs require three columns named, in order,
+        * source
+        * target
+        * id
+
+        those colomns represent
+        * The source of the edge
+        * The target of the edge
+        * The id of the edge
+
+        All following columns content are up to you.
+      operationId: createGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              example: null
+              format: binary
+              type: string
+        required: false
+      responses:
+        "204":
+          description: Successful response
+      summary: Create a new graph
+      tags:
+      - twingraph
+      x-contentType: application/octet-stream
       x-accepts: application/json
   /organizations/{organization_id}/twingraphs:
     get:
@@ -5000,6 +5743,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
@@ -5007,10 +5751,52 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 items:
+                  example: null
                   type: string
                 type: array
           description: Successful response
+      summary: Return the list of all graphs stored in the organization
+      tags:
+      - twingraph
+      x-accepts: application/json
+  /organizations/{organization_id}/job/{job_id}/status:
+    get:
+      description: Get the status of a job
+      operationId: jobStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the job identifier
+        explode: false
+        in: path
+        name: job_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/yaml:
+              schema:
+                example: null
+                type: string
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Get the status of a job
       tags:
       - twingraph
       x-accepts: application/json
@@ -5025,6 +5811,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Graph Identifier
@@ -5033,6 +5820,7 @@ paths:
         name: graph_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       requestBody:
@@ -5056,8 +5844,325 @@ paths:
           content:
             application/json:
               schema:
+                example: null
                 type: string
           description: Successful response
+      summary: Run a query on a graph instance
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/batch-query:
+    post:
+      description: Run a query on a graph instance and return the result as a zip
+        file in async mode
+      operationId: batchQuery
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/TwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphHash'
+          description: Successful response
+      summary: Run a query on a graph instance and return the result as a zip file
+        in async mode
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/download/{hash}:
+    get:
+      description: Download a graph compressed in a zip file
+      operationId: downloadGraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph download identifier
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                example: null
+                format: binary
+                type: string
+          description: Successful response
+      summary: Download a graph compressed in a zip file
+      tags:
+      - twingraph
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/twingraph/{graph_id}/entity/{type}:
+    delete:
+      description: delete entities in a graph instance
+      operationId: deleteEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      - description: the entities to delete
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: Successful response
+      summary: Delete entities in a graph instance
+      tags:
+      - twingraph
+      x-accepts: application/json
+    get:
+      description: get entities in a graph instance
+      operationId: getEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      - description: the entities to get
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Get entities in a graph instance
+      tags:
+      - twingraph
+      x-accepts: application/json
+    patch:
+      description: update entities in a graph instance
+      operationId: updateEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              example: null
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Update entities in a graph instance
+      tags:
+      - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+    post:
+      description: create new entities in a graph instance
+      operationId: createEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              example: null
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to create
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Create new entities in a graph instance
       tags:
       - twingraph
       x-contentType: application/json
@@ -5073,6 +6178,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Graph Identifier
@@ -5081,22 +6187,26 @@ paths:
         name: graph_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       responses:
         "200":
           content:
             application/json:
+              example:
+                $ref: '#/components/examples/MetaDataResponse'
               schema:
+                example: null
                 type: object
           description: Successful response
+      summary: Return the metaData of the specified graph
       tags:
       - twingraph
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/{graph_id}:
-    delete:
-      description: Launch a mass delete job
-      operationId: delete
+    patch:
+      description: Update the metaData of the specified graph
+      operationId: updateGraphMetaData
       parameters:
       - description: the Organization identifier
         explode: false
@@ -5104,6 +6214,7 @@ paths:
         name: organization_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
       - description: the Graph Identifier
@@ -5112,13 +6223,134 @@ paths:
         name: graph_id
         required: true
         schema:
+          example: null
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              graphName: My Awesome Graph
+              graphRotation: "2"
+            schema:
+              additionalProperties:
+                example: null
+                type: string
+              example: null
+              type: object
+        description: the metaData to update
+        required: true
       responses:
-        "204":
+        "200":
+          content:
+            application/json:
+              example:
+                $ref: '#/components/examples/MetaDataResponse'
+              schema:
+                example: null
+                type: object
           description: Successful response
+      summary: Update the metaData of the specified graph
       tags:
       - twingraph
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/twingraph/{graph_id}/graph: {}
+  /organizations/{organization_id}/twingraph/{graph_id}/batch:
+    post:
+      description: 'Async batch update by loading a CSV file on a graph instance '
+      operationId: batchUploadUpdate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: graph_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - examples:
+          Create Nodes:
+            description: |
+              Nodes creation and column mapping with CSV Header: $id, $name, $rank
+              CSV Separator: ,
+            value:
+              query: "CREATE (:Person {id: toInteger($id), name: $name, rank: toInteger($rank)})"
+          Update Nodes:
+            description: |
+              Nodes updating and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) SET p.rank = $rank"
+          Create Relationships:
+            description: |
+              Relationship creation and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: |
+                MERGE (p1:Person {id: toInteger($UserId1)})
+                MERGE (p2:Person {id: toInteger($UserId2)})
+                CREATE (p1)-[:FOLLOWS {reaction_count: $reaction_count}]->(p2)
+          Delete Nodes:
+            description: |
+              Nodes deleting and column mapping with CSV Header: $id
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) DELETE p"
+        explode: true
+        in: query
+        name: twinGraphQuery
+        required: true
+        schema:
+          $ref: '#/components/schemas/TwinGraphQuery'
+        style: form
+      requestBody:
+        content:
+          text/csv:
+            examples:
+              Create / Update / Delete Nodes:
+                value: |
+                  id,name,rank
+                  1,"John Doe",37
+                  2,"Joe Bloggs",14
+              Create / Update Relationships:
+                value: |
+                  UserId1,UserId2,reaction_count
+                  1,2,25
+                  2,1,37
+            schema:
+              example: null
+              format: binary
+              type: string
+          application/octet-stream:
+            schema:
+              example: null
+              format: binary
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphBatchResult'
+          description: csv file processed
+        "400":
+          description: Bad request
+      summary: 'Async batch update by loading a CSV file on a graph instance '
+      tags:
+      - twingraph
+      x-contentType: text/csv
       x-accepts: application/json
 components:
   examples:
@@ -5172,103 +6404,6 @@ components:
             valueType: string
             default: /mnt/scenariorun-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
-    AzureADRedirect:
-      description: authorize redirection to Azure Active Directory example
-      summary: Azure AD redirect example
-      value:
-        Location: https://login.microsoftonline.com/e9641c78-d0d6-4d09-af63-168922724e7f/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
-    Bob:
-      description: Bob User example
-      summary: Bob User
-      value:
-        id: "1"
-        name: Bob
-        platformRoles:
-        - Admin
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-        - id: "2"
-          name: Phoenix
-          roles:
-          - Admin
-    BobCreateIn:
-      description: Bob User Create input example
-      summary: Bob User Create input example
-      value:
-        name: Bob
-        platformRoles:
-        - Admin
-    BobOrganization:
-      description: Bob User for Organization 1 example
-      summary: Bob User for an Organization example
-      value:
-        id: "1"
-        name: Bob
-        platformRoles:
-        - Admin
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-    BobWorkspace:
-      description: Bob User for Organization 1 and Workspace 1 example
-      summary: Bob User for a Workspace example
-      value:
-        id: "1"
-        name: Bob
-        platformRoles:
-        - Admin
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-    BobyUpdateIn:
-      description: Bob User renamed to Boby input example
-      summary: Boby update User input example
-      value:
-        name: Boby
-    BobyUpdated:
-      description: Bob User renamed to Boby example
-      summary: Boby updated User
-      value:
-        id: "1"
-        name: Boby
-        platformRoles:
-        - Admin
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-        - id: "2"
-          name: Phoenix
-          roles:
-          - Admin
     Brewery:
       description: Brewery Solution example
       summary: Brewery Solution
@@ -5281,7 +6416,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosm-Tech/brewery.git
+        url: https://github.com/Cosmo-Tech/brewery_sample_solution
         tags:
         - Brewery
         parameters:
@@ -5726,7 +6861,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosm-Tech/brewery.git
+        url: https://github.com/Cosmo-Tech/brewery_sample_solution
         tags:
         - Brewery
         parameters:
@@ -5914,6 +7049,13 @@ components:
       summary: Get all nodes query
       value:
         query: MATCH(n) RETURN n
+    MetaDataResponse:
+      summary: the response of a MetaData creation or modification
+      value:
+        lastVersion: "1"
+        graphRotation: "3"
+        lastModifiedDate: 2023/08/25 - 11:59:59
+        graphName: graph
     NewOrganizationIn:
       description: Create a new organization with 2 users
       summary: Create a new organization
@@ -6010,7 +7152,7 @@ components:
         repository: brewery_solution
         version: 1.0.0
         ownerId: "1"
-        url: https://github.com/Cosm-Tech/brewery.git
+        url: https://github.com/Cosmo-Tech/brewery_sample_solution
         tags:
         - Brewery
         parameters:
@@ -6156,6 +7298,20 @@ components:
           - validate
           - write_security
           - delete
+    QueryEntities:
+      description: Run action on a graph relationship
+      summary: Run action on a graph relationship
+      value:
+      - type: entityType
+        source: source-node-name
+        target: target-node-name
+        name: entity-name
+        params: "param1: 'value1', param2: 'value2'"
+      - type: entityType
+        source: source-node-name
+        target: target-node-name
+        name: entity-name
+        params: "param1: 'value1', param2: 'value2'"
     RunJobImportWithADT:
       description: Run import job with ADT as source
       summary: Run import job with ADT as source
@@ -6174,6 +7330,20 @@ components:
           path: my-data-folder
           type: Storage
         graphId: my-graph-id
+    ScenarioRunProbeResultExample:
+      description: "null"
+      summary: "null"
+      value:
+        name: StockProbe
+        run: 0
+        stockMeasure: 50
+    ScenarioRunResultExample:
+      description: "null"
+      summary: "null"
+      value:
+        id: sr-feai8feu44_stock
+        results:
+          $ref: '#/components/examples/ScenarioRunResultExample'
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -6470,46 +7640,6 @@ components:
         varType: string
         value: ""
         inherited: true
-    TwoUsers:
-      description: Two Users example
-      summary: Two Users example
-      value:
-      - id: "1"
-        name: Bob
-        platformRoles:
-        - Admin
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-        - id: "2"
-          name: Phoenix
-          roles:
-          - Admin
-      - id: "2"
-        name: Alice
-        platformRoles:
-        - User
-        organizations:
-        - id: "1"
-          name: Cosmo Tech
-          roles:
-          - Admin
-          workspaces:
-          - id: "1"
-            name: Brewery Analysis
-            roles:
-            - Admin
-        - id: "2"
-          name: Phoenix
-          roles:
-          - Admin
     WorkspaceFiles:
       description: Brewery Workspace files example
       summary: Brewery Workspace files example
@@ -6540,12 +7670,16 @@ components:
           - roles
       properties:
         component:
+          example: null
           type: string
         roles:
           additionalProperties:
+            example: null
             items:
+              example: null
               type: string
             type: array
+          example: null
           type: object
       type: object
     Connector:
@@ -6609,53 +7743,70 @@ components:
       properties:
         id:
           description: the Connector version unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         key:
           description: the Connector key which group Connector versions
+          example: null
           type: string
         name:
           description: the Connector name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Connector description
+          example: null
           type: string
         repository:
           description: the registry repository containing the image
+          example: null
           type: string
         version:
           description: the Connector version MAJOR.MINOR.PATCH. Must be aligned with
             an existing repository tag
+          example: null
           type: string
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
         ownerId:
           description: the user id which own this connector version
+          example: null
           readOnly: true
           type: string
         url:
           description: an optional URL link to connector page
+          example: null
           type: string
         azureManagedIdentity:
           description: whether or not the connector uses Azure Managed Identity
+          example: null
           type: boolean
         azureAuthenticationWithCustomerAppRegistration:
           description: whether to authenticate against Azure using the app registration
             credentials provided by the customer
+          example: null
           type: boolean
         ioTypes:
+          example: null
           items:
             description: The read and write capabilities of connector
             enum:
             - read
             - write
+            example: null
             type: string
           type: array
         parameterGroups:
           description: the list of connector parameters groups
+          example: null
           items:
             $ref: '#/components/schemas/ConnectorParameterGroup'
           type: array
@@ -6666,6 +7817,7 @@ components:
       - repository
       - version
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ConnectorParameter:
       description: a connector parameter
       example:
@@ -6680,23 +7832,30 @@ components:
       properties:
         id:
           description: the connector parameter id
+          example: null
           type: string
         label:
           description: the list of translated parameter group labels
+          example: null
           type: string
         valueType:
           description: the parameter value type
+          example: null
           type: string
         options:
           description: the list of available and valid values for the parameter
+          example: null
           items:
+            example: null
             type: string
           type: array
         default:
           description: the default value
+          example: null
           type: string
         envVar:
           description: associated environment variable in connector image
+          example: null
           type: string
       required:
       - id
@@ -6727,12 +7886,15 @@ components:
       properties:
         id:
           description: the connector parameter group id
+          example: null
           type: string
         label:
           description: the list of translated parameter group labels
+          example: null
           type: string
         parameters:
           description: the list of parameters
+          example: null
           items:
             $ref: '#/components/schemas/ConnectorParameter'
           type: array
@@ -6749,9 +7911,11 @@ components:
       properties:
         cpu:
           description: define cpu needs
+          example: null
           type: string
         memory:
           description: define memory needs
+          example: null
           type: string
       required:
       - cpu
@@ -6779,6 +7943,7 @@ components:
     Dataset:
       description: a Dataset
       example:
+        organizationId: organizationId
         connector:
           parametersValues:
             key: parametersValues
@@ -6806,39 +7971,59 @@ components:
       properties:
         id:
           description: the Dataset unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Dataset name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Dataset description
+          example: null
           type: string
         ownerId:
           description: the User id which own this Dataset
+          example: null
           readOnly: true
           type: string
+        organizationId:
+          description: the Organization Id related to this Dataset
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         connector:
-          $ref: '#/components/schemas/DatasetConnector'
+          $ref: '#/components/schemas/Dataset_connector'
         fragmentsIds:
           description: the list of other Datasets ids to compose as fragments
+          example: null
           items:
+            example: null
             type: string
           type: array
         validatorId:
           description: the validator id
+          example: null
           type: string
         compatibility:
           description: the list of compatible Solutions versions
+          example: null
           items:
             $ref: '#/components/schemas/DatasetCompatibility'
           type: array
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     DatasetCompatibility:
       description: a Dataset compatibility constraint to a Solution version open range
       example:
@@ -6848,38 +8033,18 @@ components:
       properties:
         solutionKey:
           description: the Solution key which group Solution versions
+          example: null
           type: string
         minimumVersion:
           description: the Solution minimum version compatibility (version included)
+          example: null
           type: string
         maximumVersion:
           description: the Solution maximum version compatibility (version included)
+          example: null
           type: string
       required:
       - solutionKey
-      type: object
-    DatasetConnector:
-      description: a Connector setup
-      example:
-        parametersValues:
-          key: parametersValues
-        name: name
-        id: id
-        version: version
-      properties:
-        id:
-          description: the Connector id
-          type: string
-        name:
-          description: the Connector name
-          type: string
-        version:
-          description: the Connector version
-          type: string
-        parametersValues:
-          additionalProperties:
-            type: string
-          type: object
       type: object
     DatasetCopyParameters:
       description: the Dataset Copy Parameters
@@ -6891,13 +8056,16 @@ components:
       properties:
         sourceId:
           description: the source Dataset id
+          example: null
           type: string
         targetId:
           description: the target Dataset id
+          example: null
           type: string
         options:
           additionalProperties: true
           description: freeform options to path to connectors
+          example: null
           type: object
       type: object
     DatasetSearch:
@@ -6909,7 +8077,9 @@ components:
       properties:
         datasetTags:
           description: the dataset tag list to search
+          example: null
           items:
+            example: null
             type: string
           type: array
       required:
@@ -6925,17 +8095,49 @@ components:
         enable:
           default: true
           description: Activate or Deactivate historical data deletion
+          example: null
           type: boolean
         pollFrequency:
           default: 10000
           description: define the polling frequency of scenario run status (in millis)
+          example: null
           type: integer
         timeOut:
           default: 28800
           description: define the polling timeout
+          example: null
           type: integer
       required:
       - enable
+      type: object
+    GraphProperties:
+      example:
+        name: name
+        source: source
+        type: type
+        params: params
+        target: target
+      properties:
+        type:
+          description: the type of the relationship
+          example: null
+          type: string
+        source:
+          description: the source node of the relationship
+          example: null
+          type: string
+        target:
+          description: the target node of the relationship
+          example: null
+          type: string
+        name:
+          description: the name of the graph data object
+          example: null
+          type: string
+        params:
+          description: the parameters of the graph data object
+          example: null
+          type: string
       type: object
     Organization:
       description: an Organization
@@ -6964,13 +8166,18 @@ components:
       properties:
         id:
           description: the Organization unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Organization name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         ownerId:
           description: the Owner User Id
+          example: null
           readOnly: true
           type: string
         services:
@@ -6978,7 +8185,10 @@ components:
         security:
           allOf:
           - $ref: '#/components/schemas/OrganizationSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     OrganizationAccessControl:
       description: a Organization access control item
       example:
@@ -6987,10 +8197,14 @@ components:
       properties:
         id:
           description: the identity id
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - id
       - role
@@ -7002,6 +8216,7 @@ components:
       properties:
         role:
           description: the Organization Role
+          example: null
           type: string
       required:
       - role
@@ -7018,13 +8233,17 @@ components:
       properties:
         default:
           description: the role by default
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Organization with detailed access
             control information
+          example: null
           items:
             $ref: '#/components/schemas/OrganizationAccessControl'
           type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -7041,19 +8260,24 @@ components:
       properties:
         cloudService:
           description: the cloud service name
+          example: null
           type: string
         baseUri:
           description: the platform base uri for this service
+          example: null
           type: string
         platformService:
           description: the Platform service associated to the resource
+          example: null
           type: string
         resourceUri:
           description: the Organization specific uri for this service resource
+          example: null
           type: string
         credentials:
           additionalProperties: true
           description: a freeform credentials object. Structure depends on service
+          example: null
           type: object
       type: object
     OrganizationServices:
@@ -7080,6 +8304,7 @@ components:
           additionalProperties: true
           description: a freeform credentials object for the Organization tenant.
             Structure depends on cloud provider
+          example: null
           type: object
         storage:
           $ref: '#/components/schemas/OrganizationService'
@@ -7094,9 +8319,11 @@ components:
       properties:
         cpu:
           description: define cpu needs
+          example: null
           type: string
         memory:
           description: define memory needs
+          example: null
           type: string
       required:
       - cpu
@@ -7134,6 +8361,7 @@ components:
           timeOut: 1
         scenarioDataDownloadTransform: true
         datasetValidatorSource: null
+        orchestratorType: null
         preRunSource: null
         scenariodataTransformSource: null
         gitRepositoryUrl: gitRepositoryUrl
@@ -7153,69 +8381,88 @@ components:
       properties:
         id:
           description: the Solution Run Template id
+          example: null
           type: string
         name:
           description: the Run Template name
+          example: null
           type: string
         description:
           description: the Run Template description
+          example: null
           type: string
         csmSimulation:
           description: the Cosmo Tech simulation name. This information is send to
             the Engine. Mandatory information if no Engine is defined
+          example: null
           type: string
         tags:
           description: the list of Run Template tags
+          example: null
           items:
+            example: null
             type: string
           type: array
         computeSize:
           description: the compute size needed for this Run Template. Standard sizes
             are basic and highcpu. Default is basic
+          example: null
           type: string
         runSizing:
           $ref: '#/components/schemas/RunTemplateResourceSizing'
         noDataIngestionState:
           description: set to true if the run template does not want to check data
             ingestion state (no probes or not control plane)
+          example: null
           type: boolean
         fetchDatasets:
           description: whether or not the fetch dataset step is done
+          example: null
           type: boolean
         scenarioDataDownloadTransform:
           description: whether or not the scenario data download transform step step
             is done
+          example: null
           type: boolean
         fetchScenarioParameters:
           description: whether or not the fetch parameters step is done
+          example: null
           type: boolean
         applyParameters:
           description: whether or not the apply parameter step is done
+          example: null
           type: boolean
         validateData:
           description: whether or not the validate step is done
+          example: null
           type: boolean
         sendDatasetsToDataWarehouse:
           description: whether or not the Datasets values are send to the DataWarehouse
             prior to Simulation Run. If not set follow the Workspace setting
+          example: null
           type: boolean
         sendInputParametersToDataWarehouse:
           description: whether or not the input parameters values are send to the
             DataWarehouse prior to Simulation Run. If not set follow the Workspace
             setting
+          example: null
           type: boolean
         preRun:
           description: whether or not the pre-run step is done
+          example: null
           type: boolean
         run:
           description: whether or not the run step is done
+          example: null
           type: boolean
         postRun:
           description: whether or not the post-run step is done
+          example: null
           type: boolean
         parametersJson:
           description: whether or not to store the scenario parameters in json instead
             of csv
+          example: null
           type: boolean
         parametersHandlerSource:
           $ref: '#/components/schemas/RunTemplateStepSource'
@@ -7231,26 +8478,35 @@ components:
           $ref: '#/components/schemas/RunTemplateStepSource'
         parameterGroups:
           description: the ordered list of parameters groups for the Run Template
+          example: null
           items:
             description: a Run Template Group Parameter id
+            example: null
             type: string
           type: array
         stackSteps:
           description: whether or not to stack adjacent scenario run steps in one
             container run which will chain steps
+          example: null
           type: boolean
         gitRepositoryUrl:
           description: an optional URL to the git repository
+          example: null
           type: string
         gitBranchName:
           description: an optional git branch name
+          example: null
           type: string
         runTemplateSourceDir:
           description: an optional directory where to find the run template source
+          example: null
           type: string
+        orchestratorType:
+          $ref: '#/components/schemas/RunTemplateOrchestrator'
         executionTimeout:
           description: an optional duration in seconds in which a workflow is allowed
             to run
+          example: null
           type: integer
         deleteHistoricalData:
           $ref: '#/components/schemas/DeleteHistoricalData'
@@ -7266,6 +8522,14 @@ components:
       - engine
       - postrun
       - scenariodata_transform
+      example: null
+      type: string
+    RunTemplateOrchestrator:
+      description: the Orchestrator to use for the Run Template
+      enum:
+      - argo-workflow
+      - csm-orc
+      example: null
       type: string
     RunTemplateParameter:
       description: a Run Template Parameter
@@ -7283,31 +8547,40 @@ components:
       properties:
         id:
           description: the Parameter id
+          example: null
           type: string
         labels:
           additionalProperties:
+            example: null
             type: string
           description: a translated label with key as ISO 639-1 code
+          example: null
           type: object
         varType:
           description: the variable type for the parameter. Basic types or special
             type %DATASETID%
+          example: null
           type: string
         defaultValue:
           description: the default value for this parameter
+          example: null
           type: string
         minValue:
           description: the minimum value for this parameter
+          example: null
           type: string
         maxValue:
           description: the maximum value for this parameter
+          example: null
           type: string
         regexValidation:
           description: a regex to validate the value
+          example: null
           type: string
         options:
           additionalProperties: true
           description: freeform options
+          example: null
           type: object
       required:
       - id
@@ -7328,26 +8601,34 @@ components:
       properties:
         id:
           description: the Parameter Group id
+          example: null
           type: string
         labels:
           additionalProperties:
+            example: null
             type: string
           description: a translated label with key as ISO 639-1 code
+          example: null
           type: object
         isTable:
           description: does the group define a table
+          example: null
           type: boolean
         options:
           additionalProperties: true
           description: freeform options
+          example: null
           type: object
         parentId:
           description: the Run Template Group parent Id
+          example: null
           type: string
         parameters:
           description: an ordered list of Run Template Parameters
+          example: null
           items:
             description: a Run Template Parameter id
+            example: null
             type: string
           type: array
       required:
@@ -7362,13 +8643,16 @@ components:
       properties:
         parameterId:
           description: the parameter Id
+          example: null
           type: string
         varType:
           description: the parameter value type
+          example: null
           readOnly: true
           type: string
         value:
           description: the parameter value
+          example: null
           type: string
       required:
       - parameterId
@@ -7400,22 +8684,16 @@ components:
       - git
       - local
       - platform
+      example: null
       type: string
     Scenario:
       description: a Scenario with base information
       example:
-        lastRun: ""
         rootId: rootId
         parentLastRun: ""
-        solutionName: solutionName
         description: description
-        runTemplateName: runTemplateName
         ownerId: ownerId
-        creationDate: 2000-01-23T04:56:07.000+00:00
-        parentId: parentId
-        tags:
-        - tags
-        - tags
+        organizationId: organizationId
         security: ""
         parametersValues:
         - varType: varType
@@ -7427,9 +8705,6 @@ components:
           isInherited: true
           value: value
         ownerName: ownerName
-        lastUpdate: 2000-01-23T04:56:07.000+00:00
-        name: name
-        runTemplateId: runTemplateId
         runSizing:
           requests:
             memory: memory
@@ -7438,85 +8713,127 @@ components:
             memory: memory
             cpu: cpu
         id: id
-        solutionId: solutionId
         state: null
+        rootLastRun: ""
+        validationStatus: ""
+        workspaceId: workspaceId
+        lastRun: ""
+        solutionName: solutionName
+        runTemplateName: runTemplateName
+        creationDate: 0
+        parentId: parentId
+        tags:
+        - tags
+        - tags
+        lastUpdate: 6
+        name: name
+        runTemplateId: runTemplateId
+        solutionId: solutionId
         datasetList:
         - datasetList
         - datasetList
-        rootLastRun: ""
-        validationStatus: null
-        workspaceId: workspaceId
       properties:
         id:
           description: the Scenario unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         name:
           description: the Scenario name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Scenario description
+          example: null
           type: string
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
         parentId:
           description: the Scenario parent id
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this Scenario
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         rootId:
           description: the scenario root id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id associated with this Scenario
+          example: null
           readOnly: true
           type: string
         runTemplateId:
           description: the Solution Run Template Id associated with this Scenario
+          example: null
           type: string
-        workspaceId:
-          description: the associated Workspace Id
+        organizationId:
+          description: the associated Organization Id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        workspaceId:
+          description: the associated Workspace Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         state:
           $ref: '#/components/schemas/ScenarioJobState'
         creationDate:
           description: the Scenario creation date
-          format: date-time
+          example: null
+          format: int64
           readOnly: true
-          type: string
+          type: integer
         lastUpdate:
           description: the last time a Scenario was updated
-          format: date-time
+          example: null
+          format: int64
           readOnly: true
-          type: string
+          type: integer
         ownerName:
           description: the name of the owner
+          example: null
           readOnly: true
           type: string
         solutionName:
           description: the Solution name
+          example: null
           readOnly: true
           type: string
         runTemplateName:
           description: the Solution Run Template name associated with this Scenario
+          example: null
           readOnly: true
           type: string
         datasetList:
           description: the list of Dataset Id associated to this Scenario Run Template
+          example: null
           items:
+            example: null
             type: string
           type: array
         runSizing:
           $ref: '#/components/schemas/ScenarioResourceSizing'
         parametersValues:
           description: the list of Solution Run Template parameters values
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioRunTemplateParameterValue'
           type: array
@@ -7524,23 +8841,35 @@ components:
           allOf:
           - $ref: '#/components/schemas/ScenarioLastRun'
           - description: the last Scenario Run for this Scenario
+            example: null
             type: object
+          example: null
         parentLastRun:
           allOf:
           - $ref: '#/components/schemas/ScenarioLastRun'
           - description: the last Scenario Run for the parent of this Scenario
+            example: null
             type: object
+          example: null
         rootLastRun:
           allOf:
           - $ref: '#/components/schemas/ScenarioLastRun'
           - description: the last Scenario Run for the root (master) of Scenario
+            example: null
             type: object
+          example: null
         validationStatus:
-          $ref: '#/components/schemas/ScenarioValidationStatus'
+          allOf:
+          - $ref: '#/components/schemas/ScenarioValidationStatus'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         security:
           allOf:
           - $ref: '#/components/schemas/ScenarioSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioAccessControl:
       description: a Scenario access control item
       example:
@@ -7549,10 +8878,14 @@ components:
       properties:
         id:
           description: the identity id
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - id
       - role
@@ -7567,18 +8900,22 @@ components:
       properties:
         parameterId:
           description: the parameter id the values refer to
+          example: null
           readOnly: true
           type: string
         varType:
           description: the parameter value type
+          example: null
           readOnly: true
           type: string
         value:
           description: the parameter value for the reference Scenario
+          example: null
           readOnly: true
           type: string
         comparedValue:
           description: the parameter value for the compared Scenario
+          example: null
           readOnly: true
           type: string
       type: object
@@ -7599,14 +8936,17 @@ components:
       properties:
         scenarioId:
           description: the Scenario Id which is the reference for the comparison
+          example: null
           readOnly: true
           type: string
         comparedScenarioId:
           description: the Scenario Id the reference Scenario is compared to
+          example: null
           readOnly: true
           type: string
         changedValues:
           description: the list of changed values for parameters
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioChangedParameterValue'
           readOnly: true
@@ -7620,6 +8960,7 @@ components:
       properties:
         url:
           description: the Scenario Data Download URL
+          example: null
           readOnly: true
           type: string
         state:
@@ -7632,6 +8973,7 @@ components:
       properties:
         id:
           description: the Scenario Data Download job identifier
+          example: null
           readOnly: true
           type: string
       type: object
@@ -7644,21 +8986,27 @@ components:
       - Failed
       - Unknown
       - DataIngestionInProgress
+      example: null
       readOnly: true
       type: string
     ScenarioLastRun:
+      example: null
       properties:
         scenarioRunId:
           description: the last Scenario Run id
+          example: null
           type: string
         csmSimulationRun:
           description: the last Cosmo Tech Simulation Run id
+          example: null
           type: string
         workflowId:
           description: the last Workflow Id
+          example: null
           type: string
         workflowName:
           description: the last Workflow name
+          example: null
           type: string
       type: object
     ScenarioResourceSizing:
@@ -7687,6 +9035,7 @@ components:
       properties:
         role:
           description: the Scenario Role
+          example: null
           type: string
       required:
       - role
@@ -7700,6 +9049,7 @@ components:
         generateName: generateName
         ownerId: ownerId
         organizationId: organizationId
+        createdAt: createdAt
         parametersValues:
         - varType: varType
           parameterId: parameterId
@@ -7769,7 +9119,7 @@ components:
           - path: path
             name: name
         id: id
-        state: null
+        state: ""
         solutionId: solutionId
         datasetList:
         - datasetList
@@ -7783,71 +9133,106 @@ components:
       properties:
         id:
           description: the ScenarioRun
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
         state:
-          $ref: '#/components/schemas/ScenarioRunState'
+          allOf:
+          - $ref: '#/components/schemas/ScenarioRunState'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         organizationId:
           description: the Organization id
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         csmSimulationRun:
           description: the Cosmo Tech Simulation Run Id
+          example: null
           readOnly: true
           type: string
         generateName:
           description: the base name for workflow name generation
+          example: null
           type: string
         workflowName:
           description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         ownerId:
           description: the user id which own this scenariorun
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceId:
           description: the Workspace Id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         workspaceKey:
           description: technical key for resource name convention and version grouping.
             Must be unique
+          example: null
           readOnly: true
           type: string
         scenarioId:
           description: the Scenario Id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         solutionId:
           description: the Solution Id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         runTemplateId:
           description: the Solution Run Template id
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         computeSize:
           description: the compute size needed for this Analysis. Standard sizes are
             basic and highcpu. Default is basic
+          example: null
           readOnly: true
           type: string
         sdkVersion:
           description: the MAJOR.MINOR version used to build the solution solution
+          example: null
+          type: string
+        createdAt:
+          description: the ScenarioRun creation date
+          example: null
+          readOnly: true
           type: string
         noDataIngestionState:
           description: set to true if the run template does not use any Datawarehouse
             consumers (AMQP consumers for Azure)
+          example: null
           type: boolean
         datasetList:
           description: the list of Dataset Id associated to this Analysis
+          example: null
           items:
+            example: null
             type: string
           readOnly: true
           type: array
         parametersValues:
           description: the list of Run Template parameters values
+          example: null
           items:
             $ref: '#/components/schemas/RunTemplateParameterValue'
           readOnly: true
@@ -7855,25 +9240,30 @@ components:
         sendDatasetsToDataWarehouse:
           description: whether or not the Datasets values are send to the DataWarehouse
             prior to Simulation Run. If not set follow the Workspace setting
+          example: null
           readOnly: true
           type: boolean
         sendInputParametersToDataWarehouse:
           description: whether or not the input parameters values are send to the
             DataWarehouse prior to Simulation Run. If not set follow the Workspace
             setting
+          example: null
           readOnly: true
           type: boolean
         nodeLabel:
           description: the node label request
+          example: null
           readOnly: true
           type: string
         containers:
           description: the containers list. This information is not returned by the
             API.
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioRunContainer'
           type: array
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunContainer:
       description: a ScenarioRun container description
       example:
@@ -7908,48 +9298,63 @@ components:
       properties:
         id:
           description: the container Id
+          example: null
           readOnly: true
           type: string
         name:
           description: the container name
+          example: null
           type: string
         labels:
           additionalProperties:
+            example: null
             type: string
           description: the metadata labels
+          example: null
           type: object
         envVars:
           additionalProperties:
+            example: null
             type: string
           description: environment variable map
+          example: null
           type: object
         image:
           description: the container image URI
+          example: null
           type: string
         entrypoint:
           description: the container entry point
+          example: null
           type: string
         runArgs:
           description: the list of run arguments for the container
+          example: null
           items:
+            example: null
             type: string
           type: array
         dependencies:
           description: the list of dependencies container name to run this container
+          example: null
           items:
+            example: null
             type: string
           type: array
         solutionContainer:
           description: whether or not this container is a Cosmo Tech solution container
+          example: null
           readOnly: true
           type: boolean
         nodeLabel:
           description: the node label request
+          example: null
           type: string
         runSizing:
           $ref: '#/components/schemas/ContainerResourceSizing'
         artifacts:
           description: the list of artifacts
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioRunContainerArtifact'
           type: array
@@ -7965,9 +9370,11 @@ components:
       properties:
         name:
           description: the artifact name
+          example: null
           type: string
         path:
           description: the artifact path (relative to /var/csmoutput)
+          example: null
           type: string
       type: object
     ScenarioRunContainerLogs:
@@ -7982,20 +9389,25 @@ components:
       properties:
         nodeId:
           description: the node Id which has executed this log
+          example: null
           readOnly: true
           type: string
         containerName:
           description: the container name
+          example: null
           readOnly: true
           type: string
         children:
           description: the list of children node id
+          example: null
           items:
+            example: null
             type: string
           readOnly: true
           type: array
         logs:
           description: the node logs in plain text
+          example: null
           readOnly: true
           type: string
       type: object
@@ -8014,15 +9426,57 @@ components:
       properties:
         scenariorunId:
           description: the ScenarioRun Id
+          example: null
           readOnly: true
           type: string
         containers:
           additionalProperties:
             $ref: '#/components/schemas/ScenarioRunContainerLogs'
           description: the container map of logs
+          example: null
           readOnly: true
           type: object
       type: object
+    ScenarioRunResourceRequested:
+      description: the memory and CPU requested by the pod
+      example:
+        memory: 1
+        cpu: 6
+      properties:
+        cpu:
+          description: the cpu requested
+          example: null
+          format: int64
+          type: integer
+        memory:
+          description: the memory requested
+          example: null
+          format: int64
+          type: integer
+      type: object
+    ScenarioRunResult:
+      description: a ScenarioRunProbeResult with all ScenarioRunResult
+      example:
+        id: id
+        results:
+        - key: results
+        - key: results
+      properties:
+        id:
+          example: null
+          type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        results:
+          example: null
+          items:
+            additionalProperties:
+              example: null
+              type: string
+            example: null
+            type: object
+          type: array
+      type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     ScenarioRunSearch:
       description: the search options
       example:
@@ -8037,15 +9491,19 @@ components:
       properties:
         solutionId:
           description: the Solution Id to search
+          example: null
           type: string
         runTemplateId:
           description: the Solution Analysis Id to search
+          example: null
           type: string
         workspaceId:
           description: the Workspace Id to search
+          example: null
           type: string
         scenarioId:
           description: the Scenario Id to search
+          example: null
           type: string
         state:
           description: the state to search
@@ -8060,15 +9518,19 @@ components:
           - PostRun
           - Success
           - Failed
+          example: null
           type: string
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
           type: string
         workflowName:
           description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
           type: string
         ownerId:
           description: the owner Id to search
+          example: null
           type: string
       type: object
     ScenarioRunStartContainers:
@@ -8139,20 +9601,26 @@ components:
       properties:
         generateName:
           description: the base name for workflow name generation
+          example: null
           type: string
         csmSimulationId:
           description: Cosmo Tech Simulation Run Id
+          example: null
           type: string
         nodeLabel:
           description: the node label request
+          example: null
           type: string
         labels:
           additionalProperties:
+            example: null
             type: string
           description: the workflow labels
+          example: null
           type: object
         containers:
           description: the containerslist
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioRunContainer'
           type: array
@@ -8169,6 +9637,7 @@ components:
       - Unknown
       - DataIngestionInProgress
       - DataIngestionFailure
+      example: null
       readOnly: true
       type: string
     ScenarioRunStatus:
@@ -8178,25 +9647,37 @@ components:
         phase: phase
         nodes:
         - phase: phase
+          outboundNodes:
+          - outboundNodes
+          - outboundNodes
           containerName: containerName
           name: name
+          resourcesDuration:
+            memory: 1
+            cpu: 6
           hostNodeName: hostNodeName
           progress: progress
           startTime: startTime
           id: id
           endTime: endTime
           message: message
-          estimatedDuration: 6
+          estimatedDuration: 5
         - phase: phase
+          outboundNodes:
+          - outboundNodes
+          - outboundNodes
           containerName: containerName
           name: name
+          resourcesDuration:
+            memory: 1
+            cpu: 6
           hostNodeName: hostNodeName
           progress: progress
           startTime: startTime
           id: id
           endTime: endTime
           message: message
-          estimatedDuration: 6
+          estimatedDuration: 5
         progress: progress
         workflowName: workflowName
         startTime: startTime
@@ -8209,37 +9690,48 @@ components:
       properties:
         id:
           description: the ScenarioRun id
+          example: null
           type: string
         organizationId:
           description: the ScenarioRun id
+          example: null
           type: string
         workflowId:
           description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
           type: string
         workflowName:
           description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
           type: string
         startTime:
           description: the ScenarioRun start Date Time
+          example: null
           type: string
         endTime:
           description: the ScenarioRun end Date Time
+          example: null
           type: string
         phase:
           description: high-level summary of where the workflow is in its lifecycle
+          example: null
           type: string
         progress:
           description: progress to completion
+          example: null
           type: string
         message:
           description: a  human readable message indicating details about why the
             workflow is in this condition
+          example: null
           type: string
         estimatedDuration:
           description: estimatedDuration in seconds
+          example: null
           type: integer
         nodes:
           description: status of ScenarioRun nodes
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioRunStatusNode'
           type: array
@@ -8250,47 +9742,73 @@ components:
       description: status of a ScenarioRun Node
       example:
         phase: phase
+        outboundNodes:
+        - outboundNodes
+        - outboundNodes
         containerName: containerName
         name: name
+        resourcesDuration:
+          memory: 1
+          cpu: 6
         hostNodeName: hostNodeName
         progress: progress
         startTime: startTime
         id: id
         endTime: endTime
         message: message
-        estimatedDuration: 6
+        estimatedDuration: 5
       properties:
         id:
           description: the node id
+          example: null
           type: string
         name:
           description: the node unique name
+          example: null
           type: string
         containerName:
           description: the ScenarioRun container name
+          example: null
           type: string
+        outboundNodes:
+          description: the list of outbound nodes
+          example: null
+          items:
+            example: null
+            type: string
+          readOnly: true
+          type: array
+        resourcesDuration:
+          $ref: '#/components/schemas/ScenarioRunResourceRequested'
         estimatedDuration:
           description: estimatedDuration in seconds
+          example: null
           type: integer
         hostNodeName:
           description: "HostNodeName name of the Kubernetes node on which the Pod\
             \ is running, if applicable"
+          example: null
           type: string
         message:
           description: a human readable message indicating details about why the node
             is in this condition
+          example: null
           type: string
         phase:
           description: high-level summary of where the node is in its lifecycle
+          example: null
           type: string
         progress:
           description: progress to completion
+          example: null
           type: string
         startTime:
           description: the node start time
+          example: null
           type: string
         endTime:
           description: the node end time
+          example: null
           type: string
       type: object
     ScenarioRunTemplateParameterValue:
@@ -8303,17 +9821,21 @@ components:
       properties:
         parameterId:
           description: the parameter Id
+          example: null
           type: string
         varType:
           description: the parameter value type
+          example: null
           readOnly: true
           type: string
         value:
           description: the parameter value
+          example: null
           type: string
         isInherited:
           description: whether or not the value is inherited from parent or has been
             changed
+          example: null
           type: boolean
       required:
       - parameterId
@@ -8331,13 +9853,17 @@ components:
       properties:
         default:
           description: the role by default
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Scenario with detailed access
             control information
+          example: null
           items:
             $ref: '#/components/schemas/ScenarioAccessControl'
           type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -8349,6 +9875,7 @@ components:
       - Rejected
       - Unknown
       - Validated
+      example: null
       type: string
     Solution:
       description: a version of a Solution
@@ -8389,6 +9916,7 @@ components:
             timeOut: 1
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
+          orchestratorType: null
           preRunSource: null
           scenariodataTransformSource: null
           gitRepositoryUrl: gitRepositoryUrl
@@ -8434,6 +9962,7 @@ components:
             timeOut: 1
           scenarioDataDownloadTransform: true
           datasetValidatorSource: null
+          orchestratorType: null
           preRunSource: null
           scenariodataTransformSource: null
           gitRepositoryUrl: gitRepositoryUrl
@@ -8453,6 +9982,7 @@ components:
         tags:
         - tags
         - tags
+        organizationId: organizationId
         parameterGroups:
         - options:
             key: "{}"
@@ -8502,58 +10032,82 @@ components:
       properties:
         id:
           description: the Solution version unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        organizationId:
+          description: the Organization unique identifier
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: the Solution key which group Solution versions
+          example: null
           type: string
         name:
           description: the Solution name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Solution description
+          example: null
           type: string
         repository:
           description: the registry repository containing the image
+          example: null
           type: string
         csmSimulator:
           description: the main Cosmo Tech simulator name used in standard Run Template
+          example: null
           type: string
         version:
           description: the Solution version MAJOR.MINOR.PATCH. Must be aligned with
             an existing repository tag
+          example: null
           type: string
         ownerId:
           description: the User id which own this Solution
+          example: null
           readOnly: true
           type: string
         sdkVersion:
           description: the MAJOR.MINOR version used to build this solution
+          example: null
           type: string
         url:
           description: an optional URL link to solution page
+          example: null
           type: string
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
         parameters:
           description: the list of Run Template Parameters
+          example: null
           items:
             $ref: '#/components/schemas/RunTemplateParameter'
           type: array
         parameterGroups:
           description: the list of parameters groups for the Run Templates
+          example: null
           items:
             $ref: '#/components/schemas/RunTemplateParameterGroup'
           type: array
         runTemplates:
           description: list of Run Template
+          example: null
           items:
             $ref: '#/components/schemas/RunTemplate'
           type: array
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     SourceInfo:
       description: Source job import information
       example:
@@ -8564,18 +10118,22 @@ components:
       properties:
         name:
           description: the source name containing the files to import
+          example: null
           type: string
         location:
           description: the source location containing the files to import
+          example: null
           type: string
         path:
           description: the source location containing the files to import
+          example: null
           type: string
         type:
           description: the source type containing the files to import
           enum:
           - ADT
           - Storage
+          example: null
           type: string
       required:
       - location
@@ -8583,8 +10141,46 @@ components:
       type: object
     TranslatedLabels:
       additionalProperties:
+        example: null
         type: string
       description: a translated label with key as ISO 639-1 code
+      example: null
+      type: object
+    TwinGraphBatchResult:
+      description: Processing result
+      example:
+        processedLines: 6
+        totalLines: 0
+        errors:
+        - errors
+        - errors
+      properties:
+        totalLines:
+          example: null
+          type: integer
+        processedLines:
+          example: null
+          type: integer
+        errors:
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+      required:
+      - errors
+      - processedLines
+      - totalLines
+      type: object
+    TwinGraphHash:
+      description: a twin graph hash
+      example:
+        hash: hash
+      properties:
+        hash:
+          description: the hash of the graph
+          example: null
+          type: string
       type: object
     TwinGraphImport:
       description: a twin graph import info
@@ -8601,11 +10197,13 @@ components:
           $ref: '#/components/schemas/SourceInfo'
         graphId:
           description: the graph id to import to
+          example: null
           type: string
         version:
           description: "The version of the graph to import to. \nWhen not set, the\
             \ last version before import is upgraded by 1.\nWhen set, the targeted\
             \ graph is replaced\n"
+          example: null
           type: string
       required:
       - graphId
@@ -8619,9 +10217,11 @@ components:
       properties:
         jobId:
           description: the import job id
+          example: null
           type: string
         graphName:
           description: the twin graph name
+          example: null
           type: string
       type: object
     TwinGraphQuery:
@@ -8632,138 +10232,14 @@ components:
       properties:
         version:
           description: Twin graph version
+          example: null
           type: string
         query:
           description: the query in cypher language
+          example: null
           type: string
       required:
       - query
-      type: object
-    User:
-      description: a User
-      example:
-        platformRoles:
-        - Admin
-        - Admin
-        name: name
-        organizations:
-        - roles:
-          - roles
-          - roles
-          name: name
-          id: id
-          workspaces:
-          - roles:
-            - roles
-            - roles
-            name: name
-            id: id
-          - roles:
-            - roles
-            - roles
-            name: name
-            id: id
-        - roles:
-          - roles
-          - roles
-          name: name
-          id: id
-          workspaces:
-          - roles:
-            - roles
-            - roles
-            name: name
-            id: id
-          - roles:
-            - roles
-            - roles
-            name: name
-            id: id
-        id: id
-      properties:
-        id:
-          description: the User unique identifier
-          readOnly: true
-          type: string
-        name:
-          description: the User name
-          type: string
-        platformRoles:
-          description: the list of Platform roles
-          items:
-            enum:
-            - Admin
-            - User
-            - ConnectorDeveloper
-            type: string
-          type: array
-        organizations:
-          items:
-            $ref: '#/components/schemas/UserOrganization'
-          readOnly: true
-          type: array
-      type: object
-    UserOrganization:
-      description: The organization of the user
-      example:
-        roles:
-        - roles
-        - roles
-        name: name
-        id: id
-        workspaces:
-        - roles:
-          - roles
-          - roles
-          name: name
-          id: id
-        - roles:
-          - roles
-          - roles
-          name: name
-          id: id
-      properties:
-        id:
-          description: the Organization id
-          type: string
-        name:
-          description: the Organization name
-          type: string
-        roles:
-          description: the roles of the User in the Organization
-          items:
-            type: string
-          type: array
-        workspaces:
-          description: the list of Workspaces roles
-          items:
-            $ref: '#/components/schemas/UserWorkspace'
-          readOnly: true
-          type: array
-      type: object
-    UserWorkspace:
-      description: the list of User roles for a Workspace
-      example:
-        roles:
-        - roles
-        - roles
-        name: name
-        id: id
-      properties:
-        id:
-          description: the Workspace Id
-          readOnly: true
-          type: string
-        name:
-          description: the Workspace name
-          readOnly: true
-          type: string
-        roles:
-          description: the roles of the User in the Workspace
-          items:
-            type: string
-          type: array
-      readOnly: true
       type: object
     Validator:
       description: a Validator to validate a Dataset
@@ -8781,31 +10257,40 @@ components:
       properties:
         id:
           description: the Validator id
+          example: null
           readOnly: true
           type: string
         name:
           description: the Validator name
+          example: null
           type: string
         description:
           description: the Validator description
+          example: null
           type: string
         repository:
           description: the registry repository containing the Validator image
+          example: null
           type: string
         version:
           description: the Validator version MAJOR.MINOR.PATCH. Must be aligned with
             an existing repository tag
+          example: null
           type: string
         ownerId:
           description: the User id which own this Validator
+          example: null
           readOnly: true
           type: string
         url:
           description: an optional URL link to Validator page
+          example: null
           type: string
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
       required:
@@ -8828,21 +10313,26 @@ components:
       properties:
         id:
           description: the Validator Run id
+          example: null
           readOnly: true
           type: string
         validatorId:
           description: the Validator id
+          example: null
           readOnly: true
           type: string
         validatorName:
           description: the validator name
+          example: null
           readOnly: true
           type: string
         datasetId:
           description: the Dataset id to run the validator on
+          example: null
           type: string
         datasetName:
           description: the Dataset name
+          example: null
           readOnly: true
           type: string
         state:
@@ -8851,14 +10341,17 @@ components:
           - Running
           - Finished
           - OnError
+          example: null
           readOnly: true
           type: string
         containerId:
           description: the Validator Run container id
+          example: null
           readOnly: true
           type: string
         logs:
           description: the Validator Run logs
+          example: null
           readOnly: true
           type: string
       required:
@@ -8882,6 +10375,7 @@ components:
         tags:
         - tags
         - tags
+        organizationId: organizationId
         useDedicatedEventHubNamespace: false
         security: ""
         solution:
@@ -8899,28 +10393,44 @@ components:
       properties:
         id:
           description: the Workspace version unique identifier
+          example: null
           readOnly: true
           type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        organizationId:
+          description: the Organization unique identifier
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         key:
           description: technical key for resource name convention and version grouping.
             Must be unique
+          example: null
           type: string
         name:
           description: the Workspace name
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
         description:
           description: the Workspace description
+          example: null
           type: string
         version:
           description: the Workspace version MAJOR.MINOR.PATCH.
+          example: null
           type: string
         tags:
           description: the list of tags
+          example: null
           items:
+            example: null
             type: string
           type: array
         ownerId:
           description: the user id which own this workspace
+          example: null
           readOnly: true
           type: string
         solution:
@@ -8931,6 +10441,7 @@ components:
           description: default setting for all Scenarios and Run Templates to set
             whether or not the Dataset values and the input parameters values are
             send to the DataWarehouse prior to the ScenarioRun
+          example: null
           type: boolean
         useDedicatedEventHubNamespace:
           default: false
@@ -8938,19 +10449,23 @@ components:
             Namespace for this Workspace. The Event Hub Namespace must be named \'<organization_id\>-<workspace_id\>\'
             (in lower case). This Namespace must also contain two Event Hubs named
             \'probesmeasures\' and \'scenariorun\'.
+          example: null
           type: boolean
         dedicatedEventHubSasKeyName:
           description: "the Dedicated Event Hub SAS key name, default to RootManageSharedAccessKey.\
             \ Use the /secret endpoint to set the key value"
+          example: null
           type: string
         dedicatedEventHubAuthenticationStrategy:
           description: "the Event Hub authentication strategy, SHARED_ACCESS_POLICY\
             \ or TENANT_CLIENT_CREDENTIALS. Default to the one defined for the tenant."
+          example: null
           type: string
         sendScenarioRunToEventHub:
           default: true
           description: default setting for all Scenarios and Run Templates to set
             whether or not the ScenarioRun is send to the Event Hub
+          example: null
           type: boolean
         sendScenarioMetadataToEventHub:
           default: false
@@ -8958,15 +10473,19 @@ components:
             Event Hub Namespace for this Workspace. The Event Hub Namespace must be
             named \'<organization_id\>-<workspace_id\>\' (in lower case). This Namespace
             must also contain two Event Hubs named \'scenariometadata\' and \'scenariorunmetadata\'.
+          example: null
           type: boolean
         security:
           allOf:
           - $ref: '#/components/schemas/WorkspaceSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - key
       - name
       - solution
       type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
     WorkspaceAccessControl:
       description: a Workspace access control item
       example:
@@ -8975,9 +10494,12 @@ components:
       properties:
         id:
           description: the identity id
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         role:
           description: a role
+          example: null
           type: string
       required:
       - id
@@ -8990,6 +10512,7 @@ components:
       properties:
         fileName:
           description: the Workspace File name
+          example: null
           type: string
       type: object
     WorkspaceRole:
@@ -8999,6 +10522,7 @@ components:
       properties:
         role:
           description: the Workspace Role
+          example: null
           type: string
       required:
       - role
@@ -9010,6 +10534,7 @@ components:
       properties:
         dedicatedEventHubKey:
           description: the dedicated event hub shared access key
+          example: null
           type: string
       type: object
     WorkspaceSecurity:
@@ -9024,13 +10549,17 @@ components:
       properties:
         default:
           description: the role by default
+          example: null
           type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
         accessControlList:
           description: the list which can access this Workspace with detailed access
             control information
+          example: null
           items:
             $ref: '#/components/schemas/WorkspaceAccessControl'
           type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       required:
       - accessControlList
       - default
@@ -9047,16 +10576,20 @@ components:
       properties:
         solutionId:
           description: the Solution Id attached to this workspace
+          example: null
           type: string
         runTemplateFilter:
           description: the list of Solution Run Template Id to filter
+          example: null
           items:
+            example: null
             type: string
           type: array
         defaultRunTemplateDataset:
           additionalProperties: true
           description: a map of RunTemplateId/DatasetId to set a default dataset for
             a Run Template
+          example: null
           type: object
       type: object
     WorkspaceWebApp:
@@ -9070,22 +10603,27 @@ components:
       properties:
         url:
           description: the Workspace Web Application URL
+          example: null
           type: string
         iframes:
           additionalProperties: true
           description: a map of iframeKey/iframeURL
+          example: null
           type: object
         options:
           additionalProperties: true
           description: free form options for Web Application
+          example: null
           type: object
       required:
       - url
       type: object
     inline_object:
+      example: null
       properties:
         overwrite:
           default: false
+          example: null
           type: boolean
         destination:
           description: |
@@ -9095,11 +10633,43 @@ components:
           example: path/to/a/directory/
           type: string
         file:
+          example: null
           format: binary
           type: string
       required:
       - file
       type: object
+    Dataset_connector:
+      description: the Connector setup bound to a Dataset
+      example:
+        parametersValues:
+          key: parametersValues
+        name: name
+        id: id
+        version: version
+      properties:
+        id:
+          description: the Connector id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        name:
+          description: the Connector name
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        version:
+          description: the Connector version
+          example: null
+          type: string
+        parametersValues:
+          additionalProperties:
+            example: null
+            type: string
+          example: null
+          type: object
+      type: object
+      x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
   securitySchemes:
     oAuth2AuthCode:
       description: OAuth2 authentication

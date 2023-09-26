@@ -2,7 +2,7 @@
 
 # DatasetConnector
 
-a Connector setup
+the Connector setup bound to a Dataset
 
 ## Properties
 
