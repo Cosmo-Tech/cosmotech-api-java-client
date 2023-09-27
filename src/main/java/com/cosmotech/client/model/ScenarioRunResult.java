@@ -31,7 +31,7 @@ import java.util.Map;
  * a ScenarioRunProbeResult with all ScenarioRunResult
  */
 @ApiModel(description = "a ScenarioRunProbeResult with all ScenarioRunResult")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-27T13:16:35.697668991Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-27T13:34:33.570697378Z[Etc/UTC]")
 public class ScenarioRunResult {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
