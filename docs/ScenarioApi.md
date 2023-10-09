@@ -16,12 +16,11 @@ Method | HTTP request | Description
 [**findScenarioById**](ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
 [**getScenarioAccessControl**](ScenarioApi.md#getScenarioAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Get a control access for the Scenario
 [**getScenarioDataDownloadJobInfo**](ScenarioApi.md#getScenarioDataDownloadJobInfo) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id} | Get Scenario data download URL
-[**getScenarioPermissions**](ScenarioApi.md#getScenarioPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/permissions/{role} | Get the Scenario permission by given role
+[**getScenarioPermissions**](ScenarioApi.md#getScenarioPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/permissions/{role} | Get the Scenario permission by given role
 [**getScenarioSecurity**](ScenarioApi.md#getScenarioSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security | Get the Scenario security information
 [**getScenarioSecurityUsers**](ScenarioApi.md#getScenarioSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users | Get the Scenario security users list
 [**getScenarioValidationStatusById**](ScenarioApi.md#getScenarioValidationStatusById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/ValidationStatus | Get the validation status of an scenario
 [**getScenariosTree**](ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
-[**importScenario**](ScenarioApi.md#importScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/import | Import Scenario
 [**removeAllScenarioParameterValues**](ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified
 [**removeScenarioAccessControl**](ScenarioApi.md#removeScenarioAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Remove the specified access from the given Organization Scenario
 [**setScenarioDefaultSecurity**](ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | Set the Scenario default security
@@ -882,7 +881,7 @@ Name | Type | Description  | Notes
 
 <a name="getScenarioPermissions"></a>
 # **getScenarioPermissions**
-> List&lt;String&gt; getScenarioPermissions(organizationId, workspaceId, role)
+> List&lt;String&gt; getScenarioPermissions(organizationId, workspaceId, scenarioId, role)
 
 Get the Scenario permission by given role
 
@@ -908,9 +907,10 @@ public class Example {
     ScenarioApi apiInstance = new ScenarioApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String scenarioId = "scenarioId_example"; // String | the Scenario identifier
     String role = "role_example"; // String | the Role
     try {
-      List<String> result = apiInstance.getScenarioPermissions(organizationId, workspaceId, role);
+      List<String> result = apiInstance.getScenarioPermissions(organizationId, workspaceId, scenarioId, role);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScenarioApi#getScenarioPermissions");
@@ -929,6 +929,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
  **role** | **String**| the Role |
 
 ### Return type
@@ -1224,76 +1225,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the scenario tree |  -  |
-
-<a name="importScenario"></a>
-# **importScenario**
-> Scenario importScenario(organizationId, workspaceId, scenario)
-
-Import Scenario
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.ScenarioApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    ScenarioApi apiInstance = new ScenarioApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    Scenario scenario = new Scenario(); // Scenario | the Scenario to import
-    try {
-      Scenario result = apiInstance.importScenario(organizationId, workspaceId, scenario);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScenarioApi#importScenario");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenario** | [**Scenario**](Scenario.md)| the Scenario to import |
-
-### Return type
-
-[**Scenario**](Scenario.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | the scenario details |  -  |
-**400** | Bad request |  -  |
 
 <a name="removeAllScenarioParameterValues"></a>
 # **removeAllScenarioParameterValues**
