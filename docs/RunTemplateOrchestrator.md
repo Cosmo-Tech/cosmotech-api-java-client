@@ -5,9 +5,9 @@
 ## Enum
 
 
-* `ARGO_WORKFLOW` (value: `"argo-workflow"`)
+* `ARGOWORKFLOW` (value: `"argoWorkflow"`)
 
-* `CSM_ORC` (value: `"csm-orc"`)
+* `CSMORC` (value: `"csmOrc"`)
 
 
 

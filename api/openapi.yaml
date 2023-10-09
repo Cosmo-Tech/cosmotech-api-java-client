@@ -8395,8 +8395,8 @@ components:
     RunTemplateOrchestrator:
       description: the Orchestrator to use for the Run Template
       enum:
-      - argo-workflow
-      - csm-orc
+      - argoWorkflow
+      - csmOrc
       example: null
       type: string
     RunTemplateParameter:

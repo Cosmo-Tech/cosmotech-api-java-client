@@ -30,9 +30,9 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(RunTemplateOrchestrator.Adapter.class)
 public enum RunTemplateOrchestrator {
   
-  ARGO_WORKFLOW("argo-workflow"),
+  ARGOWORKFLOW("argoWorkflow"),
   
-  CSM_ORC("csm-orc");
+  CSMORC("csmOrc");
 
   private String value;
 
