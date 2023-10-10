@@ -2735,59 +2735,6 @@ paths:
       tags:
       - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/run/import:
-    post:
-      operationId: importScenarioRun
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Workspace identifier
-        explode: false
-        in: path
-        name: workspace_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the Scenario identifier
-        explode: false
-        in: path
-        name: scenario_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScenarioRun'
-        description: the ScenarioRun to import
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ScenarioRun:
-                  $ref: '#/components/examples/BreweryScenarioRun'
-              schema:
-                $ref: '#/components/schemas/ScenarioRun'
-          description: the scenariorun details
-      summary: import a ScenarioRun for the Scenario
-      tags:
-      - scenariorun
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/twingraph/import:
     post:
       description: Import a new version of a twin graph

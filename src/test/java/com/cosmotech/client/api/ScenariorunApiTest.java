@@ -206,24 +206,6 @@ public class ScenariorunApiTest {
     }
     
     /**
-     * import a ScenarioRun for the Scenario
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void importScenarioRunTest() throws ApiException {
-        String organizationId = null;
-        String workspaceId = null;
-        String scenarioId = null;
-        ScenarioRun scenarioRun = null;
-                ScenarioRun response = api.importScenarioRun(organizationId, workspaceId, scenarioId, scenarioRun);
-        // TODO: test validations
-    }
-    
-    /**
      * run a ScenarioRun for the Scenario
      *
      * 
