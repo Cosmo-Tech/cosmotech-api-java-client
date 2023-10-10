@@ -15,7 +15,7 @@ package com.cosmotech.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cosmotech.client.model.ScenarioAccessControl;
+import com.cosmotech.client.model.SolutionAccessControl;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,23 +28,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * the Scenario security information
+ * the Solution security information
  */
-@ApiModel(description = "the Scenario security information")
+@ApiModel(description = "the Solution security information")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-10T15:17:16.162862517Z[Etc/UTC]")
-public class ScenarioSecurity {
+public class SolutionSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
   private String _default;
 
   public static final String SERIALIZED_NAME_ACCESS_CONTROL_LIST = "accessControlList";
   @SerializedName(SERIALIZED_NAME_ACCESS_CONTROL_LIST)
-  private List<ScenarioAccessControl> accessControlList = new ArrayList<ScenarioAccessControl>();
+  private List<SolutionAccessControl> accessControlList = new ArrayList<SolutionAccessControl>();
 
-  public ScenarioSecurity() { 
+  public SolutionSecurity() { 
   }
 
-  public ScenarioSecurity _default(String _default) {
+  public SolutionSecurity _default(String _default) {
     
     this._default = _default;
     return this;
@@ -67,30 +67,30 @@ public class ScenarioSecurity {
   }
 
 
-  public ScenarioSecurity accessControlList(List<ScenarioAccessControl> accessControlList) {
+  public SolutionSecurity accessControlList(List<SolutionAccessControl> accessControlList) {
     
     this.accessControlList = accessControlList;
     return this;
   }
 
-  public ScenarioSecurity addAccessControlListItem(ScenarioAccessControl accessControlListItem) {
+  public SolutionSecurity addAccessControlListItem(SolutionAccessControl accessControlListItem) {
     this.accessControlList.add(accessControlListItem);
     return this;
   }
 
    /**
-   * the list which can access this Scenario with detailed access control information
+   * the list which can access this Solution with detailed access control information
    * @return accessControlList
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the list which can access this Scenario with detailed access control information")
+  @ApiModelProperty(required = true, value = "the list which can access this Solution with detailed access control information")
 
-  public List<ScenarioAccessControl> getAccessControlList() {
+  public List<SolutionAccessControl> getAccessControlList() {
     return accessControlList;
   }
 
 
-  public void setAccessControlList(List<ScenarioAccessControl> accessControlList) {
+  public void setAccessControlList(List<SolutionAccessControl> accessControlList) {
     this.accessControlList = accessControlList;
   }
 
@@ -103,9 +103,9 @@ public class ScenarioSecurity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScenarioSecurity scenarioSecurity = (ScenarioSecurity) o;
-    return Objects.equals(this._default, scenarioSecurity._default) &&
-        Objects.equals(this.accessControlList, scenarioSecurity.accessControlList);
+    SolutionSecurity solutionSecurity = (SolutionSecurity) o;
+    return Objects.equals(this._default, solutionSecurity._default) &&
+        Objects.equals(this.accessControlList, solutionSecurity.accessControlList);
   }
 
   @Override
@@ -116,7 +116,7 @@ public class ScenarioSecurity {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScenarioSecurity {\n");
+    sb.append("class SolutionSecurity {\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("    accessControlList: ").append(toIndentedString(accessControlList)).append("\n");
     sb.append("}");

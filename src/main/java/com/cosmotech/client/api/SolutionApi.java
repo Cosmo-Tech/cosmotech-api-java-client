@@ -33,6 +33,8 @@ import com.cosmotech.client.model.RunTemplateHandlerId;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.Solution;
+import com.cosmotech.client.model.SolutionAccessControl;
+import com.cosmotech.client.model.SolutionRole;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -539,6 +541,157 @@ public class SolutionApi {
 
         okhttp3.Call localVarCall = addOrReplaceRunTemplatesValidateBeforeCall(organizationId, solutionId, runTemplate, _callback);
         Type localVarReturnType = new TypeToken<List<RunTemplate>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for addSolutionAccessControl
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param solutionAccessControl the new Solution security access to add. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addSolutionAccessControlCall(String organizationId, String solutionId, SolutionAccessControl solutionAccessControl, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = solutionAccessControl;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/security/access"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addSolutionAccessControlValidateBeforeCall(String organizationId, String solutionId, SolutionAccessControl solutionAccessControl, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling addSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling addSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'solutionAccessControl' is set
+        if (solutionAccessControl == null) {
+            throw new ApiException("Missing the required parameter 'solutionAccessControl' when calling addSolutionAccessControl(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addSolutionAccessControlCall(organizationId, solutionId, solutionAccessControl, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add a control access to the Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param solutionAccessControl the new Solution security access to add. (required)
+     * @return SolutionAccessControl
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public SolutionAccessControl addSolutionAccessControl(String organizationId, String solutionId, SolutionAccessControl solutionAccessControl) throws ApiException {
+        ApiResponse<SolutionAccessControl> localVarResp = addSolutionAccessControlWithHttpInfo(organizationId, solutionId, solutionAccessControl);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add a control access to the Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param solutionAccessControl the new Solution security access to add. (required)
+     * @return ApiResponse&lt;SolutionAccessControl&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SolutionAccessControl> addSolutionAccessControlWithHttpInfo(String organizationId, String solutionId, SolutionAccessControl solutionAccessControl) throws ApiException {
+        okhttp3.Call localVarCall = addSolutionAccessControlValidateBeforeCall(organizationId, solutionId, solutionAccessControl, null);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add a control access to the Solution (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param solutionAccessControl the new Solution security access to add. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addSolutionAccessControlAsync(String organizationId, String solutionId, SolutionAccessControl solutionAccessControl, final ApiCallback<SolutionAccessControl> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addSolutionAccessControlValidateBeforeCall(organizationId, solutionId, solutionAccessControl, _callback);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1418,20 +1571,21 @@ public class SolutionApi {
         return localVarCall;
     }
     /**
-     * Build call for importSolution
+     * Build call for getSolutionAccessControl
      * @param organizationId the Organization identifier (required)
-     * @param solution the Solution to import (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the solution details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or user specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call importSolutionCall(String organizationId, Solution solution, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSolutionAccessControlCall(String organizationId, String solutionId, String identityId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -1446,11 +1600,13 @@ public class SolutionApi {
             basePath = null;
         }
 
-        Object localVarPostBody = solution;
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/solutions/import"
-            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1467,7 +1623,7 @@ public class SolutionApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/yaml"
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1475,86 +1631,236 @@ public class SolutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call importSolutionValidateBeforeCall(String organizationId, Solution solution, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSolutionAccessControlValidateBeforeCall(String organizationId, String solutionId, String identityId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling importSolution(Async)");
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getSolutionAccessControl(Async)");
         }
         
-        // verify the required parameter 'solution' is set
-        if (solution == null) {
-            throw new ApiException("Missing the required parameter 'solution' when calling importSolution(Async)");
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling getSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'identityId' is set
+        if (identityId == null) {
+            throw new ApiException("Missing the required parameter 'identityId' when calling getSolutionAccessControl(Async)");
         }
         
 
-        okhttp3.Call localVarCall = importSolutionCall(organizationId, solution, _callback);
+        okhttp3.Call localVarCall = getSolutionAccessControlCall(organizationId, solutionId, identityId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Import a solution
+     * Get a control access for the Solution
      * 
      * @param organizationId the Organization identifier (required)
-     * @param solution the Solution to import (required)
-     * @return Solution
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @return SolutionAccessControl
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the solution details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or user specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Solution importSolution(String organizationId, Solution solution) throws ApiException {
-        ApiResponse<Solution> localVarResp = importSolutionWithHttpInfo(organizationId, solution);
+    public SolutionAccessControl getSolutionAccessControl(String organizationId, String solutionId, String identityId) throws ApiException {
+        ApiResponse<SolutionAccessControl> localVarResp = getSolutionAccessControlWithHttpInfo(organizationId, solutionId, identityId);
         return localVarResp.getData();
     }
 
     /**
-     * Import a solution
+     * Get a control access for the Solution
      * 
      * @param organizationId the Organization identifier (required)
-     * @param solution the Solution to import (required)
-     * @return ApiResponse&lt;Solution&gt;
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @return ApiResponse&lt;SolutionAccessControl&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the solution details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or user specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Solution> importSolutionWithHttpInfo(String organizationId, Solution solution) throws ApiException {
-        okhttp3.Call localVarCall = importSolutionValidateBeforeCall(organizationId, solution, null);
-        Type localVarReturnType = new TypeToken<Solution>(){}.getType();
+    public ApiResponse<SolutionAccessControl> getSolutionAccessControlWithHttpInfo(String organizationId, String solutionId, String identityId) throws ApiException {
+        okhttp3.Call localVarCall = getSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, null);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Import a solution (asynchronously)
+     * Get a control access for the Solution (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
-     * @param solution the Solution to import (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> the solution details </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or user specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call importSolutionAsync(String organizationId, Solution solution, final ApiCallback<Solution> _callback) throws ApiException {
+    public okhttp3.Call getSolutionAccessControlAsync(String organizationId, String solutionId, String identityId, final ApiCallback<SolutionAccessControl> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = importSolutionValidateBeforeCall(organizationId, solution, _callback);
-        Type localVarReturnType = new TypeToken<Solution>(){}.getType();
+        okhttp3.Call localVarCall = getSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, _callback);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getSolutionSecurityUsers
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution security users list </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSolutionSecurityUsersCall(String organizationId, String solutionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/security/users"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSolutionSecurityUsersValidateBeforeCall(String organizationId, String solutionId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getSolutionSecurityUsers(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling getSolutionSecurityUsers(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getSolutionSecurityUsersCall(organizationId, solutionId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the Solution security users list
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @return List&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution security users list </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<String> getSolutionSecurityUsers(String organizationId, String solutionId) throws ApiException {
+        ApiResponse<List<String>> localVarResp = getSolutionSecurityUsersWithHttpInfo(organizationId, solutionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the Solution security users list
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @return ApiResponse&lt;List&lt;String&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution security users list </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<String>> getSolutionSecurityUsersWithHttpInfo(String organizationId, String solutionId) throws ApiException {
+        okhttp3.Call localVarCall = getSolutionSecurityUsersValidateBeforeCall(organizationId, solutionId, null);
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the Solution security users list (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution security users list </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Solution or the User specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSolutionSecurityUsersAsync(String organizationId, String solutionId, final ApiCallback<List<String>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSolutionSecurityUsersValidateBeforeCall(organizationId, solutionId, _callback);
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1973,6 +2279,154 @@ public class SolutionApi {
         return localVarCall;
     }
     /**
+     * Build call for removeSolutionAccessControl
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or the user specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeSolutionAccessControlCall(String organizationId, String solutionId, String identityId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeSolutionAccessControlValidateBeforeCall(String organizationId, String solutionId, String identityId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling removeSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling removeSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'identityId' is set
+        if (identityId == null) {
+            throw new ApiException("Missing the required parameter 'identityId' when calling removeSolutionAccessControl(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeSolutionAccessControlCall(organizationId, solutionId, identityId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove the specified access from the given Organization Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or the user specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public void removeSolutionAccessControl(String organizationId, String solutionId, String identityId) throws ApiException {
+        removeSolutionAccessControlWithHttpInfo(organizationId, solutionId, identityId);
+    }
+
+    /**
+     * Remove the specified access from the given Organization Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or the user specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> removeSolutionAccessControlWithHttpInfo(String organizationId, String solutionId, String identityId) throws ApiException {
+        okhttp3.Call localVarCall = removeSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove the specified access from the given Organization Solution (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Request succeeded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution or the user specified is unknown or you don&#39;t have access to them </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeSolutionAccessControlAsync(String organizationId, String solutionId, String identityId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateSolution
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
@@ -2124,6 +2578,167 @@ public class SolutionApi {
 
         okhttp3.Call localVarCall = updateSolutionValidateBeforeCall(organizationId, solutionId, solution, _callback);
         Type localVarReturnType = new TypeToken<Solution>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateSolutionAccessControl
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param solutionRole The new Solution Access Control (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionAccessControlCall(String organizationId, String solutionId, String identityId, SolutionRole solutionRole, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = solutionRole;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id}"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "solution_id" + "\\}", localVarApiClient.escapeString(solutionId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateSolutionAccessControlValidateBeforeCall(String organizationId, String solutionId, String identityId, SolutionRole solutionRole, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling updateSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'solutionId' is set
+        if (solutionId == null) {
+            throw new ApiException("Missing the required parameter 'solutionId' when calling updateSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'identityId' is set
+        if (identityId == null) {
+            throw new ApiException("Missing the required parameter 'identityId' when calling updateSolutionAccessControl(Async)");
+        }
+        
+        // verify the required parameter 'solutionRole' is set
+        if (solutionRole == null) {
+            throw new ApiException("Missing the required parameter 'solutionRole' when calling updateSolutionAccessControl(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateSolutionAccessControlCall(organizationId, solutionId, identityId, solutionRole, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update the specified access to User for a Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param solutionRole The new Solution Access Control (required)
+     * @return SolutionAccessControl
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public SolutionAccessControl updateSolutionAccessControl(String organizationId, String solutionId, String identityId, SolutionRole solutionRole) throws ApiException {
+        ApiResponse<SolutionAccessControl> localVarResp = updateSolutionAccessControlWithHttpInfo(organizationId, solutionId, identityId, solutionRole);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update the specified access to User for a Solution
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param solutionRole The new Solution Access Control (required)
+     * @return ApiResponse&lt;SolutionAccessControl&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SolutionAccessControl> updateSolutionAccessControlWithHttpInfo(String organizationId, String solutionId, String identityId, SolutionRole solutionRole) throws ApiException {
+        okhttp3.Call localVarCall = updateSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, solutionRole, null);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update the specified access to User for a Solution (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param solutionId the Solution identifier (required)
+     * @param identityId the User identifier (required)
+     * @param solutionRole The new Solution Access Control (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Solution access </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The Solution specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSolutionAccessControlAsync(String organizationId, String solutionId, String identityId, SolutionRole solutionRole, final ApiCallback<SolutionAccessControl> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSolutionAccessControlValidateBeforeCall(organizationId, solutionId, identityId, solutionRole, _callback);
+        Type localVarReturnType = new TypeToken<SolutionAccessControl>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

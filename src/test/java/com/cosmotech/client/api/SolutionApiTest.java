@@ -20,6 +20,8 @@ import com.cosmotech.client.model.RunTemplateHandlerId;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.Solution;
+import com.cosmotech.client.model.SolutionAccessControl;
+import com.cosmotech.client.model.SolutionRole;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -85,6 +87,23 @@ public class SolutionApiTest {
         String solutionId = null;
         List<RunTemplate> runTemplate = null;
                 List<RunTemplate> response = api.addOrReplaceRunTemplates(organizationId, solutionId, runTemplate);
+        // TODO: test validations
+    }
+    
+    /**
+     * Add a control access to the Solution
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void addSolutionAccessControlTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+        SolutionAccessControl solutionAccessControl = null;
+                SolutionAccessControl response = api.addSolutionAccessControl(organizationId, solutionId, solutionAccessControl);
         // TODO: test validations
     }
     
@@ -189,7 +208,7 @@ public class SolutionApiTest {
     }
     
     /**
-     * Import a solution
+     * Get a control access for the Solution
      *
      * 
      *
@@ -197,10 +216,27 @@ public class SolutionApiTest {
      *          if the Api call fails
      */
     @Test
-    public void importSolutionTest() throws ApiException {
+    public void getSolutionAccessControlTest() throws ApiException {
         String organizationId = null;
-        Solution solution = null;
-                Solution response = api.importSolution(organizationId, solution);
+        String solutionId = null;
+        String identityId = null;
+                SolutionAccessControl response = api.getSolutionAccessControl(organizationId, solutionId, identityId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the Solution security users list
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSolutionSecurityUsersTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+                List<String> response = api.getSolutionSecurityUsers(organizationId, solutionId);
         // TODO: test validations
     }
     
@@ -253,6 +289,23 @@ public class SolutionApiTest {
     }
     
     /**
+     * Remove the specified access from the given Organization Solution
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void removeSolutionAccessControlTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+        String identityId = null;
+                api.removeSolutionAccessControl(organizationId, solutionId, identityId);
+        // TODO: test validations
+    }
+    
+    /**
      * Update a solution
      *
      * 
@@ -266,6 +319,24 @@ public class SolutionApiTest {
         String solutionId = null;
         Solution solution = null;
                 Solution response = api.updateSolution(organizationId, solutionId, solution);
+        // TODO: test validations
+    }
+    
+    /**
+     * Update the specified access to User for a Solution
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateSolutionAccessControlTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+        String identityId = null;
+        SolutionRole solutionRole = null;
+                SolutionAccessControl response = api.updateSolutionAccessControl(organizationId, solutionId, identityId, solutionRole);
         // TODO: test validations
     }
     

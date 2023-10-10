@@ -16,6 +16,7 @@ package com.cosmotech.client.model;
 import com.cosmotech.client.model.RunTemplate;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
+import com.cosmotech.client.model.SolutionSecurity;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -26,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -163,6 +165,14 @@ public class SolutionTest {
     @Test
     public void runTemplatesTest() {
         // TODO: test runTemplates
+    }
+
+    /**
+     * Test the property 'security'
+     */
+    @Test
+    public void securityTest() {
+        // TODO: test security
     }
 
 }

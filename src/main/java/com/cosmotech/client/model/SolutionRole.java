@@ -25,65 +25,38 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * define cpus and memory needs
+ * the Solution Role
  */
-@ApiModel(description = "define cpus and memory needs")
+@ApiModel(description = "the Solution Role")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-10T15:17:16.162862517Z[Etc/UTC]")
-public class ResourceSizeInfo {
-  public static final String SERIALIZED_NAME_CPU = "cpu";
-  @SerializedName(SERIALIZED_NAME_CPU)
-  private String cpu;
+public class SolutionRole {
+  public static final String SERIALIZED_NAME_ROLE = "role";
+  @SerializedName(SERIALIZED_NAME_ROLE)
+  private String role;
 
-  public static final String SERIALIZED_NAME_MEMORY = "memory";
-  @SerializedName(SERIALIZED_NAME_MEMORY)
-  private String memory;
-
-  public ResourceSizeInfo() { 
+  public SolutionRole() { 
   }
 
-  public ResourceSizeInfo cpu(String cpu) {
+  public SolutionRole role(String role) {
     
-    this.cpu = cpu;
+    this.role = role;
     return this;
   }
 
    /**
-   * define cpu needs
-   * @return cpu
+   * the Solution Role
+   * @return role
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "define cpu needs")
+  @ApiModelProperty(required = true, value = "the Solution Role")
 
-  public String getCpu() {
-    return cpu;
+  public String getRole() {
+    return role;
   }
 
 
-  public void setCpu(String cpu) {
-    this.cpu = cpu;
-  }
-
-
-  public ResourceSizeInfo memory(String memory) {
-    
-    this.memory = memory;
-    return this;
-  }
-
-   /**
-   * define memory needs
-   * @return memory
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "define memory needs")
-
-  public String getMemory() {
-    return memory;
-  }
-
-
-  public void setMemory(String memory) {
-    this.memory = memory;
+  public void setRole(String role) {
+    this.role = role;
   }
 
 
@@ -95,22 +68,20 @@ public class ResourceSizeInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourceSizeInfo resourceSizeInfo = (ResourceSizeInfo) o;
-    return Objects.equals(this.cpu, resourceSizeInfo.cpu) &&
-        Objects.equals(this.memory, resourceSizeInfo.memory);
+    SolutionRole solutionRole = (SolutionRole) o;
+    return Objects.equals(this.role, solutionRole.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cpu, memory);
+    return Objects.hash(role);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourceSizeInfo {\n");
-    sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
+    sb.append("class SolutionRole {\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
   }

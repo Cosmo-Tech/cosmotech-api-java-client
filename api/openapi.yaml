@@ -6172,9 +6172,9 @@ paths:
       - solution
       x-contentType: application/octet-stream
       x-accepts: application/json
-  /organizations/{organization_id}/solutions/import:
-    post:
-      operationId: importSolution
+  /organizations/{organization_id}/solutions/{solution_id}/security/users:
+    get:
+      operationId: getSolutionSecurityUsers
       parameters:
       - description: the Organization identifier
         explode: false
@@ -6185,37 +6185,235 @@ paths:
           example: null
           type: string
         style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  example: null
+                  type: string
+                type: array
+          description: The Solution security users list
+        "404":
+          description: the Solution or the User specified is unknown or you don't
+            have access to them
+      summary: Get the Solution security users list
+      tags:
+      - solution
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/security/access:
+    post:
+      operationId: addSolutionAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              Brewery:
-                $ref: '#/components/examples/Brewery'
+              SolutionAccess:
+                $ref: '#/components/examples/BrewerySolutionAccessControl'
             schema:
-              $ref: '#/components/schemas/Solution'
+              $ref: '#/components/schemas/SolutionAccessControl'
           application/yaml:
             examples:
-              ADTConnector:
-                $ref: '#/components/examples/Brewery'
+              SolutionAccess:
+                $ref: '#/components/examples/BrewerySolutionAccessControl'
             schema:
               example: null
               format: binary
               type: string
-        description: the Solution to import
+        description: the new Solution security access to add.
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                Brewery:
-                  $ref: '#/components/examples/Brewery'
+                SolutionAccessControl:
+                  $ref: '#/components/examples/BrewerySolutionAccessControl'
               schema:
-                $ref: '#/components/schemas/Solution'
-          description: the solution details
-        "400":
-          description: Bad request
-      summary: Import a solution
+                $ref: '#/components/schemas/SolutionAccessControl'
+          description: The Solution access
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Add a control access to the Solution
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeSolutionAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: The Solution or the user specified is unknown or you don't
+            have access to them
+      summary: Remove the specified access from the given Organization Solution
+      tags:
+      - solution
+      x-accepts: application/json
+    get:
+      operationId: getSolutionAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                SolutionAccessControl:
+                  $ref: '#/components/examples/BrewerySolutionAccessControl'
+              schema:
+                $ref: '#/components/schemas/SolutionAccessControl'
+          description: The Solution access
+        "404":
+          description: The Solution or user specified is unknown or you don't have
+            access to it
+      summary: Get a control access for the Solution
+      tags:
+      - solution
+      x-accepts: application/json
+    patch:
+      operationId: updateSolutionAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BrewerySolutionRole:
+                $ref: '#/components/examples/BrewerySolutionRole'
+            schema:
+              $ref: '#/components/schemas/SolutionRole'
+        description: The new Solution Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                SolutionAccessControl:
+                  $ref: '#/components/examples/BrewerySolutionAccessControl'
+              schema:
+                $ref: '#/components/schemas/SolutionAccessControl'
+          description: The Solution access
+        "404":
+          description: The Solution specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for a Solution
       tags:
       - solution
       x-contentType: application/json
@@ -6712,6 +6910,17 @@ components:
       value:
         workspaceId: "1"
         state: Running
+    BrewerySolutionAccessControl:
+      description: Set an access control for a user to a solution.
+      summary: Set an access control.
+      value:
+        id: bob.doe@cosmotech.com
+        role: editor
+    BrewerySolutionRole:
+      description: Set a Role for a user to a solution.
+      summary: Set a Solution Role.
+      value:
+        role: editor
     BreweryUpdate:
       description: Brewery Solution update example
       summary: Brewery Solution update
@@ -9872,6 +10081,7 @@ components:
           parentId: parentId
           labels:
             key: labels
+        security: ""
         name: name
         sdkVersion: sdkVersion
         id: id
@@ -9974,8 +10184,65 @@ components:
           items:
             $ref: '#/components/schemas/RunTemplate'
           type: array
+        security:
+          allOf:
+          - $ref: '#/components/schemas/SolutionSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
       x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
+    SolutionAccessControl:
+      description: a Solution access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        role:
+          description: a role
+          example: null
+          type: string
+      required:
+      - id
+      - role
+      type: object
+    SolutionRole:
+      description: the Solution Role
+      example:
+        role: role
+      properties:
+        role:
+          description: the Solution Role
+          example: null
+          type: string
+      required:
+      - role
+      type: object
+    SolutionSecurity:
+      description: the Solution security information
+      example: null
+      properties:
+        default:
+          description: the role by default
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        accessControlList:
+          description: the list which can access this Solution with detailed access
+            control information
+          example: null
+          items:
+            $ref: '#/components/schemas/SolutionAccessControl'
+          type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+      required:
+      - accessControlList
+      - default
+      type: object
     SourceInfo:
       description: Source job import information
       example:
