@@ -3567,52 +3567,6 @@ paths:
       tags:
       - scenariorun
       x-accepts: application/json
-  /organizations/{organization_id}/twingraph/import:
-    post:
-      description: Import a new version of a twin graph
-      operationId: importGraph
-      parameters:
-      - description: the Organization identifier
-        explode: false
-        in: path
-        name: organization_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-          application/yaml:
-            examples:
-              RunJobImportWithADT:
-                $ref: '#/components/examples/RunJobImportWithADT'
-              RunJobImportWithStorage:
-                $ref: '#/components/examples/RunJobImportWithStorage'
-            schema:
-              $ref: '#/components/schemas/TwinGraphImport'
-        description: the graph to import
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwinGraphImportInfo'
-          description: Successful response
-      summary: Import a new version of a twin graph
-      tags:
-      - twingraph
-      x-contentType: application/json
-      x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}:
     delete:
       description: Delete all versions of a graph and his metadatas
@@ -5172,36 +5126,6 @@ paths:
       summary: Get the details of a connector
       tags:
       - connector
-      x-accepts: application/json
-  /connectors/import:
-    post:
-      operationId: importConnector
-      requestBody:
-        content:
-          application/json:
-            examples:
-              ADTConnector:
-                $ref: '#/components/examples/ADTConnector'
-            schema:
-              $ref: '#/components/schemas/Connector'
-        description: the Connector to import
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              examples:
-                ADTConnector:
-                  $ref: '#/components/examples/ADTConnector'
-              schema:
-                $ref: '#/components/schemas/Connector'
-          description: the connector details
-        "400":
-          description: Bad request
-      summary: Import existing connector
-      tags:
-      - connector
-      x-contentType: application/json
       x-accepts: application/json
   ? /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id}
   : get:
@@ -8232,24 +8156,6 @@ components:
         target: target-node-name
         name: entity-name
         params: "param1: 'value1', param2: 'value2'"
-    RunJobImportWithADT:
-      description: Run import job with ADT as source
-      summary: Run import job with ADT as source
-      value:
-        source:
-          location: https://my-adt-name-instance.api.weu.digitaltwins.azure.net
-          type: ADT
-        graphId: my-graph-id
-    RunJobImportWithStorage:
-      description: Run import job with Storage as source
-      summary: Run import job with Storage as source
-      value:
-        source:
-          name: my-storage-account-name
-          location: my-container-name
-          path: my-data-folder
-          type: Storage
-        graphId: my-graph-id
     ScenarioRunProbeResultExample:
       description: "null"
       summary: "null"
@@ -11337,47 +11243,6 @@ components:
       properties:
         hash:
           description: the hash of the graph
-          example: null
-          type: string
-      type: object
-    TwinGraphImport:
-      description: a twin graph import info
-      example:
-        source:
-          path: path
-          name: name
-          location: location
-        graphId: graphId
-        version: version
-      properties:
-        source:
-          $ref: '#/components/schemas/SourceInfo'
-        graphId:
-          description: the graph id to import to
-          example: null
-          type: string
-        version:
-          description: "The version of the graph to import to. \nWhen not set, the\
-            \ last version before import is upgraded by 1.\nWhen set, the targeted\
-            \ graph is replaced\n"
-          example: null
-          type: string
-      required:
-      - graphId
-      - source
-      type: object
-    TwinGraphImportInfo:
-      description: a twin graph query in cypher language
-      example:
-        jobId: jobId
-        graphName: graphName
-      properties:
-        jobId:
-          description: the import job id
-          example: null
-          type: string
-        graphName:
-          description: the twin graph name
           example: null
           type: string
       type: object

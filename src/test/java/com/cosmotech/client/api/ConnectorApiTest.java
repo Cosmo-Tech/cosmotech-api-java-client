@@ -80,21 +80,6 @@ public class ConnectorApiTest {
     }
     
     /**
-     * Import existing connector
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void importConnectorTest() throws ApiException {
-        Connector connector = null;
-                Connector response = api.importConnector(connector);
-        // TODO: test validations
-    }
-    
-    /**
      * Register a new connector
      *
      * 

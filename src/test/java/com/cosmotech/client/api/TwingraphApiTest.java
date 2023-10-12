@@ -18,8 +18,6 @@ import java.io.File;
 import com.cosmotech.client.model.GraphProperties;
 import com.cosmotech.client.model.TwinGraphBatchResult;
 import com.cosmotech.client.model.TwinGraphHash;
-import com.cosmotech.client.model.TwinGraphImport;
-import com.cosmotech.client.model.TwinGraphImportInfo;
 import com.cosmotech.client.model.TwinGraphQuery;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -204,22 +202,6 @@ public class TwingraphApiTest {
         String organizationId = null;
         String graphId = null;
                 Object response = api.getGraphMetaData(organizationId, graphId);
-        // TODO: test validations
-    }
-    
-    /**
-     * Import a new version of a twin graph
-     *
-     * Import a new version of a twin graph
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void importGraphTest() throws ApiException {
-        String organizationId = null;
-        TwinGraphImport twinGraphImport = null;
-                TwinGraphImportInfo response = api.importGraph(organizationId, twinGraphImport);
         // TODO: test validations
     }
     
