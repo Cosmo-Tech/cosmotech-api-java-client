@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.0.3-dev
-  - Build date: 2023-10-11T08:40:23.472802426Z[Etc/UTC]
+- API version: 3.0.4-SNAPSHOT
+  - Build date: 2023-10-12T10:00:29.320936458Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.0.3-dev</version>
+  <version>3.0.4-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.0.3-dev"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.0.4-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.0.3-dev.jar`
+* `target/cosmotech-api-java-client-3.0.4-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -123,19 +123,36 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ConnectorApi* | [**findAllConnectors**](docs/ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors
 *ConnectorApi* | [**findConnectorById**](docs/ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector
+*ConnectorApi* | [**findConnectorByName**](docs/ConnectorApi.md#findConnectorByName) | **GET** /connectors/name/{connector_name} | Get the details of a connector
 *ConnectorApi* | [**importConnector**](docs/ConnectorApi.md#importConnector) | **POST** /connectors/import | Import existing connector
 *ConnectorApi* | [**registerConnector**](docs/ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
 *ConnectorApi* | [**unregisterConnector**](docs/ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector
+*DatasetApi* | [**addDatasetAccessControl**](docs/DatasetApi.md#addDatasetAccessControl) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/access | Add a control access to the Dataset
 *DatasetApi* | [**addOrReplaceDatasetCompatibilityElements**](docs/DatasetApi.md#addOrReplaceDatasetCompatibilityElements) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Add Dataset Compatibility elements.
 *DatasetApi* | [**copyDataset**](docs/DatasetApi.md#copyDataset) | **POST** /organizations/{organization_id}/datasets/copy | Copy a Dataset to another Dataset. Source must have a read capable connector and Target a write capable connector.
 *DatasetApi* | [**createDataset**](docs/DatasetApi.md#createDataset) | **POST** /organizations/{organization_id}/datasets | Create a new Dataset
+*DatasetApi* | [**createSubDataset**](docs/DatasetApi.md#createSubDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/subdataset | Run a query on a dataset
+*DatasetApi* | [**createTwingraphEntities**](docs/DatasetApi.md#createTwingraphEntities) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Create new entities in a graph instance
 *DatasetApi* | [**deleteDataset**](docs/DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset
+*DatasetApi* | [**deleteTwingraphEntities**](docs/DatasetApi.md#deleteTwingraphEntities) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Delete entities in a graph instance
+*DatasetApi* | [**downloadTwingraph**](docs/DatasetApi.md#downloadTwingraph) | **GET** /organizations/{organization_id}/datasets/twingraph/download/{hash} | Download a graph compressed in a zip file
 *DatasetApi* | [**findAllDatasets**](docs/DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
 *DatasetApi* | [**findDatasetById**](docs/DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
-*DatasetApi* | [**importDataset**](docs/DatasetApi.md#importDataset) | **POST** /organizations/{organization_id}/datasets/import | Import a new Dataset
+*DatasetApi* | [**getDatasetAccessControl**](docs/DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset
+*DatasetApi* | [**getDatasetSecurityUsers**](docs/DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list
+*DatasetApi* | [**getDatasetTwingraphStatus**](docs/DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status | Get the status of twingraph import
+*DatasetApi* | [**getTwingraphEntities**](docs/DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance
+*DatasetApi* | [**refreshDataset**](docs/DatasetApi.md#refreshDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh | Refresh dataset
 *DatasetApi* | [**removeAllDatasetCompatibilityElements**](docs/DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
+*DatasetApi* | [**removeDatasetAccessControl**](docs/DatasetApi.md#removeDatasetAccessControl) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Remove the specified access from the given Dataset
 *DatasetApi* | [**searchDatasets**](docs/DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets
+*DatasetApi* | [**twingraphBatchQuery**](docs/DatasetApi.md#twingraphBatchQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
+*DatasetApi* | [**twingraphBatchUpdate**](docs/DatasetApi.md#twingraphBatchUpdate) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch | Async batch update by loading a CSV file on a graph instance 
+*DatasetApi* | [**twingraphQuery**](docs/DatasetApi.md#twingraphQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph | Run a query on a graph instance and return the result as a json
 *DatasetApi* | [**updateDataset**](docs/DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
+*DatasetApi* | [**updateDatasetAccessControl**](docs/DatasetApi.md#updateDatasetAccessControl) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Update the specified access to User for a Dataset
+*DatasetApi* | [**updateTwingraphEntities**](docs/DatasetApi.md#updateTwingraphEntities) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Update entities in a graph instance
+*DatasetApi* | [**uploadTwingraph**](docs/DatasetApi.md#uploadTwingraph) | **POST** /organizations/{organization_id}/datasets/{dataset_id} | Upload Twingraph with ZIP File
 *OrganizationApi* | [**addOrganizationAccessControl**](docs/OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | Add a control access to the Organization
 *OrganizationApi* | [**findAllOrganizations**](docs/OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations
 *OrganizationApi* | [**findOrganizationById**](docs/OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an Organization
@@ -265,10 +282,17 @@ Class | Method | HTTP request | Description
  - [ContainerResourceSizeInfo](docs/ContainerResourceSizeInfo.md)
  - [ContainerResourceSizing](docs/ContainerResourceSizing.md)
  - [Dataset](docs/Dataset.md)
+ - [DatasetAccessControl](docs/DatasetAccessControl.md)
  - [DatasetCompatibility](docs/DatasetCompatibility.md)
  - [DatasetConnector](docs/DatasetConnector.md)
  - [DatasetCopyParameters](docs/DatasetCopyParameters.md)
+ - [DatasetRole](docs/DatasetRole.md)
  - [DatasetSearch](docs/DatasetSearch.md)
+ - [DatasetSecurity](docs/DatasetSecurity.md)
+ - [DatasetSourceType](docs/DatasetSourceType.md)
+ - [DatasetTwinGraphHash](docs/DatasetTwinGraphHash.md)
+ - [DatasetTwinGraphInfo](docs/DatasetTwinGraphInfo.md)
+ - [DatasetTwinGraphQuery](docs/DatasetTwinGraphQuery.md)
  - [DeleteHistoricalData](docs/DeleteHistoricalData.md)
  - [GraphProperties](docs/GraphProperties.md)
  - [Organization](docs/Organization.md)
@@ -316,6 +340,7 @@ Class | Method | HTTP request | Description
  - [SolutionRole](docs/SolutionRole.md)
  - [SolutionSecurity](docs/SolutionSecurity.md)
  - [SourceInfo](docs/SourceInfo.md)
+ - [SubDatasetGraphQuery](docs/SubDatasetGraphQuery.md)
  - [TwinGraphBatchResult](docs/TwinGraphBatchResult.md)
  - [TwinGraphHash](docs/TwinGraphHash.md)
  - [TwinGraphImport](docs/TwinGraphImport.md)

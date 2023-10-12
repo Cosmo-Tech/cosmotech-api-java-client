@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.3-dev
+  version: 3.0.4-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -1300,6 +1300,10 @@ paths:
             examples:
               BreweryADT:
                 $ref: '#/components/examples/BreweryADT'
+              RunJobImportWithADT:
+                $ref: '#/components/examples/DatasetWithADT'
+              RunJobImportWithStorage:
+                $ref: '#/components/examples/DatasetWithStorage'
             schema:
               example: null
               format: binary
@@ -1570,6 +1574,628 @@ paths:
       tags:
       - dataset
       x-contentType: application/json
+      x-accepts: application/json
+    post:
+      description: Upload Twingraph ZIP
+      operationId: uploadTwingraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              example: null
+              format: binary
+              type: string
+        required: true
+      responses:
+        "200":
+          description: Twingraph File Uploaded
+      summary: Upload Twingraph with ZIP File
+      tags:
+      - dataset
+      x-contentType: application/octet-stream
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/subdataset:
+    post:
+      description: Run a query on a dataset
+      operationId: createSubDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubDatasetGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: Successful response
+      summary: Run a query on a dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/refresh:
+    post:
+      description: "Refresh ADT, Storage dataset"
+      operationId: refreshDataset
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetTwinGraphInfo'
+          description: Successful response
+      summary: Refresh dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/twingraph:
+    post:
+      description: Run a query on a graph instance and return the result as a json
+      operationId: twingraphQuery
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/TwinGraphGetAllNodes'
+            schema:
+              $ref: '#/components/schemas/DatasetTwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Run a query on a graph instance and return the result as a json
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type}:
+    delete:
+      description: delete entities in a graph instance
+      operationId: deleteTwingraphEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      - description: the entities to delete
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: Successful response
+      summary: Delete entities in a graph instance
+      tags:
+      - dataset
+      x-accepts: application/json
+    get:
+      description: get entities in a graph instance
+      operationId: getTwingraphEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      - description: the entities to get
+        explode: true
+        in: query
+        name: ids
+        required: true
+        schema:
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Get entities in a graph instance
+      tags:
+      - dataset
+      x-accepts: application/json
+    patch:
+      description: update entities in a graph instance
+      operationId: updateTwingraphEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              example: null
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Update entities in a graph instance
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+    post:
+      description: create new entities in a graph instance
+      operationId: createTwingraphEntities
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the entity model type
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - node
+          - relationship
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryEntities:
+                $ref: '#/components/examples/QueryEntities'
+            schema:
+              example: null
+              items:
+                $ref: '#/components/schemas/GraphProperties'
+              type: array
+        description: the entities to create
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: null
+                type: string
+          description: Successful response
+      summary: Create new entities in a graph instance
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/batch:
+    post:
+      description: 'Async batch update by loading a CSV file on a graph instance '
+      operationId: twingraphBatchUpdate
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - examples:
+          Create Nodes:
+            description: |
+              Nodes creation and column mapping with CSV Header: $id, $name, $rank
+              CSV Separator: ,
+            value:
+              query: "CREATE (:Person {id: toInteger($id), name: $name, rank: toInteger($rank)})"
+          Update Nodes:
+            description: |
+              Nodes updating and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) SET p.rank = $rank"
+          Create Relationships:
+            description: |
+              Relationship creation and column mapping with CSV Header: $id, $rank
+              CSV Separator: ,
+            value:
+              query: |
+                MERGE (p1:Person {id: toInteger($UserId1)})
+                MERGE (p2:Person {id: toInteger($UserId2)})
+                CREATE (p1)-[:FOLLOWS {reaction_count: $reaction_count}]->(p2)
+          Delete Nodes:
+            description: |
+              Nodes deleting and column mapping with CSV Header: $id
+              CSV Separator: ,
+            value:
+              query: "MATCH (p:Person {id: toInteger($id)}) DELETE p"
+        explode: true
+        in: query
+        name: twinGraphQuery
+        required: true
+        schema:
+          $ref: '#/components/schemas/DatasetTwinGraphQuery'
+        style: form
+      requestBody:
+        content:
+          text/csv:
+            examples:
+              Create / Update / Delete Nodes:
+                value: |
+                  id,name,rank
+                  1,"John Doe",37
+                  2,"Joe Bloggs",14
+              Create / Update Relationships:
+                value: |
+                  UserId1,UserId2,reaction_count
+                  1,2,25
+                  2,1,37
+            schema:
+              example: null
+              format: binary
+              type: string
+          application/octet-stream:
+            schema:
+              example: null
+              format: binary
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinGraphBatchResult'
+          description: csv file processed
+        "400":
+          description: Bad request
+      summary: 'Async batch update by loading a CSV file on a graph instance '
+      tags:
+      - dataset
+      x-contentType: text/csv
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/batch-query:
+    post:
+      description: Run a query on a graph instance and return the result as a zip
+        file in async mode
+      operationId: twingraphBatchQuery
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph Identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAllNodes:
+                $ref: '#/components/examples/GetAllNodes'
+            schema:
+              $ref: '#/components/schemas/DatasetTwinGraphQuery'
+        description: the query to run
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetTwinGraphHash'
+          description: Successful response
+      summary: Run a query on a graph instance and return the result as a zip file
+        in async mode
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/twingraph/download/{hash}:
+    get:
+      description: Download a graph compressed in a zip file
+      operationId: downloadTwingraph
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Graph download identifier
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                example: null
+                format: binary
+                type: string
+          description: Successful response
+      summary: Download a graph compressed in a zip file
+      tags:
+      - dataset
+      x-accepts: application/octet-stream
+  /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status:
+    get:
+      description: Get the status of a twingraph import
+      operationId: getDatasetTwingraphStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the job identifier
+        explode: false
+        in: path
+        name: job_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/yaml:
+              schema:
+                example: null
+                type: string
+            application/json:
+              schema:
+                enum:
+                - PENDING
+                - COMPLETED
+                example: null
+                type: string
+          description: Successful response
+      summary: Get the status of twingraph import
+      tags:
+      - dataset
       x-accepts: application/json
   /organizations/{organization_id}/datasets/{dataset_id}/compatibility:
     delete:
@@ -2058,9 +2684,9 @@ paths:
       tags:
       - validator
       x-accepts: application/json
-  /organizations/{organization_id}/datasets/import:
+  /organizations/{organization_id}/datasets/{dataset_id}/security/access:
     post:
-      operationId: importDataset
+      operationId: addDatasetAccessControl
       parameters:
       - description: the Organization identifier
         explode: false
@@ -2071,32 +2697,238 @@ paths:
           example: null
           type: string
         style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             examples:
-              BreweryADT:
-                $ref: '#/components/examples/BreweryADT'
+              DatasetAccess:
+                $ref: '#/components/examples/BreweryDatasetAccessControl'
             schema:
-              $ref: '#/components/schemas/Dataset'
-        description: the Dataset to import
+              $ref: '#/components/schemas/DatasetAccessControl'
+          application/yaml:
+            examples:
+              DatasetAccess:
+                $ref: '#/components/examples/BreweryDatasetAccessControl'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the new Dataset security access to add.
         required: true
       responses:
         "201":
           content:
             application/json:
               examples:
-                BreweryADT:
-                  $ref: '#/components/examples/BreweryADT'
+                DatasetAccessControl:
+                  $ref: '#/components/examples/BreweryDatasetAccessControl'
               schema:
-                $ref: '#/components/schemas/Dataset'
-          description: the dataset details
-        "400":
-          description: Bad request
-      summary: Import a new Dataset
+                $ref: '#/components/schemas/DatasetAccessControl'
+          description: The Dataset access
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Add a control access to the Dataset
       tags:
       - dataset
       x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeDatasetAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: The Dataset or the user specified is unknown or you don't have
+            access to them
+      summary: Remove the specified access from the given Dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    get:
+      operationId: getDatasetAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                DatasetAccessControl:
+                  $ref: '#/components/examples/BreweryDatasetAccessControl'
+              schema:
+                $ref: '#/components/schemas/DatasetAccessControl'
+          description: The Dataset access
+        "404":
+          description: The Dataset or user specified is unknown or you don't have
+            access to it
+      summary: Get a control access for the Dataset
+      tags:
+      - dataset
+      x-accepts: application/json
+    patch:
+      operationId: updateDatasetAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryDatasetRole:
+                $ref: '#/components/examples/BreweryDatasetRole'
+            schema:
+              $ref: '#/components/schemas/DatasetRole'
+        description: The new Dataset Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                DatasetAccessControl:
+                  $ref: '#/components/examples/BreweryDatasetAccessControl'
+              schema:
+                $ref: '#/components/schemas/DatasetAccessControl'
+          description: The Dataset access
+        "404":
+          description: The Dataset specified is unknown or you don't have access to
+            it
+      summary: Update the specified access to User for a Dataset
+      tags:
+      - dataset
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/security/users:
+    get:
+      operationId: getDatasetSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  example: null
+                  type: string
+                type: array
+          description: The Dataset security users list
+        "404":
+          description: the Dataset or the User specified is unknown or you don't have
+            access to them
+      summary: Get the Dataset security users list
+      tags:
+      - dataset
       x-accepts: application/json
   /organizations/{organization_id}/scenarioruns/historicaldata:
     delete:
@@ -4310,6 +5142,33 @@ paths:
         "404":
           description: the Connector specified is unknown or you don't have access
             to it
+      summary: Get the details of a connector
+      tags:
+      - connector
+      x-accepts: application/json
+  /connectors/name/{connector_name}:
+    get:
+      operationId: findConnectorByName
+      parameters:
+      - description: the Connector name
+        explode: false
+        in: path
+        name: connector_name
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ADTConnector:
+                  $ref: '#/components/examples/ADTConnector'
+              schema:
+                $ref: '#/components/schemas/Connector'
+          description: the Connector details
       summary: Get the details of a connector
       tags:
       - connector
@@ -6558,12 +7417,23 @@ components:
         - Brewery
         runTemplateId: hundred
         parentId: "1"
+    BreweryDatasetAccessControl:
+      description: Set an access control for a user to a dataset.
+      summary: Set an access control.
+      value:
+        id: bob.doe@cosmotech.com
+        role: editor
     BreweryDatasetCopyParameters:
       description: Parameters for Dataset copy from Dataset 1 to 2 example
       summary: Parameters for Dataset copy example
       value:
         sourceId: "1"
         targetId: "2"
+    BreweryDatasetRole:
+      description: Set a Role for a user to a dataset.
+      summary: Set a Dataset Role.
+      value:
+        role: editor
     BreweryDefaultSecurityRoleNone:
       description: Brewery Scenario example
       summary: Brewery Scenario Writer default security
@@ -7068,6 +7938,32 @@ components:
       value:
         datasetTags:
         - dataset
+    DatasetWithADT:
+      description: Dataset creation with ADT as source
+      summary: Dataset creation with ADT as source
+      value:
+        name: My Amazing ADT Dataset
+        description: Description about my data
+        sourceType: ADT
+        tags:
+        - adt
+        - data
+        source:
+          location: https://my-adt-name-instance.api.weu.digitaltwins.azure.net
+    DatasetWithStorage:
+      description: Dataset creation with Storage as source
+      summary: Dataset creation with Storage as source
+      value:
+        name: My Amazing Storage Dataset
+        description: Description about my data from Azure Storage
+        sourceType: Storage
+        tags:
+        - storage
+        - file
+        source:
+          name: my-storage-account-name
+          location: my-container-name
+          path: my-data-folder
     GetAllNodes:
       description: Get all nodes query (be careful if you want to query large graph)
       summary: Get all nodes query
@@ -7587,6 +8483,11 @@ components:
         state: Running
         containerId: 387ab9ffe8361eabc24b2de516e71f9bd704d992840f53d9f365b11fdb8bcaa9
         logs: none
+    TwinGraphGetAllNodes:
+      description: Get all nodes query (be careful if you want to query large graph)
+      summary: Get all nodes query
+      value:
+        query: MATCH(n) RETURN n
     TwoDatasets:
       description: Two ADT Datasets example
       summary: Two Datasets example
@@ -7967,21 +8868,36 @@ components:
     Dataset:
       description: a Dataset
       example:
+        description: description
+        validatorId: validatorId
+        main: true
+        source:
+          path: path
+          name: name
+          location: location
+        fragmentsIds:
+        - fragmentsIds
+        - fragmentsIds
+        ownerId: ownerId
+        twingraphId: twingraphId
+        queries:
+        - queries
+        - queries
+        parentId: parentId
+        tags:
+        - tags
+        - tags
         organizationId: organizationId
+        security: ""
         connector:
           parametersValues:
             key: parametersValues
           name: name
           id: id
           version: version
+        sourceType: null
         name: name
-        description: description
-        validatorId: validatorId
         id: id
-        fragmentsIds:
-        - fragmentsIds
-        - fragmentsIds
-        ownerId: ownerId
         compatibility:
         - minimumVersion: minimumVersion
           maximumVersion: maximumVersion
@@ -7989,9 +8905,7 @@ components:
         - minimumVersion: minimumVersion
           maximumVersion: maximumVersion
           solutionKey: solutionKey
-        tags:
-        - tags
-        - tags
+        status: DRAFT
       properties:
         id:
           description: the Dataset unique identifier
@@ -8019,6 +8933,38 @@ components:
           readOnly: true
           type: string
           x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        parentId:
+          description: the Dataset id which is the parent of this Dataset
+          example: null
+          type: string
+        twingraphId:
+          description: the twin graph id
+          example: null
+          type: string
+        main:
+          description: is this the main dataset
+          example: null
+          type: boolean
+        sourceType:
+          $ref: '#/components/schemas/DatasetSourceType'
+        source:
+          $ref: '#/components/schemas/SourceInfo'
+        status:
+          description: the Dataset status
+          enum:
+          - DRAFT
+          - PENDING
+          - ERROR
+          - READY
+          example: null
+          type: string
+        queries:
+          description: the list of queries
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
         tags:
           description: the list of tags
           example: null
@@ -8046,8 +8992,32 @@ components:
           items:
             $ref: '#/components/schemas/DatasetCompatibility'
           type: array
+        security:
+          allOf:
+          - $ref: '#/components/schemas/DatasetSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
       type: object
       x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
+    DatasetAccessControl:
+      description: a Dataset access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        role:
+          description: a role
+          example: null
+          type: string
+      required:
+      - id
+      - role
+      type: object
     DatasetCompatibility:
       description: a Dataset compatibility constraint to a Solution version open range
       example:
@@ -8092,6 +9062,18 @@ components:
           example: null
           type: object
       type: object
+    DatasetRole:
+      description: the Dataset Role
+      example:
+        role: role
+      properties:
+        role:
+          description: the Dataset Role
+          example: null
+          type: string
+      required:
+      - role
+      type: object
     DatasetSearch:
       description: the search options
       example:
@@ -8108,6 +9090,79 @@ components:
           type: array
       required:
       - datasetTags
+      type: object
+    DatasetSecurity:
+      description: the dataset security information
+      example: null
+      properties:
+        default:
+          description: the role by default
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        accessControlList:
+          description: the list which can access this Dataset with detailed access
+            control information
+          example: null
+          items:
+            $ref: '#/components/schemas/DatasetAccessControl'
+          type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+      required:
+      - accessControlList
+      - default
+      type: object
+    DatasetSourceType:
+      description: the Dataset Source Type
+      enum:
+      - ADT
+      - AzureStorage
+      - File
+      - None
+      - Twincache
+      example: null
+      type: string
+    DatasetTwinGraphHash:
+      description: a twin graph hash
+      example:
+        hash: hash
+      properties:
+        hash:
+          description: the hash of the graph
+          example: null
+          type: string
+      type: object
+    DatasetTwinGraphInfo:
+      description: a twin graph query in cypher language
+      example:
+        jobId: jobId
+        datasetId: datasetId
+        status: status
+      properties:
+        jobId:
+          description: the import job id
+          example: null
+          type: string
+        datasetId:
+          description: the Dataset id
+          example: null
+          type: string
+        status:
+          description: Twingraph status
+          example: null
+          type: string
+      type: object
+    DatasetTwinGraphQuery:
+      description: a twin graph query in cypher language
+      example:
+        query: query
+      properties:
+        query:
+          description: the query in cypher language
+          example: null
+          type: string
+      required:
+      - query
       type: object
     DeleteHistoricalData:
       description: Configuration of scenario runs deletion automatic mecanism
@@ -10196,7 +11251,6 @@ components:
         path: path
         name: name
         location: location
-        type: ADT
       properties:
         name:
           description: the source name containing the files to import
@@ -10210,16 +11264,38 @@ components:
           description: the source location containing the files to import
           example: null
           type: string
-        type:
-          description: the source type containing the files to import
-          enum:
-          - ADT
-          - Storage
-          example: null
-          type: string
       required:
       - location
-      - type
+      type: object
+    SubDatasetGraphQuery:
+      description: a twin graph query in cypher language
+      example:
+        name: name
+        description: description
+        main: true
+        queries:
+        - queries
+        - queries
+      properties:
+        name:
+          description: the name of the subdataset
+          example: null
+          type: string
+        description:
+          description: the description of the subdataset
+          example: null
+          type: string
+        queries:
+          description: the query in cypher language
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        main:
+          description: is this the main dataset
+          example: null
+          type: boolean
       type: object
     TranslatedLabels:
       additionalProperties:
@@ -10271,7 +11347,6 @@ components:
           path: path
           name: name
           location: location
-          type: ADT
         graphId: graphId
         version: version
       properties:
