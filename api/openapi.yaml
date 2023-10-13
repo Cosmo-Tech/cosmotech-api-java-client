@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.6-dev
+  version: 3.0.7-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -8774,6 +8774,7 @@ components:
     Dataset:
       description: a Dataset
       example:
+        refreshDate: 6
         description: description
         validatorId: validatorId
         main: true
@@ -8786,6 +8787,7 @@ components:
         - fragmentsIds
         ownerId: ownerId
         twingraphId: twingraphId
+        creationDate: 0
         queries:
         - queries
         - queries
@@ -8851,6 +8853,18 @@ components:
           description: is this the main dataset
           example: null
           type: boolean
+        creationDate:
+          description: the Dataset creation date
+          example: null
+          format: int64
+          readOnly: true
+          type: integer
+        refreshDate:
+          description: the last time a refresh was done
+          example: null
+          format: int64
+          readOnly: true
+          type: integer
         sourceType:
           $ref: '#/components/schemas/DatasetSourceType'
         source:
