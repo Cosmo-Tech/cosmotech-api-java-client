@@ -28,7 +28,7 @@ import java.io.IOException;
  * a twin graph query in cypher language
  */
 @ApiModel(description = "a twin graph query in cypher language")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-18T12:49:52.649483576Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-18T13:40:18.163258538Z[Etc/UTC]")
 public class TwinGraphQuery {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)

@@ -28,7 +28,7 @@ import java.io.IOException;
  * the difference between the values of a parameter
  */
 @ApiModel(description = "the difference between the values of a parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-18T12:49:52.649483576Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-18T13:40:18.163258538Z[Etc/UTC]")
 public class ScenarioChangedParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)
