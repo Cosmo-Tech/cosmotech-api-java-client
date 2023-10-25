@@ -30,7 +30,7 @@ import java.util.List;
  * a twin graph query in cypher language
  */
 @ApiModel(description = "a twin graph query in cypher language")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-19T12:37:26.620429577Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-25T12:33:05.835401052Z[Etc/UTC]")
 public class SubDatasetGraphQuery {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

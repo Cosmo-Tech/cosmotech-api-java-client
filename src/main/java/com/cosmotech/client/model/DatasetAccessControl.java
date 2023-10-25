@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Dataset access control item
  */
 @ApiModel(description = "a Dataset access control item")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-19T12:37:26.620429577Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-25T12:33:05.835401052Z[Etc/UTC]")
 public class DatasetAccessControl {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
