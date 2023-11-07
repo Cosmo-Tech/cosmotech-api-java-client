@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**getDatasetAccessControl**](DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset
 [**getDatasetSecurity**](DatasetApi.md#getDatasetSecurity) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security | Get the Dataset security information
 [**getDatasetSecurityUsers**](DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list
-[**getDatasetTwingraphStatus**](DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status | Get the dataset&#39;s refresh job status
+[**getDatasetTwingraphStatus**](DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/status | Get the dataset&#39;s refresh job status
 [**getTwingraphEntities**](DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance
 [**refreshDataset**](DatasetApi.md#refreshDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh | Refresh data on dataset from dataset&#39;s source
 [**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
@@ -1011,7 +1011,7 @@ Name | Type | Description  | Notes
 
 <a name="getDatasetTwingraphStatus"></a>
 # **getDatasetTwingraphStatus**
-> String getDatasetTwingraphStatus(organizationId, datasetId, jobId)
+> String getDatasetTwingraphStatus(organizationId, datasetId)
 
 Get the dataset&#39;s refresh job status
 
@@ -1039,9 +1039,8 @@ public class Example {
     DatasetApi apiInstance = new DatasetApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String datasetId = "datasetId_example"; // String | the dataset identifier
-    String jobId = "jobId_example"; // String | the job identifier
     try {
-      String result = apiInstance.getDatasetTwingraphStatus(organizationId, datasetId, jobId);
+      String result = apiInstance.getDatasetTwingraphStatus(organizationId, datasetId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DatasetApi#getDatasetTwingraphStatus");
@@ -1060,7 +1059,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **datasetId** | **String**| the dataset identifier |
- **jobId** | **String**| the job identifier |
 
 ### Return type
 

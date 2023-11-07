@@ -290,8 +290,7 @@ public class DatasetApiTest {
     public void getDatasetTwingraphStatusTest() throws ApiException {
         String organizationId = null;
         String datasetId = null;
-        String jobId = null;
-                String response = api.getDatasetTwingraphStatus(organizationId, datasetId, jobId);
+                String response = api.getDatasetTwingraphStatus(organizationId, datasetId);
         // TODO: test validations
     }
     

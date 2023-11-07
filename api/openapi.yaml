@@ -4861,7 +4861,7 @@ paths:
       tags:
       - dataset
       x-accepts: application/octet-stream
-  /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status:
+  /organizations/{organization_id}/datasets/{dataset_id}/status:
     get:
       description: Get the status of the import workflow lauch on the dataset's refresh.
       operationId: getDatasetTwingraphStatus
@@ -4879,15 +4879,6 @@ paths:
         explode: false
         in: path
         name: dataset_id
-        required: true
-        schema:
-          example: null
-          type: string
-        style: simple
-      - description: the job identifier
-        explode: false
-        in: path
-        name: job_id
         required: true
         schema:
           example: null
@@ -8991,6 +8982,7 @@ components:
         main: true
         source:
           path: path
+          jobId: jobId
           name: name
           location: location
         fragmentsIds:
@@ -11392,6 +11384,7 @@ components:
       description: Source job import information
       example:
         path: path
+        jobId: jobId
         name: name
         location: location
       properties:
@@ -11405,6 +11398,10 @@ components:
           type: string
         path:
           description: the source location containing the files to import
+          example: null
+          type: string
+        jobId:
+          description: indicate the last import jobId
           example: null
           type: string
       required:

@@ -64,4 +64,12 @@ public class SourceInfoTest {
         // TODO: test path
     }
 
+    /**
+     * Test the property 'jobId'
+     */
+    @Test
+    public void jobIdTest() {
+        // TODO: test jobId
+    }
+
 }

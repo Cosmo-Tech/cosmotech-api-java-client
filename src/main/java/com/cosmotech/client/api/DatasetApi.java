@@ -2140,7 +2140,6 @@ public class DatasetApi {
      * Build call for getDatasetTwingraphStatus
      * @param organizationId the Organization identifier (required)
      * @param datasetId the dataset identifier (required)
-     * @param jobId the job identifier (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2150,7 +2149,7 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDatasetTwingraphStatusCall(String organizationId, String datasetId, String jobId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDatasetTwingraphStatusCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -2168,10 +2167,9 @@ public class DatasetApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status"
+        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/status"
             .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
-            .replaceAll("\\{" + "job_id" + "\\}", localVarApiClient.escapeString(jobId.toString()));
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2200,7 +2198,7 @@ public class DatasetApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDatasetTwingraphStatusValidateBeforeCall(String organizationId, String datasetId, String jobId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getDatasetTwingraphStatusValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
@@ -2212,13 +2210,8 @@ public class DatasetApi {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetTwingraphStatus(Async)");
         }
         
-        // verify the required parameter 'jobId' is set
-        if (jobId == null) {
-            throw new ApiException("Missing the required parameter 'jobId' when calling getDatasetTwingraphStatus(Async)");
-        }
-        
 
-        okhttp3.Call localVarCall = getDatasetTwingraphStatusCall(organizationId, datasetId, jobId, _callback);
+        okhttp3.Call localVarCall = getDatasetTwingraphStatusCall(organizationId, datasetId, _callback);
         return localVarCall;
 
     }
@@ -2228,7 +2221,6 @@ public class DatasetApi {
      * Get the status of the import workflow lauch on the dataset&#39;s refresh.
      * @param organizationId the Organization identifier (required)
      * @param datasetId the dataset identifier (required)
-     * @param jobId the job identifier (required)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2237,8 +2229,8 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public String getDatasetTwingraphStatus(String organizationId, String datasetId, String jobId) throws ApiException {
-        ApiResponse<String> localVarResp = getDatasetTwingraphStatusWithHttpInfo(organizationId, datasetId, jobId);
+    public String getDatasetTwingraphStatus(String organizationId, String datasetId) throws ApiException {
+        ApiResponse<String> localVarResp = getDatasetTwingraphStatusWithHttpInfo(organizationId, datasetId);
         return localVarResp.getData();
     }
 
@@ -2247,7 +2239,6 @@ public class DatasetApi {
      * Get the status of the import workflow lauch on the dataset&#39;s refresh.
      * @param organizationId the Organization identifier (required)
      * @param datasetId the dataset identifier (required)
-     * @param jobId the job identifier (required)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2256,8 +2247,8 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<String> getDatasetTwingraphStatusWithHttpInfo(String organizationId, String datasetId, String jobId) throws ApiException {
-        okhttp3.Call localVarCall = getDatasetTwingraphStatusValidateBeforeCall(organizationId, datasetId, jobId, null);
+    public ApiResponse<String> getDatasetTwingraphStatusWithHttpInfo(String organizationId, String datasetId) throws ApiException {
+        okhttp3.Call localVarCall = getDatasetTwingraphStatusValidateBeforeCall(organizationId, datasetId, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2267,7 +2258,6 @@ public class DatasetApi {
      * Get the status of the import workflow lauch on the dataset&#39;s refresh.
      * @param organizationId the Organization identifier (required)
      * @param datasetId the dataset identifier (required)
-     * @param jobId the job identifier (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2277,9 +2267,9 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDatasetTwingraphStatusAsync(String organizationId, String datasetId, String jobId, final ApiCallback<String> _callback) throws ApiException {
+    public okhttp3.Call getDatasetTwingraphStatusAsync(String organizationId, String datasetId, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getDatasetTwingraphStatusValidateBeforeCall(organizationId, datasetId, jobId, _callback);
+        okhttp3.Call localVarCall = getDatasetTwingraphStatusValidateBeforeCall(organizationId, datasetId, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

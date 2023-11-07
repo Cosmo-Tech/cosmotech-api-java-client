@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 3.0.11-SNAPSHOT
-  - Build date: 2023-11-07T10:44:16.509709798Z[Etc/UTC]
+  - Build date: 2023-11-07T16:25:40.405899326Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -140,7 +140,7 @@ Class | Method | HTTP request | Description
 *DatasetApi* | [**getDatasetAccessControl**](docs/DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset
 *DatasetApi* | [**getDatasetSecurity**](docs/DatasetApi.md#getDatasetSecurity) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security | Get the Dataset security information
 *DatasetApi* | [**getDatasetSecurityUsers**](docs/DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list
-*DatasetApi* | [**getDatasetTwingraphStatus**](docs/DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status | Get the dataset&#39;s refresh job status
+*DatasetApi* | [**getDatasetTwingraphStatus**](docs/DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/status | Get the dataset&#39;s refresh job status
 *DatasetApi* | [**getTwingraphEntities**](docs/DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance
 *DatasetApi* | [**refreshDataset**](docs/DatasetApi.md#refreshDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh | Refresh data on dataset from dataset&#39;s source
 *DatasetApi* | [**removeAllDatasetCompatibilityElements**](docs/DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
