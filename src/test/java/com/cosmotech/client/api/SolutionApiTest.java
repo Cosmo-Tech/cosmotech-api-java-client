@@ -22,6 +22,7 @@ import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.Solution;
 import com.cosmotech.client.model.SolutionAccessControl;
 import com.cosmotech.client.model.SolutionRole;
+import com.cosmotech.client.model.SolutionSecurity;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -225,6 +226,22 @@ public class SolutionApiTest {
     }
     
     /**
+     * Get the Solution security information
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSolutionSecurityTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+                SolutionSecurity response = api.getSolutionSecurity(organizationId, solutionId);
+        // TODO: test validations
+    }
+    
+    /**
      * Get the Solution security users list
      *
      * 
@@ -302,6 +319,23 @@ public class SolutionApiTest {
         String solutionId = null;
         String identityId = null;
                 api.removeSolutionAccessControl(organizationId, solutionId, identityId);
+        // TODO: test validations
+    }
+    
+    /**
+     * Set the Solution default security
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setSolutionDefaultSecurityTest() throws ApiException {
+        String organizationId = null;
+        String solutionId = null;
+        SolutionRole solutionRole = null;
+                SolutionSecurity response = api.setSolutionDefaultSecurity(organizationId, solutionId, solutionRole);
         // TODO: test validations
     }
     

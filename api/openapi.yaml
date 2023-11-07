@@ -3276,6 +3276,97 @@ paths:
       - solution
       x-contentType: application/octet-stream
       x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/security:
+    get:
+      operationId: getSolutionSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolutionSecurity'
+          description: The Solution security
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Get the Solution security information
+      tags:
+      - solution
+      x-accepts: application/json
+  /organizations/{organization_id}/solutions/{solution_id}/security/default:
+    post:
+      operationId: setSolutionDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Solution identifier
+        explode: false
+        in: path
+        name: solution_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BrewerySolutionRole:
+                $ref: '#/components/examples/BrewerySolutionRole'
+            schema:
+              $ref: '#/components/schemas/SolutionRole'
+          application/yaml:
+            examples:
+              BrewerySolutionRole:
+                $ref: '#/components/examples/BrewerySolutionRole'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the new Solution default security.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolutionSecurity'
+          description: The Solution default visibility
+        "404":
+          description: the Solution specified is unknown or you don't have access
+            to it
+      summary: Set the Solution default security
+      tags:
+      - solution
+      x-contentType: application/json
+      x-accepts: application/json
   /organizations/{organization_id}/solutions/{solution_id}/security/users:
     get:
       operationId: getSolutionSecurityUsers
@@ -5307,6 +5398,97 @@ paths:
       summary: Get the details of a validator run
       tags:
       - validator
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/security:
+    get:
+      operationId: getDatasetSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetSecurity'
+          description: The Dataset security
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Get the Dataset security information
+      tags:
+      - dataset
+      x-accepts: application/json
+  /organizations/{organization_id}/datasets/{dataset_id}/security/default:
+    post:
+      operationId: setDatasetDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Dataset identifier
+        explode: false
+        in: path
+        name: dataset_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryDatasetRole:
+                $ref: '#/components/examples/BreweryDatasetRole'
+            schema:
+              $ref: '#/components/schemas/DatasetRole'
+          application/yaml:
+            examples:
+              BreweryDatasetRole:
+                $ref: '#/components/examples/BreweryDatasetRole'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the new Dataset default security.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetSecurity'
+          description: The Dataset default visibility
+        "404":
+          description: the Dataset specified is unknown or you don't have access to
+            it
+      summary: Set the Dataset default security
+      tags:
+      - dataset
+      x-contentType: application/json
       x-accepts: application/json
   /organizations/{organization_id}/datasets/{dataset_id}/security/access:
     post:
@@ -9042,7 +9224,13 @@ components:
       type: object
     DatasetSecurity:
       description: the dataset security information
-      example: null
+      example:
+        default: default
+        accessControlList:
+        - role: role
+          id: id
+        - role: role
+          id: id
       properties:
         default:
           description: the role by default
@@ -11175,7 +11363,13 @@ components:
       type: object
     SolutionSecurity:
       description: the Solution security information
-      example: null
+      example:
+        default: default
+        accessControlList:
+        - role: role
+          id: id
+        - role: role
+          id: id
       properties:
         default:
           description: the role by default

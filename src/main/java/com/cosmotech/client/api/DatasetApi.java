@@ -33,6 +33,7 @@ import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
 import com.cosmotech.client.model.DatasetRole;
 import com.cosmotech.client.model.DatasetSearch;
+import com.cosmotech.client.model.DatasetSecurity;
 import com.cosmotech.client.model.DatasetTwinGraphHash;
 import com.cosmotech.client.model.DatasetTwinGraphInfo;
 import com.cosmotech.client.model.DatasetTwinGraphQuery;
@@ -1852,6 +1853,148 @@ public class DatasetApi {
         return localVarCall;
     }
     /**
+     * Build call for getDatasetSecurity
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Dataset security </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getDatasetSecurityCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getDatasetSecurityValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling getDatasetSecurity(Async)");
+        }
+        
+        // verify the required parameter 'datasetId' is set
+        if (datasetId == null) {
+            throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetSecurity(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getDatasetSecurityCall(organizationId, datasetId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the Dataset security information
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @return DatasetSecurity
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Dataset security </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public DatasetSecurity getDatasetSecurity(String organizationId, String datasetId) throws ApiException {
+        ApiResponse<DatasetSecurity> localVarResp = getDatasetSecurityWithHttpInfo(organizationId, datasetId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the Dataset security information
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @return ApiResponse&lt;DatasetSecurity&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Dataset security </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DatasetSecurity> getDatasetSecurityWithHttpInfo(String organizationId, String datasetId) throws ApiException {
+        okhttp3.Call localVarCall = getDatasetSecurityValidateBeforeCall(organizationId, datasetId, null);
+        Type localVarReturnType = new TypeToken<DatasetSecurity>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the Dataset security information (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The Dataset security </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getDatasetSecurityAsync(String organizationId, String datasetId, final ApiCallback<DatasetSecurity> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getDatasetSecurityValidateBeforeCall(organizationId, datasetId, _callback);
+        Type localVarReturnType = new TypeToken<DatasetSecurity>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getDatasetSecurityUsers
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
@@ -2876,6 +3019,157 @@ public class DatasetApi {
 
         okhttp3.Call localVarCall = searchDatasetsValidateBeforeCall(organizationId, datasetSearch, page, size, _callback);
         Type localVarReturnType = new TypeToken<List<Dataset>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for setDatasetDefaultSecurity
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetRole the new Dataset default security. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Dataset default visibility </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call setDatasetDefaultSecurityCall(String organizationId, String datasetId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = datasetRole;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/default"
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/yaml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call setDatasetDefaultSecurityValidateBeforeCall(String organizationId, String datasetId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling setDatasetDefaultSecurity(Async)");
+        }
+        
+        // verify the required parameter 'datasetId' is set
+        if (datasetId == null) {
+            throw new ApiException("Missing the required parameter 'datasetId' when calling setDatasetDefaultSecurity(Async)");
+        }
+        
+        // verify the required parameter 'datasetRole' is set
+        if (datasetRole == null) {
+            throw new ApiException("Missing the required parameter 'datasetRole' when calling setDatasetDefaultSecurity(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = setDatasetDefaultSecurityCall(organizationId, datasetId, datasetRole, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Set the Dataset default security
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetRole the new Dataset default security. (required)
+     * @return DatasetSecurity
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Dataset default visibility </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public DatasetSecurity setDatasetDefaultSecurity(String organizationId, String datasetId, DatasetRole datasetRole) throws ApiException {
+        ApiResponse<DatasetSecurity> localVarResp = setDatasetDefaultSecurityWithHttpInfo(organizationId, datasetId, datasetRole);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Set the Dataset default security
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetRole the new Dataset default security. (required)
+     * @return ApiResponse&lt;DatasetSecurity&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Dataset default visibility </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DatasetSecurity> setDatasetDefaultSecurityWithHttpInfo(String organizationId, String datasetId, DatasetRole datasetRole) throws ApiException {
+        okhttp3.Call localVarCall = setDatasetDefaultSecurityValidateBeforeCall(organizationId, datasetId, datasetRole, null);
+        Type localVarReturnType = new TypeToken<DatasetSecurity>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Set the Dataset default security (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param datasetId the Dataset identifier (required)
+     * @param datasetRole the new Dataset default security. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The Dataset default visibility </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> the Dataset specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call setDatasetDefaultSecurityAsync(String organizationId, String datasetId, DatasetRole datasetRole, final ApiCallback<DatasetSecurity> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = setDatasetDefaultSecurityValidateBeforeCall(organizationId, datasetId, datasetRole, _callback);
+        Type localVarReturnType = new TypeToken<DatasetSecurity>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -20,6 +20,7 @@ import com.cosmotech.client.model.DatasetCompatibility;
 import com.cosmotech.client.model.DatasetCopyParameters;
 import com.cosmotech.client.model.DatasetRole;
 import com.cosmotech.client.model.DatasetSearch;
+import com.cosmotech.client.model.DatasetSecurity;
 import com.cosmotech.client.model.DatasetTwinGraphHash;
 import com.cosmotech.client.model.DatasetTwinGraphInfo;
 import com.cosmotech.client.model.DatasetTwinGraphQuery;
@@ -246,6 +247,22 @@ public class DatasetApiTest {
     }
     
     /**
+     * Get the Dataset security information
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getDatasetSecurityTest() throws ApiException {
+        String organizationId = null;
+        String datasetId = null;
+                DatasetSecurity response = api.getDatasetSecurity(organizationId, datasetId);
+        // TODO: test validations
+    }
+    
+    /**
      * Get the Dataset security users list
      *
      * 
@@ -360,6 +377,23 @@ public class DatasetApiTest {
         Integer page = null;
         Integer size = null;
                 List<Dataset> response = api.searchDatasets(organizationId, datasetSearch, page, size);
+        // TODO: test validations
+    }
+    
+    /**
+     * Set the Dataset default security
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void setDatasetDefaultSecurityTest() throws ApiException {
+        String organizationId = null;
+        String datasetId = null;
+        DatasetRole datasetRole = null;
+                DatasetSecurity response = api.setDatasetDefaultSecurity(organizationId, datasetId, datasetRole);
         // TODO: test validations
     }
     

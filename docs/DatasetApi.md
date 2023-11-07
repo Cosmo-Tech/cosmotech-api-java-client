@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**findAllDatasets**](DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
 [**findDatasetById**](DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
 [**getDatasetAccessControl**](DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset
+[**getDatasetSecurity**](DatasetApi.md#getDatasetSecurity) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security | Get the Dataset security information
 [**getDatasetSecurityUsers**](DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list
 [**getDatasetTwingraphStatus**](DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/job/{job_id}/status | Get the dataset&#39;s refresh job status
 [**getTwingraphEntities**](DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance
@@ -23,6 +24,7 @@ Method | HTTP request | Description
 [**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
 [**removeDatasetAccessControl**](DatasetApi.md#removeDatasetAccessControl) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Remove the specified access from the given Dataset
 [**searchDatasets**](DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets by tags
+[**setDatasetDefaultSecurity**](DatasetApi.md#setDatasetDefaultSecurity) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/default | Set the Dataset default security
 [**twingraphBatchQuery**](DatasetApi.md#twingraphBatchQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
 [**twingraphBatchUpdate**](DatasetApi.md#twingraphBatchUpdate) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch | Async batch update by loading a CSV file on a graph instance 
 [**twingraphQuery**](DatasetApi.md#twingraphQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph | Return the result of a query made on the graph instance as a json
@@ -871,6 +873,74 @@ Name | Type | Description  | Notes
 **200** | The Dataset access |  -  |
 **404** | The Dataset or user specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="getDatasetSecurity"></a>
+# **getDatasetSecurity**
+> DatasetSecurity getDatasetSecurity(organizationId, datasetId)
+
+Get the Dataset security information
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.DatasetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    DatasetApi apiInstance = new DatasetApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String datasetId = "datasetId_example"; // String | the Dataset identifier
+    try {
+      DatasetSecurity result = apiInstance.getDatasetSecurity(organizationId, datasetId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DatasetApi#getDatasetSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **datasetId** | **String**| the Dataset identifier |
+
+### Return type
+
+[**DatasetSecurity**](DatasetSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Dataset security |  -  |
+**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="getDatasetSecurityUsers"></a>
 # **getDatasetSecurityUsers**
 > List&lt;String&gt; getDatasetSecurityUsers(organizationId, datasetId)
@@ -1358,6 +1428,76 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | the list of Datasets |  -  |
+
+<a name="setDatasetDefaultSecurity"></a>
+# **setDatasetDefaultSecurity**
+> DatasetSecurity setDatasetDefaultSecurity(organizationId, datasetId, datasetRole)
+
+Set the Dataset default security
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.DatasetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    DatasetApi apiInstance = new DatasetApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String datasetId = "datasetId_example"; // String | the Dataset identifier
+    DatasetRole datasetRole = new DatasetRole(); // DatasetRole | the new Dataset default security.
+    try {
+      DatasetSecurity result = apiInstance.setDatasetDefaultSecurity(organizationId, datasetId, datasetRole);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DatasetApi#setDatasetDefaultSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **datasetId** | **String**| the Dataset identifier |
+ **datasetRole** | [**DatasetRole**](DatasetRole.md)| the new Dataset default security. |
+
+### Return type
+
+[**DatasetSecurity**](DatasetSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The Dataset default visibility |  -  |
+**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="twingraphBatchQuery"></a>
 # **twingraphBatchQuery**

@@ -15,11 +15,13 @@ Method | HTTP request | Description
 [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
 [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
 [**getSolutionAccessControl**](SolutionApi.md#getSolutionAccessControl) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Get a control access for the Solution
+[**getSolutionSecurity**](SolutionApi.md#getSolutionSecurity) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security | Get the Solution security information
 [**getSolutionSecurityUsers**](SolutionApi.md#getSolutionSecurityUsers) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security/users | Get the Solution security users list
 [**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
 [**removeAllSolutionParameterGroups**](SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified
 [**removeAllSolutionParameters**](SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified
 [**removeSolutionAccessControl**](SolutionApi.md#removeSolutionAccessControl) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Remove the specified access from the given Organization Solution
+[**setSolutionDefaultSecurity**](SolutionApi.md#setSolutionDefaultSecurity) | **POST** /organizations/{organization_id}/solutions/{solution_id}/security/default | Set the Solution default security
 [**updateSolution**](SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution
 [**updateSolutionAccessControl**](SolutionApi.md#updateSolutionAccessControl) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Update the specified access to User for a Solution
 [**updateSolutionRunTemplate**](SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template
@@ -792,6 +794,74 @@ Name | Type | Description  | Notes
 **200** | The Solution access |  -  |
 **404** | The Solution or user specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="getSolutionSecurity"></a>
+# **getSolutionSecurity**
+> SolutionSecurity getSolutionSecurity(organizationId, solutionId)
+
+Get the Solution security information
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    try {
+      SolutionSecurity result = apiInstance.getSolutionSecurity(organizationId, solutionId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#getSolutionSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **solutionId** | **String**| the Solution identifier |
+
+### Return type
+
+[**SolutionSecurity**](SolutionSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Solution security |  -  |
+**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="getSolutionSecurityUsers"></a>
 # **getSolutionSecurityUsers**
 > List&lt;String&gt; getSolutionSecurityUsers(organizationId, solutionId)
@@ -1129,6 +1199,76 @@ null (empty response body)
 |-------------|-------------|------------------|
 **204** | Request succeeded |  -  |
 **404** | The Solution or the user specified is unknown or you don&#39;t have access to them |  -  |
+
+<a name="setSolutionDefaultSecurity"></a>
+# **setSolutionDefaultSecurity**
+> SolutionSecurity setSolutionDefaultSecurity(organizationId, solutionId, solutionRole)
+
+Set the Solution default security
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    SolutionRole solutionRole = new SolutionRole(); // SolutionRole | the new Solution default security.
+    try {
+      SolutionSecurity result = apiInstance.setSolutionDefaultSecurity(organizationId, solutionId, solutionRole);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#setSolutionDefaultSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **solutionId** | **String**| the Solution identifier |
+ **solutionRole** | [**SolutionRole**](SolutionRole.md)| the new Solution default security. |
+
+### Return type
+
+[**SolutionSecurity**](SolutionSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The Solution default visibility |  -  |
+**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateSolution"></a>
 # **updateSolution**
