@@ -915,7 +915,10 @@ paths:
               example: null
               format: binary
               type: string
-        description: the new Scenario default security.
+        description: "This change the scenario default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the scenario."
         required: true
       responses:
         "201":
@@ -3350,7 +3353,10 @@ paths:
               example: null
               format: binary
               type: string
-        description: the new Solution default security.
+        description: "This change the solution default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the solution."
         required: true
       responses:
         "201":
@@ -5464,7 +5470,10 @@ paths:
               example: null
               format: binary
               type: string
-        description: the new Dataset default security.
+        description: "This change the dataset default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the dataset."
         required: true
       responses:
         "201":
@@ -6196,7 +6205,10 @@ paths:
               example: null
               format: binary
               type: string
-        description: the new Organization default security.
+        description: "This change the organization default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the organization."
         required: true
       responses:
         "201":
@@ -7033,7 +7045,10 @@ paths:
               example: null
               format: binary
               type: string
-        description: the new Workspace default security.
+        description: "This change the workspace default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the workspace."
         required: true
       responses:
         "201":

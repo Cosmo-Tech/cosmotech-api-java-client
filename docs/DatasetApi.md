@@ -1455,7 +1455,7 @@ public class Example {
     DatasetApi apiInstance = new DatasetApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String datasetId = "datasetId_example"; // String | the Dataset identifier
-    DatasetRole datasetRole = new DatasetRole(); // DatasetRole | the new Dataset default security.
+    DatasetRole datasetRole = new DatasetRole(); // DatasetRole | This change the dataset default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the dataset.
     try {
       DatasetSecurity result = apiInstance.setDatasetDefaultSecurity(organizationId, datasetId, datasetRole);
       System.out.println(result);
@@ -1476,7 +1476,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **datasetId** | **String**| the Dataset identifier |
- **datasetRole** | [**DatasetRole**](DatasetRole.md)| the new Dataset default security. |
+ **datasetRole** | [**DatasetRole**](DatasetRole.md)| This change the dataset default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the dataset. |
 
 ### Return type
 

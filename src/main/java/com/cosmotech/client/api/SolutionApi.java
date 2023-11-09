@@ -2573,7 +2573,7 @@ public class SolutionApi {
      * Build call for setSolutionDefaultSecurity
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
-     * @param solutionRole the new Solution default security. (required)
+     * @param solutionRole This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2661,7 +2661,7 @@ public class SolutionApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
-     * @param solutionRole the new Solution default security. (required)
+     * @param solutionRole This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution. (required)
      * @return SolutionSecurity
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2681,7 +2681,7 @@ public class SolutionApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
-     * @param solutionRole the new Solution default security. (required)
+     * @param solutionRole This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution. (required)
      * @return ApiResponse&lt;SolutionSecurity&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2702,7 +2702,7 @@ public class SolutionApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param solutionId the Solution identifier (required)
-     * @param solutionRole the new Solution default security. (required)
+     * @param solutionRole This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

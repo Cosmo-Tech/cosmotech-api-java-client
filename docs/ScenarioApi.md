@@ -1395,7 +1395,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    ScenarioRole scenarioRole = new ScenarioRole(); // ScenarioRole | the new Scenario default security.
+    ScenarioRole scenarioRole = new ScenarioRole(); // ScenarioRole | This change the scenario default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the scenario.
     try {
       ScenarioSecurity result = apiInstance.setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, scenarioRole);
       System.out.println(result);
@@ -1417,7 +1417,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
  **scenarioId** | **String**| the Scenario identifier |
- **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| the new Scenario default security. |
+ **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| This change the scenario default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the scenario. |
 
 ### Return type
 

@@ -712,7 +712,7 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | the new Organization default security.
+    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization.
     try {
       OrganizationSecurity result = apiInstance.setOrganizationDefaultSecurity(organizationId, organizationRole);
       System.out.println(result);
@@ -732,7 +732,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| the new Organization default security. |
+ **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. |
 
 ### Return type
 

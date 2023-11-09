@@ -1419,7 +1419,7 @@ public class OrganizationApi {
     /**
      * Build call for setOrganizationDefaultSecurity
      * @param organizationId the Organization identifier (required)
-     * @param organizationRole the new Organization default security. (required)
+     * @param organizationRole This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1500,7 +1500,7 @@ public class OrganizationApi {
      * Set the Organization default security
      * 
      * @param organizationId the Organization identifier (required)
-     * @param organizationRole the new Organization default security. (required)
+     * @param organizationRole This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. (required)
      * @return OrganizationSecurity
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1519,7 +1519,7 @@ public class OrganizationApi {
      * Set the Organization default security
      * 
      * @param organizationId the Organization identifier (required)
-     * @param organizationRole the new Organization default security. (required)
+     * @param organizationRole This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. (required)
      * @return ApiResponse&lt;OrganizationSecurity&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1539,7 +1539,7 @@ public class OrganizationApi {
      * Set the Organization default security (asynchronously)
      * 
      * @param organizationId the Organization identifier (required)
-     * @param organizationRole the new Organization default security. (required)
+     * @param organizationRole This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

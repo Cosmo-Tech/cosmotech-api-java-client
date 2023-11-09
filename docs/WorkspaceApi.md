@@ -1084,7 +1084,7 @@ public class Example {
     WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    WorkspaceRole workspaceRole = new WorkspaceRole(); // WorkspaceRole | the new Workspace default security.
+    WorkspaceRole workspaceRole = new WorkspaceRole(); // WorkspaceRole | This change the workspace default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the workspace.
     try {
       WorkspaceSecurity result = apiInstance.setWorkspaceDefaultSecurity(organizationId, workspaceId, workspaceRole);
       System.out.println(result);
@@ -1105,7 +1105,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
- **workspaceRole** | [**WorkspaceRole**](WorkspaceRole.md)| the new Workspace default security. |
+ **workspaceRole** | [**WorkspaceRole**](WorkspaceRole.md)| This change the workspace default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the workspace. |
 
 ### Return type
 
