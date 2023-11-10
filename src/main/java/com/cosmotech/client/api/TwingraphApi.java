@@ -89,7 +89,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call batchQueryCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -138,6 +140,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchQueryValidateBeforeCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback _callback) throws ApiException {
         
@@ -175,7 +178,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public TwinGraphHash batchQuery(String organizationId, String graphId, TwinGraphQuery twinGraphQuery) throws ApiException {
         ApiResponse<TwinGraphHash> localVarResp = batchQueryWithHttpInfo(organizationId, graphId, twinGraphQuery);
         return localVarResp.getData();
@@ -194,7 +199,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<TwinGraphHash> batchQueryWithHttpInfo(String organizationId, String graphId, TwinGraphQuery twinGraphQuery) throws ApiException {
         okhttp3.Call localVarCall = batchQueryValidateBeforeCall(organizationId, graphId, twinGraphQuery, null);
         Type localVarReturnType = new TypeToken<TwinGraphHash>(){}.getType();
@@ -215,7 +222,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call batchQueryAsync(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback<TwinGraphHash> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = batchQueryValidateBeforeCall(organizationId, graphId, twinGraphQuery, _callback);
@@ -238,7 +247,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> csv file processed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call batchUploadUpdateCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, File body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -291,6 +302,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchUploadUpdateValidateBeforeCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, File body, final ApiCallback _callback) throws ApiException {
         
@@ -335,7 +347,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> csv file processed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public TwinGraphBatchResult batchUploadUpdate(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, File body) throws ApiException {
         ApiResponse<TwinGraphBatchResult> localVarResp = batchUploadUpdateWithHttpInfo(organizationId, graphId, twinGraphQuery, body);
         return localVarResp.getData();
@@ -356,7 +370,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> csv file processed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<TwinGraphBatchResult> batchUploadUpdateWithHttpInfo(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, File body) throws ApiException {
         okhttp3.Call localVarCall = batchUploadUpdateValidateBeforeCall(organizationId, graphId, twinGraphQuery, body, null);
         Type localVarReturnType = new TypeToken<TwinGraphBatchResult>(){}.getType();
@@ -379,7 +395,9 @@ public class TwingraphApi {
         <tr><td> 200 </td><td> csv file processed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call batchUploadUpdateAsync(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, File body, final ApiCallback<TwinGraphBatchResult> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = batchUploadUpdateValidateBeforeCall(organizationId, graphId, twinGraphQuery, body, _callback);
@@ -401,7 +419,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call createEntitiesCall(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -451,6 +471,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createEntitiesValidateBeforeCall(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         
@@ -494,7 +515,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String createEntities(String organizationId, String graphId, String type, List<GraphProperties> graphProperties) throws ApiException {
         ApiResponse<String> localVarResp = createEntitiesWithHttpInfo(organizationId, graphId, type, graphProperties);
         return localVarResp.getData();
@@ -514,7 +537,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> createEntitiesWithHttpInfo(String organizationId, String graphId, String type, List<GraphProperties> graphProperties) throws ApiException {
         okhttp3.Call localVarCall = createEntitiesValidateBeforeCall(organizationId, graphId, type, graphProperties, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -536,7 +561,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call createEntitiesAsync(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createEntitiesValidateBeforeCall(organizationId, graphId, type, graphProperties, _callback);
@@ -557,7 +584,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call createGraphCall(String organizationId, String graphId, File body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -606,6 +635,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createGraphValidateBeforeCall(String organizationId, String graphId, File body, final ApiCallback _callback) throws ApiException {
         
@@ -637,7 +667,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void createGraph(String organizationId, String graphId, File body) throws ApiException {
         createGraphWithHttpInfo(organizationId, graphId, body);
     }
@@ -655,7 +687,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> createGraphWithHttpInfo(String organizationId, String graphId, File body) throws ApiException {
         okhttp3.Call localVarCall = createGraphValidateBeforeCall(organizationId, graphId, body, null);
         return localVarApiClient.execute(localVarCall);
@@ -675,7 +709,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call createGraphAsync(String organizationId, String graphId, File body, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createGraphValidateBeforeCall(organizationId, graphId, body, _callback);
@@ -694,7 +730,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteCall(String organizationId, String graphId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -743,6 +781,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteValidateBeforeCall(String organizationId, String graphId, final ApiCallback _callback) throws ApiException {
         
@@ -773,7 +812,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void delete(String organizationId, String graphId) throws ApiException {
         deleteWithHttpInfo(organizationId, graphId);
     }
@@ -790,7 +831,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteWithHttpInfo(String organizationId, String graphId) throws ApiException {
         okhttp3.Call localVarCall = deleteValidateBeforeCall(organizationId, graphId, null);
         return localVarApiClient.execute(localVarCall);
@@ -809,7 +852,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteAsync(String organizationId, String graphId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteValidateBeforeCall(organizationId, graphId, _callback);
@@ -830,7 +875,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteEntitiesCall(String organizationId, String graphId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -884,6 +931,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteEntitiesValidateBeforeCall(String organizationId, String graphId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         
@@ -926,7 +974,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void deleteEntities(String organizationId, String graphId, String type, List<String> ids) throws ApiException {
         deleteEntitiesWithHttpInfo(organizationId, graphId, type, ids);
     }
@@ -945,7 +995,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteEntitiesWithHttpInfo(String organizationId, String graphId, String type, List<String> ids) throws ApiException {
         okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, type, ids, null);
         return localVarApiClient.execute(localVarCall);
@@ -966,7 +1018,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteEntitiesAsync(String organizationId, String graphId, String type, List<String> ids, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteEntitiesValidateBeforeCall(organizationId, graphId, type, ids, _callback);
@@ -985,7 +1039,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call downloadGraphCall(String organizationId, String hash, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1034,6 +1090,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call downloadGraphValidateBeforeCall(String organizationId, String hash, final ApiCallback _callback) throws ApiException {
         
@@ -1065,7 +1122,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public File downloadGraph(String organizationId, String hash) throws ApiException {
         ApiResponse<File> localVarResp = downloadGraphWithHttpInfo(organizationId, hash);
         return localVarResp.getData();
@@ -1083,7 +1142,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<File> downloadGraphWithHttpInfo(String organizationId, String hash) throws ApiException {
         okhttp3.Call localVarCall = downloadGraphValidateBeforeCall(organizationId, hash, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
@@ -1103,7 +1164,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call downloadGraphAsync(String organizationId, String hash, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = downloadGraphValidateBeforeCall(organizationId, hash, _callback);
@@ -1122,7 +1185,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call findAllTwingraphsCall(String organizationId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1170,6 +1235,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findAllTwingraphsValidateBeforeCall(String organizationId, final ApiCallback _callback) throws ApiException {
         
@@ -1195,7 +1261,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public List<String> findAllTwingraphs(String organizationId) throws ApiException {
         ApiResponse<List<String>> localVarResp = findAllTwingraphsWithHttpInfo(organizationId);
         return localVarResp.getData();
@@ -1212,7 +1280,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<List<String>> findAllTwingraphsWithHttpInfo(String organizationId) throws ApiException {
         okhttp3.Call localVarCall = findAllTwingraphsValidateBeforeCall(organizationId, null);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
@@ -1231,7 +1301,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call findAllTwingraphsAsync(String organizationId, final ApiCallback<List<String>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = findAllTwingraphsValidateBeforeCall(organizationId, _callback);
@@ -1253,7 +1325,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getEntitiesCall(String organizationId, String graphId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1307,6 +1381,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEntitiesValidateBeforeCall(String organizationId, String graphId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         
@@ -1350,7 +1425,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String getEntities(String organizationId, String graphId, String type, List<String> ids) throws ApiException {
         ApiResponse<String> localVarResp = getEntitiesWithHttpInfo(organizationId, graphId, type, ids);
         return localVarResp.getData();
@@ -1370,7 +1447,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> getEntitiesWithHttpInfo(String organizationId, String graphId, String type, List<String> ids) throws ApiException {
         okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, type, ids, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -1392,7 +1471,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getEntitiesAsync(String organizationId, String graphId, String type, List<String> ids, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getEntitiesValidateBeforeCall(organizationId, graphId, type, ids, _callback);
@@ -1412,7 +1493,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getGraphMetaDataCall(String organizationId, String graphId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1461,6 +1544,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getGraphMetaDataValidateBeforeCall(String organizationId, String graphId, final ApiCallback _callback) throws ApiException {
         
@@ -1492,7 +1576,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public Object getGraphMetaData(String organizationId, String graphId) throws ApiException {
         ApiResponse<Object> localVarResp = getGraphMetaDataWithHttpInfo(organizationId, graphId);
         return localVarResp.getData();
@@ -1510,7 +1596,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Object> getGraphMetaDataWithHttpInfo(String organizationId, String graphId) throws ApiException {
         okhttp3.Call localVarCall = getGraphMetaDataValidateBeforeCall(organizationId, graphId, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
@@ -1530,7 +1618,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getGraphMetaDataAsync(String organizationId, String graphId, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getGraphMetaDataValidateBeforeCall(organizationId, graphId, _callback);
@@ -1550,7 +1640,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call jobStatusCall(String organizationId, String jobId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1599,6 +1691,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call jobStatusValidateBeforeCall(String organizationId, String jobId, final ApiCallback _callback) throws ApiException {
         
@@ -1630,7 +1723,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String jobStatus(String organizationId, String jobId) throws ApiException {
         ApiResponse<String> localVarResp = jobStatusWithHttpInfo(organizationId, jobId);
         return localVarResp.getData();
@@ -1648,7 +1743,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> jobStatusWithHttpInfo(String organizationId, String jobId) throws ApiException {
         okhttp3.Call localVarCall = jobStatusValidateBeforeCall(organizationId, jobId, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -1668,7 +1765,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call jobStatusAsync(String organizationId, String jobId, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = jobStatusValidateBeforeCall(organizationId, jobId, _callback);
@@ -1689,7 +1788,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call queryCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1738,6 +1839,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryValidateBeforeCall(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback _callback) throws ApiException {
         
@@ -1775,7 +1877,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String query(String organizationId, String graphId, TwinGraphQuery twinGraphQuery) throws ApiException {
         ApiResponse<String> localVarResp = queryWithHttpInfo(organizationId, graphId, twinGraphQuery);
         return localVarResp.getData();
@@ -1794,7 +1898,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> queryWithHttpInfo(String organizationId, String graphId, TwinGraphQuery twinGraphQuery) throws ApiException {
         okhttp3.Call localVarCall = queryValidateBeforeCall(organizationId, graphId, twinGraphQuery, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -1815,7 +1921,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call queryAsync(String organizationId, String graphId, TwinGraphQuery twinGraphQuery, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = queryValidateBeforeCall(organizationId, graphId, twinGraphQuery, _callback);
@@ -1837,7 +1945,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call updateEntitiesCall(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -1887,6 +1997,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateEntitiesValidateBeforeCall(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         
@@ -1930,7 +2041,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String updateEntities(String organizationId, String graphId, String type, List<GraphProperties> graphProperties) throws ApiException {
         ApiResponse<String> localVarResp = updateEntitiesWithHttpInfo(organizationId, graphId, type, graphProperties);
         return localVarResp.getData();
@@ -1950,7 +2063,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> updateEntitiesWithHttpInfo(String organizationId, String graphId, String type, List<GraphProperties> graphProperties) throws ApiException {
         okhttp3.Call localVarCall = updateEntitiesValidateBeforeCall(organizationId, graphId, type, graphProperties, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -1972,7 +2087,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call updateEntitiesAsync(String organizationId, String graphId, String type, List<GraphProperties> graphProperties, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateEntitiesValidateBeforeCall(organizationId, graphId, type, graphProperties, _callback);
@@ -1993,7 +2110,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call updateGraphMetaDataCall(String organizationId, String graphId, Map<String, String> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -2042,6 +2161,7 @@ public class TwingraphApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateGraphMetaDataValidateBeforeCall(String organizationId, String graphId, Map<String, String> requestBody, final ApiCallback _callback) throws ApiException {
         
@@ -2079,7 +2199,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public Object updateGraphMetaData(String organizationId, String graphId, Map<String, String> requestBody) throws ApiException {
         ApiResponse<Object> localVarResp = updateGraphMetaDataWithHttpInfo(organizationId, graphId, requestBody);
         return localVarResp.getData();
@@ -2098,7 +2220,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Object> updateGraphMetaDataWithHttpInfo(String organizationId, String graphId, Map<String, String> requestBody) throws ApiException {
         okhttp3.Call localVarCall = updateGraphMetaDataValidateBeforeCall(organizationId, graphId, requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
@@ -2119,7 +2243,9 @@ public class TwingraphApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call updateGraphMetaDataAsync(String organizationId, String graphId, Map<String, String> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateGraphMetaDataValidateBeforeCall(organizationId, graphId, requestBody, _callback);

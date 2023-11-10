@@ -1870,6 +1870,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}:
     delete:
+      deprecated: true
       description: Delete all versions of a graph and his metadatas
       operationId: delete
       parameters:
@@ -1899,6 +1900,7 @@ paths:
       - twingraph
       x-accepts: application/json
     post:
+      deprecated: true
       description: |
         To create a new graph from flat files,  you need to create a Zip file. This Zip
         file must countain two folders named Edges and Nodes.
@@ -1965,6 +1967,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraphs:
     get:
+      deprecated: true
       description: Return the list of all graphs stored in the organization
       operationId: findAllTwingraphs
       parameters:
@@ -1994,6 +1997,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/job/{job_id}/status:
     get:
+      deprecated: true
       description: Get the status of a job
       operationId: jobStatus
       parameters:
@@ -2033,6 +2037,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/query:
     post:
+      deprecated: true
       description: Run a query on a graph instance
       operationId: query
       parameters:
@@ -2085,6 +2090,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/batch-query:
     post:
+      deprecated: true
       description: Run a query on a graph instance and return the result as a zip
         file in async mode
       operationId: batchQuery
@@ -2132,6 +2138,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/download/{hash}:
     get:
+      deprecated: true
       description: Download a graph compressed in a zip file
       operationId: downloadGraph
       parameters:
@@ -2168,6 +2175,7 @@ paths:
       x-accepts: application/octet-stream
   /organizations/{organization_id}/twingraph/{graph_id}/entity/{type}:
     delete:
+      deprecated: true
       description: delete entities in a graph instance
       operationId: deleteEntities
       parameters:
@@ -2221,6 +2229,7 @@ paths:
       - twingraph
       x-accepts: application/json
     get:
+      deprecated: true
       description: get entities in a graph instance
       operationId: getEntities
       parameters:
@@ -2279,6 +2288,7 @@ paths:
       - twingraph
       x-accepts: application/json
     patch:
+      deprecated: true
       description: update entities in a graph instance
       operationId: updateEntities
       parameters:
@@ -2339,6 +2349,7 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
     post:
+      deprecated: true
       description: create new entities in a graph instance
       operationId: createEntities
       parameters:
@@ -2400,6 +2411,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/twingraph/{graph_id}/metadata:
     get:
+      deprecated: true
       description: Return the metaData of the specified graph
       operationId: getGraphMetaData
       parameters:
@@ -2436,6 +2448,7 @@ paths:
       - twingraph
       x-accepts: application/json
     patch:
+      deprecated: true
       description: Update the metaData of the specified graph
       operationId: updateGraphMetaData
       parameters:
@@ -2489,6 +2502,7 @@ paths:
   /organizations/{organization_id}/twingraph/{graph_id}/graph: {}
   /organizations/{organization_id}/twingraph/{graph_id}/batch:
     post:
+      deprecated: true
       description: 'Async batch update by loading a CSV file on a graph instance '
       operationId: batchUploadUpdate
       parameters:
