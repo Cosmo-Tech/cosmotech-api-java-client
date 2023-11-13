@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.12-dev
+  version: 3.0.13-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -24,7 +24,8 @@ tags:
   name: scenario
 - description: ScenarioRun Management
   name: scenariorun
-- description: Twin Graph Management
+- description: "Twin Graph Management | This service is deprecated, use Dataset Service\
+    \ instead"
   name: twingraph
 - description: Solution Management
   name: solution
