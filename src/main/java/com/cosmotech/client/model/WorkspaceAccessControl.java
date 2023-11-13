@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Workspace access control item
  */
 @ApiModel(description = "a Workspace access control item")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-10T15:22:58.699575030Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T09:21:16.382485742Z[Etc/UTC]")
 public class WorkspaceAccessControl {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
