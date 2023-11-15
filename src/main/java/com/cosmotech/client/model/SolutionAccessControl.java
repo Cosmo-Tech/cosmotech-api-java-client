@@ -28,7 +28,7 @@ import java.io.IOException;
  * a Solution access control item
  */
 @ApiModel(description = "a Solution access control item")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T16:24:56.035931305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-15T14:13:07.118634709Z[Etc/UTC]")
 public class SolutionAccessControl {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
