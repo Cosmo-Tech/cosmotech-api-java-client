@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'com.cosmotech'
-version = '3.0.13-SNAPSHOT'
+version = '3.0.13-dev'
 
 buildscript {
     repositories {
