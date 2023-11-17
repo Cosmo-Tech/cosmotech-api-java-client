@@ -7474,6 +7474,13 @@ components:
           deleteHistoricalData:
             enable: true
             pollFrequency: 10000
+        security:
+          default: none
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: editor
+          - id: john.doe@cosmotech.com
+            role: viewer
     BreweryADT:
       description: Brewery Dataset in ADT example
       summary: Brewery ADT Dataset
@@ -7500,6 +7507,13 @@ components:
         compatibility:
         - solutionKey: Brewery Solution
           minimumVersion: 1.0.0
+        security:
+          default: none
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: editor
+          - id: john.doe@cosmotech.com
+            role: viewer
     BreweryADTRunValidator:
       description: a Validator Run input for the Brewery Dataset from ADT in a Docker
         image
