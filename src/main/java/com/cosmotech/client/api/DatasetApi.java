@@ -2517,7 +2517,7 @@ public class DatasetApi {
 
     /**
      * Refresh data on dataset from dataset&#39;s source
-     * Lauch a import from source (ADT or Azure Storage). This replace currently stored data with just extracted data from source.
+     * Refresh dataset from parent source. At date, sources can be:      dataset (refresh from another dataset)      Azure Digital twin       Azure storage      Local File (import a new file)  During refresh, datas are overwritten 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
      * @return DatasetTwinGraphInfo
@@ -2535,7 +2535,7 @@ public class DatasetApi {
 
     /**
      * Refresh data on dataset from dataset&#39;s source
-     * Lauch a import from source (ADT or Azure Storage). This replace currently stored data with just extracted data from source.
+     * Refresh dataset from parent source. At date, sources can be:      dataset (refresh from another dataset)      Azure Digital twin       Azure storage      Local File (import a new file)  During refresh, datas are overwritten 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
      * @return ApiResponse&lt;DatasetTwinGraphInfo&gt;
@@ -2554,7 +2554,7 @@ public class DatasetApi {
 
     /**
      * Refresh data on dataset from dataset&#39;s source (asynchronously)
-     * Lauch a import from source (ADT or Azure Storage). This replace currently stored data with just extracted data from source.
+     * Refresh dataset from parent source. At date, sources can be:      dataset (refresh from another dataset)      Azure Digital twin       Azure storage      Local File (import a new file)  During refresh, datas are overwritten 
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
      * @param _callback The callback to be executed when the API call finishes

@@ -653,8 +653,10 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/datasets/{dataset_id}/refresh:
     post:
-      description: Lauch a import from source (ADT or Azure Storage). This replace
-        currently stored data with just extracted data from source.
+      description: "Refresh dataset from parent source. At date, sources can be:\n\
+        \n    dataset (refresh from another dataset)\n\n    Azure Digital twin \n\n\
+        \    Azure storage\n\n    Local File (import a new file)\n\nDuring refresh,\
+        \ datas are overwritten\n"
       operationId: refreshDataset
       parameters:
       - description: the Organization identifier
@@ -7490,9 +7492,23 @@ components:
       description: Brewery Dataset in ADT example
       summary: Brewery ADT Dataset
       value:
-        id: "1"
+        id: d-0123456789
         name: Brewery ADT reference
         description: Brewery reference model in ADT
+        ownerId: ownerId
+        parentId: "null"
+        twingraphId: "null"
+        main: "null"
+        creationDate: "null"
+        refreshDate: "null"
+        sourceType: StorageAzure
+        source:
+          sourceInfo:
+          - name: storageAccount
+          - location: containerName
+          - path: path
+        status: "null"
+        queries: "null"
         tags:
         - ADT
         - Brewery
@@ -7509,6 +7525,8 @@ components:
             AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+        fragmentsIds: "null"
+        validatorId: "null"
         compatibility:
         - solutionKey: Brewery Solution
           minimumVersion: 1.0.0
@@ -7537,6 +7555,20 @@ components:
         id: "1"
         name: Brewery ADT new reference
         description: Brewery reference model in ADT
+        ownerId: ownerId
+        parentId: "null"
+        twingraphId: "null"
+        main: "null"
+        creationDate: "null"
+        refreshDate: "null"
+        sourceType: StorageAzure
+        source:
+          sourceInfo:
+          - name: storageAccount
+          - location: containerName
+          - path: path
+        status: "null"
+        queries: "null"
         tags:
         - ADT
         - Brewery
@@ -7553,9 +7585,18 @@ components:
             AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+        fragmentsIds: "null"
+        validatorId: "null"
         compatibility:
         - solutionKey: Brewery Solution
           minimumVersion: 1.0.0
+        security:
+          default: none
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: editor
+          - id: john.doe@cosmotech.com
+            role: viewer
     BreweryADTValidator:
       description: a Validator for the Brewery Dataset from ADT in a Docker image
       summary: Brewery ADT Dataset Validator
@@ -8418,9 +8459,17 @@ components:
       description: "null"
       summary: "null"
       value:
-        id: sr-feai8feu44_stock
+        id: sr-mysrId_StockProbe
         results:
-          $ref: '#/components/examples/ScenarioRunResultExample'
+        - name: StockProbe
+          run: 0
+          stockMeasure: 50
+        - name: StockProbe
+          run: 1
+          stockMeasure: 100
+        - name: StockProbe
+          run: 2
+          stockMeasure: 150
     ScenariosTree:
       description: Scenarios Tree example with 1 master Scenario and 2 children
       summary: Scenarios Tree example
@@ -8652,6 +8701,20 @@ components:
       - id: "1"
         name: Brewery ADT reference
         description: Brewery reference model in ADT
+        ownerId: ownerId
+        parentId: "null"
+        twingraphId: "null"
+        main: "null"
+        creationDate: "null"
+        refreshDate: "null"
+        sourceType: StorageAzure
+        source:
+          sourceInfo:
+          - name: storageAccount
+          - location: containerName
+          - path: path
+        status: "null"
+        queries: "null"
         tags:
         - ADT
         - Brewery
@@ -8668,15 +8731,39 @@ components:
             AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+        fragmentsIds: "null"
+        validatorId: "null"
         compatibility:
         - solutionKey: Brewery Solution
           minimumVersion: 1.0.0
+        security:
+          default: none
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: editor
+          - id: john.doe@cosmotech.com
+            role: viewer
       - id: "2"
-        name: Brewery ADT future
-        description: Brewery future model in ADT
+        name: Brewery ADT reference
+        description: Brewery reference model in ADT
+        ownerId: ownerId
+        parentId: "null"
+        twingraphId: "null"
+        main: "null"
+        creationDate: "null"
+        refreshDate: "null"
+        sourceType: StorageAzure
+        source:
+          sourceInfo:
+          - name: storageAccount
+          - location: containerName
+          - path: path
+        status: "null"
+        queries: "null"
         tags:
         - ADT
         - Brewery
+        - Reference
         connector:
           id: "1"
           name: ADT Connector
@@ -8686,9 +8773,21 @@ components:
             AZURE_TENANT_ID: "12345678"
             AZURE_CLIENT_ID: "12345678"
             AZURE_CLIENT_SECRET: "12345678"
-            AZURE_DIGITAL_TWINS_URL: myotherdt.api.weu.digitaltwins.azure.net
+            AZURE_DIGITAL_TWINS_URL: mydt.api.weu.digitaltwins.azure.net
             ADT_QUERY: SELECT * FROM digitaltwins
             EXPORT_CSV_FILE_ABSOLUTE_PATH: /mnt/scenariorun-data
+        fragmentsIds: "null"
+        validatorId: "null"
+        compatibility:
+        - solutionKey: Brewery Solution
+          minimumVersion: 1.0.0
+        security:
+          default: none
+          accessControlList:
+          - id: jane.doe@cosmotech.com
+            role: editor
+          - id: john.doe@cosmotech.com
+            role: viewer
     TwoOrganizations:
       description: Two Organizations example
       summary: Two Orgnizations
