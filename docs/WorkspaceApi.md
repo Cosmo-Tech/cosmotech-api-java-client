@@ -1154,7 +1154,7 @@ public class Example {
     WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
-    Workspace workspace = new Workspace(); // Workspace | The new Workspace details.
+    Workspace workspace = new Workspace(); // Workspace | The new Workspace details. This endpoint can't be used to update security
     try {
       Workspace result = apiInstance.updateWorkspace(organizationId, workspaceId, workspace);
       System.out.println(result);
@@ -1175,7 +1175,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
- **workspace** | [**Workspace**](Workspace.md)| The new Workspace details. |
+ **workspace** | [**Workspace**](Workspace.md)| The new Workspace details. This endpoint can&#39;t be used to update security |
 
 ### Return type
 

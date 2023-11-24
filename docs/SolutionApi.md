@@ -1298,7 +1298,7 @@ public class Example {
     SolutionApi apiInstance = new SolutionApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String solutionId = "solutionId_example"; // String | the Solution identifier
-    Solution solution = new Solution(); // Solution | the new Solution details.
+    Solution solution = new Solution(); // Solution | the new Solution details. This endpoint can't be used to update security
     try {
       Solution result = apiInstance.updateSolution(organizationId, solutionId, solution);
       System.out.println(result);
@@ -1319,7 +1319,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **solutionId** | **String**| the Solution identifier |
- **solution** | [**Solution**](Solution.md)| the new Solution details. |
+ **solution** | [**Solution**](Solution.md)| the new Solution details. This endpoint can&#39;t be used to update security |
 
 ### Return type
 

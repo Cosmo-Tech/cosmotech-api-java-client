@@ -1744,7 +1744,7 @@ public class Example {
     DatasetApi apiInstance = new DatasetApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String datasetId = "datasetId_example"; // String | the Dataset identifier
-    Dataset dataset = new Dataset(); // Dataset | the new Dataset details.
+    Dataset dataset = new Dataset(); // Dataset | the new Dataset details. This endpoint can't be used to update security
     try {
       Dataset result = apiInstance.updateDataset(organizationId, datasetId, dataset);
       System.out.println(result);
@@ -1765,7 +1765,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
  **datasetId** | **String**| the Dataset identifier |
- **dataset** | [**Dataset**](Dataset.md)| the new Dataset details. |
+ **dataset** | [**Dataset**](Dataset.md)| the new Dataset details. This endpoint can&#39;t be used to update security |
 
 ### Return type
 

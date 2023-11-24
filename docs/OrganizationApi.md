@@ -845,7 +845,7 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    Organization organization = new Organization(); // Organization | the new Organization details
+    Organization organization = new Organization(); // Organization | the new Organization details. This endpoint can't be used to update security
     try {
       Organization result = apiInstance.updateOrganization(organizationId, organization);
       System.out.println(result);
@@ -865,7 +865,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organization** | [**Organization**](Organization.md)| the new Organization details |
+ **organization** | [**Organization**](Organization.md)| the new Organization details. This endpoint can&#39;t be used to update security |
 
 ### Return type
 

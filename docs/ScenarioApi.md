@@ -1467,7 +1467,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     String scenarioId = "scenarioId_example"; // String | the Scenario identifier
-    Scenario scenario = new Scenario(); // Scenario | the new Scenario details.
+    Scenario scenario = new Scenario(); // Scenario | the new Scenario details. This endpoint can't be used to update security
     try {
       Scenario result = apiInstance.updateScenario(organizationId, workspaceId, scenarioId, scenario);
       System.out.println(result);
@@ -1489,7 +1489,7 @@ Name | Type | Description  | Notes
  **organizationId** | **String**| the Organization identifier |
  **workspaceId** | **String**| the Workspace identifier |
  **scenarioId** | **String**| the Scenario identifier |
- **scenario** | [**Scenario**](Scenario.md)| the new Scenario details. |
+ **scenario** | [**Scenario**](Scenario.md)| the new Scenario details. This endpoint can&#39;t be used to update security |
 
 ### Return type
 
