@@ -635,6 +635,9 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              BreweryADT:
+                $ref: '#/components/examples/BreweryADT'
             schema:
               $ref: '#/components/schemas/SubDatasetGraphQuery'
         description: the Cypher query to filter
@@ -643,6 +646,9 @@ paths:
         "200":
           content:
             application/json:
+              examples:
+                BreweryADT:
+                  $ref: '#/components/examples/BreweryADT'
               schema:
                 $ref: '#/components/schemas/Dataset'
           description: Successful response
@@ -7508,7 +7514,8 @@ components:
           - location: containerName
           - path: path
         status: "null"
-        queries: "null"
+        queries:
+        - MATCH (n) RETURN n
         tags:
         - ADT
         - Brewery
@@ -7568,7 +7575,8 @@ components:
           - location: containerName
           - path: path
         status: "null"
-        queries: "null"
+        queries:
+        - MATCH (n) RETURN n
         tags:
         - ADT
         - Brewery
@@ -8714,7 +8722,8 @@ components:
           - location: containerName
           - path: path
         status: "null"
-        queries: "null"
+        queries:
+        - MATCH (n) RETURN n
         tags:
         - ADT
         - Brewery
@@ -8759,7 +8768,8 @@ components:
           - location: containerName
           - path: path
         status: "null"
-        queries: "null"
+        queries:
+        - MATCH (n) RETURN n
         tags:
         - ADT
         - Brewery

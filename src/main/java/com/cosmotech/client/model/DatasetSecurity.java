@@ -31,7 +31,7 @@ import java.util.List;
  * the dataset security information
  */
 @ApiModel(description = "the dataset security information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-27T14:35:57.107678900Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-27T15:43:56.497429570Z[Etc/UTC]")
 public class DatasetSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
