@@ -81,6 +81,14 @@ public class DatasetTest {
     }
 
     /**
+     * Test the property 'ownerName'
+     */
+    @Test
+    public void ownerNameTest() {
+        // TODO: test ownerName
+    }
+
+    /**
      * Test the property 'organizationId'
      */
     @Test

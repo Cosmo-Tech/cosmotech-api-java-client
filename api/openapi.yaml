@@ -601,8 +601,8 @@ paths:
               type: string
         required: true
       responses:
-        "200":
-          description: Twingraph File Uploaded
+        "201":
+          description: Twingraph file upload started
       summary: Upload data from zip file to dataset's twingraph
       tags:
       - dataset
@@ -7502,6 +7502,7 @@ components:
         name: Brewery ADT reference
         description: Brewery reference model in ADT
         ownerId: ownerId
+        ownerName: Bob
         parentId: "null"
         twingraphId: "null"
         main: "null"
@@ -7563,6 +7564,7 @@ components:
         name: Brewery ADT new reference
         description: Brewery reference model in ADT
         ownerId: ownerId
+        ownerName: Bob
         parentId: "null"
         twingraphId: "null"
         main: "null"
@@ -8710,6 +8712,7 @@ components:
         name: Brewery ADT reference
         description: Brewery reference model in ADT
         ownerId: ownerId
+        ownerName: Bob
         parentId: "null"
         twingraphId: "null"
         main: "null"
@@ -8756,6 +8759,7 @@ components:
         name: Brewery ADT reference
         description: Brewery reference model in ADT
         ownerId: ownerId
+        ownerName: Bob
         parentId: "null"
         twingraphId: "null"
         main: "null"
@@ -9158,6 +9162,7 @@ components:
         - tags
         organizationId: organizationId
         security: ""
+        ownerName: ownerName
         connector:
           parametersValues:
             key: parametersValues
@@ -9193,6 +9198,11 @@ components:
           type: string
         ownerId:
           description: the User id which own this Dataset
+          example: null
+          readOnly: true
+          type: string
+        ownerName:
+          description: the name of the owner
           example: null
           readOnly: true
           type: string

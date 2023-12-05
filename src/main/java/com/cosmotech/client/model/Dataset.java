@@ -36,7 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * a Dataset
  */
 @ApiModel(description = "a Dataset")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-05T13:45:03.317614974Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-05T16:32:51.500213411Z[Etc/UTC]")
 public class Dataset {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -53,6 +53,10 @@ public class Dataset {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
+
+  public static final String SERIALIZED_NAME_OWNER_NAME = "ownerName";
+  @SerializedName(SERIALIZED_NAME_OWNER_NAME)
+  private String ownerName;
 
   public static final String SERIALIZED_NAME_ORGANIZATION_ID = "organizationId";
   @SerializedName(SERIALIZED_NAME_ORGANIZATION_ID)
@@ -176,6 +180,7 @@ public class Dataset {
   public Dataset(
      String id, 
      String ownerId, 
+     String ownerName, 
      String organizationId, 
      Long creationDate, 
      Long refreshDate
@@ -183,6 +188,7 @@ public class Dataset {
     this();
     this.id = id;
     this.ownerId = ownerId;
+    this.ownerName = ownerName;
     this.organizationId = organizationId;
     this.creationDate = creationDate;
     this.refreshDate = refreshDate;
@@ -257,6 +263,20 @@ public class Dataset {
 
   public String getOwnerId() {
     return ownerId;
+  }
+
+
+
+
+   /**
+   * the name of the owner
+   * @return ownerName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "the name of the owner")
+
+  public String getOwnerName() {
+    return ownerName;
   }
 
 
@@ -648,6 +668,7 @@ public class Dataset {
         Objects.equals(this.name, dataset.name) &&
         Objects.equals(this.description, dataset.description) &&
         Objects.equals(this.ownerId, dataset.ownerId) &&
+        Objects.equals(this.ownerName, dataset.ownerName) &&
         Objects.equals(this.organizationId, dataset.organizationId) &&
         Objects.equals(this.parentId, dataset.parentId) &&
         Objects.equals(this.twingraphId, dataset.twingraphId) &&
@@ -672,7 +693,7 @@ public class Dataset {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, ownerId, organizationId, parentId, twingraphId, main, creationDate, refreshDate, sourceType, source, status, queries, tags, connector, fragmentsIds, validatorId, compatibility, security);
+    return Objects.hash(id, name, description, ownerId, ownerName, organizationId, parentId, twingraphId, main, creationDate, refreshDate, sourceType, source, status, queries, tags, connector, fragmentsIds, validatorId, compatibility, security);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -690,6 +711,7 @@ public class Dataset {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    ownerName: ").append(toIndentedString(ownerName)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    twingraphId: ").append(toIndentedString(twingraphId)).append("\n");

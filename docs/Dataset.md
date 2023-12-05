@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **name** | **String** | the Dataset name |  [optional]
 **description** | **String** | the Dataset description |  [optional]
 **ownerId** | **String** | the User id which own this Dataset |  [optional] [readonly]
+**ownerName** | **String** | the name of the owner |  [optional] [readonly]
 **organizationId** | **String** | the Organization Id related to this Dataset |  [optional] [readonly]
 **parentId** | **String** | the Dataset id which is the parent of this Dataset |  [optional]
 **twingraphId** | **String** | the twin graph id |  [optional]
