@@ -2004,7 +2004,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadTwingraph"></a>
 # **uploadTwingraph**
-> uploadTwingraph(organizationId, datasetId, body)
+> FileUploadValidation uploadTwingraph(organizationId, datasetId, body)
 
 Upload data from zip file to dataset&#39;s twingraph
 
@@ -2034,7 +2034,8 @@ public class Example {
     String datasetId = "datasetId_example"; // String | the Dataset identifier
     File body = new File("/path/to/file"); // File | 
     try {
-      apiInstance.uploadTwingraph(organizationId, datasetId, body);
+      FileUploadValidation result = apiInstance.uploadTwingraph(organizationId, datasetId, body);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DatasetApi#uploadTwingraph");
       System.err.println("Status code: " + e.getCode());
@@ -2056,7 +2057,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**FileUploadValidation**](FileUploadValidation.md)
 
 ### Authorization
 
@@ -2065,10 +2066,10 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/octet-stream
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Twingraph file upload started |  -  |
+**202** | File uploaded successfully. Processing... |  -  |
 

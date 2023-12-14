@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.14-SNAPSHOT
+  version: 3.0.15-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -3212,8 +3212,12 @@ paths:
               type: string
         required: true
       responses:
-        "201":
-          description: Twingraph file upload started
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadValidation'
+          description: File uploaded successfully. Processing...
       summary: Upload data from zip file to dataset's twingraph
       tags:
       - dataset
@@ -9528,6 +9532,45 @@ components:
           type: integer
       required:
       - enable
+      type: object
+    FileUploadMetadata:
+      example:
+        size: 0
+        name: name
+      properties:
+        name:
+          example: null
+          type: string
+        size:
+          example: null
+          type: integer
+      type: object
+    FileUploadValidation:
+      description: files read on upload
+      example:
+        nodes:
+        - size: 0
+          name: name
+        - size: 0
+          name: name
+        edges:
+        - size: 0
+          name: name
+        - size: 0
+          name: name
+      properties:
+        nodes:
+          description: list of filename found on nodes folder
+          example: null
+          items:
+            $ref: '#/components/schemas/FileUploadMetadata'
+          type: array
+        edges:
+          description: list of filename found on edges folder
+          example: null
+          items:
+            $ref: '#/components/schemas/FileUploadMetadata'
+          type: array
       type: object
     GraphProperties:
       example:

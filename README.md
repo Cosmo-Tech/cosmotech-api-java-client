@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.0.14-SNAPSHOT
-  - Build date: 2023-12-14T13:45:52.393452226Z[Etc/UTC]
+- API version: 3.0.15-SNAPSHOT
+  - Build date: 2023-12-14T15:34:31.997467134Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.0.14-SNAPSHOT</version>
+  <version>3.0.15-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.0.14-SNAPSHOT"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.0.15-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.0.14-SNAPSHOT.jar`
+* `target/cosmotech-api-java-client-3.0.15-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -297,6 +297,8 @@ Class | Method | HTTP request | Description
  - [DatasetTwinGraphInfo](docs/DatasetTwinGraphInfo.md)
  - [DatasetTwinGraphQuery](docs/DatasetTwinGraphQuery.md)
  - [DeleteHistoricalData](docs/DeleteHistoricalData.md)
+ - [FileUploadMetadata](docs/FileUploadMetadata.md)
+ - [FileUploadValidation](docs/FileUploadValidation.md)
  - [GraphProperties](docs/GraphProperties.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAccessControl](docs/OrganizationAccessControl.md)
