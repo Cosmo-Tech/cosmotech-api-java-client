@@ -28,7 +28,7 @@ import java.io.IOException;
  * a twin graph hash
  */
 @ApiModel(description = "a twin graph hash")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-13T09:24:40.556011883Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-14T13:45:52.393452226Z[Etc/UTC]")
 public class TwinGraphHash {
   public static final String SERIALIZED_NAME_HASH = "hash";
   @SerializedName(SERIALIZED_NAME_HASH)
