@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.cosmotech",
     name := "cosmotech-api-java-client",
-    version := "3.0.15-dev",
+    version := "3.0.16-SNAPSHOT",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
