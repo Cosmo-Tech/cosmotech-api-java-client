@@ -34,7 +34,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * a ScenarioRun with only base properties
  */
 @ApiModel(description = "a ScenarioRun with only base properties")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-18T10:05:32.206547248Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-20T13:02:39.355763592Z[Etc/UTC]")
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

@@ -96,6 +96,14 @@ public class SolutionTest {
     }
 
     /**
+     * Test the property 'alwaysPull'
+     */
+    @Test
+    public void alwaysPullTest() {
+        // TODO: test alwaysPull
+    }
+
+    /**
      * Test the property 'csmSimulator'
      */
     @Test
