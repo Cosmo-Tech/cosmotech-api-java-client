@@ -9,7 +9,7 @@ info:
     name: MIT License
     url: https://github.com/Cosmo-Tech/cosmotech-api/blob/main/LICENSE
   title: Cosmo Tech Platform API
-  version: 3.0.0
+  version: 3.0.1-SNAPSHOT
 servers:
 - description: Development
   url: https://dev.api.cosmotech.com
@@ -11681,6 +11681,7 @@ components:
     Solution:
       description: a version of a Solution
       example:
+        alwaysPull: false
         description: description
         csmSimulator: csmSimulator
         repository: repository
@@ -11865,6 +11866,11 @@ components:
           description: the registry repository containing the image
           example: null
           type: string
+        alwaysPull:
+          default: false
+          description: set to true if the runtemplate wants to always pull the image
+          example: null
+          type: boolean
         csmSimulator:
           description: the main Cosmo Tech simulator name used in standard Run Template
           example: null
