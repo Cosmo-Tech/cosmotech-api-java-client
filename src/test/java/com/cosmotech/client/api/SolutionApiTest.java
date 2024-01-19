@@ -171,7 +171,7 @@ public class SolutionApiTest {
         String solutionId = null;
         String runTemplateId = null;
         RunTemplateHandlerId handlerId = null;
-                File response = api.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+                byte[] response = api.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
         // TODO: test validations
     }
     

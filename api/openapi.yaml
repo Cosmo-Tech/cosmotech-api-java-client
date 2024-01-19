@@ -660,9 +660,19 @@ paths:
             application/octet-stream:
               schema:
                 example: null
-                format: binary
+                format: byte
                 type: string
           description: the run template handle file as a resource
+          headers:
+            Content-Disposition:
+              description: Run Template step handler zip file
+              example: attachment; filename="name.zip"
+              explode: false
+              schema:
+                example: null
+                format: byte
+                type: string
+              style: simple
         "404":
           description: the Run Template Handler file specified is unknown or you don't
             have access to it

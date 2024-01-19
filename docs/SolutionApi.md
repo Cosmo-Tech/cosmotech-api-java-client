@@ -517,7 +517,7 @@ null (empty response body)
 
 <a name="downloadRunTemplateHandler"></a>
 # **downloadRunTemplateHandler**
-> File downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
+> byte[] downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
 
 Download a Run Template step handler zip file
 
@@ -546,7 +546,7 @@ public class Example {
     String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
     RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
     try {
-      File result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+      byte[] result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolutionApi#downloadRunTemplateHandler");
@@ -570,7 +570,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 ### Authorization
 
@@ -584,7 +584,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run template handle file as a resource |  -  |
+**200** | the run template handle file as a resource |  * Content-Disposition - Run Template step handler zip file <br>  |
 **404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="findAllSolutions"></a>

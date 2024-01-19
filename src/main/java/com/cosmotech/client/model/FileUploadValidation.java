@@ -31,7 +31,7 @@ import java.util.List;
  * files read on upload
  */
 @ApiModel(description = "files read on upload")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-01-15T09:29:48.345682865Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-01-19T14:11:55.275205435Z[Etc/UTC]")
 public class FileUploadValidation {
   public static final String SERIALIZED_NAME_NODES = "nodes";
   @SerializedName(SERIALIZED_NAME_NODES)

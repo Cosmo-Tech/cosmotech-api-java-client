@@ -1135,7 +1135,7 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition - Run Template step handler zip file <br>  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
@@ -1225,17 +1225,17 @@ public class SolutionApi {
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
      * @param handlerId the Handler identifier (required)
-     * @return File
+     * @return byte[]
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition - Run Template step handler zip file <br>  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public File downloadRunTemplateHandler(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
-        ApiResponse<File> localVarResp = downloadRunTemplateHandlerWithHttpInfo(organizationId, solutionId, runTemplateId, handlerId);
+    public byte[] downloadRunTemplateHandler(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
+        ApiResponse<byte[]> localVarResp = downloadRunTemplateHandlerWithHttpInfo(organizationId, solutionId, runTemplateId, handlerId);
         return localVarResp.getData();
     }
 
@@ -1246,18 +1246,18 @@ public class SolutionApi {
      * @param solutionId the Solution identifier (required)
      * @param runTemplateId the Run Template identifier (required)
      * @param handlerId the Handler identifier (required)
-     * @return ApiResponse&lt;File&gt;
+     * @return ApiResponse&lt;byte[]&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition - Run Template step handler zip file <br>  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<File> downloadRunTemplateHandlerWithHttpInfo(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
+    public ApiResponse<byte[]> downloadRunTemplateHandlerWithHttpInfo(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId) throws ApiException {
         okhttp3.Call localVarCall = downloadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, null);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        Type localVarReturnType = new TypeToken<byte[]>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1274,14 +1274,14 @@ public class SolutionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> the run template handle file as a resource </td><td>  * Content-Disposition - Run Template step handler zip file <br>  </td></tr>
         <tr><td> 404 </td><td> the Run Template Handler file specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call downloadRunTemplateHandlerAsync(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, final ApiCallback<File> _callback) throws ApiException {
+    public okhttp3.Call downloadRunTemplateHandlerAsync(String organizationId, String solutionId, String runTemplateId, RunTemplateHandlerId handlerId, final ApiCallback<byte[]> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = downloadRunTemplateHandlerValidateBeforeCall(organizationId, solutionId, runTemplateId, handlerId, _callback);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        Type localVarReturnType = new TypeToken<byte[]>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
