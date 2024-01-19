@@ -18,8 +18,10 @@ Method | HTTP request | Description
 [**getWorkspacePermissions**](WorkspaceApi.md#getWorkspacePermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/permissions/{role} | Get the Workspace permission by given role
 [**getWorkspaceSecurity**](WorkspaceApi.md#getWorkspaceSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security | Get the Workspace security information
 [**getWorkspaceSecurityUsers**](WorkspaceApi.md#getWorkspaceSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/security/users | Get the Workspace security users list
+[**linkDataset**](WorkspaceApi.md#linkDataset) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/link | 
 [**removeWorkspaceAccessControl**](WorkspaceApi.md#removeWorkspaceAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Remove the specified access from the given Organization Workspace
 [**setWorkspaceDefaultSecurity**](WorkspaceApi.md#setWorkspaceDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/default | Set the Workspace default security
+[**unlinkDataset**](WorkspaceApi.md#unlinkDataset) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/unlink | 
 [**updateWorkspace**](WorkspaceApi.md#updateWorkspace) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id} | Update a workspace
 [**updateWorkspaceAccessControl**](WorkspaceApi.md#updateWorkspaceAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/security/access/{identity_id} | Update the specified access to User for a Workspace
 [**uploadWorkspaceFile**](WorkspaceApi.md#uploadWorkspaceFile) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/files | Upload a file for the Workspace
@@ -987,6 +989,77 @@ Name | Type | Description  | Notes
 **200** | The Workspace security users list |  -  |
 **404** | the Workspace or the User specified is unknown or you don&#39;t have access to them |  -  |
 
+<a name="linkDataset"></a>
+# **linkDataset**
+> Workspace linkDataset(organizationId, workspaceId, datasetId)
+
+
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.WorkspaceApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String datasetId = "datasetId_example"; // String | dataset id to be linked to
+    try {
+      Workspace result = apiInstance.linkDataset(organizationId, workspaceId, datasetId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling WorkspaceApi#linkDataset");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **datasetId** | **String**| dataset id to be linked to |
+
+### Return type
+
+[**Workspace**](Workspace.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the workspace details |  -  |
+**400** | Bad request |  -  |
+**404** | the workspace specified is unknown or you don&#39;t have access to it |  -  |
+
 <a name="removeWorkspaceAccessControl"></a>
 # **removeWorkspaceAccessControl**
 > removeWorkspaceAccessControl(organizationId, workspaceId, identityId)
@@ -1125,6 +1198,77 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | The Workspace default visibility |  -  |
 **404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
+
+<a name="unlinkDataset"></a>
+# **unlinkDataset**
+> Workspace unlinkDataset(organizationId, workspaceId, datasetId)
+
+
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.WorkspaceApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    WorkspaceApi apiInstance = new WorkspaceApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String workspaceId = "workspaceId_example"; // String | the Workspace identifier
+    String datasetId = "datasetId_example"; // String | dataset id to be linked to
+    try {
+      Workspace result = apiInstance.unlinkDataset(organizationId, workspaceId, datasetId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling WorkspaceApi#unlinkDataset");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **datasetId** | **String**| dataset id to be linked to |
+
+### Return type
+
+[**Workspace**](Workspace.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | the workspace details |  -  |
+**400** | Bad request |  -  |
+**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
 <a name="updateWorkspace"></a>
 # **updateWorkspace**
