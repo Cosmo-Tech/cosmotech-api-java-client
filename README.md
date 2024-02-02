@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.0.2
-  - Build date: 2024-02-02T14:13:45.695174443Z[Etc/UTC]
+- API version: 3.0.3-SNAPSHOT
+  - Build date: 2024-02-02T14:49:51.764844674Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.0.2</version>
+  <version>3.0.3-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.0.2"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.0.3-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.0.2.jar`
+* `target/cosmotech-api-java-client-3.0.3-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
