@@ -31,7 +31,7 @@ import java.util.Map;
  * the Dataset Copy Parameters
  */
 @ApiModel(description = "the Dataset Copy Parameters")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-15T11:15:25.737123175Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-16T13:23:30.031102083Z[Etc/UTC]")
 public class DatasetCopyParameters {
   public static final String SERIALIZED_NAME_SOURCE_ID = "sourceId";
   @SerializedName(SERIALIZED_NAME_SOURCE_ID)
