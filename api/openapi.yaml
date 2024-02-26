@@ -31,12 +31,16 @@ tags:
   name: connector
 - description: ScenarioRunResult Management
   name: scenariorunresult
+- description: Runner Management
+  name: runner
 - description: Solution Management
   name: solution
 - description: Scenario Management
   name: scenario
 - description: Organization Management
   name: organization
+- description: Run Management
+  name: run
 - description: Workspace Management
   name: workspace
 paths:
@@ -3673,6 +3677,835 @@ paths:
       - scenariorunresult
       x-contentType: application/json
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners:
+    get:
+      operationId: listRunners
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ThreeRunner:
+                  $ref: '#/components/examples/ThreeRunners'
+              schema:
+                example: null
+                items:
+                  $ref: '#/components/schemas/Runner'
+                type: array
+          description: the list of Runners
+      summary: List all Runners
+      tags:
+      - runner
+      x-accepts: application/json
+    post:
+      operationId: createRunner
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              MasterRunner:
+                $ref: '#/components/examples/BreweryRunnerIn'
+              ChildRunner:
+                $ref: '#/components/examples/BreweryChildRunnerIn'
+            schema:
+              $ref: '#/components/schemas/Runner'
+          application/yaml:
+            examples:
+              MasterRunner:
+                $ref: '#/components/examples/BreweryRunnerIn'
+              ChildRunner:
+                $ref: '#/components/examples/BreweryChildRunnerIn'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the Runner to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                Runner:
+                  $ref: '#/components/examples/BreweryRunner'
+              schema:
+                $ref: '#/components/schemas/Runner'
+          description: the runner details
+        "400":
+          description: Bad request
+      summary: Create a new Runner
+      tags:
+      - runner
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}:
+    delete:
+      operationId: deleteRunner
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Delete a runner
+      tags:
+      - runner
+      x-accepts: application/json
+    get:
+      operationId: getRunner
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Runner:
+                  $ref: '#/components/examples/BreweryRunner'
+              schema:
+                $ref: '#/components/schemas/Runner'
+          description: the Runner details
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Get the details of an runner
+      tags:
+      - runner
+      x-accepts: application/json
+    patch:
+      operationId: updateRunner
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryRunnerUpdate'
+            schema:
+              $ref: '#/components/schemas/Runner'
+          application/yaml:
+            examples:
+              BreweryUpdate:
+                $ref: '#/components/examples/BreweryRunnerUpdate'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the new Runner details. This endpoint can't be used to update
+          security
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                BreweryUpdated:
+                  $ref: '#/components/examples/BreweryRunnerUpdated'
+              schema:
+                $ref: '#/components/schemas/Runner'
+          description: the runner details
+        "400":
+          description: Bad request
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Update a runner
+      tags:
+      - runner
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/start:
+    post:
+      operationId: StartRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunnerLastRun'
+          description: the Run id started
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Start a run with runner parameters
+      tags:
+      - runner
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop:
+    post:
+      operationId: StopRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "202":
+          description: the last Run has been stopped
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Stop the last run
+      tags:
+      - runner
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/permissions/{role}:
+    get:
+      operationId: getRunnerPermissions
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Role
+        explode: false
+        in: path
+        name: role
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - delete
+                - write
+                - createchildren
+                items:
+                  example: null
+                  type: string
+                type: array
+          description: The Runners security permission list
+      summary: Get the Runner permission by given role
+      tags:
+      - runner
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security:
+    get:
+      operationId: getRunnerSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                RunnerSecurity:
+                  $ref: '#/components/examples/BreweryRunnerSecurity'
+              schema:
+                $ref: '#/components/schemas/RunnerSecurity'
+          description: The Runner security
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Get the Runner security information
+      tags:
+      - runner
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/default:
+    post:
+      operationId: setRunnerDefaultSecurity
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryRunnerRole:
+                $ref: '#/components/examples/BreweryRunnerRole'
+            schema:
+              $ref: '#/components/schemas/RunnerRole'
+          application/yaml:
+            examples:
+              BreweryRunnerRole:
+                $ref: '#/components/examples/BreweryRunnerRole'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: "This change the runner default security. The default security\
+          \ is the role assigned to any person not on the Access Control List. If\
+          \ the default security is None, then nobody outside of the ACL can access\
+          \ the runner."
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                NoneRunnerSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleNone'
+                WriterRunnerSecurity:
+                  $ref: '#/components/examples/BreweryDefaultSecurityRoleWriter'
+              schema:
+                $ref: '#/components/schemas/RunnerSecurity'
+          description: The Runner default visibility
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Set the Runner default security
+      tags:
+      - runner
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access:
+    post:
+      operationId: addRunnerAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              RunnerAccess:
+                $ref: '#/components/examples/BreweryRunnerAccessControl'
+            schema:
+              $ref: '#/components/schemas/RunnerAccessControl'
+          application/yaml:
+            examples:
+              RunnerAccess:
+                $ref: '#/components/examples/BreweryRunnerAccessControl'
+            schema:
+              example: null
+              format: binary
+              type: string
+        description: the new Runner security access to add.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                RunnerAccessControl:
+                  $ref: '#/components/examples/BreweryRunnerAccessControl'
+              schema:
+                $ref: '#/components/schemas/RunnerAccessControl'
+          description: The Runner access
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Add a control access to the Runner
+      tags:
+      - runner
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id}:
+    delete:
+      operationId: removeRunnerAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "404":
+          description: the Runner or the user specified is unknown or you don't have
+            access to them
+      summary: Remove the specified access from the given Organization Runner
+      tags:
+      - runner
+      x-accepts: application/json
+    get:
+      operationId: getRunnerAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                RunnerAccessControl:
+                  $ref: '#/components/examples/BreweryRunnerAccessControl'
+              schema:
+                $ref: '#/components/schemas/RunnerAccessControl'
+          description: The Runner access
+        "404":
+          description: the Runner or user specified is unknown or you don't have access
+            to it
+      summary: Get a control access for the Runner
+      tags:
+      - runner
+      x-accepts: application/json
+    patch:
+      operationId: updateRunnerAccessControl
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the User identifier
+        explode: false
+        in: path
+        name: identity_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              BreweryRunnerRole:
+                $ref: '#/components/examples/BreweryRunnerRole'
+            schema:
+              $ref: '#/components/schemas/RunnerRole'
+        description: The new Runner Access Control
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                RunnerAccessControl:
+                  $ref: '#/components/examples/BreweryRunnerAccessControl'
+              schema:
+                $ref: '#/components/schemas/RunnerAccessControl'
+          description: The Runner access
+        "404":
+          description: The Organization specified is unknown or you don't have access
+            to it
+      summary: Update the specified access to User for a Runner
+      tags:
+      - runner
+      x-contentType: application/json
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/users:
+    get:
+      operationId: getRunnerSecurityUsers
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                - alice@mycompany.com
+                - bob@mycompany.com
+                items:
+                  example: null
+                  type: string
+                type: array
+          description: The Runner security users list
+        "404":
+          description: the Runner specified is unknown or you don't have access to
+            it
+      summary: Get the Runner security users list
+      tags:
+      - runner
+      x-accepts: application/json
   /organizations/{organization_id}/solutions:
     get:
       operationId: findAllSolutions
@@ -6607,6 +7440,286 @@ paths:
       tags:
       - organization
       x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}:
+    delete:
+      operationId: deleteRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Run identifier
+        explode: false
+        in: path
+        name: run_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Request succeeded
+        "400":
+          description: Bad request
+        "404":
+          description: the Run specified is unknown or you don't have access to it
+      summary: Delete a run
+      tags:
+      - run
+      x-accepts: application/json
+    get:
+      operationId: getRun
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Run identifier
+        explode: false
+        in: path
+        name: run_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Run:
+                  $ref: '#/components/examples/BreweryRun'
+              schema:
+                $ref: '#/components/schemas/Run'
+          description: the Run details
+        "404":
+          description: the Run specified is unknown or you don't have access to it
+      summary: Get the details of a run
+      tags:
+      - run
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/status:
+    get:
+      operationId: getRunStatus
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Run identifier
+        explode: false
+        in: path
+        name: run_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Run:
+                  $ref: '#/components/examples/BreweryRunStatus'
+              schema:
+                $ref: '#/components/schemas/RunStatus'
+          description: the run status details
+      summary: get the status for the Run
+      tags:
+      - run
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs:
+    get:
+      operationId: getRunLogs
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Run identifier
+        explode: false
+        in: path
+        name: run_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Run:
+                  $ref: '#/components/examples/BreweryRunLogs'
+              schema:
+                $ref: '#/components/schemas/RunLogs'
+          description: the run logs details
+      summary: get the logs for the Run
+      tags:
+      - run
+      x-accepts: application/json
+  /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs:
+    get:
+      operationId: ListRuns
+      parameters:
+      - description: the Organization identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Workspace identifier
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: the Runner identifier
+        explode: false
+        in: path
+        name: runner_id
+        required: true
+        schema:
+          example: null
+          type: string
+        style: simple
+      - description: page number to query
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      - description: amount of result by page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          example: null
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OneRun:
+                  $ref: '#/components/examples/OneRun'
+              schema:
+                example: null
+                items:
+                  $ref: '#/components/schemas/Run'
+                type: array
+          description: the run details list
+      summary: get the list of Runs for the Runner
+      tags:
+      - run
+      x-accepts: application/json
   /organizations/{organization_id}/workspaces:
     get:
       operationId: findAllWorkspaces
@@ -7925,6 +9038,16 @@ components:
             role: editor
           - id: john.doe@cosmotech.com
             role: viewer
+    BreweryChildRunnerIn:
+      description: Brewery Child Runner input example
+      summary: Brewery Child Runner input example
+      value:
+        name: Brewery Child Analysis
+        description: Brewery child reference analysis
+        tags:
+        - Brewery
+        runTemplateId: hundred
+        parentId: "1"
     BreweryChildScenarioIn:
       description: Brewery Child Scenario input example
       summary: Brewery Child Scenario input example
@@ -7953,13 +9076,13 @@ components:
       value:
         role: editor
     BreweryDefaultSecurityRoleNone:
-      description: Brewery Scenario example
-      summary: Brewery Scenario Writer default security
+      description: Brewery Runner example
+      summary: Brewery Runner Writer default security
       value:
         default: none
     BreweryDefaultSecurityRoleWriter:
-      description: Brewery Scenario example
-      summary: Brewery Scenario Writer default security
+      description: Brewery Runner example
+      summary: Brewery Runner Writer default security
       value:
         default: editor
     BreweryOrganizationAccessControl:
@@ -7981,6 +9104,266 @@ components:
         accessControlList:
         - id: bob@mycosmocompany.com
           role: editor
+    BreweryRun:
+      description: Brewery Run example
+      summary: Brewery Run example
+      value:
+        id: run-bDMr5lM9Vp
+        organizationId: O-x2QOMVXpjX
+        workflowId: 07193ced-9895-444f-b2be-31e8bfc3e768
+        csmSimulationRun: a2880d46-a60d-4215-a593-783452e0df8f
+        generateName: workflow-s-eeypwem0kw-
+        workflowName: workflow-s-eeypwem0kw-lsczk
+        ownerId: null
+        workspaceId: W-OGNQqJ7wP0
+        workspaceKey: Brewery
+        runnerId: r-EEYpWeM0kW
+        solutionId: SOL-w4Kn79JXKz
+        runTemplateId: hundred
+        computeSize: '%NONE%'
+        datasetList: null
+        parametersValues: null
+        sendDatasetsToDataWarehouse: false
+        sendInputParametersToDataWarehouse: false
+        nodeLabel: null
+    BreweryRunContainer:
+      description: Brewery Run ran with containers information example
+      summary: Brewery Run Containers example
+      value:
+        id: "1"
+        workflowId: "1"
+        workflowName: w1
+        ownerId: "1"
+        state: Running
+        startTime: "4/15/2021, 10:52:18.593 AM"
+        nodeLabel: highcpupool
+    BreweryRunLogs:
+      description: Brewery Run logs with plain text example
+      summary: Brewery Run logs  example
+      value:
+        runId: "1"
+        containers:
+          fetchDatasetContainers:
+            nodeId: azertyuiop-123
+            containerName: azertyuiop
+            children:
+            - wxcvbn
+            logs: cannot read source file
+          runLogs:
+            nodeid: wxcvbn-123
+            containerName: wxcvbn
+            logs: cannot run solution
+    BreweryRunStartContainers:
+      description: Brewery start Run directly with containers example
+      summary: Brewery start Run directly with containers example
+      value:
+        generateName: workflow-
+        nodeLabel: highcpupool
+    BreweryRunStatus:
+      description: Brewery Runner Run status example
+      summary: Brewery status example
+      value:
+        id: run-bDMr5lM9Vp
+        organizationId: O-x2QOMVXpjX
+        workspaceId: W-x2QOMVXpjX
+        runnerId: r-x2QOMVXpjX
+        workflowId: 07193ced-9895-444f-b2be-31e8bfc3e768
+        workflowName: workflow-s-eeypwem0kw-lsczk
+        startTime: 2021-05-18T16:15:29.000Z
+        endTime: 2021-05-18T16:17:07.000Z
+        phase: Succeeded
+        progress: 5/5
+        message: null
+        estimatedDuration: null
+        nodes:
+        - id: workflow-s-eeypwem0kw-lsczk
+          name: workflow-s-eeypwem0kw-lsczk
+          displayName: workflow-s-eeypwem0kw-lsczk
+          estimatedDuration: null
+          hostNodeName: null
+          message: null
+          phase: Succeeded
+          progress: 5/5
+          startTime: 2021-05-18T16:15:29.000Z
+          endTime: 2021-05-18T16:17:07.000Z
+        - id: workflow-s-eeypwem0kw-lsczk-1050490228
+          name: workflow-s-eeypwem0kw-lsczk.applyParametersContainer
+          displayName: applyParametersContainer
+          estimatedDuration: null
+          hostNodeName: phoenix-worker
+          message: null
+          phase: Succeeded
+          progress: 1/1
+          startTime: 2021-05-18T16:15:29.000Z
+          endTime: 2021-05-18T16:15:43.000Z
+        - id: workflow-s-eeypwem0kw-lsczk-1339592929
+          name: workflow-s-eeypwem0kw-lsczk.postRunContainer
+          displayName: postRunContainer
+          estimatedDuration: null
+          hostNodeName: phoenix-worker
+          message: null
+          phase: Succeeded
+          progress: 1/1
+          startTime: 2021-05-18T16:16:45.000Z
+          endTime: 2021-05-18T16:16:57.000Z
+        - id: workflow-s-eeypwem0kw-lsczk-2556449795
+          name: workflow-s-eeypwem0kw-lsczk.runContainer
+          displayName: runContainer
+          estimatedDuration: null
+          hostNodeName: null
+          message: null
+          phase: Succeeded
+          progress: 1/1
+          startTime: 2021-05-18T16:16:35.000Z
+          endTime: 2021-05-18T16:16:42.000Z
+        - id: workflow-s-eeypwem0kw-lsczk-545137412
+          name: workflow-s-eeypwem0kw-lsczk.preRunContainer
+          displayName: preRunContainer
+          estimatedDuration: null
+          hostNodeName: phoenix-worker
+          message: null
+          phase: Succeeded
+          progress: 1/1
+          startTime: 2021-05-18T16:16:13.000Z
+          endTime: 2021-05-18T16:16:25.000Z
+        - id: workflow-s-eeypwem0kw-lsczk-996178104
+          name: workflow-s-eeypwem0kw-lsczk.validateDataContainer
+          displayName: validateDataContainer
+          estimatedDuration: null
+          hostNodeName: phoenix-worker
+          message: null
+          phase: Succeeded
+          progress: 1/1
+          startTime: 2021-05-18T16:15:53.000Z
+          endTime: 2021-05-18T16:16:03.000Z
+    BreweryRunner:
+      description: Brewery Runner example
+      summary: Brewery Runner
+      value:
+        id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        worskspaceId: "1"
+        solutionId: "1"
+        solutionName: Brewery Solution
+        runTemplateId: hundred
+        runTemplateName: Full simulation 100 steps
+        state: Running
+        ownerName: Bob
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+        lastRun:
+          csmSimulationRun: ae8d1959-7a71-48ec-9f33-3fae53358cf1
+          runnerRunId: SR-V9EYbbOE0
+          workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
+          workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+    BreweryRunnerAccessControl:
+      description: Set an access control for a user to a workspace.
+      summary: Set an access control.
+      value:
+        id: bob.doe@cosmotech.com
+        role: editor
+    BreweryRunnerComparison:
+      description: Brewery comparison result between a parent Runner and its child
+      summary: Brewery comparison result
+      value:
+        runnerId: "1"
+        comparedRunnerId: "2"
+        changedValues:
+        - parameterId: prefix
+          varType: string
+          value: Brewery Master Analysis
+          comparedValue: Brewery Master Analysis 2021
+    BreweryRunnerDataDownloadJob:
+      description: Brewery Runner Data Download Job
+      summary: Example of a runner data download job
+      value:
+        id: sdl-abc123defghi
+    BreweryRunnerIn:
+      description: Brewery Runner input example
+      summary: Brewery Runner input example
+      value:
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        runTemplateId: hundred
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+    BreweryRunnerRole:
+      description: Set a Role for a User to a Runner.
+      summary: Set a Runner Role.
+      value:
+        role: editor
+    BreweryRunnerSecurity:
+      description: Brewery Runner security example
+      summary: Brewery Runner security
+      value:
+        default: viewer
+        accessControlList:
+        - id: alice.doe@cosmotech.com
+          role: editor
+    BreweryRunnerUpdate:
+      description: Update the Brewery Runner by changing its name
+      summary: Update the Brewery Runner
+      value:
+        name: Brewery Master Analysis 2021
+    BreweryRunnerUpdated:
+      description: Brewery updated Runner example
+      summary: Brewery updated Runner
+      value:
+        id: "1"
+        name: Brewery Master Analysis 2021
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        worskspaceId: "1"
+        solutionId: "1"
+        solutionName: Brewery Solution
+        runTemplateId: hundred
+        runTemplateName: Full simulation 100 steps
+        state: Created
+        ownerName: Bob
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
     BreweryScenario:
       description: Brewery Scenario example
       summary: Brewery Scenario
@@ -8585,6 +9968,28 @@ components:
             valueType: string
             default: /mnt/scenariorun-data
             envVar: EXPORT_CSV_FILE_ABSOLUTE_PATH
+    OneRun:
+      description: Brewery Run list example
+      summary: Brewery Run list example
+      value:
+      - id: run-bDMr5lM9Vp
+        organizationId: O-x2QOMVXpjX
+        workflowId: 07193ced-9895-444f-b2be-31e8bfc3e768
+        csmSimulationRun: a2880d46-a60d-4215-a593-783452e0df8f
+        generateName: workflow-s-eeypwem0kw-
+        workflowName: workflow-s-eeypwem0kw-lsczk
+        ownerId: null
+        workspaceId: W-OGNQqJ7wP0
+        workspaceKey: Brewery
+        runnerId: r-EEYpWeM0kW
+        solutionId: SOL-w4Kn79JXKz
+        runTemplateId: hundred
+        computeSize: '%NONE%'
+        datasetList: null
+        parametersValues: null
+        sendDatasetsToDataWarehouse: false
+        sendInputParametersToDataWarehouse: false
+        nodeLabel: null
     OneScenarioRun:
       description: Brewery ScenarioRun list example
       summary: Brewery ScenarioRun list example
@@ -8755,6 +10160,100 @@ components:
         target: target-node-name
         name: entity-name
         params: "param1: 'value1', param2: 'value2'"
+    RunnersTree:
+      description: Runners Tree example with 1 master Runner and 2 children
+      summary: Runners Tree example
+      value:
+      - id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        version: 1.0.0
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        worskspaceId: "1"
+        state: Created
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+      - id: "2"
+        name: Brewery Analysis name example
+        description: Brewery analysis with example as name prefix
+        tags:
+        - Brewery
+        - example
+        parentId: "1"
+        ownerId: "1"
+        worskspaceId: "1"
+        state: Running
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
+        lastRun:
+          csmSimulationRun: ae8d1959-7a71-48ec-9f33-3fae53358cf1
+          runnerRunId: SR-V9EYbbOE0
+          workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
+          workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+      - id: "3"
+        name: Brewery Analysis name no change
+        description: Brewery analysis with no change on name prefix
+        tags:
+        - Brewery
+        parentId: "1"
+        ownerId: "2"
+        worskspaceId: "1"
+        state: Failed
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        ownerName: Alice
+        runTemplateName: Full simulation 100 steps
+        solutionName: Brewery Solution
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
+        lastRun:
+          csmSimulationRun: ae8d1959-7a71-48ec-9f33-3fae53358cf1
+          runnerRunId: SR-V9EYbbOE0
+          workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
+          workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
     ScenarioRunProbeResultExample:
       description: "null"
       summary: "null"
@@ -8876,6 +10375,103 @@ components:
       summary: Successful status rollback
       value:
         message: Dataset d-012456789 status is now SUCCESS
+    ThreeRunners:
+      description: Three Runners with parent master Runner and two children Runners
+      summary: Three Runners with parent and children
+      value:
+      - id: "1"
+        name: Brewery Master Analysis
+        description: Brewery master reference analysis
+        tags:
+        - Brewery
+        - reference
+        ownerId: "1"
+        worskspaceId: "1"
+        solutionId: "1"
+        solutionName: Brewery Solution
+        runTemplateId: hundred
+        runTemplateName: Full simulation 100 steps
+        state: Created
+        ownerName: Bob
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+      - id: "2"
+        name: Brewery Analysis name example
+        description: Brewery analysis with example as name prefix
+        tags:
+        - Brewery
+        - example
+        parentId: "1"
+        ownerId: "1"
+        worskspaceId: "1"
+        solutionId: "1"
+        solutionName: Brewery Solution
+        runTemplateId: hundred
+        runTemplateName: Full simulation 100 steps
+        state: Running
+        ownerName: Bob
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: example
+        lastRun:
+          csmSimulationRun: ae8d1959-7a71-48ec-9f33-3fae53358cf1
+          runnerRunId: SR-V9EYbbOE0
+          workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
+          workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
+      - id: "3"
+        name: Brewery Analysis name no change
+        description: Brewery analysis with no change on name prefix
+        tags:
+        - Brewery
+        parentId: "1"
+        ownerId: "2"
+        worskspaceId: "1"
+        solutionId: "1"
+        solutionName: Brewery Solution
+        runTemplateId: hundred
+        runTemplateName: Full simulation 100 steps
+        state: Failed
+        ownerName: Alice
+        creationDate: 2021-04-21T17:32:28Z
+        lastUpdate: 2021-04-21T17:32:28Z
+        datasetList:
+        - "1"
+        parametersValues:
+        - parameterId: prefix
+          varType: string
+          value: ""
+          inherited: true
+        lastRun:
+          csmSimulationRun: ae8d1959-7a71-48ec-9f33-3fae53358cf1
+          runnerRunId: SR-V9EYbbOE0
+          workflowId: c7cd3f15-8a3b-4bcd-b3ca-62ee24c13d67
+          workflowName: workflow-s-dwpxbzmdxn-zkvd7
+        security:
+          default: viewer
+          accessControlList:
+          - id: alice.doe@cosmotech.com
+            role: admin
     ThreeScenarios:
       description: Three Scenarios with parent master Scenario and two children Scenarios
       summary: Three Scenarios with parent and children
@@ -9121,6 +10717,18 @@ components:
           accessControlList:
           - id: bob.doe@cosmotech.com
             role: editor
+    TwoRunnerRunTemplateParameterValueToAddOrReplace:
+      description: Runners Run Templates added
+      summary: Runners Run Templates added
+      value:
+      - parameterId: prefix
+        varType: string
+        value: ""
+        inherited: true
+      - parameterId: prefix2
+        varType: string
+        value: ""
+        inherited: true
     TwoScenarioRunTemplateParameterValueToAddOrReplace:
       description: Scenarios Run Templates added
       summary: Scenarios Run Templates added
@@ -10120,6 +11728,666 @@ components:
       - cpu
       - memory
       type: object
+    Run:
+      description: a Run with only base properties
+      example:
+        computeSize: computeSize
+        workflowName: workflowName
+        generateName: generateName
+        ownerId: ownerId
+        organizationId: organizationId
+        createdAt: createdAt
+        parametersValues:
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          value: value
+        csmSimulationRun: csmSimulationRun
+        runTemplateId: runTemplateId
+        runnerId: runnerId
+        containers:
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          entrypoint: entrypoint
+          name: name
+          envVars:
+            key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
+          id: id
+          solutionContainer: true
+          nodeLabel: nodeLabel
+          labels:
+            key: labels
+          dependencies:
+          - dependencies
+          - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
+        - image: image
+          runArgs:
+          - runArgs
+          - runArgs
+          entrypoint: entrypoint
+          name: name
+          envVars:
+            key: envVars
+          runSizing:
+            requests:
+              memory: memory
+              cpu: cpu
+            limits:
+              memory: memory
+              cpu: cpu
+          id: id
+          solutionContainer: true
+          nodeLabel: nodeLabel
+          labels:
+            key: labels
+          dependencies:
+          - dependencies
+          - dependencies
+          artifacts:
+          - path: path
+            name: name
+          - path: path
+            name: name
+        id: id
+        state: ""
+        solutionId: solutionId
+        datasetList:
+        - datasetList
+        - datasetList
+        nodeLabel: nodeLabel
+        workflowId: workflowId
+        workspaceId: workspaceId
+        workspaceKey: workspaceKey
+      properties:
+        id:
+          description: the Run
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        state:
+          allOf:
+          - $ref: '#/components/schemas/RunState'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+        organizationId:
+          description: the Organization id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        csmSimulationRun:
+          description: the Cosmo Tech Simulation Run Id
+          example: null
+          readOnly: true
+          type: string
+        generateName:
+          description: the base name for workflow name generation
+          example: null
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        ownerId:
+          description: the user id which own this run
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        workspaceId:
+          description: the Workspace Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        workspaceKey:
+          description: technical key for resource name convention and version grouping.
+            Must be unique
+          example: null
+          readOnly: true
+          type: string
+        runnerId:
+          description: the Runner Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        solutionId:
+          description: the Solution Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        runTemplateId:
+          description: the Solution Run Template id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        computeSize:
+          description: the compute size needed for this Analysis. Standard sizes are
+            basic and highcpu. Default is basic
+          example: null
+          readOnly: true
+          type: string
+        createdAt:
+          description: the Run creation date
+          example: null
+          readOnly: true
+          type: string
+        datasetList:
+          description: the list of Dataset Id associated to this Run
+          example: null
+          items:
+            example: null
+            type: string
+          readOnly: true
+          type: array
+        parametersValues:
+          description: the list of Run Template parameters values
+          example: null
+          items:
+            $ref: '#/components/schemas/RunTemplateParameterValue'
+          readOnly: true
+          type: array
+        nodeLabel:
+          description: the node label request
+          example: null
+          readOnly: true
+          type: string
+        containers:
+          description: the containers list. This information is not returned by the
+            API.
+          example: null
+          items:
+            $ref: '#/components/schemas/RunContainer'
+          type: array
+      type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
+    RunContainer:
+      description: a Run container description
+      example:
+        image: image
+        runArgs:
+        - runArgs
+        - runArgs
+        entrypoint: entrypoint
+        name: name
+        envVars:
+          key: envVars
+        runSizing:
+          requests:
+            memory: memory
+            cpu: cpu
+          limits:
+            memory: memory
+            cpu: cpu
+        id: id
+        solutionContainer: true
+        nodeLabel: nodeLabel
+        labels:
+          key: labels
+        dependencies:
+        - dependencies
+        - dependencies
+        artifacts:
+        - path: path
+          name: name
+        - path: path
+          name: name
+      properties:
+        id:
+          description: the container Id
+          example: null
+          readOnly: true
+          type: string
+        name:
+          description: the container name
+          example: null
+          type: string
+        labels:
+          additionalProperties:
+            example: null
+            type: string
+          description: the metadata labels
+          example: null
+          type: object
+        envVars:
+          additionalProperties:
+            example: null
+            type: string
+          description: environment variable map
+          example: null
+          type: object
+        image:
+          description: the container image URI
+          example: null
+          type: string
+        entrypoint:
+          description: the container entry point
+          example: null
+          type: string
+        runArgs:
+          description: the list of run arguments for the container
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        dependencies:
+          description: the list of dependencies container name to run this container
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        solutionContainer:
+          description: whether or not this container is a Cosmo Tech solution container
+          example: null
+          readOnly: true
+          type: boolean
+        nodeLabel:
+          description: the node label request
+          example: null
+          type: string
+        runSizing:
+          $ref: '#/components/schemas/ContainerResourceSizing'
+        artifacts:
+          description: the list of artifacts
+          example: null
+          items:
+            $ref: '#/components/schemas/RunContainerArtifact'
+          type: array
+      required:
+      - image
+      - name
+      type: object
+    RunContainerArtifact:
+      description: a runner run container artifact
+      example:
+        path: path
+        name: name
+      properties:
+        name:
+          description: the artifact name
+          example: null
+          type: string
+        path:
+          description: the artifact path (relative to /var/csmoutput)
+          example: null
+          type: string
+      type: object
+    RunContainerLogs:
+      description: logs for a given container
+      example:
+        children:
+        - children
+        - children
+        containerName: containerName
+        nodeId: nodeId
+        logs: logs
+      properties:
+        nodeId:
+          description: the node Id which has executed this log
+          example: null
+          readOnly: true
+          type: string
+        containerName:
+          description: the container name
+          example: null
+          readOnly: true
+          type: string
+        children:
+          description: the list of children node id
+          example: null
+          items:
+            example: null
+            type: string
+          readOnly: true
+          type: array
+        logs:
+          description: the node logs in plain text
+          example: null
+          readOnly: true
+          type: string
+      type: object
+    RunLogs:
+      description: the run logs returned by all containers
+      example:
+        containers:
+          key:
+            children:
+            - children
+            - children
+            containerName: containerName
+            nodeId: nodeId
+            logs: logs
+        runId: runId
+      properties:
+        runId:
+          description: the Run Id
+          example: null
+          readOnly: true
+          type: string
+        containers:
+          additionalProperties:
+            $ref: '#/components/schemas/RunContainerLogs'
+          description: the container map of logs
+          example: null
+          readOnly: true
+          type: object
+      type: object
+    RunResourceRequested:
+      description: the memory and CPU requested by the pod
+      example:
+        memory: 1
+        cpu: 6
+      properties:
+        cpu:
+          description: the cpu requested
+          example: null
+          format: int64
+          type: integer
+        memory:
+          description: the memory requested
+          example: null
+          format: int64
+          type: integer
+      type: object
+    RunSearch:
+      description: the search options
+      example: null
+      properties:
+        solutionId:
+          description: the Solution Id to search
+          example: null
+          type: string
+        runTemplateId:
+          description: the Solution Analysis Id to search
+          example: null
+          type: string
+        workspaceId:
+          description: the Workspace Id to search
+          example: null
+          type: string
+        runnerId:
+          description: the Runner Id to search
+          example: null
+          type: string
+        state:
+          description: the state to search
+          enum:
+          - FetchingDatasets
+          - FetchingScenarioParameters
+          - ApplyingScenarioParameters
+          - ValidatingScenarioData
+          - SendingScenarioDataToDataWarehouse
+          - PreRun
+          - Running
+          - PostRun
+          - Success
+          - Failed
+          example: null
+          type: string
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
+          type: string
+        ownerId:
+          description: the owner Id to search
+          example: null
+          type: string
+      type: object
+    RunStartContainers:
+      description: the parameters to run directly containers
+      example: null
+      properties:
+        generateName:
+          description: the base name for workflow name generation
+          example: null
+          type: string
+        csmSimulationId:
+          description: Cosmo Tech Simulation Run Id
+          example: null
+          type: string
+        nodeLabel:
+          description: the node label request
+          example: null
+          type: string
+        labels:
+          additionalProperties:
+            example: null
+            type: string
+          description: the workflow labels
+          example: null
+          type: object
+        containers:
+          description: the containerslist
+          example: null
+          items:
+            $ref: '#/components/schemas/RunContainer'
+          type: array
+      required:
+      - containers
+      - csmSimulationId
+      type: object
+    RunState:
+      description: the Run end-to-end state
+      enum:
+      - Running
+      - Successful
+      - Failed
+      - Unknown
+      example: null
+      readOnly: true
+      type: string
+    RunStatus:
+      description: a Run status
+      example:
+        phase: phase
+        workflowName: workflowName
+        message: message
+        estimatedDuration: 0
+        organizationId: organizationId
+        nodes:
+        - phase: phase
+          outboundNodes:
+          - outboundNodes
+          - outboundNodes
+          containerName: containerName
+          name: name
+          resourcesDuration:
+            memory: 1
+            cpu: 6
+          hostNodeName: hostNodeName
+          progress: progress
+          startTime: startTime
+          id: id
+          endTime: endTime
+          message: message
+          estimatedDuration: 5
+        - phase: phase
+          outboundNodes:
+          - outboundNodes
+          - outboundNodes
+          containerName: containerName
+          name: name
+          resourcesDuration:
+            memory: 1
+            cpu: 6
+          hostNodeName: hostNodeName
+          progress: progress
+          startTime: startTime
+          id: id
+          endTime: endTime
+          message: message
+          estimatedDuration: 5
+        progress: progress
+        runnerId: runnerId
+        startTime: startTime
+        id: id
+        endTime: endTime
+        state: null
+        workflowId: workflowId
+        workspaceId: workspaceId
+      properties:
+        id:
+          description: the Run id
+          example: null
+          type: string
+        organizationId:
+          description: the Organization id
+          example: null
+          type: string
+        workspaceId:
+          description: the Workspace id
+          example: null
+          type: string
+        runnerId:
+          description: the Runner id
+          example: null
+          type: string
+        workflowId:
+          description: the Cosmo Tech compute cluster Argo Workflow Id to search
+          example: null
+          type: string
+        workflowName:
+          description: the Cosmo Tech compute cluster Argo Workflow Name
+          example: null
+          type: string
+        startTime:
+          description: the Run start Date Time
+          example: null
+          type: string
+        endTime:
+          description: the Run end Date Time
+          example: null
+          type: string
+        phase:
+          description: high-level summary of where the workflow is in its lifecycle
+          example: null
+          type: string
+        progress:
+          description: progress to completion
+          example: null
+          type: string
+        message:
+          description: a  human readable message indicating details about why the
+            workflow is in this condition
+          example: null
+          type: string
+        estimatedDuration:
+          description: estimatedDuration in seconds
+          example: null
+          type: integer
+        nodes:
+          description: status of Run nodes
+          example: null
+          items:
+            $ref: '#/components/schemas/RunStatusNode'
+          type: array
+        state:
+          $ref: '#/components/schemas/RunState'
+      type: object
+    RunStatusNode:
+      description: status of a Run Node
+      example:
+        phase: phase
+        outboundNodes:
+        - outboundNodes
+        - outboundNodes
+        containerName: containerName
+        name: name
+        resourcesDuration:
+          memory: 1
+          cpu: 6
+        hostNodeName: hostNodeName
+        progress: progress
+        startTime: startTime
+        id: id
+        endTime: endTime
+        message: message
+        estimatedDuration: 5
+      properties:
+        id:
+          description: the node id
+          example: null
+          type: string
+        name:
+          description: the node unique name
+          example: null
+          type: string
+        containerName:
+          description: the Run container name
+          example: null
+          type: string
+        outboundNodes:
+          description: the list of outbound nodes
+          example: null
+          items:
+            example: null
+            type: string
+          readOnly: true
+          type: array
+        resourcesDuration:
+          $ref: '#/components/schemas/RunResourceRequested'
+        estimatedDuration:
+          description: estimatedDuration in seconds
+          example: null
+          type: integer
+        hostNodeName:
+          description: "HostNodeName name of the Kubernetes node on which the Pod\
+            \ is running, if applicable"
+          example: null
+          type: string
+        message:
+          description: a human readable message indicating details about why the node
+            is in this condition
+          example: null
+          type: string
+        phase:
+          description: high-level summary of where the node is in its lifecycle
+          example: null
+          type: string
+        progress:
+          description: progress to completion
+          example: null
+          type: string
+        startTime:
+          description: the node start time
+          example: null
+          type: string
+        endTime:
+          description: the node end time
+          example: null
+          type: string
+      type: object
     RunTemplate:
       description: a Solution Run Template
       example:
@@ -10485,6 +12753,412 @@ components:
       - git
       - local
       - platform
+      example: null
+      type: string
+    Runner:
+      description: a Runner with base information
+      example:
+        rootId: rootId
+        parentLastRun: ""
+        description: description
+        ownerId: ownerId
+        organizationId: organizationId
+        security: ""
+        parametersValues:
+        - varType: varType
+          parameterId: parameterId
+          isInherited: true
+          value: value
+        - varType: varType
+          parameterId: parameterId
+          isInherited: true
+          value: value
+        ownerName: ownerName
+        runSizing:
+          requests:
+            memory: memory
+            cpu: cpu
+          limits:
+            memory: memory
+            cpu: cpu
+        id: id
+        state: null
+        rootLastRun: ""
+        validationStatus: ""
+        workspaceId: workspaceId
+        lastRun: ""
+        solutionName: solutionName
+        runTemplateName: runTemplateName
+        creationDate: 0
+        parentId: parentId
+        tags:
+        - tags
+        - tags
+        lastUpdate: 6
+        name: name
+        runTemplateId: runTemplateId
+        solutionId: solutionId
+        datasetList:
+        - datasetList
+        - datasetList
+      properties:
+        id:
+          description: the Runner unique identifier
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@org.springframework.data.annotation.Id'
+        name:
+          description: the Runner name
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+        description:
+          description: the Runner description
+          example: null
+          type: string
+        tags:
+          description: the list of tags
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        parentId:
+          description: the Runner parent id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        ownerId:
+          description: the user id which own this Runner
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        rootId:
+          description: the runner root id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        solutionId:
+          description: the Solution Id associated with this Runner
+          example: null
+          readOnly: true
+          type: string
+        runTemplateId:
+          description: the Solution Run Template Id associated with this Runner
+          example: null
+          type: string
+        organizationId:
+          description: the associated Organization Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        workspaceId:
+          description: the associated Workspace Id
+          example: null
+          readOnly: true
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        state:
+          $ref: '#/components/schemas/RunnerJobState'
+        creationDate:
+          description: the Runner creation date
+          example: null
+          format: int64
+          readOnly: true
+          type: integer
+        lastUpdate:
+          description: the last time a Runner was updated
+          example: null
+          format: int64
+          readOnly: true
+          type: integer
+        ownerName:
+          description: the name of the owner
+          example: null
+          readOnly: true
+          type: string
+        solutionName:
+          description: the Solution name
+          example: null
+          readOnly: true
+          type: string
+        runTemplateName:
+          description: the Solution Run Template name associated with this Runner
+          example: null
+          readOnly: true
+          type: string
+        datasetList:
+          description: the list of Dataset Id associated to this Runner Run Template
+          example: null
+          items:
+            example: null
+            type: string
+          type: array
+        runSizing:
+          $ref: '#/components/schemas/RunnerResourceSizing'
+        parametersValues:
+          description: the list of Solution Run Template parameters values
+          example: null
+          items:
+            $ref: '#/components/schemas/RunnerRunTemplateParameterValue'
+          type: array
+        lastRun:
+          allOf:
+          - $ref: '#/components/schemas/RunnerLastRun'
+          - description: the last Runner Run for this Runner
+            example: null
+            type: object
+          example: null
+        parentLastRun:
+          allOf:
+          - $ref: '#/components/schemas/RunnerLastRun'
+          - description: the last Runner Run for the parent of this Runner
+            example: null
+            type: object
+          example: null
+        rootLastRun:
+          allOf:
+          - $ref: '#/components/schemas/RunnerLastRun'
+          - description: the last Runner Run for the root (master) of Runner
+            example: null
+            type: object
+          example: null
+        validationStatus:
+          allOf:
+          - $ref: '#/components/schemas/RunnerValidationStatus'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Searchable'
+        security:
+          allOf:
+          - $ref: '#/components/schemas/RunnerSecurity'
+          example: null
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+      type: object
+      x-class-extra-annotation: '@com.redis.om.spring.annotations.Document'
+    RunnerAccessControl:
+      description: a Runner access control item
+      example:
+        role: role
+        id: id
+      properties:
+        id:
+          description: the identity id
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        role:
+          description: a role
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+      required:
+      - id
+      - role
+      type: object
+    RunnerChangedParameterValue:
+      description: the difference between the values of a parameter
+      example: null
+      properties:
+        parameterId:
+          description: the parameter id the values refer to
+          example: null
+          readOnly: true
+          type: string
+        varType:
+          description: the parameter value type
+          example: null
+          readOnly: true
+          type: string
+        value:
+          description: the parameter value for the reference Runner
+          example: null
+          readOnly: true
+          type: string
+        comparedValue:
+          description: the parameter value for the compared Runner
+          example: null
+          readOnly: true
+          type: string
+      type: object
+    RunnerComparisonResult:
+      description: the result of the comparison of two runners
+      example: null
+      properties:
+        runnerId:
+          description: the Runner Id which is the reference for the comparison
+          example: null
+          readOnly: true
+          type: string
+        comparedRunnerId:
+          description: the Runner Id the reference Runner is compared to
+          example: null
+          readOnly: true
+          type: string
+        changedValues:
+          description: the list of changed values for parameters
+          example: null
+          items:
+            $ref: '#/components/schemas/RunnerChangedParameterValue'
+          readOnly: true
+          type: array
+      type: object
+    RunnerDataDownloadInfo:
+      description: Runner data download job info
+      example: null
+      properties:
+        url:
+          description: the Runner Data Download URL
+          example: null
+          readOnly: true
+          type: string
+        state:
+          $ref: '#/components/schemas/RunnerJobState'
+      type: object
+    RunnerDataDownloadJob:
+      description: Runner data download job
+      example: null
+      properties:
+        id:
+          description: the Runner Data Download job identifier
+          example: null
+          readOnly: true
+          type: string
+      type: object
+    RunnerJobState:
+      description: the Runner job state
+      enum:
+      - Created
+      - Running
+      - Successful
+      - Failed
+      - Unknown
+      - DataIngestionInProgress
+      example: null
+      readOnly: true
+      type: string
+    RunnerLastRun:
+      example:
+        csmSimulationRun: csmSimulationRun
+        workflowName: workflowName
+        workflowId: workflowId
+        runnerRunId: runnerRunId
+      properties:
+        runnerRunId:
+          description: the last Runner Run id
+          example: null
+          type: string
+        csmSimulationRun:
+          description: the last Cosmo Tech Simulation Run id
+          example: null
+          type: string
+        workflowId:
+          description: the last Workflow Id
+          example: null
+          type: string
+        workflowName:
+          description: the last Workflow name
+          example: null
+          type: string
+      type: object
+    RunnerResourceSizing:
+      description: a description object for resource requests and limits (default
+        same configuration as basic sizing)
+      example:
+        requests:
+          memory: memory
+          cpu: cpu
+        limits:
+          memory: memory
+          cpu: cpu
+      properties:
+        requests:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+        limits:
+          $ref: '#/components/schemas/ResourceSizeInfo'
+      required:
+      - limits
+      - requests
+      type: object
+    RunnerRole:
+      description: the Runner Role
+      example:
+        role: role
+      properties:
+        role:
+          description: the Runner Role
+          example: null
+          type: string
+      required:
+      - role
+      type: object
+    RunnerRunTemplateParameterValue:
+      description: the value of a Solution Run Template parameter for a Runner
+      example:
+        varType: varType
+        parameterId: parameterId
+        isInherited: true
+        value: value
+      properties:
+        parameterId:
+          description: the parameter Id
+          example: null
+          type: string
+        varType:
+          description: the parameter value type
+          example: null
+          readOnly: true
+          type: string
+        value:
+          description: the parameter value
+          example: null
+          type: string
+        isInherited:
+          description: whether or not the value is inherited from parent or has been
+            changed
+          example: null
+          type: boolean
+      required:
+      - parameterId
+      - value
+      type: object
+    RunnerSecurity:
+      description: the Runner security information
+      example:
+        default: default
+        accessControlList:
+        - role: role
+          id: id
+        - role: role
+          id: id
+      properties:
+        default:
+          description: the role by default
+          example: null
+          type: string
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+        accessControlList:
+          description: the list which can access this Runner with detailed access
+            control information
+          example: null
+          items:
+            $ref: '#/components/schemas/RunnerAccessControl'
+          type: array
+          x-field-extra-annotation: '@com.redis.om.spring.annotations.Indexed'
+      required:
+      - accessControlList
+      - default
+      type: object
+    RunnerValidationStatus:
+      description: the validation status of the runner
+      enum:
+      - Draft
+      - Rejected
+      - Unknown
+      - Validated
       example: null
       type: string
     Scenario:

@@ -31,7 +31,7 @@ import java.util.Map;
  * a RBAC by component
  */
 @ApiModel(description = "a RBAC by component")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-16T13:23:30.031102083Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-26T08:26:29.278233298Z[Etc/UTC]")
 public class ComponentRolePermissions {
   public static final String SERIALIZED_NAME_COMPONENT = "component";
   @SerializedName(SERIALIZED_NAME_COMPONENT)

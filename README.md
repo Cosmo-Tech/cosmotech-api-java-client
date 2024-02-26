@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 3.0.3-SNAPSHOT
-  - Build date: 2024-02-16T13:23:30.031102083Z[Etc/UTC]
+  - Build date: 2024-02-26T08:26:29.278233298Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -174,6 +174,26 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**updateSolutionsContainerRegistryByOrganizationId**](docs/OrganizationApi.md#updateSolutionsContainerRegistryByOrganizationId) | **PATCH** /organizations/{organization_id}/services/solutionsContainerRegistry | Update the solutions container registry configuration for the Organization specified
 *OrganizationApi* | [**updateStorageByOrganizationId**](docs/OrganizationApi.md#updateStorageByOrganizationId) | **PATCH** /organizations/{organization_id}/services/storage | Update storage configuration for the Organization specified
 *OrganizationApi* | [**updateTenantCredentialsByOrganizationId**](docs/OrganizationApi.md#updateTenantCredentialsByOrganizationId) | **PATCH** /organizations/{organization_id}/services/tenantCredentials | Update tenant credentials for the Organization specified
+*RunApi* | [**deleteRun**](docs/RunApi.md#deleteRun) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Delete a run
+*RunApi* | [**getRun**](docs/RunApi.md#getRun) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Get the details of a run
+*RunApi* | [**getRunLogs**](docs/RunApi.md#getRunLogs) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs | get the logs for the Run
+*RunApi* | [**getRunStatus**](docs/RunApi.md#getRunStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/status | get the status for the Run
+*RunApi* | [**listRuns**](docs/RunApi.md#listRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs | get the list of Runs for the Runner
+*RunnerApi* | [**addRunnerAccessControl**](docs/RunnerApi.md#addRunnerAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access | Add a control access to the Runner
+*RunnerApi* | [**createRunner**](docs/RunnerApi.md#createRunner) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners | Create a new Runner
+*RunnerApi* | [**deleteRunner**](docs/RunnerApi.md#deleteRunner) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Delete a runner
+*RunnerApi* | [**getRunner**](docs/RunnerApi.md#getRunner) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Get the details of an runner
+*RunnerApi* | [**getRunnerAccessControl**](docs/RunnerApi.md#getRunnerAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Get a control access for the Runner
+*RunnerApi* | [**getRunnerPermissions**](docs/RunnerApi.md#getRunnerPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/permissions/{role} | Get the Runner permission by given role
+*RunnerApi* | [**getRunnerSecurity**](docs/RunnerApi.md#getRunnerSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security | Get the Runner security information
+*RunnerApi* | [**getRunnerSecurityUsers**](docs/RunnerApi.md#getRunnerSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/users | Get the Runner security users list
+*RunnerApi* | [**listRunners**](docs/RunnerApi.md#listRunners) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners | List all Runners
+*RunnerApi* | [**removeRunnerAccessControl**](docs/RunnerApi.md#removeRunnerAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Remove the specified access from the given Organization Runner
+*RunnerApi* | [**setRunnerDefaultSecurity**](docs/RunnerApi.md#setRunnerDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/default | Set the Runner default security
+*RunnerApi* | [**startRun**](docs/RunnerApi.md#startRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/start | Start a run with runner parameters
+*RunnerApi* | [**stopRun**](docs/RunnerApi.md#stopRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop | Stop the last run
+*RunnerApi* | [**updateRunner**](docs/RunnerApi.md#updateRunner) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Update a runner
+*RunnerApi* | [**updateRunnerAccessControl**](docs/RunnerApi.md#updateRunnerAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Update the specified access to User for a Runner
 *ScenarioApi* | [**addOrReplaceScenarioParameterValues**](docs/ScenarioApi.md#addOrReplaceScenarioParameterValues) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Add (or replace) Parameter Values for the Scenario specified
 *ScenarioApi* | [**addScenarioAccessControl**](docs/ScenarioApi.md#addScenarioAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access | Add a control access to the Scenario
 *ScenarioApi* | [**compareScenarios**](docs/ScenarioApi.md#compareScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id} | Compare the Scenario with another one and returns the difference for parameters values
@@ -311,6 +331,17 @@ Class | Method | HTTP request | Description
  - [OrganizationService](docs/OrganizationService.md)
  - [OrganizationServices](docs/OrganizationServices.md)
  - [ResourceSizeInfo](docs/ResourceSizeInfo.md)
+ - [Run](docs/Run.md)
+ - [RunContainer](docs/RunContainer.md)
+ - [RunContainerArtifact](docs/RunContainerArtifact.md)
+ - [RunContainerLogs](docs/RunContainerLogs.md)
+ - [RunLogs](docs/RunLogs.md)
+ - [RunResourceRequested](docs/RunResourceRequested.md)
+ - [RunSearch](docs/RunSearch.md)
+ - [RunStartContainers](docs/RunStartContainers.md)
+ - [RunState](docs/RunState.md)
+ - [RunStatus](docs/RunStatus.md)
+ - [RunStatusNode](docs/RunStatusNode.md)
  - [RunTemplate](docs/RunTemplate.md)
  - [RunTemplateHandlerId](docs/RunTemplateHandlerId.md)
  - [RunTemplateOrchestrator](docs/RunTemplateOrchestrator.md)
@@ -319,6 +350,19 @@ Class | Method | HTTP request | Description
  - [RunTemplateParameterValue](docs/RunTemplateParameterValue.md)
  - [RunTemplateResourceSizing](docs/RunTemplateResourceSizing.md)
  - [RunTemplateStepSource](docs/RunTemplateStepSource.md)
+ - [Runner](docs/Runner.md)
+ - [RunnerAccessControl](docs/RunnerAccessControl.md)
+ - [RunnerChangedParameterValue](docs/RunnerChangedParameterValue.md)
+ - [RunnerComparisonResult](docs/RunnerComparisonResult.md)
+ - [RunnerDataDownloadInfo](docs/RunnerDataDownloadInfo.md)
+ - [RunnerDataDownloadJob](docs/RunnerDataDownloadJob.md)
+ - [RunnerJobState](docs/RunnerJobState.md)
+ - [RunnerLastRun](docs/RunnerLastRun.md)
+ - [RunnerResourceSizing](docs/RunnerResourceSizing.md)
+ - [RunnerRole](docs/RunnerRole.md)
+ - [RunnerRunTemplateParameterValue](docs/RunnerRunTemplateParameterValue.md)
+ - [RunnerSecurity](docs/RunnerSecurity.md)
+ - [RunnerValidationStatus](docs/RunnerValidationStatus.md)
  - [Scenario](docs/Scenario.md)
  - [ScenarioAccessControl](docs/ScenarioAccessControl.md)
  - [ScenarioChangedParameterValue](docs/ScenarioChangedParameterValue.md)
