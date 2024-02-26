@@ -38,7 +38,9 @@ public enum DatasetSourceType {
   
   NONE("None"),
   
-  TWINCACHE("Twincache");
+  TWINCACHE("Twincache"),
+  
+  ETL("ETL");
 
   private String value;
 
