@@ -32,7 +32,7 @@ import java.util.Map;
  * the run logs returned by all containers
  */
 @ApiModel(description = "the run logs returned by all containers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-05T09:58:26.330459559Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-05T10:16:25.678426608Z[Etc/UTC]")
 public class RunLogs {
   public static final String SERIALIZED_NAME_RUN_ID = "runId";
   @SerializedName(SERIALIZED_NAME_RUN_ID)
