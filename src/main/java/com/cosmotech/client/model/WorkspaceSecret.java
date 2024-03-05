@@ -28,7 +28,7 @@ import java.io.IOException;
  * the secret definition
  */
 @ApiModel(description = "the secret definition")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-04T15:47:28.660525272Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-05T09:58:26.330459559Z[Etc/UTC]")
 public class WorkspaceSecret {
   public static final String SERIALIZED_NAME_DEDICATED_EVENT_HUB_KEY = "dedicatedEventHubKey";
   @SerializedName(SERIALIZED_NAME_DEDICATED_EVENT_HUB_KEY)
