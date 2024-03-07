@@ -2286,7 +2286,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/start:
     post:
-      operationId: StartRun
+      operationId: startRun
       parameters:
       - description: the Organization identifier
         explode: false
@@ -2331,7 +2331,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop:
     post:
-      operationId: StopRun
+      operationId: stopRun
       parameters:
       - description: the Organization identifier
         explode: false
@@ -4248,7 +4248,7 @@ paths:
       x-accepts: application/json
   /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs:
     get:
-      operationId: ListRuns
+      operationId: listRuns
       parameters:
       - description: the Organization identifier
         explode: false
