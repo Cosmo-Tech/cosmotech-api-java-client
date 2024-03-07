@@ -31,7 +31,7 @@ import java.util.List;
  * the result of the comparison of two runners
  */
 @ApiModel(description = "the result of the comparison of two runners")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-07T10:07:04.922079364Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-07T10:20:08.482961198Z[Etc/UTC]")
 public class RunnerComparisonResult {
   public static final String SERIALIZED_NAME_RUNNER_ID = "runnerId";
   @SerializedName(SERIALIZED_NAME_RUNNER_ID)
