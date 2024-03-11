@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **id** | **String** | the node id |  [optional]
 **name** | **String** | the node unique name |  [optional]
 **containerName** | **String** | the ScenarioRun container name |  [optional]
-**outboundNodes** | **List&lt;String&gt;** | the list of outbound nodes |  [optional] [readonly]
-**resourcesDuration** | [**ScenarioRunResourceRequested**](ScenarioRunResourceRequested.md) |  |  [optional]
 **estimatedDuration** | **Integer** | estimatedDuration in seconds |  [optional]
 **hostNodeName** | **String** | HostNodeName name of the Kubernetes node on which the Pod is running, if applicable |  [optional]
 **message** | **String** | a human readable message indicating details about why the node is in this condition |  [optional]

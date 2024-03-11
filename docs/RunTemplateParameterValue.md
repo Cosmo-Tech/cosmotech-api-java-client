@@ -2,7 +2,7 @@
 
 # RunTemplateParameterValue
 
-the value of Analysis parameter for a Runner for this Run
+the value of Analysis parameter for a Scenario for this ScenarioRun
 
 ## Properties
 
