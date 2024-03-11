@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 **parameters** | [**List&lt;RunTemplateParameter&gt;**](RunTemplateParameter.md) | the list of Run Template Parameters |  [optional]
 **parameterGroups** | [**List&lt;RunTemplateParameterGroup&gt;**](RunTemplateParameterGroup.md) | the list of parameters groups for the Run Templates |  [optional]
 **runTemplates** | [**List&lt;RunTemplate&gt;**](RunTemplate.md) | list of Run Template |  [optional]
-**security** | [**SolutionSecurity**](SolutionSecurity.md) |  |  [optional]
 
 
 

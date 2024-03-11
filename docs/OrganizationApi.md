@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**getOrganizationPermissions**](OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role
 [**getOrganizationSecurity**](OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information
 [**getOrganizationSecurityUsers**](OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list
+[**importOrganization**](OrganizationApi.md#importOrganization) | **POST** /organizations/import | Import an organization
 [**registerOrganization**](OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
 [**removeOrganizationAccessControl**](OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization
 [**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | Set the Organization default security
@@ -552,6 +553,72 @@ Name | Type | Description  | Notes
 **200** | The Organization security users list |  -  |
 **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
+<a name="importOrganization"></a>
+# **importOrganization**
+> Organization importOrganization(organization)
+
+Import an organization
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.OrganizationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
+    Organization organization = new Organization(); // Organization | the Organization to import
+    try {
+      Organization result = apiInstance.importOrganization(organization);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationApi#importOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | [**Organization**](Organization.md)| the Organization to import |
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | the Organization details |  -  |
+**400** | Bad request |  -  |
+
 <a name="registerOrganization"></a>
 # **registerOrganization**
 > Organization registerOrganization(organization)
@@ -712,7 +779,7 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization.
+    OrganizationRole organizationRole = new OrganizationRole(); // OrganizationRole | the new Organization default security.
     try {
       OrganizationSecurity result = apiInstance.setOrganizationDefaultSecurity(organizationId, organizationRole);
       System.out.println(result);
@@ -732,7 +799,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. |
+ **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| the new Organization default security. |
 
 ### Return type
 
@@ -845,7 +912,7 @@ public class Example {
 
     OrganizationApi apiInstance = new OrganizationApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    Organization organization = new Organization(); // Organization | the new Organization details. This endpoint can't be used to update security
+    Organization organization = new Organization(); // Organization | the new Organization details
     try {
       Organization result = apiInstance.updateOrganization(organizationId, organization);
       System.out.println(result);
@@ -865,7 +932,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| the Organization identifier |
- **organization** | [**Organization**](Organization.md)| the new Organization details. This endpoint can&#39;t be used to update security |
+ **organization** | [**Organization**](Organization.md)| the new Organization details |
 
 ### Return type
 
