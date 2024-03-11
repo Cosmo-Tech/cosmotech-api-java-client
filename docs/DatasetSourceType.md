@@ -15,7 +15,5 @@
 
 * `TWINCACHE` (value: `"Twincache"`)
 
-* `ETL` (value: `"ETL"`)
-
 
 
