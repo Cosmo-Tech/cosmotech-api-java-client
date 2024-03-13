@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * RunnerRootLastRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-13T09:42:25.561258220Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-13T13:59:17.065547087Z[Etc/UTC]")
 public class RunnerRootLastRun {
   public static final String SERIALIZED_NAME_RUNNER_RUN_ID = "runnerRunId";
   @SerializedName(SERIALIZED_NAME_RUNNER_RUN_ID)

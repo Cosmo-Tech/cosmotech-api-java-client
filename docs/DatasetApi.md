@@ -2,42 +2,42 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addDatasetAccessControl**](DatasetApi.md#addDatasetAccessControl) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/access | Add a control access to the Dataset
-[**addOrReplaceDatasetCompatibilityElements**](DatasetApi.md#addOrReplaceDatasetCompatibilityElements) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Add Dataset Compatibility elements.
-[**copyDataset**](DatasetApi.md#copyDataset) | **POST** /organizations/{organization_id}/datasets/copy | Copy a Dataset to another Dataset.
-[**createDataset**](DatasetApi.md#createDataset) | **POST** /organizations/{organization_id}/datasets | Create a new Dataset
-[**createSubDataset**](DatasetApi.md#createSubDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/subdataset | Create a sub-dataset from the dataset in parameter
-[**createTwingraphEntities**](DatasetApi.md#createTwingraphEntities) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Create new entities in a graph instance
-[**deleteDataset**](DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset
-[**deleteTwingraphEntities**](DatasetApi.md#deleteTwingraphEntities) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Delete entities in a graph instance
-[**downloadTwingraph**](DatasetApi.md#downloadTwingraph) | **GET** /organizations/{organization_id}/datasets/twingraph/download/{hash} | Download a graph as a zip file
-[**findAllDatasets**](DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets
-[**findDatasetById**](DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset
-[**getDatasetAccessControl**](DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset
-[**getDatasetSecurity**](DatasetApi.md#getDatasetSecurity) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security | Get the Dataset security information
-[**getDatasetSecurityUsers**](DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list
-[**getDatasetTwingraphStatus**](DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/status | Get the dataset&#39;s refresh job status
-[**getTwingraphEntities**](DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance
-[**linkWorkspace**](DatasetApi.md#linkWorkspace) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/link | 
-[**refreshDataset**](DatasetApi.md#refreshDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh | Refresh data on dataset from dataset&#39;s source
-[**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified
-[**removeDatasetAccessControl**](DatasetApi.md#removeDatasetAccessControl) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Remove the specified access from the given Dataset
-[**rollbackRefresh**](DatasetApi.md#rollbackRefresh) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh/rollback | Rollback the dataset after a failed refresh
-[**searchDatasets**](DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets by tags
-[**setDatasetDefaultSecurity**](DatasetApi.md#setDatasetDefaultSecurity) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/default | Set the Dataset default security
-[**twingraphBatchQuery**](DatasetApi.md#twingraphBatchQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
-[**twingraphBatchUpdate**](DatasetApi.md#twingraphBatchUpdate) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch | Async batch update by loading a CSV file on a graph instance 
-[**twingraphQuery**](DatasetApi.md#twingraphQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph | Return the result of a query made on the graph instance as a json
-[**unlinkWorkspace**](DatasetApi.md#unlinkWorkspace) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/unlink | 
-[**updateDataset**](DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset
-[**updateDatasetAccessControl**](DatasetApi.md#updateDatasetAccessControl) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Update the specified access to User for a Dataset
-[**updateTwingraphEntities**](DatasetApi.md#updateTwingraphEntities) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Update entities in a graph instance
-[**uploadTwingraph**](DatasetApi.md#uploadTwingraph) | **POST** /organizations/{organization_id}/datasets/{dataset_id} | Upload data from zip file to dataset&#39;s twingraph
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addDatasetAccessControl**](DatasetApi.md#addDatasetAccessControl) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/access | Add a control access to the Dataset |
+| [**addOrReplaceDatasetCompatibilityElements**](DatasetApi.md#addOrReplaceDatasetCompatibilityElements) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Add Dataset Compatibility elements. |
+| [**copyDataset**](DatasetApi.md#copyDataset) | **POST** /organizations/{organization_id}/datasets/copy | Copy a Dataset to another Dataset. |
+| [**createDataset**](DatasetApi.md#createDataset) | **POST** /organizations/{organization_id}/datasets | Create a new Dataset |
+| [**createSubDataset**](DatasetApi.md#createSubDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/subdataset | Create a sub-dataset from the dataset in parameter |
+| [**createTwingraphEntities**](DatasetApi.md#createTwingraphEntities) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Create new entities in a graph instance |
+| [**deleteDataset**](DatasetApi.md#deleteDataset) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id} | Delete a dataset |
+| [**deleteTwingraphEntities**](DatasetApi.md#deleteTwingraphEntities) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Delete entities in a graph instance |
+| [**downloadTwingraph**](DatasetApi.md#downloadTwingraph) | **GET** /organizations/{organization_id}/datasets/twingraph/download/{hash} | Download a graph as a zip file |
+| [**findAllDatasets**](DatasetApi.md#findAllDatasets) | **GET** /organizations/{organization_id}/datasets | List all Datasets |
+| [**findDatasetById**](DatasetApi.md#findDatasetById) | **GET** /organizations/{organization_id}/datasets/{dataset_id} | Get the details of a Dataset |
+| [**getDatasetAccessControl**](DatasetApi.md#getDatasetAccessControl) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Get a control access for the Dataset |
+| [**getDatasetSecurity**](DatasetApi.md#getDatasetSecurity) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security | Get the Dataset security information |
+| [**getDatasetSecurityUsers**](DatasetApi.md#getDatasetSecurityUsers) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/security/users | Get the Dataset security users list |
+| [**getDatasetTwingraphStatus**](DatasetApi.md#getDatasetTwingraphStatus) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/status | Get the dataset&#39;s refresh job status |
+| [**getTwingraphEntities**](DatasetApi.md#getTwingraphEntities) | **GET** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Get entities in a graph instance |
+| [**linkWorkspace**](DatasetApi.md#linkWorkspace) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/link |  |
+| [**refreshDataset**](DatasetApi.md#refreshDataset) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh | Refresh data on dataset from dataset&#39;s source |
+| [**removeAllDatasetCompatibilityElements**](DatasetApi.md#removeAllDatasetCompatibilityElements) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/compatibility | Remove all Dataset Compatibility elements from the Dataset specified |
+| [**removeDatasetAccessControl**](DatasetApi.md#removeDatasetAccessControl) | **DELETE** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Remove the specified access from the given Dataset |
+| [**rollbackRefresh**](DatasetApi.md#rollbackRefresh) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/refresh/rollback | Rollback the dataset after a failed refresh |
+| [**searchDatasets**](DatasetApi.md#searchDatasets) | **POST** /organizations/{organization_id}/datasets/search | Search Datasets by tags |
+| [**setDatasetDefaultSecurity**](DatasetApi.md#setDatasetDefaultSecurity) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/default | Set the Dataset default security |
+| [**twingraphBatchQuery**](DatasetApi.md#twingraphBatchQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode |
+| [**twingraphBatchUpdate**](DatasetApi.md#twingraphBatchUpdate) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/batch | Async batch update by loading a CSV file on a graph instance  |
+| [**twingraphQuery**](DatasetApi.md#twingraphQuery) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/twingraph | Return the result of a query made on the graph instance as a json |
+| [**unlinkWorkspace**](DatasetApi.md#unlinkWorkspace) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/unlink |  |
+| [**updateDataset**](DatasetApi.md#updateDataset) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id} | Update a dataset |
+| [**updateDatasetAccessControl**](DatasetApi.md#updateDatasetAccessControl) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id} | Update the specified access to User for a Dataset |
+| [**updateTwingraphEntities**](DatasetApi.md#updateTwingraphEntities) | **PATCH** /organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type} | Update entities in a graph instance |
+| [**uploadTwingraph**](DatasetApi.md#uploadTwingraph) | **POST** /organizations/{organization_id}/datasets/{dataset_id} | Upload data from zip file to dataset&#39;s twingraph |
 
 
-<a name="addDatasetAccessControl"></a>
+<a id="addDatasetAccessControl"></a>
 # **addDatasetAccessControl**
 > DatasetAccessControl addDatasetAccessControl(organizationId, datasetId, datasetAccessControl)
 
@@ -82,11 +82,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **datasetAccessControl** | [**DatasetAccessControl**](DatasetAccessControl.md)| the new Dataset security access to add. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **datasetAccessControl** | [**DatasetAccessControl**](DatasetAccessControl.md)| the new Dataset security access to add. | |
 
 ### Return type
 
@@ -104,10 +104,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Dataset access |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Dataset access |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="addOrReplaceDatasetCompatibilityElements"></a>
+<a id="addOrReplaceDatasetCompatibilityElements"></a>
 # **addOrReplaceDatasetCompatibilityElements**
 > List&lt;DatasetCompatibility&gt; addOrReplaceDatasetCompatibilityElements(organizationId, datasetId, datasetCompatibility)
 
@@ -152,11 +152,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **datasetCompatibility** | [**List&lt;DatasetCompatibility&gt;**](DatasetCompatibility.md)| the Dataset Compatibility elements |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **datasetCompatibility** | [**List&lt;DatasetCompatibility&gt;**](DatasetCompatibility.md)| the Dataset Compatibility elements | |
 
 ### Return type
 
@@ -174,11 +174,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Dataset Compatibility elements |  -  |
-**400** | Bad request |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Dataset Compatibility elements |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="copyDataset"></a>
+<a id="copyDataset"></a>
 # **copyDataset**
 > DatasetCopyParameters copyDataset(organizationId, datasetCopyParameters)
 
@@ -224,10 +224,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetCopyParameters** | [**DatasetCopyParameters**](DatasetCopyParameters.md)| the Dataset copy parameters |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetCopyParameters** | [**DatasetCopyParameters**](DatasetCopyParameters.md)| the Dataset copy parameters | |
 
 ### Return type
 
@@ -245,11 +245,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Dataset copy operation parameters |  -  |
-**400** | Bad request |  -  |
-**404** | the Dataset specified as Source or Target is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Dataset copy operation parameters |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Dataset specified as Source or Target is unknown or you don&#39;t have access to it |  -  |
 
-<a name="createDataset"></a>
+<a id="createDataset"></a>
 # **createDataset**
 > Dataset createDataset(organizationId, dataset)
 
@@ -293,10 +293,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **dataset** | [**Dataset**](Dataset.md)| the Dataset to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **dataset** | [**Dataset**](Dataset.md)| the Dataset to create | |
 
 ### Return type
 
@@ -314,10 +314,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the dataset details |  -  |
-**400** | Bad request |  -  |
+| **201** | the dataset details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="createSubDataset"></a>
+<a id="createSubDataset"></a>
 # **createSubDataset**
 > Dataset createSubDataset(organizationId, datasetId, subDatasetGraphQuery)
 
@@ -364,11 +364,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **subDatasetGraphQuery** | [**SubDatasetGraphQuery**](SubDatasetGraphQuery.md)| the Cypher query to filter |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **subDatasetGraphQuery** | [**SubDatasetGraphQuery**](SubDatasetGraphQuery.md)| the Cypher query to filter | |
 
 ### Return type
 
@@ -386,9 +386,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="createTwingraphEntities"></a>
+<a id="createTwingraphEntities"></a>
 # **createTwingraphEntities**
 > String createTwingraphEntities(organizationId, datasetId, type, graphProperties)
 
@@ -436,12 +436,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to create | |
 
 ### Return type
 
@@ -459,9 +459,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="deleteDataset"></a>
+<a id="deleteDataset"></a>
 # **deleteDataset**
 > deleteDataset(organizationId, datasetId)
 
@@ -504,10 +504,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -525,10 +525,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request successful |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request successful |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="deleteTwingraphEntities"></a>
+<a id="deleteTwingraphEntities"></a>
 # **deleteTwingraphEntities**
 > deleteTwingraphEntities(organizationId, datasetId, type, ids)
 
@@ -575,12 +575,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete | |
 
 ### Return type
 
@@ -598,9 +598,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="downloadTwingraph"></a>
+<a id="downloadTwingraph"></a>
 # **downloadTwingraph**
 > File downloadTwingraph(organizationId, hash)
 
@@ -646,10 +646,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **hash** | **String**| the Graph download identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **hash** | **String**| the Graph download identifier | |
 
 ### Return type
 
@@ -667,9 +667,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="findAllDatasets"></a>
+<a id="findAllDatasets"></a>
 # **findAllDatasets**
 > List&lt;Dataset&gt; findAllDatasets(organizationId, page, size)
 
@@ -714,11 +714,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -736,9 +736,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Datasets |  -  |
+| **200** | the list of Datasets |  -  |
 
-<a name="findDatasetById"></a>
+<a id="findDatasetById"></a>
 # **findDatasetById**
 > Dataset findDatasetById(organizationId, datasetId)
 
@@ -782,10 +782,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -803,10 +803,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Dataset details |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Dataset details |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getDatasetAccessControl"></a>
+<a id="getDatasetAccessControl"></a>
 # **getDatasetAccessControl**
 > DatasetAccessControl getDatasetAccessControl(organizationId, datasetId, identityId)
 
@@ -851,11 +851,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -873,10 +873,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Dataset access |  -  |
-**404** | The Dataset or user specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Dataset access |  -  |
+| **404** | The Dataset or user specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getDatasetSecurity"></a>
+<a id="getDatasetSecurity"></a>
 # **getDatasetSecurity**
 > DatasetSecurity getDatasetSecurity(organizationId, datasetId)
 
@@ -920,10 +920,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -941,10 +941,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Dataset security |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Dataset security |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getDatasetSecurityUsers"></a>
+<a id="getDatasetSecurityUsers"></a>
 # **getDatasetSecurityUsers**
 > List&lt;String&gt; getDatasetSecurityUsers(organizationId, datasetId)
 
@@ -988,10 +988,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -1009,10 +1009,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Dataset security users list |  -  |
-**404** | the Dataset or the User specified is unknown or you don&#39;t have access to them |  -  |
+| **200** | The Dataset security users list |  -  |
+| **404** | the Dataset or the User specified is unknown or you don&#39;t have access to them |  -  |
 
-<a name="getDatasetTwingraphStatus"></a>
+<a id="getDatasetTwingraphStatus"></a>
 # **getDatasetTwingraphStatus**
 > String getDatasetTwingraphStatus(organizationId, datasetId)
 
@@ -1058,10 +1058,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the dataset identifier | |
 
 ### Return type
 
@@ -1079,9 +1079,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="getTwingraphEntities"></a>
+<a id="getTwingraphEntities"></a>
 # **getTwingraphEntities**
 > String getTwingraphEntities(organizationId, datasetId, type, ids)
 
@@ -1129,12 +1129,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **ids** | [**List&lt;String&gt;**](String.md)| the entities to get |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **ids** | [**List&lt;String&gt;**](String.md)| the entities to get | |
 
 ### Return type
 
@@ -1152,9 +1152,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="linkWorkspace"></a>
+<a id="linkWorkspace"></a>
 # **linkWorkspace**
 > Dataset linkWorkspace(organizationId, datasetId, workspaceId)
 
@@ -1199,11 +1199,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **workspaceId** | **String**| workspace id to be linked to |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **workspaceId** | **String**| workspace id to be linked to | |
 
 ### Return type
 
@@ -1221,11 +1221,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the dataset details |  -  |
-**400** | Bad request |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the dataset details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="refreshDataset"></a>
+<a id="refreshDataset"></a>
 # **refreshDataset**
 > DatasetTwinGraphInfo refreshDataset(organizationId, datasetId)
 
@@ -1271,10 +1271,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -1292,9 +1292,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="removeAllDatasetCompatibilityElements"></a>
+<a id="removeAllDatasetCompatibilityElements"></a>
 # **removeAllDatasetCompatibilityElements**
 > removeAllDatasetCompatibilityElements(organizationId, datasetId)
 
@@ -1337,10 +1337,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -1358,10 +1358,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="removeDatasetAccessControl"></a>
+<a id="removeDatasetAccessControl"></a>
 # **removeDatasetAccessControl**
 > removeDatasetAccessControl(organizationId, datasetId, identityId)
 
@@ -1405,11 +1405,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -1427,10 +1427,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | The Dataset or the user specified is unknown or you don&#39;t have access to them |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | The Dataset or the user specified is unknown or you don&#39;t have access to them |  -  |
 
-<a name="rollbackRefresh"></a>
+<a id="rollbackRefresh"></a>
 # **rollbackRefresh**
 > String rollbackRefresh(organizationId, datasetId)
 
@@ -1476,10 +1476,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
 
 ### Return type
 
@@ -1497,9 +1497,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="searchDatasets"></a>
+<a id="searchDatasets"></a>
 # **searchDatasets**
 > List&lt;Dataset&gt; searchDatasets(organizationId, datasetSearch, page, size)
 
@@ -1545,12 +1545,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetSearch** | [**DatasetSearch**](DatasetSearch.md)| the Dataset search parameters |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetSearch** | [**DatasetSearch**](DatasetSearch.md)| the Dataset search parameters | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -1568,9 +1568,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Datasets |  -  |
+| **200** | the list of Datasets |  -  |
 
-<a name="setDatasetDefaultSecurity"></a>
+<a id="setDatasetDefaultSecurity"></a>
 # **setDatasetDefaultSecurity**
 > DatasetSecurity setDatasetDefaultSecurity(organizationId, datasetId, datasetRole)
 
@@ -1615,11 +1615,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **datasetRole** | [**DatasetRole**](DatasetRole.md)| This change the dataset default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the dataset. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **datasetRole** | [**DatasetRole**](DatasetRole.md)| This change the dataset default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the dataset. | |
 
 ### Return type
 
@@ -1637,10 +1637,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Dataset default visibility |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Dataset default visibility |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="twingraphBatchQuery"></a>
+<a id="twingraphBatchQuery"></a>
 # **twingraphBatchQuery**
 > DatasetTwinGraphHash twingraphBatchQuery(organizationId, datasetId, datasetTwinGraphQuery)
 
@@ -1687,11 +1687,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Graph Identifier |
- **datasetTwinGraphQuery** | [**DatasetTwinGraphQuery**](DatasetTwinGraphQuery.md)| the query to run |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Graph Identifier | |
+| **datasetTwinGraphQuery** | [**DatasetTwinGraphQuery**](DatasetTwinGraphQuery.md)| the query to run | |
 
 ### Return type
 
@@ -1709,9 +1709,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="twingraphBatchUpdate"></a>
+<a id="twingraphBatchUpdate"></a>
 # **twingraphBatchUpdate**
 > TwinGraphBatchResult twingraphBatchUpdate(organizationId, datasetId, twinGraphQuery, body)
 
@@ -1762,12 +1762,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset Identifier |
- **twinGraphQuery** | [**DatasetTwinGraphQuery**](.md)|  |
- **body** | **File**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset Identifier | |
+| **twinGraphQuery** | [**DatasetTwinGraphQuery**](.md)|  | |
+| **body** | **File**|  | |
 
 ### Return type
 
@@ -1785,10 +1785,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | csv file processed |  -  |
-**400** | Bad request |  -  |
+| **200** | csv file processed |  -  |
+| **400** | Bad request |  -  |
 
-<a name="twingraphQuery"></a>
+<a id="twingraphQuery"></a>
 # **twingraphQuery**
 > String twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery)
 
@@ -1835,11 +1835,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **datasetTwinGraphQuery** | [**DatasetTwinGraphQuery**](DatasetTwinGraphQuery.md)| the query to run |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **datasetTwinGraphQuery** | [**DatasetTwinGraphQuery**](DatasetTwinGraphQuery.md)| the query to run | |
 
 ### Return type
 
@@ -1857,9 +1857,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="unlinkWorkspace"></a>
+<a id="unlinkWorkspace"></a>
 # **unlinkWorkspace**
 > Dataset unlinkWorkspace(organizationId, datasetId, workspaceId)
 
@@ -1904,11 +1904,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **workspaceId** | **String**| workspace id to be linked to |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **workspaceId** | **String**| workspace id to be linked to | |
 
 ### Return type
 
@@ -1926,11 +1926,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the dataset details |  -  |
-**400** | Bad request |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the dataset details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateDataset"></a>
+<a id="updateDataset"></a>
 # **updateDataset**
 > Dataset updateDataset(organizationId, datasetId, dataset)
 
@@ -1975,11 +1975,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **dataset** | [**Dataset**](Dataset.md)| the new Dataset details. This endpoint can&#39;t be used to update security |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **dataset** | [**Dataset**](Dataset.md)| the new Dataset details. This endpoint can&#39;t be used to update security | |
 
 ### Return type
 
@@ -1997,11 +1997,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the dataset details |  -  |
-**400** | Bad request |  -  |
-**404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the dataset details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateDatasetAccessControl"></a>
+<a id="updateDatasetAccessControl"></a>
 # **updateDatasetAccessControl**
 > DatasetAccessControl updateDatasetAccessControl(organizationId, datasetId, identityId, datasetRole)
 
@@ -2047,12 +2047,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **identityId** | **String**| the User identifier |
- **datasetRole** | [**DatasetRole**](DatasetRole.md)| The new Dataset Access Control |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **identityId** | **String**| the User identifier | |
+| **datasetRole** | [**DatasetRole**](DatasetRole.md)| The new Dataset Access Control | |
 
 ### Return type
 
@@ -2070,10 +2070,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Dataset access |  -  |
-**404** | The Dataset specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Dataset access |  -  |
+| **404** | The Dataset specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateTwingraphEntities"></a>
+<a id="updateTwingraphEntities"></a>
 # **updateTwingraphEntities**
 > String updateTwingraphEntities(organizationId, datasetId, type, graphProperties)
 
@@ -2121,12 +2121,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to update |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to update | |
 
 ### Return type
 
@@ -2144,9 +2144,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="uploadTwingraph"></a>
+<a id="uploadTwingraph"></a>
 # **uploadTwingraph**
 > FileUploadValidation uploadTwingraph(organizationId, datasetId, body)
 
@@ -2193,11 +2193,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **datasetId** | **String**| the Dataset identifier |
- **body** | **File**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **datasetId** | **String**| the Dataset identifier | |
+| **body** | **File**|  | |
 
 ### Return type
 
@@ -2215,5 +2215,5 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | File uploaded successfully. Processing... |  -  |
+| **202** | File uploaded successfully. Processing... |  -  |
 
