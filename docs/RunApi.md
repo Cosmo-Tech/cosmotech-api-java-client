@@ -2,16 +2,16 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteRun**](RunApi.md#deleteRun) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Delete a run
-[**getRun**](RunApi.md#getRun) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Get the details of a run
-[**getRunLogs**](RunApi.md#getRunLogs) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs | get the logs for the Run
-[**getRunStatus**](RunApi.md#getRunStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/status | get the status for the Run
-[**listRuns**](RunApi.md#listRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs | get the list of Runs for the Runner
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**deleteRun**](RunApi.md#deleteRun) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Delete a run |
+| [**getRun**](RunApi.md#getRun) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Get the details of a run |
+| [**getRunLogs**](RunApi.md#getRunLogs) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs | get the logs for the Run |
+| [**getRunStatus**](RunApi.md#getRunStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/status | get the status for the Run |
+| [**listRuns**](RunApi.md#listRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs | get the list of Runs for the Runner |
 
 
-<a name="deleteRun"></a>
+<a id="deleteRun"></a>
 # **deleteRun**
 > deleteRun(organizationId, workspaceId, runnerId, runId)
 
@@ -56,12 +56,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runId** | **String**| the Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runId** | **String**| the Run identifier | |
 
 ### Return type
 
@@ -79,11 +79,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**400** | Bad request |  -  |
-**404** | the Run specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Run specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRun"></a>
+<a id="getRun"></a>
 # **getRun**
 > Run getRun(organizationId, workspaceId, runnerId, runId)
 
@@ -129,12 +129,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runId** | **String**| the Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runId** | **String**| the Run identifier | |
 
 ### Return type
 
@@ -152,10 +152,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Run details |  -  |
-**404** | the Run specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Run details |  -  |
+| **404** | the Run specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRunLogs"></a>
+<a id="getRunLogs"></a>
 # **getRunLogs**
 > RunLogs getRunLogs(organizationId, workspaceId, runnerId, runId)
 
@@ -201,12 +201,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runId** | **String**| the Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runId** | **String**| the Run identifier | |
 
 ### Return type
 
@@ -224,9 +224,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run logs details |  -  |
+| **200** | the run logs details |  -  |
 
-<a name="getRunStatus"></a>
+<a id="getRunStatus"></a>
 # **getRunStatus**
 > RunStatus getRunStatus(organizationId, workspaceId, runnerId, runId)
 
@@ -272,12 +272,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runId** | **String**| the Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runId** | **String**| the Run identifier | |
 
 ### Return type
 
@@ -295,9 +295,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run status details |  -  |
+| **200** | the run status details |  -  |
 
-<a name="listRuns"></a>
+<a id="listRuns"></a>
 # **listRuns**
 > List&lt;Run&gt; listRuns(organizationId, workspaceId, runnerId, page, size)
 
@@ -344,13 +344,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -368,5 +368,5 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run details list |  -  |
+| **200** | the run details list |  -  |
 

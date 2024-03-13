@@ -14,10 +14,11 @@
 package com.cosmotech.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.cosmotech.client.model.RunnerJobState;
 import com.cosmotech.client.model.RunnerLastRun;
+import com.cosmotech.client.model.RunnerParentLastRun;
 import com.cosmotech.client.model.RunnerResourceSizing;
+import com.cosmotech.client.model.RunnerRootLastRun;
 import com.cosmotech.client.model.RunnerRunTemplateParameterValue;
 import com.cosmotech.client.model.RunnerSecurity;
 import com.cosmotech.client.model.RunnerValidationStatus;
@@ -26,25 +27,49 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.cosmotech.client.JSON;
 
 /**
  * a Runner with base information
  */
-@ApiModel(description = "a Runner with base information")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-11T10:14:52.818129595Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-13T09:42:25.561258220Z[Etc/UTC]")
+@com.redis.om.spring.annotations.Document
 public class Runner {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @org.springframework.data.annotation.Id
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @com.redis.om.spring.annotations.Searchable
   private String name;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
@@ -53,18 +78,21 @@ public class Runner {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags = null;
+  private List<String> tags;
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parentId";
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  @com.redis.om.spring.annotations.Indexed
   private String parentId;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  @com.redis.om.spring.annotations.Indexed
   private String ownerId;
 
   public static final String SERIALIZED_NAME_ROOT_ID = "rootId";
   @SerializedName(SERIALIZED_NAME_ROOT_ID)
+  @com.redis.om.spring.annotations.Indexed
   private String rootId;
 
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
@@ -77,10 +105,12 @@ public class Runner {
 
   public static final String SERIALIZED_NAME_ORGANIZATION_ID = "organizationId";
   @SerializedName(SERIALIZED_NAME_ORGANIZATION_ID)
+  @com.redis.om.spring.annotations.Indexed
   private String organizationId;
 
   public static final String SERIALIZED_NAME_WORKSPACE_ID = "workspaceId";
   @SerializedName(SERIALIZED_NAME_WORKSPACE_ID)
+  @com.redis.om.spring.annotations.Indexed
   private String workspaceId;
 
   public static final String SERIALIZED_NAME_STATE = "state";
@@ -109,7 +139,7 @@ public class Runner {
 
   public static final String SERIALIZED_NAME_DATASET_LIST = "datasetList";
   @SerializedName(SERIALIZED_NAME_DATASET_LIST)
-  private List<String> datasetList = null;
+  private List<String> datasetList;
 
   public static final String SERIALIZED_NAME_RUN_SIZING = "runSizing";
   @SerializedName(SERIALIZED_NAME_RUN_SIZING)
@@ -117,7 +147,7 @@ public class Runner {
 
   public static final String SERIALIZED_NAME_PARAMETERS_VALUES = "parametersValues";
   @SerializedName(SERIALIZED_NAME_PARAMETERS_VALUES)
-  private List<RunnerRunTemplateParameterValue> parametersValues = null;
+  private List<RunnerRunTemplateParameterValue> parametersValues;
 
   public static final String SERIALIZED_NAME_LAST_RUN = "lastRun";
   @SerializedName(SERIALIZED_NAME_LAST_RUN)
@@ -125,24 +155,25 @@ public class Runner {
 
   public static final String SERIALIZED_NAME_PARENT_LAST_RUN = "parentLastRun";
   @SerializedName(SERIALIZED_NAME_PARENT_LAST_RUN)
-  private RunnerLastRun parentLastRun;
+  private RunnerParentLastRun parentLastRun;
 
   public static final String SERIALIZED_NAME_ROOT_LAST_RUN = "rootLastRun";
   @SerializedName(SERIALIZED_NAME_ROOT_LAST_RUN)
-  private RunnerLastRun rootLastRun;
+  private RunnerRootLastRun rootLastRun;
 
   public static final String SERIALIZED_NAME_VALIDATION_STATUS = "validationStatus";
   @SerializedName(SERIALIZED_NAME_VALIDATION_STATUS)
+  @com.redis.om.spring.annotations.Searchable
   private RunnerValidationStatus validationStatus;
 
   public static final String SERIALIZED_NAME_SECURITY = "security";
   @SerializedName(SERIALIZED_NAME_SECURITY)
+  @com.redis.om.spring.annotations.Indexed
   private RunnerSecurity security;
 
-  public Runner() { 
+  public Runner() {
   }
 
-  
   public Runner(
      String id, 
      String ownerId, 
@@ -175,17 +206,13 @@ public class Runner {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Runner unique identifier")
-
   public String getId() {
     return id;
   }
 
 
 
-
   public Runner name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -195,12 +222,9 @@ public class Runner {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Runner name")
-
   public String getName() {
     return name;
   }
-
 
   public void setName(String name) {
     this.name = name;
@@ -208,7 +232,6 @@ public class Runner {
 
 
   public Runner description(String description) {
-    
     this.description = description;
     return this;
   }
@@ -218,12 +241,9 @@ public class Runner {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Runner description")
-
   public String getDescription() {
     return description;
   }
-
 
   public void setDescription(String description) {
     this.description = description;
@@ -231,14 +251,13 @@ public class Runner {
 
 
   public Runner tags(List<String> tags) {
-    
     this.tags = tags;
     return this;
   }
 
   public Runner addTagsItem(String tagsItem) {
     if (this.tags == null) {
-      this.tags = new ArrayList<String>();
+      this.tags = new ArrayList<>();
     }
     this.tags.add(tagsItem);
     return this;
@@ -249,12 +268,9 @@ public class Runner {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of tags")
-
   public List<String> getTags() {
     return tags;
   }
-
 
   public void setTags(List<String> tags) {
     this.tags = tags;
@@ -262,7 +278,6 @@ public class Runner {
 
 
   public Runner parentId(String parentId) {
-    
     this.parentId = parentId;
     return this;
   }
@@ -272,12 +287,9 @@ public class Runner {
    * @return parentId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Runner parent id")
-
   public String getParentId() {
     return parentId;
   }
-
 
   public void setParentId(String parentId) {
     this.parentId = parentId;
@@ -289,12 +301,9 @@ public class Runner {
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the user id which own this Runner")
-
   public String getOwnerId() {
     return ownerId;
   }
-
 
 
 
@@ -303,12 +312,9 @@ public class Runner {
    * @return rootId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the runner root id")
-
   public String getRootId() {
     return rootId;
   }
-
 
 
 
@@ -317,17 +323,13 @@ public class Runner {
    * @return solutionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Solution Id associated with this Runner")
-
   public String getSolutionId() {
     return solutionId;
   }
 
 
 
-
   public Runner runTemplateId(String runTemplateId) {
-    
     this.runTemplateId = runTemplateId;
     return this;
   }
@@ -337,12 +339,9 @@ public class Runner {
    * @return runTemplateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Solution Run Template Id associated with this Runner")
-
   public String getRunTemplateId() {
     return runTemplateId;
   }
-
 
   public void setRunTemplateId(String runTemplateId) {
     this.runTemplateId = runTemplateId;
@@ -354,12 +353,9 @@ public class Runner {
    * @return organizationId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the associated Organization Id")
-
   public String getOrganizationId() {
     return organizationId;
   }
-
 
 
 
@@ -368,17 +364,13 @@ public class Runner {
    * @return workspaceId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the associated Workspace Id")
-
   public String getWorkspaceId() {
     return workspaceId;
   }
 
 
 
-
   public Runner state(RunnerJobState state) {
-    
     this.state = state;
     return this;
   }
@@ -388,12 +380,9 @@ public class Runner {
    * @return state
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RunnerJobState getState() {
     return state;
   }
-
 
   public void setState(RunnerJobState state) {
     this.state = state;
@@ -405,12 +394,9 @@ public class Runner {
    * @return creationDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Runner creation date")
-
   public Long getCreationDate() {
     return creationDate;
   }
-
 
 
 
@@ -419,12 +405,9 @@ public class Runner {
    * @return lastUpdate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the last time a Runner was updated")
-
   public Long getLastUpdate() {
     return lastUpdate;
   }
-
 
 
 
@@ -433,12 +416,9 @@ public class Runner {
    * @return ownerName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the name of the owner")
-
   public String getOwnerName() {
     return ownerName;
   }
-
 
 
 
@@ -447,12 +427,9 @@ public class Runner {
    * @return solutionName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Solution name")
-
   public String getSolutionName() {
     return solutionName;
   }
-
 
 
 
@@ -461,24 +438,20 @@ public class Runner {
    * @return runTemplateName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the Solution Run Template name associated with this Runner")
-
   public String getRunTemplateName() {
     return runTemplateName;
   }
 
 
 
-
   public Runner datasetList(List<String> datasetList) {
-    
     this.datasetList = datasetList;
     return this;
   }
 
   public Runner addDatasetListItem(String datasetListItem) {
     if (this.datasetList == null) {
-      this.datasetList = new ArrayList<String>();
+      this.datasetList = new ArrayList<>();
     }
     this.datasetList.add(datasetListItem);
     return this;
@@ -489,12 +462,9 @@ public class Runner {
    * @return datasetList
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of Dataset Id associated to this Runner Run Template")
-
   public List<String> getDatasetList() {
     return datasetList;
   }
-
 
   public void setDatasetList(List<String> datasetList) {
     this.datasetList = datasetList;
@@ -502,7 +472,6 @@ public class Runner {
 
 
   public Runner runSizing(RunnerResourceSizing runSizing) {
-    
     this.runSizing = runSizing;
     return this;
   }
@@ -512,12 +481,9 @@ public class Runner {
    * @return runSizing
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RunnerResourceSizing getRunSizing() {
     return runSizing;
   }
-
 
   public void setRunSizing(RunnerResourceSizing runSizing) {
     this.runSizing = runSizing;
@@ -525,14 +491,13 @@ public class Runner {
 
 
   public Runner parametersValues(List<RunnerRunTemplateParameterValue> parametersValues) {
-    
     this.parametersValues = parametersValues;
     return this;
   }
 
   public Runner addParametersValuesItem(RunnerRunTemplateParameterValue parametersValuesItem) {
     if (this.parametersValues == null) {
-      this.parametersValues = new ArrayList<RunnerRunTemplateParameterValue>();
+      this.parametersValues = new ArrayList<>();
     }
     this.parametersValues.add(parametersValuesItem);
     return this;
@@ -543,12 +508,9 @@ public class Runner {
    * @return parametersValues
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the list of Solution Run Template parameters values")
-
   public List<RunnerRunTemplateParameterValue> getParametersValues() {
     return parametersValues;
   }
-
 
   public void setParametersValues(List<RunnerRunTemplateParameterValue> parametersValues) {
     this.parametersValues = parametersValues;
@@ -556,7 +518,6 @@ public class Runner {
 
 
   public Runner lastRun(RunnerLastRun lastRun) {
-    
     this.lastRun = lastRun;
     return this;
   }
@@ -566,20 +527,16 @@ public class Runner {
    * @return lastRun
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RunnerLastRun getLastRun() {
     return lastRun;
   }
-
 
   public void setLastRun(RunnerLastRun lastRun) {
     this.lastRun = lastRun;
   }
 
 
-  public Runner parentLastRun(RunnerLastRun parentLastRun) {
-    
+  public Runner parentLastRun(RunnerParentLastRun parentLastRun) {
     this.parentLastRun = parentLastRun;
     return this;
   }
@@ -589,20 +546,16 @@ public class Runner {
    * @return parentLastRun
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public RunnerLastRun getParentLastRun() {
+  public RunnerParentLastRun getParentLastRun() {
     return parentLastRun;
   }
 
-
-  public void setParentLastRun(RunnerLastRun parentLastRun) {
+  public void setParentLastRun(RunnerParentLastRun parentLastRun) {
     this.parentLastRun = parentLastRun;
   }
 
 
-  public Runner rootLastRun(RunnerLastRun rootLastRun) {
-    
+  public Runner rootLastRun(RunnerRootLastRun rootLastRun) {
     this.rootLastRun = rootLastRun;
     return this;
   }
@@ -612,20 +565,16 @@ public class Runner {
    * @return rootLastRun
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public RunnerLastRun getRootLastRun() {
+  public RunnerRootLastRun getRootLastRun() {
     return rootLastRun;
   }
 
-
-  public void setRootLastRun(RunnerLastRun rootLastRun) {
+  public void setRootLastRun(RunnerRootLastRun rootLastRun) {
     this.rootLastRun = rootLastRun;
   }
 
 
   public Runner validationStatus(RunnerValidationStatus validationStatus) {
-    
     this.validationStatus = validationStatus;
     return this;
   }
@@ -635,12 +584,9 @@ public class Runner {
    * @return validationStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RunnerValidationStatus getValidationStatus() {
     return validationStatus;
   }
-
 
   public void setValidationStatus(RunnerValidationStatus validationStatus) {
     this.validationStatus = validationStatus;
@@ -648,7 +594,6 @@ public class Runner {
 
 
   public Runner security(RunnerSecurity security) {
-    
     this.security = security;
     return this;
   }
@@ -658,16 +603,14 @@ public class Runner {
    * @return security
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RunnerSecurity getSecurity() {
     return security;
   }
 
-
   public void setSecurity(RunnerSecurity security) {
     this.security = security;
   }
+
 
 
   @Override
@@ -706,20 +649,9 @@ public class Runner {
         Objects.equals(this.security, runner.security);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(id, name, description, tags, parentId, ownerId, rootId, solutionId, runTemplateId, organizationId, workspaceId, state, creationDate, lastUpdate, ownerName, solutionName, runTemplateName, datasetList, runSizing, parametersValues, lastRun, parentLastRun, rootLastRun, validationStatus, security);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -766,5 +698,202 @@ public class Runner {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("name");
+    openapiFields.add("description");
+    openapiFields.add("tags");
+    openapiFields.add("parentId");
+    openapiFields.add("ownerId");
+    openapiFields.add("rootId");
+    openapiFields.add("solutionId");
+    openapiFields.add("runTemplateId");
+    openapiFields.add("organizationId");
+    openapiFields.add("workspaceId");
+    openapiFields.add("state");
+    openapiFields.add("creationDate");
+    openapiFields.add("lastUpdate");
+    openapiFields.add("ownerName");
+    openapiFields.add("solutionName");
+    openapiFields.add("runTemplateName");
+    openapiFields.add("datasetList");
+    openapiFields.add("runSizing");
+    openapiFields.add("parametersValues");
+    openapiFields.add("lastRun");
+    openapiFields.add("parentLastRun");
+    openapiFields.add("rootLastRun");
+    openapiFields.add("validationStatus");
+    openapiFields.add("security");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Runner
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Runner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Runner is not found in the empty JSON string", Runner.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Runner.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Runner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      }
+      if ((jsonObj.get("parentId") != null && !jsonObj.get("parentId").isJsonNull()) && !jsonObj.get("parentId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `parentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentId").toString()));
+      }
+      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
+      }
+      if ((jsonObj.get("rootId") != null && !jsonObj.get("rootId").isJsonNull()) && !jsonObj.get("rootId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `rootId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootId").toString()));
+      }
+      if ((jsonObj.get("solutionId") != null && !jsonObj.get("solutionId").isJsonNull()) && !jsonObj.get("solutionId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `solutionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("solutionId").toString()));
+      }
+      if ((jsonObj.get("runTemplateId") != null && !jsonObj.get("runTemplateId").isJsonNull()) && !jsonObj.get("runTemplateId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `runTemplateId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runTemplateId").toString()));
+      }
+      if ((jsonObj.get("organizationId") != null && !jsonObj.get("organizationId").isJsonNull()) && !jsonObj.get("organizationId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `organizationId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("organizationId").toString()));
+      }
+      if ((jsonObj.get("workspaceId") != null && !jsonObj.get("workspaceId").isJsonNull()) && !jsonObj.get("workspaceId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `workspaceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("workspaceId").toString()));
+      }
+      // validate the optional field `state`
+      if (jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) {
+        RunnerJobState.validateJsonElement(jsonObj.get("state"));
+      }
+      if ((jsonObj.get("ownerName") != null && !jsonObj.get("ownerName").isJsonNull()) && !jsonObj.get("ownerName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerName").toString()));
+      }
+      if ((jsonObj.get("solutionName") != null && !jsonObj.get("solutionName").isJsonNull()) && !jsonObj.get("solutionName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `solutionName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("solutionName").toString()));
+      }
+      if ((jsonObj.get("runTemplateName") != null && !jsonObj.get("runTemplateName").isJsonNull()) && !jsonObj.get("runTemplateName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `runTemplateName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runTemplateName").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("datasetList") != null && !jsonObj.get("datasetList").isJsonNull() && !jsonObj.get("datasetList").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `datasetList` to be an array in the JSON string but got `%s`", jsonObj.get("datasetList").toString()));
+      }
+      // validate the optional field `runSizing`
+      if (jsonObj.get("runSizing") != null && !jsonObj.get("runSizing").isJsonNull()) {
+        RunnerResourceSizing.validateJsonElement(jsonObj.get("runSizing"));
+      }
+      if (jsonObj.get("parametersValues") != null && !jsonObj.get("parametersValues").isJsonNull()) {
+        JsonArray jsonArrayparametersValues = jsonObj.getAsJsonArray("parametersValues");
+        if (jsonArrayparametersValues != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("parametersValues").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `parametersValues` to be an array in the JSON string but got `%s`", jsonObj.get("parametersValues").toString()));
+          }
+
+          // validate the optional field `parametersValues` (array)
+          for (int i = 0; i < jsonArrayparametersValues.size(); i++) {
+            RunnerRunTemplateParameterValue.validateJsonElement(jsonArrayparametersValues.get(i));
+          };
+        }
+      }
+      // validate the optional field `lastRun`
+      if (jsonObj.get("lastRun") != null && !jsonObj.get("lastRun").isJsonNull()) {
+        RunnerLastRun.validateJsonElement(jsonObj.get("lastRun"));
+      }
+      // validate the optional field `parentLastRun`
+      if (jsonObj.get("parentLastRun") != null && !jsonObj.get("parentLastRun").isJsonNull()) {
+        RunnerParentLastRun.validateJsonElement(jsonObj.get("parentLastRun"));
+      }
+      // validate the optional field `rootLastRun`
+      if (jsonObj.get("rootLastRun") != null && !jsonObj.get("rootLastRun").isJsonNull()) {
+        RunnerRootLastRun.validateJsonElement(jsonObj.get("rootLastRun"));
+      }
+      // validate the optional field `validationStatus`
+      if (jsonObj.get("validationStatus") != null && !jsonObj.get("validationStatus").isJsonNull()) {
+        RunnerValidationStatus.validateJsonElement(jsonObj.get("validationStatus"));
+      }
+      // validate the optional field `security`
+      if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
+        RunnerSecurity.validateJsonElement(jsonObj.get("security"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Runner.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Runner' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Runner> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Runner.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Runner>() {
+           @Override
+           public void write(JsonWriter out, Runner value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Runner read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of Runner given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of Runner
+  * @throws IOException if the JSON string is invalid with respect to Runner
+  */
+  public static Runner fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Runner.class);
+  }
+
+ /**
+  * Convert an instance of Runner to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

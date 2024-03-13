@@ -2,20 +2,20 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createValidator**](ValidatorApi.md#createValidator) | **POST** /organizations/{organization_id}/datasets/validators | Register a new validator
-[**createValidatorRun**](ValidatorApi.md#createValidatorRun) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/history | Register a new validator run
-[**deleteValidator**](ValidatorApi.md#deleteValidator) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id} | Delete a validator
-[**deleteValidatorRun**](ValidatorApi.md#deleteValidatorRun) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Delete a validator run
-[**findAllValidatorRuns**](ValidatorApi.md#findAllValidatorRuns) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history | List all Validator Runs
-[**findAllValidators**](ValidatorApi.md#findAllValidators) | **GET** /organizations/{organization_id}/datasets/validators | List all Validators
-[**findValidatorById**](ValidatorApi.md#findValidatorById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id} | Get the details of a validator
-[**findValidatorRunById**](ValidatorApi.md#findValidatorRunById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Get the details of a validator run
-[**runValidator**](ValidatorApi.md#runValidator) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/run | Run a Validator
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createValidator**](ValidatorApi.md#createValidator) | **POST** /organizations/{organization_id}/datasets/validators | Register a new validator |
+| [**createValidatorRun**](ValidatorApi.md#createValidatorRun) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/history | Register a new validator run |
+| [**deleteValidator**](ValidatorApi.md#deleteValidator) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id} | Delete a validator |
+| [**deleteValidatorRun**](ValidatorApi.md#deleteValidatorRun) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Delete a validator run |
+| [**findAllValidatorRuns**](ValidatorApi.md#findAllValidatorRuns) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history | List all Validator Runs |
+| [**findAllValidators**](ValidatorApi.md#findAllValidators) | **GET** /organizations/{organization_id}/datasets/validators | List all Validators |
+| [**findValidatorById**](ValidatorApi.md#findValidatorById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id} | Get the details of a validator |
+| [**findValidatorRunById**](ValidatorApi.md#findValidatorRunById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Get the details of a validator run |
+| [**runValidator**](ValidatorApi.md#runValidator) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/run | Run a Validator |
 
 
-<a name="createValidator"></a>
+<a id="createValidator"></a>
 # **createValidator**
 > Validator createValidator(organizationId, validator)
 
@@ -59,10 +59,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validator** | [**Validator**](Validator.md)| the Validator to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validator** | [**Validator**](Validator.md)| the Validator to create | |
 
 ### Return type
 
@@ -80,10 +80,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the validator details |  -  |
-**400** | Bad request |  -  |
+| **201** | the validator details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="createValidatorRun"></a>
+<a id="createValidatorRun"></a>
 # **createValidatorRun**
 > ValidatorRun createValidatorRun(organizationId, validatorId, validatorRun)
 
@@ -128,11 +128,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the ValidatorRun identifier |
- **validatorRun** | [**ValidatorRun**](ValidatorRun.md)| the Validator Run to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the ValidatorRun identifier | |
+| **validatorRun** | [**ValidatorRun**](ValidatorRun.md)| the Validator Run to create | |
 
 ### Return type
 
@@ -150,10 +150,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the validator run details |  -  |
-**400** | Bad request |  -  |
+| **201** | the validator run details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="deleteValidator"></a>
+<a id="deleteValidator"></a>
 # **deleteValidator**
 > deleteValidator(organizationId, validatorId)
 
@@ -196,10 +196,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the Validator identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the Validator identifier | |
 
 ### Return type
 
@@ -217,10 +217,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Validator specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Validator specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="deleteValidatorRun"></a>
+<a id="deleteValidatorRun"></a>
 # **deleteValidatorRun**
 > deleteValidatorRun(organizationId, validatorId, validatorrunId)
 
@@ -264,11 +264,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the Validator identifier |
- **validatorrunId** | **String**| the Validator Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the Validator identifier | |
+| **validatorrunId** | **String**| the Validator Run identifier | |
 
 ### Return type
 
@@ -286,10 +286,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the ValidatorRun specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the ValidatorRun specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findAllValidatorRuns"></a>
+<a id="findAllValidatorRuns"></a>
 # **findAllValidatorRuns**
 > List&lt;ValidatorRun&gt; findAllValidatorRuns(organizationId, validatorId)
 
@@ -333,10 +333,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the ValidatorRun identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the ValidatorRun identifier | |
 
 ### Return type
 
@@ -354,9 +354,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the validator run details |  -  |
+| **200** | the validator run details |  -  |
 
-<a name="findAllValidators"></a>
+<a id="findAllValidators"></a>
 # **findAllValidators**
 > List&lt;Validator&gt; findAllValidators(organizationId)
 
@@ -399,9 +399,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
 
 ### Return type
 
@@ -419,9 +419,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the validator details |  -  |
+| **200** | the validator details |  -  |
 
-<a name="findValidatorById"></a>
+<a id="findValidatorById"></a>
 # **findValidatorById**
 > Validator findValidatorById(organizationId, validatorId)
 
@@ -465,10 +465,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the Validator identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the Validator identifier | |
 
 ### Return type
 
@@ -486,10 +486,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Validator details |  -  |
-**404** | the Validator specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Validator details |  -  |
+| **404** | the Validator specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findValidatorRunById"></a>
+<a id="findValidatorRunById"></a>
 # **findValidatorRunById**
 > ValidatorRun findValidatorRunById(organizationId, validatorId, validatorrunId)
 
@@ -534,11 +534,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the Validator identifier |
- **validatorrunId** | **String**| the Validator Run identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the Validator identifier | |
+| **validatorrunId** | **String**| the Validator Run identifier | |
 
 ### Return type
 
@@ -556,10 +556,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Validator Run details |  -  |
-**404** | the ValidatorRun specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Validator Run details |  -  |
+| **404** | the ValidatorRun specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="runValidator"></a>
+<a id="runValidator"></a>
 # **runValidator**
 > ValidatorRun runValidator(organizationId, validatorId, validatorRun)
 
@@ -604,11 +604,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **validatorId** | **String**| the ValidatorRun identifier |
- **validatorRun** | [**ValidatorRun**](ValidatorRun.md)| the Validator to run |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **validatorId** | **String**| the ValidatorRun identifier | |
+| **validatorRun** | [**ValidatorRun**](ValidatorRun.md)| the Validator to run | |
 
 ### Return type
 
@@ -626,6 +626,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the validator run details |  -  |
-**400** | Bad request |  -  |
+| **201** | the validator run details |  -  |
+| **400** | Bad request |  -  |
 

@@ -2,16 +2,16 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**findAllConnectors**](ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors
-[**findConnectorById**](ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector
-[**importConnector**](ConnectorApi.md#importConnector) | **POST** /connectors/import | Import existing connector
-[**registerConnector**](ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
-[**unregisterConnector**](ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**findAllConnectors**](ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors |
+| [**findConnectorById**](ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector |
+| [**findConnectorByName**](ConnectorApi.md#findConnectorByName) | **GET** /connectors/name/{connector_name} | Get the details of a connector |
+| [**registerConnector**](ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector |
+| [**unregisterConnector**](ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector |
 
 
-<a name="findAllConnectors"></a>
+<a id="findAllConnectors"></a>
 # **findAllConnectors**
 > List&lt;Connector&gt; findAllConnectors(page, size)
 
@@ -55,10 +55,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Connectors |  -  |
+| **200** | the list of Connectors |  -  |
 
-<a name="findConnectorById"></a>
+<a id="findConnectorById"></a>
 # **findConnectorById**
 > Connector findConnectorById(connectorId)
 
@@ -121,9 +121,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connectorId** | **String**| the Connector identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectorId** | **String**| the Connector identifier | |
 
 ### Return type
 
@@ -141,14 +141,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Connector details |  -  |
-**404** | the Connector specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Connector details |  -  |
+| **404** | the Connector specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="importConnector"></a>
-# **importConnector**
-> Connector importConnector(connector)
+<a id="findConnectorByName"></a>
+# **findConnectorByName**
+> Connector findConnectorByName(connectorName)
 
-Import existing connector
+Get the details of a connector
 
 ### Example
 ```java
@@ -170,12 +170,12 @@ public class Example {
     oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
 
     ConnectorApi apiInstance = new ConnectorApi(defaultClient);
-    Connector connector = new Connector(); // Connector | the Connector to import
+    String connectorName = "connectorName_example"; // String | the Connector name
     try {
-      Connector result = apiInstance.importConnector(connector);
+      Connector result = apiInstance.findConnectorByName(connectorName);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ConnectorApi#importConnector");
+      System.err.println("Exception when calling ConnectorApi#findConnectorByName");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -187,9 +187,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connector** | [**Connector**](Connector.md)| the Connector to import |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectorName** | **String**| the Connector name | |
 
 ### Return type
 
@@ -201,16 +201,15 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the connector details |  -  |
-**400** | Bad request |  -  |
+| **200** | the Connector details |  -  |
 
-<a name="registerConnector"></a>
+<a id="registerConnector"></a>
 # **registerConnector**
 > Connector registerConnector(connector)
 
@@ -253,9 +252,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connector** | [**Connector**](Connector.md)| the Connector to register |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connector** | [**Connector**](Connector.md)| the Connector to register | |
 
 ### Return type
 
@@ -273,10 +272,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the connector details |  -  |
-**400** | Bad request |  -  |
+| **201** | the connector details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="unregisterConnector"></a>
+<a id="unregisterConnector"></a>
 # **unregisterConnector**
 > unregisterConnector(connectorId)
 
@@ -318,9 +317,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connectorId** | **String**| the Connector identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectorId** | **String**| the Connector identifier | |
 
 ### Return type
 
@@ -338,6 +337,6 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request successful |  -  |
-**404** | the Connector specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request successful |  -  |
+| **404** | the Connector specified is unknown or you don&#39;t have access to it |  -  |
 

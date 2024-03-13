@@ -2,27 +2,33 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addOrReplaceParameterGroups**](SolutionApi.md#addOrReplaceParameterGroups) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Add Parameter Groups. Any item with the same ID will be overwritten
-[**addOrReplaceParameters**](SolutionApi.md#addOrReplaceParameters) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameters | Add Parameters. Any item with the same ID will be overwritten
-[**addOrReplaceRunTemplates**](SolutionApi.md#addOrReplaceRunTemplates) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Add Run Templates. Any item with the same ID will be overwritten
-[**createSolution**](SolutionApi.md#createSolution) | **POST** /organizations/{organization_id}/solutions | Register a new solution
-[**deleteSolution**](SolutionApi.md#deleteSolution) | **DELETE** /organizations/{organization_id}/solutions/{solution_id} | Delete a solution
-[**deleteSolutionRunTemplate**](SolutionApi.md#deleteSolutionRunTemplate) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Remove the specified Solution Run Template
-[**downloadRunTemplateHandler**](SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file
-[**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions
-[**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution
-[**importSolution**](SolutionApi.md#importSolution) | **POST** /organizations/{organization_id}/solutions/import | Import a solution
-[**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified
-[**removeAllSolutionParameterGroups**](SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified
-[**removeAllSolutionParameters**](SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified
-[**updateSolution**](SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution
-[**updateSolutionRunTemplate**](SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template
-[**uploadRunTemplateHandler**](SolutionApi.md#uploadRunTemplateHandler) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload | Upload a Run Template step handler zip file
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addOrReplaceParameterGroups**](SolutionApi.md#addOrReplaceParameterGroups) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Add Parameter Groups. Any item with the same ID will be overwritten |
+| [**addOrReplaceParameters**](SolutionApi.md#addOrReplaceParameters) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameters | Add Parameters. Any item with the same ID will be overwritten |
+| [**addOrReplaceRunTemplates**](SolutionApi.md#addOrReplaceRunTemplates) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Add Run Templates. Any item with the same ID will be overwritten |
+| [**addSolutionAccessControl**](SolutionApi.md#addSolutionAccessControl) | **POST** /organizations/{organization_id}/solutions/{solution_id}/security/access | Add a control access to the Solution |
+| [**createSolution**](SolutionApi.md#createSolution) | **POST** /organizations/{organization_id}/solutions | Register a new solution |
+| [**deleteSolution**](SolutionApi.md#deleteSolution) | **DELETE** /organizations/{organization_id}/solutions/{solution_id} | Delete a solution |
+| [**deleteSolutionRunTemplate**](SolutionApi.md#deleteSolutionRunTemplate) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Remove the specified Solution Run Template |
+| [**downloadRunTemplateHandler**](SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file |
+| [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions |
+| [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution |
+| [**getSolutionAccessControl**](SolutionApi.md#getSolutionAccessControl) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Get a control access for the Solution |
+| [**getSolutionSecurity**](SolutionApi.md#getSolutionSecurity) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security | Get the Solution security information |
+| [**getSolutionSecurityUsers**](SolutionApi.md#getSolutionSecurityUsers) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security/users | Get the Solution security users list |
+| [**removeAllRunTemplates**](SolutionApi.md#removeAllRunTemplates) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Remove all Run Templates from the Solution specified |
+| [**removeAllSolutionParameterGroups**](SolutionApi.md#removeAllSolutionParameterGroups) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Remove all Parameter Groups from the Solution specified |
+| [**removeAllSolutionParameters**](SolutionApi.md#removeAllSolutionParameters) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/parameters | Remove all Parameters from the Solution specified |
+| [**removeSolutionAccessControl**](SolutionApi.md#removeSolutionAccessControl) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Remove the specified access from the given Organization Solution |
+| [**setSolutionDefaultSecurity**](SolutionApi.md#setSolutionDefaultSecurity) | **POST** /organizations/{organization_id}/solutions/{solution_id}/security/default | Set the Solution default security |
+| [**updateSolution**](SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution |
+| [**updateSolutionAccessControl**](SolutionApi.md#updateSolutionAccessControl) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Update the specified access to User for a Solution |
+| [**updateSolutionRunTemplate**](SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template |
+| [**uploadRunTemplateHandler**](SolutionApi.md#uploadRunTemplateHandler) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload | Upload a Run Template step handler zip file |
 
 
-<a name="addOrReplaceParameterGroups"></a>
+<a id="addOrReplaceParameterGroups"></a>
 # **addOrReplaceParameterGroups**
 > List&lt;RunTemplateParameterGroup&gt; addOrReplaceParameterGroups(organizationId, solutionId, runTemplateParameterGroup)
 
@@ -67,11 +73,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateParameterGroup** | [**List&lt;RunTemplateParameterGroup&gt;**](RunTemplateParameterGroup.md)| the Parameter Groups |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateParameterGroup** | [**List&lt;RunTemplateParameterGroup&gt;**](RunTemplateParameterGroup.md)| the Parameter Groups | |
 
 ### Return type
 
@@ -89,11 +95,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Parameter Groups |  -  |
-**400** | Bad request |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Parameter Groups |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="addOrReplaceParameters"></a>
+<a id="addOrReplaceParameters"></a>
 # **addOrReplaceParameters**
 > List&lt;RunTemplateParameter&gt; addOrReplaceParameters(organizationId, solutionId, runTemplateParameter)
 
@@ -138,11 +144,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateParameter** | [**List&lt;RunTemplateParameter&gt;**](RunTemplateParameter.md)| the Parameters |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateParameter** | [**List&lt;RunTemplateParameter&gt;**](RunTemplateParameter.md)| the Parameters | |
 
 ### Return type
 
@@ -160,11 +166,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Parameters |  -  |
-**400** | Bad request |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Parameters |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="addOrReplaceRunTemplates"></a>
+<a id="addOrReplaceRunTemplates"></a>
 # **addOrReplaceRunTemplates**
 > List&lt;RunTemplate&gt; addOrReplaceRunTemplates(organizationId, solutionId, runTemplate)
 
@@ -209,11 +215,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplate** | [**List&lt;RunTemplate&gt;**](RunTemplate.md)| the Run Templates |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplate** | [**List&lt;RunTemplate&gt;**](RunTemplate.md)| the Run Templates | |
 
 ### Return type
 
@@ -231,11 +237,81 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Parameters |  -  |
-**400** | Bad request |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Parameters |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="createSolution"></a>
+<a id="addSolutionAccessControl"></a>
+# **addSolutionAccessControl**
+> SolutionAccessControl addSolutionAccessControl(organizationId, solutionId, solutionAccessControl)
+
+Add a control access to the Solution
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    SolutionAccessControl solutionAccessControl = new SolutionAccessControl(); // SolutionAccessControl | the new Solution security access to add.
+    try {
+      SolutionAccessControl result = apiInstance.addSolutionAccessControl(organizationId, solutionId, solutionAccessControl);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#addSolutionAccessControl");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **solutionAccessControl** | [**SolutionAccessControl**](SolutionAccessControl.md)| the new Solution security access to add. | |
+
+### Return type
+
+[**SolutionAccessControl**](SolutionAccessControl.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The Solution access |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="createSolution"></a>
 # **createSolution**
 > Solution createSolution(organizationId, solution)
 
@@ -279,10 +355,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solution** | [**Solution**](Solution.md)| the Solution to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solution** | [**Solution**](Solution.md)| the Solution to create | |
 
 ### Return type
 
@@ -300,10 +376,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the solution details |  -  |
-**400** | Bad request |  -  |
+| **201** | the solution details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="deleteSolution"></a>
+<a id="deleteSolution"></a>
 # **deleteSolution**
 > deleteSolution(organizationId, solutionId)
 
@@ -346,10 +422,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
 
 ### Return type
 
@@ -367,10 +443,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="deleteSolutionRunTemplate"></a>
+<a id="deleteSolutionRunTemplate"></a>
 # **deleteSolutionRunTemplate**
 > deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId)
 
@@ -414,11 +490,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateId** | **String**| the Run Template identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
 
 ### Return type
 
@@ -436,12 +512,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="downloadRunTemplateHandler"></a>
+<a id="downloadRunTemplateHandler"></a>
 # **downloadRunTemplateHandler**
-> File downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
+> byte[] downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
 
 Download a Run Template step handler zip file
 
@@ -470,7 +546,7 @@ public class Example {
     String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
     RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
     try {
-      File result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+      byte[] result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolutionApi#downloadRunTemplateHandler");
@@ -485,16 +561,16 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateId** | **String**| the Run Template identifier |
- **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
+| **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform] |
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 ### Authorization
 
@@ -508,10 +584,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the run template handle file as a resource |  -  |
-**404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the run template handle file as a resource |  * Content-Disposition - Run Template step handler zip file <br>  |
+| **404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findAllSolutions"></a>
+<a id="findAllSolutions"></a>
 # **findAllSolutions**
 > List&lt;Solution&gt; findAllSolutions(organizationId, page, size)
 
@@ -556,11 +632,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -578,9 +654,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the solution details |  -  |
+| **200** | the solution details |  -  |
 
-<a name="findSolutionById"></a>
+<a id="findSolutionById"></a>
 # **findSolutionById**
 > Solution findSolutionById(organizationId, solutionId)
 
@@ -624,10 +700,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
 
 ### Return type
 
@@ -645,14 +721,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Solution details |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Solution details |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="importSolution"></a>
-# **importSolution**
-> Solution importSolution(organizationId, solution)
+<a id="getSolutionAccessControl"></a>
+# **getSolutionAccessControl**
+> SolutionAccessControl getSolutionAccessControl(organizationId, solutionId, identityId)
 
-Import a solution
+Get a control access for the Solution
 
 ### Example
 ```java
@@ -675,12 +751,13 @@ public class Example {
 
     SolutionApi apiInstance = new SolutionApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
-    Solution solution = new Solution(); // Solution | the Solution to import
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String identityId = "identityId_example"; // String | the User identifier
     try {
-      Solution result = apiInstance.importSolution(organizationId, solution);
+      SolutionAccessControl result = apiInstance.getSolutionAccessControl(organizationId, solutionId, identityId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SolutionApi#importSolution");
+      System.err.println("Exception when calling SolutionApi#getSolutionAccessControl");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -692,14 +769,15 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solution** | [**Solution**](Solution.md)| the Solution to import |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
-[**Solution**](Solution.md)
+[**SolutionAccessControl**](SolutionAccessControl.md)
 
 ### Authorization
 
@@ -707,16 +785,152 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/yaml
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the solution details |  -  |
-**400** | Bad request |  -  |
+| **200** | The Solution access |  -  |
+| **404** | The Solution or user specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="removeAllRunTemplates"></a>
+<a id="getSolutionSecurity"></a>
+# **getSolutionSecurity**
+> SolutionSecurity getSolutionSecurity(organizationId, solutionId)
+
+Get the Solution security information
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    try {
+      SolutionSecurity result = apiInstance.getSolutionSecurity(organizationId, solutionId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#getSolutionSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+
+### Return type
+
+[**SolutionSecurity**](SolutionSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Solution security |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="getSolutionSecurityUsers"></a>
+# **getSolutionSecurityUsers**
+> List&lt;String&gt; getSolutionSecurityUsers(organizationId, solutionId)
+
+Get the Solution security users list
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    try {
+      List<String> result = apiInstance.getSolutionSecurityUsers(organizationId, solutionId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#getSolutionSecurityUsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+
+### Return type
+
+**List&lt;String&gt;**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Solution security users list |  -  |
+| **404** | the Solution or the User specified is unknown or you don&#39;t have access to them |  -  |
+
+<a id="removeAllRunTemplates"></a>
 # **removeAllRunTemplates**
 > removeAllRunTemplates(organizationId, solutionId)
 
@@ -759,10 +973,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
 
 ### Return type
 
@@ -780,10 +994,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="removeAllSolutionParameterGroups"></a>
+<a id="removeAllSolutionParameterGroups"></a>
 # **removeAllSolutionParameterGroups**
 > removeAllSolutionParameterGroups(organizationId, solutionId)
 
@@ -826,10 +1040,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
 
 ### Return type
 
@@ -847,10 +1061,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="removeAllSolutionParameters"></a>
+<a id="removeAllSolutionParameters"></a>
 # **removeAllSolutionParameters**
 > removeAllSolutionParameters(organizationId, solutionId)
 
@@ -893,10 +1107,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
 
 ### Return type
 
@@ -914,10 +1128,149 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateSolution"></a>
+<a id="removeSolutionAccessControl"></a>
+# **removeSolutionAccessControl**
+> removeSolutionAccessControl(organizationId, solutionId, identityId)
+
+Remove the specified access from the given Organization Solution
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String identityId = "identityId_example"; // String | the User identifier
+    try {
+      apiInstance.removeSolutionAccessControl(organizationId, solutionId, identityId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#removeSolutionAccessControl");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **identityId** | **String**| the User identifier | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Request succeeded |  -  |
+| **404** | The Solution or the user specified is unknown or you don&#39;t have access to them |  -  |
+
+<a id="setSolutionDefaultSecurity"></a>
+# **setSolutionDefaultSecurity**
+> SolutionSecurity setSolutionDefaultSecurity(organizationId, solutionId, solutionRole)
+
+Set the Solution default security
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    SolutionRole solutionRole = new SolutionRole(); // SolutionRole | This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution.
+    try {
+      SolutionSecurity result = apiInstance.setSolutionDefaultSecurity(organizationId, solutionId, solutionRole);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#setSolutionDefaultSecurity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **solutionRole** | [**SolutionRole**](SolutionRole.md)| This change the solution default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the solution. | |
+
+### Return type
+
+[**SolutionSecurity**](SolutionSecurity.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/yaml
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The Solution default visibility |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="updateSolution"></a>
 # **updateSolution**
 > Solution updateSolution(organizationId, solutionId, solution)
 
@@ -945,7 +1298,7 @@ public class Example {
     SolutionApi apiInstance = new SolutionApi(defaultClient);
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String solutionId = "solutionId_example"; // String | the Solution identifier
-    Solution solution = new Solution(); // Solution | the new Solution details.
+    Solution solution = new Solution(); // Solution | the new Solution details. This endpoint can't be used to update security
     try {
       Solution result = apiInstance.updateSolution(organizationId, solutionId, solution);
       System.out.println(result);
@@ -962,11 +1315,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **solution** | [**Solution**](Solution.md)| the new Solution details. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **solution** | [**Solution**](Solution.md)| the new Solution details. This endpoint can&#39;t be used to update security | |
 
 ### Return type
 
@@ -984,11 +1337,83 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the solution details |  -  |
-**400** | Bad request |  -  |
-**404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the solution details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateSolutionRunTemplate"></a>
+<a id="updateSolutionAccessControl"></a>
+# **updateSolutionAccessControl**
+> SolutionAccessControl updateSolutionAccessControl(organizationId, solutionId, identityId, solutionRole)
+
+Update the specified access to User for a Solution
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String identityId = "identityId_example"; // String | the User identifier
+    SolutionRole solutionRole = new SolutionRole(); // SolutionRole | The new Solution Access Control
+    try {
+      SolutionAccessControl result = apiInstance.updateSolutionAccessControl(organizationId, solutionId, identityId, solutionRole);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#updateSolutionAccessControl");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **identityId** | **String**| the User identifier | |
+| **solutionRole** | [**SolutionRole**](SolutionRole.md)| The new Solution Access Control | |
+
+### Return type
+
+[**SolutionAccessControl**](SolutionAccessControl.md)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Solution access |  -  |
+| **404** | The Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="updateSolutionRunTemplate"></a>
 # **updateSolutionRunTemplate**
 > List&lt;RunTemplate&gt; updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate)
 
@@ -1034,12 +1459,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateId** | **String**| the Run Template identifier |
- **runTemplate** | [**RunTemplate**](RunTemplate.md)| the Run Templates |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
+| **runTemplate** | [**RunTemplate**](RunTemplate.md)| the Run Templates | |
 
 ### Return type
 
@@ -1057,11 +1482,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Parameters |  -  |
-**400** | Bad request |  -  |
-**404** | the Solution or Run Template specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Parameters |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Solution or Run Template specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="uploadRunTemplateHandler"></a>
+<a id="uploadRunTemplateHandler"></a>
 # **uploadRunTemplateHandler**
 > uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite)
 
@@ -1108,14 +1533,14 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **solutionId** | **String**| the Solution identifier |
- **runTemplateId** | **String**| the Run Template identifier |
- **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform]
- **body** | **File**|  |
- **overwrite** | **Boolean**| whether to overwrite any existing handler resource | [optional] [default to false]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
+| **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform] |
+| **body** | **File**|  | |
+| **overwrite** | **Boolean**| whether to overwrite any existing handler resource | [optional] [default to false] |
 
 ### Return type
 
@@ -1133,6 +1558,6 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | zip file uploaded |  -  |
-**400** | Bad request |  -  |
+| **201** | zip file uploaded |  -  |
+| **400** | Bad request |  -  |
 
