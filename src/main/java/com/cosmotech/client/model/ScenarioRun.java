@@ -54,7 +54,7 @@ import com.cosmotech.client.JSON;
 /**
  * a ScenarioRun with only base properties
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-13T20:46:23.451733025Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-14T17:20:25.981650971Z[Etc/UTC]")
 @com.redis.om.spring.annotations.Document
 public class ScenarioRun {
   public static final String SERIALIZED_NAME_ID = "id";

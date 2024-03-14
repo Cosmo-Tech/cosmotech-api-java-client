@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * FileUploadMetadata
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-13T20:46:23.451733025Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-14T17:20:25.981650971Z[Etc/UTC]")
 public class FileUploadMetadata {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
