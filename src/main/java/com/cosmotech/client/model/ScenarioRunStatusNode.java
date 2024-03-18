@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * status of a ScenarioRun Node
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-15T14:59:31.825868634Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-18T14:40:45.610962072Z[Etc/UTC]")
 public class ScenarioRunStatusNode {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
