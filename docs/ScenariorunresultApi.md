@@ -2,13 +2,13 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getScenarioRunResult**](ScenariorunresultApi.md#getScenarioRunResult) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Get a ScenarioRunResult in the Organization |
-| [**sendScenarioRunResult**](ScenariorunresultApi.md#sendScenarioRunResult) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Create a new ScenarioRunResult in the Organization |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getScenarioRunResult**](ScenariorunresultApi.md#getScenarioRunResult) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Get a ScenarioRunResult in the Organization
+[**sendScenarioRunResult**](ScenariorunresultApi.md#sendScenarioRunResult) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Create a new ScenarioRunResult in the Organization
 
 
-<a id="getScenarioRunResult"></a>
+<a name="getScenarioRunResult"></a>
 # **getScenarioRunResult**
 > ScenarioRunResult getScenarioRunResult(organizationId, workspaceId, scenarioId, scenariorunId, probeId)
 
@@ -55,13 +55,13 @@ public class Example {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **organizationId** | **String**| the Organization identifier | |
-| **workspaceId** | **String**| the Workspace identifier | |
-| **scenarioId** | **String**| the Scenario identifier | |
-| **scenariorunId** | **String**| the ScenarioRun identifier | |
-| **probeId** | **String**| the Probe identifier | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+ **scenariorunId** | **String**| the ScenarioRun identifier |
+ **probeId** | **String**| the Probe identifier |
 
 ### Return type
 
@@ -79,10 +79,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | the Organization details |  -  |
-| **404** | the ScenarioRunResult specified is unknown or you don&#39;t have access to it |  -  |
+**200** | the Organization details |  -  |
+**404** | the ScenarioRunResult specified is unknown or you don&#39;t have access to it |  -  |
 
-<a id="sendScenarioRunResult"></a>
+<a name="sendScenarioRunResult"></a>
 # **sendScenarioRunResult**
 > ScenarioRunResult sendScenarioRunResult(organizationId, workspaceId, scenarioId, scenariorunId, probeId, requestBody)
 
@@ -130,14 +130,14 @@ public class Example {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **organizationId** | **String**| the Organization identifier | |
-| **workspaceId** | **String**| the Workspace identifier | |
-| **scenarioId** | **String**| the Scenario identifier | |
-| **scenariorunId** | **String**| the ScenarioRun identifier | |
-| **probeId** | **String**| the Probe identifier | |
-| **requestBody** | [**Map&lt;String, String&gt;**](String.md)| the ScenarioRunResult to register | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| the Organization identifier |
+ **workspaceId** | **String**| the Workspace identifier |
+ **scenarioId** | **String**| the Scenario identifier |
+ **scenariorunId** | **String**| the ScenarioRun identifier |
+ **probeId** | **String**| the Probe identifier |
+ **requestBody** | [**Map&lt;String, String&gt;**](String.md)| the ScenarioRunResult to register |
 
 ### Return type
 
@@ -155,6 +155,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | the Organization details |  -  |
-| **400** | the ScenarioRunResult specified is unknown or you don&#39;t have access to it |  -  |
+**200** | the Organization details |  -  |
+**400** | the ScenarioRunResult specified is unknown or you don&#39;t have access to it |  -  |
 
