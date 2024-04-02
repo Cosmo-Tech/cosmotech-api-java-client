@@ -16,7 +16,7 @@ package com.cosmotech.client.auth;
 /**
  * OAuth flows that are supported by this client
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-26T10:15:21.172923481Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T12:35:40.318905823Z[Etc/UTC]")
 public enum OAuthFlow {
     ACCESS_CODE, //called authorizationCode  in OpenAPI 3.0
     IMPLICIT,
