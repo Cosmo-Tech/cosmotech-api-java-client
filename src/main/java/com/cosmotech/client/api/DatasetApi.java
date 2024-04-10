@@ -103,6 +103,7 @@ public class DatasetApi {
      */
     public okhttp3.Call addDatasetAccessControlCall(String organizationId, String datasetId, DatasetAccessControl datasetAccessControl, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -119,8 +120,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/access"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -137,8 +138,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -151,22 +151,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call addDatasetAccessControlValidateBeforeCall(String organizationId, String datasetId, DatasetAccessControl datasetAccessControl, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling addDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling addDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetAccessControl' is set
         if (datasetAccessControl == null) {
             throw new ApiException("Missing the required parameter 'datasetAccessControl' when calling addDatasetAccessControl(Async)");
         }
+        
 
-        return addDatasetAccessControlCall(organizationId, datasetId, datasetAccessControl, _callback);
+        okhttp3.Call localVarCall = addDatasetAccessControlCall(organizationId, datasetId, datasetAccessControl, _callback);
+        return localVarCall;
 
     }
 
@@ -252,6 +255,7 @@ public class DatasetApi {
      */
     public okhttp3.Call addOrReplaceDatasetCompatibilityElementsCall(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -268,8 +272,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/compatibility"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -299,22 +303,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call addOrReplaceDatasetCompatibilityElementsValidateBeforeCall(String organizationId, String datasetId, List<DatasetCompatibility> datasetCompatibility, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling addOrReplaceDatasetCompatibilityElements(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling addOrReplaceDatasetCompatibilityElements(Async)");
         }
-
+        
         // verify the required parameter 'datasetCompatibility' is set
         if (datasetCompatibility == null) {
             throw new ApiException("Missing the required parameter 'datasetCompatibility' when calling addOrReplaceDatasetCompatibilityElements(Async)");
         }
+        
 
-        return addOrReplaceDatasetCompatibilityElementsCall(organizationId, datasetId, datasetCompatibility, _callback);
+        okhttp3.Call localVarCall = addOrReplaceDatasetCompatibilityElementsCall(organizationId, datasetId, datasetCompatibility, _callback);
+        return localVarCall;
 
     }
 
@@ -402,6 +409,7 @@ public class DatasetApi {
      */
     public okhttp3.Call copyDatasetCall(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -418,7 +426,7 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/copy"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -435,8 +443,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -449,17 +456,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call copyDatasetValidateBeforeCall(String organizationId, DatasetCopyParameters datasetCopyParameters, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling copyDataset(Async)");
         }
-
+        
         // verify the required parameter 'datasetCopyParameters' is set
         if (datasetCopyParameters == null) {
             throw new ApiException("Missing the required parameter 'datasetCopyParameters' when calling copyDataset(Async)");
         }
+        
 
-        return copyDatasetCall(organizationId, datasetCopyParameters, _callback);
+        okhttp3.Call localVarCall = copyDatasetCall(organizationId, datasetCopyParameters, _callback);
+        return localVarCall;
 
     }
 
@@ -543,6 +553,7 @@ public class DatasetApi {
      */
     public okhttp3.Call createDatasetCall(String organizationId, Dataset dataset, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -559,7 +570,7 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -576,8 +587,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -590,17 +600,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createDatasetValidateBeforeCall(String organizationId, Dataset dataset, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling createDataset(Async)");
         }
-
+        
         // verify the required parameter 'dataset' is set
         if (dataset == null) {
             throw new ApiException("Missing the required parameter 'dataset' when calling createDataset(Async)");
         }
+        
 
-        return createDatasetCall(organizationId, dataset, _callback);
+        okhttp3.Call localVarCall = createDatasetCall(organizationId, dataset, _callback);
+        return localVarCall;
 
     }
 
@@ -681,6 +694,7 @@ public class DatasetApi {
      */
     public okhttp3.Call createSubDatasetCall(String organizationId, String datasetId, SubDatasetGraphQuery subDatasetGraphQuery, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -697,8 +711,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/subdataset"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -728,22 +742,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSubDatasetValidateBeforeCall(String organizationId, String datasetId, SubDatasetGraphQuery subDatasetGraphQuery, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling createSubDataset(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling createSubDataset(Async)");
         }
-
+        
         // verify the required parameter 'subDatasetGraphQuery' is set
         if (subDatasetGraphQuery == null) {
             throw new ApiException("Missing the required parameter 'subDatasetGraphQuery' when calling createSubDataset(Async)");
         }
+        
 
-        return createSubDatasetCall(organizationId, datasetId, subDatasetGraphQuery, _callback);
+        okhttp3.Call localVarCall = createSubDatasetCall(organizationId, datasetId, subDatasetGraphQuery, _callback);
+        return localVarCall;
 
     }
 
@@ -825,6 +842,7 @@ public class DatasetApi {
      */
     public okhttp3.Call createTwingraphEntitiesCall(String organizationId, String datasetId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -841,9 +859,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "type" + "}", localVarApiClient.escapeString(type.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "type" + "\\}", localVarApiClient.escapeString(type.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -873,27 +891,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createTwingraphEntitiesValidateBeforeCall(String organizationId, String datasetId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling createTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling createTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling createTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'graphProperties' is set
         if (graphProperties == null) {
             throw new ApiException("Missing the required parameter 'graphProperties' when calling createTwingraphEntities(Async)");
         }
+        
 
-        return createTwingraphEntitiesCall(organizationId, datasetId, type, graphProperties, _callback);
+        okhttp3.Call localVarCall = createTwingraphEntitiesCall(organizationId, datasetId, type, graphProperties, _callback);
+        return localVarCall;
 
     }
 
@@ -977,6 +998,7 @@ public class DatasetApi {
      */
     public okhttp3.Call deleteDatasetCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -993,8 +1015,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1003,6 +1025,7 @@ public class DatasetApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1010,6 +1033,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1022,17 +1046,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteDatasetValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling deleteDataset(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling deleteDataset(Async)");
         }
+        
 
-        return deleteDatasetCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = deleteDatasetCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -1110,6 +1137,7 @@ public class DatasetApi {
      */
     public okhttp3.Call deleteTwingraphEntitiesCall(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1126,9 +1154,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "type" + "}", localVarApiClient.escapeString(type.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "type" + "\\}", localVarApiClient.escapeString(type.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1141,6 +1169,7 @@ public class DatasetApi {
         }
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1148,6 +1177,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1160,27 +1190,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteTwingraphEntitiesValidateBeforeCall(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling deleteTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling deleteTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling deleteTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'ids' is set
         if (ids == null) {
             throw new ApiException("Missing the required parameter 'ids' when calling deleteTwingraphEntities(Async)");
         }
+        
 
-        return deleteTwingraphEntitiesCall(organizationId, datasetId, type, ids, _callback);
+        okhttp3.Call localVarCall = deleteTwingraphEntitiesCall(organizationId, datasetId, type, ids, _callback);
+        return localVarCall;
 
     }
 
@@ -1259,6 +1292,7 @@ public class DatasetApi {
      */
     public okhttp3.Call downloadTwingraphCall(String organizationId, String hash, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1275,8 +1309,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/twingraph/download/{hash}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "hash" + "}", localVarApiClient.escapeString(hash.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "hash" + "\\}", localVarApiClient.escapeString(hash.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1293,6 +1327,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1305,17 +1340,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call downloadTwingraphValidateBeforeCall(String organizationId, String hash, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling downloadTwingraph(Async)");
         }
-
+        
         // verify the required parameter 'hash' is set
         if (hash == null) {
             throw new ApiException("Missing the required parameter 'hash' when calling downloadTwingraph(Async)");
         }
+        
 
-        return downloadTwingraphCall(organizationId, hash, _callback);
+        okhttp3.Call localVarCall = downloadTwingraphCall(organizationId, hash, _callback);
+        return localVarCall;
 
     }
 
@@ -1393,6 +1431,7 @@ public class DatasetApi {
      */
     public okhttp3.Call findAllDatasetsCall(String organizationId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1409,7 +1448,7 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1434,6 +1473,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1446,12 +1486,15 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findAllDatasetsValidateBeforeCall(String organizationId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findAllDatasets(Async)");
         }
+        
 
-        return findAllDatasetsCall(organizationId, page, size, _callback);
+        okhttp3.Call localVarCall = findAllDatasetsCall(organizationId, page, size, _callback);
+        return localVarCall;
 
     }
 
@@ -1532,6 +1575,7 @@ public class DatasetApi {
      */
     public okhttp3.Call findDatasetByIdCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1548,8 +1592,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1566,6 +1610,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1578,17 +1623,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findDatasetByIdValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findDatasetById(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling findDatasetById(Async)");
         }
+        
 
-        return findDatasetByIdCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = findDatasetByIdCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -1670,6 +1718,7 @@ public class DatasetApi {
      */
     public okhttp3.Call getDatasetAccessControlCall(String organizationId, String datasetId, String identityId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1686,9 +1735,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "identity_id" + "}", localVarApiClient.escapeString(identityId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1705,6 +1754,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1717,22 +1767,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDatasetAccessControlValidateBeforeCall(String organizationId, String datasetId, String identityId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling getDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'identityId' is set
         if (identityId == null) {
             throw new ApiException("Missing the required parameter 'identityId' when calling getDatasetAccessControl(Async)");
         }
+        
 
-        return getDatasetAccessControlCall(organizationId, datasetId, identityId, _callback);
+        okhttp3.Call localVarCall = getDatasetAccessControlCall(organizationId, datasetId, identityId, _callback);
+        return localVarCall;
 
     }
 
@@ -1816,6 +1869,7 @@ public class DatasetApi {
      */
     public okhttp3.Call getDatasetSecurityCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1832,8 +1886,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1850,6 +1904,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1862,17 +1917,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDatasetSecurityValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling getDatasetSecurity(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetSecurity(Async)");
         }
+        
 
-        return getDatasetSecurityCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = getDatasetSecurityCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -1953,6 +2011,7 @@ public class DatasetApi {
      */
     public okhttp3.Call getDatasetSecurityUsersCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1969,8 +2028,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/users"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1987,6 +2046,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1999,17 +2059,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDatasetSecurityUsersValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling getDatasetSecurityUsers(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetSecurityUsers(Async)");
         }
+        
 
-        return getDatasetSecurityUsersCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = getDatasetSecurityUsersCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -2089,6 +2152,7 @@ public class DatasetApi {
      */
     public okhttp3.Call getDatasetTwingraphStatusCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2105,8 +2169,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/status"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2115,8 +2179,7 @@ public class DatasetApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/yaml",
-            "application/json"
+            "application/yaml", "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2124,6 +2187,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2136,17 +2200,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDatasetTwingraphStatusValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling getDatasetTwingraphStatus(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getDatasetTwingraphStatus(Async)");
         }
+        
 
-        return getDatasetTwingraphStatusCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = getDatasetTwingraphStatusCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -2225,6 +2292,7 @@ public class DatasetApi {
      */
     public okhttp3.Call getTwingraphEntitiesCall(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2241,9 +2309,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "type" + "}", localVarApiClient.escapeString(type.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "type" + "\\}", localVarApiClient.escapeString(type.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2264,6 +2332,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2276,27 +2345,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getTwingraphEntitiesValidateBeforeCall(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling getTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling getTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling getTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'ids' is set
         if (ids == null) {
             throw new ApiException("Missing the required parameter 'ids' when calling getTwingraphEntities(Async)");
         }
+        
 
-        return getTwingraphEntitiesCall(organizationId, datasetId, type, ids, _callback);
+        okhttp3.Call localVarCall = getTwingraphEntitiesCall(organizationId, datasetId, type, ids, _callback);
+        return localVarCall;
 
     }
 
@@ -2382,6 +2454,7 @@ public class DatasetApi {
      */
     public okhttp3.Call linkWorkspaceCall(String organizationId, String datasetId, String workspaceId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2398,8 +2471,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/link"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2420,6 +2493,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2432,22 +2506,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call linkWorkspaceValidateBeforeCall(String organizationId, String datasetId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling linkWorkspace(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling linkWorkspace(Async)");
         }
-
+        
         // verify the required parameter 'workspaceId' is set
         if (workspaceId == null) {
             throw new ApiException("Missing the required parameter 'workspaceId' when calling linkWorkspace(Async)");
         }
+        
 
-        return linkWorkspaceCall(organizationId, datasetId, workspaceId, _callback);
+        okhttp3.Call localVarCall = linkWorkspaceCall(organizationId, datasetId, workspaceId, _callback);
+        return localVarCall;
 
     }
 
@@ -2533,6 +2610,7 @@ public class DatasetApi {
      */
     public okhttp3.Call refreshDatasetCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2549,8 +2627,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/refresh"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2567,6 +2645,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2579,17 +2658,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call refreshDatasetValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling refreshDataset(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling refreshDataset(Async)");
         }
+        
 
-        return refreshDatasetCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = refreshDatasetCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -2667,6 +2749,7 @@ public class DatasetApi {
      */
     public okhttp3.Call removeAllDatasetCompatibilityElementsCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2683,8 +2766,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/compatibility"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2693,6 +2776,7 @@ public class DatasetApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2700,6 +2784,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2712,17 +2797,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call removeAllDatasetCompatibilityElementsValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling removeAllDatasetCompatibilityElements(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling removeAllDatasetCompatibilityElements(Async)");
         }
+        
 
-        return removeAllDatasetCompatibilityElementsCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = removeAllDatasetCompatibilityElementsCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -2800,6 +2888,7 @@ public class DatasetApi {
      */
     public okhttp3.Call removeDatasetAccessControlCall(String organizationId, String datasetId, String identityId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2816,9 +2905,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "identity_id" + "}", localVarApiClient.escapeString(identityId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2827,6 +2916,7 @@ public class DatasetApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2834,6 +2924,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2846,22 +2937,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call removeDatasetAccessControlValidateBeforeCall(String organizationId, String datasetId, String identityId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling removeDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling removeDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'identityId' is set
         if (identityId == null) {
             throw new ApiException("Missing the required parameter 'identityId' when calling removeDatasetAccessControl(Async)");
         }
+        
 
-        return removeDatasetAccessControlCall(organizationId, datasetId, identityId, _callback);
+        okhttp3.Call localVarCall = removeDatasetAccessControlCall(organizationId, datasetId, identityId, _callback);
+        return localVarCall;
 
     }
 
@@ -2940,6 +3034,7 @@ public class DatasetApi {
      */
     public okhttp3.Call rollbackRefreshCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -2956,8 +3051,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/refresh/rollback"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2974,6 +3069,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2986,17 +3082,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call rollbackRefreshValidateBeforeCall(String organizationId, String datasetId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling rollbackRefresh(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling rollbackRefresh(Async)");
         }
+        
 
-        return rollbackRefreshCall(organizationId, datasetId, _callback);
+        okhttp3.Call localVarCall = rollbackRefreshCall(organizationId, datasetId, _callback);
+        return localVarCall;
 
     }
 
@@ -3075,6 +3174,7 @@ public class DatasetApi {
      */
     public okhttp3.Call searchDatasetsCall(String organizationId, DatasetSearch datasetSearch, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3091,7 +3191,7 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/search"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3116,8 +3216,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3130,17 +3229,20 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call searchDatasetsValidateBeforeCall(String organizationId, DatasetSearch datasetSearch, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling searchDatasets(Async)");
         }
-
+        
         // verify the required parameter 'datasetSearch' is set
         if (datasetSearch == null) {
             throw new ApiException("Missing the required parameter 'datasetSearch' when calling searchDatasets(Async)");
         }
+        
 
-        return searchDatasetsCall(organizationId, datasetSearch, page, size, _callback);
+        okhttp3.Call localVarCall = searchDatasetsCall(organizationId, datasetSearch, page, size, _callback);
+        return localVarCall;
 
     }
 
@@ -3225,6 +3327,7 @@ public class DatasetApi {
      */
     public okhttp3.Call setDatasetDefaultSecurityCall(String organizationId, String datasetId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3241,8 +3344,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/default"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3259,8 +3362,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3273,22 +3375,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call setDatasetDefaultSecurityValidateBeforeCall(String organizationId, String datasetId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling setDatasetDefaultSecurity(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling setDatasetDefaultSecurity(Async)");
         }
-
+        
         // verify the required parameter 'datasetRole' is set
         if (datasetRole == null) {
             throw new ApiException("Missing the required parameter 'datasetRole' when calling setDatasetDefaultSecurity(Async)");
         }
+        
 
-        return setDatasetDefaultSecurityCall(organizationId, datasetId, datasetRole, _callback);
+        okhttp3.Call localVarCall = setDatasetDefaultSecurityCall(organizationId, datasetId, datasetRole, _callback);
+        return localVarCall;
 
     }
 
@@ -3372,6 +3477,7 @@ public class DatasetApi {
      */
     public okhttp3.Call twingraphBatchQueryCall(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3388,8 +3494,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/batch-query"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3419,22 +3525,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call twingraphBatchQueryValidateBeforeCall(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling twingraphBatchQuery(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling twingraphBatchQuery(Async)");
         }
-
+        
         // verify the required parameter 'datasetTwinGraphQuery' is set
         if (datasetTwinGraphQuery == null) {
             throw new ApiException("Missing the required parameter 'datasetTwinGraphQuery' when calling twingraphBatchQuery(Async)");
         }
+        
 
-        return twingraphBatchQueryCall(organizationId, datasetId, datasetTwinGraphQuery, _callback);
+        okhttp3.Call localVarCall = twingraphBatchQueryCall(organizationId, datasetId, datasetTwinGraphQuery, _callback);
+        return localVarCall;
 
     }
 
@@ -3517,6 +3626,7 @@ public class DatasetApi {
      */
     public okhttp3.Call twingraphBatchUpdateCall(String organizationId, String datasetId, DatasetTwinGraphQuery twinGraphQuery, File body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3533,8 +3643,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/batch"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3555,8 +3665,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "text/csv",
-            "application/octet-stream"
+            "text/csv", "application/octet-stream"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3569,27 +3678,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call twingraphBatchUpdateValidateBeforeCall(String organizationId, String datasetId, DatasetTwinGraphQuery twinGraphQuery, File body, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling twingraphBatchUpdate(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling twingraphBatchUpdate(Async)");
         }
-
+        
         // verify the required parameter 'twinGraphQuery' is set
         if (twinGraphQuery == null) {
             throw new ApiException("Missing the required parameter 'twinGraphQuery' when calling twingraphBatchUpdate(Async)");
         }
-
+        
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling twingraphBatchUpdate(Async)");
         }
+        
 
-        return twingraphBatchUpdateCall(organizationId, datasetId, twinGraphQuery, body, _callback);
+        okhttp3.Call localVarCall = twingraphBatchUpdateCall(organizationId, datasetId, twinGraphQuery, body, _callback);
+        return localVarCall;
 
     }
 
@@ -3676,6 +3788,7 @@ public class DatasetApi {
      */
     public okhttp3.Call twingraphQueryCall(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3692,8 +3805,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/twingraph"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3723,22 +3836,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call twingraphQueryValidateBeforeCall(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling twingraphQuery(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling twingraphQuery(Async)");
         }
-
+        
         // verify the required parameter 'datasetTwinGraphQuery' is set
         if (datasetTwinGraphQuery == null) {
             throw new ApiException("Missing the required parameter 'datasetTwinGraphQuery' when calling twingraphQuery(Async)");
         }
+        
 
-        return twingraphQueryCall(organizationId, datasetId, datasetTwinGraphQuery, _callback);
+        okhttp3.Call localVarCall = twingraphQueryCall(organizationId, datasetId, datasetTwinGraphQuery, _callback);
+        return localVarCall;
 
     }
 
@@ -3821,6 +3937,7 @@ public class DatasetApi {
      */
     public okhttp3.Call unlinkWorkspaceCall(String organizationId, String datasetId, String workspaceId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3837,8 +3954,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/unlink"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3859,6 +3976,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3871,22 +3989,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call unlinkWorkspaceValidateBeforeCall(String organizationId, String datasetId, String workspaceId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling unlinkWorkspace(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling unlinkWorkspace(Async)");
         }
-
+        
         // verify the required parameter 'workspaceId' is set
         if (workspaceId == null) {
             throw new ApiException("Missing the required parameter 'workspaceId' when calling unlinkWorkspace(Async)");
         }
+        
 
-        return unlinkWorkspaceCall(organizationId, datasetId, workspaceId, _callback);
+        okhttp3.Call localVarCall = unlinkWorkspaceCall(organizationId, datasetId, workspaceId, _callback);
+        return localVarCall;
 
     }
 
@@ -3975,6 +4096,7 @@ public class DatasetApi {
      */
     public okhttp3.Call updateDatasetCall(String organizationId, String datasetId, Dataset dataset, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -3991,8 +4113,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4009,8 +4131,7 @@ public class DatasetApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -4023,22 +4144,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateDatasetValidateBeforeCall(String organizationId, String datasetId, Dataset dataset, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling updateDataset(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling updateDataset(Async)");
         }
-
+        
         // verify the required parameter 'dataset' is set
         if (dataset == null) {
             throw new ApiException("Missing the required parameter 'dataset' when calling updateDataset(Async)");
         }
+        
 
-        return updateDatasetCall(organizationId, datasetId, dataset, _callback);
+        okhttp3.Call localVarCall = updateDatasetCall(organizationId, datasetId, dataset, _callback);
+        return localVarCall;
 
     }
 
@@ -4127,6 +4251,7 @@ public class DatasetApi {
      */
     public okhttp3.Call updateDatasetAccessControlCall(String organizationId, String datasetId, String identityId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -4143,9 +4268,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/security/access/{identity_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "identity_id" + "}", localVarApiClient.escapeString(identityId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "identity_id" + "\\}", localVarApiClient.escapeString(identityId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4175,27 +4300,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateDatasetAccessControlValidateBeforeCall(String organizationId, String datasetId, String identityId, DatasetRole datasetRole, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling updateDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling updateDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'identityId' is set
         if (identityId == null) {
             throw new ApiException("Missing the required parameter 'identityId' when calling updateDatasetAccessControl(Async)");
         }
-
+        
         // verify the required parameter 'datasetRole' is set
         if (datasetRole == null) {
             throw new ApiException("Missing the required parameter 'datasetRole' when calling updateDatasetAccessControl(Async)");
         }
+        
 
-        return updateDatasetAccessControlCall(organizationId, datasetId, identityId, datasetRole, _callback);
+        okhttp3.Call localVarCall = updateDatasetAccessControlCall(organizationId, datasetId, identityId, datasetRole, _callback);
+        return localVarCall;
 
     }
 
@@ -4283,6 +4411,7 @@ public class DatasetApi {
      */
     public okhttp3.Call updateTwingraphEntitiesCall(String organizationId, String datasetId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -4299,9 +4428,9 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}/twingraph/{type}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()))
-            .replace("{" + "type" + "}", localVarApiClient.escapeString(type.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()))
+            .replaceAll("\\{" + "type" + "\\}", localVarApiClient.escapeString(type.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4331,27 +4460,30 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateTwingraphEntitiesValidateBeforeCall(String organizationId, String datasetId, String type, List<GraphProperties> graphProperties, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling updateTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling updateTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling updateTwingraphEntities(Async)");
         }
-
+        
         // verify the required parameter 'graphProperties' is set
         if (graphProperties == null) {
             throw new ApiException("Missing the required parameter 'graphProperties' when calling updateTwingraphEntities(Async)");
         }
+        
 
-        return updateTwingraphEntitiesCall(organizationId, datasetId, type, graphProperties, _callback);
+        okhttp3.Call localVarCall = updateTwingraphEntitiesCall(organizationId, datasetId, type, graphProperties, _callback);
+        return localVarCall;
 
     }
 
@@ -4435,6 +4567,7 @@ public class DatasetApi {
      */
     public okhttp3.Call uploadTwingraphCall(String organizationId, String datasetId, File body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -4451,8 +4584,8 @@ public class DatasetApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/{dataset_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "dataset_id" + "}", localVarApiClient.escapeString(datasetId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "dataset_id" + "\\}", localVarApiClient.escapeString(datasetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4482,22 +4615,25 @@ public class DatasetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call uploadTwingraphValidateBeforeCall(String organizationId, String datasetId, File body, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling uploadTwingraph(Async)");
         }
-
+        
         // verify the required parameter 'datasetId' is set
         if (datasetId == null) {
             throw new ApiException("Missing the required parameter 'datasetId' when calling uploadTwingraph(Async)");
         }
-
+        
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling uploadTwingraph(Async)");
         }
+        
 
-        return uploadTwingraphCall(organizationId, datasetId, body, _callback);
+        okhttp3.Call localVarCall = uploadTwingraphCall(organizationId, datasetId, body, _callback);
+        return localVarCall;
 
     }
 

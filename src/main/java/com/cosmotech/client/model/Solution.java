@@ -14,6 +14,7 @@
 package com.cosmotech.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.cosmotech.client.model.RunTemplate;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
@@ -23,49 +24,25 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import com.cosmotech.client.JSON;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * a version of a Solution
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-09T12:51:15.964679091Z[Etc/UTC]")
-@com.redis.om.spring.annotations.Document
+@ApiModel(description = "a version of a Solution")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-10T09:17:15.563644478Z[Etc/UTC]")
 public class Solution {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  @org.springframework.data.annotation.Id
   private String id;
 
   public static final String SERIALIZED_NAME_ORGANIZATION_ID = "organizationId";
   @SerializedName(SERIALIZED_NAME_ORGANIZATION_ID)
-  @com.redis.om.spring.annotations.Indexed
   private String organizationId;
 
   public static final String SERIALIZED_NAME_KEY = "key";
@@ -74,7 +51,6 @@ public class Solution {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  @com.redis.om.spring.annotations.Searchable
   private String name;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
@@ -111,28 +87,28 @@ public class Solution {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
+  private List<String> tags = null;
 
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
-  private List<RunTemplateParameter> parameters;
+  private List<RunTemplateParameter> parameters = null;
 
   public static final String SERIALIZED_NAME_PARAMETER_GROUPS = "parameterGroups";
   @SerializedName(SERIALIZED_NAME_PARAMETER_GROUPS)
-  private List<RunTemplateParameterGroup> parameterGroups;
+  private List<RunTemplateParameterGroup> parameterGroups = null;
 
   public static final String SERIALIZED_NAME_RUN_TEMPLATES = "runTemplates";
   @SerializedName(SERIALIZED_NAME_RUN_TEMPLATES)
-  private List<RunTemplate> runTemplates;
+  private List<RunTemplate> runTemplates = null;
 
   public static final String SERIALIZED_NAME_SECURITY = "security";
   @SerializedName(SERIALIZED_NAME_SECURITY)
-  @com.redis.om.spring.annotations.Indexed
   private SolutionSecurity security;
 
-  public Solution() {
+  public Solution() { 
   }
 
+  
   public Solution(
      String id, 
      String organizationId, 
@@ -149,9 +125,12 @@ public class Solution {
    * @return id
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution version unique identifier")
+
   public String getId() {
     return id;
   }
+
 
 
 
@@ -160,13 +139,17 @@ public class Solution {
    * @return organizationId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Organization unique identifier")
+
   public String getOrganizationId() {
     return organizationId;
   }
 
 
 
+
   public Solution key(String key) {
+    
     this.key = key;
     return this;
   }
@@ -176,9 +159,12 @@ public class Solution {
    * @return key
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution key which group Solution versions")
+
   public String getKey() {
     return key;
   }
+
 
   public void setKey(String key) {
     this.key = key;
@@ -186,6 +172,7 @@ public class Solution {
 
 
   public Solution name(String name) {
+    
     this.name = name;
     return this;
   }
@@ -195,9 +182,12 @@ public class Solution {
    * @return name
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution name")
+
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -205,6 +195,7 @@ public class Solution {
 
 
   public Solution description(String description) {
+    
     this.description = description;
     return this;
   }
@@ -214,9 +205,12 @@ public class Solution {
    * @return description
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution description")
+
   public String getDescription() {
     return description;
   }
+
 
   public void setDescription(String description) {
     this.description = description;
@@ -224,6 +218,7 @@ public class Solution {
 
 
   public Solution repository(String repository) {
+    
     this.repository = repository;
     return this;
   }
@@ -233,9 +228,12 @@ public class Solution {
    * @return repository
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the registry repository containing the image")
+
   public String getRepository() {
     return repository;
   }
+
 
   public void setRepository(String repository) {
     this.repository = repository;
@@ -243,6 +241,7 @@ public class Solution {
 
 
   public Solution alwaysPull(Boolean alwaysPull) {
+    
     this.alwaysPull = alwaysPull;
     return this;
   }
@@ -252,9 +251,12 @@ public class Solution {
    * @return alwaysPull
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "set to true if the runtemplate wants to always pull the image")
+
   public Boolean getAlwaysPull() {
     return alwaysPull;
   }
+
 
   public void setAlwaysPull(Boolean alwaysPull) {
     this.alwaysPull = alwaysPull;
@@ -262,6 +264,7 @@ public class Solution {
 
 
   public Solution csmSimulator(String csmSimulator) {
+    
     this.csmSimulator = csmSimulator;
     return this;
   }
@@ -271,9 +274,12 @@ public class Solution {
    * @return csmSimulator
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the main Cosmo Tech simulator name used in standard Run Template")
+
   public String getCsmSimulator() {
     return csmSimulator;
   }
+
 
   public void setCsmSimulator(String csmSimulator) {
     this.csmSimulator = csmSimulator;
@@ -281,6 +287,7 @@ public class Solution {
 
 
   public Solution version(String version) {
+    
     this.version = version;
     return this;
   }
@@ -290,9 +297,12 @@ public class Solution {
    * @return version
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution version MAJOR.MINOR.PATCH. Must be aligned with an existing repository tag")
+
   public String getVersion() {
     return version;
   }
+
 
   public void setVersion(String version) {
     this.version = version;
@@ -304,13 +314,17 @@ public class Solution {
    * @return ownerId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the User id which own this Solution")
+
   public String getOwnerId() {
     return ownerId;
   }
 
 
 
+
   public Solution sdkVersion(String sdkVersion) {
+    
     this.sdkVersion = sdkVersion;
     return this;
   }
@@ -320,9 +334,12 @@ public class Solution {
    * @return sdkVersion
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the MAJOR.MINOR version used to build this solution")
+
   public String getSdkVersion() {
     return sdkVersion;
   }
+
 
   public void setSdkVersion(String sdkVersion) {
     this.sdkVersion = sdkVersion;
@@ -330,6 +347,7 @@ public class Solution {
 
 
   public Solution url(String url) {
+    
     this.url = url;
     return this;
   }
@@ -339,9 +357,12 @@ public class Solution {
    * @return url
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "an optional URL link to solution page")
+
   public String getUrl() {
     return url;
   }
+
 
   public void setUrl(String url) {
     this.url = url;
@@ -349,13 +370,14 @@ public class Solution {
 
 
   public Solution tags(List<String> tags) {
+    
     this.tags = tags;
     return this;
   }
 
   public Solution addTagsItem(String tagsItem) {
     if (this.tags == null) {
-      this.tags = new ArrayList<>();
+      this.tags = new ArrayList<String>();
     }
     this.tags.add(tagsItem);
     return this;
@@ -366,9 +388,12 @@ public class Solution {
    * @return tags
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of tags")
+
   public List<String> getTags() {
     return tags;
   }
+
 
   public void setTags(List<String> tags) {
     this.tags = tags;
@@ -376,13 +401,14 @@ public class Solution {
 
 
   public Solution parameters(List<RunTemplateParameter> parameters) {
+    
     this.parameters = parameters;
     return this;
   }
 
   public Solution addParametersItem(RunTemplateParameter parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<>();
+      this.parameters = new ArrayList<RunTemplateParameter>();
     }
     this.parameters.add(parametersItem);
     return this;
@@ -393,9 +419,12 @@ public class Solution {
    * @return parameters
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of Run Template Parameters")
+
   public List<RunTemplateParameter> getParameters() {
     return parameters;
   }
+
 
   public void setParameters(List<RunTemplateParameter> parameters) {
     this.parameters = parameters;
@@ -403,13 +432,14 @@ public class Solution {
 
 
   public Solution parameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
+    
     this.parameterGroups = parameterGroups;
     return this;
   }
 
   public Solution addParameterGroupsItem(RunTemplateParameterGroup parameterGroupsItem) {
     if (this.parameterGroups == null) {
-      this.parameterGroups = new ArrayList<>();
+      this.parameterGroups = new ArrayList<RunTemplateParameterGroup>();
     }
     this.parameterGroups.add(parameterGroupsItem);
     return this;
@@ -420,9 +450,12 @@ public class Solution {
    * @return parameterGroups
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the list of parameters groups for the Run Templates")
+
   public List<RunTemplateParameterGroup> getParameterGroups() {
     return parameterGroups;
   }
+
 
   public void setParameterGroups(List<RunTemplateParameterGroup> parameterGroups) {
     this.parameterGroups = parameterGroups;
@@ -430,13 +463,14 @@ public class Solution {
 
 
   public Solution runTemplates(List<RunTemplate> runTemplates) {
+    
     this.runTemplates = runTemplates;
     return this;
   }
 
   public Solution addRunTemplatesItem(RunTemplate runTemplatesItem) {
     if (this.runTemplates == null) {
-      this.runTemplates = new ArrayList<>();
+      this.runTemplates = new ArrayList<RunTemplate>();
     }
     this.runTemplates.add(runTemplatesItem);
     return this;
@@ -447,9 +481,12 @@ public class Solution {
    * @return runTemplates
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "list of Run Template")
+
   public List<RunTemplate> getRunTemplates() {
     return runTemplates;
   }
+
 
   public void setRunTemplates(List<RunTemplate> runTemplates) {
     this.runTemplates = runTemplates;
@@ -457,6 +494,7 @@ public class Solution {
 
 
   public Solution security(SolutionSecurity security) {
+    
     this.security = security;
     return this;
   }
@@ -466,14 +504,16 @@ public class Solution {
    * @return security
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
   public SolutionSecurity getSecurity() {
     return security;
   }
 
+
   public void setSecurity(SolutionSecurity security) {
     this.security = security;
   }
-
 
 
   @Override
@@ -504,9 +544,20 @@ public class Solution {
         Objects.equals(this.security, solution.security);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, organizationId, key, name, description, repository, alwaysPull, csmSimulator, version, ownerId, sdkVersion, url, tags, parameters, parameterGroups, runTemplates, security);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -545,188 +596,5 @@ public class Solution {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("organizationId");
-    openapiFields.add("key");
-    openapiFields.add("name");
-    openapiFields.add("description");
-    openapiFields.add("repository");
-    openapiFields.add("alwaysPull");
-    openapiFields.add("csmSimulator");
-    openapiFields.add("version");
-    openapiFields.add("ownerId");
-    openapiFields.add("sdkVersion");
-    openapiFields.add("url");
-    openapiFields.add("tags");
-    openapiFields.add("parameters");
-    openapiFields.add("parameterGroups");
-    openapiFields.add("runTemplates");
-    openapiFields.add("security");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Solution
-  */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Solution.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Solution is not found in the empty JSON string", Solution.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Solution.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Solution` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("organizationId") != null && !jsonObj.get("organizationId").isJsonNull()) && !jsonObj.get("organizationId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `organizationId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("organizationId").toString()));
-      }
-      if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull()) && !jsonObj.get("key").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      if ((jsonObj.get("repository") != null && !jsonObj.get("repository").isJsonNull()) && !jsonObj.get("repository").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `repository` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repository").toString()));
-      }
-      if ((jsonObj.get("csmSimulator") != null && !jsonObj.get("csmSimulator").isJsonNull()) && !jsonObj.get("csmSimulator").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `csmSimulator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("csmSimulator").toString()));
-      }
-      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
-      }
-      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if ((jsonObj.get("sdkVersion") != null && !jsonObj.get("sdkVersion").isJsonNull()) && !jsonObj.get("sdkVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sdkVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sdkVersion").toString()));
-      }
-      if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull()) && !jsonObj.get("url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
-      }
-      if (jsonObj.get("parameters") != null && !jsonObj.get("parameters").isJsonNull()) {
-        JsonArray jsonArrayparameters = jsonObj.getAsJsonArray("parameters");
-        if (jsonArrayparameters != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("parameters").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `parameters` to be an array in the JSON string but got `%s`", jsonObj.get("parameters").toString()));
-          }
-
-          // validate the optional field `parameters` (array)
-          for (int i = 0; i < jsonArrayparameters.size(); i++) {
-            RunTemplateParameter.validateJsonElement(jsonArrayparameters.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("parameterGroups") != null && !jsonObj.get("parameterGroups").isJsonNull()) {
-        JsonArray jsonArrayparameterGroups = jsonObj.getAsJsonArray("parameterGroups");
-        if (jsonArrayparameterGroups != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("parameterGroups").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `parameterGroups` to be an array in the JSON string but got `%s`", jsonObj.get("parameterGroups").toString()));
-          }
-
-          // validate the optional field `parameterGroups` (array)
-          for (int i = 0; i < jsonArrayparameterGroups.size(); i++) {
-            RunTemplateParameterGroup.validateJsonElement(jsonArrayparameterGroups.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("runTemplates") != null && !jsonObj.get("runTemplates").isJsonNull()) {
-        JsonArray jsonArrayrunTemplates = jsonObj.getAsJsonArray("runTemplates");
-        if (jsonArrayrunTemplates != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("runTemplates").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `runTemplates` to be an array in the JSON string but got `%s`", jsonObj.get("runTemplates").toString()));
-          }
-
-          // validate the optional field `runTemplates` (array)
-          for (int i = 0; i < jsonArrayrunTemplates.size(); i++) {
-            RunTemplate.validateJsonElement(jsonArrayrunTemplates.get(i));
-          };
-        }
-      }
-      // validate the optional field `security`
-      if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
-        SolutionSecurity.validateJsonElement(jsonObj.get("security"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Solution.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Solution' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Solution> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Solution.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Solution>() {
-           @Override
-           public void write(JsonWriter out, Solution value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Solution read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
- /**
-  * Create an instance of Solution given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Solution
-  * @throws IOException if the JSON string is invalid with respect to Solution
-  */
-  public static Solution fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Solution.class);
-  }
-
- /**
-  * Convert an instance of Solution to an JSON string
-  *
-  * @return JSON string
-  */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

@@ -90,6 +90,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call createValidatorCall(String organizationId, Validator validator, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -106,7 +107,7 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -123,8 +124,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -137,17 +137,20 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createValidatorValidateBeforeCall(String organizationId, Validator validator, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling createValidator(Async)");
         }
-
+        
         // verify the required parameter 'validator' is set
         if (validator == null) {
             throw new ApiException("Missing the required parameter 'validator' when calling createValidator(Async)");
         }
+        
 
-        return createValidatorCall(organizationId, validator, _callback);
+        okhttp3.Call localVarCall = createValidatorCall(organizationId, validator, _callback);
+        return localVarCall;
 
     }
 
@@ -229,6 +232,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call createValidatorRunCall(String organizationId, String validatorId, ValidatorRun validatorRun, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -245,8 +249,8 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}/history"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -263,8 +267,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -277,22 +280,25 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createValidatorRunValidateBeforeCall(String organizationId, String validatorId, ValidatorRun validatorRun, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling createValidatorRun(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling createValidatorRun(Async)");
         }
-
+        
         // verify the required parameter 'validatorRun' is set
         if (validatorRun == null) {
             throw new ApiException("Missing the required parameter 'validatorRun' when calling createValidatorRun(Async)");
         }
+        
 
-        return createValidatorRunCall(organizationId, validatorId, validatorRun, _callback);
+        okhttp3.Call localVarCall = createValidatorRunCall(organizationId, validatorId, validatorRun, _callback);
+        return localVarCall;
 
     }
 
@@ -376,6 +382,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call deleteValidatorCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -392,8 +399,8 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -402,6 +409,7 @@ public class ValidatorApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -409,6 +417,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -421,17 +430,20 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteValidatorValidateBeforeCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling deleteValidator(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling deleteValidator(Async)");
         }
+        
 
-        return deleteValidatorCall(organizationId, validatorId, _callback);
+        okhttp3.Call localVarCall = deleteValidatorCall(organizationId, validatorId, _callback);
+        return localVarCall;
 
     }
 
@@ -509,6 +521,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call deleteValidatorRunCall(String organizationId, String validatorId, String validatorrunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -525,9 +538,9 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()))
-            .replace("{" + "validatorrun_id" + "}", localVarApiClient.escapeString(validatorrunId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()))
+            .replaceAll("\\{" + "validatorrun_id" + "\\}", localVarApiClient.escapeString(validatorrunId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -536,6 +549,7 @@ public class ValidatorApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -543,6 +557,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -555,22 +570,25 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteValidatorRunValidateBeforeCall(String organizationId, String validatorId, String validatorrunId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling deleteValidatorRun(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling deleteValidatorRun(Async)");
         }
-
+        
         // verify the required parameter 'validatorrunId' is set
         if (validatorrunId == null) {
             throw new ApiException("Missing the required parameter 'validatorrunId' when calling deleteValidatorRun(Async)");
         }
+        
 
-        return deleteValidatorRunCall(organizationId, validatorId, validatorrunId, _callback);
+        okhttp3.Call localVarCall = deleteValidatorRunCall(organizationId, validatorId, validatorrunId, _callback);
+        return localVarCall;
 
     }
 
@@ -649,6 +667,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call findAllValidatorRunsCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -665,8 +684,8 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}/history"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -683,6 +702,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -695,17 +715,20 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findAllValidatorRunsValidateBeforeCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findAllValidatorRuns(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling findAllValidatorRuns(Async)");
         }
+        
 
-        return findAllValidatorRunsCall(organizationId, validatorId, _callback);
+        okhttp3.Call localVarCall = findAllValidatorRunsCall(organizationId, validatorId, _callback);
+        return localVarCall;
 
     }
 
@@ -781,6 +804,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call findAllValidatorsCall(String organizationId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -797,7 +821,7 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -814,6 +838,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -826,12 +851,15 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findAllValidatorsValidateBeforeCall(String organizationId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findAllValidators(Async)");
         }
+        
 
-        return findAllValidatorsCall(organizationId, _callback);
+        okhttp3.Call localVarCall = findAllValidatorsCall(organizationId, _callback);
+        return localVarCall;
 
     }
 
@@ -906,6 +934,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call findValidatorByIdCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -922,8 +951,8 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -940,6 +969,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -952,17 +982,20 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findValidatorByIdValidateBeforeCall(String organizationId, String validatorId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findValidatorById(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling findValidatorById(Async)");
         }
+        
 
-        return findValidatorByIdCall(organizationId, validatorId, _callback);
+        okhttp3.Call localVarCall = findValidatorByIdCall(organizationId, validatorId, _callback);
+        return localVarCall;
 
     }
 
@@ -1044,6 +1077,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call findValidatorRunByIdCall(String organizationId, String validatorId, String validatorrunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1060,9 +1094,9 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id}"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()))
-            .replace("{" + "validatorrun_id" + "}", localVarApiClient.escapeString(validatorrunId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()))
+            .replaceAll("\\{" + "validatorrun_id" + "\\}", localVarApiClient.escapeString(validatorrunId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1079,6 +1113,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
+            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1091,22 +1126,25 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findValidatorRunByIdValidateBeforeCall(String organizationId, String validatorId, String validatorrunId, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling findValidatorRunById(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling findValidatorRunById(Async)");
         }
-
+        
         // verify the required parameter 'validatorrunId' is set
         if (validatorrunId == null) {
             throw new ApiException("Missing the required parameter 'validatorrunId' when calling findValidatorRunById(Async)");
         }
+        
 
-        return findValidatorRunByIdCall(organizationId, validatorId, validatorrunId, _callback);
+        okhttp3.Call localVarCall = findValidatorRunByIdCall(organizationId, validatorId, validatorrunId, _callback);
+        return localVarCall;
 
     }
 
@@ -1191,6 +1229,7 @@ public class ValidatorApi {
      */
     public okhttp3.Call runValidatorCall(String organizationId, String validatorId, ValidatorRun validatorRun, final ApiCallback _callback) throws ApiException {
         String basePath = null;
+
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1207,8 +1246,8 @@ public class ValidatorApi {
 
         // create path and map variables
         String localVarPath = "/organizations/{organization_id}/datasets/validators/{validator_id}/run"
-            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
-            .replace("{" + "validator_id" + "}", localVarApiClient.escapeString(validatorId.toString()));
+            .replaceAll("\\{" + "organization_id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
+            .replaceAll("\\{" + "validator_id" + "\\}", localVarApiClient.escapeString(validatorId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1225,8 +1264,7 @@ public class ValidatorApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/yaml"
+            "application/json", "application/yaml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1239,22 +1277,25 @@ public class ValidatorApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call runValidatorValidateBeforeCall(String organizationId, String validatorId, ValidatorRun validatorRun, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'organizationId' is set
         if (organizationId == null) {
             throw new ApiException("Missing the required parameter 'organizationId' when calling runValidator(Async)");
         }
-
+        
         // verify the required parameter 'validatorId' is set
         if (validatorId == null) {
             throw new ApiException("Missing the required parameter 'validatorId' when calling runValidator(Async)");
         }
-
+        
         // verify the required parameter 'validatorRun' is set
         if (validatorRun == null) {
             throw new ApiException("Missing the required parameter 'validatorRun' when calling runValidator(Async)");
         }
+        
 
-        return runValidatorCall(organizationId, validatorId, validatorRun, _callback);
+        okhttp3.Call localVarCall = runValidatorCall(organizationId, validatorId, validatorRun, _callback);
+        return localVarCall;
 
     }
 

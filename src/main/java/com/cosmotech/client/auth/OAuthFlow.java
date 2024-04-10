@@ -13,13 +13,10 @@
 
 package com.cosmotech.client.auth;
 
-/**
- * OAuth flows that are supported by this client
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-09T12:51:15.964679091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-10T09:17:15.563644478Z[Etc/UTC]")
 public enum OAuthFlow {
-    ACCESS_CODE, //called authorizationCode  in OpenAPI 3.0
-    IMPLICIT,
-    PASSWORD,
-    APPLICATION //called clientCredentials in OpenAPI 3.0
+    accessCode, //called authorizationCode  in OpenAPI 3.0
+    implicit,
+    password,
+    application //called clientCredentials in OpenAPI 3.0
 }

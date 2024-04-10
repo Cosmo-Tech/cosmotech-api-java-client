@@ -14,42 +14,21 @@
 package com.cosmotech.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import com.cosmotech.client.JSON;
 
 /**
  * the search options
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-09T12:51:15.964679091Z[Etc/UTC]")
+@ApiModel(description = "the search options")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-10T09:17:15.563644478Z[Etc/UTC]")
 public class RunSearch {
   public static final String SERIALIZED_NAME_SOLUTION_ID = "solutionId";
   @SerializedName(SERIALIZED_NAME_SOLUTION_ID)
@@ -128,11 +107,6 @@ public class RunSearch {
         return StateEnum.fromValue(value);
       }
     }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      StateEnum.fromValue(value);
-    }
   }
 
   public static final String SERIALIZED_NAME_STATE = "state";
@@ -151,10 +125,11 @@ public class RunSearch {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public RunSearch() {
+  public RunSearch() { 
   }
 
   public RunSearch solutionId(String solutionId) {
+    
     this.solutionId = solutionId;
     return this;
   }
@@ -164,9 +139,12 @@ public class RunSearch {
    * @return solutionId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Id to search")
+
   public String getSolutionId() {
     return solutionId;
   }
+
 
   public void setSolutionId(String solutionId) {
     this.solutionId = solutionId;
@@ -174,6 +152,7 @@ public class RunSearch {
 
 
   public RunSearch runTemplateId(String runTemplateId) {
+    
     this.runTemplateId = runTemplateId;
     return this;
   }
@@ -183,9 +162,12 @@ public class RunSearch {
    * @return runTemplateId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Solution Analysis Id to search")
+
   public String getRunTemplateId() {
     return runTemplateId;
   }
+
 
   public void setRunTemplateId(String runTemplateId) {
     this.runTemplateId = runTemplateId;
@@ -193,6 +175,7 @@ public class RunSearch {
 
 
   public RunSearch workspaceId(String workspaceId) {
+    
     this.workspaceId = workspaceId;
     return this;
   }
@@ -202,9 +185,12 @@ public class RunSearch {
    * @return workspaceId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Workspace Id to search")
+
   public String getWorkspaceId() {
     return workspaceId;
   }
+
 
   public void setWorkspaceId(String workspaceId) {
     this.workspaceId = workspaceId;
@@ -212,6 +198,7 @@ public class RunSearch {
 
 
   public RunSearch runnerId(String runnerId) {
+    
     this.runnerId = runnerId;
     return this;
   }
@@ -221,9 +208,12 @@ public class RunSearch {
    * @return runnerId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Runner Id to search")
+
   public String getRunnerId() {
     return runnerId;
   }
+
 
   public void setRunnerId(String runnerId) {
     this.runnerId = runnerId;
@@ -231,6 +221,7 @@ public class RunSearch {
 
 
   public RunSearch state(StateEnum state) {
+    
     this.state = state;
     return this;
   }
@@ -240,9 +231,12 @@ public class RunSearch {
    * @return state
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the state to search")
+
   public StateEnum getState() {
     return state;
   }
+
 
   public void setState(StateEnum state) {
     this.state = state;
@@ -250,6 +244,7 @@ public class RunSearch {
 
 
   public RunSearch workflowId(String workflowId) {
+    
     this.workflowId = workflowId;
     return this;
   }
@@ -259,9 +254,12 @@ public class RunSearch {
    * @return workflowId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Id to search")
+
   public String getWorkflowId() {
     return workflowId;
   }
+
 
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
@@ -269,6 +267,7 @@ public class RunSearch {
 
 
   public RunSearch workflowName(String workflowName) {
+    
     this.workflowName = workflowName;
     return this;
   }
@@ -278,9 +277,12 @@ public class RunSearch {
    * @return workflowName
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the Cosmo Tech compute cluster Argo Workflow Name")
+
   public String getWorkflowName() {
     return workflowName;
   }
+
 
   public void setWorkflowName(String workflowName) {
     this.workflowName = workflowName;
@@ -288,6 +290,7 @@ public class RunSearch {
 
 
   public RunSearch ownerId(String ownerId) {
+    
     this.ownerId = ownerId;
     return this;
   }
@@ -297,14 +300,16 @@ public class RunSearch {
    * @return ownerId
   **/
   @javax.annotation.Nullable
+  @ApiModelProperty(value = "the owner Id to search")
+
   public String getOwnerId() {
     return ownerId;
   }
 
+
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
   }
-
 
 
   @Override
@@ -358,124 +363,5 @@ public class RunSearch {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("solutionId");
-    openapiFields.add("runTemplateId");
-    openapiFields.add("workspaceId");
-    openapiFields.add("runnerId");
-    openapiFields.add("state");
-    openapiFields.add("workflowId");
-    openapiFields.add("workflowName");
-    openapiFields.add("ownerId");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RunSearch
-  */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!RunSearch.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in RunSearch is not found in the empty JSON string", RunSearch.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RunSearch.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RunSearch` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("solutionId") != null && !jsonObj.get("solutionId").isJsonNull()) && !jsonObj.get("solutionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `solutionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("solutionId").toString()));
-      }
-      if ((jsonObj.get("runTemplateId") != null && !jsonObj.get("runTemplateId").isJsonNull()) && !jsonObj.get("runTemplateId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `runTemplateId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runTemplateId").toString()));
-      }
-      if ((jsonObj.get("workspaceId") != null && !jsonObj.get("workspaceId").isJsonNull()) && !jsonObj.get("workspaceId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `workspaceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("workspaceId").toString()));
-      }
-      if ((jsonObj.get("runnerId") != null && !jsonObj.get("runnerId").isJsonNull()) && !jsonObj.get("runnerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `runnerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runnerId").toString()));
-      }
-      if ((jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) && !jsonObj.get("state").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
-      }
-      // validate the optional field `state`
-      if (jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) {
-        StateEnum.validateJsonElement(jsonObj.get("state"));
-      }
-      if ((jsonObj.get("workflowId") != null && !jsonObj.get("workflowId").isJsonNull()) && !jsonObj.get("workflowId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("workflowId").toString()));
-      }
-      if ((jsonObj.get("workflowName") != null && !jsonObj.get("workflowName").isJsonNull()) && !jsonObj.get("workflowName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `workflowName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("workflowName").toString()));
-      }
-      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!RunSearch.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'RunSearch' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<RunSearch> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(RunSearch.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<RunSearch>() {
-           @Override
-           public void write(JsonWriter out, RunSearch value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public RunSearch read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
- /**
-  * Create an instance of RunSearch given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RunSearch
-  * @throws IOException if the JSON string is invalid with respect to RunSearch
-  */
-  public static RunSearch fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, RunSearch.class);
-  }
-
- /**
-  * Convert an instance of RunSearch to an JSON string
-  *
-  * @return JSON string
-  */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

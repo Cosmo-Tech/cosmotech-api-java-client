@@ -15,9 +15,7 @@ package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.RunnerJobState;
 import com.cosmotech.client.model.RunnerLastRun;
-import com.cosmotech.client.model.RunnerParentLastRun;
 import com.cosmotech.client.model.RunnerResourceSizing;
-import com.cosmotech.client.model.RunnerRootLastRun;
 import com.cosmotech.client.model.RunnerRunTemplateParameterValue;
 import com.cosmotech.client.model.RunnerSecurity;
 import com.cosmotech.client.model.RunnerValidationStatus;
@@ -26,12 +24,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 
 /**
  * Model tests for Runner

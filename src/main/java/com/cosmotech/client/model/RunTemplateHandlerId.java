@@ -14,11 +14,12 @@
 package com.cosmotech.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
+import io.swagger.annotations.ApiModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -76,11 +77,6 @@ public enum RunTemplateHandlerId {
       String value = jsonReader.nextString();
       return RunTemplateHandlerId.fromValue(value);
     }
-  }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    RunTemplateHandlerId.fromValue(value);
   }
 }
 

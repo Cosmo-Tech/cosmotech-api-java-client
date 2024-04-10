@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 3.1.3
-  - Build date: 2024-04-09T12:51:15.964679091Z[Etc/UTC]
+  - Build date: 2024-04-10T09:17:15.563644478Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -14,7 +14,7 @@ Cosmo Tech Platform API
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.8+
+1. Java 1.7+
 2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
@@ -358,10 +358,8 @@ Class | Method | HTTP request | Description
  - [RunnerDataDownloadJob](docs/RunnerDataDownloadJob.md)
  - [RunnerJobState](docs/RunnerJobState.md)
  - [RunnerLastRun](docs/RunnerLastRun.md)
- - [RunnerParentLastRun](docs/RunnerParentLastRun.md)
  - [RunnerResourceSizing](docs/RunnerResourceSizing.md)
  - [RunnerRole](docs/RunnerRole.md)
- - [RunnerRootLastRun](docs/RunnerRootLastRun.md)
  - [RunnerRunTemplateParameterValue](docs/RunnerRunTemplateParameterValue.md)
  - [RunnerSecurity](docs/RunnerSecurity.md)
  - [RunnerValidationStatus](docs/RunnerValidationStatus.md)
@@ -411,12 +409,9 @@ Class | Method | HTTP request | Description
  - [WorkspaceWebApp](docs/WorkspaceWebApp.md)
 
 
-<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-
 Authentication schemes defined for the API:
-<a id="oAuth2AuthCode"></a>
 ### oAuth2AuthCode
 
 - **Type**: OAuth
