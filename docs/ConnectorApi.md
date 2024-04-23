@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**findAllConnectors**](ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors
 [**findConnectorById**](ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector
-[**findConnectorByName**](ConnectorApi.md#findConnectorByName) | **GET** /connectors/name/{connector_name} | Get the details of a connector
+[**importConnector**](ConnectorApi.md#importConnector) | **POST** /connectors/import | Import existing connector
 [**registerConnector**](ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
 [**unregisterConnector**](ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector
 
@@ -144,11 +144,11 @@ Name | Type | Description  | Notes
 **200** | the Connector details |  -  |
 **404** | the Connector specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findConnectorByName"></a>
-# **findConnectorByName**
-> Connector findConnectorByName(connectorName)
+<a name="importConnector"></a>
+# **importConnector**
+> Connector importConnector(connector)
 
-Get the details of a connector
+Import existing connector
 
 ### Example
 ```java
@@ -170,12 +170,12 @@ public class Example {
     oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
 
     ConnectorApi apiInstance = new ConnectorApi(defaultClient);
-    String connectorName = "connectorName_example"; // String | the Connector name
+    Connector connector = new Connector(); // Connector | the Connector to import
     try {
-      Connector result = apiInstance.findConnectorByName(connectorName);
+      Connector result = apiInstance.importConnector(connector);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ConnectorApi#findConnectorByName");
+      System.err.println("Exception when calling ConnectorApi#importConnector");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -189,7 +189,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectorName** | **String**| the Connector name |
+ **connector** | [**Connector**](Connector.md)| the Connector to import |
 
 ### Return type
 
@@ -201,13 +201,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Connector details |  -  |
+**201** | the connector details |  -  |
+**400** | Bad request |  -  |
 
 <a name="registerConnector"></a>
 # **registerConnector**
