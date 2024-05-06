@@ -2,25 +2,25 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**batchQuery**](TwingraphApi.md#batchQuery) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode
-[**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | Async batch update by loading a CSV file on a graph instance 
-[**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Create new entities in a graph instance
-[**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | Create a new graph
-[**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Delete all versions of a graph and his metadatas
-[**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Delete entities in a graph instance
-[**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/download/{hash} | Download a graph compressed in a zip file
-[**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | Return the list of all graphs stored in the organization
-[**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Get entities in a graph instance
-[**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Return the metaData of the specified graph
-[**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | Get the status of a job
-[**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | Run a query on a graph instance
-[**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Update entities in a graph instance
-[**updateGraphMetaData**](TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Update the metaData of the specified graph
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**batchQuery**](TwingraphApi.md#batchQuery) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch-query | Run a query on a graph instance and return the result as a zip file in async mode |
+| [**batchUploadUpdate**](TwingraphApi.md#batchUploadUpdate) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/batch | Async batch update by loading a CSV file on a graph instance  |
+| [**createEntities**](TwingraphApi.md#createEntities) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Create new entities in a graph instance |
+| [**createGraph**](TwingraphApi.md#createGraph) | **POST** /organizations/{organization_id}/twingraph/{graph_id} | Create a new graph |
+| [**delete**](TwingraphApi.md#delete) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id} | Delete all versions of a graph and his metadatas |
+| [**deleteEntities**](TwingraphApi.md#deleteEntities) | **DELETE** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Delete entities in a graph instance |
+| [**downloadGraph**](TwingraphApi.md#downloadGraph) | **GET** /organizations/{organization_id}/twingraph/download/{hash} | Download a graph compressed in a zip file |
+| [**findAllTwingraphs**](TwingraphApi.md#findAllTwingraphs) | **GET** /organizations/{organization_id}/twingraphs | Return the list of all graphs stored in the organization |
+| [**getEntities**](TwingraphApi.md#getEntities) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Get entities in a graph instance |
+| [**getGraphMetaData**](TwingraphApi.md#getGraphMetaData) | **GET** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Return the metaData of the specified graph |
+| [**jobStatus**](TwingraphApi.md#jobStatus) | **GET** /organizations/{organization_id}/job/{job_id}/status | Get the status of a job |
+| [**query**](TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | Run a query on a graph instance |
+| [**updateEntities**](TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Update entities in a graph instance |
+| [**updateGraphMetaData**](TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Update the metaData of the specified graph |
 
 
-<a name="batchQuery"></a>
+<a id="batchQuery"></a>
 # **batchQuery**
 > TwinGraphHash batchQuery(organizationId, graphId, twinGraphQuery)
 
@@ -67,11 +67,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **twinGraphQuery** | [**TwinGraphQuery**](TwinGraphQuery.md)| the query to run |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **twinGraphQuery** | [**TwinGraphQuery**](TwinGraphQuery.md)| the query to run | |
 
 ### Return type
 
@@ -89,9 +89,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="batchUploadUpdate"></a>
+<a id="batchUploadUpdate"></a>
 # **batchUploadUpdate**
 > TwinGraphBatchResult batchUploadUpdate(organizationId, graphId, twinGraphQuery, body)
 
@@ -142,12 +142,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **twinGraphQuery** | [**TwinGraphQuery**](.md)|  |
- **body** | **File**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **twinGraphQuery** | [**TwinGraphQuery**](.md)|  | |
+| **body** | **File**|  | |
 
 ### Return type
 
@@ -165,10 +165,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | csv file processed |  -  |
-**400** | Bad request |  -  |
+| **200** | csv file processed |  -  |
+| **400** | Bad request |  -  |
 
-<a name="createEntities"></a>
+<a id="createEntities"></a>
 # **createEntities**
 > String createEntities(organizationId, graphId, type, graphProperties)
 
@@ -216,12 +216,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to create | |
 
 ### Return type
 
@@ -239,9 +239,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="createGraph"></a>
+<a id="createGraph"></a>
 # **createGraph**
 > createGraph(organizationId, graphId, body)
 
@@ -287,11 +287,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **body** | **File**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **body** | **File**|  | [optional] |
 
 ### Return type
 
@@ -309,9 +309,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Successful response |  -  |
+| **204** | Successful response |  -  |
 
-<a name="delete"></a>
+<a id="delete"></a>
 # **delete**
 > delete(organizationId, graphId)
 
@@ -356,10 +356,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
 
 ### Return type
 
@@ -377,9 +377,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Successful response |  -  |
+| **204** | Successful response |  -  |
 
-<a name="deleteEntities"></a>
+<a id="deleteEntities"></a>
 # **deleteEntities**
 > deleteEntities(organizationId, graphId, type, ids)
 
@@ -426,12 +426,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **ids** | [**List&lt;String&gt;**](String.md)| the entities to delete | |
 
 ### Return type
 
@@ -449,9 +449,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="downloadGraph"></a>
+<a id="downloadGraph"></a>
 # **downloadGraph**
 > File downloadGraph(organizationId, hash)
 
@@ -497,10 +497,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **hash** | **String**| the Graph download identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **hash** | **String**| the Graph download identifier | |
 
 ### Return type
 
@@ -518,9 +518,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="findAllTwingraphs"></a>
+<a id="findAllTwingraphs"></a>
 # **findAllTwingraphs**
 > List&lt;String&gt; findAllTwingraphs(organizationId)
 
@@ -565,9 +565,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
 
 ### Return type
 
@@ -585,9 +585,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="getEntities"></a>
+<a id="getEntities"></a>
 # **getEntities**
 > String getEntities(organizationId, graphId, type, ids)
 
@@ -635,12 +635,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **ids** | [**List&lt;String&gt;**](String.md)| the entities to get |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **ids** | [**List&lt;String&gt;**](String.md)| the entities to get | |
 
 ### Return type
 
@@ -658,9 +658,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="getGraphMetaData"></a>
+<a id="getGraphMetaData"></a>
 # **getGraphMetaData**
 > Object getGraphMetaData(organizationId, graphId)
 
@@ -706,10 +706,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
 
 ### Return type
 
@@ -727,9 +727,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="jobStatus"></a>
+<a id="jobStatus"></a>
 # **jobStatus**
 > String jobStatus(organizationId, jobId)
 
@@ -775,10 +775,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **jobId** | **String**| the job identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **jobId** | **String**| the job identifier | |
 
 ### Return type
 
@@ -796,9 +796,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="query"></a>
+<a id="query"></a>
 # **query**
 > String query(organizationId, graphId, twinGraphQuery)
 
@@ -845,11 +845,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **twinGraphQuery** | [**TwinGraphQuery**](TwinGraphQuery.md)| the query to run |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **twinGraphQuery** | [**TwinGraphQuery**](TwinGraphQuery.md)| the query to run | |
 
 ### Return type
 
@@ -867,9 +867,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="updateEntities"></a>
+<a id="updateEntities"></a>
 # **updateEntities**
 > String updateEntities(organizationId, graphId, type, graphProperties)
 
@@ -917,12 +917,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **type** | **String**| the entity model type | [enum: node, relationship]
- **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to update |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **type** | **String**| the entity model type | [enum: node, relationship] |
+| **graphProperties** | [**List&lt;GraphProperties&gt;**](GraphProperties.md)| the entities to update | |
 
 ### Return type
 
@@ -940,9 +940,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 
-<a name="updateGraphMetaData"></a>
+<a id="updateGraphMetaData"></a>
 # **updateGraphMetaData**
 > Object updateGraphMetaData(organizationId, graphId, requestBody)
 
@@ -989,11 +989,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **graphId** | **String**| the Graph Identifier |
- **requestBody** | [**Map&lt;String, String&gt;**](String.md)| the metaData to update |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **graphId** | **String**| the Graph Identifier | |
+| **requestBody** | [**Map&lt;String, String&gt;**](String.md)| the metaData to update | |
 
 ### Return type
 
@@ -1011,5 +1011,5 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
+| **200** | Successful response |  -  |
 

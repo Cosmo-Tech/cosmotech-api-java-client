@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.1.5
-  - Build date: 2024-05-06T07:07:50.115814810Z[Etc/UTC]
+- API version: 3.1.1-SNAPSHOT
+  - Build date: 2024-05-06T14:27:15.869910227Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -14,7 +14,7 @@ Cosmo Tech Platform API
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.7+
+1. Java 1.8+
 2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.1.5</version>
+  <version>3.1.1-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.1.5"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.1.1-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.1.5.jar`
+* `target/cosmotech-api-java-client-3.1.1-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -358,8 +358,10 @@ Class | Method | HTTP request | Description
  - [RunnerDataDownloadJob](docs/RunnerDataDownloadJob.md)
  - [RunnerJobState](docs/RunnerJobState.md)
  - [RunnerLastRun](docs/RunnerLastRun.md)
+ - [RunnerParentLastRun](docs/RunnerParentLastRun.md)
  - [RunnerResourceSizing](docs/RunnerResourceSizing.md)
  - [RunnerRole](docs/RunnerRole.md)
+ - [RunnerRootLastRun](docs/RunnerRootLastRun.md)
  - [RunnerRunTemplateParameterValue](docs/RunnerRunTemplateParameterValue.md)
  - [RunnerSecurity](docs/RunnerSecurity.md)
  - [RunnerValidationStatus](docs/RunnerValidationStatus.md)
@@ -409,9 +411,12 @@ Class | Method | HTTP request | Description
  - [WorkspaceWebApp](docs/WorkspaceWebApp.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="oAuth2AuthCode"></a>
 ### oAuth2AuthCode
 
 - **Type**: OAuth
