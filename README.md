@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 3.1.1-SNAPSHOT
-  - Build date: 2024-05-06T14:27:15.869910227Z[Etc/UTC]
+  - Build date: 2024-05-14T14:08:28.288954497Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -179,6 +179,8 @@ Class | Method | HTTP request | Description
 *RunApi* | [**getRunLogs**](docs/RunApi.md#getRunLogs) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs | get the logs for the Run
 *RunApi* | [**getRunStatus**](docs/RunApi.md#getRunStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/status | get the status for the Run
 *RunApi* | [**listRuns**](docs/RunApi.md#listRuns) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs | get the list of Runs for the Runner
+*RunApi* | [**queryRunData**](docs/RunApi.md#queryRunData) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/data/query | query the run data
+*RunApi* | [**sendRunData**](docs/RunApi.md#sendRunData) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/data/send | Send data associated to a run
 *RunnerApi* | [**addRunnerAccessControl**](docs/RunnerApi.md#addRunnerAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access | Add a control access to the Runner
 *RunnerApi* | [**createRunner**](docs/RunnerApi.md#createRunner) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners | Create a new Runner
 *RunnerApi* | [**deleteRunner**](docs/RunnerApi.md#deleteRunner) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Delete a runner
@@ -230,8 +232,6 @@ Class | Method | HTTP request | Description
 *ScenariorunApi* | [**searchScenarioRuns**](docs/ScenariorunApi.md#searchScenarioRuns) | **POST** /organizations/{organization_id}/scenarioruns/search | Search ScenarioRuns
 *ScenariorunApi* | [**startScenarioRunContainers**](docs/ScenariorunApi.md#startScenarioRunContainers) | **POST** /organizations/{organization_id}/scenarioruns/startcontainers | Start a new scenariorun with raw containers definition
 *ScenariorunApi* | [**stopScenarioRun**](docs/ScenariorunApi.md#stopScenarioRun) | **POST** /organizations/{organization_id}/scenarioruns/{scenariorun_id}/stop | stop a ScenarioRun for the Scenario
-*ScenariorunresultApi* | [**getScenarioRunResult**](docs/ScenariorunresultApi.md#getScenarioRunResult) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Get a ScenarioRunResult in the Organization
-*ScenariorunresultApi* | [**sendScenarioRunResult**](docs/ScenariorunresultApi.md#sendScenarioRunResult) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/scenarioruns/{scenariorun_id}/probes/{probe_id} | Create a new ScenarioRunResult in the Organization
 *SolutionApi* | [**addOrReplaceParameterGroups**](docs/SolutionApi.md#addOrReplaceParameterGroups) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameterGroups | Add Parameter Groups. Any item with the same ID will be overwritten
 *SolutionApi* | [**addOrReplaceParameters**](docs/SolutionApi.md#addOrReplaceParameters) | **POST** /organizations/{organization_id}/solutions/{solution_id}/parameters | Add Parameters. Any item with the same ID will be overwritten
 *SolutionApi* | [**addOrReplaceRunTemplates**](docs/SolutionApi.md#addOrReplaceRunTemplates) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runTemplates | Add Run Templates. Any item with the same ID will be overwritten
@@ -268,15 +268,6 @@ Class | Method | HTTP request | Description
 *TwingraphApi* | [**query**](docs/TwingraphApi.md#query) | **POST** /organizations/{organization_id}/twingraph/{graph_id}/query | Run a query on a graph instance
 *TwingraphApi* | [**updateEntities**](docs/TwingraphApi.md#updateEntities) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/entity/{type} | Update entities in a graph instance
 *TwingraphApi* | [**updateGraphMetaData**](docs/TwingraphApi.md#updateGraphMetaData) | **PATCH** /organizations/{organization_id}/twingraph/{graph_id}/metadata | Update the metaData of the specified graph
-*ValidatorApi* | [**createValidator**](docs/ValidatorApi.md#createValidator) | **POST** /organizations/{organization_id}/datasets/validators | Register a new validator
-*ValidatorApi* | [**createValidatorRun**](docs/ValidatorApi.md#createValidatorRun) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/history | Register a new validator run
-*ValidatorApi* | [**deleteValidator**](docs/ValidatorApi.md#deleteValidator) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id} | Delete a validator
-*ValidatorApi* | [**deleteValidatorRun**](docs/ValidatorApi.md#deleteValidatorRun) | **DELETE** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Delete a validator run
-*ValidatorApi* | [**findAllValidatorRuns**](docs/ValidatorApi.md#findAllValidatorRuns) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history | List all Validator Runs
-*ValidatorApi* | [**findAllValidators**](docs/ValidatorApi.md#findAllValidators) | **GET** /organizations/{organization_id}/datasets/validators | List all Validators
-*ValidatorApi* | [**findValidatorById**](docs/ValidatorApi.md#findValidatorById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id} | Get the details of a validator
-*ValidatorApi* | [**findValidatorRunById**](docs/ValidatorApi.md#findValidatorRunById) | **GET** /organizations/{organization_id}/datasets/validators/{validator_id}/history/{validatorrun_id} | Get the details of a validator run
-*ValidatorApi* | [**runValidator**](docs/ValidatorApi.md#runValidator) | **POST** /organizations/{organization_id}/datasets/validators/{validator_id}/run | Run a Validator
 *WorkspaceApi* | [**addWorkspaceAccessControl**](docs/WorkspaceApi.md#addWorkspaceAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/security/access | Add a control access to the Workspace
 *WorkspaceApi* | [**createSecret**](docs/WorkspaceApi.md#createSecret) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/secret | Create a secret for the Workspace
 *WorkspaceApi* | [**createWorkspace**](docs/WorkspaceApi.md#createWorkspace) | **POST** /organizations/{organization_id}/workspaces | Create a new workspace
@@ -330,11 +321,14 @@ Class | Method | HTTP request | Description
  - [OrganizationSecurity](docs/OrganizationSecurity.md)
  - [OrganizationService](docs/OrganizationService.md)
  - [OrganizationServices](docs/OrganizationServices.md)
+ - [QueryResult](docs/QueryResult.md)
  - [ResourceSizeInfo](docs/ResourceSizeInfo.md)
  - [Run](docs/Run.md)
  - [RunContainer](docs/RunContainer.md)
  - [RunContainerArtifact](docs/RunContainerArtifact.md)
  - [RunContainerLogs](docs/RunContainerLogs.md)
+ - [RunData](docs/RunData.md)
+ - [RunDataQuery](docs/RunDataQuery.md)
  - [RunLogs](docs/RunLogs.md)
  - [RunResourceRequested](docs/RunResourceRequested.md)
  - [RunSearch](docs/RunSearch.md)
@@ -381,7 +375,6 @@ Class | Method | HTTP request | Description
  - [ScenarioRunContainerLogs](docs/ScenarioRunContainerLogs.md)
  - [ScenarioRunLogs](docs/ScenarioRunLogs.md)
  - [ScenarioRunResourceRequested](docs/ScenarioRunResourceRequested.md)
- - [ScenarioRunResult](docs/ScenarioRunResult.md)
  - [ScenarioRunSearch](docs/ScenarioRunSearch.md)
  - [ScenarioRunStartContainers](docs/ScenarioRunStartContainers.md)
  - [ScenarioRunState](docs/ScenarioRunState.md)
@@ -390,6 +383,7 @@ Class | Method | HTTP request | Description
  - [ScenarioRunTemplateParameterValue](docs/ScenarioRunTemplateParameterValue.md)
  - [ScenarioSecurity](docs/ScenarioSecurity.md)
  - [ScenarioValidationStatus](docs/ScenarioValidationStatus.md)
+ - [SendRunDataRequest](docs/SendRunDataRequest.md)
  - [Solution](docs/Solution.md)
  - [SolutionAccessControl](docs/SolutionAccessControl.md)
  - [SolutionRole](docs/SolutionRole.md)

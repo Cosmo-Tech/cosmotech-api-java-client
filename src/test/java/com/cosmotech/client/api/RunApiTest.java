@@ -14,9 +14,13 @@
 package com.cosmotech.client.api;
 
 import com.cosmotech.client.ApiException;
+import com.cosmotech.client.model.QueryResult;
 import com.cosmotech.client.model.Run;
+import com.cosmotech.client.model.RunData;
+import com.cosmotech.client.model.RunDataQuery;
 import com.cosmotech.client.model.RunLogs;
 import com.cosmotech.client.model.RunStatus;
+import com.cosmotech.client.model.SendRunDataRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -106,6 +110,38 @@ public class RunApiTest {
         Integer page = null;
         Integer size = null;
         List<Run> response = api.listRuns(organizationId, workspaceId, runnerId, page, size);
+        // TODO: test validations
+    }
+
+    /**
+     * query the run data
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryRunDataTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String runnerId = null;
+        String runId = null;
+        RunDataQuery runDataQuery = null;
+        QueryResult response = api.queryRunData(organizationId, workspaceId, runnerId, runId, runDataQuery);
+        // TODO: test validations
+    }
+
+    /**
+     * Send data associated to a run
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void sendRunDataTest() throws ApiException {
+        String organizationId = null;
+        String workspaceId = null;
+        String runnerId = null;
+        String runId = null;
+        SendRunDataRequest sendRunDataRequest = null;
+        RunData response = api.sendRunData(organizationId, workspaceId, runnerId, runId, sendRunDataRequest);
         // TODO: test validations
     }
 

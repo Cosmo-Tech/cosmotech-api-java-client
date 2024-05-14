@@ -91,7 +91,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataOrganizationCall(String organizationId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -140,6 +142,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteHistoricalDataOrganizationValidateBeforeCall(String organizationId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -164,7 +167,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void deleteHistoricalDataOrganization(String organizationId, Boolean deleteUnknown) throws ApiException {
         deleteHistoricalDataOrganizationWithHttpInfo(organizationId, deleteUnknown);
     }
@@ -183,7 +188,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteHistoricalDataOrganizationWithHttpInfo(String organizationId, Boolean deleteUnknown) throws ApiException {
         okhttp3.Call localVarCall = deleteHistoricalDataOrganizationValidateBeforeCall(organizationId, deleteUnknown, null);
         return localVarApiClient.execute(localVarCall);
@@ -204,7 +211,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataOrganizationAsync(String organizationId, Boolean deleteUnknown, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteHistoricalDataOrganizationValidateBeforeCall(organizationId, deleteUnknown, _callback);
@@ -227,7 +236,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataScenarioCall(String organizationId, String workspaceId, String scenarioId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -278,6 +289,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteHistoricalDataScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -314,7 +326,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void deleteHistoricalDataScenario(String organizationId, String workspaceId, String scenarioId, Boolean deleteUnknown) throws ApiException {
         deleteHistoricalDataScenarioWithHttpInfo(organizationId, workspaceId, scenarioId, deleteUnknown);
     }
@@ -335,7 +349,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteHistoricalDataScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId, Boolean deleteUnknown) throws ApiException {
         okhttp3.Call localVarCall = deleteHistoricalDataScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, deleteUnknown, null);
         return localVarApiClient.execute(localVarCall);
@@ -358,7 +374,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataScenarioAsync(String organizationId, String workspaceId, String scenarioId, Boolean deleteUnknown, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteHistoricalDataScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, deleteUnknown, _callback);
@@ -380,7 +398,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization or Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataWorkspaceCall(String organizationId, String workspaceId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -430,6 +450,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteHistoricalDataWorkspaceValidateBeforeCall(String organizationId, String workspaceId, Boolean deleteUnknown, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -460,7 +481,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization or Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void deleteHistoricalDataWorkspace(String organizationId, String workspaceId, Boolean deleteUnknown) throws ApiException {
         deleteHistoricalDataWorkspaceWithHttpInfo(organizationId, workspaceId, deleteUnknown);
     }
@@ -480,7 +503,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization or Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteHistoricalDataWorkspaceWithHttpInfo(String organizationId, String workspaceId, Boolean deleteUnknown) throws ApiException {
         okhttp3.Call localVarCall = deleteHistoricalDataWorkspaceValidateBeforeCall(organizationId, workspaceId, deleteUnknown, null);
         return localVarApiClient.execute(localVarCall);
@@ -502,7 +527,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Organization or Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteHistoricalDataWorkspaceAsync(String organizationId, String workspaceId, Boolean deleteUnknown, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteHistoricalDataWorkspaceValidateBeforeCall(organizationId, workspaceId, deleteUnknown, _callback);
@@ -523,7 +550,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteScenarioRunCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -569,6 +598,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteScenarioRunValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -598,7 +628,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public void deleteScenarioRun(String organizationId, String scenariorunId) throws ApiException {
         deleteScenarioRunWithHttpInfo(organizationId, scenariorunId);
     }
@@ -617,7 +649,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<Void> deleteScenarioRunWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = deleteScenarioRunValidateBeforeCall(organizationId, scenariorunId, null);
         return localVarApiClient.execute(localVarCall);
@@ -638,7 +672,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call deleteScenarioRunAsync(String organizationId, String scenariorunId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteScenarioRunValidateBeforeCall(organizationId, scenariorunId, _callback);
@@ -658,7 +694,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the ScenarioRun details </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call findScenarioRunByIdCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -705,6 +743,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call findScenarioRunByIdValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -734,7 +773,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the ScenarioRun details </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRun findScenarioRunById(String organizationId, String scenariorunId) throws ApiException {
         ApiResponse<ScenarioRun> localVarResp = findScenarioRunByIdWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
@@ -753,7 +794,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the ScenarioRun details </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRun> findScenarioRunByIdWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = findScenarioRunByIdValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
@@ -774,7 +817,9 @@ public class ScenariorunApi {
         <tr><td> 200 </td><td> the ScenarioRun details </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call findScenarioRunByIdAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRun> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = findScenarioRunByIdValidateBeforeCall(organizationId, scenariorunId, _callback);
@@ -796,7 +841,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunCumulatedLogsCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -843,6 +890,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getScenarioRunCumulatedLogsValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -873,7 +921,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public String getScenarioRunCumulatedLogs(String organizationId, String scenariorunId) throws ApiException {
         ApiResponse<String> localVarResp = getScenarioRunCumulatedLogsWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
@@ -893,7 +943,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<String> getScenarioRunCumulatedLogsWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = getScenarioRunCumulatedLogsValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
@@ -915,7 +967,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the ScenarioRun specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunCumulatedLogsAsync(String organizationId, String scenariorunId, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenarioRunCumulatedLogsValidateBeforeCall(organizationId, scenariorunId, _callback);
@@ -935,7 +989,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunLogsCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -982,6 +1038,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getScenarioRunLogsValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1010,7 +1067,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRunLogs getScenarioRunLogs(String organizationId, String scenariorunId) throws ApiException {
         ApiResponse<ScenarioRunLogs> localVarResp = getScenarioRunLogsWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
@@ -1028,7 +1087,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRunLogs> getScenarioRunLogsWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = getScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<ScenarioRunLogs>(){}.getType();
@@ -1048,7 +1109,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun logs details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunLogsAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRunLogs> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenarioRunLogsValidateBeforeCall(organizationId, scenariorunId, _callback);
@@ -1068,7 +1131,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunStatusCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1115,6 +1180,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getScenarioRunStatusValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1143,7 +1209,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRunStatus getScenarioRunStatus(String organizationId, String scenariorunId) throws ApiException {
         ApiResponse<ScenarioRunStatus> localVarResp = getScenarioRunStatusWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
@@ -1161,7 +1229,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRunStatus> getScenarioRunStatusWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = getScenarioRunStatusValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<ScenarioRunStatus>(){}.getType();
@@ -1181,7 +1251,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunStatusAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRunStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenarioRunStatusValidateBeforeCall(organizationId, scenariorunId, _callback);
@@ -1204,7 +1276,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunsCall(String organizationId, String workspaceId, String scenarioId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1260,6 +1334,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getScenarioRunsValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1296,7 +1371,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public List<ScenarioRun> getScenarioRuns(String organizationId, String workspaceId, String scenarioId, Integer page, Integer size) throws ApiException {
         ApiResponse<List<ScenarioRun>> localVarResp = getScenarioRunsWithHttpInfo(organizationId, workspaceId, scenarioId, page, size);
         return localVarResp.getData();
@@ -1317,7 +1394,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<List<ScenarioRun>> getScenarioRunsWithHttpInfo(String organizationId, String workspaceId, String scenarioId, Integer page, Integer size) throws ApiException {
         okhttp3.Call localVarCall = getScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, page, size, null);
         Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
@@ -1340,7 +1419,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getScenarioRunsAsync(String organizationId, String workspaceId, String scenarioId, Integer page, Integer size, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getScenarioRunsValidateBeforeCall(organizationId, workspaceId, scenarioId, page, size, _callback);
@@ -1362,7 +1443,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getWorkspaceScenarioRunsCall(String organizationId, String workspaceId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1417,6 +1500,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getWorkspaceScenarioRunsValidateBeforeCall(String organizationId, String workspaceId, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1447,7 +1531,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public List<ScenarioRun> getWorkspaceScenarioRuns(String organizationId, String workspaceId, Integer page, Integer size) throws ApiException {
         ApiResponse<List<ScenarioRun>> localVarResp = getWorkspaceScenarioRunsWithHttpInfo(organizationId, workspaceId, page, size);
         return localVarResp.getData();
@@ -1467,7 +1553,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<List<ScenarioRun>> getWorkspaceScenarioRunsWithHttpInfo(String organizationId, String workspaceId, Integer page, Integer size) throws ApiException {
         okhttp3.Call localVarCall = getWorkspaceScenarioRunsValidateBeforeCall(organizationId, workspaceId, page, size, null);
         Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
@@ -1489,7 +1577,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details list </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getWorkspaceScenarioRunsAsync(String organizationId, String workspaceId, Integer page, Integer size, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getWorkspaceScenarioRunsValidateBeforeCall(organizationId, workspaceId, page, size, _callback);
@@ -1510,7 +1600,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call runScenarioCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1558,6 +1650,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call runScenarioValidateBeforeCall(String organizationId, String workspaceId, String scenarioId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1592,7 +1685,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRun runScenario(String organizationId, String workspaceId, String scenarioId) throws ApiException {
         ApiResponse<ScenarioRun> localVarResp = runScenarioWithHttpInfo(organizationId, workspaceId, scenarioId);
         return localVarResp.getData();
@@ -1611,7 +1706,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRun> runScenarioWithHttpInfo(String organizationId, String workspaceId, String scenarioId) throws ApiException {
         okhttp3.Call localVarCall = runScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, null);
         Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
@@ -1632,7 +1729,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call runScenarioAsync(String organizationId, String workspaceId, String scenarioId, final ApiCallback<ScenarioRun> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = runScenarioValidateBeforeCall(organizationId, workspaceId, scenarioId, _callback);
@@ -1654,7 +1753,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call searchScenarioRunsCall(String organizationId, ScenarioRunSearch scenarioRunSearch, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1710,6 +1811,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call searchScenarioRunsValidateBeforeCall(String organizationId, ScenarioRunSearch scenarioRunSearch, Integer page, Integer size, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1740,7 +1842,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public List<ScenarioRun> searchScenarioRuns(String organizationId, ScenarioRunSearch scenarioRunSearch, Integer page, Integer size) throws ApiException {
         ApiResponse<List<ScenarioRun>> localVarResp = searchScenarioRunsWithHttpInfo(organizationId, scenarioRunSearch, page, size);
         return localVarResp.getData();
@@ -1760,7 +1864,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<List<ScenarioRun>> searchScenarioRunsWithHttpInfo(String organizationId, ScenarioRunSearch scenarioRunSearch, Integer page, Integer size) throws ApiException {
         okhttp3.Call localVarCall = searchScenarioRunsValidateBeforeCall(organizationId, scenarioRunSearch, page, size, null);
         Type localVarReturnType = new TypeToken<List<ScenarioRun>>(){}.getType();
@@ -1782,7 +1888,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call searchScenarioRunsAsync(String organizationId, ScenarioRunSearch scenarioRunSearch, Integer page, Integer size, final ApiCallback<List<ScenarioRun>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = searchScenarioRunsValidateBeforeCall(organizationId, scenarioRunSearch, page, size, _callback);
@@ -1804,7 +1912,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call startScenarioRunContainersCall(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1852,6 +1962,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call startScenarioRunContainersValidateBeforeCall(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -1882,7 +1993,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRun startScenarioRunContainers(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers) throws ApiException {
         ApiResponse<ScenarioRun> localVarResp = startScenarioRunContainersWithHttpInfo(organizationId, scenarioRunStartContainers);
         return localVarResp.getData();
@@ -1902,7 +2015,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRun> startScenarioRunContainersWithHttpInfo(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers) throws ApiException {
         okhttp3.Call localVarCall = startScenarioRunContainersValidateBeforeCall(organizationId, scenarioRunStartContainers, null);
         Type localVarReturnType = new TypeToken<ScenarioRun>(){}.getType();
@@ -1924,7 +2039,9 @@ public class ScenariorunApi {
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Scenario specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call startScenarioRunContainersAsync(String organizationId, ScenarioRunStartContainers scenarioRunStartContainers, final ApiCallback<ScenarioRun> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = startScenarioRunContainersValidateBeforeCall(organizationId, scenarioRunStartContainers, _callback);
@@ -1944,7 +2061,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call stopScenarioRunCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1991,6 +2110,7 @@ public class ScenariorunApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call stopScenarioRunValidateBeforeCall(String organizationId, String scenariorunId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'organizationId' is set
@@ -2019,7 +2139,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ScenarioRunStatus stopScenarioRun(String organizationId, String scenariorunId) throws ApiException {
         ApiResponse<ScenarioRunStatus> localVarResp = stopScenarioRunWithHttpInfo(organizationId, scenariorunId);
         return localVarResp.getData();
@@ -2037,7 +2159,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<ScenarioRunStatus> stopScenarioRunWithHttpInfo(String organizationId, String scenariorunId) throws ApiException {
         okhttp3.Call localVarCall = stopScenarioRunValidateBeforeCall(organizationId, scenariorunId, null);
         Type localVarReturnType = new TypeToken<ScenarioRunStatus>(){}.getType();
@@ -2057,7 +2181,9 @@ public class ScenariorunApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> the scenariorun status details </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call stopScenarioRunAsync(String organizationId, String scenariorunId, final ApiCallback<ScenarioRunStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = stopScenarioRunValidateBeforeCall(organizationId, scenariorunId, _callback);

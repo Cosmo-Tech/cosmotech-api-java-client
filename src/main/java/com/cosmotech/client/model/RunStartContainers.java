@@ -54,7 +54,7 @@ import com.cosmotech.client.JSON;
 /**
  * the parameters to run directly containers
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T14:27:15.869910227Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-14T14:08:28.288954497Z[Etc/UTC]")
 public class RunStartContainers {
   public static final String SERIALIZED_NAME_GENERATE_NAME = "generateName";
   @SerializedName(SERIALIZED_NAME_GENERATE_NAME)

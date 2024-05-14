@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the Runner security information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T14:27:15.869910227Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-14T14:08:28.288954497Z[Etc/UTC]")
 public class RunnerSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)

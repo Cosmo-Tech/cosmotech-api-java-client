@@ -27,9 +27,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.cosmotech.client.model.QueryResult;
 import com.cosmotech.client.model.Run;
+import com.cosmotech.client.model.RunData;
+import com.cosmotech.client.model.RunDataQuery;
 import com.cosmotech.client.model.RunLogs;
 import com.cosmotech.client.model.RunStatus;
+import com.cosmotech.client.model.SendRunDataRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -849,6 +853,336 @@ public class RunApi {
 
         okhttp3.Call localVarCall = listRunsValidateBeforeCall(organizationId, workspaceId, runnerId, page, size, _callback);
         Type localVarReturnType = new TypeToken<List<Run>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for queryRunData
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param runDataQuery the query to run (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the query response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call queryRunDataCall(String organizationId, String workspaceId, String runnerId, String runId, RunDataQuery runDataQuery, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = runDataQuery;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/data/query"
+            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
+            .replace("{" + "workspace_id" + "}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replace("{" + "runner_id" + "}", localVarApiClient.escapeString(runnerId.toString()))
+            .replace("{" + "run_id" + "}", localVarApiClient.escapeString(runId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryRunDataValidateBeforeCall(String organizationId, String workspaceId, String runnerId, String runId, RunDataQuery runDataQuery, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling queryRunData(Async)");
+        }
+
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling queryRunData(Async)");
+        }
+
+        // verify the required parameter 'runnerId' is set
+        if (runnerId == null) {
+            throw new ApiException("Missing the required parameter 'runnerId' when calling queryRunData(Async)");
+        }
+
+        // verify the required parameter 'runId' is set
+        if (runId == null) {
+            throw new ApiException("Missing the required parameter 'runId' when calling queryRunData(Async)");
+        }
+
+        // verify the required parameter 'runDataQuery' is set
+        if (runDataQuery == null) {
+            throw new ApiException("Missing the required parameter 'runDataQuery' when calling queryRunData(Async)");
+        }
+
+        return queryRunDataCall(organizationId, workspaceId, runnerId, runId, runDataQuery, _callback);
+
+    }
+
+    /**
+     * query the run data
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param runDataQuery the query to run (required)
+     * @return QueryResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the query response </td><td>  -  </td></tr>
+     </table>
+     */
+    public QueryResult queryRunData(String organizationId, String workspaceId, String runnerId, String runId, RunDataQuery runDataQuery) throws ApiException {
+        ApiResponse<QueryResult> localVarResp = queryRunDataWithHttpInfo(organizationId, workspaceId, runnerId, runId, runDataQuery);
+        return localVarResp.getData();
+    }
+
+    /**
+     * query the run data
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param runDataQuery the query to run (required)
+     * @return ApiResponse&lt;QueryResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the query response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<QueryResult> queryRunDataWithHttpInfo(String organizationId, String workspaceId, String runnerId, String runId, RunDataQuery runDataQuery) throws ApiException {
+        okhttp3.Call localVarCall = queryRunDataValidateBeforeCall(organizationId, workspaceId, runnerId, runId, runDataQuery, null);
+        Type localVarReturnType = new TypeToken<QueryResult>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * query the run data (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param runDataQuery the query to run (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> the query response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call queryRunDataAsync(String organizationId, String workspaceId, String runnerId, String runId, RunDataQuery runDataQuery, final ApiCallback<QueryResult> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = queryRunDataValidateBeforeCall(organizationId, workspaceId, runnerId, runId, runDataQuery, _callback);
+        Type localVarReturnType = new TypeToken<QueryResult>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for sendRunData
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param sendRunDataRequest Custom data to register (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Data stored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data sent format is malformed </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call sendRunDataCall(String organizationId, String workspaceId, String runnerId, String runId, SendRunDataRequest sendRunDataRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = sendRunDataRequest;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/data/send"
+            .replace("{" + "organization_id" + "}", localVarApiClient.escapeString(organizationId.toString()))
+            .replace("{" + "workspace_id" + "}", localVarApiClient.escapeString(workspaceId.toString()))
+            .replace("{" + "runner_id" + "}", localVarApiClient.escapeString(runnerId.toString()))
+            .replace("{" + "run_id" + "}", localVarApiClient.escapeString(runId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oAuth2AuthCode" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call sendRunDataValidateBeforeCall(String organizationId, String workspaceId, String runnerId, String runId, SendRunDataRequest sendRunDataRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'organizationId' is set
+        if (organizationId == null) {
+            throw new ApiException("Missing the required parameter 'organizationId' when calling sendRunData(Async)");
+        }
+
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling sendRunData(Async)");
+        }
+
+        // verify the required parameter 'runnerId' is set
+        if (runnerId == null) {
+            throw new ApiException("Missing the required parameter 'runnerId' when calling sendRunData(Async)");
+        }
+
+        // verify the required parameter 'runId' is set
+        if (runId == null) {
+            throw new ApiException("Missing the required parameter 'runId' when calling sendRunData(Async)");
+        }
+
+        // verify the required parameter 'sendRunDataRequest' is set
+        if (sendRunDataRequest == null) {
+            throw new ApiException("Missing the required parameter 'sendRunDataRequest' when calling sendRunData(Async)");
+        }
+
+        return sendRunDataCall(organizationId, workspaceId, runnerId, runId, sendRunDataRequest, _callback);
+
+    }
+
+    /**
+     * Send data associated to a run
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param sendRunDataRequest Custom data to register (required)
+     * @return RunData
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Data stored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data sent format is malformed </td><td>  -  </td></tr>
+     </table>
+     */
+    public RunData sendRunData(String organizationId, String workspaceId, String runnerId, String runId, SendRunDataRequest sendRunDataRequest) throws ApiException {
+        ApiResponse<RunData> localVarResp = sendRunDataWithHttpInfo(organizationId, workspaceId, runnerId, runId, sendRunDataRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Send data associated to a run
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param sendRunDataRequest Custom data to register (required)
+     * @return ApiResponse&lt;RunData&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Data stored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data sent format is malformed </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<RunData> sendRunDataWithHttpInfo(String organizationId, String workspaceId, String runnerId, String runId, SendRunDataRequest sendRunDataRequest) throws ApiException {
+        okhttp3.Call localVarCall = sendRunDataValidateBeforeCall(organizationId, workspaceId, runnerId, runId, sendRunDataRequest, null);
+        Type localVarReturnType = new TypeToken<RunData>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Send data associated to a run (asynchronously)
+     * 
+     * @param organizationId the Organization identifier (required)
+     * @param workspaceId the Workspace identifier (required)
+     * @param runnerId the Runner identifier (required)
+     * @param runId the Run identifier (required)
+     * @param sendRunDataRequest Custom data to register (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Data stored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data sent format is malformed </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call sendRunDataAsync(String organizationId, String workspaceId, String runnerId, String runId, SendRunDataRequest sendRunDataRequest, final ApiCallback<RunData> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = sendRunDataValidateBeforeCall(organizationId, workspaceId, runnerId, runId, sendRunDataRequest, _callback);
+        Type localVarReturnType = new TypeToken<RunData>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

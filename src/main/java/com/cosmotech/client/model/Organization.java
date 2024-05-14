@@ -51,7 +51,7 @@ import com.cosmotech.client.JSON;
 /**
  * an Organization
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T14:27:15.869910227Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-14T14:08:28.288954497Z[Etc/UTC]")
 @com.redis.om.spring.annotations.Document
 public class Organization {
   public static final String SERIALIZED_NAME_ID = "id";
