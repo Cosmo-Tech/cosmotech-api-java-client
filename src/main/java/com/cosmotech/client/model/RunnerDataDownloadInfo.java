@@ -50,7 +50,7 @@ import com.cosmotech.client.JSON;
 /**
  * Runner data download job info
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-14T14:41:58.904862806Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-15T14:21:57.927336614Z[Etc/UTC]")
 public class RunnerDataDownloadInfo {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
