@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.2.0
-  - Build date: 2024-05-15T14:21:57.927336614Z[Etc/UTC]
+- API version: 3.2.1-SNAPSHOT
+  - Build date: 2024-05-20T13:02:16.357123289Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.2.0</version>
+  <version>3.2.1-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.2.0"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.2.1-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.2.0.jar`
+* `target/cosmotech-api-java-client-3.2.1-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -315,6 +315,8 @@ Class | Method | HTTP request | Description
  - [FileUploadMetadata](docs/FileUploadMetadata.md)
  - [FileUploadValidation](docs/FileUploadValidation.md)
  - [GraphProperties](docs/GraphProperties.md)
+ - [IngestionStatusEnum](docs/IngestionStatusEnum.md)
+ - [IoTypesEnum](docs/IoTypesEnum.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAccessControl](docs/OrganizationAccessControl.md)
  - [OrganizationRole](docs/OrganizationRole.md)
@@ -332,6 +334,7 @@ Class | Method | HTTP request | Description
  - [RunLogs](docs/RunLogs.md)
  - [RunResourceRequested](docs/RunResourceRequested.md)
  - [RunSearch](docs/RunSearch.md)
+ - [RunSearchState](docs/RunSearchState.md)
  - [RunStartContainers](docs/RunStartContainers.md)
  - [RunState](docs/RunState.md)
  - [RunStatus](docs/RunStatus.md)
@@ -376,6 +379,7 @@ Class | Method | HTTP request | Description
  - [ScenarioRunLogs](docs/ScenarioRunLogs.md)
  - [ScenarioRunResourceRequested](docs/ScenarioRunResourceRequested.md)
  - [ScenarioRunSearch](docs/ScenarioRunSearch.md)
+ - [ScenarioRunSearchState](docs/ScenarioRunSearchState.md)
  - [ScenarioRunStartContainers](docs/ScenarioRunStartContainers.md)
  - [ScenarioRunState](docs/ScenarioRunState.md)
  - [ScenarioRunStatus](docs/ScenarioRunStatus.md)
@@ -393,8 +397,8 @@ Class | Method | HTTP request | Description
  - [TwinGraphBatchResult](docs/TwinGraphBatchResult.md)
  - [TwinGraphHash](docs/TwinGraphHash.md)
  - [TwinGraphQuery](docs/TwinGraphQuery.md)
+ - [TwincacheStatusEnum](docs/TwincacheStatusEnum.md)
  - [Validator](docs/Validator.md)
- - [ValidatorRun](docs/ValidatorRun.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceAccessControl](docs/WorkspaceAccessControl.md)
  - [WorkspaceFile](docs/WorkspaceFile.md)

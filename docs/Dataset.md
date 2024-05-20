@@ -22,8 +22,8 @@ a Dataset
 |**refreshDate** | **Long** | the last time a refresh was done |  [optional] [readonly] |
 |**sourceType** | **DatasetSourceType** |  |  [optional] |
 |**source** | [**SourceInfo**](SourceInfo.md) |  |  [optional] |
-|**ingestionStatus** | [**IngestionStatusEnum**](#IngestionStatusEnum) | the Dataset ingestion status |  [optional] |
-|**twincacheStatus** | [**TwincacheStatusEnum**](#TwincacheStatusEnum) | the twincache data status |  [optional] |
+|**ingestionStatus** | **IngestionStatusEnum** |  |  [optional] |
+|**twincacheStatus** | **TwincacheStatusEnum** |  |  [optional] |
 |**queries** | **List&lt;String&gt;** | the list of queries |  [optional] |
 |**tags** | **List&lt;String&gt;** | the list of tags |  [optional] |
 |**connector** | [**DatasetConnector**](DatasetConnector.md) |  |  [optional] |
@@ -31,26 +31,6 @@ a Dataset
 |**validatorId** | **String** | the validator id |  [optional] |
 |**compatibility** | [**List&lt;DatasetCompatibility&gt;**](DatasetCompatibility.md) | the list of compatible Solutions versions |  [optional] |
 |**security** | [**DatasetSecurity**](DatasetSecurity.md) |  |  [optional] |
-
-
-
-## Enum: IngestionStatusEnum
-
-| Name | Value |
-|---- | -----|
-| NONE | &quot;NONE&quot; |
-| PENDING | &quot;PENDING&quot; |
-| ERROR | &quot;ERROR&quot; |
-| SUCCESS | &quot;SUCCESS&quot; |
-
-
-
-## Enum: TwincacheStatusEnum
-
-| Name | Value |
-|---- | -----|
-| EMPTY | &quot;EMPTY&quot; |
-| FULL | &quot;FULL&quot; |
 
 
 
