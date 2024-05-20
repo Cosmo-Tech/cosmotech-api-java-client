@@ -14,7 +14,6 @@
 package com.cosmotech.client.model;
 
 import com.cosmotech.client.model.OrganizationSecurity;
-import com.cosmotech.client.model.OrganizationServices;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,14 +60,6 @@ public class OrganizationTest {
     @Test
     public void ownerIdTest() {
         // TODO: test ownerId
-    }
-
-    /**
-     * Test the property 'services'
-     */
-    @Test
-    public void servicesTest() {
-        // TODO: test services
     }
 
     /**

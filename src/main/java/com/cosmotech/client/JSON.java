@@ -125,8 +125,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.OrganizationAccessControl.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.OrganizationRole.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.OrganizationSecurity.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.OrganizationService.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.OrganizationServices.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.QueryResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.ResourceSizeInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.cosmotech.client.model.Run.CustomTypeAdapterFactory());
