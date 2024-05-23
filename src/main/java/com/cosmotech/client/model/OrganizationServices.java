@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the cloud service resources of the Organization
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-23T14:46:17.231404Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-23T15:11:51.343256038Z[Etc/UTC]")
 public class OrganizationServices {
   public static final String SERIALIZED_NAME_TENANT_CREDENTIALS = "tenantCredentials";
   @SerializedName(SERIALIZED_NAME_TENANT_CREDENTIALS)

@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * the memory and CPU requested by the pod
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-23T14:46:17.231404Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-23T15:11:51.343256038Z[Etc/UTC]")
 public class ScenarioRunResourceRequested {
   public static final String SERIALIZED_NAME_CPU = "cpu";
   @SerializedName(SERIALIZED_NAME_CPU)
