@@ -51,7 +51,7 @@ import com.cosmotech.client.JSON;
 /**
  * Processing result
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-27T13:47:50.934908857Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-27T14:49:20.767524956Z[Etc/UTC]")
 public class TwinGraphBatchResult {
   public static final String SERIALIZED_NAME_TOTAL_LINES = "totalLines";
   @SerializedName(SERIALIZED_NAME_TOTAL_LINES)
