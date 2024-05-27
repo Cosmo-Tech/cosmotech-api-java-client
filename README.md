@@ -1,8 +1,8 @@
 # cosmotech-api-java-client
 
 Cosmo Tech Platform API
-- API version: 3.2.2
-  - Build date: 2024-05-23T15:11:51.343256038Z[Etc/UTC]
+- API version: 3.2.2-SNAPSHOT
+  - Build date: 2024-05-27T13:47:50.934908857Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cosmotech</groupId>
   <artifactId>cosmotech-api-java-client</artifactId>
-  <version>3.2.2</version>
+  <version>3.2.2-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cosmotech:cosmotech-api-java-client:3.2.2"
+     implementation "com.cosmotech:cosmotech-api-java-client:3.2.2-SNAPSHOT"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cosmotech-api-java-client-3.2.2.jar`
+* `target/cosmotech-api-java-client-3.2.2-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -171,9 +171,6 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**unregisterOrganization**](docs/OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
 *OrganizationApi* | [**updateOrganization**](docs/OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an Organization
 *OrganizationApi* | [**updateOrganizationAccessControl**](docs/OrganizationApi.md#updateOrganizationAccessControl) | **PATCH** /organizations/{organization_id}/security/access/{identity_id} | Update the specified access to User for an Organization
-*OrganizationApi* | [**updateSolutionsContainerRegistryByOrganizationId**](docs/OrganizationApi.md#updateSolutionsContainerRegistryByOrganizationId) | **PATCH** /organizations/{organization_id}/services/solutionsContainerRegistry | Update the solutions container registry configuration for the Organization specified
-*OrganizationApi* | [**updateStorageByOrganizationId**](docs/OrganizationApi.md#updateStorageByOrganizationId) | **PATCH** /organizations/{organization_id}/services/storage | Update storage configuration for the Organization specified
-*OrganizationApi* | [**updateTenantCredentialsByOrganizationId**](docs/OrganizationApi.md#updateTenantCredentialsByOrganizationId) | **PATCH** /organizations/{organization_id}/services/tenantCredentials | Update tenant credentials for the Organization specified
 *RunApi* | [**deleteRun**](docs/RunApi.md#deleteRun) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Delete a run
 *RunApi* | [**getRun**](docs/RunApi.md#getRun) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id} | Get the details of a run
 *RunApi* | [**getRunLogs**](docs/RunApi.md#getRunLogs) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/runs/{run_id}/logs | get the logs for the Run
@@ -321,8 +318,6 @@ Class | Method | HTTP request | Description
  - [OrganizationAccessControl](docs/OrganizationAccessControl.md)
  - [OrganizationRole](docs/OrganizationRole.md)
  - [OrganizationSecurity](docs/OrganizationSecurity.md)
- - [OrganizationService](docs/OrganizationService.md)
- - [OrganizationServices](docs/OrganizationServices.md)
  - [QueryResult](docs/QueryResult.md)
  - [ResourceSizeInfo](docs/ResourceSizeInfo.md)
  - [Run](docs/Run.md)
