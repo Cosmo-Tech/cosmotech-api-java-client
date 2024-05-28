@@ -2,33 +2,33 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addOrReplaceScenarioParameterValues**](ScenarioApi.md#addOrReplaceScenarioParameterValues) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Add (or replace) Parameter Values for the Scenario specified
-[**addScenarioAccessControl**](ScenarioApi.md#addScenarioAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access | Add a control access to the Scenario
-[**compareScenarios**](ScenarioApi.md#compareScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id} | Compare the Scenario with another one and returns the difference for parameters values
-[**createScenario**](ScenarioApi.md#createScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Create a new Scenario
-[**deleteAllScenarios**](ScenarioApi.md#deleteAllScenarios) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Delete all Scenarios of the Workspace
-[**deleteScenario**](ScenarioApi.md#deleteScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Delete a scenario
-[**downloadScenarioData**](ScenarioApi.md#downloadScenarioData) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads | Download Scenario data
-[**findAllScenarios**](ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios
-[**findAllScenariosByValidationStatus**](ScenarioApi.md#findAllScenariosByValidationStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/{validationStatus} | List all Scenarios by validation status
-[**findScenarioById**](ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario
-[**getScenarioAccessControl**](ScenarioApi.md#getScenarioAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Get a control access for the Scenario
-[**getScenarioDataDownloadJobInfo**](ScenarioApi.md#getScenarioDataDownloadJobInfo) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id} | Get Scenario data download URL
-[**getScenarioPermissions**](ScenarioApi.md#getScenarioPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/permissions/{role} | Get the Scenario permission by given role
-[**getScenarioSecurity**](ScenarioApi.md#getScenarioSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security | Get the Scenario security information
-[**getScenarioSecurityUsers**](ScenarioApi.md#getScenarioSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users | Get the Scenario security users list
-[**getScenarioValidationStatusById**](ScenarioApi.md#getScenarioValidationStatusById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/ValidationStatus | Get the validation status of an scenario
-[**getScenariosTree**](ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree
-[**removeAllScenarioParameterValues**](ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified
-[**removeScenarioAccessControl**](ScenarioApi.md#removeScenarioAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Remove the specified access from the given Organization Scenario
-[**setScenarioDefaultSecurity**](ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | Set the Scenario default security
-[**updateScenario**](ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario
-[**updateScenarioAccessControl**](ScenarioApi.md#updateScenarioAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Update the specified access to User for a Scenario
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addOrReplaceScenarioParameterValues**](ScenarioApi.md#addOrReplaceScenarioParameterValues) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Add (or replace) Parameter Values for the Scenario specified |
+| [**addScenarioAccessControl**](ScenarioApi.md#addScenarioAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access | Add a control access to the Scenario |
+| [**compareScenarios**](ScenarioApi.md#compareScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/compare/{compared_scenario_id} | Compare the Scenario with another one and returns the difference for parameters values |
+| [**createScenario**](ScenarioApi.md#createScenario) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Create a new Scenario |
+| [**deleteAllScenarios**](ScenarioApi.md#deleteAllScenarios) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | Delete all Scenarios of the Workspace |
+| [**deleteScenario**](ScenarioApi.md#deleteScenario) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Delete a scenario |
+| [**downloadScenarioData**](ScenarioApi.md#downloadScenarioData) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads | Download Scenario data |
+| [**findAllScenarios**](ScenarioApi.md#findAllScenarios) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios | List all Scenarios |
+| [**findAllScenariosByValidationStatus**](ScenarioApi.md#findAllScenariosByValidationStatus) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/{validationStatus} | List all Scenarios by validation status |
+| [**findScenarioById**](ScenarioApi.md#findScenarioById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Get the details of an scenario |
+| [**getScenarioAccessControl**](ScenarioApi.md#getScenarioAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Get a control access for the Scenario |
+| [**getScenarioDataDownloadJobInfo**](ScenarioApi.md#getScenarioDataDownloadJobInfo) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/downloads/{download_id} | Get Scenario data download URL |
+| [**getScenarioPermissions**](ScenarioApi.md#getScenarioPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/permissions/{role} | Get the Scenario permission by given role |
+| [**getScenarioSecurity**](ScenarioApi.md#getScenarioSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security | Get the Scenario security information |
+| [**getScenarioSecurityUsers**](ScenarioApi.md#getScenarioSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/users | Get the Scenario security users list |
+| [**getScenarioValidationStatusById**](ScenarioApi.md#getScenarioValidationStatusById) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/ValidationStatus | Get the validation status of an scenario |
+| [**getScenariosTree**](ScenarioApi.md#getScenariosTree) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/tree | Get the Scenarios Tree |
+| [**removeAllScenarioParameterValues**](ScenarioApi.md#removeAllScenarioParameterValues) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/parameterValues | Remove all Parameter Values from the Scenario specified |
+| [**removeScenarioAccessControl**](ScenarioApi.md#removeScenarioAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Remove the specified access from the given Organization Scenario |
+| [**setScenarioDefaultSecurity**](ScenarioApi.md#setScenarioDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/default | Set the Scenario default security |
+| [**updateScenario**](ScenarioApi.md#updateScenario) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id} | Update a scenario |
+| [**updateScenarioAccessControl**](ScenarioApi.md#updateScenarioAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/scenarios/{scenario_id}/security/access/{identity_id} | Update the specified access to User for a Scenario |
 
 
-<a name="addOrReplaceScenarioParameterValues"></a>
+<a id="addOrReplaceScenarioParameterValues"></a>
 # **addOrReplaceScenarioParameterValues**
 > List&lt;ScenarioRunTemplateParameterValue&gt; addOrReplaceScenarioParameterValues(organizationId, workspaceId, scenarioId, scenarioRunTemplateParameterValue)
 
@@ -74,12 +74,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **scenarioRunTemplateParameterValue** | [**List&lt;ScenarioRunTemplateParameterValue&gt;**](ScenarioRunTemplateParameterValue.md)| the Parameter Value to add. Any Parameter Value with the same ID is overwritten |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **scenarioRunTemplateParameterValue** | [**List&lt;ScenarioRunTemplateParameterValue&gt;**](ScenarioRunTemplateParameterValue.md)| the Parameter Value to add. Any Parameter Value with the same ID is overwritten | |
 
 ### Return type
 
@@ -97,11 +97,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Parameter values |  -  |
-**400** | Bad request |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Parameter values |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="addScenarioAccessControl"></a>
+<a id="addScenarioAccessControl"></a>
 # **addScenarioAccessControl**
 > ScenarioAccessControl addScenarioAccessControl(organizationId, workspaceId, scenarioId, scenarioAccessControl)
 
@@ -147,12 +147,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **scenarioAccessControl** | [**ScenarioAccessControl**](ScenarioAccessControl.md)| the new Scenario security access to add. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **scenarioAccessControl** | [**ScenarioAccessControl**](ScenarioAccessControl.md)| the new Scenario security access to add. | |
 
 ### Return type
 
@@ -170,10 +170,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Scenario access |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Scenario access |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="compareScenarios"></a>
+<a id="compareScenarios"></a>
 # **compareScenarios**
 > ScenarioComparisonResult compareScenarios(organizationId, workspaceId, scenarioId, comparedScenarioId)
 
@@ -219,12 +219,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **comparedScenarioId** | **String**| the Scenario identifier to compare to |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **comparedScenarioId** | **String**| the Scenario identifier to compare to | |
 
 ### Return type
 
@@ -242,10 +242,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the comparison result for parameters values |  -  |
-**404** | one of the Scenarios specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the comparison result for parameters values |  -  |
+| **404** | one of the Scenarios specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="createScenario"></a>
+<a id="createScenario"></a>
 # **createScenario**
 > Scenario createScenario(organizationId, workspaceId, scenario)
 
@@ -290,11 +290,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenario** | [**Scenario**](Scenario.md)| the Scenario to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenario** | [**Scenario**](Scenario.md)| the Scenario to create | |
 
 ### Return type
 
@@ -312,10 +312,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the scenario details |  -  |
-**400** | Bad request |  -  |
+| **201** | the scenario details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="deleteAllScenarios"></a>
+<a id="deleteAllScenarios"></a>
 # **deleteAllScenarios**
 > deleteAllScenarios(organizationId, workspaceId)
 
@@ -358,10 +358,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
 
 ### Return type
 
@@ -379,10 +379,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="deleteScenario"></a>
+<a id="deleteScenario"></a>
 # **deleteScenario**
 > deleteScenario(organizationId, workspaceId, scenarioId)
 
@@ -426,11 +426,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -448,10 +448,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="downloadScenarioData"></a>
+<a id="downloadScenarioData"></a>
 # **downloadScenarioData**
 > ScenarioDataDownloadJob downloadScenarioData(organizationId, workspaceId, scenarioId)
 
@@ -496,11 +496,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -518,10 +518,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Scenario Data response, once acknowledged. |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | the Scenario Data response, once acknowledged. |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findAllScenarios"></a>
+<a id="findAllScenarios"></a>
 # **findAllScenarios**
 > List&lt;Scenario&gt; findAllScenarios(organizationId, workspaceId, page, size)
 
@@ -567,12 +567,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -590,9 +590,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Scenarios |  -  |
+| **200** | the list of Scenarios |  -  |
 
-<a name="findAllScenariosByValidationStatus"></a>
+<a id="findAllScenariosByValidationStatus"></a>
 # **findAllScenariosByValidationStatus**
 > List&lt;Scenario&gt; findAllScenariosByValidationStatus(organizationId, workspaceId, validationStatus, page, size)
 
@@ -639,13 +639,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **validationStatus** | [**ScenarioValidationStatus**](.md)| the Scenario Validation Status | [enum: Draft, Rejected, Unknown, Validated]
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **validationStatus** | [**ScenarioValidationStatus**](.md)| the Scenario Validation Status | [enum: Draft, Rejected, Unknown, Validated] |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -663,9 +663,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Scenarios by a given validation status |  -  |
+| **200** | the list of Scenarios by a given validation status |  -  |
 
-<a name="findScenarioById"></a>
+<a id="findScenarioById"></a>
 # **findScenarioById**
 > Scenario findScenarioById(organizationId, workspaceId, scenarioId)
 
@@ -710,11 +710,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -732,10 +732,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Scenario details |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Scenario details |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getScenarioAccessControl"></a>
+<a id="getScenarioAccessControl"></a>
 # **getScenarioAccessControl**
 > ScenarioAccessControl getScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId)
 
@@ -781,12 +781,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -804,10 +804,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenario access |  -  |
-**404** | the Scenario or user specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Scenario access |  -  |
+| **404** | the Scenario or user specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getScenarioDataDownloadJobInfo"></a>
+<a id="getScenarioDataDownloadJobInfo"></a>
 # **getScenarioDataDownloadJobInfo**
 > ScenarioDataDownloadInfo getScenarioDataDownloadJobInfo(organizationId, workspaceId, scenarioId, downloadId)
 
@@ -853,12 +853,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **downloadId** | **String**| the Scenario Download identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **downloadId** | **String**| the Scenario Download identifier | |
 
 ### Return type
 
@@ -876,10 +876,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the scenario data download URL. |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the scenario data download URL. |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getScenarioPermissions"></a>
+<a id="getScenarioPermissions"></a>
 # **getScenarioPermissions**
 > List&lt;String&gt; getScenarioPermissions(organizationId, workspaceId, scenarioId, role)
 
@@ -925,12 +925,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **role** | **String**| the Role |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **role** | **String**| the Role | |
 
 ### Return type
 
@@ -948,9 +948,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenarios security permission list |  -  |
+| **200** | The Scenarios security permission list |  -  |
 
-<a name="getScenarioSecurity"></a>
+<a id="getScenarioSecurity"></a>
 # **getScenarioSecurity**
 > ScenarioSecurity getScenarioSecurity(organizationId, workspaceId, scenarioId)
 
@@ -995,11 +995,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -1017,10 +1017,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenario security |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Scenario security |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getScenarioSecurityUsers"></a>
+<a id="getScenarioSecurityUsers"></a>
 # **getScenarioSecurityUsers**
 > List&lt;String&gt; getScenarioSecurityUsers(organizationId, workspaceId, scenarioId)
 
@@ -1065,11 +1065,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -1087,10 +1087,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenario security users list |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Scenario security users list |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getScenarioValidationStatusById"></a>
+<a id="getScenarioValidationStatusById"></a>
 # **getScenarioValidationStatusById**
 > ScenarioValidationStatus getScenarioValidationStatusById(organizationId, workspaceId, scenarioId)
 
@@ -1135,11 +1135,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -1157,9 +1157,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Scenario validation status |  -  |
+| **200** | the Scenario validation status |  -  |
 
-<a name="getScenariosTree"></a>
+<a id="getScenariosTree"></a>
 # **getScenariosTree**
 > List&lt;Scenario&gt; getScenariosTree(organizationId, workspaceId)
 
@@ -1203,10 +1203,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
 
 ### Return type
 
@@ -1224,9 +1224,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the scenario tree |  -  |
+| **200** | the scenario tree |  -  |
 
-<a name="removeAllScenarioParameterValues"></a>
+<a id="removeAllScenarioParameterValues"></a>
 # **removeAllScenarioParameterValues**
 > removeAllScenarioParameterValues(organizationId, workspaceId, scenarioId)
 
@@ -1270,11 +1270,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
 
 ### Return type
 
@@ -1292,10 +1292,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | the operation succeeded |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | the operation succeeded |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="removeScenarioAccessControl"></a>
+<a id="removeScenarioAccessControl"></a>
 # **removeScenarioAccessControl**
 > removeScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId)
 
@@ -1340,12 +1340,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -1363,10 +1363,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Scenario or the user specified is unknown or you don&#39;t have access to them |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Scenario or the user specified is unknown or you don&#39;t have access to them |  -  |
 
-<a name="setScenarioDefaultSecurity"></a>
+<a id="setScenarioDefaultSecurity"></a>
 # **setScenarioDefaultSecurity**
 > ScenarioSecurity setScenarioDefaultSecurity(organizationId, workspaceId, scenarioId, scenarioRole)
 
@@ -1412,12 +1412,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| This change the scenario default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the scenario. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| This change the scenario default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the scenario. | |
 
 ### Return type
 
@@ -1435,10 +1435,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Scenario default visibility |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Scenario default visibility |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateScenario"></a>
+<a id="updateScenario"></a>
 # **updateScenario**
 > Scenario updateScenario(organizationId, workspaceId, scenarioId, scenario)
 
@@ -1484,12 +1484,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **scenario** | [**Scenario**](Scenario.md)| the new Scenario details. This endpoint can&#39;t be used to update security |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **scenario** | [**Scenario**](Scenario.md)| the new Scenario details. This endpoint can&#39;t be used to update security | |
 
 ### Return type
 
@@ -1507,11 +1507,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the scenario details |  -  |
-**400** | Bad request |  -  |
-**404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the scenario details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Scenario specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateScenarioAccessControl"></a>
+<a id="updateScenarioAccessControl"></a>
 # **updateScenarioAccessControl**
 > ScenarioAccessControl updateScenarioAccessControl(organizationId, workspaceId, scenarioId, identityId, scenarioRole)
 
@@ -1558,13 +1558,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **scenarioId** | **String**| the Scenario identifier |
- **identityId** | **String**| the User identifier |
- **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| The new Scenario Access Control |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **scenarioId** | **String**| the Scenario identifier | |
+| **identityId** | **String**| the User identifier | |
+| **scenarioRole** | [**ScenarioRole**](ScenarioRole.md)| The new Scenario Access Control | |
 
 ### Return type
 
@@ -1582,6 +1582,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenario access |  -  |
-**404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Scenario access |  -  |
+| **404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
 
