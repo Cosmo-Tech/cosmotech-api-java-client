@@ -6,9 +6,9 @@ the Workspace Role
 
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**role** | **String** | the Workspace Role |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**role** | **String** | the Workspace Role | 
 
 
 

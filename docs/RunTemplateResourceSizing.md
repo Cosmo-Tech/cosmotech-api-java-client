@@ -6,10 +6,10 @@ a description object for resource requests and limits (default same configuratio
 
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**requests** | [**ResourceSizeInfo**](ResourceSizeInfo.md) |  |  |
-|**limits** | [**ResourceSizeInfo**](ResourceSizeInfo.md) |  |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**requests** | [**ResourceSizeInfo**](ResourceSizeInfo.md) |  | 
+**limits** | [**ResourceSizeInfo**](ResourceSizeInfo.md) |  | 
 
 
 
