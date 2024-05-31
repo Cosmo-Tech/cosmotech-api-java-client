@@ -2,28 +2,25 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addOrganizationAccessControl**](OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | Add a control access to the Organization
-[**findAllOrganizations**](OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations
-[**findOrganizationById**](OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an Organization
-[**getAllPermissions**](OrganizationApi.md#getAllPermissions) | **GET** /organizations/permissions | Get all permissions per components
-[**getOrganizationAccessControl**](OrganizationApi.md#getOrganizationAccessControl) | **GET** /organizations/{organization_id}/security/access/{identity_id} | Get a control access for the Organization
-[**getOrganizationPermissions**](OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role
-[**getOrganizationSecurity**](OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information
-[**getOrganizationSecurityUsers**](OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list
-[**registerOrganization**](OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization
-[**removeOrganizationAccessControl**](OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization
-[**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | Set the Organization default security
-[**unregisterOrganization**](OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization
-[**updateOrganization**](OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an Organization
-[**updateOrganizationAccessControl**](OrganizationApi.md#updateOrganizationAccessControl) | **PATCH** /organizations/{organization_id}/security/access/{identity_id} | Update the specified access to User for an Organization
-[**updateSolutionsContainerRegistryByOrganizationId**](OrganizationApi.md#updateSolutionsContainerRegistryByOrganizationId) | **PATCH** /organizations/{organization_id}/services/solutionsContainerRegistry | Update the solutions container registry configuration for the Organization specified
-[**updateStorageByOrganizationId**](OrganizationApi.md#updateStorageByOrganizationId) | **PATCH** /organizations/{organization_id}/services/storage | Update storage configuration for the Organization specified
-[**updateTenantCredentialsByOrganizationId**](OrganizationApi.md#updateTenantCredentialsByOrganizationId) | **PATCH** /organizations/{organization_id}/services/tenantCredentials | Update tenant credentials for the Organization specified
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addOrganizationAccessControl**](OrganizationApi.md#addOrganizationAccessControl) | **POST** /organizations/{organization_id}/security/access | Add a control access to the Organization |
+| [**findAllOrganizations**](OrganizationApi.md#findAllOrganizations) | **GET** /organizations | List all Organizations |
+| [**findOrganizationById**](OrganizationApi.md#findOrganizationById) | **GET** /organizations/{organization_id} | Get the details of an Organization |
+| [**getAllPermissions**](OrganizationApi.md#getAllPermissions) | **GET** /organizations/permissions | Get all permissions per components |
+| [**getOrganizationAccessControl**](OrganizationApi.md#getOrganizationAccessControl) | **GET** /organizations/{organization_id}/security/access/{identity_id} | Get a control access for the Organization |
+| [**getOrganizationPermissions**](OrganizationApi.md#getOrganizationPermissions) | **GET** /organizations/{organization_id}/permissions/{role} | Get the Organization permissions by given role |
+| [**getOrganizationSecurity**](OrganizationApi.md#getOrganizationSecurity) | **GET** /organizations/{organization_id}/security | Get the Organization security information |
+| [**getOrganizationSecurityUsers**](OrganizationApi.md#getOrganizationSecurityUsers) | **GET** /organizations/{organization_id}/security/users | Get the Organization security users list |
+| [**registerOrganization**](OrganizationApi.md#registerOrganization) | **POST** /organizations | Register a new organization |
+| [**removeOrganizationAccessControl**](OrganizationApi.md#removeOrganizationAccessControl) | **DELETE** /organizations/{organization_id}/security/access/{identity_id} | Remove the specified access from the given Organization |
+| [**setOrganizationDefaultSecurity**](OrganizationApi.md#setOrganizationDefaultSecurity) | **POST** /organizations/{organization_id}/security/default | Set the Organization default security |
+| [**unregisterOrganization**](OrganizationApi.md#unregisterOrganization) | **DELETE** /organizations/{organization_id} | Unregister an organization |
+| [**updateOrganization**](OrganizationApi.md#updateOrganization) | **PATCH** /organizations/{organization_id} | Update an Organization |
+| [**updateOrganizationAccessControl**](OrganizationApi.md#updateOrganizationAccessControl) | **PATCH** /organizations/{organization_id}/security/access/{identity_id} | Update the specified access to User for an Organization |
 
 
-<a name="addOrganizationAccessControl"></a>
+<a id="addOrganizationAccessControl"></a>
 # **addOrganizationAccessControl**
 > OrganizationAccessControl addOrganizationAccessControl(organizationId, organizationAccessControl)
 
@@ -67,10 +64,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **organizationAccessControl** | [**OrganizationAccessControl**](OrganizationAccessControl.md)| the new Organization security access to add. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **organizationAccessControl** | [**OrganizationAccessControl**](OrganizationAccessControl.md)| the new Organization security access to add. | |
 
 ### Return type
 
@@ -88,10 +85,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Organization access |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Organization access |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="findAllOrganizations"></a>
+<a id="findAllOrganizations"></a>
 # **findAllOrganizations**
 > List&lt;Organization&gt; findAllOrganizations(page, size)
 
@@ -135,10 +132,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -156,9 +153,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Organizations |  -  |
+| **200** | the list of Organizations |  -  |
 
-<a name="findOrganizationById"></a>
+<a id="findOrganizationById"></a>
 # **findOrganizationById**
 > Organization findOrganizationById(organizationId)
 
@@ -201,9 +198,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
 
 ### Return type
 
@@ -221,10 +218,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Organization details |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Organization details |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getAllPermissions"></a>
+<a id="getAllPermissions"></a>
 # **getAllPermissions**
 > List&lt;ComponentRolePermissions&gt; getAllPermissions()
 
@@ -283,9 +280,9 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Scenarios security permission list |  -  |
+| **200** | The Scenarios security permission list |  -  |
 
-<a name="getOrganizationAccessControl"></a>
+<a id="getOrganizationAccessControl"></a>
 # **getOrganizationAccessControl**
 > OrganizationAccessControl getOrganizationAccessControl(organizationId, identityId)
 
@@ -329,10 +326,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -350,10 +347,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Organization access |  -  |
-**404** | The Organization or user specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Organization access |  -  |
+| **404** | The Organization or user specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getOrganizationPermissions"></a>
+<a id="getOrganizationPermissions"></a>
 # **getOrganizationPermissions**
 > List&lt;String&gt; getOrganizationPermissions(organizationId, role)
 
@@ -397,10 +394,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **role** | **String**| the Role |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **role** | **String**| the Role | |
 
 ### Return type
 
@@ -418,9 +415,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Organization security permission list |  -  |
+| **200** | The Organization security permission list |  -  |
 
-<a name="getOrganizationSecurity"></a>
+<a id="getOrganizationSecurity"></a>
 # **getOrganizationSecurity**
 > OrganizationSecurity getOrganizationSecurity(organizationId)
 
@@ -463,9 +460,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
 
 ### Return type
 
@@ -483,10 +480,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Organization security |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Organization security |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getOrganizationSecurityUsers"></a>
+<a id="getOrganizationSecurityUsers"></a>
 # **getOrganizationSecurityUsers**
 > List&lt;String&gt; getOrganizationSecurityUsers(organizationId)
 
@@ -529,9 +526,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| The Organization identifier | |
 
 ### Return type
 
@@ -549,10 +546,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Organization security users list |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Organization security users list |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="registerOrganization"></a>
+<a id="registerOrganization"></a>
 # **registerOrganization**
 > Organization registerOrganization(organization)
 
@@ -595,9 +592,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | [**Organization**](Organization.md)| the Organization to register |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | [**Organization**](Organization.md)| the Organization to register | |
 
 ### Return type
 
@@ -615,10 +612,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the Organization details |  -  |
-**400** | Bad request |  -  |
+| **201** | the Organization details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="removeOrganizationAccessControl"></a>
+<a id="removeOrganizationAccessControl"></a>
 # **removeOrganizationAccessControl**
 > removeOrganizationAccessControl(organizationId, identityId)
 
@@ -661,10 +658,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -682,10 +679,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Organization or the user specified is unknown or you don&#39;t have access to them |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Organization or the user specified is unknown or you don&#39;t have access to them |  -  |
 
-<a name="setOrganizationDefaultSecurity"></a>
+<a id="setOrganizationDefaultSecurity"></a>
 # **setOrganizationDefaultSecurity**
 > OrganizationSecurity setOrganizationDefaultSecurity(organizationId, organizationRole)
 
@@ -729,10 +726,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| This change the organization default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the organization. | |
 
 ### Return type
 
@@ -750,10 +747,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Organization default visibility |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Organization default visibility |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="unregisterOrganization"></a>
+<a id="unregisterOrganization"></a>
 # **unregisterOrganization**
 > unregisterOrganization(organizationId)
 
@@ -795,9 +792,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
 
 ### Return type
 
@@ -815,10 +812,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateOrganization"></a>
+<a id="updateOrganization"></a>
 # **updateOrganization**
 > Organization updateOrganization(organizationId, organization)
 
@@ -862,10 +859,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **organization** | [**Organization**](Organization.md)| the new Organization details. This endpoint can&#39;t be used to update security |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **organization** | [**Organization**](Organization.md)| the new Organization details. This endpoint can&#39;t be used to update security | |
 
 ### Return type
 
@@ -883,11 +880,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the organization details |  -  |
-**400** | Bad request |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the organization details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateOrganizationAccessControl"></a>
+<a id="updateOrganizationAccessControl"></a>
 # **updateOrganizationAccessControl**
 > OrganizationAccessControl updateOrganizationAccessControl(organizationId, identityId, organizationRole)
 
@@ -932,11 +929,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **identityId** | **String**| the User identifier |
- **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| The new Organization Access Control |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **identityId** | **String**| the User identifier | |
+| **organizationRole** | [**OrganizationRole**](OrganizationRole.md)| The new Organization Access Control | |
 
 ### Return type
 
@@ -954,210 +951,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Organization access |  -  |
-**404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="updateSolutionsContainerRegistryByOrganizationId"></a>
-# **updateSolutionsContainerRegistryByOrganizationId**
-> OrganizationService updateSolutionsContainerRegistryByOrganizationId(organizationId, organizationService)
-
-Update the solutions container registry configuration for the Organization specified
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.OrganizationApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    OrganizationService organizationService = new OrganizationService(); // OrganizationService | the new solutions container registry configuration to use
-    try {
-      OrganizationService result = apiInstance.updateSolutionsContainerRegistryByOrganizationId(organizationId, organizationService);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#updateSolutionsContainerRegistryByOrganizationId");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **organizationService** | [**OrganizationService**](OrganizationService.md)| the new solutions container registry configuration to use |
-
-### Return type
-
-[**OrganizationService**](OrganizationService.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/yaml
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | the Organization solutions container registry configuration |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="updateStorageByOrganizationId"></a>
-# **updateStorageByOrganizationId**
-> OrganizationService updateStorageByOrganizationId(organizationId, organizationService)
-
-Update storage configuration for the Organization specified
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.OrganizationApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    OrganizationService organizationService = new OrganizationService(); // OrganizationService | the new Storage configuration to use
-    try {
-      OrganizationService result = apiInstance.updateStorageByOrganizationId(organizationId, organizationService);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#updateStorageByOrganizationId");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **organizationService** | [**OrganizationService**](OrganizationService.md)| the new Storage configuration to use |
-
-### Return type
-
-[**OrganizationService**](OrganizationService.md)
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/yaml
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | the Organization Storage configuration |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
-
-<a name="updateTenantCredentialsByOrganizationId"></a>
-# **updateTenantCredentialsByOrganizationId**
-> Map&lt;String, Object&gt; updateTenantCredentialsByOrganizationId(organizationId, requestBody)
-
-Update tenant credentials for the Organization specified
-
-### Example
-```java
-// Import classes:
-import com.cosmotech.client.ApiClient;
-import com.cosmotech.client.ApiException;
-import com.cosmotech.client.Configuration;
-import com.cosmotech.client.auth.*;
-import com.cosmotech.client.models.*;
-import com.cosmotech.client.api.OrganizationApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://dev.api.cosmotech.com");
-    
-    // Configure OAuth2 access token for authorization: oAuth2AuthCode
-    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
-    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
-
-    OrganizationApi apiInstance = new OrganizationApi(defaultClient);
-    String organizationId = "organizationId_example"; // String | the Organization identifier
-    Map<String, Object> requestBody = {"azureTenantId":"<my_azure_tenant_id>","azureClientId":"<my_azure_client_id>","azureClientSecret":"<my_azure_client_secret>"}; // Map<String, Object> | the new Tenant Credentials to use
-    try {
-      Map<String, Object> result = apiInstance.updateTenantCredentialsByOrganizationId(organizationId, requestBody);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationApi#updateTenantCredentialsByOrganizationId");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)| the new Tenant Credentials to use |
-
-### Return type
-
-**Map&lt;String, Object&gt;**
-
-### Authorization
-
-[oAuth2AuthCode](../README.md#oAuth2AuthCode)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | the Organization Tenant Credentials |  -  |
-**404** | the Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Organization access |  -  |
+| **404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
 

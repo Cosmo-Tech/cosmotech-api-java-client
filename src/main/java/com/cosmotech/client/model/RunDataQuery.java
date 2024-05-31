@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * a data result query in SQL
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-30T09:47:06.952886700Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T10:04:10.548451272Z[Etc/UTC]")
 public class RunDataQuery {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
