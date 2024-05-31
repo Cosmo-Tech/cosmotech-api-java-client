@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * GraphProperties
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T10:04:10.548451272Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T13:21:14.970707110Z[Etc/UTC]")
 public class GraphProperties {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)

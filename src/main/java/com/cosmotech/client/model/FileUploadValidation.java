@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * files read on upload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T10:04:10.548451272Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T13:21:14.970707110Z[Etc/UTC]")
 public class FileUploadValidation {
   public static final String SERIALIZED_NAME_NODES = "nodes";
   @SerializedName(SERIALIZED_NAME_NODES)
