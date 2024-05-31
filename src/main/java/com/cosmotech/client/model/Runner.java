@@ -55,7 +55,7 @@ import com.cosmotech.client.JSON;
 /**
  * a Runner with base information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T13:21:14.970707110Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-31T13:55:35.129487759Z[Etc/UTC]")
 @com.redis.om.spring.annotations.Document
 public class Runner {
   public static final String SERIALIZED_NAME_ID = "id";
