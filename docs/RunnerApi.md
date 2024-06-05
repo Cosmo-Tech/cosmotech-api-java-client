@@ -2,26 +2,26 @@
 
 All URIs are relative to *https://dev.api.cosmotech.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addRunnerAccessControl**](RunnerApi.md#addRunnerAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access | Add a control access to the Runner
-[**createRunner**](RunnerApi.md#createRunner) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners | Create a new Runner
-[**deleteRunner**](RunnerApi.md#deleteRunner) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Delete a runner
-[**getRunner**](RunnerApi.md#getRunner) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Get the details of an runner
-[**getRunnerAccessControl**](RunnerApi.md#getRunnerAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Get a control access for the Runner
-[**getRunnerPermissions**](RunnerApi.md#getRunnerPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/permissions/{role} | Get the Runner permission by given role
-[**getRunnerSecurity**](RunnerApi.md#getRunnerSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security | Get the Runner security information
-[**getRunnerSecurityUsers**](RunnerApi.md#getRunnerSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/users | Get the Runner security users list
-[**listRunners**](RunnerApi.md#listRunners) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners | List all Runners
-[**removeRunnerAccessControl**](RunnerApi.md#removeRunnerAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Remove the specified access from the given Organization Runner
-[**setRunnerDefaultSecurity**](RunnerApi.md#setRunnerDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/default | Set the Runner default security
-[**startRun**](RunnerApi.md#startRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/start | Start a run with runner parameters
-[**stopRun**](RunnerApi.md#stopRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop | Stop the last run
-[**updateRunner**](RunnerApi.md#updateRunner) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Update a runner
-[**updateRunnerAccessControl**](RunnerApi.md#updateRunnerAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Update the specified access to User for a Runner
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addRunnerAccessControl**](RunnerApi.md#addRunnerAccessControl) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access | Add a control access to the Runner |
+| [**createRunner**](RunnerApi.md#createRunner) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners | Create a new Runner |
+| [**deleteRunner**](RunnerApi.md#deleteRunner) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Delete a runner |
+| [**getRunner**](RunnerApi.md#getRunner) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Get the details of an runner |
+| [**getRunnerAccessControl**](RunnerApi.md#getRunnerAccessControl) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Get a control access for the Runner |
+| [**getRunnerPermissions**](RunnerApi.md#getRunnerPermissions) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/permissions/{role} | Get the Runner permission by given role |
+| [**getRunnerSecurity**](RunnerApi.md#getRunnerSecurity) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security | Get the Runner security information |
+| [**getRunnerSecurityUsers**](RunnerApi.md#getRunnerSecurityUsers) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/users | Get the Runner security users list |
+| [**listRunners**](RunnerApi.md#listRunners) | **GET** /organizations/{organization_id}/workspaces/{workspace_id}/runners | List all Runners |
+| [**removeRunnerAccessControl**](RunnerApi.md#removeRunnerAccessControl) | **DELETE** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Remove the specified access from the given Organization Runner |
+| [**setRunnerDefaultSecurity**](RunnerApi.md#setRunnerDefaultSecurity) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/default | Set the Runner default security |
+| [**startRun**](RunnerApi.md#startRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/start | Start a run with runner parameters |
+| [**stopRun**](RunnerApi.md#stopRun) | **POST** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop | Stop the last run |
+| [**updateRunner**](RunnerApi.md#updateRunner) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id} | Update a runner |
+| [**updateRunnerAccessControl**](RunnerApi.md#updateRunnerAccessControl) | **PATCH** /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/security/access/{identity_id} | Update the specified access to User for a Runner |
 
 
-<a name="addRunnerAccessControl"></a>
+<a id="addRunnerAccessControl"></a>
 # **addRunnerAccessControl**
 > RunnerAccessControl addRunnerAccessControl(organizationId, workspaceId, runnerId, runnerAccessControl)
 
@@ -67,12 +67,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runnerAccessControl** | [**RunnerAccessControl**](RunnerAccessControl.md)| the new Runner security access to add. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runnerAccessControl** | [**RunnerAccessControl**](RunnerAccessControl.md)| the new Runner security access to add. | |
 
 ### Return type
 
@@ -90,10 +90,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Runner access |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Runner access |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="createRunner"></a>
+<a id="createRunner"></a>
 # **createRunner**
 > Runner createRunner(organizationId, workspaceId, runner)
 
@@ -138,11 +138,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runner** | [**Runner**](Runner.md)| the Runner to create |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runner** | [**Runner**](Runner.md)| the Runner to create | |
 
 ### Return type
 
@@ -160,10 +160,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | the runner details |  -  |
-**400** | Bad request |  -  |
+| **201** | the runner details |  -  |
+| **400** | Bad request |  -  |
 
-<a name="deleteRunner"></a>
+<a id="deleteRunner"></a>
 # **deleteRunner**
 > deleteRunner(organizationId, workspaceId, runnerId)
 
@@ -207,11 +207,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -229,10 +229,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRunner"></a>
+<a id="getRunner"></a>
 # **getRunner**
 > Runner getRunner(organizationId, workspaceId, runnerId)
 
@@ -277,11 +277,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -299,10 +299,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the Runner details |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the Runner details |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRunnerAccessControl"></a>
+<a id="getRunnerAccessControl"></a>
 # **getRunnerAccessControl**
 > RunnerAccessControl getRunnerAccessControl(organizationId, workspaceId, runnerId, identityId)
 
@@ -348,12 +348,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -371,10 +371,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Runner access |  -  |
-**404** | the Runner or user specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Runner access |  -  |
+| **404** | the Runner or user specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRunnerPermissions"></a>
+<a id="getRunnerPermissions"></a>
 # **getRunnerPermissions**
 > List&lt;String&gt; getRunnerPermissions(organizationId, workspaceId, runnerId, role)
 
@@ -420,12 +420,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **role** | **String**| the Role |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **role** | **String**| the Role | |
 
 ### Return type
 
@@ -443,9 +443,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Runners security permission list |  -  |
+| **200** | The Runners security permission list |  -  |
 
-<a name="getRunnerSecurity"></a>
+<a id="getRunnerSecurity"></a>
 # **getRunnerSecurity**
 > RunnerSecurity getRunnerSecurity(organizationId, workspaceId, runnerId)
 
@@ -490,11 +490,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -512,10 +512,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Runner security |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Runner security |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="getRunnerSecurityUsers"></a>
+<a id="getRunnerSecurityUsers"></a>
 # **getRunnerSecurityUsers**
 > List&lt;String&gt; getRunnerSecurityUsers(organizationId, workspaceId, runnerId)
 
@@ -560,11 +560,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -582,10 +582,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Runner security users list |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Runner security users list |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="listRunners"></a>
+<a id="listRunners"></a>
 # **listRunners**
 > List&lt;Runner&gt; listRunners(organizationId, workspaceId, page, size)
 
@@ -631,12 +631,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **page** | **Integer**| page number to query | [optional]
- **size** | **Integer**| amount of result by page | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **page** | **Integer**| page number to query | [optional] |
+| **size** | **Integer**| amount of result by page | [optional] |
 
 ### Return type
 
@@ -654,9 +654,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the list of Runners |  -  |
+| **200** | the list of Runners |  -  |
 
-<a name="removeRunnerAccessControl"></a>
+<a id="removeRunnerAccessControl"></a>
 # **removeRunnerAccessControl**
 > removeRunnerAccessControl(organizationId, workspaceId, runnerId, identityId)
 
@@ -701,12 +701,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **identityId** | **String**| the User identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **identityId** | **String**| the User identifier | |
 
 ### Return type
 
@@ -724,10 +724,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Request succeeded |  -  |
-**404** | the Runner or the user specified is unknown or you don&#39;t have access to them |  -  |
+| **204** | Request succeeded |  -  |
+| **404** | the Runner or the user specified is unknown or you don&#39;t have access to them |  -  |
 
-<a name="setRunnerDefaultSecurity"></a>
+<a id="setRunnerDefaultSecurity"></a>
 # **setRunnerDefaultSecurity**
 > RunnerSecurity setRunnerDefaultSecurity(organizationId, workspaceId, runnerId, runnerRole)
 
@@ -773,12 +773,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runnerRole** | [**RunnerRole**](RunnerRole.md)| This change the runner default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the runner. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runnerRole** | [**RunnerRole**](RunnerRole.md)| This change the runner default security. The default security is the role assigned to any person not on the Access Control List. If the default security is None, then nobody outside of the ACL can access the runner. | |
 
 ### Return type
 
@@ -796,10 +796,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The Runner default visibility |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **201** | The Runner default visibility |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="startRun"></a>
+<a id="startRun"></a>
 # **startRun**
 > String startRun(organizationId, workspaceId, runnerId)
 
@@ -844,11 +844,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -866,10 +866,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | the Run id started |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **202** | the Run id started |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="stopRun"></a>
+<a id="stopRun"></a>
 # **stopRun**
 > stopRun(organizationId, workspaceId, runnerId)
 
@@ -913,11 +913,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
 
 ### Return type
 
@@ -935,10 +935,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | the last Run has been stopped |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **202** | the last Run has been stopped |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateRunner"></a>
+<a id="updateRunner"></a>
 # **updateRunner**
 > Runner updateRunner(organizationId, workspaceId, runnerId, runner)
 
@@ -984,12 +984,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **runner** | [**Runner**](Runner.md)| the new Runner details. This endpoint can&#39;t be used to update security |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **runner** | [**Runner**](Runner.md)| the new Runner details. This endpoint can&#39;t be used to update security | |
 
 ### Return type
 
@@ -1007,11 +1007,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | the runner details |  -  |
-**400** | Bad request |  -  |
-**404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | the runner details |  -  |
+| **400** | Bad request |  -  |
+| **404** | the Runner specified is unknown or you don&#39;t have access to it |  -  |
 
-<a name="updateRunnerAccessControl"></a>
+<a id="updateRunnerAccessControl"></a>
 # **updateRunnerAccessControl**
 > RunnerAccessControl updateRunnerAccessControl(organizationId, workspaceId, runnerId, identityId, runnerRole)
 
@@ -1058,13 +1058,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| the Organization identifier |
- **workspaceId** | **String**| the Workspace identifier |
- **runnerId** | **String**| the Runner identifier |
- **identityId** | **String**| the User identifier |
- **runnerRole** | [**RunnerRole**](RunnerRole.md)| The new Runner Access Control |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **workspaceId** | **String**| the Workspace identifier | |
+| **runnerId** | **String**| the Runner identifier | |
+| **identityId** | **String**| the User identifier | |
+| **runnerRole** | [**RunnerRole**](RunnerRole.md)| The new Runner Access Control | |
 
 ### Return type
 
@@ -1082,6 +1082,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Runner access |  -  |
-**404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
+| **200** | The Runner access |  -  |
+| **404** | The Organization specified is unknown or you don&#39;t have access to it |  -  |
 
