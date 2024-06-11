@@ -479,7 +479,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The Scenarios security permission list </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The security permission list </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getAllPermissionsCall(final ApiCallback _callback) throws ApiException {
@@ -540,7 +540,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The Scenarios security permission list </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The security permission list </td><td>  -  </td></tr>
      </table>
      */
     public List<ComponentRolePermissions> getAllPermissions() throws ApiException {
@@ -556,7 +556,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The Scenarios security permission list </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The security permission list </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<ComponentRolePermissions>> getAllPermissionsWithHttpInfo() throws ApiException {
@@ -574,7 +574,7 @@ public class OrganizationApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The Scenarios security permission list </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The security permission list </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getAllPermissionsAsync(final ApiCallback<List<ComponentRolePermissions>> _callback) throws ApiException {

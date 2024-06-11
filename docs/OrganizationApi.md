@@ -280,7 +280,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The Scenarios security permission list |  -  |
+| **200** | The security permission list |  -  |
 
 <a id="getOrganizationAccessControl"></a>
 # **getOrganizationAccessControl**
