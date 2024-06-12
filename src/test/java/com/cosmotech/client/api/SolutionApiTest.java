@@ -16,7 +16,6 @@ package com.cosmotech.client.api;
 import com.cosmotech.client.ApiException;
 import java.io.File;
 import com.cosmotech.client.model.RunTemplate;
-import com.cosmotech.client.model.RunTemplateHandlerId;
 import com.cosmotech.client.model.RunTemplateParameter;
 import com.cosmotech.client.model.RunTemplateParameterGroup;
 import com.cosmotech.client.model.Solution;
@@ -132,21 +131,6 @@ public class SolutionApiTest {
         String solutionId = null;
         String runTemplateId = null;
         api.deleteSolutionRunTemplate(organizationId, solutionId, runTemplateId);
-        // TODO: test validations
-    }
-
-    /**
-     * Download a Run Template step handler zip file
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void downloadRunTemplateHandlerTest() throws ApiException {
-        String organizationId = null;
-        String solutionId = null;
-        String runTemplateId = null;
-        RunTemplateHandlerId handlerId = null;
-        byte[] response = api.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
         // TODO: test validations
     }
 
@@ -325,23 +309,6 @@ public class SolutionApiTest {
         String runTemplateId = null;
         RunTemplate runTemplate = null;
         List<RunTemplate> response = api.updateSolutionRunTemplate(organizationId, solutionId, runTemplateId, runTemplate);
-        // TODO: test validations
-    }
-
-    /**
-     * Upload a Run Template step handler zip file
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void uploadRunTemplateHandlerTest() throws ApiException {
-        String organizationId = null;
-        String solutionId = null;
-        String runTemplateId = null;
-        RunTemplateHandlerId handlerId = null;
-        File body = null;
-        Boolean overwrite = null;
-        api.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
         // TODO: test validations
     }
 
