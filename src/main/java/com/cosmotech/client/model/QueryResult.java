@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the result of a SQL Query
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T10:51:39.210587572Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T11:14:43.719411401Z[Etc/UTC]")
 public class QueryResult {
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
