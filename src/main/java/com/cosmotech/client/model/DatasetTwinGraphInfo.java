@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * a twin graph query in cypher language
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T09:28:30.718491224Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T09:45:28.124850704Z[Etc/UTC]")
 public class DatasetTwinGraphInfo {
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
