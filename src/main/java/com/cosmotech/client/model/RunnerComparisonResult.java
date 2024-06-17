@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the result of the comparison of two runners
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-17T14:29:40.786412816Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-17T15:36:41.777602640Z[Etc/UTC]")
 public class RunnerComparisonResult {
   public static final String SERIALIZED_NAME_RUNNER_ID = "runnerId";
   @SerializedName(SERIALIZED_NAME_RUNNER_ID)
