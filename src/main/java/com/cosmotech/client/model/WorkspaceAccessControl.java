@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * a Workspace access control item
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T15:32:27.930538642Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-17T14:28:47.423393601Z[Etc/UTC]")
 public class WorkspaceAccessControl {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

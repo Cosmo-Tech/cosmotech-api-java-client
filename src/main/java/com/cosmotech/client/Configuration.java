@@ -13,7 +13,7 @@
 
 package com.cosmotech.client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-12T15:32:27.930538642Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-17T14:28:47.423393601Z[Etc/UTC]")
 public class Configuration {
     public static final String VERSION = "3.2.2-SNAPSHOT";
 
