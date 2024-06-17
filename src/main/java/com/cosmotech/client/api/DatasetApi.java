@@ -3748,7 +3748,7 @@ public class DatasetApi {
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
      * @param datasetTwinGraphQuery the query to run (required)
-     * @return String
+     * @return List&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -3756,8 +3756,8 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public String twingraphQuery(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery) throws ApiException {
-        ApiResponse<String> localVarResp = twingraphQueryWithHttpInfo(organizationId, datasetId, datasetTwinGraphQuery);
+    public List<Object> twingraphQuery(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery) throws ApiException {
+        ApiResponse<List<Object>> localVarResp = twingraphQueryWithHttpInfo(organizationId, datasetId, datasetTwinGraphQuery);
         return localVarResp.getData();
     }
 
@@ -3767,7 +3767,7 @@ public class DatasetApi {
      * @param organizationId the Organization identifier (required)
      * @param datasetId the Dataset identifier (required)
      * @param datasetTwinGraphQuery the query to run (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;List&lt;Object&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -3775,9 +3775,9 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<String> twingraphQueryWithHttpInfo(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery) throws ApiException {
+    public ApiResponse<List<Object>> twingraphQueryWithHttpInfo(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery) throws ApiException {
         okhttp3.Call localVarCall = twingraphQueryValidateBeforeCall(organizationId, datasetId, datasetTwinGraphQuery, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Object>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -3796,10 +3796,10 @@ public class DatasetApi {
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call twingraphQueryAsync(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback<String> _callback) throws ApiException {
+    public okhttp3.Call twingraphQueryAsync(String organizationId, String datasetId, DatasetTwinGraphQuery datasetTwinGraphQuery, final ApiCallback<List<Object>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = twingraphQueryValidateBeforeCall(organizationId, datasetId, datasetTwinGraphQuery, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Object>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -421,7 +421,7 @@ public class DatasetApiTest {
         String organizationId = null;
         String datasetId = null;
         DatasetTwinGraphQuery datasetTwinGraphQuery = null;
-        String response = api.twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery);
+        List<Object> response = api.twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery);
         // TODO: test validations
     }
 

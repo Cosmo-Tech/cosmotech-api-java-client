@@ -1790,7 +1790,7 @@ public class Example {
 
 <a id="twingraphQuery"></a>
 # **twingraphQuery**
-> String twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery)
+> List&lt;Object&gt; twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery)
 
 Return the result of a query made on the graph instance as a json
 
@@ -1820,7 +1820,7 @@ public class Example {
     String datasetId = "datasetId_example"; // String | the Dataset identifier
     DatasetTwinGraphQuery datasetTwinGraphQuery = new DatasetTwinGraphQuery(); // DatasetTwinGraphQuery | the query to run
     try {
-      String result = apiInstance.twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery);
+      List<Object> result = apiInstance.twingraphQuery(organizationId, datasetId, datasetTwinGraphQuery);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DatasetApi#twingraphQuery");
@@ -1843,7 +1843,7 @@ public class Example {
 
 ### Return type
 
-**String**
+**List&lt;Object&gt;**
 
 ### Authorization
 
