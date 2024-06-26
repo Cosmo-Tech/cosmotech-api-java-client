@@ -59,7 +59,7 @@ import com.cosmotech.client.JSON;
 /**
  * a Dataset
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-25T14:15:17.663452747Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-26T10:16:48.150626446Z[Etc/UTC]")
 @com.redis.om.spring.annotations.Document
 public class Dataset {
   public static final String SERIALIZED_NAME_ID = "id";
