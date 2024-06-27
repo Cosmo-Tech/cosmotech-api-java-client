@@ -8,8 +8,7 @@ the secret definition
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** | the secret name |  |
-|**value** | **String** | the secret value |  |
+|**dedicatedEventHubKey** | **String** | the dedicated event hub shared access key |  [optional] |
 
 
 
