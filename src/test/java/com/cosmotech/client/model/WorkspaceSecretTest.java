@@ -38,11 +38,19 @@ public class WorkspaceSecretTest {
     }
 
     /**
-     * Test the property 'dedicatedEventHubKey'
+     * Test the property 'name'
      */
     @Test
-    public void dedicatedEventHubKeyTest() {
-        // TODO: test dedicatedEventHubKey
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

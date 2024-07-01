@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the run logs returned by all containers
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-01T14:52:43.277140163Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-01T15:11:22.484525356Z[Etc/UTC]")
 public class RunLogs {
   public static final String SERIALIZED_NAME_RUN_ID = "runId";
   @SerializedName(SERIALIZED_NAME_RUN_ID)
