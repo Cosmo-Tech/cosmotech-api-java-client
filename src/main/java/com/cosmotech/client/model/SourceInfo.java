@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * Source job import information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-03T11:10:21.838590175Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-03T15:11:17.580017799Z[Etc/UTC]")
 public class SourceInfo {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
