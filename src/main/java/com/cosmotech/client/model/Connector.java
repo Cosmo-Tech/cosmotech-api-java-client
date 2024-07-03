@@ -53,7 +53,7 @@ import com.cosmotech.client.JSON;
 /**
  * a version of a Connector
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-03T09:19:20.649417559Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-03T10:37:36.706336177Z[Etc/UTC]")
 @com.redis.om.spring.annotations.Document
 public class Connector {
   public static final String SERIALIZED_NAME_ID = "id";
