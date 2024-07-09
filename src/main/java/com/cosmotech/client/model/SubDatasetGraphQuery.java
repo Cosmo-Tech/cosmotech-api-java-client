@@ -51,7 +51,7 @@ import com.cosmotech.client.JSON;
 /**
  * a twin graph query in cypher language
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-08T15:38:41.484592246Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T14:57:25.758214413Z[Etc/UTC]")
 public class SubDatasetGraphQuery {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
