@@ -58,18 +58,6 @@ public class ConnectorApiTest {
     }
 
     /**
-     * Get the details of a connector
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void findConnectorByNameTest() throws ApiException {
-        String connectorName = null;
-        Connector response = api.findConnectorByName(connectorName);
-        // TODO: test validations
-    }
-
-    /**
      * Register a new connector
      *
      * @throws ApiException if the Api call fails

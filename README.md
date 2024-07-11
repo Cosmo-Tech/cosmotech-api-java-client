@@ -2,7 +2,7 @@
 
 Cosmo Tech Platform API
 - API version: 4.0.2-SNAPSHOT
-  - Build date: 2024-07-11T08:41:32.245640792Z[Etc/UTC]
+  - Build date: 2024-07-11T14:26:29.032385969Z[Etc/UTC]
 
 Cosmo Tech Platform API
 
@@ -123,7 +123,6 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ConnectorApi* | [**findAllConnectors**](docs/ConnectorApi.md#findAllConnectors) | **GET** /connectors | List all Connectors
 *ConnectorApi* | [**findConnectorById**](docs/ConnectorApi.md#findConnectorById) | **GET** /connectors/{connector_id} | Get the details of a connector
-*ConnectorApi* | [**findConnectorByName**](docs/ConnectorApi.md#findConnectorByName) | **GET** /connectors/name/{connector_name} | Get the details of a connector
 *ConnectorApi* | [**registerConnector**](docs/ConnectorApi.md#registerConnector) | **POST** /connectors | Register a new connector
 *ConnectorApi* | [**unregisterConnector**](docs/ConnectorApi.md#unregisterConnector) | **DELETE** /connectors/{connector_id} | Unregister a connector
 *DatasetApi* | [**addDatasetAccessControl**](docs/DatasetApi.md#addDatasetAccessControl) | **POST** /organizations/{organization_id}/datasets/{dataset_id}/security/access | Add a control access to the Dataset
