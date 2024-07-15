@@ -4636,8 +4636,9 @@ paths:
       responses:
         "202":
           content:
-            application/json:
+            text/plain:
               schema:
+                example: r-p75189n1m43k
                 type: string
           description: the Run id started
         "404":
@@ -4646,7 +4647,7 @@ paths:
       summary: Start a run with runner parameters
       tags:
       - runner
-      x-accepts: application/json
+      x-accepts: text/plain
   /organizations/{organization_id}/workspaces/{workspace_id}/runners/{runner_id}/stop:
     post:
       operationId: stopRun
