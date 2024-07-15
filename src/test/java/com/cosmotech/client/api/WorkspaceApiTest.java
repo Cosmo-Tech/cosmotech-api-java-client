@@ -100,7 +100,7 @@ public class WorkspaceApiTest {
     public void deleteWorkspaceTest() throws ApiException {
         String organizationId = null;
         String workspaceId = null;
-        Workspace response = api.deleteWorkspace(organizationId, workspaceId);
+        api.deleteWorkspace(organizationId, workspaceId);
         // TODO: test validations
     }
 

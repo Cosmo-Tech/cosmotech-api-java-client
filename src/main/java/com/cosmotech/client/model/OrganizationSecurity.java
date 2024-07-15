@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * the Organization security information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T14:27:29.263795843Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T15:09:18.970158251Z[Etc/UTC]")
 public class OrganizationSecurity {
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)

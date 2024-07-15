@@ -57,7 +57,7 @@ import com.cosmotech.client.JSON;
 /**
  * a Solution Run Template
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T14:27:29.263795843Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T15:09:18.970158251Z[Etc/UTC]")
 public class RunTemplate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

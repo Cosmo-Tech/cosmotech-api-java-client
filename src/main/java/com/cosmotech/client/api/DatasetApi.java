@@ -1105,7 +1105,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteTwingraphEntitiesCall(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback _callback) throws ApiException {
@@ -1195,7 +1195,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
     public void deleteTwingraphEntities(String organizationId, String datasetId, String type, List<String> ids) throws ApiException {
@@ -1214,7 +1214,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteTwingraphEntitiesWithHttpInfo(String organizationId, String datasetId, String type, List<String> ids) throws ApiException {
@@ -1235,7 +1235,7 @@ public class DatasetApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteTwingraphEntitiesAsync(String organizationId, String datasetId, String type, List<String> ids, final ApiCallback<Void> _callback) throws ApiException {

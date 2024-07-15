@@ -649,7 +649,7 @@ public class WorkspaceApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the workspace details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> the workspace details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
@@ -682,7 +682,6 @@ public class WorkspaceApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -721,19 +720,17 @@ public class WorkspaceApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return Workspace
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the workspace details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> the workspace details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public Workspace deleteWorkspace(String organizationId, String workspaceId) throws ApiException {
-        ApiResponse<Workspace> localVarResp = deleteWorkspaceWithHttpInfo(organizationId, workspaceId);
-        return localVarResp.getData();
+    public void deleteWorkspace(String organizationId, String workspaceId) throws ApiException {
+        deleteWorkspaceWithHttpInfo(organizationId, workspaceId);
     }
 
     /**
@@ -741,20 +738,19 @@ public class WorkspaceApi {
      * 
      * @param organizationId the Organization identifier (required)
      * @param workspaceId the Workspace identifier (required)
-     * @return ApiResponse&lt;Workspace&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the workspace details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> the workspace details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Workspace> deleteWorkspaceWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
+    public ApiResponse<Void> deleteWorkspaceWithHttpInfo(String organizationId, String workspaceId) throws ApiException {
         okhttp3.Call localVarCall = deleteWorkspaceValidateBeforeCall(organizationId, workspaceId, null);
-        Type localVarReturnType = new TypeToken<Workspace>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -768,16 +764,15 @@ public class WorkspaceApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> the workspace details </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> the workspace details </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> the Workspace specified is unknown or you don&#39;t have access to it </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteWorkspaceAsync(String organizationId, String workspaceId, final ApiCallback<Workspace> _callback) throws ApiException {
+    public okhttp3.Call deleteWorkspaceAsync(String organizationId, String workspaceId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteWorkspaceValidateBeforeCall(organizationId, workspaceId, _callback);
-        Type localVarReturnType = new TypeToken<Workspace>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**

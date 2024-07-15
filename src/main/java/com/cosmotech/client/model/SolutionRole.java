@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * the Solution Role
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T14:27:29.263795843Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T15:09:18.970158251Z[Etc/UTC]")
 public class SolutionRole {
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)

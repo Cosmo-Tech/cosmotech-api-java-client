@@ -303,7 +303,7 @@ null (empty response body)
 
 <a id="deleteWorkspace"></a>
 # **deleteWorkspace**
-> Workspace deleteWorkspace(organizationId, workspaceId)
+> deleteWorkspace(organizationId, workspaceId)
 
 Delete a workspace
 
@@ -330,8 +330,7 @@ public class Example {
     String organizationId = "organizationId_example"; // String | the Organization identifier
     String workspaceId = "workspaceId_example"; // String | the Workspace identifier
     try {
-      Workspace result = apiInstance.deleteWorkspace(organizationId, workspaceId);
-      System.out.println(result);
+      apiInstance.deleteWorkspace(organizationId, workspaceId);
     } catch (ApiException e) {
       System.err.println("Exception when calling WorkspaceApi#deleteWorkspace");
       System.err.println("Status code: " + e.getCode());
@@ -352,7 +351,7 @@ public class Example {
 
 ### Return type
 
-[**Workspace**](Workspace.md)
+null (empty response body)
 
 ### Authorization
 
@@ -361,12 +360,12 @@ public class Example {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | the workspace details |  -  |
+| **204** | the workspace details |  -  |
 | **400** | Bad request |  -  |
 | **404** | the Workspace specified is unknown or you don&#39;t have access to it |  -  |
 
