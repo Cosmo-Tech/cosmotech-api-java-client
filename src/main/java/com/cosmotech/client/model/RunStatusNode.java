@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * status of a Run Node
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:21:10.262478371Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:27:00.308151830Z[Etc/UTC]")
 public class RunStatusNode {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
