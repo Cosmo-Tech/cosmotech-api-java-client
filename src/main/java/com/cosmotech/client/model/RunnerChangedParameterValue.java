@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * the difference between the values of a parameter
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T10:42:41.945951570Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:03:48.937084968Z[Etc/UTC]")
 public class RunnerChangedParameterValue {
   public static final String SERIALIZED_NAME_PARAMETER_ID = "parameterId";
   @SerializedName(SERIALIZED_NAME_PARAMETER_ID)

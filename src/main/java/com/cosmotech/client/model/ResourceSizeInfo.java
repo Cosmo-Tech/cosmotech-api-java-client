@@ -49,7 +49,7 @@ import com.cosmotech.client.JSON;
 /**
  * define cpus and memory needs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T10:42:41.945951570Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:03:48.937084968Z[Etc/UTC]")
 public class ResourceSizeInfo {
   public static final String SERIALIZED_NAME_CPU = "cpu";
   @SerializedName(SERIALIZED_NAME_CPU)
