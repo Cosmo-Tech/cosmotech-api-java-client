@@ -50,7 +50,7 @@ import com.cosmotech.client.JSON;
 /**
  * a description object for resource requests and limits (default same configuration as basic sizing)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:03:48.937084968Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:21:10.262478371Z[Etc/UTC]")
 public class ContainerResourceSizing {
   public static final String SERIALIZED_NAME_REQUESTS = "requests";
   @SerializedName(SERIALIZED_NAME_REQUESTS)

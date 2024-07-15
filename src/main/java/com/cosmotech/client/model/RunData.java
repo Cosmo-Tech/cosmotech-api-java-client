@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * Run Data to send
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:03:48.937084968Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T13:21:10.262478371Z[Etc/UTC]")
 public class RunData {
   public static final String SERIALIZED_NAME_DATABASE_NAME = "database_name";
   @SerializedName(SERIALIZED_NAME_DATABASE_NAME)
