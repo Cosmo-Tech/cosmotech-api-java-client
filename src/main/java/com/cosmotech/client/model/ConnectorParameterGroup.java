@@ -52,7 +52,7 @@ import com.cosmotech.client.JSON;
 /**
  * a connector parameters group
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T09:25:01.456446282Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T10:42:41.945951570Z[Etc/UTC]")
 public class ConnectorParameterGroup {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
