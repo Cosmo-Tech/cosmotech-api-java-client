@@ -11,6 +11,7 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 | [**createSolution**](SolutionApi.md#createSolution) | **POST** /organizations/{organization_id}/solutions | Register a new solution |
 | [**deleteSolution**](SolutionApi.md#deleteSolution) | **DELETE** /organizations/{organization_id}/solutions/{solution_id} | Delete a solution |
 | [**deleteSolutionRunTemplate**](SolutionApi.md#deleteSolutionRunTemplate) | **DELETE** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Remove the specified Solution Run Template |
+| [**downloadRunTemplateHandler**](SolutionApi.md#downloadRunTemplateHandler) | **GET** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/download | Download a Run Template step handler zip file |
 | [**findAllSolutions**](SolutionApi.md#findAllSolutions) | **GET** /organizations/{organization_id}/solutions | List all Solutions |
 | [**findSolutionById**](SolutionApi.md#findSolutionById) | **GET** /organizations/{organization_id}/solutions/{solution_id} | Get the details of a solution |
 | [**getSolutionAccessControl**](SolutionApi.md#getSolutionAccessControl) | **GET** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Get a control access for the Solution |
@@ -24,6 +25,7 @@ All URIs are relative to *https://dev.api.cosmotech.com*
 | [**updateSolution**](SolutionApi.md#updateSolution) | **PATCH** /organizations/{organization_id}/solutions/{solution_id} | Update a solution |
 | [**updateSolutionAccessControl**](SolutionApi.md#updateSolutionAccessControl) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/security/access/{identity_id} | Update the specified access to User for a Solution |
 | [**updateSolutionRunTemplate**](SolutionApi.md#updateSolutionRunTemplate) | **PATCH** /organizations/{organization_id}/solutions/{solution_id}/runTemplates/{run_template_id} | Update the specified Solution Run Template |
+| [**uploadRunTemplateHandler**](SolutionApi.md#uploadRunTemplateHandler) | **POST** /organizations/{organization_id}/solutions/{solution_id}/runtemplates/{run_template_id}/handlers/{handler_id}/upload | Upload a Run Template step handler zip file |
 
 
 <a id="addOrReplaceParameterGroups"></a>
@@ -512,6 +514,78 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | the operation succeeded |  -  |
 | **404** | the Solution specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="downloadRunTemplateHandler"></a>
+# **downloadRunTemplateHandler**
+> byte[] downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId)
+
+Download a Run Template step handler zip file
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
+    RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
+    try {
+      byte[] result = apiInstance.downloadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#downloadRunTemplateHandler");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
+| **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform] |
+
+### Return type
+
+**byte[]**
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/octet-stream
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | the run template handle file as a resource |  * Content-Disposition - Run Template step handler zip file <br>  |
+| **404** | the Run Template Handler file specified is unknown or you don&#39;t have access to it |  -  |
 
 <a id="findAllSolutions"></a>
 # **findAllSolutions**
@@ -1411,4 +1485,79 @@ public class Example {
 | **200** | the Parameters |  -  |
 | **400** | Bad request |  -  |
 | **404** | the Solution or Run Template specified is unknown or you don&#39;t have access to it |  -  |
+
+<a id="uploadRunTemplateHandler"></a>
+# **uploadRunTemplateHandler**
+> uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite)
+
+Upload a Run Template step handler zip file
+
+### Example
+```java
+// Import classes:
+import com.cosmotech.client.ApiClient;
+import com.cosmotech.client.ApiException;
+import com.cosmotech.client.Configuration;
+import com.cosmotech.client.auth.*;
+import com.cosmotech.client.models.*;
+import com.cosmotech.client.api.SolutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://dev.api.cosmotech.com");
+    
+    // Configure OAuth2 access token for authorization: oAuth2AuthCode
+    OAuth oAuth2AuthCode = (OAuth) defaultClient.getAuthentication("oAuth2AuthCode");
+    oAuth2AuthCode.setAccessToken("YOUR ACCESS TOKEN");
+
+    SolutionApi apiInstance = new SolutionApi(defaultClient);
+    String organizationId = "organizationId_example"; // String | the Organization identifier
+    String solutionId = "solutionId_example"; // String | the Solution identifier
+    String runTemplateId = "runTemplateId_example"; // String | the Run Template identifier
+    RunTemplateHandlerId handlerId = RunTemplateHandlerId.fromValue("parameters_handler"); // RunTemplateHandlerId | the Handler identifier
+    File body = new File("/path/to/file"); // File | 
+    Boolean overwrite = false; // Boolean | whether to overwrite any existing handler resource
+    try {
+      apiInstance.uploadRunTemplateHandler(organizationId, solutionId, runTemplateId, handlerId, body, overwrite);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SolutionApi#uploadRunTemplateHandler");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organizationId** | **String**| the Organization identifier | |
+| **solutionId** | **String**| the Solution identifier | |
+| **runTemplateId** | **String**| the Run Template identifier | |
+| **handlerId** | [**RunTemplateHandlerId**](.md)| the Handler identifier | [enum: parameters_handler, validator, prerun, engine, postrun, scenariodata_transform] |
+| **body** | **File**|  | |
+| **overwrite** | **Boolean**| whether to overwrite any existing handler resource | [optional] [default to false] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oAuth2AuthCode](../README.md#oAuth2AuthCode)
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | zip file uploaded |  -  |
+| **400** | Bad request |  -  |
 

@@ -19,6 +19,7 @@ a Run container description
 |**solutionContainer** | **Boolean** | whether or not this container is a Cosmo Tech solution container |  [optional] [readonly] |
 |**nodeLabel** | **String** | the node label request |  [optional] |
 |**runSizing** | [**ContainerResourceSizing**](ContainerResourceSizing.md) |  |  [optional] |
+|**artifacts** | [**List&lt;RunContainerArtifact&gt;**](RunContainerArtifact.md) | the list of artifacts |  [optional] |
 
 
 
