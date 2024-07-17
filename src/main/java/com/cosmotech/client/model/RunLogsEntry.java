@@ -47,33 +47,33 @@ import java.util.Set;
 import com.cosmotech.client.JSON;
 
 /**
- * the Dataset Role
+ * single run log entry
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-17T08:55:58.989708539Z[Etc/UTC]")
-public class DatasetRole {
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private String role;
+public class RunLogsEntry {
+  public static final String SERIALIZED_NAME_LINE = "line";
+  @SerializedName(SERIALIZED_NAME_LINE)
+  private String line;
 
-  public DatasetRole() {
+  public RunLogsEntry() {
   }
 
-  public DatasetRole role(String role) {
-    this.role = role;
+  public RunLogsEntry line(String line) {
+    this.line = line;
     return this;
   }
 
    /**
-   * the Dataset Role
-   * @return role
+   * log line data
+   * @return line
   **/
   @javax.annotation.Nonnull
-  public String getRole() {
-    return role;
+  public String getLine() {
+    return line;
   }
 
-  public void setRole(String role) {
-    this.role = role;
+  public void setLine(String line) {
+    this.line = line;
   }
 
 
@@ -86,20 +86,20 @@ public class DatasetRole {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DatasetRole datasetRole = (DatasetRole) o;
-    return Objects.equals(this.role, datasetRole.role);
+    RunLogsEntry runLogsEntry = (RunLogsEntry) o;
+    return Objects.equals(this.line, runLogsEntry.line);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role);
+    return Objects.hash(line);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DatasetRole {\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("class RunLogsEntry {\n");
+    sb.append("    line: ").append(toIndentedString(line)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,43 +122,43 @@ public class DatasetRole {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("role");
+    openapiFields.add("line");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("role");
+    openapiRequiredFields.add("line");
   }
 
  /**
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DatasetRole
+  * @throws IOException if the JSON Element is invalid with respect to RunLogsEntry
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!DatasetRole.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DatasetRole is not found in the empty JSON string", DatasetRole.openapiRequiredFields.toString()));
+        if (!RunLogsEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RunLogsEntry is not found in the empty JSON string", RunLogsEntry.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DatasetRole.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DatasetRole` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!RunLogsEntry.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RunLogsEntry` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DatasetRole.openapiRequiredFields) {
+      for (String requiredField : RunLogsEntry.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("role").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `role` to be a primitive type in the JSON string but got `%s`", jsonObj.get("role").toString()));
+      if (!jsonObj.get("line").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `line` to be a primitive type in the JSON string but got `%s`", jsonObj.get("line").toString()));
       }
   }
 
@@ -166,22 +166,22 @@ public class DatasetRole {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!DatasetRole.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'DatasetRole' and its subtypes
+       if (!RunLogsEntry.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RunLogsEntry' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<DatasetRole> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(DatasetRole.class));
+       final TypeAdapter<RunLogsEntry> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RunLogsEntry.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<DatasetRole>() {
+       return (TypeAdapter<T>) new TypeAdapter<RunLogsEntry>() {
            @Override
-           public void write(JsonWriter out, DatasetRole value) throws IOException {
+           public void write(JsonWriter out, RunLogsEntry value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public DatasetRole read(JsonReader in) throws IOException {
+           public RunLogsEntry read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -192,18 +192,18 @@ public class DatasetRole {
   }
 
  /**
-  * Create an instance of DatasetRole given an JSON string
+  * Create an instance of RunLogsEntry given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of DatasetRole
-  * @throws IOException if the JSON string is invalid with respect to DatasetRole
+  * @return An instance of RunLogsEntry
+  * @throws IOException if the JSON string is invalid with respect to RunLogsEntry
   */
-  public static DatasetRole fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DatasetRole.class);
+  public static RunLogsEntry fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RunLogsEntry.class);
   }
 
  /**
-  * Convert an instance of DatasetRole to an JSON string
+  * Convert an instance of RunLogsEntry to an JSON string
   *
   * @return JSON string
   */

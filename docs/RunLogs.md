@@ -2,14 +2,14 @@
 
 # RunLogs
 
-the run logs returned by all containers
+the output logs of a run
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**runId** | **String** | the Run Id |  [optional] [readonly] |
-|**containers** | [**Map&lt;String, RunContainerLogs&gt;**](RunContainerLogs.md) | the container map of logs |  [optional] [readonly] |
+|**runId** | **String** | the Run Id |  [readonly] |
+|**logs** | [**List&lt;RunLogsEntry&gt;**](RunLogsEntry.md) | run log entries in chronological order |  [readonly] |
 
 
 

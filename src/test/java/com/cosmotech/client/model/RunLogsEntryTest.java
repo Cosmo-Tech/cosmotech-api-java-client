@@ -24,25 +24,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DatasetTwinGraphQuery
+ * Model tests for RunLogsEntry
  */
-public class DatasetTwinGraphQueryTest {
-    private final DatasetTwinGraphQuery model = new DatasetTwinGraphQuery();
+public class RunLogsEntryTest {
+    private final RunLogsEntry model = new RunLogsEntry();
 
     /**
-     * Model tests for DatasetTwinGraphQuery
+     * Model tests for RunLogsEntry
      */
     @Test
-    public void testDatasetTwinGraphQuery() {
-        // TODO: test DatasetTwinGraphQuery
+    public void testRunLogsEntry() {
+        // TODO: test RunLogsEntry
     }
 
     /**
-     * Test the property 'query'
+     * Test the property 'line'
      */
     @Test
-    public void queryTest() {
-        // TODO: test query
+    public void lineTest() {
+        // TODO: test line
     }
 
 }
